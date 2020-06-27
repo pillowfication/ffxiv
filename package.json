@@ -1,0 +1,24 @@
+{
+  "name": "ffxiv",
+  "version": "0.0.0",
+  "description": "ffxiv shenanigans",
+  "author": {
+    "name": "Markus Tran",
+    "email": "thebluepillow@gmail.com",
+    "url": "http://pillowfication.com"
+  },
+  "homepage": "https://github.com/pillowfication/ffxiv",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pillowfication/ffxiv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pillowfication/ffxiv/issues"
+  },
+  "scripts": {
+    "test": "node_modules/standard/bin/cmd.js"
+  },
+  "devDependencies": {
+    "standard": "^12.0.1"
+  }
+}
