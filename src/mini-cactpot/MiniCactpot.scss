@@ -1,0 +1,41 @@
+@import "../settings";
+
+$mini-cactpot-cell-size: 5rem;
+
+.scratchcard {
+  display: inline-block;
+  box-sizing: border-box;
+  border: 1px solid gray;
+  background-color: #FFFFFF;
+  margin-bottom: $global-margin;
+
+  .cell {
+    display: inline-block;
+    box-sizing: border-box;
+    width: $mini-cactpot-cell-size;
+    height: $mini-cactpot-cell-size;
+    border: 1px solid #777777;
+    vertical-align: middle;
+
+    &.error {
+      background-color: rgba($alert-color, 0.3);
+    }
+
+    &.suggest {
+      background-color: rgba($success-color, 0.3);
+    }
+
+    & > input[type="text"] {
+      box-sizing: border-box;
+      width: $mini-cactpot-cell-size;
+      height: $mini-cactpot-cell-size;
+      margin: 0;
+      border: 0;
+      padding: 0;
+      background: none;
+      font-size: 3em;
+      text-align: center;
+      line-height: $mini-cactpot-cell-size;
+    }
+  }
+}

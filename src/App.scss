@@ -1,28 +1,21 @@
-@import "~normalize.css/normalize.css";
+@import "foundation";
 
-$FontPathOpenSans: "~open-sans-fonts/open-sans";
-@import "~open-sans-fonts/open-sans";
+header {
+  color: $white;
 
-$primary-color: #0f3d87;
-$background-color: #EDEDED;
-$text-color: #050505;
+  & a {
+    padding: $topbar-padding 0.5em;
 
-html, body {
-  background-color: $background-color;
-  font-family: "Open Sans";
-  font-size: 18pt;
-  color: $text-color;
+    &:link, &:visited {
+      color: $white;
+    }
+    &:hover, &:active {
+      color: $white;
+      background-color: darken($primary-color, 10%);
+    }
+  }
 }
 
-.container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-}
-
-.top-bar {
-  background-color: $primary-color;
-  color: $background-color;
+main {
+  padding-top: 1em;
 }
