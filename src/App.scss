@@ -1,0 +1,28 @@
+@import "~normalize.css/normalize.css";
+
+$FontPathOpenSans: "~open-sans-fonts/open-sans";
+@import "~open-sans-fonts/open-sans";
+
+$primary-color: #0f3d87;
+$background-color: #EDEDED;
+$text-color: #050505;
+
+html, body {
+  background-color: $background-color;
+  font-family: "Open Sans";
+  font-size: 18pt;
+  color: $text-color;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+.top-bar {
+  background-color: $primary-color;
+  color: $background-color;
+}
