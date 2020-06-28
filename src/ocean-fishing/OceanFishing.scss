@@ -21,7 +21,7 @@ input.utc-input {
   }
 
   .date-change:not(:first-child) {
-    border-top: 1px solid $dark-gray;
+    border-top: 1px solid $black;
   }
 
   .hover {
@@ -30,7 +30,7 @@ input.utc-input {
   }
 
   .date {
-    text-align: right;
+    text-align: center;
   }
   .time {
     text-align: left;

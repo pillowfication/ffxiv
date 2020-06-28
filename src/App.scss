@@ -20,3 +20,9 @@ header {
 main {
   padding-top: 1em;
 }
+
+table {
+  tbody > tr {
+    border-bottom: none;
+  }
+}

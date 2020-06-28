@@ -6,7 +6,7 @@ import styles from './OceanFishing.scss'
 
 const UTC = moment().utcOffset()
 const JST_UTC = 540
-const NUM_ROWS = 20
+const NUM_ROWS = 10
 
 const LULU_EPOCH = moment('2020-06-28 00:00+09:00').subtract(666, 'days')
 const DEST_CYCLE = ['N', 'R']
