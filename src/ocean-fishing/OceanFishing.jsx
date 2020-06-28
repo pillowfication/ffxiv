@@ -8,6 +8,7 @@ import styles from './OceanFishing.scss'
 
 const UTC = moment().utcOffset()
 const JST_UTC = 540
+const UPDATE_INTERVAL = 180000
 const DEST_MAP = {
   N: 'Northern Merlthor',
   R: 'Rhotano Sea'
@@ -24,7 +25,7 @@ const TIME_MAP = {
     //   const theta = i * Math.PI / 4 + Math.PI / 8
     //   console.log(`<path d='M ${ct(theta - delta, r, cx, cy)} L ${ct(theta, R, cx, cy)} L ${ct(theta + delta, r, cx, cy)} Z' stroke='black' fill='yellow' />`)
     // }
-    <svg width={32} height={32}>
+    <svg width={32} height={32} className={styles.timeIcon}>
       <circle cx={16} cy={16} r={8} stroke='black' fill='yellow' />
       <path d='M 26.84 17.89 L 29.86 21.74 L 25 22.33 Z' stroke='black' fill='yellow' />
       <path d='M 22.33 25 L 21.74 29.86 L 17.89 26.84 Z' stroke='black' fill='yellow' />
@@ -37,13 +38,13 @@ const TIME_MAP = {
     </svg>
   ),
   S: (
-    <svg width={32} height={32}>
-      <path d='M 29 24 A 10.4 10.4 0 1 0 10 24 Z' stroke='black' fill='yellow' />
-      <path d='M 2 30 L 2 26 L 30 26 L 30 30 Z' stroke='black' fill='yellow' />
+    <svg width={32} height={32} className={styles.timeIcon}>
+      <path d='M 29 22 A 10.4 10.4 0 1 0 10 22 Z' stroke='black' fill='yellow' />
+      <path d='M 2 28 L 2 24 L 30 24 L 30 28 Z' stroke='black' fill='yellow' />
     </svg>
   ),
   N: (
-    <svg width={32} height={32}>
+    <svg width={32} height={32} className={styles.timeIcon}>
       <path d='M 14 3 A 12 12 0 1 1 3 18 A 9 9 0 1 0 14 3 Z' stroke='black' fill='yellow' />
     </svg>
   )
@@ -67,12 +68,14 @@ function toUTCString (utc) {
 class OceanFishing extends Component {
   constructor (props) {
     super(props)
+    this.interval = null
 
     this.state = {
       now: moment().utcOffset(JST_UTC),
       numRows: 10,
       filter: 'none',
-      hoverDestinationCode: null
+      hover: null,
+      select: null
     }
 
     this.updateTime = this.updateTime.bind(this)
@@ -87,6 +90,22 @@ class OceanFishing extends Component {
       RN: this.handleOnHover.bind(this, 'RN'),
       clear: this.handleOnHover.bind(this, null)
     }
+    this.handleOnClick = {
+      ND: this.handleOnClick.bind(this, 'ND'),
+      RD: this.handleOnClick.bind(this, 'RD'),
+      NS: this.handleOnClick.bind(this, 'NS'),
+      RS: this.handleOnClick.bind(this, 'RS'),
+      NN: this.handleOnClick.bind(this, 'NN'),
+      RN: this.handleOnClick.bind(this, 'RN')
+    }
+  }
+
+  componentDidMount () {
+    this.interval = setInterval(this.updateTime, UPDATE_INTERVAL)
+  }
+
+  componentWillUnmount () {
+    clearInterval(this.interval)
   }
 
   updateTime () {
@@ -98,15 +117,23 @@ class OceanFishing extends Component {
   }
 
   handleOnSelectFilter (event) {
-    this.setState({ filter: event.target.value })
+    const destinationCode = event.target.value
+    this.setState({
+      filter: destinationCode,
+      select: destinationCode === 'none' ? this.state.select : destinationCode
+    })
   }
 
   handleOnHover (destinationCode) {
-    this.setState({ hoverDestinationCode: destinationCode })
+    this.setState({ hover: destinationCode })
+  }
+
+  handleOnClick (destinationCode) {
+    this.setState({ select: destinationCode })
   }
 
   render () {
-    const { now, numRows, filter, hoverDestinationCode } = this.state
+    const { now, numRows, filter, hover, select } = this.state
     const upcomingVoyages = calculateVoyages(now, +numRows, filter === 'none' ? null : filter)
     let previousDate
 
@@ -158,9 +185,10 @@ class OceanFishing extends Component {
                   key={`${voyage.day}:${voyage.hour}`}
                   className={cn(
                     dateChange && styles.dateChange,
-                    filter === 'none' && destinationCode === hoverDestinationCode && styles.hover
+                    filter === 'none' && destinationCode === hover && styles.hover
                   )}
                   onMouseOver={this.handleOnHover[destinationCode]}
+                  onClick={this.handleOnClick[destinationCode]}
                 >
                   <td className={styles.date}>{dateChange && date}</td>
                   <td className={styles.time}>{time.format('HH:mm')}</td>
@@ -172,6 +200,28 @@ class OceanFishing extends Component {
             }))}
           </tbody>
         </table>
+        {(() => {
+          switch (select) {
+            case 'ND':
+              return (
+                <>
+                  <strong>Northern Strait {TIME_MAP.D}</strong>
+                  <ol>
+                    <li>Southern Strait {TIME_MAP.S}</li>
+                    <li>Galadion Bay {TIME_MAP.N}</li>
+                    <li>Northern Strait {TIME_MAP.D}</li>
+                  </ol>
+                </>
+              )
+            case 'RD':
+            case 'NS':
+            case 'RS':
+            case 'NN':
+            case 'RN':
+            default:
+              return <p>Click on a route above to view its details here.</p>
+          }
+        })()}
       </>
     )
   }

@@ -1,5 +1,6 @@
 const moment = require('moment')
 
+// Cycle repeats every 6 days, subtract time to make sure we're in the future
 const LULU_EPOCH = moment('2020-06-28 00:00+09:00').subtract(666, 'days')
 const DEST_CYCLE = ['N', 'R']
 const TIME_CYCLE = ['D', 'S', 'N']
@@ -35,7 +36,7 @@ function calculateVoyages (time, count, filter) {
     if (hour === 23) {
       day += 1
       hour = 1
-      timeIndex = (timeIndex + ((day & 1) ? 1 : 2)) % 3
+      timeIndex = (timeIndex + ((day & 1) ? 1 : 2)) % 3 // Time shifts every other day
     } else {
       hour += 2
       destIndex = (destIndex + 1) % 2
