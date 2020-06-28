@@ -12,7 +12,8 @@ input.utc-input {
     text-align: center;
   }
 
-  tr {
+  tbody tr {
+    cursor: pointer;
   }
 
   svg {
@@ -24,7 +25,7 @@ input.utc-input {
     border-top: 1px solid $black;
   }
 
-  .hover {
+  tbody .hover, tbody tr:hover {
     background-color: $light-gray;
     transition: background-color 0.1s linear;
   }

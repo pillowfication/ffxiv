@@ -1,22 +1,29 @@
 import React, { Component } from 'react'
 import moment from 'moment'
 import cn from 'classnames'
+import calculateVoyages, { LULU_EPOCH } from './calculate-voyages'
 
+import zf from '../foundation.scss'
 import styles from './OceanFishing.scss'
 
 const UTC = moment().utcOffset()
 const JST_UTC = 540
-const NUM_ROWS = 10
-
-const LULU_EPOCH = moment('2020-06-28 00:00+09:00').subtract(666, 'days')
-const DEST_CYCLE = ['N', 'R']
-const TIME_CYCLE = ['D', 'S', 'N']
 const DEST_MAP = {
   N: 'Northern Merlthor',
   R: 'Rhotano Sea'
 }
 const TIME_MAP = {
   D: (
+    // Sun rays
+    // const cx = 16, cy = 16
+    // const delta = 0.22, r = 11, R = 15
+    // function ct (theta, rho, cx, cy) {
+    //   return `${Math.round((cx + rho * Math.cos(theta)) * 100) / 100} ${Math.round((cy + rho * Math.sin(theta)) * 100) / 100}`
+    // }
+    // for (let i = 0; i < 8; ++i) {
+    //   const theta = i * Math.PI / 4 + Math.PI / 8
+    //   console.log(`<path d='M ${ct(theta - delta, r, cx, cy)} L ${ct(theta, R, cx, cy)} L ${ct(theta + delta, r, cx, cy)} Z' stroke='black' fill='yellow' />`)
+    // }
     <svg width={32} height={32}>
       <circle cx={16} cy={16} r={8} stroke='black' fill='yellow' />
       <path d='M 26.84 17.89 L 29.86 21.74 L 25 22.33 Z' stroke='black' fill='yellow' />
@@ -50,48 +57,6 @@ const OBJECTIVES_MAP = {
   RN: ['jellyfish']
 }
 
-function getVoyages (time, count) {
-  // Important that `time` is UTC+09:00
-  let day = time.diff(LULU_EPOCH, 'days')
-  let hour = time.hour()
-
-  // Adjust time to fall on the next voyage
-  if (time.minute() < 15) hour -= 1
-  hour += (hour & 1) ? 2 : 1
-  if (hour === 0) {
-    day -= 1
-    hour = 24
-  } else if (hour === 25) {
-    day += 1
-    hour = 1
-  }
-
-  // Find the current voyage
-  const voyageNumber = hour >> 1
-  let destIndex = (day + voyageNumber) % 2
-  let timeIndex = ((day >> 1) + (voyageNumber >> 1)) % 3
-
-  // Loop until however many voyages are found
-  const upcomingVoyages = []
-  while (upcomingVoyages.length < count) {
-    upcomingVoyages.push({
-      day,
-      hour,
-      destinationCode: DEST_CYCLE[destIndex] + TIME_CYCLE[timeIndex]
-    })
-    if (hour === 23) {
-      day += 1
-      hour = 1
-      timeIndex = (timeIndex + ((day & 1) ? 1 : 2)) % 3
-    } else {
-      hour += 2
-      destIndex = (destIndex + 1) % 2
-      timeIndex = (timeIndex + ((hour >> 1 & 1) ? 0 : 1)) % 3
-    }
-  }
-  return upcomingVoyages
-}
-
 function paddedZero (n) {
   return n > 9 ? n : '0' + n
 }
@@ -105,10 +70,14 @@ class OceanFishing extends Component {
 
     this.state = {
       now: moment().utcOffset(JST_UTC),
+      numRows: 10,
+      filter: 'none',
       hoverDestinationCode: null
     }
 
     this.updateTime = this.updateTime.bind(this)
+    this.handleOnChangeRows = this.handleOnChangeRows.bind(this)
+    this.handleOnSelectFilter = this.handleOnSelectFilter.bind(this)
     this.handleOnHover = {
       ND: this.handleOnHover.bind(this, 'ND'),
       RD: this.handleOnHover.bind(this, 'RD'),
@@ -124,15 +93,21 @@ class OceanFishing extends Component {
     this.setState({ now: moment().utcOffset(JST_UTC) })
   }
 
+  handleOnChangeRows (event) {
+    this.setState({ numRows: event.target.value })
+  }
+
+  handleOnSelectFilter (event) {
+    this.setState({ filter: event.target.value })
+  }
+
   handleOnHover (destinationCode) {
     this.setState({ hoverDestinationCode: destinationCode })
   }
 
   render () {
-    const { now, hoverDestinationCode } = this.state
-
-    const upcomingVoyages = getVoyages(now, NUM_ROWS)
-
+    const { now, numRows, filter, hoverDestinationCode } = this.state
+    const upcomingVoyages = calculateVoyages(now, +numRows, filter === 'none' ? null : filter)
     let previousDate
 
     return (
@@ -141,6 +116,28 @@ class OceanFishing extends Component {
         <p>
           Your <a href='https://en.wikipedia.org/wiki/UTC_offset'>UTC offset</a> is <strong>({toUTCString(UTC)})</strong>. The time in Japan <strong>({toUTCString(JST_UTC)})</strong> is <strong>{now.utcOffset(JST_UTC).format('HH:mm')}</strong>.
         </p>
+        <div className={cn(zf.gridX, zf.gridPaddingX)}>
+          <fieldset className={cn(zf.cell, zf.medium6)}>
+            <legend>Number of rows</legend>
+            <input type='number' onChange={this.handleOnChangeRows} value={numRows} />
+          </fieldset>
+          <fieldset className={cn(zf.cell, zf.medium6)}>
+            <legend>Filter by route</legend>
+            <select onChange={this.handleOnSelectFilter} value={filter}>
+              {[
+                { route: 'none', label: 'None' },
+                { route: 'ND', label: 'Northern Merlthor - Day' },
+                { route: 'NS', label: 'Northern Merlthor - Sunset' },
+                { route: 'NN', label: 'Northern Merlthor - Night' },
+                { route: 'RD', label: 'Rhotano Sea - Day' },
+                { route: 'RS', label: 'Rhotano Sea - Sunset' },
+                { route: 'RN', label: 'Rhotano Sea - Night' }
+              ].map(opt =>
+                <option key={opt.route} value={opt.route}>{opt.label}</option>
+              )}
+            </select>
+          </fieldset>
+        </div>
         <table className={styles.schedule} onMouseOut={this.handleOnHover.clear}>
           <thead>
             <tr>
@@ -153,15 +150,16 @@ class OceanFishing extends Component {
             {(upcomingVoyages.map(voyage => {
               const time = LULU_EPOCH.clone().add(voyage.day, 'days').add(voyage.hour, 'hours').utcOffset(UTC)
               const date = time.format('M/D')
-              const dateChange = (date !== previousDate)
-              previousDate = date
-
+              const dateChange = previousDate !== (previousDate = date)
               const destinationCode = voyage.destinationCode
 
               return (
                 <tr
                   key={`${voyage.day}:${voyage.hour}`}
-                  className={cn(dateChange && styles.dateChange, destinationCode === hoverDestinationCode && styles.hover)}
+                  className={cn(
+                    dateChange && styles.dateChange,
+                    filter === 'none' && destinationCode === hoverDestinationCode && styles.hover
+                  )}
                   onMouseOver={this.handleOnHover[destinationCode]}
                 >
                   <td className={styles.date}>{dateChange && date}</td>
