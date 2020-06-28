@@ -86,8 +86,8 @@ class MiniCactpot extends Component {
     return (
       <>
         <h1>Mini Cactpot</h1>
-        <div className={zf.gridX}>
-          <div className={cn(zf.cell, zf.medium6)}>
+        <div className={cn(zf.gridX, zf.gridPaddingX)}>
+          <div className={cn(zf.cell, zf.mediumShrink)}>
             <Scratchcard
               state={state}
               suggestion={suggestion}
@@ -98,7 +98,7 @@ class MiniCactpot extends Component {
               <button type='button' className={cn(zf.button, zf.alert)} onClick={this.handleReset}>Reset</button>
             </div>
           </div>
-          <div className={cn(zf.cell, zf.medium6)}>
+          <div className={cn(zf.cell, zf.mediumAuto)}>
             {(() => {
               if (error) {
                 switch (error.type) {

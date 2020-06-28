@@ -1,6 +1,7 @@
 @import "foundation";
 
 header {
+  background-color: $topbar-background;
   color: $white;
 
   & a {

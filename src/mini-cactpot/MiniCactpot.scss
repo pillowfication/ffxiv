@@ -8,6 +8,7 @@ $mini-cactpot-cell-size: 5rem;
   border: 1px solid gray;
   background-color: #FFFFFF;
   margin-bottom: $global-margin;
+  white-space: nowrap;
 
   .cell {
     display: inline-block;

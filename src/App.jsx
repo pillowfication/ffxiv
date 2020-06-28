@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
-import cn from 'classnames'
 
 import MiniCactpot from './mini-cactpot/MiniCactpot.jsx'
 import zf from './foundation.scss'
@@ -23,11 +22,13 @@ class App extends Component {
   render () {
     return (
       <Router>
-        <header className={zf.topBar}>
-          <div className={cn(zf.gridContainer, zf.cell)}>
-            <div className={zf.topBarLeft}>
-              <Link to='/'>FFXIV</Link>
-            </div>
+        <header>
+          <div className={zf.gridContainer}>
+            <nav className={zf.topBar}>
+              <div className={zf.topBarLeft}>
+                <Link to='/'>FFXIV</Link>
+              </div>
+            </nav>
           </div>
         </header>
         <main className={zf.gridContainer}>
