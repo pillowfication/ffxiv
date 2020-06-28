@@ -1,0 +1,79 @@
+@import "../settings";
+
+input.utc-input {
+  display: inline-block;
+  margin: 0 0.5em;
+  width: initial;
+  max-width: 5em;
+}
+
+.schedule {
+  th {
+    text-align: center;
+  }
+
+  tr {
+  }
+
+  svg {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .date-change:not(:first-child) {
+    border-top: 1px solid $dark-gray;
+  }
+
+  .hover {
+    background-color: $light-gray;
+    transition: background-color 0.1s linear;
+  }
+
+  .date {
+    text-align: right;
+  }
+  .time {
+    text-align: left;
+  }
+  .destination-name {
+    text-align: right;
+  }
+  .destination-time {
+    text-align: left;
+  }
+}
+
+.icon {
+  display: inline-block;
+  background-image: url("./ocean-fish.png");
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+  margin: 0 0.2em;
+
+  &.sothis {
+    background-position: 0% 0%;
+  }
+  &.coral-manta {
+    background-position: -100% 0%;
+  }
+  &.stonescale {
+    background-position: -200% 0%;
+  }
+  &.elasmosaurus {
+    background-position: -300% 0%;
+  }
+  &.sharks {
+    background-position: -400% 0%;
+  }
+  &.octopodes {
+    background-position: -500% 0%;
+  }
+  &.sea-dragons {
+    background-position: -600% 0%;
+  }
+  &.jellyfish {
+    background-position: -700% 0%;
+  }
+}

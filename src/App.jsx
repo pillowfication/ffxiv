@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 import MiniCactpot from './mini-cactpot/MiniCactpot.jsx'
+import OceanFishing from './ocean-fishing/OceanFishing.jsx'
 import zf from './foundation.scss'
 import './App.scss'
 
@@ -13,9 +14,12 @@ function kebabCase (str) {
     .join('-')
 }
 
-const pages = [{
+const routes = [{
   title: 'Mini Cactpot',
   component: MiniCactpot
+}, {
+  title: 'Ocean Fishing',
+  component: OceanFishing
 }]
 
 class App extends Component {
@@ -34,11 +38,11 @@ class App extends Component {
         <main className={zf.gridContainer}>
           <Switch>
             <Route exact path='/' component={Home} />
-            {pages.map(page =>
+            {routes.map(route =>
               <Route
-                key={page.title}
-                path={'/' + kebabCase(page.title)}
-                component={page.component}
+                key={route.title}
+                path={'/' + kebabCase(route.title)}
+                component={route.component}
               />)}
           </Switch>
         </main>
@@ -53,9 +57,9 @@ class Home extends Component {
       <>
         <h1>Home</h1>
         <ul>
-          {pages.map(page =>
-            <li key={page.title}>
-              <Link to={'/' + kebabCase(page.title)}>{page.title}</Link>
+          {routes.map(route =>
+            <li key={route.title}>
+              <Link to={'/' + kebabCase(route.title)}>{route.title}</Link>
             </li>
           )}
         </ul>
