@@ -81,6 +81,17 @@ input.utc-input {
 .time-icon {
   display: inline-block;
   vertical-align: sub;
+
+  & * {
+    stroke: black;
+    fill: yellow;
+  }
+  :global(.dark) & {
+    & * {
+      stroke: $dark-gray;
+      fill: darken(yellow, 10%);
+    }
+  }
 }
 
 $fish-icons: (

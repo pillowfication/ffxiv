@@ -19,7 +19,7 @@ header {
 
 main {
   padding-top: 1em;
-  padding-bottom: 5em;
+  padding-bottom: 10em;
 }
 
 table {
@@ -59,5 +59,11 @@ body {
     background-color: $dark-input-background;
     border: $dark-input-border;
     color: $dark-body-font-color;
+  }
+}
+
+a {
+  :global(.dark) & {
+    color: lighten($primary-color, 20%);
   }
 }

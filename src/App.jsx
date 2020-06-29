@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { CookiesProvider, withCookies, Cookies } from 'react-cookie'
+import propTypes from 'prop-types'
 import cn from 'classnames'
 
 import MiniCactpot from './mini-cactpot/MiniCactpot.jsx'
@@ -27,17 +29,27 @@ class App extends Component {
   constructor (props) {
     super(props)
 
+    const { cookies } = props
     this.state = {
-      dark: false
+      theme: cookies.get('theme') || 'light'
     }
 
     this.handleOnSwitchTheme = this.handleOnSwitchTheme.bind(this)
+
+    if (this.state.theme === 'dark') {
+      document.body.classList.add('dark')
+    } else {
+      document.body.classList.remove('dark')
+    }
   }
 
   handleOnSwitchTheme () {
-    const newDark = !this.state.dark
-    this.setState({ dark: newDark })
-    if (newDark) {
+    const { cookies } = this.props
+    const newTheme = this.state.theme === 'light' ? 'dark' : 'light'
+    this.setState({ theme: newTheme })
+    cookies.set('theme', newTheme, { path: '/' })
+
+    if (newTheme === 'dark') {
       document.body.classList.add('dark')
     } else {
       document.body.classList.remove('dark')
@@ -45,7 +57,7 @@ class App extends Component {
   }
 
   render () {
-    const { dark } = this.state
+    const { theme } = this.state
 
     return (
       <Router>
@@ -62,7 +74,7 @@ class App extends Component {
                     type='checkbox'
                     id='theme-switch'
                     className={zf.switchInput}
-                    checked={dark}
+                    checked={theme === 'dark'}
                     onChange={this.handleOnSwitchTheme}
                   />
                   <label className={zf.switchPaddle} htmlFor='theme-switch' />
@@ -88,6 +100,10 @@ class App extends Component {
   }
 }
 
+App.propTypes = {
+  cookies: propTypes.instanceOf(Cookies).isRequired
+}
+
 class Home extends Component {
   render () {
     return (
@@ -105,4 +121,9 @@ class Home extends Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'))
+ReactDOM.render(
+  <CookiesProvider>
+    {React.createElement(withCookies(App))}
+  </CookiesProvider>,
+  document.getElementById('app')
+)
