@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
-import { CookiesProvider, withCookies, Cookies } from 'react-cookie'
-import propTypes from 'prop-types'
 import cn from 'classnames'
 
 import MiniCactpot from './mini-cactpot/MiniCactpot.jsx'
@@ -29,9 +27,8 @@ class App extends Component {
   constructor (props) {
     super(props)
 
-    const { cookies } = props
     this.state = {
-      theme: cookies.get('theme') || 'light'
+      theme: window.localStorage.getItem('theme') === 'light' ? 'light' : 'dark'
     }
 
     this.handleOnSwitchTheme = this.handleOnSwitchTheme.bind(this)
@@ -44,10 +41,9 @@ class App extends Component {
   }
 
   handleOnSwitchTheme () {
-    const { cookies } = this.props
     const newTheme = this.state.theme === 'light' ? 'dark' : 'light'
     this.setState({ theme: newTheme })
-    cookies.set('theme', newTheme, { path: '/' })
+    window.localStorage.setItem('theme', newTheme)
 
     if (newTheme === 'dark') {
       document.body.classList.add('dark')
@@ -100,10 +96,6 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
-  cookies: propTypes.instanceOf(Cookies).isRequired
-}
-
 class Home extends Component {
   render () {
     return (
@@ -122,9 +114,4 @@ class Home extends Component {
   }
 }
 
-ReactDOM.render(
-  <CookiesProvider>
-    {React.createElement(withCookies(App))}
-  </CookiesProvider>,
-  document.getElementById('app')
-)
+ReactDOM.render(<App />, document.getElementById('app'))
