@@ -42,7 +42,17 @@ input.utc-input {
   }
   .objectives {
     & .fish-icon {
+      top: 0;
       vertical-align: middle;
+    }
+  }
+}
+
+.route-table {
+  & > div {
+    border: 1px solid $black;
+    &:not(:first-child) {
+      border-left: none;
     }
   }
 }
@@ -61,6 +71,8 @@ $fish-icons: (
 );
 .fish-icon {
   display: inline-block;
+  position: relative;
+  top: 0.2em;
   width: 40px;
   height: 40px;
   background: {
@@ -68,11 +80,70 @@ $fish-icons: (
     size: 800% (length($fish-icons) * 100%);
   }
   margin-right: 0.3em;
+  vertical-align: sub;
 }
 @each $row in $fish-icons {
   $i: index($fish-icons, $row);
   @each $icon in $row {
     $j: index($row, $icon);
-    .#{$icon} { background-position: (-100% * ($j - 1)) (-100% * ($i - 1)); }
+    .#{$icon} {
+      background-position: (-100% * ($j - 1)) (-100% * ($i - 1));
+    }
+  }
+}
+
+.catches {
+  list-style-type: none;
+  margin: 1em 0 0;
+
+  & > li {
+    margin-bottom: 0.75em;
+  }
+
+  & ul {
+    list-style-type: none;
+    margin-top: 0.25em;
+    margin-left: 0.5em;
+
+    & > li {
+      margin-top: 0.25em;
+    }
+  }
+
+  .spectral {
+    border-top: 1px solid $black;
+    padding-top: 0.75em;
+  }
+}
+
+.bait-group {
+  position: relative;
+  display: inline-block;
+
+  & .fish-icon {
+    margin: 0 4px;
+  }
+
+  & .tug {
+    display: inline-block;
+    position: absolute;
+    left: 32px;
+    top: 0;
+    width: 1.2em;
+    height: 1.2em;
+    border-radius: 0.2em;
+    font-size: 0.6em;
+    line-height: 1.2em;
+    text-align: center;
+
+    &.light {
+      background-color: #aaffaa;
+    }
+    &.medium {
+      background-color: #aaaaff;
+    }
+    &.heavy {
+      background-color: #ffaaaa;
+    }
   }
 }

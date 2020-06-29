@@ -10,7 +10,7 @@ const UTC = moment().utcOffset()
 const JST_UTC = 540
 const UPDATE_INTERVAL = 180000
 const DEST_MAP = {
-  N: 'Northern Merlthor',
+  N: 'Northern Strait',
   R: 'Rhotano Sea'
 }
 const TIME_MAP = {
@@ -153,9 +153,9 @@ class OceanFishing extends Component {
             <select onChange={this.handleOnSelectFilter} value={filter}>
               {[
                 { route: 'none', label: 'None' },
-                { route: 'ND', label: 'Northern Merlthor - Day' },
-                { route: 'NS', label: 'Northern Merlthor - Sunset' },
-                { route: 'NN', label: 'Northern Merlthor - Night' },
+                { route: 'ND', label: 'Northern Strait - Day' },
+                { route: 'NS', label: 'Northern Strait - Sunset' },
+                { route: 'NN', label: 'Northern Strait - Night' },
                 { route: 'RD', label: 'Rhotano Sea - Day' },
                 { route: 'RS', label: 'Rhotano Sea - Sunset' },
                 { route: 'RN', label: 'Rhotano Sea - Night' }
@@ -204,69 +204,456 @@ class OceanFishing extends Component {
           switch (select) {
             case 'ND':
               return (
-                <>
-                  <strong>Northern Strait {TIME_MAP.D}</strong>
-                  <ol>
-                    <li>Southern Strait {TIME_MAP.S}</li>
-                    <li>Galadion Bay {TIME_MAP.N}</li>
-                    <li>Northern Strait {TIME_MAP.D}</li>
-                  </ol>
-                </>
+                <div className={zf.cell}>
+                  <h5>Northern Strait {TIME_MAP.D}</h5>
+                  <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      Southern Strait {TIME_MAP.S}
+                      <ul className={styles.catches}>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'krill' }, { name: 'spectralDiscus', tug: 3 }]
+                          )}
+                        </li>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'plumpWorm' }, { name: 'littleLeviathan', tug: 3 }],
+                            [{
+                              count: 1,
+                              bait: [{ name: 'krill' }, { name: 'ghoulBarracuda', tug: 2 }, { name: 'gladius', tug: 2 }]
+                            }]
+                          )}
+                        </li>
+                      </ul>
+                    </div>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      Galadion Bay {TIME_MAP.N}
+                      <ul className={styles.catches}>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'plumpWorm' }, { name: 'spectralMegalodon', tug: 3 }]
+                          )}
+                        </li>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'krill' }, { name: 'drunkfish', tug: 3 }],
+                            [{
+                              count: 3,
+                              bait: [{ name: 'krill' }, { name: 'galadionChovy', tug: 1 }]
+                            }]
+                          )}
+                        </li>
+                        <li className={styles.spectral}>
+                          {createBaitChain(
+                            [{ name: 'glowworm' }, { name: 'sothis', tug: 3 }],
+                            [{
+                              count: 2,
+                              bait: [{ name: 'ragworm' }, { name: 'heavenskey', tug: 1 }]
+                            }, {
+                              count: 1,
+                              bait: [{ name: 'krill' }, { name: 'navigatorsPrint', tug: 1 }]
+                            }]
+                          )}
+                        </li>
+                      </ul>
+                    </div>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      Northern Strait {TIME_MAP.D}
+                      <ul className={styles.catches}>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'ragworm' }, { name: 'spectralSeaBo', tug: 3 }]
+                          )}
+                        </li>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'ragworm' }, { name: 'shootingStar', tug: 3 }],
+                            [{
+                              count: 1,
+                              bait: [{ name: 'ragworm' }, { name: 'tossedDagger', tug: 1 }, { name: 'elderDinichthys', tug: 2 }]
+                            }]
+                          )}
+                        </li>
+                        <li className={styles.spectral}>
+                          {createBaitChain(
+                            [{ name: 'heavySteelJig' }, { name: 'elasmosaurus', tug: 3 }],
+                            [{
+                              count: 3,
+                              bait: [{ name: 'plumpWorm' }, { name: 'gugrusaurus', tug: 3 }]
+                            }]
+                          )}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               )
             case 'RD':
               return (
-                <>
-                  <strong>Rhotano Sea {TIME_MAP.D}</strong>
-                  <ol>
-                    <li>Galadion Bay {TIME_MAP.S}</li>
-                    <li>Southern Strait {TIME_MAP.N}</li>
-                    <li>Rhotano Sea {TIME_MAP.D}</li>
-                  </ol>
-                </>
+                <div className={zf.cell}>
+                  <h5>Rhotano Sea {TIME_MAP.D}</h5>
+                  <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      Galadion Bay {TIME_MAP.S}
+                      <ul className={styles.catches}>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'plumpWorm' }, { name: 'spectralMegalodon', tug: 3 }]
+                          )}
+                        </li>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'krill' }, { name: 'drunkfish', tug: 3 }],
+                            [{
+                              count: 3,
+                              bait: [{ name: 'krill' }, { name: 'galadionChovy', tug: 1 }]
+                            }]
+                          )}
+                        </li>
+                      </ul>
+                    </div>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      Southern Strait {TIME_MAP.N}
+                      <ul className={styles.catches}>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'krill' }, { name: 'spectralDiscus', tug: 3 }]
+                          )}
+                        </li>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'plumpWorm' }, { name: 'littleLeviathan', tug: 3 }],
+                            [{
+                              count: 1,
+                              bait: [{ name: 'krill' }, { name: 'ghoulBarracuda', tug: 2 }, { name: 'gladius', tug: 2 }]
+                            }]
+                          )}
+                        </li>
+                        <li className={styles.spectral}>
+                          {createBaitChain(
+                            [{ name: 'shrimpCageFeeder' }, { name: 'coralManta', tug: 3 }],
+                            [{
+                              count: 2,
+                              bait: [{ name: 'plumpWorm' }, { name: 'hiAetherlous', tug: 1 }, { name: 'greatGrandmarlin', tug: 2 }]
+                            }]
+                          )}
+                        </li>
+                      </ul>
+                    </div>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      Rhotano Sea {TIME_MAP.D}
+                      <ul className={styles.catches}>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'plumpWorm' }, { name: 'spectralBass', tug: 3 }]
+                          )}
+                        </li>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'krill' }, { name: 'sabaton', tug: 3 }],
+                            [{
+                              count: 2,
+                              bait: [{ name: 'plumpWorm' }, { name: 'crimsonMonkfish', tug: 2 }]
+                            }]
+                          )}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               )
             case 'NS':
               return (
-                <>
-                  <strong>Northern Strait {TIME_MAP.S}</strong>
-                  <ol>
-                    <li>Southern Strait {TIME_MAP.N}</li>
-                    <li>Galadion Bay {TIME_MAP.D}</li>
-                    <li>Northern Strait {TIME_MAP.S}</li>
-                  </ol>
-                </>
+                <div className={zf.cell}>
+                  <h5>Northern Strait {TIME_MAP.S}</h5>
+                  <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      Southern Strait {TIME_MAP.N}
+                      <ul className={styles.catches}>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'krill' }, { name: 'spectralDiscus', tug: 3 }]
+                          )}
+                        </li>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'plumpWorm' }, { name: 'littleLeviathan', tug: 3 }],
+                            [{
+                              count: 1,
+                              bait: [{ name: 'krill' }, { name: 'ghoulBarracuda', tug: 2 }, { name: 'gladius', tug: 2 }]
+                            }]
+                          )}
+                        </li>
+                        <li className={styles.spectral}>
+                          {createBaitChain(
+                            [{ name: 'shrimpCageFeeder' }, { name: 'coralManta', tug: 3 }],
+                            [{
+                              count: 2,
+                              bait: [{ name: 'plumpWorm' }, { name: 'hiAetherlous', tug: 1 }, { name: 'greatGrandmarlin', tug: 2 }]
+                            }]
+                          )}
+                        </li>
+                      </ul>
+                    </div>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      Galadion Bay {TIME_MAP.D}
+                      <ul className={styles.catches}>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'plumpWorm' }, { name: 'spectralMegalodon', tug: 3 }]
+                          )}
+                        </li>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'krill' }, { name: 'drunkfish', tug: 3 }],
+                            [{
+                              count: 3,
+                              bait: [{ name: 'krill' }, { name: 'galadionChovy', tug: 1 }]
+                            }]
+                          )}
+                        </li>
+                      </ul>
+                    </div>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      Northern Strait {TIME_MAP.S}
+                      <ul className={styles.catches}>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'ragworm' }, { name: 'spectralSeaBo', tug: 3 }]
+                          )}
+                        </li>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'ragworm' }, { name: 'shootingStar', tug: 3 }],
+                            [{
+                              count: 1,
+                              bait: [{ name: 'ragworm' }, { name: 'tossedDagger', tug: 1 }, { name: 'elderDinichthys', tug: 2 }]
+                            }]
+                          )}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               )
             case 'RS':
               return (
-                <>
-                  <strong>Rhotano Sea {TIME_MAP.S}</strong>
-                  <ol>
-                    <li>Galadion Bay {TIME_MAP.N}</li>
-                    <li>Southern Strait {TIME_MAP.D}</li>
-                    <li>Rhotano Sea {TIME_MAP.S}</li>
-                  </ol>
-                </>
+                <div className={zf.cell}>
+                  <h5>Rhotano Sea {TIME_MAP.S}</h5>
+                  <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      Galadion Bay {TIME_MAP.N}
+                      <ul className={styles.catches}>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'plumpWorm' }, { name: 'spectralMegalodon', tug: 3 }]
+                          )}
+                        </li>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'krill' }, { name: 'drunkfish', tug: 3 }],
+                            [{
+                              count: 3,
+                              bait: [{ name: 'krill' }, { name: 'galadionChovy', tug: 1 }]
+                            }]
+                          )}
+                        </li>
+                        <li className={styles.spectral}>
+                          {createBaitChain(
+                            [{ name: 'glowworm' }, { name: 'sothis', tug: 3 }],
+                            [{
+                              count: 2,
+                              bait: [{ name: 'ragworm' }, { name: 'heavenskey', tug: 1 }]
+                            }, {
+                              count: 1,
+                              bait: [{ name: 'krill' }, { name: 'navigatorsPrint', tug: 1 }]
+                            }]
+                          )}
+                        </li>
+                      </ul>
+                    </div>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      Southern Strait {TIME_MAP.D}
+                      <ul className={styles.catches}>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'krill' }, { name: 'spectralDiscus', tug: 3 }]
+                          )}
+                        </li>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'plumpWorm' }, { name: 'littleLeviathan', tug: 3 }],
+                            [{
+                              count: 1,
+                              bait: [{ name: 'krill' }, { name: 'ghoulBarracuda', tug: 2 }, { name: 'gladius', tug: 2 }]
+                            }]
+                          )}
+                        </li>
+                      </ul>
+                    </div>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      Rhotano Sea {TIME_MAP.S}
+                      <ul className={styles.catches}>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'plumpWorm' }, { name: 'spectralBass', tug: 3 }]
+                          )}
+                        </li>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'krill' }, { name: 'sabaton', tug: 3 }],
+                            [{
+                              count: 2,
+                              bait: [{ name: 'plumpWorm' }, { name: 'crimsonMonkfish', tug: 2 }]
+                            }]
+                          )}
+                        </li>
+                        <li className={styles.spectral}>
+                          {createBaitChain(
+                            [{ name: 'ratTail' }, { name: 'stonescale', tug: 3 }],
+                            [{
+                              count: 2,
+                              bait: [{ name: 'plumpWorm' }, { name: 'deepSeaEel', tug: 2 }]
+                            }, {
+                              count: 1,
+                              bait: [{ name: 'ragworm' }, { name: 'silencer', tug: 1 }]
+                            }]
+                          )}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               )
             case 'NN':
               return (
-                <>
-                  <strong>Northern Strait {TIME_MAP.N}</strong>
-                  <ol>
-                    <li>Southern Strait {TIME_MAP.D}</li>
-                    <li>Galadion Bay {TIME_MAP.S}</li>
-                    <li>Northern Strait {TIME_MAP.N}</li>
-                  </ol>
-                </>
+                <div className={zf.cell}>
+                  <h5>Northern Strait {TIME_MAP.N}</h5>
+                  <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      Southern Strait {TIME_MAP.D}
+                      <ul className={styles.catches}>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'krill' }, { name: 'spectralDiscus', tug: 3 }]
+                          )}
+                        </li>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'plumpWorm' }, { name: 'littleLeviathan', tug: 3 }],
+                            [{
+                              count: 1,
+                              bait: [{ name: 'krill' }, { name: 'ghoulBarracuda', tug: 2 }, { name: 'gladius', tug: 2 }]
+                            }]
+                          )}
+                        </li>
+                      </ul>
+                    </div>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      Galadion Bay {TIME_MAP.S}
+                      <ul className={styles.catches}>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'plumpWorm' }, { name: 'spectralMegalodon', tug: 3 }]
+                          )}
+                        </li>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'krill' }, { name: 'drunkfish', tug: 3 }],
+                            [{
+                              count: 3,
+                              bait: [{ name: 'krill' }, { name: 'galadionChovy', tug: 1 }]
+                            }]
+                          )}
+                        </li>
+                      </ul>
+                    </div>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      Northern Strait {TIME_MAP.N}
+                      <ul className={styles.catches}>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'ragworm' }, { name: 'spectralSeaBo', tug: 3 }]
+                          )}
+                        </li>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'ragworm' }, { name: 'shootingStar', tug: 3 }],
+                            [{
+                              count: 1,
+                              bait: [{ name: 'ragworm' }, { name: 'tossedDagger', tug: 1 }, { name: 'elderDinichthys', tug: 2 }]
+                            }]
+                          )}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               )
             case 'RN':
               return (
-                <>
-                  <strong>Rhotano Sea {TIME_MAP.N}</strong>
-                  <ol>
-                    <li>Galadion Bay {TIME_MAP.D}</li>
-                    <li>Southern Strait {TIME_MAP.S}</li>
-                    <li>Rhotano Sea {TIME_MAP.N}</li>
-                  </ol>
-                </>
+                <div className={zf.cell}>
+                  <h5>Rhotano Sea {TIME_MAP.N}</h5>
+                  <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      Galadion Bay {TIME_MAP.D}
+                      <ul className={styles.catches}>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'plumpWorm' }, { name: 'spectralMegalodon', tug: 3 }]
+                          )}
+                        </li>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'krill' }, { name: 'drunkfish', tug: 3 }],
+                            [{
+                              count: 3,
+                              bait: [{ name: 'krill' }, { name: 'galadionChovy', tug: 1 }]
+                            }]
+                          )}
+                        </li>
+                      </ul>
+                    </div>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      Southern Strait {TIME_MAP.S}
+                      <ul className={styles.catches}>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'krill' }, { name: 'spectralDiscus', tug: 3 }]
+                          )}
+                        </li>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'plumpWorm' }, { name: 'littleLeviathan', tug: 3 }],
+                            [{
+                              count: 1,
+                              bait: [{ name: 'krill' }, { name: 'ghoulBarracuda', tug: 2 }, { name: 'gladius', tug: 2 }]
+                            }]
+                          )}
+                        </li>
+                      </ul>
+                    </div>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      Rhotano Sea {TIME_MAP.N}
+                      <ul className={styles.catches}>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'plumpWorm' }, { name: 'spectralBass', tug: 3 }]
+                          )}
+                        </li>
+                        <li>
+                          {createBaitChain(
+                            [{ name: 'krill' }, { name: 'sabaton', tug: 3 }],
+                            [{
+                              count: 2,
+                              bait: [{ name: 'plumpWorm' }, { name: 'crimsonMonkfish', tug: 2 }]
+                            }]
+                          )}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               )
             default:
               return <p>Click on a route above to view its details here.</p>
@@ -275,6 +662,35 @@ class OceanFishing extends Component {
       </>
     )
   }
+}
+
+function createBaitChain (bait, intuitionBait) {
+  const elems = []
+  bait.forEach(({ name, tug }, index) => {
+    elems.push(
+      <div key={index} className={styles.baitGroup}>
+        <div className={cn(styles.fishIcon, styles[name])} />
+        {tug && <span className={cn(styles.tug, [styles.light, styles.medium, styles.heavy][tug - 1])}>{'!'.repeat(tug)}</span>}
+      </div>
+    )
+    if (index < bait.length - 1) {
+      elems.push('⇨')
+    }
+  })
+
+  if (intuitionBait) {
+    elems.push(
+      <ul key='int'>
+        {intuitionBait.map((bait, index) =>
+          <li key={index}>
+            {bait.count} {createBaitChain(bait.bait)}
+          </li>
+        )}
+      </ul>
+    )
+  }
+
+  return elems
 }
 
 export default OceanFishing
