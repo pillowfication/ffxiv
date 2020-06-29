@@ -36,7 +36,14 @@ input.utc-input {
   }
   .destination-time {
     text-align: left;
-    vertical-align: middle;
+    & svg {
+      vertical-align: middle;
+    }
+  }
+  .objectives {
+    & .fish-icon {
+      vertical-align: middle;
+    }
   }
 }
 
@@ -45,37 +52,27 @@ input.utc-input {
   vertical-align: sub;
 }
 
-.icon {
+$fish-icons: (
+  (ragworm, krill, plump-worm, versatile-lure, glowworm, shrimp-cage-feeder, heavy-steel-jig, rat-tail),
+  (galadion-chovy, heavenskey, navigators-print, ghoul-barracuda, gladius, hi-aetherlouse, great-grandmarlin, tossed-dagger),
+  (elder-dinichthys, gugrusaurus, crimson-monkfish, deep-sea-eel, silencer),
+  (drunkfish, little-leviathan, shooting-star, sabaton, spectral-megalodon, spectral-discus, spectral-sea-bo, spectral-bass),
+  (sothis, coral-manta, elasmosaurus, stonescale, octopodes, sharks, jellyfish, seadragons)
+);
+.fish-icon {
   display: inline-block;
-  background-image: url("./ocean-fish.png");
-  background-size: cover;
   width: 40px;
   height: 40px;
-  vertical-align: middle;
-  margin: 0 0.2em;
-
-  &.sothis {
-    background-position: 0% 0%;
+  background: {
+    image: url("./ocean-fish.png");
+    size: 800% (length($fish-icons) * 100%);
   }
-  &.coral-manta {
-    background-position: -100% 0%;
-  }
-  &.stonescale {
-    background-position: -200% 0%;
-  }
-  &.elasmosaurus {
-    background-position: -300% 0%;
-  }
-  &.sharks {
-    background-position: -400% 0%;
-  }
-  &.octopodes {
-    background-position: -500% 0%;
-  }
-  &.sea-dragons {
-    background-position: -600% 0%;
-  }
-  &.jellyfish {
-    background-position: -700% 0%;
+  margin-right: 0.3em;
+}
+@each $row in $fish-icons {
+  $i: index($fish-icons, $row);
+  @each $icon in $row {
+    $j: index($row, $icon);
+    .#{$icon} { background-position: (-100% * ($j - 1)) (-100% * ($i - 1)); }
   }
 }

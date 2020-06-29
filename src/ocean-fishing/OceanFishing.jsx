@@ -51,8 +51,8 @@ const TIME_MAP = {
 }
 const OBJECTIVES_MAP = {
   ND: ['sothis', 'elasmosaurus'],
-  RD: ['sharks', 'coralManta'],
-  NS: ['dragons', 'coralManta'],
+  RD: ['sharks', 'coralManta'], // coralManta
+  NS: ['seadragons', 'coralManta'],
   RS: ['sothis', 'stonescale'],
   NN: ['octopodes'],
   RN: ['jellyfish']
@@ -194,7 +194,7 @@ class OceanFishing extends Component {
                   <td className={styles.time}>{time.format('HH:mm')}</td>
                   <td className={styles.destinationName}>{DEST_MAP[destinationCode[0]]}</td>
                   <td className={styles.destinationTime}>{TIME_MAP[destinationCode[1]]}</td>
-                  <td>{OBJECTIVES_MAP[destinationCode].map(i => <div key={i} className={cn(styles.icon, styles[i])} />)}</td>
+                  <td className={styles.objectives}>{OBJECTIVES_MAP[destinationCode].map(icon => <div key={icon} className={cn(styles.fishIcon, styles[icon])} />)}</td>
                 </tr>
               )
             }))}
@@ -214,10 +214,60 @@ class OceanFishing extends Component {
                 </>
               )
             case 'RD':
+              return (
+                <>
+                  <strong>Rhotano Sea {TIME_MAP.D}</strong>
+                  <ol>
+                    <li>Galadion Bay {TIME_MAP.S}</li>
+                    <li>Southern Strait {TIME_MAP.N}</li>
+                    <li>Rhotano Sea {TIME_MAP.D}</li>
+                  </ol>
+                </>
+              )
             case 'NS':
+              return (
+                <>
+                  <strong>Northern Strait {TIME_MAP.S}</strong>
+                  <ol>
+                    <li>Southern Strait {TIME_MAP.N}</li>
+                    <li>Galadion Bay {TIME_MAP.D}</li>
+                    <li>Northern Strait {TIME_MAP.S}</li>
+                  </ol>
+                </>
+              )
             case 'RS':
+              return (
+                <>
+                  <strong>Rhotano Sea {TIME_MAP.S}</strong>
+                  <ol>
+                    <li>Galadion Bay {TIME_MAP.N}</li>
+                    <li>Southern Strait {TIME_MAP.D}</li>
+                    <li>Rhotano Sea {TIME_MAP.S}</li>
+                  </ol>
+                </>
+              )
             case 'NN':
+              return (
+                <>
+                  <strong>Northern Strait {TIME_MAP.N}</strong>
+                  <ol>
+                    <li>Southern Strait {TIME_MAP.D}</li>
+                    <li>Galadion Bay {TIME_MAP.S}</li>
+                    <li>Northern Strait {TIME_MAP.N}</li>
+                  </ol>
+                </>
+              )
             case 'RN':
+              return (
+                <>
+                  <strong>Rhotano Sea {TIME_MAP.N}</strong>
+                  <ol>
+                    <li>Galadion Bay {TIME_MAP.D}</li>
+                    <li>Southern Strait {TIME_MAP.S}</li>
+                    <li>Rhotano Sea {TIME_MAP.N}</li>
+                  </ol>
+                </>
+              )
             default:
               return <p>Click on a route above to view its details here.</p>
           }
