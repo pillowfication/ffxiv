@@ -16,6 +16,11 @@ input.utc-input {
     cursor: pointer;
   }
 
+  tbody td {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
   .date-change:not(:first-child) {
     border-top: $table-border;
     :global(.dark) & {
@@ -110,7 +115,7 @@ $fish-icons: (
     image: url("./ocean-fish.png");
     size: 800% (length($fish-icons) * 100%);
   }
-  margin-right: 0.3em;
+  margin: .15em;
   vertical-align: sub;
 }
 @each $row in $fish-icons {
