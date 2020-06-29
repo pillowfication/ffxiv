@@ -70,7 +70,7 @@ module.exports = {
         options: {
           modules: {
             localIdentName: '[path][name]__[local]--[hash:base64:5]',
-            getLocalIdent: (...args) => getId(getLocalIdent(...args))
+            getLocalIdent: (...args) => 'ff-' + getId(getLocalIdent(...args))
           },
           importLoaders: 2,
           localsConvention: 'dashesOnly'

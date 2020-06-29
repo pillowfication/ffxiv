@@ -50,6 +50,7 @@ input.utc-input {
 
 .route-table {
   & > div {
+    padding-top: 0.5em;
     border: 1px solid $black;
     &:not(:first-child) {
       border-top: none;
