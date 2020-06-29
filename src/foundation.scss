@@ -18,7 +18,7 @@
 // @include foundation-label;
 // @include foundation-progress-bar;
 // @include foundation-slider;
-// @include foundation-switch;
+@include foundation-switch;
 @include foundation-table;
 
 // Basic components
@@ -57,3 +57,9 @@
 // @include foundation-flex-classes;
 // @include foundation-visibility-classes;
 // @include foundation-prototype-classes;
+
+.switch {
+  display: inline-block;
+  vertical-align: sub;
+  margin: 0 -0.5em 0 0;
+}

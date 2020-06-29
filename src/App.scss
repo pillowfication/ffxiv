@@ -26,4 +26,38 @@ table {
   tbody > tr {
     border-bottom: none;
   }
+
+  :global(.dark) & {
+    & thead {
+      border: $dark-table-border;
+      background-color: $dark-table-head-background;
+      color: $dark-body-font-color;
+    }
+    & tbody {
+      border: $dark-table-border;
+      background-color: $dark-table-background;
+    }
+    & tbody tr {
+      background-color: $dark-table-background;
+    }
+  }
+}
+
+body {
+  transition: {
+    property: background-color, color;
+    duration: 0.1s;
+  }
+  &:global(.dark) {
+    background-color: $dark-body-background;
+    color: $dark-body-font-color;
+  }
+}
+
+#{text-inputs()}, textarea, select {
+  :global(.dark) & {
+    background-color: $dark-input-background;
+    border: $dark-input-border;
+    color: $dark-body-font-color;
+  }
 }

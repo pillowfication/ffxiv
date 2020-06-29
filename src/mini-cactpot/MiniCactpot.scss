@@ -6,9 +6,12 @@ $mini-cactpot-cell-size: 5rem;
   display: inline-block;
   box-sizing: border-box;
   border: 1px solid gray;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   margin-bottom: $global-margin;
   white-space: nowrap;
+  :global(.dark) & {
+    background-color: #000000;
+  }
 
   .cell {
     display: inline-block;
@@ -37,6 +40,10 @@ $mini-cactpot-cell-size: 5rem;
       font-size: 3em;
       text-align: center;
       line-height: $mini-cactpot-cell-size;
+
+      :global(.dark) & {
+        color: $dark-body-font-color;
+      }
     }
   }
 }

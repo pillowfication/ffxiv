@@ -68,7 +68,7 @@ $FontPathOpenSans: "~open-sans-fonts/open-sans";
 // 1. Global
 // ---------
 
-$global-font-size: 20pt;
+$global-font-size: 16pt;
 $global-width: 1000px;
 $global-lineheight: 1.5;
 $foundation-palette: (
@@ -81,10 +81,12 @@ $foundation-palette: (
 $light-gray: #e6e6e6;
 $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;
-$black: #0a0a0a;
+$black: #0c0c0c;
 $white: #fefefe;
 $body-background: $white;
+$dark-body-background: $black;
 $body-font-color: $black;
+$dark-body-font-color: white;
 $body-font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
 $body-antialiased: true;
 $global-margin: 1rem;
@@ -460,9 +462,11 @@ $input-font-size: rem-calc(16);
 $input-font-weight: $global-weight-normal;
 $input-line-height: $global-lineheight;
 $input-background: $white;
+$dark-input-background: $dark-body-background;
 $input-background-focus: $white;
 $input-background-disabled: $light-gray;
 $input-border: 1px solid $medium-gray;
+$dark-input-border: 1px solid $white;
 $input-border-focus: 1px solid $dark-gray;
 $input-padding: $form-spacing / 2;
 $input-shadow: inset 0 1px 2px rgba($black, 0.1);
@@ -782,16 +786,16 @@ $slider-radius: $global-radius;
 // 49. Switch
 // ----------
 
-$switch-background: $medium-gray;
-$switch-background-active: $primary-color;
-$switch-height: 2rem;
-$switch-height-tiny: 1.5rem;
-$switch-height-small: 1.75rem;
-$switch-height-large: 2.5rem;
+$switch-background: $light-gray;
+$switch-background-active: $black;
+$switch-height: 1.75rem;
+$switch-height-tiny: 1.2rem;
+$switch-height-small: 1.5rem;
+$switch-height-large: 2rem;
 $switch-radius: $global-radius;
-$switch-margin: $global-margin;
-$switch-paddle-background: $white;
-$switch-paddle-offset: 0.25rem;
+$switch-margin: 0;
+$switch-paddle-background: $primary-color;
+$switch-paddle-offset: 0.2rem;
 $switch-paddle-radius: $global-radius;
 $switch-paddle-transition: all 0.25s ease-out;
 $switch-opacity-disabled: .5;
@@ -800,10 +804,12 @@ $switch-cursor-disabled: not-allowed;
 // 50. Table
 // ---------
 
-$table-background: $white;
+$table-background: $body-background;
+$dark-table-background: $dark-body-background;
 $table-color-scale: 5%;
 $table-border: 1px solid $black;
-$table-padding: rem-calc(8 10 10);
+$dark-table-border: 1px solid $white;
+$table-padding: rem-calc(4 5 5);
 $table-hover-scale: 2%;
 $table-row-hover: darken($table-background, $table-hover-scale);
 $table-row-stripe-hover: darken($table-background, $table-color-scale + $table-hover-scale);
@@ -811,6 +817,7 @@ $table-is-striped: false;
 $table-striped-background: smart-scale($table-background, $table-color-scale);
 $table-stripe: even;
 $table-head-background: smart-scale($table-background, $table-color-scale / 2);
+$dark-table-head-background: #0e0e0e;
 $table-head-row-hover: darken($table-head-background, $table-hover-scale);
 $table-foot-background: smart-scale($table-background, $table-color-scale);
 $table-foot-row-hover: darken($table-foot-background, $table-hover-scale);

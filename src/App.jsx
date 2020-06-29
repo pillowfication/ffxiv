@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import cn from 'classnames'
 
 import MiniCactpot from './mini-cactpot/MiniCactpot.jsx'
 import OceanFishing from './ocean-fishing/OceanFishing.jsx'
@@ -23,7 +24,29 @@ const routes = [{
 }]
 
 class App extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      dark: false
+    }
+
+    this.handleOnSwitchTheme = this.handleOnSwitchTheme.bind(this)
+  }
+
+  handleOnSwitchTheme () {
+    const newDark = !this.state.dark
+    this.setState({ dark: newDark })
+    if (newDark) {
+      document.body.classList.add('dark')
+    } else {
+      document.body.classList.remove('dark')
+    }
+  }
+
   render () {
+    const { dark } = this.state
+
     return (
       <Router>
         <header>
@@ -32,10 +55,24 @@ class App extends Component {
               <div className={zf.topBarLeft}>
                 <Link to='/'>FFXIV</Link>
               </div>
+              <div className={zf.topBarRight}>
+                Light
+                <div className={cn(zf.switch, zf.tiny)}>
+                  <input
+                    type='checkbox'
+                    id='theme-switch'
+                    className={zf.switchInput}
+                    checked={dark}
+                    onChange={this.handleOnSwitchTheme}
+                  />
+                  <label className={zf.switchPaddle} htmlFor='theme-switch' />
+                </div>
+                Dark
+              </div>
             </nav>
           </div>
         </header>
-        <main className={zf.gridContainer}>
+        <main className={cn(zf.gridContainer)}>
           <Switch>
             <Route exact path='/' component={Home} />
             {routes.map(route =>
