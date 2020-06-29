@@ -137,13 +137,6 @@ class OceanFishing extends Component {
           </fieldset>
         </div>
         <table className={styles.schedule} onMouseOut={this.handleOnHover.clear}>
-          <thead>
-            <tr>
-              <th colSpan={2}>Date</th>
-              <th colSpan={2}>Route</th>
-              <th>Objectives</th>
-            </tr>
-          </thead>
           <tbody>
             {(upcomingVoyages.map(voyage => {
               const time = LULU_EPOCH.clone().add(voyage.day, 'days').add(voyage.hour, 'hours').utcOffset(UTC)

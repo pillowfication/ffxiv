@@ -44,10 +44,7 @@ table {
 }
 
 body {
-  transition: {
-    property: background-color, color;
-    duration: 0.1s;
-  }
+  transition: background-color .1s linear;
   &:global(.dark) {
     background-color: $dark-body-background;
     color: $dark-body-font-color;
