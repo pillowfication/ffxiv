@@ -105,7 +105,11 @@ class OceanFishing extends Component {
 
   render () {
     const { now, numRows, filter, hover, select } = this.state
-    const upcomingVoyages = calculateVoyages(now, +numRows, filter === 'none' ? null : filter)
+    const upcomingVoyages = calculateVoyages(
+      now,
+      Math.min(Math.max(+numRows, 1), 100),
+      filter === 'none' ? null : filter
+    )
     let previousDate
 
     return (
