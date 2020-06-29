@@ -10,8 +10,8 @@ function calculateVoyages (time, count, filter) {
   let day = time.diff(LULU_EPOCH, 'days')
   let hour = time.hour()
 
-  // Adjust time to fall on the next voyage
-  if (time.minute() < 15) hour -= 1
+  // Adjust time to fall on the next voyage, including any ongoing
+  if (time.minute() < 45) hour -= 1
   hour += (hour & 1) ? 2 : 1
   if (hour === 0) {
     day -= 1
