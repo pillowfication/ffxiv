@@ -29,10 +29,10 @@ input.utc-input {
   }
 
   tbody .hover, tbody tr:hover {
-    background-color: rgba($black, 0.1);
+    background-color: rgba($primary-color, 0.1);
     transition: background-color 0.1s linear;
     :global(.dark) & {
-      background-color: rgba($white, 0.1);
+      background-color: rgba($primary-color, 0.7);
     }
   }
 

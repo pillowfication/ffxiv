@@ -26,7 +26,10 @@ $mini-cactpot-cell-size: 5rem;
     }
 
     &.suggest {
-      background-color: rgba($success-color, 0.3);
+      background-color: rgba($primary-color, 0.2);
+      :global(.dark) & {
+        background-color: rgba($primary-color, 0.7);
+      }
     }
 
     & > input[type="text"] {
