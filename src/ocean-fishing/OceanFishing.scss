@@ -52,7 +52,11 @@ input.utc-input {
   & > div {
     border: 1px solid $black;
     &:not(:first-child) {
-      border-left: none;
+      border-top: none;
+      @include breakpoint(large) {
+        border-top: 1px solid $black;
+        border-left: none;
+      }
     }
   }
 }
