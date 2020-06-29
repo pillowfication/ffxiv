@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import propTypes from 'prop-types'
 import cn from 'classnames'
 import { LINES, getSuggestion } from './solve'
 
@@ -240,6 +241,13 @@ class Scratchcard extends Component {
       </div>
     )
   }
+}
+
+Scratchcard.propTypes = {
+  onInputDigit: propTypes.func.isRequired,
+  state: propTypes.array.isRequired,
+  suggestion: propTypes.shape({ type: propTypes.string.isRequired }),
+  error: propTypes.shape({ type: propTypes.string.isRequired })
 }
 
 export default MiniCactpot
