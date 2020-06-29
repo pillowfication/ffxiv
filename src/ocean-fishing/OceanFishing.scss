@@ -89,7 +89,6 @@ input.utc-input {
   :global(.dark) & {
     & * {
       stroke: $dark-gray;
-      fill: darken(yellow, 10%);
     }
   }
 }
