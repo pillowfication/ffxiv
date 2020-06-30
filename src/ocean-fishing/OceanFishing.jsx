@@ -309,7 +309,7 @@ class OceanFishing extends Component {
             return (
               <div className={cn(styles.routeDetails, zf.cell)}>
                 <h4>{DEST_MAP[dest]} {TIME_MAP[time]}</h4>
-                {timeUntil <= 0 ? 'next is boarding now' : 'next is in ' + moment.duration(timeUntil).humanize()}
+                {timeUntil <= 0 ? 'next is boarding now / en route' : 'next is in ' + moment.duration(timeUntil).humanize()}
                 <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
                   {routeStops.map(stop =>
                     <div key={stop} className={cn(zf.cell, zf.large4)}>
