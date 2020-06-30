@@ -10,7 +10,7 @@ $mini-cactpot-cell-size: 5rem;
   margin-bottom: $global-margin;
   white-space: nowrap;
   :global(.dark) & {
-    background-color: #000000;
+    background-color: rgba($black, 10%);
   }
 
   .cell {
