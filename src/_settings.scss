@@ -82,9 +82,9 @@ $light-gray: #e6e6e6;
 $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;
 $black: #0c0c0c;
-$white: #fefefe;
+$white: #fbfbfb;
 $body-background: $white;
-$dark-body-background: $black;
+$dark-body-background: #202020;
 $body-font-color: $black;
 $dark-body-font-color: white;
 $body-font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
@@ -786,8 +786,8 @@ $slider-radius: $global-radius;
 // 49. Switch
 // ----------
 
-$switch-background: $light-gray;
-$switch-background-active: $black;
+$switch-background: $body-background;
+$switch-background-active: $dark-body-background;
 $switch-height: 1.75rem;
 $switch-height-tiny: 1.2rem;
 $switch-height-small: 1.5rem;
