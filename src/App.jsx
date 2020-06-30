@@ -5,6 +5,7 @@ import cn from 'classnames'
 
 import MiniCactpot from './mini-cactpot/MiniCactpot.jsx'
 import OceanFishing from './ocean-fishing/OceanFishing.jsx'
+import Timers from './timers/Timers.jsx'
 import zf from './foundation.scss'
 import './App.scss'
 
@@ -21,6 +22,9 @@ const routes = [{
 }, {
   title: 'Ocean Fishing',
   component: OceanFishing
+}, {
+  title: 'Timers',
+  component: Timers
 }]
 
 class App extends Component {
