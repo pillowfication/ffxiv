@@ -59,10 +59,18 @@ input.utc-input {
   }
 }
 
+.route-details {
+  h4 {
+    display: inline;
+    margin-right: 0.5em;
+  }
+}
+
 .route-table {
+  margin-top: 0.5em;
   & > div {
-    padding-top: 0.5em;
     border: $table-border;
+    padding-top: 0.5em;
     &:not(:first-child) {
       border-top: none;
       @include breakpoint(large) {

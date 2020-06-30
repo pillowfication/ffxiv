@@ -12,6 +12,8 @@ const UTC = moment().utcOffset()
 const JST_UTC = 540
 const UPDATE_INTERVAL = 123456
 const DEST_MAP = {
+  S: 'Southern Strait',
+  G: 'Galadion Bay',
   N: 'Northern Strait',
   R: 'Rhotano Sea'
 }
@@ -28,12 +30,136 @@ const OBJECTIVES_MAP = {
   NN: ['octopodes'],
   RN: ['jellyfish']
 }
+const ROUTE_MAP = {
+  N: ['S', 'G', 'N'],
+  R: ['G', 'S', 'R']
+}
+const BLUE_FISH_MAP = {
+  GN: 'sothis',
+  SN: 'coralManta',
+  ND: 'elasmosaurus',
+  RS: 'stonescale'
+}
+const BAIT_CHAINS = {
+  S: [
+    createBaitChain(
+      [{ name: 'krill' }, { name: 'spectralDiscus', tug: 3 }]
+    ),
+    createBaitChain(
+      [{ name: 'plumpWorm' }, { name: 'littleLeviathan', tug: 3 }],
+      [{
+        count: 1,
+        bait: [{ name: 'krill' }, { name: 'ghoulBarracuda', tug: 2 }, { name: 'gladius', tug: 2 }]
+      }]
+    )
+  ],
+  G: [
+    createBaitChain(
+      [{ name: 'plumpWorm' }, { name: 'spectralMegalodon', tug: 3 }]
+    ),
+    createBaitChain(
+      [{ name: 'krill' }, { name: 'drunkfish', tug: 3 }],
+      [{
+        count: 3,
+        bait: [{ name: 'krill' }, { name: 'galadionChovy', tug: 1 }]
+      }]
+    )
+  ],
+  N: [
+    createBaitChain(
+      [{ name: 'ragworm' }, { name: 'spectralSeaBo', tug: 3 }]
+    ),
+    createBaitChain(
+      [{ name: 'ragworm' }, { name: 'shootingStar', tug: 3 }],
+      [{
+        count: 1,
+        bait: [{ name: 'ragworm' }, { name: 'tossedDagger', tug: 1 }, { name: 'elderDinichthys', tug: 2 }]
+      }]
+    )
+  ],
+  R: [
+    createBaitChain(
+      [{ name: 'plumpWorm' }, { name: 'spectralBass', tug: 3 }]
+    ),
+    createBaitChain(
+      [{ name: 'krill' }, { name: 'sabaton', tug: 3 }],
+      [{
+        count: 2,
+        bait: [{ name: 'plumpWorm' }, { name: 'crimsonMonkfish', tug: 2 }]
+      }]
+    )
+  ],
+  coralManta: createBaitChain(
+    [{ name: 'shrimpCageFeeder' }, { name: 'coralManta', tug: 3 }],
+    [{
+      count: 2,
+      bait: [{ name: 'plumpWorm' }, { name: 'hiAetherlouse', tug: 1 }, { name: 'greatGrandmarlin', tug: 2 }]
+    }]
+  ),
+  sothis: createBaitChain(
+    [{ name: 'glowworm' }, { name: 'sothis', tug: 3 }],
+    [{
+      count: 2,
+      bait: [{ name: 'ragworm' }, { name: 'heavenskey', tug: 1 }]
+    }, {
+      count: 1,
+      bait: [{ name: 'krill' }, { name: 'navigatorsPrint', tug: 1 }]
+    }]
+  ),
+  elasmosaurus: createBaitChain(
+    [{ name: 'heavySteelJig' }, { name: 'elasmosaurus', tug: 3 }],
+    [{
+      count: 3,
+      bait: [{ name: 'plumpWorm' }, { name: 'gugrusaurus', tug: 3 }]
+    }]
+  ),
+  stonescale: createBaitChain(
+    [{ name: 'ratTail' }, { name: 'stonescale', tug: 3 }],
+    [{
+      count: 2,
+      bait: [{ name: 'plumpWorm' }, { name: 'deepSeaEel', tug: 2 }]
+    }, {
+      count: 1,
+      bait: [{ name: 'ragworm' }, { name: 'silencer', tug: 1 }]
+    }]
+  )
+}
 
 function paddedZero (n) {
   return n > 9 ? n : '0' + n
 }
+
 function toUTCString (utc) {
   return `UTC${utc >= 0 ? '+' : '−'}${paddedZero(Math.abs(utc / 60 | 0))}:${paddedZero(Math.abs(utc) % 60)}`
+}
+
+function createBaitChain (bait, intuitionBait) {
+  const elems = []
+  bait.forEach(({ name, tug }, index) => {
+    elems.push(
+      <div key={index} className={styles.baitGroup}>
+        <FishIcon name={name} />
+        {tug && <span className={cn(styles.tug, [styles.light, styles.medium, styles.heavy][tug - 1])}>{'!'.repeat(tug)}</span>}
+      </div>
+    )
+    if (index < bait.length - 1) {
+      elems.push('▸')
+    }
+  })
+
+  if (intuitionBait) {
+    elems.push(
+      <ul key='int'>
+        {intuitionBait.map((bait, index) =>
+          <li key={index}>
+            {bait.count} {createBaitChain(bait.bait)}
+          </li>
+        )}
+      </ul>
+    )
+  }
+
+  return elems
 }
 
 class OceanFishing extends Component {
@@ -171,290 +297,40 @@ class OceanFishing extends Component {
           </tbody>
         </table>
         {(() => {
-          switch (select) {
-            case 'ND':
-              return (
-                <div className={zf.cell}>
-                  <h5>Northern Strait {TIME_MAP.D}</h5>
-                  <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
-                    <div className={cn(zf.cell, zf.large4)}>
-                      Southern Strait {TIME_MAP.S}
+          if (select !== null) {
+            const dest = select[0]
+            const time = select[1]
+            const times = 'DSN'
+            const timeIndex = times.indexOf(time)
+            const routeStops = ROUTE_MAP[dest].map((dest, index) => dest + times[(timeIndex + index + 1) % 3])
+            const next = calculateVoyages(now, 1, select)[0]
+            const timeUntil = LULU_EPOCH.clone().add(next.day, 'days').add(next.hour, 'hours').utcOffset(UTC).diff(now)
+
+            return (
+              <div className={cn(styles.routeDetails, zf.cell)}>
+                <h4>{DEST_MAP[dest]} {TIME_MAP[time]}</h4>
+                {timeUntil <= 0 ? 'next is boarding now' : 'next is in ' + moment.duration(timeUntil).humanize()}
+                <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
+                  {routeStops.map(stop =>
+                    <div key={stop} className={cn(zf.cell, zf.large4)}>
+                      {DEST_MAP[stop[0]]} {TIME_MAP[stop[1]]}
                       <ul className={styles.catches}>
-                        {baitChains.southernStrait.map((baitChain, index) => <li key={index}>{baitChain}</li>)}
+                        {BAIT_CHAINS[stop[0]].map((baitChain, index) => <li key={index}>{baitChain}</li>)}
+                        {BLUE_FISH_MAP[stop] &&
+                          <li className={styles.spectral}>{BAIT_CHAINS[BLUE_FISH_MAP[stop]]}</li>}
                       </ul>
                     </div>
-                    <div className={cn(zf.cell, zf.large4)}>
-                      Galadion Bay {TIME_MAP.N}
-                      <ul className={styles.catches}>
-                        {baitChains.galadionBay.map((baitChain, index) => <li key={index}>{baitChain}</li>)}
-                        <li className={styles.spectral}>{baitChains.sothis}</li>
-                      </ul>
-                    </div>
-                    <div className={cn(zf.cell, zf.large4)}>
-                      Northern Strait {TIME_MAP.D}
-                      <ul className={styles.catches}>
-                        {baitChains.northernStrait.map((baitChain, index) => <li key={index}>{baitChain}</li>)}
-                        <li className={styles.spectral}>{baitChains.elasmosaurus}</li>
-                      </ul>
-                    </div>
-                  </div>
+                  )}
                 </div>
-              )
-            case 'RD':
-              return (
-                <div className={zf.cell}>
-                  <h5>Rhotano Sea {TIME_MAP.D}</h5>
-                  <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
-                    <div className={cn(zf.cell, zf.large4)}>
-                      Galadion Bay {TIME_MAP.S}
-                      <ul className={styles.catches}>
-                        {baitChains.galadionBay.map((baitChain, index) => <li key={index}>{baitChain}</li>)}
-                      </ul>
-                    </div>
-                    <div className={cn(zf.cell, zf.large4)}>
-                      Southern Strait {TIME_MAP.N}
-                      <ul className={styles.catches}>
-                        {baitChains.southernStrait.map((baitChain, index) => <li key={index}>{baitChain}</li>)}
-                        <li className={styles.spectral}>{baitChains.coralManta}</li>
-                      </ul>
-                    </div>
-                    <div className={cn(zf.cell, zf.large4)}>
-                      Rhotano Sea {TIME_MAP.D}
-                      <ul className={styles.catches}>
-                        {baitChains.rhotanoSea.map((baitChain, index) => <li key={index}>{baitChain}</li>)}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              )
-            case 'NS':
-              return (
-                <div className={zf.cell}>
-                  <h5>Northern Strait {TIME_MAP.S}</h5>
-                  <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
-                    <div className={cn(zf.cell, zf.large4)}>
-                      Southern Strait {TIME_MAP.N}
-                      <ul className={styles.catches}>
-                        {baitChains.southernStrait.map((baitChain, index) => <li key={index}>{baitChain}</li>)}
-                        <li className={styles.spectral}>{baitChains.coralManta}</li>
-                      </ul>
-                    </div>
-                    <div className={cn(zf.cell, zf.large4)}>
-                      Galadion Bay {TIME_MAP.D}
-                      <ul className={styles.catches}>
-                        {baitChains.galadionBay.map((baitChain, index) => <li key={index}>{baitChain}</li>)}
-                      </ul>
-                    </div>
-                    <div className={cn(zf.cell, zf.large4)}>
-                      Northern Strait {TIME_MAP.S}
-                      <ul className={styles.catches}>
-                        {baitChains.northernStrait.map((baitChain, index) => <li key={index}>{baitChain}</li>)}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              )
-            case 'RS':
-              return (
-                <div className={zf.cell}>
-                  <h5>Rhotano Sea {TIME_MAP.S}</h5>
-                  <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
-                    <div className={cn(zf.cell, zf.large4)}>
-                      Galadion Bay {TIME_MAP.N}
-                      <ul className={styles.catches}>
-                        {baitChains.galadionBay.map((baitChain, index) => <li key={index}>{baitChain}</li>)}
-                        <li className={styles.spectral}>{baitChains.sothis}</li>
-                      </ul>
-                    </div>
-                    <div className={cn(zf.cell, zf.large4)}>
-                      Southern Strait {TIME_MAP.D}
-                      <ul className={styles.catches}>
-                        {baitChains.southernStrait.map((baitChain, index) => <li key={index}>{baitChain}</li>)}
-                      </ul>
-                    </div>
-                    <div className={cn(zf.cell, zf.large4)}>
-                      Rhotano Sea {TIME_MAP.S}
-                      <ul className={styles.catches}>
-                        {baitChains.rhotanoSea.map((baitChain, index) => <li key={index}>{baitChain}</li>)}
-                        <li className={styles.spectral}>{baitChains.stonescale}</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              )
-            case 'NN':
-              return (
-                <div className={zf.cell}>
-                  <h5>Northern Strait {TIME_MAP.N}</h5>
-                  <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
-                    <div className={cn(zf.cell, zf.large4)}>
-                      Southern Strait {TIME_MAP.D}
-                      <ul className={styles.catches}>
-                        {baitChains.southernStrait.map((baitChain, index) => <li key={index}>{baitChain}</li>)}
-                      </ul>
-                    </div>
-                    <div className={cn(zf.cell, zf.large4)}>
-                      Galadion Bay {TIME_MAP.S}
-                      <ul className={styles.catches}>
-                        {baitChains.galadionBay.map((baitChain, index) => <li key={index}>{baitChain}</li>)}
-                      </ul>
-                    </div>
-                    <div className={cn(zf.cell, zf.large4)}>
-                      Northern Strait {TIME_MAP.N}
-                      <ul className={styles.catches}>
-                        {baitChains.northernStrait.map((baitChain, index) => <li key={index}>{baitChain}</li>)}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              )
-            case 'RN':
-              return (
-                <div className={zf.cell}>
-                  <h5>Rhotano Sea {TIME_MAP.N}</h5>
-                  <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
-                    <div className={cn(zf.cell, zf.large4)}>
-                      Galadion Bay {TIME_MAP.D}
-                      <ul className={styles.catches}>
-                        {baitChains.galadionBay.map((baitChain, index) => <li key={index}>{baitChain}</li>)}
-                      </ul>
-                    </div>
-                    <div className={cn(zf.cell, zf.large4)}>
-                      Southern Strait {TIME_MAP.S}
-                      <ul className={styles.catches}>
-                        {baitChains.southernStrait.map((baitChain, index) => <li key={index}>{baitChain}</li>)}
-                      </ul>
-                    </div>
-                    <div className={cn(zf.cell, zf.large4)}>
-                      Rhotano Sea {TIME_MAP.N}
-                      <ul className={styles.catches}>
-                        {baitChains.rhotanoSea.map((baitChain, index) => <li key={index}>{baitChain}</li>)}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              )
-            default:
-              return <p>Click on a route above to view its details here.</p>
+              </div>
+            )
+          } else {
+            return <p>Click on a route above to view its details here.</p>
           }
         })()}
       </>
     )
   }
-}
-
-function createBaitChain (bait, intuitionBait) {
-  const elems = []
-  bait.forEach(({ name, tug }, index) => {
-    elems.push(
-      <div key={index} className={styles.baitGroup}>
-        <FishIcon name={name} />
-        {tug && <span className={cn(styles.tug, [styles.light, styles.medium, styles.heavy][tug - 1])}>{'!'.repeat(tug)}</span>}
-      </div>
-    )
-    if (index < bait.length - 1) {
-      elems.push('▸')
-    }
-  })
-
-  if (intuitionBait) {
-    elems.push(
-      <ul key='int'>
-        {intuitionBait.map((bait, index) =>
-          <li key={index}>
-            {bait.count} {createBaitChain(bait.bait)}
-          </li>
-        )}
-      </ul>
-    )
-  }
-
-  return elems
-}
-
-const baitChains = {
-  southernStrait: [
-    createBaitChain(
-      [{ name: 'krill' }, { name: 'spectralDiscus', tug: 3 }]
-    ),
-    createBaitChain(
-      [{ name: 'plumpWorm' }, { name: 'littleLeviathan', tug: 3 }],
-      [{
-        count: 1,
-        bait: [{ name: 'krill' }, { name: 'ghoulBarracuda', tug: 2 }, { name: 'gladius', tug: 2 }]
-      }]
-    )
-  ],
-  galadionBay: [
-    createBaitChain(
-      [{ name: 'plumpWorm' }, { name: 'spectralMegalodon', tug: 3 }]
-    ),
-    createBaitChain(
-      [{ name: 'krill' }, { name: 'drunkfish', tug: 3 }],
-      [{
-        count: 3,
-        bait: [{ name: 'krill' }, { name: 'galadionChovy', tug: 1 }]
-      }]
-    )
-  ],
-  northernStrait: [
-    createBaitChain(
-      [{ name: 'ragworm' }, { name: 'spectralSeaBo', tug: 3 }]
-    ),
-    createBaitChain(
-      [{ name: 'ragworm' }, { name: 'shootingStar', tug: 3 }],
-      [{
-        count: 1,
-        bait: [{ name: 'ragworm' }, { name: 'tossedDagger', tug: 1 }, { name: 'elderDinichthys', tug: 2 }]
-      }]
-    )
-  ],
-  rhotanoSea: [
-    createBaitChain(
-      [{ name: 'plumpWorm' }, { name: 'spectralBass', tug: 3 }]
-    ),
-    createBaitChain(
-      [{ name: 'krill' }, { name: 'sabaton', tug: 3 }],
-      [{
-        count: 2,
-        bait: [{ name: 'plumpWorm' }, { name: 'crimsonMonkfish', tug: 2 }]
-      }]
-    )
-  ],
-  coralManta: createBaitChain(
-    [{ name: 'shrimpCageFeeder' }, { name: 'coralManta', tug: 3 }],
-    [{
-      count: 2,
-      bait: [{ name: 'plumpWorm' }, { name: 'hiAetherlouse', tug: 1 }, { name: 'greatGrandmarlin', tug: 2 }]
-    }]
-  ),
-  sothis: createBaitChain(
-    [{ name: 'glowworm' }, { name: 'sothis', tug: 3 }],
-    [{
-      count: 2,
-      bait: [{ name: 'ragworm' }, { name: 'heavenskey', tug: 1 }]
-    }, {
-      count: 1,
-      bait: [{ name: 'krill' }, { name: 'navigatorsPrint', tug: 1 }]
-    }]
-  ),
-  elasmosaurus: createBaitChain(
-    [{ name: 'heavySteelJig' }, { name: 'elasmosaurus', tug: 3 }],
-    [{
-      count: 3,
-      bait: [{ name: 'plumpWorm' }, { name: 'gugrusaurus', tug: 3 }]
-    }]
-  ),
-  stonescale: createBaitChain(
-    [{ name: 'ratTail' }, { name: 'stonescale', tug: 3 }],
-    [{
-      count: 2,
-      bait: [{ name: 'plumpWorm' }, { name: 'deepSeaEel', tug: 2 }]
-    }, {
-      count: 1,
-      bait: [{ name: 'ragworm' }, { name: 'silencer', tug: 1 }]
-    }]
-  )
 }
 
 export default OceanFishing
