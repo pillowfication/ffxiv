@@ -313,12 +313,17 @@ class OceanFishing extends Component {
             const timeIndex = times.indexOf(time)
             const routeStops = ROUTE_MAP[dest].map((dest, index) => dest + times[(timeIndex + index + 1) % 3])
             const next = calculateVoyages(now, 1, select)[0]
-            const timeUntil = LULU_EPOCH.clone().add(next.day, 'days').add(next.hour, 'hours').utcOffset(UTC).diff(now)
+            const nextMoment = LULU_EPOCH.clone().add(next.day, 'days').add(next.hour, 'hours').utcOffset(UTC)
+            const timeUntil = nextMoment.diff(now)
 
             return (
               <div className={cn(styles.routeDetails, zf.cell)}>
                 <h4>{DEST_MAP[dest]} {TIME_MAP[time]}</h4>
-                next is {timeUntil <= 0 ? 'boarding now / en route' : moment.duration(timeUntil).humanize(true)}
+                next is {
+                  timeUntil <= 0
+                    ? 'boarding now / en route'
+                    : `${moment.duration(timeUntil).humanize(true)} at ${nextMoment.format('HH:mm')}`
+                }
                 <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
                   {routeStops.map(stop =>
                     <div key={stop} className={cn(zf.cell, zf.large4)}>
