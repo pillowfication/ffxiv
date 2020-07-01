@@ -1,7 +1,7 @@
-const moment = require('moment')
+import moment from 'moment'
 
 // Cycle repeats every 6 days, subtract time to make sure we're in the future
-const LULU_EPOCH = moment('2020-06-28 00:00+09:00').subtract(666, 'days')
+export const LULU_EPOCH = moment('2020-06-28 00:00+09:00').subtract(666, 'days')
 const DEST_CYCLE = ['N', 'R']
 const TIME_CYCLE = ['D', 'S', 'N']
 
@@ -46,5 +46,4 @@ function calculateVoyages (time, count, filter) {
   return upcomingVoyages
 }
 
-module.exports = calculateVoyages
-module.exports.LULU_EPOCH = LULU_EPOCH
+export default calculateVoyages

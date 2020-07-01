@@ -1,11 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component, Suspense } from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import cn from 'classnames'
 
-import MiniCactpot from './mini-cactpot/MiniCactpot.jsx'
-import OceanFishing from './ocean-fishing/OceanFishing.jsx'
-import Timers from './timers/Timers.jsx'
 import zf from './foundation.scss'
 import './App.scss'
 
@@ -18,13 +15,13 @@ function kebabCase (str) {
 
 const routes = [{
   title: 'Mini Cactpot',
-  component: MiniCactpot
+  component: React.lazy(() => import('./mini-cactpot/MiniCactpot.jsx'))
 }, {
   title: 'Ocean Fishing',
-  component: OceanFishing
+  component: React.lazy(() => import('./ocean-fishing/OceanFishing.jsx'))
 }, {
   title: 'Timers',
-  component: Timers
+  component: React.lazy(() => import('./timers/Timers.jsx'))
 }]
 
 class App extends Component {
@@ -85,15 +82,18 @@ class App extends Component {
           </div>
         </header>
         <main className={cn(zf.gridContainer)}>
-          <Switch>
-            <Route exact path='/' component={Home} />
-            {routes.map(route =>
-              <Route
-                key={route.title}
-                path={'/' + kebabCase(route.title)}
-                component={route.component}
-              />)}
-          </Switch>
+          <Suspense fallback={<Loading />}>
+            <Switch>
+              <Route exact path='/' component={Home} />
+              {routes.map(route =>
+                <Route
+                  key={route.title}
+                  path={'/' + kebabCase(route.title)}
+                  component={route.component}
+                />)}
+              <Route component={_404} />
+            </Switch>
+          </Suspense>
         </main>
       </Router>
     )
@@ -112,9 +112,29 @@ class Home extends Component {
             </li>
           )}
         </ul>
-        <p>A bunch of FFXIV-relative stuff I try making. Message Pillowfication#0538 with questions or comments.</p>
+        <p>
+          A bunch of FFXIV-related stuff I try making.<br />
+          Message Pillowfication#0538 with questions or comments.
+        </p>
       </>
     )
+  }
+}
+
+class _404 extends Component {
+  render () {
+    return (
+      <>
+        <h1>404</h1>
+        <p>This page does not exist. Go back <Link to='/'>home</Link>?</p>
+      </>
+    )
+  }
+}
+
+class Loading extends Component {
+  render () {
+    return <p>Loading...</p>
   }
 }
 

@@ -78,7 +78,7 @@ $foundation-palette: (
   warning: #ffae00,
   alert: #cc4b37,
 );
-$light-gray: #e6e6e6;
+$light-gray: #ececec;
 $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;
 $black: #0c0c0c;
@@ -217,10 +217,13 @@ $cite-color: $dark-gray;
 $cite-font-size: rem-calc(13);
 $cite-pseudo-content: '\2014 \0020';
 $code-color: $black;
+$dark-code-color: $dark-body-font-color;
 $code-font-family: $font-family-monospace;
 $code-font-weight: $global-weight-normal;
 $code-background: $light-gray;
+$dark-code-background: lighten($black, 15%);
 $code-border: 1px solid $medium-gray;
+$dark-code-border: 1px solid $medium-gray;
 $code-padding: rem-calc(2 5 1);
 $code-block-padding: 1rem;
 $code-block-margin-bottom: 1.5rem;
