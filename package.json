@@ -37,6 +37,7 @@
     "incstr": "^1.2.3",
     "mini-css-extract-plugin": "^0.9.0",
     "moment": "^2.27.0",
+    "moment-locales-webpack-plugin": "^1.2.0",
     "node-sass": "^4.14.1",
     "open-sans-fonts": "^1.6.2",
     "optimize-css-assets-webpack-plugin": "^5.0.3",

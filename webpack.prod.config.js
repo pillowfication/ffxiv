@@ -4,6 +4,7 @@ const incstr = require('incstr')
 const { getLocalIdent } = require('./css-loader-getLocalIdent')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
@@ -38,7 +39,8 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css'
-    })
+    }),
+    new MomentLocalesPlugin()
   ],
   optimization: {
     minimizer: [
