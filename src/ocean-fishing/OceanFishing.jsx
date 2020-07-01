@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import moment from 'moment'
 import cn from 'classnames'
 import calculateVoyages, { LULU_EPOCH } from './calculate-voyages'
+import baitChains from './bait-chains'
 import FishIcon from './FishIcon.jsx'
 import TimeIcon from './TimeIcon.jsx'
 
@@ -40,99 +41,6 @@ const BLUE_FISH_MAP = {
   ND: 'elasmosaurus',
   RS: 'stonescale'
 }
-const BAIT_CHAINS = {
-  S: [
-    createBaitChain(
-      [{ name: 'krill' }, { name: 'spectralDiscus', tug: 3 }]
-    ),
-    createBaitChain(
-      [{ name: 'plumpWorm' }, { name: 'littleLeviathan', tug: 3 }],
-      [{
-        count: 1,
-        bait: [{ name: 'krill' }, { name: 'ghoulBarracuda', tug: 2 }, { name: 'gladius', tug: 2 }]
-      }]
-    )
-  ],
-  G: [
-    createBaitChain(
-      [{ name: 'plumpWorm' }, { name: 'spectralMegalodon', tug: 3 }]
-    ),
-    createBaitChain(
-      [{ name: 'krill' }, { name: 'drunkfish', tug: 3 }],
-      [{
-        count: 3,
-        bait: [{ name: 'krill' }, { name: 'galadionChovy', tug: 1 }]
-      }]
-    )
-  ],
-  N: [
-    createBaitChain(
-      [{ name: 'ragworm' }, { name: 'spectralSeaBo', tug: 3 }]
-    ),
-    createBaitChain(
-      [{ name: 'ragworm' }, { name: 'shootingStar', tug: 3 }],
-      [{
-        count: 1,
-        bait: [{ name: 'ragworm' }, { name: 'tossedDagger', tug: 1 }, { name: 'elderDinichthys', tug: 2 }]
-      }]
-    )
-  ],
-  R: [
-    createBaitChain(
-      [{ name: 'plumpWorm' }, { name: 'spectralBass', tug: 3 }]
-    ),
-    createBaitChain(
-      [{ name: 'krill' }, { name: 'sabaton', tug: 3 }],
-      [{
-        count: 2,
-        bait: [{ name: 'plumpWorm' }, { name: 'crimsonMonkfish', tug: 2 }]
-      }]
-    )
-  ],
-  coralManta: createBaitChain(
-    [{ name: 'shrimpCageFeeder' }, { name: 'coralManta', tug: 3 }],
-    [{
-      count: 2,
-      bait: [{ name: 'plumpWorm' }, { name: 'hiAetherlouse', tug: 1 }, { name: 'greatGrandmarlin', tug: 2 }]
-    }]
-  ),
-  sothis: createBaitChain(
-    [{ name: 'glowworm' }, { name: 'sothis', tug: 3 }],
-    [{
-      count: 2,
-      bait: [{ name: 'ragworm' }, { name: 'heavenskey', tug: 1 }]
-    }, {
-      count: 1,
-      bait: [{ name: 'krill' }, { name: 'navigatorsPrint', tug: 1 }]
-    }]
-  ),
-  elasmosaurus: createBaitChain(
-    [{ name: 'heavySteelJig' }, { name: 'elasmosaurus', tug: 3 }],
-    [{
-      count: 3,
-      bait: [{ name: 'plumpWorm' }, { name: 'gugrusaurus', tug: 3 }]
-    }]
-  ),
-  stonescale: createBaitChain(
-    [{ name: 'ratTail' }, { name: 'stonescale', tug: 3 }],
-    [{
-      count: 2,
-      bait: [{ name: 'plumpWorm' }, { name: 'deepSeaEel', tug: 2 }]
-    }, {
-      count: 1,
-      bait: [{ name: 'ragworm' }, { name: 'silencer', tug: 1 }]
-    }]
-  ),
-  cyanOctopus: createBaitChain(
-    [{ name: 'krill' }, { name: 'cyanOctopus', tug: 2 }]
-  ),
-  mermansMane: createBaitChain(
-    [{ name: 'krill' }, { name: 'mermansMane', tug: 2 }]
-  ),
-  mopbeard: createBaitChain(
-    [{ name: 'krill' }, { name: 'mopbeard', tug: 2 }]
-  )
-}
 
 function paddedZero (n) {
   return n > 9 ? n : '0' + n
@@ -140,35 +48,6 @@ function paddedZero (n) {
 
 function toUTCString (utc) {
   return `UTC${utc >= 0 ? '+' : '−'}${paddedZero(Math.abs(utc / 60 | 0))}:${paddedZero(Math.abs(utc) % 60)}`
-}
-
-function createBaitChain (bait, intuitionBait) {
-  const elems = []
-  bait.forEach(({ name, tug }, index) => {
-    elems.push(
-      <div key={index} className={styles.baitGroup}>
-        <FishIcon name={name} />
-        {tug && <span className={cn(styles.tug, [styles.light, styles.medium, styles.heavy][tug - 1])}>{'!'.repeat(tug)}</span>}
-      </div>
-    )
-    if (index < bait.length - 1) {
-      elems.push('▸')
-    }
-  })
-
-  if (intuitionBait) {
-    elems.push(
-      <ul key='int'>
-        {intuitionBait.map((bait, index) =>
-          <li key={index}>
-            {bait.count} {createBaitChain(bait.bait)}
-          </li>
-        )}
-      </ul>
-    )
-  }
-
-  return elems
 }
 
 class OceanFishing extends Component {
@@ -329,9 +208,9 @@ class OceanFishing extends Component {
                     <div key={stop} className={cn(zf.cell, zf.large4)}>
                       {DEST_MAP[stop[0]]} {TIME_MAP[stop[1]]}
                       <ul className={styles.catches}>
-                        {BAIT_CHAINS[stop[0]].map((baitChain, index) => <li key={index}>{baitChain}</li>)}
+                        {baitChains[stop[0]].map((baitChain, index) => <li key={index}>{baitChain}</li>)}
                         {BLUE_FISH_MAP[stop] &&
-                          <li className={styles.divider}>{BAIT_CHAINS[BLUE_FISH_MAP[stop]]}</li>}
+                          <li className={styles.divider}>{baitChains[BLUE_FISH_MAP[stop]]}</li>}
                       </ul>
                     </div>
                   )}
@@ -360,6 +239,60 @@ class OceanFishing extends Component {
               return (
                 <div className={zf.cell}>
                   <p>This is the Sharks route.</p>
+                  <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      {DEST_MAP.G} {TIME_MAP.S}
+                      <ul className={styles.catches}>
+                        <li>
+                          IC; DH-IC-DH post-spectral.<br />
+                          {baitChains.tarnishedShark}
+                        </li>
+                        <li>
+                          IC–DH.<br />
+                          {baitChains.ghostShark}
+                        </li>
+                        <li>
+                          No buffs.<br />
+                          {baitChains.quicksilverBlade}
+                        </li>
+                        <li>
+                          DH–IC–DH.<br />
+                          {baitChains.funnelShark}
+                        </li>
+                        <li className={styles.divider}>
+                          <p>Pre-spectral, save GP when possible. Post-spectral, blind DH Tarnished Sharks.</p>
+                          <p>During spectral, hook [<strong>!!</strong>]s and [<strong>!!!</strong>]s. IC–DH if you catch a Ghost Shark. [<strong>!!!</strong>] is a blind DH.</p>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      {DEST_MAP.S} {TIME_MAP.N}
+                      <ul className={styles.catches}>
+                        <li><p>No Sharks here.</p><p>Try for Coral Manta?</p></li>
+                      </ul>
+                    </div>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      {DEST_MAP.R} {TIME_MAP.D}
+                      <ul className={styles.catches}>
+                        <li>
+                          IC-DH; DH-IC-DH post-spectral.<br />
+                          {baitChains.chromeHammerhead}
+                        </li>
+                        <li>
+                          No buffs.<br />
+                          {baitChains.sweeper}
+                        </li>
+                        <li>
+                          DH-IC-DH.<br />
+                          {baitChains.executioner}
+                        </li>
+                        <li className={styles.divider}>
+                          <p>Pre-spectral, don’t blind DH. Post-spectral, blind DH Chrome Hammerheads.</p>
+                          <p>During spectral, hook [<strong>!!</strong>]s and [<strong>!!!</strong>]s. If you catch a Sweeper, can use IC if high on GP. [<strong>!!!</strong>] is a blind DH.</p>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               )
             case 'NN':
@@ -378,11 +311,11 @@ class OceanFishing extends Component {
                       <ul className={styles.catches}>
                         <li>
                           IC–DH at 16-28s.<br />
-                          {BAIT_CHAINS.cyanOctopus}
+                          {baitChains.cyanOctopus}
                         </li>
                         <li>
                           DH–IC–DH at &lt;3s.<br />
-                          {BAIT_CHAINS.mermansMane}
+                          {baitChains.mermansMane}
                         </li>
                         <li className={styles.divider}>
                           <p>Can blind DH the Cyan Octopodes at 25s, or at 19s with a SS’d Jasperhead.</p>
@@ -395,7 +328,7 @@ class OceanFishing extends Component {
                       <ul className={styles.catches}>
                         <li>
                           DH–IC–DH at 4s.<br />
-                          {BAIT_CHAINS.mopbeard}
+                          {baitChains.mopbeard}
                         </li>
                         <li className={styles.divider}>
                           <p>The earlier [<strong>!!</strong>] is Coccosteus.</p>
