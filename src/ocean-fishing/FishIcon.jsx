@@ -39,7 +39,7 @@ const ICON_TITLES = {
   sweeper: 'Sweeper',
   executioner: 'Executioner',
   cyanOctopus: 'Cyan Octopus',
-  mermansMaine: 'Merman’s Mane',
+  mermansMane: 'Merman’s Mane',
   mopbeard: 'Mopbeard',
   littleLeviathan: 'Little Leviathan',
   shootingStar: 'Shooting Star',

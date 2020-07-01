@@ -122,6 +122,15 @@ const BAIT_CHAINS = {
       count: 1,
       bait: [{ name: 'ragworm' }, { name: 'silencer', tug: 1 }]
     }]
+  ),
+  cyanOctopus: createBaitChain(
+    [{ name: 'krill' }, { name: 'cyanOctopus', tug: 2 }]
+  ),
+  mermansMane: createBaitChain(
+    [{ name: 'krill' }, { name: 'mermansMane', tug: 2 }]
+  ),
+  mopbeard: createBaitChain(
+    [{ name: 'krill' }, { name: 'mopbeard', tug: 2 }]
   )
 }
 
@@ -317,7 +326,7 @@ class OceanFishing extends Component {
                       <ul className={styles.catches}>
                         {BAIT_CHAINS[stop[0]].map((baitChain, index) => <li key={index}>{baitChain}</li>)}
                         {BLUE_FISH_MAP[stop] &&
-                          <li className={styles.spectral}>{BAIT_CHAINS[BLUE_FISH_MAP[stop]]}</li>}
+                          <li className={styles.divider}>{BAIT_CHAINS[BLUE_FISH_MAP[stop]]}</li>}
                       </ul>
                     </div>
                   )}
@@ -326,6 +335,71 @@ class OceanFishing extends Component {
             )
           } else {
             return <p>Click on a route above to view its details here.</p>
+          }
+        })()}
+        {(() => {
+          switch (select) {
+            case 'RN':
+              return (
+                <div className={zf.cell}>
+                  <p>This is the Jellyfish route.</p>
+                </div>
+              )
+            case 'NS':
+              return (
+                <div className={zf.cell}>
+                  <p>This is the Seadragons route.</p>
+                </div>
+              )
+            case 'RD':
+              return (
+                <div className={zf.cell}>
+                  <p>This is the Sharks route.</p>
+                </div>
+              )
+            case 'NN':
+              return (
+                <div className={zf.cell}>
+                  <p>This is the Octopodes route.</p>
+                  <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      {DEST_MAP.S} {TIME_MAP.D}
+                      <ul className={styles.catches}>
+                        <li><p>No octopodes here.</p></li>
+                      </ul>
+                    </div>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      {DEST_MAP.G} {TIME_MAP.S}
+                      <ul className={styles.catches}>
+                        <li>
+                          IC–DH at 16-28s.<br />
+                          {BAIT_CHAINS.cyanOctopus}
+                        </li>
+                        <li>
+                          DH–IC–DH at &lt;3s.<br />
+                          {BAIT_CHAINS.mermansMane}
+                        </li>
+                        <li className={styles.divider}>
+                          <p>Can blind DH the Cyan Octopodes at 25s, or at 19s with a SS’d Jasperhead.</p>
+                          <p>During spectral, only the instant [<strong>!!</strong>] is Merman’s Mane; any later is not.</p>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      {DEST_MAP.N} {TIME_MAP.N}
+                      <ul className={styles.catches}>
+                        <li>
+                          DH–IC–DH at 4s.<br />
+                          {BAIT_CHAINS.mopbeard}
+                        </li>
+                        <li className={styles.divider}>
+                          <p>The earlier [<strong>!!</strong>] is Coccosteus.</p>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              )
           }
         })()}
       </>

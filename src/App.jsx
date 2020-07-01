@@ -108,7 +108,10 @@ class Home extends Component {
             </li>
           )}
         </ul>
-        <p>A bunch of FFXIV-relative stuff I try making. Message Pillowfication#0538 with questions or comments.</p>
+        <p>
+          A bunch of FFXIV-related stuff I try making.<br />
+          Message Pillowfication#0538 with questions or comments.
+        </p>
       </>
     )
   }
