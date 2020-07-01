@@ -268,7 +268,7 @@ class OceanFishing extends Component {
                     <div className={cn(zf.cell, zf.large4)}>
                       {DEST_MAP.S} {TIME_MAP.N}
                       <ul className={styles.catches}>
-                        <li><p>No Sharks here.</p><p>Try for Coral Manta?</p></li>
+                        <li><p>No Sharks here.</p><p>Try for Coral Manta?<br />(but save GP)</p></li>
                       </ul>
                     </div>
                     <div className={cn(zf.cell, zf.large4)}>
@@ -336,6 +336,26 @@ class OceanFishing extends Component {
                       </ul>
                     </div>
                   </div>
+
+                  <p>Sample octopodes macro</p>
+                  <code className={zf.codeBlock}>
+                    {
+                      '/micon Cast\n' +
+                      '/ac Cast\n' +
+                      '<wait.3>\n' +
+                      '/echo 3 - Not Mane! <se.1>\n' +
+                      '<wait.1>\n' +
+                      '/echo 4 - Mopbeard! <se.2>\n' +
+                      '<wait.12>\n' +
+                      '/echo 16 - Cyan? <se.3>\n' +
+                      '<wait.3>\n' +
+                      '/echo 19 - Not Eel! <se.3>\n' +
+                      '<wait.6>\n' +
+                      '/echo 25 - Not Jasperhead! <se.3>\n' +
+                      '<wait.4>\n' +
+                      '/echo 29 - Recast! <se.4>'
+                    }
+                  </code>
                 </div>
               )
           }

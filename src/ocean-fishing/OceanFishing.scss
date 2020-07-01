@@ -63,6 +63,7 @@
 
 .route-table {
   margin-top: 0.5em;
+  margin-bottom: $global-margin;
 
   & > div {
     border: $table-border;

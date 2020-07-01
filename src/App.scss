@@ -1,5 +1,32 @@
 @import "foundation";
 
+body {
+  transition: background-color .1s linear;
+  &:global(.dark) {
+    background-color: $dark-body-background;
+    color: $dark-body-font-color;
+  }
+}
+
+main {
+  padding-top: 1em;
+  padding-bottom: 10em;
+}
+
+#{text-inputs()}, textarea, select {
+  :global(.dark) & {
+    background-color: $dark-input-background;
+    border: $dark-input-border;
+    color: $dark-body-font-color;
+  }
+}
+
+a {
+  :global(.dark) & {
+    color: lighten($primary-color, 20%);
+  }
+}
+
 header {
   background-color: $topbar-background;
   color: $white;
@@ -15,11 +42,6 @@ header {
       background-color: darken($primary-color, 10%);
     }
   }
-}
-
-main {
-  padding-top: 1em;
-  padding-bottom: 10em;
 }
 
 table {
@@ -43,24 +65,10 @@ table {
   }
 }
 
-body {
-  transition: background-color .1s linear;
-  &:global(.dark) {
-    background-color: $dark-body-background;
-    color: $dark-body-font-color;
-  }
-}
-
-#{text-inputs()}, textarea, select {
+code {
   :global(.dark) & {
-    background-color: $dark-input-background;
-    border: $dark-input-border;
-    color: $dark-body-font-color;
-  }
-}
-
-a {
-  :global(.dark) & {
-    color: lighten($primary-color, 20%);
+    border: $dark-code-border;
+    background-color: $dark-code-background;
+    color: $dark-code-color;
   }
 }
