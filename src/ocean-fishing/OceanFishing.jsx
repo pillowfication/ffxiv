@@ -10,7 +10,7 @@ import styles from './OceanFishing.scss'
 
 const UTC = moment().utcOffset()
 const JST_UTC = 540
-const UPDATE_INTERVAL = 123456
+const UPDATE_INTERVAL = 60000
 const DEST_MAP = {
   S: 'Southern Strait',
   G: 'Galadion Bay',

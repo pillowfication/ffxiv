@@ -89,6 +89,7 @@ class App extends Component {
                 path={'/' + kebabCase(route.title)}
                 component={route.component}
               />)}
+            <Route component={_404} />
           </Switch>
         </main>
       </Router>
@@ -112,6 +113,17 @@ class Home extends Component {
           A bunch of FFXIV-related stuff I try making.<br />
           Message Pillowfication#0538 with questions or comments.
         </p>
+      </>
+    )
+  }
+}
+
+class _404 extends Component {
+  render () {
+    return (
+      <>
+        <h1>404</h1>
+        <p>This page does not exist. Go back <Link to='/'>home</Link>?</p>
       </>
     )
   }
