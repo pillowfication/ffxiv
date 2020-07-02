@@ -3,13 +3,15 @@ import moment from 'moment'
 import cn from 'classnames'
 import propTypes from 'prop-types'
 import {
-  GCTimer
+  GCTimer,
+  fromPlainObj
 } from './FFXIVTimer.js'
 
 import zf from '../foundation.scss'
 import styles from './Timers.scss'
 
 const UTC = moment().utcOffset()
+const UPDATE_INTERVAL = 60000
 const TIMER_TYPES = [
   GCTimer
 ]
@@ -25,12 +27,28 @@ function paddedZero (n) {
 class Timers extends Component {
   constructor (props) {
     super(props)
+    this.interval = null
 
-    this.state = {
-      timers: window.localStorage.getItem('timers') || []
+    const timersCache = window.localStorage.getItem('timers')
+    if (timersCache) {
+      this.state = {
+        timers: JSON.parse(timersCache).map(fromPlainObj)
+      }
+    } else {
+      this.state = {
+        timers: []
+      }
     }
 
     this.handleOnAddTimer = this.handleOnAddTimer.bind(this)
+  }
+
+  componentDidMount () {
+    this.interval = setInterval(() => { this.forceUpdate() }, UPDATE_INTERVAL)
+  }
+
+  componentWillUnmount () {
+    clearInterval(this.interval)
   }
 
   handleOnAddTimer (timer) {
@@ -41,8 +59,7 @@ class Timers extends Component {
 
   render () {
     const { timers } = this.state
-    window.localStorage.setItem('timers', timers)
-    console.log(timers)
+    window.localStorage.setItem('timers', JSON.stringify(timers.map(timer => timer.toPlainObj())))
 
     return (
       <>
@@ -98,6 +115,7 @@ class AddTimerForm extends Component {
     return (
       <form className={cn(zf.gridX, zf.gridPaddingX)}>
         <div className={cn(zf.cell, zf.small12)}>
+          <p>Add a timer</p>
           <select>
             {TIMER_TYPES.map((timerType, index) =>
               <option key={timerType.name} value={timerType.name}>{timerType.timerName}</option>
@@ -105,7 +123,7 @@ class AddTimerForm extends Component {
           </select>
         </div>
         <div className={cn(zf.cell, zf.small12)}>
-          <button type='button' className={zf.button} onClick={this.handleOnAddTimer}>+ Add Timer</button>
+          <button type='button' className={zf.button} onClick={this.handleOnAddTimer}>Add Timer</button>
         </div>
       </form>
     )
