@@ -154,43 +154,45 @@ class OceanFishing extends Component {
             </select>
           </fieldset>
         </div>
-        <table className={styles.schedule} onMouseOut={this.handleOnHover.clear}>
-          <thead>
-            <tr>
-              <th colSpan={2}>TIME</th>
-              <th colSpan={2}>ROUTE</th>
-              <th>OBJECTIVES</th>
-            </tr>
-          </thead>
-          <tbody>
-            {(upcomingVoyages.map(voyage => {
-              const time = LULU_EPOCH.clone().add(voyage.day, 'days').add(voyage.hour, 'hours').utcOffset(UTC)
-              const date = time.format('M/D')
-              const dateChange = previousDate !== (previousDate = date)
-              const destinationCode = voyage.destinationCode
+        <div className={zf.tableScroll}>
+          <table className={styles.schedule} onMouseOut={this.handleOnHover.clear}>
+            <thead>
+              <tr>
+                <th colSpan={2}>TIME</th>
+                <th colSpan={2}>ROUTE</th>
+                <th>OBJECTIVES</th>
+              </tr>
+            </thead>
+            <tbody>
+              {(upcomingVoyages.map(voyage => {
+                const time = LULU_EPOCH.clone().add(voyage.day, 'days').add(voyage.hour, 'hours').utcOffset(UTC)
+                const date = time.format('M/D')
+                const dateChange = previousDate !== (previousDate = date)
+                const destinationCode = voyage.destinationCode
 
-              return (
-                <tr
-                  key={`${voyage.day}:${voyage.hour}`}
-                  className={cn(
-                    dateChange && styles.dateChange,
-                    filter === 'none' && destinationCode === hover && styles.hover
-                  )}
-                  onMouseOver={this.handleOnHover[destinationCode]}
-                  onClick={this.handleOnClick[destinationCode]}
-                >
-                  <td className={styles.date}>{dateChange && date}</td>
-                  <td className={styles.time}>{time.format('HH:mm')}</td>
-                  <td className={styles.destinationName}>{DEST_MAP[destinationCode[0]]}</td>
-                  <td className={styles.destinationTime}>{TIME_MAP[destinationCode[1]]}</td>
-                  <td className={styles.objectives}>
-                    {OBJECTIVES_MAP[destinationCode].map(name => <FishIcon key={name} name={name} />)}
-                  </td>
-                </tr>
-              )
-            }))}
-          </tbody>
-        </table>
+                return (
+                  <tr
+                    key={`${voyage.day}:${voyage.hour}`}
+                    className={cn(
+                      dateChange && styles.dateChange,
+                      filter === 'none' && destinationCode === hover && styles.hover
+                    )}
+                    onMouseOver={this.handleOnHover[destinationCode]}
+                    onClick={this.handleOnClick[destinationCode]}
+                  >
+                    <td className={styles.date}>{dateChange && date}</td>
+                    <td className={styles.time}>{time.format('HH:mm')}</td>
+                    <td className={styles.destinationName}>{DEST_MAP[destinationCode[0]]}</td>
+                    <td className={styles.destinationTime}>{TIME_MAP[destinationCode[1]]}</td>
+                    <td className={styles.objectives}>
+                      {OBJECTIVES_MAP[destinationCode].map(name => <FishIcon key={name} name={name} />)}
+                    </td>
+                  </tr>
+                )
+              }))}
+            </tbody>
+          </table>
+        </div>
         {(() => {
           if (select !== null) {
             const dest = select[0]
@@ -331,7 +333,7 @@ class OceanFishing extends Component {
                     </div>
                   </div>
 
-                  <p>Sample Seadragons macro</p>
+                  <p>Sample seadragons macro</p>
                   <code className={zf.codeBlock}>
                     {
                       '/micon Cast\n' +
