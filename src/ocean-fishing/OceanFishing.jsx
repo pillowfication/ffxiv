@@ -264,12 +264,54 @@ class OceanFishing extends Component {
                       </ul>
                     </div>
                   </div>
+
+                  <p>Sample jellyfish macro</p>
+                  <code className={zf.codeBlock}>
+                    {
+                      '/micon Cast\n' +
+                      '/ac Cast\n' +
+                      '<wait.3>\n' +
+                      '/echo 5 - Recast! <se.4>'
+                    }
+                  </code>
                 </div>
               )
             case 'NS':
               return (
                 <div className={zf.cell}>
                   <p>This is the Seadragons route.</p>
+                  <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      {DEST_MAP.S} {TIME_MAP.N}
+                      <ul className={styles.catches}>
+                        <li>
+                          IC–DH at 10-18s<br />
+                          {baitChains.shaggySeadragon}
+                        </li>
+                        <li className={styles.divider}>
+                          <p>Spectral is bad. Sit on IC if you have it going into spectral, instead of catching Aetheric Seadragons.</p>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      {DEST_MAP.G} {TIME_MAP.D}
+                      <ul className={styles.catches}>
+                        <li><p>No jellyfish here.</p></li>
+                      </ul>
+                    </div>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      {DEST_MAP.N} {TIME_MAP.S}
+                      <ul className={styles.catches}>
+                        <li>
+                          IC–DH<br />
+                          {baitChains.coralSeadragon}
+                        </li>
+                        <li className={styles.divider}>
+                          <p>Nothing to say about this.</p>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               )
             case 'RD':

@@ -36,52 +36,56 @@ function createBaitChain (bait, intuitionBait) {
   return elems
 }
 
+const RAGWORM = { name: 'ragworm' }
+const KRILL = { name: 'krill' }
+const PLUMP_WORM = { name: 'plumpWorm' }
+
 const baitChains = {
   S: [
     createBaitChain(
-      [{ name: 'krill' }, { name: 'spectralDiscus', tug: 3 }]
+      [KRILL, { name: 'spectralDiscus', tug: 3 }]
     ),
     createBaitChain(
-      [{ name: 'plumpWorm' }, { name: 'littleLeviathan', tug: 3 }],
+      [PLUMP_WORM, { name: 'littleLeviathan', tug: 3 }],
       [{
         count: 1,
-        bait: [{ name: 'krill' }, { name: 'ghoulBarracuda', tug: 2 }, { name: 'gladius', tug: 2 }]
+        bait: [KRILL, { name: 'ghoulBarracuda', tug: 2 }, { name: 'gladius', tug: 2 }]
       }]
     )
   ],
   G: [
     createBaitChain(
-      [{ name: 'plumpWorm' }, { name: 'spectralMegalodon', tug: 3 }]
+      [PLUMP_WORM, { name: 'spectralMegalodon', tug: 3 }]
     ),
     createBaitChain(
-      [{ name: 'krill' }, { name: 'drunkfish', tug: 3 }],
+      [KRILL, { name: 'drunkfish', tug: 3 }],
       [{
         count: 3,
-        bait: [{ name: 'krill' }, { name: 'galadionChovy', tug: 1 }]
+        bait: [KRILL, { name: 'galadionChovy', tug: 1 }]
       }]
     )
   ],
   N: [
     createBaitChain(
-      [{ name: 'ragworm' }, { name: 'spectralSeaBo', tug: 3 }]
+      [RAGWORM, { name: 'spectralSeaBo', tug: 3 }]
     ),
     createBaitChain(
-      [{ name: 'ragworm' }, { name: 'shootingStar', tug: 3 }],
+      [RAGWORM, { name: 'shootingStar', tug: 3 }],
       [{
         count: 1,
-        bait: [{ name: 'ragworm' }, { name: 'tossedDagger', tug: 1 }, { name: 'elderDinichthys', tug: 2 }]
+        bait: [RAGWORM, { name: 'tossedDagger', tug: 1 }, { name: 'elderDinichthys', tug: 2 }]
       }]
     )
   ],
   R: [
     createBaitChain(
-      [{ name: 'plumpWorm' }, { name: 'spectralBass', tug: 3 }]
+      [PLUMP_WORM, { name: 'spectralBass', tug: 3 }]
     ),
     createBaitChain(
-      [{ name: 'krill' }, { name: 'sabaton', tug: 3 }],
+      [KRILL, { name: 'sabaton', tug: 3 }],
       [{
         count: 2,
-        bait: [{ name: 'plumpWorm' }, { name: 'crimsonMonkfish', tug: 2 }]
+        bait: [PLUMP_WORM, { name: 'crimsonMonkfish', tug: 2 }]
       }]
     )
   ],
@@ -89,74 +93,83 @@ const baitChains = {
     [{ name: 'shrimpCageFeeder' }, { name: 'coralManta', tug: 3 }],
     [{
       count: 2,
-      bait: [{ name: 'plumpWorm' }, { name: 'hiAetherlouse', tug: 1 }, { name: 'greatGrandmarlin', tug: 2 }]
+      bait: [PLUMP_WORM, { name: 'hiAetherlouse', tug: 1 }, { name: 'greatGrandmarlin', tug: 2 }]
     }]
   ),
   sothis: createBaitChain(
     [{ name: 'glowworm' }, { name: 'sothis', tug: 3 }],
     [{
       count: 2,
-      bait: [{ name: 'ragworm' }, { name: 'heavenskey', tug: 1 }]
+      bait: [RAGWORM, { name: 'heavenskey', tug: 1 }]
     }, {
       count: 1,
-      bait: [{ name: 'krill' }, { name: 'navigatorsPrint', tug: 1 }]
+      bait: [KRILL, { name: 'navigatorsPrint', tug: 1 }]
     }]
   ),
   elasmosaurus: createBaitChain(
     [{ name: 'heavySteelJig' }, { name: 'elasmosaurus', tug: 3 }],
     [{
       count: 3,
-      bait: [{ name: 'plumpWorm' }, { name: 'gugrusaurus', tug: 3 }]
+      bait: [PLUMP_WORM, { name: 'gugrusaurus', tug: 3 }]
     }]
   ),
   stonescale: createBaitChain(
     [{ name: 'ratTail' }, { name: 'stonescale', tug: 3 }],
     [{
       count: 2,
-      bait: [{ name: 'plumpWorm' }, { name: 'deepSeaEel', tug: 2 }]
+      bait: [PLUMP_WORM, { name: 'deepSeaEel', tug: 2 }]
     }, {
       count: 1,
-      bait: [{ name: 'ragworm' }, { name: 'silencer', tug: 1 }]
+      bait: [RAGWORM, { name: 'silencer', tug: 1 }]
     }]
   ),
   laNosceanJelly: createBaitChain(
-    [{ name: 'ragworm' }, { name: 'laNosceanJelly', tug: 1, dh: 4 }]
+    [RAGWORM, { name: 'laNosceanJelly', tug: 1, dh: 4 }]
   ),
   seaNettle: createBaitChain(
-    [{ name: 'ragworm' }, { name: 'seaNettle', tug: 1, dh: 4 }]
+    [RAGWORM, { name: 'seaNettle', tug: 1, dh: 4 }]
   ),
   floatingSaucer: createBaitChain(
-    [{ name: 'krill' }, { name: 'floatingSaucer', tug: 1, dh: 4 }]
+    [KRILL, { name: 'floatingSaucer', tug: 1, dh: 4 }]
+  ),
+  shaggySeadragon: createBaitChain(
+    [RAGWORM, { name: 'shaggySeadragon', tug: 1, dh: 4 }]
+  ),
+  aethericSeadragon: createBaitChain(
+    [PLUMP_WORM, { name: 'hiAetherlouse', tug: 1 }, { name: 'aethericSeadragon', tug: 1, dh: 2 }]
+  ),
+  coralSeadragon: createBaitChain(
+    [RAGWORM, { name: 'coralSeadragon', tug: 1, dh: 4 }]
   ),
   tarnishedShark: createBaitChain(
-    [{ name: 'plumpWorm' }, { name: 'tarnishedShark', tug: 3, dh: 2 }]
+    [PLUMP_WORM, { name: 'tarnishedShark', tug: 3, dh: 2 }]
   ),
   ghostShark: createBaitChain(
-    [{ name: 'plumpWorm' }, { name: 'ghostShark', tug: 2, dh: 4 }]
+    [PLUMP_WORM, { name: 'ghostShark', tug: 2, dh: 4 }]
   ),
   quicksilverBlade: createBaitChain(
-    [{ name: 'plumpWorm' }, { name: 'quicksilverBlade', tug: 2, dh: 2 }]
+    [PLUMP_WORM, { name: 'quicksilverBlade', tug: 2, dh: 2 }]
   ),
   funnelShark: createBaitChain(
-    [{ name: 'plumpWorm' }, { name: 'funnelShark', tug: 3, dh: 4 }]
+    [PLUMP_WORM, { name: 'funnelShark', tug: 3, dh: 4 }]
   ),
   chromeHammerhead: createBaitChain(
-    [{ name: 'plumpWorm' }, { name: 'chromeHammerhead', tug: 3, dh: 4 }]
+    [PLUMP_WORM, { name: 'chromeHammerhead', tug: 3, dh: 4 }]
   ),
   sweeper: createBaitChain(
-    [{ name: 'plumpWorm' }, { name: 'sweeper', tug: 2, dh: 2 }]
+    [PLUMP_WORM, { name: 'sweeper', tug: 2, dh: 2 }]
   ),
   executioner: createBaitChain(
-    [{ name: 'plumpWorm' }, { name: 'executioner', tug: 3, dh: 4 }]
+    [PLUMP_WORM, { name: 'executioner', tug: 3, dh: 4 }]
   ),
   cyanOctopus: createBaitChain(
-    [{ name: 'krill' }, { name: 'cyanOctopus', tug: 2, dh: 4 }]
+    [KRILL, { name: 'cyanOctopus', tug: 2, dh: 4 }]
   ),
   mermansMane: createBaitChain(
-    [{ name: 'krill' }, { name: 'mermansMane', tug: 2, dh: 4 }]
+    [KRILL, { name: 'mermansMane', tug: 2, dh: 4 }]
   ),
   mopbeard: createBaitChain(
-    [{ name: 'krill' }, { name: 'mopbeard', tug: 2, dh: 4 }]
+    [KRILL, { name: 'mopbeard', tug: 2, dh: 4 }]
   )
 }
 
