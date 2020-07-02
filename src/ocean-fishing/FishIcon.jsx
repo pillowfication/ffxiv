@@ -4,7 +4,7 @@ import cn from 'classnames'
 
 import styles from './OceanFishing.scss'
 
-const ICON_TITLES = {
+export const ICON_TITLES = {
   ragworm: 'Ragworm',
   krill: 'Krill',
   plumpWorm: 'Plump Worm',

@@ -66,22 +66,20 @@
   margin-bottom: $global-margin;
 
   & > div {
-    border: $table-border;
     padding-top: 0.5em;
     &:not(:first-child) {
-      border-top: none;
+      border-top: $table-border;
       @include breakpoint(large) {
-        border-top: $table-border;
-        border-left: none;
+        border-top: none;
+        border-left: $table-border;
       }
     }
     :global(.dark) & {
-      border: $dark-table-border;
       &:not(:first-child) {
-        border-top: none;
+        border-top: $dark-table-border;
         @include breakpoint(large) {
-          border-top: $dark-table-border;
-          border-left: none;
+          border-top: none;
+          border-left: $dark-table-border;
         }
       }
     }

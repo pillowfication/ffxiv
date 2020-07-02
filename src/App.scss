@@ -45,18 +45,27 @@ header {
 }
 
 table {
+  &, & thead, & tbody {
+    border: none;
+  }
+
+  thead {
+    border-bottom: $table-head-border;
+    text-align: center;
+    font-size: $table-head-font-size;
+  }
+
   tbody > tr {
     border-bottom: none;
   }
 
   :global(.dark) & {
     & thead {
-      border: $dark-table-border;
+      border-bottom: $dark-table-head-border;
       background-color: $dark-table-head-background;
       color: $dark-body-font-color;
     }
     & tbody {
-      border: $dark-table-border;
       background-color: $dark-table-background;
     }
     & tbody tr {

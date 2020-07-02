@@ -1,6 +1,6 @@
 import React from 'react'
 import cn from 'classnames'
-import FishIcon from './FishIcon.jsx'
+import FishIcon, { ICON_TITLES } from './FishIcon.jsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 
@@ -14,8 +14,17 @@ const tugs = [
 ]
 /* eslint-enable react/jsx-key */
 
-function createBaitChain (bait, intuitionBait) {
+function createBaitChain (bait, intuitionBait, showName) {
   const elems = []
+
+  if (showName) {
+    elems.push(
+      <React.Fragment key='name'>
+        {ICON_TITLES[bait[bait.length - 1].name]}<br />
+      </React.Fragment>
+    )
+  }
+
   bait.forEach(({ name, tug, dh }, index) => {
     elems.push(
       <div key={index} className={styles.baitGroup}>
@@ -25,7 +34,7 @@ function createBaitChain (bait, intuitionBait) {
       </div>
     )
     if (index < bait.length - 1) {
-      elems.push(<FontAwesomeIcon icon={faAngleRight} />)
+      elems.push(<FontAwesomeIcon key={index + '>'} icon={faAngleRight} />)
     }
   })
 
@@ -51,50 +60,62 @@ const PLUMP_WORM = { name: 'plumpWorm' }
 const baitChains = {
   S: [
     createBaitChain(
-      [KRILL, { name: 'spectralDiscus', tug: 3 }]
+      [KRILL, { name: 'spectralDiscus', tug: 3 }],
+      null,
+      true
     ),
     createBaitChain(
       [PLUMP_WORM, { name: 'littleLeviathan', tug: 3 }],
       [{
         count: 1,
         bait: [KRILL, { name: 'ghoulBarracuda', tug: 2 }, { name: 'gladius', tug: 2 }]
-      }]
+      }],
+      true
     )
   ],
   G: [
     createBaitChain(
-      [PLUMP_WORM, { name: 'spectralMegalodon', tug: 3 }]
+      [PLUMP_WORM, { name: 'spectralMegalodon', tug: 3 }],
+      null,
+      true
     ),
     createBaitChain(
       [KRILL, { name: 'drunkfish', tug: 3 }],
       [{
         count: 3,
         bait: [KRILL, { name: 'galadionChovy', tug: 1 }]
-      }]
+      }],
+      true
     )
   ],
   N: [
     createBaitChain(
-      [RAGWORM, { name: 'spectralSeaBo', tug: 3 }]
+      [RAGWORM, { name: 'spectralSeaBo', tug: 3 }],
+      null,
+      true
     ),
     createBaitChain(
       [RAGWORM, { name: 'shootingStar', tug: 3 }],
       [{
         count: 1,
         bait: [RAGWORM, { name: 'tossedDagger', tug: 1 }, { name: 'elderDinichthys', tug: 2 }]
-      }]
+      }],
+      true
     )
   ],
   R: [
     createBaitChain(
-      [PLUMP_WORM, { name: 'spectralBass', tug: 3 }]
+      [PLUMP_WORM, { name: 'spectralBass', tug: 3 }],
+      null,
+      true
     ),
     createBaitChain(
       [KRILL, { name: 'sabaton', tug: 3 }],
       [{
         count: 2,
         bait: [PLUMP_WORM, { name: 'crimsonMonkfish', tug: 2 }]
-      }]
+      }],
+      true
     )
   ],
   coralManta: createBaitChain(
@@ -102,7 +123,8 @@ const baitChains = {
     [{
       count: 2,
       bait: [PLUMP_WORM, { name: 'hiAetherlouse', tug: 1 }, { name: 'greatGrandmarlin', tug: 2 }]
-    }]
+    }],
+    true
   ),
   sothis: createBaitChain(
     [{ name: 'glowworm' }, { name: 'sothis', tug: 3 }],
@@ -112,14 +134,16 @@ const baitChains = {
     }, {
       count: 1,
       bait: [KRILL, { name: 'navigatorsPrint', tug: 1 }]
-    }]
+    }],
+    true
   ),
   elasmosaurus: createBaitChain(
     [{ name: 'heavySteelJig' }, { name: 'elasmosaurus', tug: 3 }],
     [{
       count: 3,
       bait: [PLUMP_WORM, { name: 'gugrusaurus', tug: 3 }]
-    }]
+    }],
+    true
   ),
   stonescale: createBaitChain(
     [{ name: 'ratTail' }, { name: 'stonescale', tug: 3 }],
@@ -129,7 +153,8 @@ const baitChains = {
     }, {
       count: 1,
       bait: [RAGWORM, { name: 'silencer', tug: 1 }]
-    }]
+    }],
+    true
   ),
   laNosceanJelly: createBaitChain(
     [RAGWORM, { name: 'laNosceanJelly', tug: 1, dh: 4 }]
