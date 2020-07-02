@@ -288,6 +288,10 @@ class OceanFishing extends Component {
                           IC–DH at 10-18s<br />
                           {baitChains.shaggySeadragon}
                         </li>
+                        <li>
+                          No buffs<br />
+                          {baitChains.aethericSeadragon}
+                        </li>
                         <li className={styles.divider}>
                           <p>Spectral is bad. Sit on IC if you have it going into spectral, instead of catching Aetheric Seadragons.</p>
                         </li>

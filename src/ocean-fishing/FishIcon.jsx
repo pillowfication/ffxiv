@@ -31,6 +31,7 @@ const ICON_TITLES = {
   seaNettle: 'Sea Nettle',
   floatingSaucer: 'Floating Saucer',
   shaggySeadragon: 'Shaggy Seadragon',
+  aethericSeadragon: 'Aetheric Seadragon',
   coralSeadragon: 'Coral Seadragon',
   tarnishedShark: 'Tarnished Shark',
   ghostShark: 'Ghost Shark',
