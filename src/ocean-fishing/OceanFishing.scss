@@ -158,10 +158,12 @@ $fish-icons: (
   }
 
   .divider {
-    border-top: $table-border;
-    padding-top: 0.75em;
-    :global(.dark) & {
-      border-top: $dark-table-border;
+    @include breakpoint(medium) {
+      padding-top: 0.75em;
+      border-top: $table-border;
+      :global(.dark) & {
+        border-top: $dark-table-border;
+      }
     }
   }
 }

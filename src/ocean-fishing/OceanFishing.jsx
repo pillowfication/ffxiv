@@ -304,7 +304,7 @@ class OceanFishing extends Component {
                         </li>
                         <li className={styles.divider}>
                           <h6>NON-SPECTRAL</h6>
-                          <p>There’s something to be said about the tug timing.</p>
+                          <p>There’s possibly a blind DH at 14-17s.</p>
                           <h6>SPECTRAL</h6>
                           <p>Spectral is bad. Sit on IC if you have it going into spectral, instead of catching Aetheric Seadragons.</p>
                         </li>
@@ -330,6 +330,24 @@ class OceanFishing extends Component {
                       </ul>
                     </div>
                   </div>
+
+                  <p>Sample Seadragons macro</p>
+                  <code className={zf.codeBlock}>
+                    {
+                      '/micon Cast\n' +
+                      '/ac Cast\n' +
+                      '<wait.9>\n' +
+                      '/echo 9 - Shaggy? <se.1>\n' +
+                      '<wait.3>\n' +
+                      '/echo 12 - Shaggy? (Sunfly Gone!) <se.2>\n' +
+                      '<wait.2>\n' +
+                      '/echo 14 - Shaggy! (Marine Bomb Gone!) <se.3>\n' +
+                      '<wait.3>\n' +
+                      '/echo 17 - Shaggy? (Butterfly Appears!) <se.2>\n' +
+                      '<wait.5>\n' +
+                      '/echo 22 - Recast! <se.4>'
+                    }
+                  </code>
                 </div>
               )
             case 'RD':
@@ -389,7 +407,7 @@ class OceanFishing extends Component {
                         </li>
                         <li className={styles.divider}>
                           <h6>PRE-SPECTRAL</h6>
-                          <p>Can’t blind DH.</p>
+                          <p>Can’t blind DH Chrome Hammerheads.</p>
                           <h6>SPECTRAL</h6>
                           <p>Hook <span className={cn(styles.tug, styles.medium)}>!!</span> and <span className={cn(styles.tug, styles.heavy)}>!!!</span>. If you catch a Sweeper, can use IC if high on GP. <span className={cn(styles.tug, styles.heavy)}>!!!</span> is a blind DH.</p>
                           <h6>POST-SPECTRAL</h6>
