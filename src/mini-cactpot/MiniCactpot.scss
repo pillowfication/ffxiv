@@ -1,16 +1,16 @@
 @import "../settings";
 
-$mini-cactpot-cell-size: 5rem;
+$mini-cactpot-cell-size: 6rem;
 
 .scratchcard {
   display: inline-block;
   box-sizing: border-box;
-  border: 1px solid gray;
+  border: 1px solid $medium-gray;
   background-color: #ffffff;
   margin-bottom: $global-margin;
   white-space: nowrap;
   :global(.dark) & {
-    background-color: rgba($black, 10%);
+    background-color: #181818;
   }
 
   .cell {
@@ -26,9 +26,9 @@ $mini-cactpot-cell-size: 5rem;
     }
 
     &.suggest {
-      background-color: rgba($primary-color, 0.2);
+      background-color: lighten($primary-color, 60%);
       :global(.dark) & {
-        background-color: rgba($primary-color, 0.7);
+        background-color: darken($primary-color, 10%);
       }
     }
 
@@ -38,9 +38,10 @@ $mini-cactpot-cell-size: 5rem;
       height: $mini-cactpot-cell-size;
       margin: 0;
       border: 0;
+      border-radius: 0;
       padding: 0;
       background: none;
-      font-size: 3em;
+      font-size: 3.5em;
       text-align: center;
       line-height: $mini-cactpot-cell-size;
 
