@@ -227,6 +227,43 @@ class OceanFishing extends Component {
               return (
                 <div className={zf.cell}>
                   <p>This is the Jellyfish route.</p>
+                  <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      {DEST_MAP.G} {TIME_MAP.D}
+                      <ul className={styles.catches}>
+                        <li><p>No jellyfish here.</p></li>
+                      </ul>
+                    </div>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      {DEST_MAP.S} {TIME_MAP.S}
+                      <ul className={styles.catches}>
+                        <li>
+                          DH &lt;5s<br />
+                          {baitChains.laNosceanJelly}
+                        </li>
+                        <li>
+                          IC–DH<br />
+                          {baitChains.seaNettle}
+                        </li>
+                        <li className={styles.divider}>
+                          <p>Blind DH all [<strong>!</strong>]s before 5s, and recast after 5s. IC is not necessary.</p>
+                          <p>While spectral is not recommended, it won’t kill your run.</p>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className={cn(zf.cell, zf.large4)}>
+                      {DEST_MAP.R} {TIME_MAP.N}
+                      <ul className={styles.catches}>
+                        <li>
+                          IC–DH<br />
+                          {baitChains.floatingSaucer}
+                        </li>
+                        <li className={styles.divider}>
+                          <p>Nothing to say about this.</p>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               )
             case 'NS':
@@ -244,19 +281,19 @@ class OceanFishing extends Component {
                       {DEST_MAP.G} {TIME_MAP.S}
                       <ul className={styles.catches}>
                         <li>
-                          IC; DH-IC-DH post-spectral.<br />
+                          IC; DH–IC–DH post-spectral<br />
                           {baitChains.tarnishedShark}
                         </li>
                         <li>
-                          IC–DH.<br />
+                          IC–DH<br />
                           {baitChains.ghostShark}
                         </li>
                         <li>
-                          No buffs.<br />
+                          No buffs<br />
                           {baitChains.quicksilverBlade}
                         </li>
                         <li>
-                          DH–IC–DH.<br />
+                          DH–IC–DH<br />
                           {baitChains.funnelShark}
                         </li>
                         <li className={styles.divider}>
@@ -268,22 +305,22 @@ class OceanFishing extends Component {
                     <div className={cn(zf.cell, zf.large4)}>
                       {DEST_MAP.S} {TIME_MAP.N}
                       <ul className={styles.catches}>
-                        <li><p>No Sharks here.</p><p>Try for Coral Manta?<br />(but save GP)</p></li>
+                        <li><p>No sharks here.</p><p>Try for Coral Manta?<br />(but save GP)</p></li>
                       </ul>
                     </div>
                     <div className={cn(zf.cell, zf.large4)}>
                       {DEST_MAP.R} {TIME_MAP.D}
                       <ul className={styles.catches}>
                         <li>
-                          IC-DH; DH-IC-DH post-spectral.<br />
+                          IC–DH; DH–IC–DH post-spectral<br />
                           {baitChains.chromeHammerhead}
                         </li>
                         <li>
-                          No buffs.<br />
+                          No buffs<br />
                           {baitChains.sweeper}
                         </li>
                         <li>
-                          DH-IC-DH.<br />
+                          DH–IC–DH<br />
                           {baitChains.executioner}
                         </li>
                         <li className={styles.divider}>
@@ -310,11 +347,11 @@ class OceanFishing extends Component {
                       {DEST_MAP.G} {TIME_MAP.S}
                       <ul className={styles.catches}>
                         <li>
-                          IC–DH at 16-28s.<br />
+                          IC–DH at 16-28s<br />
                           {baitChains.cyanOctopus}
                         </li>
                         <li>
-                          DH–IC–DH at &lt;3s.<br />
+                          DH–IC–DH at &lt;3s<br />
                           {baitChains.mermansMane}
                         </li>
                         <li className={styles.divider}>
@@ -327,7 +364,7 @@ class OceanFishing extends Component {
                       {DEST_MAP.N} {TIME_MAP.N}
                       <ul className={styles.catches}>
                         <li>
-                          DH–IC–DH at 4s.<br />
+                          DH–IC–DH at 4s<br />
                           {baitChains.mopbeard}
                         </li>
                         <li className={styles.divider}>

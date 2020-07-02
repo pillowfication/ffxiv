@@ -119,6 +119,15 @@ const baitChains = {
       bait: [{ name: 'ragworm' }, { name: 'silencer', tug: 1 }]
     }]
   ),
+  laNosceanJelly: createBaitChain(
+    [{ name: 'ragworm' }, { name: 'laNosceanJelly', tug: 1, dh: 4 }]
+  ),
+  seaNettle: createBaitChain(
+    [{ name: 'ragworm' }, { name: 'seaNettle', tug: 1, dh: 4 }]
+  ),
+  floatingSaucer: createBaitChain(
+    [{ name: 'krill' }, { name: 'floatingSaucer', tug: 1, dh: 4 }]
+  ),
   tarnishedShark: createBaitChain(
     [{ name: 'plumpWorm' }, { name: 'tarnishedShark', tug: 3, dh: 2 }]
   ),

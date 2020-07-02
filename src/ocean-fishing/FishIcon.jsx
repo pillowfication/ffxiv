@@ -28,6 +28,7 @@ const ICON_TITLES = {
   silencer: 'Silencer',
   drunkfish: 'Drunkfish',
   laNosceanJelly: 'La Noscean Jelly',
+  seaNettle: 'Sea Nettle',
   floatingSaucer: 'Floating Saucer',
   shaggySeadragon: 'Shaggy Seadragon',
   coralSeadragon: 'Coral Seadragon',
