@@ -6,7 +6,7 @@ import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 import cn from 'classnames'
 
 import zf from './foundation.scss'
-import './App.scss'
+import styles from './App.scss'
 
 function kebabCase (str) {
   return str
@@ -80,7 +80,7 @@ class App extends Component {
             </nav>
           </div>
         </header>
-        <main className={cn(zf.gridContainer)}>
+        <main className={zf.gridContainer}>
           <Suspense fallback={<Loading />}>
             <Switch>
               <Route exact path='/' component={Home} />
@@ -104,7 +104,7 @@ class Home extends Component {
     return (
       <>
         <h1>Home</h1>
-        <ul>
+        <ul className={styles.pages}>
           {routes.map(route =>
             <li key={route.title}>
               <Link to={'/' + kebabCase(route.title)}>{route.title}</Link>
@@ -113,7 +113,7 @@ class Home extends Component {
         </ul>
         <p>
           A bunch of FFXIV-related stuff I try making.<br />
-          Message Pillowfication#0538 with questions or comments.
+          Message Lulu Pillow@Adamantoise or Pillowfication#0538 with questions or comments.
         </p>
       </>
     )
@@ -125,7 +125,8 @@ class _404 extends Component {
     return (
       <>
         <h1>404</h1>
-        <p>This page does not exist. Go back <Link to='/'>home</Link>?</p>
+        <p>This page does not exist.</p>
+        <Link to='/' className={zf.button}>Go back home?</Link>
       </>
     )
   }

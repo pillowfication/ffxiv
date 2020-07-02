@@ -213,9 +213,9 @@ class OceanFishing extends Component {
                     : `${moment.duration(timeUntil).humanize(true)} at ${nextMoment.format('HH:mm')}`
                 }
                 <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
-                  {routeStops.map(stop =>
+                  {routeStops.map((stop, index) =>
                     <div key={stop} className={cn(zf.cell, zf.large4)}>
-                      <h5>{DEST_MAP[stop[0]]} {TIME_MAP[stop[1]]}</h5>
+                      <h5>{index + 1} - {DEST_MAP[stop[0]]} {TIME_MAP[stop[1]]}</h5>
                       <ul className={styles.catches}>
                         {baitChains[stop[0]].map((baitChain, index) => <li key={index}>{baitChain}</li>)}
                         {BLUE_FISH_MAP[stop] &&
@@ -238,13 +238,13 @@ class OceanFishing extends Component {
                   <h4>Jellyfish Route</h4>
                   <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
                     <div className={cn(zf.cell, zf.large4)}>
-                      <h5>{DEST_MAP.G} {TIME_MAP.D}</h5>
+                      <h5>1 - {DEST_MAP.G} {TIME_MAP.D}</h5>
                       <ul className={styles.catches}>
                         <li><p>No jellyfish here.</p></li>
                       </ul>
                     </div>
                     <div className={cn(zf.cell, zf.large4)}>
-                      <h5>{DEST_MAP.S} {TIME_MAP.S}</h5>
+                      <h5>2 - {DEST_MAP.S} {TIME_MAP.S}</h5>
                       <ul className={styles.catches}>
                         <li>
                           DH &lt;5s<br />
@@ -263,7 +263,7 @@ class OceanFishing extends Component {
                       </ul>
                     </div>
                     <div className={cn(zf.cell, zf.large4)}>
-                      <h5>{DEST_MAP.R} {TIME_MAP.N}</h5>
+                      <h5>3 - {DEST_MAP.R} {TIME_MAP.N}</h5>
                       <ul className={styles.catches}>
                         <li>
                           IC–DH<br />
@@ -294,7 +294,7 @@ class OceanFishing extends Component {
                   <h4>Seadragons Route</h4>
                   <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
                     <div className={cn(zf.cell, zf.large4)}>
-                      <h5>{DEST_MAP.S} {TIME_MAP.N}</h5>
+                      <h5>1 - {DEST_MAP.S} {TIME_MAP.N}</h5>
                       <ul className={styles.catches}>
                         <li>
                           IC–DH at 10-18s<br />
@@ -313,13 +313,13 @@ class OceanFishing extends Component {
                       </ul>
                     </div>
                     <div className={cn(zf.cell, zf.large4)}>
-                      <h5>{DEST_MAP.G} {TIME_MAP.D}</h5>
+                      <h5>2 - {DEST_MAP.G} {TIME_MAP.D}</h5>
                       <ul className={styles.catches}>
                         <li><p>No seadragons here.</p></li>
                       </ul>
                     </div>
                     <div className={cn(zf.cell, zf.large4)}>
-                      <h5>{DEST_MAP.N} {TIME_MAP.S}</h5>
+                      <h5>3 - {DEST_MAP.N} {TIME_MAP.S}</h5>
                       <ul className={styles.catches}>
                         <li>
                           IC–DH<br />
@@ -358,7 +358,7 @@ class OceanFishing extends Component {
                   <h4>Sharks Route</h4>
                   <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
                     <div className={cn(zf.cell, zf.large4)}>
-                      <h5>{DEST_MAP.G} {TIME_MAP.S}</h5>
+                      <h5>1 - {DEST_MAP.G} {TIME_MAP.S}</h5>
                       <ul className={styles.catches}>
                         <li>
                           IC; DH–IC–DH post-spectral<br />
@@ -387,13 +387,13 @@ class OceanFishing extends Component {
                       </ul>
                     </div>
                     <div className={cn(zf.cell, zf.large4)}>
-                      <h5>{DEST_MAP.S} {TIME_MAP.N}</h5>
+                      <h5>2 - {DEST_MAP.S} {TIME_MAP.N}</h5>
                       <ul className={styles.catches}>
                         <li><p>No sharks here.</p><p>Try for Coral Manta?<br />(but save GP)</p></li>
                       </ul>
                     </div>
                     <div className={cn(zf.cell, zf.large4)}>
-                      <h5>{DEST_MAP.R} {TIME_MAP.D}</h5>
+                      <h5>3 - {DEST_MAP.R} {TIME_MAP.D}</h5>
                       <ul className={styles.catches}>
                         <li>
                           IC–DH; DH–IC–DH post-spectral<br />
@@ -426,13 +426,13 @@ class OceanFishing extends Component {
                   <h4>Octopodes Route</h4>
                   <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
                     <div className={cn(zf.cell, zf.large4)}>
-                      <h5>{DEST_MAP.S} {TIME_MAP.D}</h5>
+                      <h5>1 - {DEST_MAP.S} {TIME_MAP.D}</h5>
                       <ul className={styles.catches}>
                         <li><p>No octopodes here.</p></li>
                       </ul>
                     </div>
                     <div className={cn(zf.cell, zf.large4)}>
-                      <h5>{DEST_MAP.G} {TIME_MAP.S}</h5>
+                      <h5>2 - {DEST_MAP.G} {TIME_MAP.S}</h5>
                       <ul className={styles.catches}>
                         <li>
                           IC–DH at 16-28s<br />
@@ -451,7 +451,7 @@ class OceanFishing extends Component {
                       </ul>
                     </div>
                     <div className={cn(zf.cell, zf.large4)}>
-                      <h5>{DEST_MAP.N} {TIME_MAP.N}</h5>
+                      <h5>3 - {DEST_MAP.N} {TIME_MAP.N}</h5>
                       <ul className={styles.catches}>
                         <li>
                           DH–IC–DH at 4s<br />

@@ -82,3 +82,10 @@ code {
     color: $dark-code-color;
   }
 }
+
+ul.pages {
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0;
+  font-size: 1.2em;
+}
