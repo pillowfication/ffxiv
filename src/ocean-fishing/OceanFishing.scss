@@ -153,6 +153,11 @@ $fish-icons: (
     }
   }
 
+  h6 {
+    font-size: 0.85em;
+    margin-bottom: 0;
+  }
+
   .divider {
     border-top: $table-border;
     padding-top: 0.75em;
@@ -171,41 +176,44 @@ $fish-icons: (
   }
 
   & .tug {
-    display: inline-block;
     position: absolute;
     left: 32px;
     top: 0;
-    width: 1.2em;
-    height: 1.2em;
-    border-radius: 0.2em;
     font-size: 0.6em;
-    font-weight: bold;
-    line-height: 1.2em;
-    text-align: center;
-
-    &.light {
-      background-color: #aaffaa;
-    }
-    &.medium {
-      background-color: #aaaaff;
-    }
-    &.heavy {
-      background-color: #ffaaaa;
-    }
-    :global(.dark) & {
-      &.light {
-        background-color: #078203;
-      }
-      &.medium {
-        background-color: #195ecf;
-      }
-      &.heavy {
-        background-color: #9e0000;
-      }
-    }
   }
 
   & .dh {
     margin-left: 0.25em;
+  }
+}
+
+.tug {
+  display: inline-block;
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 0.2em;
+  font-weight: bold;
+  line-height: 1.2em;
+  text-align: center;
+
+  &.light {
+    background-color: #aaffaa;
+  }
+  &.medium {
+    background-color: #aaaaff;
+  }
+  &.heavy {
+    background-color: #ffaaaa;
+  }
+  :global(.dark) & {
+    &.light {
+      background-color: #078203;
+    }
+    &.medium {
+      background-color: #195ecf;
+    }
+    &.heavy {
+      background-color: #9e0000;
+    }
   }
 }

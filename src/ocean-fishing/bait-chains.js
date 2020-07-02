@@ -1,10 +1,18 @@
 import React from 'react'
 import cn from 'classnames'
 import FishIcon from './FishIcon.jsx'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 
 import styles from './OceanFishing.scss'
 
-const tugStyles = [styles.light, styles.medium, styles.heavy]
+/* eslint-disable react/jsx-key */
+const tugs = [
+  <span className={cn(styles.tug, styles.light)}>!</span>,
+  <span className={cn(styles.tug, styles.medium)}>!!</span>,
+  <span className={cn(styles.tug, styles.heavy)}>!!!</span>
+]
+/* eslint-enable react/jsx-key */
 
 function createBaitChain (bait, intuitionBait) {
   const elems = []
@@ -12,12 +20,12 @@ function createBaitChain (bait, intuitionBait) {
     elems.push(
       <div key={index} className={styles.baitGroup}>
         <FishIcon name={name} />
-        {tug && <span className={cn(styles.tug, tugStyles[tug - 1])}>{'!'.repeat(tug)}</span>}
+        {tug && tugs[tug - 1]}
         {dh && <span className={styles.dh}>DH: {dh}</span>}
       </div>
     )
     if (index < bait.length - 1) {
-      elems.push('▸')
+      elems.push(<FontAwesomeIcon icon={faAngleRight} />)
     }
   })
 

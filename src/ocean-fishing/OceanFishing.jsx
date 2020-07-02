@@ -246,7 +246,9 @@ class OceanFishing extends Component {
                           {baitChains.seaNettle}
                         </li>
                         <li className={styles.divider}>
-                          <p>Blind DH all [<strong>!</strong>]s before 5s, and recast after 5s. IC is not necessary.</p>
+                          <h6>NON-SPECTRAL</h6>
+                          <p>Blind DH all <span className={cn(styles.tug, styles.light)}>!</span> before 5s, and recast after 5s. IC is not necessary.</p>
+                          <h6>SPECTRAL</h6>
                           <p>While spectral is not recommended, it won’t kill your run.</p>
                         </li>
                       </ul>
@@ -259,6 +261,7 @@ class OceanFishing extends Component {
                           {baitChains.floatingSaucer}
                         </li>
                         <li className={styles.divider}>
+                          <h6>SPECTRAL</h6>
                           <p>Nothing to say about this.</p>
                         </li>
                       </ul>
@@ -270,7 +273,7 @@ class OceanFishing extends Component {
                     {
                       '/micon Cast\n' +
                       '/ac Cast\n' +
-                      '<wait.3>\n' +
+                      '<wait.5>\n' +
                       '/echo 5 - Recast! <se.4>'
                     }
                   </code>
@@ -293,6 +296,9 @@ class OceanFishing extends Component {
                           {baitChains.aethericSeadragon}
                         </li>
                         <li className={styles.divider}>
+                          <h6>NON-SPECTRAL</h6>
+                          <p>There’s something to be said about the tug timing.</p>
+                          <h6>SPECTRAL</h6>
                           <p>Spectral is bad. Sit on IC if you have it going into spectral, instead of catching Aetheric Seadragons.</p>
                         </li>
                       </ul>
@@ -300,7 +306,7 @@ class OceanFishing extends Component {
                     <div className={cn(zf.cell, zf.large4)}>
                       {DEST_MAP.G} {TIME_MAP.D}
                       <ul className={styles.catches}>
-                        <li><p>No jellyfish here.</p></li>
+                        <li><p>No seadragons here.</p></li>
                       </ul>
                     </div>
                     <div className={cn(zf.cell, zf.large4)}>
@@ -311,6 +317,7 @@ class OceanFishing extends Component {
                           {baitChains.coralSeadragon}
                         </li>
                         <li className={styles.divider}>
+                          <h6>SPECTRAL</h6>
                           <p>Nothing to say about this.</p>
                         </li>
                       </ul>
@@ -343,8 +350,12 @@ class OceanFishing extends Component {
                           {baitChains.funnelShark}
                         </li>
                         <li className={styles.divider}>
-                          <p>Pre-spectral, save GP when possible. Post-spectral, blind DH Tarnished Sharks.</p>
-                          <p>During spectral, hook [<strong>!!</strong>]s and [<strong>!!!</strong>]s. IC–DH if you catch a Ghost Shark. [<strong>!!!</strong>] is a blind DH.</p>
+                          <h6>PRE-SPECTRAL</h6>
+                          <p>Save GP when possible; IC if capped.</p>
+                          <h6>SPECTRAL</h6>
+                          <p>Hook any <span className={cn(styles.tug, styles.medium)}>!!</span> and <span className={cn(styles.tug, styles.heavy)}>!!!</span>. IC–DH if you catch a Ghost Shark; <span className={cn(styles.tug, styles.heavy)}>!!!</span> is a blind DH–IC–DH.</p>
+                          <h6>POST-SPECTRAL</h6>
+                          <p>Spend all remaining GP with blind DH–IC–DH Tarnished Sharks.</p>
                         </li>
                       </ul>
                     </div>
@@ -370,8 +381,12 @@ class OceanFishing extends Component {
                           {baitChains.executioner}
                         </li>
                         <li className={styles.divider}>
-                          <p>Pre-spectral, don’t blind DH. Post-spectral, blind DH Chrome Hammerheads.</p>
-                          <p>During spectral, hook [<strong>!!</strong>]s and [<strong>!!!</strong>]s. If you catch a Sweeper, can use IC if high on GP. [<strong>!!!</strong>] is a blind DH.</p>
+                          <h6>PRE-SPECTRAL</h6>
+                          <p>Can’t blind DH.</p>
+                          <h6>SPECTRAL</h6>
+                          <p>Hook <span className={cn(styles.tug, styles.medium)}>!!</span> and <span className={cn(styles.tug, styles.heavy)}>!!!</span>. If you catch a Sweeper, can use IC if high on GP. <span className={cn(styles.tug, styles.heavy)}>!!!</span> is a blind DH.</p>
+                          <h6>POST-SPECTRAL</h6>
+                          <p>Can blind DH Chrome Hammerheads.</p>
                         </li>
                       </ul>
                     </div>
@@ -401,8 +416,10 @@ class OceanFishing extends Component {
                           {baitChains.mermansMane}
                         </li>
                         <li className={styles.divider}>
+                          <h6>NON-SPECTRAL</h6>
                           <p>Can blind DH the Cyan Octopodes at 25s, or at 19s with a SS’d Jasperhead.</p>
-                          <p>During spectral, only the instant [<strong>!!</strong>] is Merman’s Mane; any later is not.</p>
+                          <h6>SPECTRAL</h6>
+                          <p>Only the instant <span className={cn(styles.tug, styles.medium)}>!!</span> is Merman’s Mane; any later is not.</p>
                         </li>
                       </ul>
                     </div>
@@ -414,7 +431,8 @@ class OceanFishing extends Component {
                           {baitChains.mopbeard}
                         </li>
                         <li className={styles.divider}>
-                          <p>The earlier [<strong>!!</strong>] is Coccosteus.</p>
+                          <h6>SPECTRAL</h6>
+                          <p>The earlier <span className={cn(styles.tug, styles.medium)}>!!</span> is Coccosteus.</p>
                         </li>
                       </ul>
                     </div>
