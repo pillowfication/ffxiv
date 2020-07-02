@@ -1,6 +1,8 @@
 import React, { Component, Suspense } from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 import cn from 'classnames'
 
 import zf from './foundation.scss'
@@ -62,7 +64,7 @@ class App extends Component {
                 <Link to='/'>FFXIV</Link>
               </div>
               <div className={zf.topBarRight}>
-                Light
+                <FontAwesomeIcon icon={faSun} />
                 <div className={cn(zf.switch, zf.tiny)}>
                   <input
                     type='checkbox'
@@ -73,7 +75,7 @@ class App extends Component {
                   />
                   <label className={zf.switchPaddle} htmlFor='theme-switch' />
                 </div>
-                Dark
+                <FontAwesomeIcon icon={faMoon} />
               </div>
             </nav>
           </div>

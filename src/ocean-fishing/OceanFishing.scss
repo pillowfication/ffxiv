@@ -22,10 +22,10 @@
   }
 
   tbody .hover, tbody tr:hover {
-    background-color: rgba($primary-color, 0.1);
+    background-color: lighten($primary-color, 60%);
     transition: background-color 0.1s linear;
     :global(.dark) & {
-      background-color: rgba($primary-color, 0.7);
+      background-color: darken($primary-color, 25%);
     }
   }
 
