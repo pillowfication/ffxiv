@@ -63,3 +63,7 @@
   vertical-align: sub;
   margin: 0 -0.5em 0 0;
 }
+
+.code-block {
+  border-radius: $code-block-radius;
+}
