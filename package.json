@@ -31,6 +31,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.29",
     "@fortawesome/free-solid-svg-icons": "^5.13.1",
     "@fortawesome/react-fontawesome": "^0.1.11",
+    "airbnb-prop-types": "^2.16.0",
     "babel-loader": "^8.1.0",
     "classnames": "^2.2.6",
     "css-loader": "^3.6.0",
