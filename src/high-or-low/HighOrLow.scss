@@ -1,0 +1,33 @@
+@import "../settings";
+
+$hl-card-width: 6rem;
+$hl-card-height: 10rem;
+
+.container {
+  text-align: center;
+}
+
+.card {
+  display: inline-block;
+  width: $hl-card-width;
+  height: $hl-card-height;
+  border: 2px solid $dark-gray;
+  border-radius: $global-radius;
+  vertical-align: middle;
+  margin: $global-margin;
+
+  &.hidden {
+    background-color: darken($white, 10%);
+    :global(.dark) & {
+      background-color: lighten($black, 15%);
+    }
+  }
+
+  & > input[type="text"] {
+    width: 100%;
+    height: 100%;
+    border: none;
+    text-align: center;
+    font-size: 3.5em;
+  }
+}

@@ -16,6 +16,9 @@ function kebabCase (str) {
 }
 
 const routes = [{
+  title: 'High or Low',
+  component: React.lazy(() => import('./high-or-low/HighOrLow.jsx'))
+}, {
   title: 'Mini Cactpot',
   component: React.lazy(() => import('./mini-cactpot/MiniCactpot.jsx'))
 }, {
