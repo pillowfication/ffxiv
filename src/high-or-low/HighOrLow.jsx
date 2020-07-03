@@ -14,9 +14,9 @@ class HighOrLow extends Component {
       me: null
     }
 
-    this.handleOnInputTb1 = this.handleOnInputTb1.bind(this)
-    this.handleOnInputTb2 = this.handleOnInputTb2.bind(this)
-    this.handleOnInputMe = this.handleOnInputMe.bind(this)
+    this.handleOnInputTb1 = this.handleOnInputDigit.bind(this, 'tb1')
+    this.handleOnInputTb2 = this.handleOnInputDigit.bind(this, 'tb2')
+    this.handleOnInputMe = this.handleOnInputDigit.bind(this, 'me')
     this.handleReset = this.handleReset.bind(this)
     this.noop = () => {}
   }
@@ -25,16 +25,11 @@ class HighOrLow extends Component {
     document.title = 'High or Low'
   }
 
-  handleOnInputTb1 (event) {
-    this.setState({ tb1: this.getDigitFromEvent(event) })
-  }
-
-  handleOnInputTb2 (event) {
-    this.setState({ tb2: this.getDigitFromEvent(event) })
-  }
-
-  handleOnInputMe (event) {
-    this.setState({ me: this.getDigitFromEvent(event) })
+  handleOnInputDigit (stateKey, event) {
+    const digit = this.getDigitFromEvent(event)
+    if (digit !== undefined) {
+      this.setState({ [stateKey]: digit })
+    }
   }
 
   handleReset () {
@@ -51,7 +46,9 @@ class HighOrLow extends Component {
       return null
     } else {
       const digit = Number(event.key)
-      return digit && digit >= 1 && digit <= 9 ? digit : null
+      if (digit >= 1 && digit <= 9) {
+        return digit
+      }
     }
   }
 
