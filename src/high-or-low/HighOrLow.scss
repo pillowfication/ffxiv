@@ -5,6 +5,7 @@ $hl-card-height: 10rem;
 
 .container {
   text-align: center;
+  white-space: nowrap;
 }
 
 .card {
@@ -41,5 +42,6 @@ $hl-card-height: 10rem;
 }
 
 .result {
+  text-align: center;
   font-size: 1.5em;
 }

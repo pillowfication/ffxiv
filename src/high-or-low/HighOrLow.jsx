@@ -71,7 +71,7 @@ class HighOrLow extends Component {
     return (
       <>
         <h1>High or Low</h1>
-        <div className={styles.container}>
+        <div className={cn(styles.container, zf.tableScroll)}>
           <div className={cn(styles.card, tb1Error && styles.error)}>
             <input type='text' onChange={handleOnChange} onKeyDown={this.handleOnInputTb1} value={tb1 || ''} />
           </div>
@@ -85,12 +85,13 @@ class HighOrLow extends Component {
           </div>
           <div className={cn(styles.card, styles.hidden)} />
           <div className={cn(styles.card, styles.hidden)} />
-          <br />
-          <span className={styles.result}>
+        </div>
+        <div className={styles.result}>
+          <p>
             {complete
               ? <>You are {meEv > tbEv ? <b>High</b> : meEv < tbEv ? <b>Low</b> : <><b>High</b> or <b>Low</b></>}</>
               : 'Input cards'}
-          </span>
+          </p>
         </div>
 
         <div className={zf.buttonGroup}>
