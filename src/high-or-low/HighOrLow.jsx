@@ -17,6 +17,7 @@ class HighOrLow extends Component {
     this.handleOnInputTb1 = this.handleOnInputTb1.bind(this)
     this.handleOnInputTb2 = this.handleOnInputTb2.bind(this)
     this.handleOnInputMe = this.handleOnInputMe.bind(this)
+    this.handleReset = this.handleReset.bind(this)
     this.noop = () => {}
   }
 
@@ -34,6 +35,14 @@ class HighOrLow extends Component {
 
   handleOnInputMe (event) {
     this.setState({ me: this.getDigitFromEvent(event) })
+  }
+
+  handleReset () {
+    this.setState({
+      tb1: null,
+      tb2: null,
+      me: null
+    })
   }
 
   getDigitFromEvent (event) {
@@ -80,13 +89,16 @@ class HighOrLow extends Component {
           <div className={cn(styles.card, styles.hidden)} />
           <div className={cn(styles.card, styles.hidden)} />
           <br />
-          {complete && (
-            <span className={styles.result}>
-              You are {meEv > tbEv ? <b>High</b> : meEv < tbEv ? <b>Low</b> : <><b>High</b> or <b>Low</b></>}
-            </span>
-          )}
+          <span className={styles.result}>
+            {complete
+              ? <>You are {meEv > tbEv ? <b>High</b> : meEv < tbEv ? <b>Low</b> : <><b>High</b> or <b>Low</b></>}</>
+              : 'Input cards'}
+          </span>
         </div>
 
+        <div className={zf.buttonGroup}>
+          <button type='button' className={cn(zf.button, zf.alert)} onClick={this.handleReset}>Reset</button>
+        </div>
         <div className={cn(zf.gridX, zf.gridPaddingX)}>
           <div className={zf.cell}>
             {(tb1Error || tb2Error || meError) &&
