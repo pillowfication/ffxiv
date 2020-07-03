@@ -100,6 +100,10 @@ class App extends Component {
 }
 
 class Home extends Component {
+  componentDidMount () {
+    document.title = 'FFXIV'
+  }
+
   render () {
     return (
       <>
@@ -121,6 +125,10 @@ class Home extends Component {
 }
 
 class _404 extends Component {
+  componentDidMount () {
+    document.title = '404'
+  }
+
   render () {
     return (
       <>

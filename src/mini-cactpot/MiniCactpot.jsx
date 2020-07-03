@@ -20,6 +20,10 @@ class MiniCactpot extends Component {
     this.handleReset = this.handleReset.bind(this)
   }
 
+  componentDidMount () {
+    document.title = 'Mini Cactpot'
+  }
+
   checkErrors (state) {
     let enteredCount = 0
     const seenValues = {}

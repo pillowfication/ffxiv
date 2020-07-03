@@ -86,6 +86,7 @@ class OceanFishing extends Component {
   }
 
   componentDidMount () {
+    document.title = 'Ocean Fishing'
     this.interval = setInterval(this.updateTime, UPDATE_INTERVAL)
   }
 
