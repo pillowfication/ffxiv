@@ -93,12 +93,14 @@ class MiniCactpot extends Component {
         <h1>Mini Cactpot</h1>
         <div className={cn(zf.gridX, zf.gridPaddingX)}>
           <div className={cn(zf.cell, zf.mediumShrink)}>
-            <Scratchcard
-              state={state}
-              suggestion={suggestion}
-              error={error}
-              onInputDigit={this.handleOnInputDigit}
-            />
+            <div className={zf.tableScroll}>
+              <Scratchcard
+                state={state}
+                suggestion={suggestion}
+                error={error}
+                onInputDigit={this.handleOnInputDigit}
+              />
+            </div>
             <div className={zf.buttonGroup}>
               <button type='button' className={cn(zf.button, zf.alert)} onClick={this.handleReset}>Reset</button>
             </div>
@@ -111,17 +113,17 @@ class MiniCactpot extends Component {
                     return <p>Click on a square to enter a digit.</p>
                   case 'TOO MANY':
                     return (
-                      <>
+                      <div className={cn(zf.callout, zf.alert)}>
                         <strong>Error</strong>
                         <p>There can only be at most 4 digits in the grid.</p>
-                      </>
+                      </div>
                     )
                   case 'DUPLICATES':
                     return (
-                      <>
+                      <div className={cn(zf.callout, zf.alert)}>
                         <strong>Error</strong>
                         <p>There are duplicate digits in the grid.</p>
-                      </>
+                      </div>
                     )
                 }
               } else {
