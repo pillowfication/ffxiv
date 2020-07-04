@@ -6,6 +6,7 @@ $hl-card-height: 10rem;
 .container {
   text-align: center;
   white-space: nowrap;
+  overflow-y: hidden;
 }
 
 .card {
