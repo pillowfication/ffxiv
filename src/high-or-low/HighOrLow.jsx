@@ -79,13 +79,19 @@ class HighOrLow extends Component {
           <div className={cn(styles.card, tb2Error && styles.error)}>
             <input type='text' onChange={handleOnChange} onKeyDown={this.handleOnInputTb2} value={tb2 || ''} />
           </div>
-          <div className={cn(styles.card, styles.hidden)} />
+          <div className={cn(styles.card, styles.hidden)}>
+            <input type='text' disabled value='?' />
+          </div>
           <br />
           <div className={cn(styles.card, meError && styles.error)}>
             <input type='text' onChange={handleOnChange} onKeyDown={this.handleOnInputMe} value={me || ''} />
           </div>
-          <div className={cn(styles.card, styles.hidden)} />
-          <div className={cn(styles.card, styles.hidden)} />
+          <div className={cn(styles.card, styles.hidden)}>
+            <input type='text' disabled value='?' />
+          </div>
+          <div className={cn(styles.card, styles.hidden)}>
+            <input type='text' disabled value='?' />
+          </div>
         </div>
         <div className={styles.result}>
           <p>
@@ -95,13 +101,16 @@ class HighOrLow extends Component {
           </p>
         </div>
 
-        <div className={zf.buttonGroup}>
-          <button type='button' className={cn(zf.button, zf.alert)} onClick={this.handleReset}>Reset</button>
-        </div>
         <div className={cn(zf.gridX, zf.gridPaddingX)}>
           <div className={zf.cell}>
+            <div className={zf.buttonGroup}>
+              <button type='button' className={cn(zf.button, zf.alert)} onClick={this.handleReset}>Reset</button>
+            </div>
             {(tb1Error || tb2Error || meError) &&
-              <><strong>Error</strong><p>Cannot have two of the same number.</p></>}
+              <div className={cn(zf.callout, zf.alert)}>
+                <strong>Error</strong>
+                <p>Cannot have two of the same number.</p>
+              </div>}
           </div>
         </div>
         <br />
