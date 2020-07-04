@@ -22,13 +22,14 @@ $hl-card-height: 10rem;
 
   &.hidden {
     background-color: darken($white, 10%);
+    font-size: 0.5em;
     :global(.dark) & {
       background-color: lighten($black, 15%);
     }
   }
 
   &.error {
-    background-color: rgba($alert-color, 0.4);
+    background-color: rgba($alert-color, 0.3);
   }
 
   & > input[type="text"] {

@@ -24,7 +24,7 @@
 // Basic components
 // @include foundation-badge;
 // @include foundation-breadcrumbs;
-// @include foundation-callout;
+@include foundation-callout;
 // @include foundation-card;
 // @include foundation-dropdown;
 // @include foundation-pagination;
@@ -66,4 +66,14 @@
 
 .code-block {
   border-radius: $code-block-radius;
+}
+
+.callout {
+  :global(.dark) & {
+    color: $dark-body-font-color;
+  }
+
+  &.alert {
+    background-color: rgba($alert-color, 0.3);
+  }
 }
