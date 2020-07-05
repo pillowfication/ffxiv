@@ -2,27 +2,10 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import cn from 'classnames'
 
+import routes from './routes'
 import lulu from './lulu.svg'
 import zf from './foundation.scss'
 import styles from './Home.scss'
-
-function kebabCase (str) {
-  return str
-    .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
-    .map(x => x.toLowerCase())
-    .join('-')
-}
-
-const routes = [{
-  title: 'High or Low',
-  component: React.lazy(() => import('./high-or-low/HighOrLow.jsx'))
-}, {
-  title: 'Mini Cactpot',
-  component: React.lazy(() => import('./mini-cactpot/MiniCactpot.jsx'))
-}, {
-  title: 'Ocean Fishing',
-  component: React.lazy(() => import('./ocean-fishing/OceanFishing.jsx'))
-}]
 
 class Home extends Component {
   componentDidMount () {
@@ -51,7 +34,7 @@ class Home extends Component {
         <ul className={styles.pages}>
           {routes.map(route =>
             <li key={route.title}>
-              <Link to={'/' + kebabCase(route.title)}>{route.title}</Link>
+              <Link to={route.path}>{route.title}</Link>
             </li>
           )}
         </ul>

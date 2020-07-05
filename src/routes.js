@@ -2,15 +2,15 @@ import React from 'react'
 
 const routes = [{
   title: 'High or Low',
-  path: 'high-or-low',
+  path: '/high-or-low',
   component: React.lazy(() => import('./high-or-low/HighOrLow.jsx'))
 }, {
   title: 'Mini Cactpot',
-  path: 'mini-cactpot',
+  path: '/mini-cactpot',
   component: React.lazy(() => import('./mini-cactpot/MiniCactpot.jsx'))
 }, {
   title: 'Ocean Fishing',
-  path: 'ocean-fishing',
+  path: '/ocean-fishing',
   component: React.lazy(() => import('./ocean-fishing/OceanFishing.jsx'))
 }]
 
