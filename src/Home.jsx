@@ -7,6 +7,12 @@ import lulu from './lulu.svg'
 import zf from './foundation.scss'
 import styles from './Home.scss'
 
+function createTitle (route) {
+  return (
+    <h3><Link to={routes[route].path}>{routes[route].title}</Link></h3>
+  )
+}
+
 class Home extends Component {
   componentDidMount () {
     document.title = 'Lulu’s FFXIV Tools'
@@ -15,7 +21,7 @@ class Home extends Component {
   render () {
     return (
       <>
-        <div className={cn(zf.gridX, zf.gridPaddingX)}>
+        <div className={cn(styles.splash, zf.gridX, zf.gridPaddingX)}>
           <div className={cn(zf.cell, zf.mediumShrink)}>
             <div className={styles.lulu}>
               <img src={lulu} />
@@ -29,15 +35,12 @@ class Home extends Component {
             </div>
           </div>
         </div>
-        <br />
-        <p>put these links somewhere</p>
-        <ul className={styles.pages}>
-          {routes.map(route =>
-            <li key={route.title}>
-              <Link to={route.path}>{route.title}</Link>
-            </li>
-          )}
-        </ul>
+
+        {createTitle('highOrLow')}
+
+        {createTitle('miniCactpot')}
+
+        {createTitle('oceanFishing')}
       </>
     )
   }

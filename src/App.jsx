@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 import cn from 'classnames'
 
-import routes from './routes'
+import { routesArray } from './routes'
 import Home from './Home.jsx'
 import _404 from './404.jsx'
 import zf from './foundation.scss'
@@ -72,7 +72,7 @@ class App extends Component {
           <Suspense fallback={<Loading />}>
             <Switch>
               <Route exact path='/' component={Home} />
-              {routes.map(route =>
+              {routesArray.map(route =>
                 <Route key={route.title} path={route.path} component={route.component} />
               )}
               <Route component={_404} />
