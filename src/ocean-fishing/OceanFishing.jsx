@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 import moment from 'moment'
 import cn from 'classnames'
+import PropTypes from 'prop-types'
 import calculateVoyages, { LULU_EPOCH } from './calculate-voyages'
 import baitChains from './bait-chains'
 import FishIcon from './FishIcon.jsx'
@@ -41,6 +43,22 @@ const BLUE_FISH_MAP = {
   ND: 'elasmosaurus',
   RS: 'stonescale'
 }
+const FILTER_MAP = {
+  ND: ['ND'],
+  RD: ['RD'],
+  NS: ['NS'],
+  RS: ['RS'],
+  NN: ['NN'],
+  RN: ['RN'],
+  sothis: ['ND', 'RS'],
+  coral_manta: ['RD', 'NS'],
+  elasmosaurus: ['ND'],
+  stonescale: ['RS'],
+  jellyfish: ['RN'],
+  seadragons: ['NS'],
+  sharks: ['RD'],
+  octopodes: ['NN']
+}
 
 function paddedZero (n) {
   return n > 9 ? n : '0' + n
@@ -55,12 +73,16 @@ class OceanFishing extends Component {
     super(props)
     this.interval = null
 
+    const query = new URLSearchParams(props.location.search)
+    const filter = query.get('filter')
+    const now = moment().utcOffset(JST_UTC)
+
     this.state = {
-      now: moment().utcOffset(JST_UTC),
+      now: now,
       numRows: 10,
-      filter: 'none',
+      filter: FILTER_MAP[filter] ? filter : 'none',
       hover: null,
-      select: null
+      select: calculateVoyages(now, 1, FILTER_MAP[filter] || null)[0].destinationCode
     }
 
     this.updateTime = this.updateTime.bind(this)
@@ -103,10 +125,16 @@ class OceanFishing extends Component {
   }
 
   handleOnSelectFilter (event) {
-    const destinationCode = event.target.value
+    const filter = event.target.value
     this.setState({
-      filter: destinationCode,
-      select: destinationCode === 'none' ? this.state.select : destinationCode
+      filter: filter,
+      select: filter === 'none'
+        ? this.state.select
+        : calculateVoyages(this.state.now, 1, FILTER_MAP[filter] || null)[0].destinationCode
+    })
+    this.props.history.push({
+      pathname: this.props.location.pathname,
+      search: filter === 'none' ? null : `?filter=${filter}`
     })
   }
 
@@ -123,7 +151,7 @@ class OceanFishing extends Component {
     const upcomingVoyages = calculateVoyages(
       now,
       Math.min(Math.max(+numRows, 1), 100),
-      filter === 'none' ? null : filter
+      FILTER_MAP[filter] || null
     )
     let previousDate
 
@@ -141,17 +169,27 @@ class OceanFishing extends Component {
           <fieldset className={cn(zf.cell, zf.medium6)}>
             <legend>Filter by route</legend>
             <select onChange={this.handleOnSelectFilter} value={filter}>
-              {[
-                { route: 'none', label: 'None' },
-                { route: 'ND', label: 'Northern Strait - Day' },
-                { route: 'NS', label: 'Northern Strait - Sunset' },
-                { route: 'NN', label: 'Northern Strait - Night' },
-                { route: 'RD', label: 'Rhotano Sea - Day' },
-                { route: 'RS', label: 'Rhotano Sea - Sunset' },
-                { route: 'RN', label: 'Rhotano Sea - Night' }
-              ].map(opt =>
-                <option key={opt.route} value={opt.route}>{opt.label}</option>
-              )}
+              <option value='none'>No filter</option>
+              <optgroup label='Route'>
+                <option onChange={this.handleOnSelectFilter} value='ND'>Northern Strait - Day</option>
+                <option onChange={this.handleOnSelectFilter} value='NS'>Northern Strait - Sunset</option>
+                <option onChange={this.handleOnSelectFilter} value='NN'>Northern Strait - Night</option>
+                <option onChange={this.handleOnSelectFilter} value='RD'>Rhotano Sea - Day</option>
+                <option onChange={this.handleOnSelectFilter} value='RS'>Rhotano Sea - Sunset</option>
+                <option onChange={this.handleOnSelectFilter} value='RN'>Rhotano Sea - Night</option>
+              </optgroup>
+              <optgroup label='Blue Fish'>
+                <option onChange={this.handleOnSelectFilter} value='sothis'>Sothis</option>
+                <option onChange={this.handleOnSelectFilter} value='coral_manta'>Coral Manta</option>
+                <option onChange={this.handleOnSelectFilter} value='elasmosaurus'>Elasmosaurus</option>
+                <option onChange={this.handleOnSelectFilter} value='stonescale'>Stonescale</option>
+              </optgroup>
+              <optgroup label='Achievements'>
+                <option onChange={this.handleOnSelectFilter} value='jellyfish'>Jellyfish</option>
+                <option onChange={this.handleOnSelectFilter} value='seadragons'>Seadragons</option>
+                <option onChange={this.handleOnSelectFilter} value='sharks'>Sharks</option>
+                <option onChange={this.handleOnSelectFilter} value='octopodes'>Octopodes</option>
+              </optgroup>
             </select>
           </fieldset>
         </div>
@@ -494,4 +532,10 @@ class OceanFishing extends Component {
   }
 }
 
-export default OceanFishing
+OceanFishing.propTypes = {
+  match: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
+}
+
+export default withRouter(OceanFishing)
