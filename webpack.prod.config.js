@@ -9,7 +9,7 @@ const TerserPlugin = require('terser-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 const generateId = incstr.idGenerator({
-  alphabet: 'abcefghijklmnopqrstuvwxyzABCEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+  alphabet: 'abcefghijklmnopqrstuvwxyzABCEFGHIJKLMNOPQRSTUVWXYZ0123456789-_'
 })
 const ids = {}
 
@@ -72,7 +72,7 @@ module.exports = {
         options: {
           modules: {
             localIdentName: '[path][name]__[local]--[hash:base64:5]',
-            getLocalIdent: (...args) => 'ff-' + getId(getLocalIdent(...args))
+            getLocalIdent: (...args) => 'll' + getId(getLocalIdent(...args))
           },
           importLoaders: 2,
           localsConvention: 'dashesOnly'
