@@ -37,10 +37,13 @@ class Home extends Component {
         </div>
 
         {createTitle('highOrLow')}
+        <p>Calculator for the guessing game “High or Low” played against Tista-Bie in Eulmore.</p>
 
         {createTitle('miniCactpot')}
+        <p>Calculator for the <a href='https://na.finalfantasyxiv.com/lodestone/playguide/contentsguide/goldsaucer/cactpot/'>Mini Cactpot</a> lottery.</p>
 
         {createTitle('oceanFishing')}
+        <p>Schedule for upcoming ocean fishing voyages, with information on blue fish and achievements.</p>
       </>
     )
   }
