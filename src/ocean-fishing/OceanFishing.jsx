@@ -133,7 +133,7 @@ class OceanFishing extends Component {
           </fieldset>
           <fieldset className={cn(zf.cell, zf.medium6)}>
             <legend>Filter</legend>
-            <select onChange={this.handleOnSelectFilter} value={filter}>
+            <select onChange={this.handleOnSelectFilter} value={filter || 'none'}>
               <option value='none'>No filter</option>
               <optgroup label='Route'>
                 <option onChange={this.handleOnSelectFilter} value='ND'>Northern Strait - Day</option>
@@ -179,7 +179,7 @@ class OceanFishing extends Component {
                     key={`${voyage.day}:${voyage.hour}`}
                     className={cn(
                       dateChange && styles.dateChange,
-                      filter === 'none' && destinationCode === hover && styles.hover
+                      (!filter || filter === 'none') && destinationCode === hover && styles.hover
                     )}
                     onMouseOver={this.handleOnHover[destinationCode]}
                     onClick={this.handleOnClick[destinationCode]}
