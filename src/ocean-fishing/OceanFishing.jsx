@@ -43,7 +43,6 @@ class OceanFishing extends Component {
     this.state = {
       now: now,
       numRows: 10,
-      filter: FILTER_MAP[filter] ? filter : 'none',
       hover: null,
       select: calculateVoyages(now, 1, FILTER_MAP[filter] || null)[0].destinationCode
     }
@@ -110,7 +109,10 @@ class OceanFishing extends Component {
   }
 
   render () {
-    const { now, numRows, filter, hover, select } = this.state
+    const { location } = this.props
+    const { now, numRows, hover, select } = this.state
+    const query = new URLSearchParams(location.search)
+    const filter = query.get('filter')
     const upcomingVoyages = calculateVoyages(
       now,
       Math.min(Math.max(+numRows, 1), 100),
