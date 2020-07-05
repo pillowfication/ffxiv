@@ -167,7 +167,7 @@ class OceanFishing extends Component {
             <input type='number' onChange={this.handleOnChangeRows} value={numRows} />
           </fieldset>
           <fieldset className={cn(zf.cell, zf.medium6)}>
-            <legend>Filter by route</legend>
+            <legend>Filter</legend>
             <select onChange={this.handleOnSelectFilter} value={filter}>
               <option value='none'>No filter</option>
               <optgroup label='Route'>
