@@ -15,6 +15,11 @@ const routes = {
     title: 'Ocean Fishing',
     path: '/ocean-fishing',
     component: React.lazy(() => import('./ocean-fishing/OceanFishing.jsx'))
+  },
+  weather: {
+    title: 'Weather',
+    path: '/weather',
+    component: React.lazy(() => import('./weather/Weather.jsx'))
   }
 }
 
