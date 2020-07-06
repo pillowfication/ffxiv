@@ -30,7 +30,7 @@ function calculateVoyages (time, count, filter) {
   const upcomingVoyages = []
   while (upcomingVoyages.length < count) {
     const destinationCode = DEST_CYCLE[destIndex] + TIME_CYCLE[timeIndex]
-    if (!filter || destinationCode === filter) {
+    if (!filter || filter.includes(destinationCode)) {
       upcomingVoyages.push({ day, hour, destinationCode })
     }
     if (hour === 23) {

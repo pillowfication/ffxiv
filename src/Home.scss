@@ -1,0 +1,44 @@
+@import "./settings";
+
+.splash {
+  margin-bottom: 2rem;
+}
+
+.lulu {
+  position: relative;
+  width: 15rem;
+  height: 15rem;
+  margin: 0 auto $global-margin;
+  overflow: hidden;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 3em;
+  background: rgba($primary-color, 0.2);
+
+  @include breakpoint(medium) {
+    width: 16rem;
+    height: 20rem;
+  }
+
+  & > img {
+    width: 12rem;
+    @include breakpoint(medium) {
+      width: 100%;
+    }
+  }
+}
+
+.info {
+  position: relative;
+  font-size: 1.2em;
+
+  @include breakpoint(medium) {
+    & > div {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: $global-padding;
+    }
+  }
+}
