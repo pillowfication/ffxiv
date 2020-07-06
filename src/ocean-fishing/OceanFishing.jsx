@@ -218,8 +218,8 @@ class OceanFishing extends Component {
                 }
                 <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
                   {routeStops.map((stop, index) =>
-                    <div key={stop} className={cn(zf.cell, zf.large4)}>
-                      <h5>{index + 1} - {DEST_MAP[stop[0]]} {TIME_MAP[stop[1]]}</h5>
+                    <div key={stop} className={cn(zf.cell, zf.medium4)}>
+                      <h6>{index + 1}. {DEST_MAP[stop[0]]} {TIME_MAP[stop[1]]}</h6>
                       <ul className={styles.catches}>
                         {baitChains[stop[0]].map((baitChain, index) => <li key={index}>{baitChain}</li>)}
                         {BLUE_FISH_MAP[stop] &&

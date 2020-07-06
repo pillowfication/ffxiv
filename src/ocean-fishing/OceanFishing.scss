@@ -58,8 +58,10 @@
   margin-bottom: 1em;
 
   h4 {
-    display: inline;
     margin-right: 0.5em;
+    @include breakpoint(medium) {
+      display: inline;
+    }
   }
 }
 
@@ -71,7 +73,7 @@
     padding-top: 0.5em;
     &:not(:first-child) {
       border-top: $table-border;
-      @include breakpoint(large) {
+      @include breakpoint(medium) {
         border-top: none;
         border-left: $table-border;
       }
@@ -79,7 +81,7 @@
     :global(.dark) & {
       &:not(:first-child) {
         border-top: $dark-table-border;
-        @include breakpoint(large) {
+        @include breakpoint(medium) {
           border-top: none;
           border-left: $dark-table-border;
         }
@@ -140,7 +142,7 @@ $fish-icons: (
   margin: 1em 0 1.2em;
 
   & > li {
-    margin: 0.5em 0 0.8em;
+    margin: 0.5em 0 1.35em;
   }
 
   & ul {
