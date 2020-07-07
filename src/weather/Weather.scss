@@ -1,0 +1,53 @@
+.weathers {
+  white-space: nowrap;
+  text-align: center;
+}
+
+.region {
+  text-align: left;
+}
+
+.zone {
+  text-align: left;
+}
+
+$weather-icons: (
+  clear-skies,
+  fair-skies,
+  clouds,
+  wind,
+  gales,
+  fog,
+  rain,
+  showers,
+  thunder,
+  thunderstorms,
+  dust-storms,
+  standstorms,
+  heat-waves,
+  hot-spells,
+  snow,
+  blizzards,
+  gloom,
+  umbral-static,
+  umbral-wind
+);
+.weather-icon {
+  display: inline-block;
+  // position: relative;
+  // top: 0.4em;
+  width: 30px;
+  height: 30px;
+  background: {
+    image: url("./weather-icons.png");
+    size: (length($weather-icons) * 100%) 100%;
+  }
+  // margin: .15em;
+  // vertical-align: sub;
+}
+@each $icon in $weather-icons {
+  $i: index($weather-icons, $icon);
+  .#{$icon} {
+    background-position: (-100% * ($i - 1)) 0%;
+  }
+}
