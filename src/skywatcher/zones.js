@@ -2,6 +2,7 @@ import EorzeaWeather from 'eorzea-weather'
 
 export const LA_NOSCEA = {
   name: 'La Noscea',
+  query: 'la_noscea',
   zones: [
     EorzeaWeather.ZONE_LIMSA_LOMINSA,
     EorzeaWeather.ZONE_MIDDLE_LA_NOSCEA,
@@ -15,6 +16,7 @@ export const LA_NOSCEA = {
 
 export const THE_BLACK_SHROUD = {
   name: 'The Black Shroud',
+  query: 'the_black_shroud',
   zones: [
     EorzeaWeather.ZONE_GRIDANIA,
     EorzeaWeather.ZONE_CENTRAL_SHROUD,
@@ -26,6 +28,7 @@ export const THE_BLACK_SHROUD = {
 
 export const THANALAN = {
   name: 'Thanalan',
+  query: 'thanalan',
   zones: [
     EorzeaWeather.ZONE_ULDAH,
     EorzeaWeather.ZONE_WESTERN_THANALAN,
@@ -38,6 +41,7 @@ export const THANALAN = {
 
 export const ISHGARD_AND_SURROUNDING_AREAS = {
   name: 'Ishgard and Surrounding Areas',
+  query: 'ishgard_and_surrounding_areas',
   zones: [
     EorzeaWeather.ZONE_ISHGARD,
     EorzeaWeather.ZONE_COERTHAS_CENTRAL_HIGHLANDS,
@@ -53,6 +57,7 @@ export const ISHGARD_AND_SURROUNDING_AREAS = {
 
 export const GYR_ABANIA = {
   name: 'Gyr Abania',
+  query: 'gyr_abania',
   zones: [
     EorzeaWeather.ZONE_RHALGRS_REACH,
     EorzeaWeather.ZONE_THE_FRINGES,
@@ -63,6 +68,7 @@ export const GYR_ABANIA = {
 
 export const THE_FAR_EAST = {
   name: 'The Far East',
+  query: 'the_far_east',
   zones: [
     EorzeaWeather.ZONE_KUGANE,
     EorzeaWeather.ZONE_THE_RUBY_SEA,
@@ -73,6 +79,7 @@ export const THE_FAR_EAST = {
 
 export const NORVRANDT = {
   name: 'Norvrandt',
+  query: 'norvrandt',
   zones: [
     EorzeaWeather.ZONE_THE_CRYSTARIUM,
     EorzeaWeather.ZONE_EULMORE,
@@ -87,6 +94,7 @@ export const NORVRANDT = {
 
 export const EUREKA = {
   name: 'Eureka',
+  query: 'eureka',
   zones: [
     EorzeaWeather.ZONE_EUREKA_ANEMOS,
     EorzeaWeather.ZONE_EUREKA_PAGOS,
@@ -97,6 +105,7 @@ export const EUREKA = {
 
 export const OTHERS = {
   name: 'Others',
+  query: 'others',
   zones: [
     EorzeaWeather.ZONE_MOR_DHONA,
     EorzeaWeather.ZONE_MIST,

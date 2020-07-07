@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 import cn from 'classnames'
 import EorzeaWeather from 'eorzea-weather'
 
@@ -16,8 +17,8 @@ const REGIONS = [
   zones.GYR_ABANIA,
   zones.THE_FAR_EAST,
   zones.NORVRANDT,
-  zones.OTHERS,
-  zones.EUREKA
+  zones.EUREKA,
+  zones.OTHERS
 ]
 const ZONES = REGIONS.map(region => region.zones).flat()
 const WEATHERS_COUNT = 5
@@ -25,23 +26,46 @@ const WEATHERS_COUNT = 5
 class Skywatcher extends Component {
   constructor (props) {
     super(props)
+
+    this.handleOnSelectFilter = this.handleOnSelectFilter.bind(this)
   }
 
   componentDidMount () {
     document.title = 'Weather'
   }
 
+  handleOnSelectFilter (event) {
+    const filter = event.target.value
+    this.props.history.push({
+      pathname: this.props.location.pathname,
+      search: filter === 'none' ? null : `?filter=${filter}`
+    })
+  }
+
   render () {
+    const { location } = this.props
     const weathers = calculateWeathers(ZONES, WEATHERS_COUNT)
-    console.log(weathers)
+    const query = new URLSearchParams(location.search)
+    const filter = query.get('filter')
+    const region = filter && REGIONS.find(region => region.query === filter)
 
     return (
       <>
         <h1>Skywatcher</h1>
+        <div className={cn(zf.gridX, zf.gridPaddingX)}>
+          <fieldset className={cn(zf.cell)}>
+            <select onChange={this.handleOnSelectFilter} value={filter || 'none'}>
+              <option value='none'>Show all regions</option>
+              {REGIONS.map(region =>
+                <option key={region.query} value={region.query}>{region.name}</option>
+              )}
+            </select>
+          </fieldset>
+        </div>
         <div className={zf.tableScroll}>
           <table className={cn(styles.weathers, zf.hover)}>
             <tbody>
-              {REGIONS.map(region =>
+              {(region ? [region] : REGIONS).map(region =>
                 <React.Fragment key={region.name}>
                   <tr className={styles.region}>
                     <th colSpan={WEATHERS_COUNT + 2}>
@@ -70,4 +94,4 @@ class Skywatcher extends Component {
   }
 }
 
-export default Skywatcher
+export default withRouter(Skywatcher)

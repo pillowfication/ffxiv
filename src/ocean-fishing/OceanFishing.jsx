@@ -89,7 +89,6 @@ class OceanFishing extends Component {
   handleOnSelectFilter (event) {
     const filter = event.target.value
     this.setState({
-      filter: filter,
       select: filter === 'none'
         ? this.state.select
         : calculateVoyages(this.state.now, 1, FILTER_MAP[filter] || null)[0].destinationCode
@@ -136,24 +135,24 @@ class OceanFishing extends Component {
             <select onChange={this.handleOnSelectFilter} value={filter || 'none'}>
               <option value='none'>No filter</option>
               <optgroup label='Route'>
-                <option onChange={this.handleOnSelectFilter} value='ND'>Northern Strait - Day</option>
-                <option onChange={this.handleOnSelectFilter} value='NS'>Northern Strait - Sunset</option>
-                <option onChange={this.handleOnSelectFilter} value='NN'>Northern Strait - Night</option>
-                <option onChange={this.handleOnSelectFilter} value='RD'>Rhotano Sea - Day</option>
-                <option onChange={this.handleOnSelectFilter} value='RS'>Rhotano Sea - Sunset</option>
-                <option onChange={this.handleOnSelectFilter} value='RN'>Rhotano Sea - Night</option>
+                <option value='ND'>Northern Strait - Day</option>
+                <option value='NS'>Northern Strait - Sunset</option>
+                <option value='NN'>Northern Strait - Night</option>
+                <option value='RD'>Rhotano Sea - Day</option>
+                <option value='RS'>Rhotano Sea - Sunset</option>
+                <option value='RN'>Rhotano Sea - Night</option>
               </optgroup>
               <optgroup label='Blue Fish'>
-                <option onChange={this.handleOnSelectFilter} value='sothis'>Sothis</option>
-                <option onChange={this.handleOnSelectFilter} value='coral_manta'>Coral Manta</option>
-                <option onChange={this.handleOnSelectFilter} value='elasmosaurus'>Elasmosaurus</option>
-                <option onChange={this.handleOnSelectFilter} value='stonescale'>Stonescale</option>
+                <option value='sothis'>Sothis</option>
+                <option value='coral_manta'>Coral Manta</option>
+                <option value='elasmosaurus'>Elasmosaurus</option>
+                <option value='stonescale'>Stonescale</option>
               </optgroup>
               <optgroup label='Achievements'>
-                <option onChange={this.handleOnSelectFilter} value='jellyfish'>Jellyfish</option>
-                <option onChange={this.handleOnSelectFilter} value='seadragons'>Seadragons</option>
-                <option onChange={this.handleOnSelectFilter} value='sharks'>Sharks</option>
-                <option onChange={this.handleOnSelectFilter} value='octopodes'>Octopodes</option>
+                <option value='jellyfish'>Jellyfish</option>
+                <option value='seadragons'>Seadragons</option>
+                <option value='sharks'>Sharks</option>
+                <option value='octopodes'>Octopodes</option>
               </optgroup>
             </select>
           </fieldset>
