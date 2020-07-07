@@ -808,8 +808,8 @@ $switch-cursor-disabled: not-allowed;
 // 50. Table
 // ---------
 
-$table-background: $body-background;
-$dark-table-background: $dark-body-background;
+$table-background: rgba(#000000, 0);
+$dark-table-background: rgba(#000000, 0);
 $table-color-scale: 5%;
 $table-border: 1px solid $medium-gray;
 $dark-table-border: 1px solid $dark-gray;
