@@ -3,9 +3,14 @@
 
 body {
   transition: background-color .1s linear;
+  font-size: $global-font-size * 0.9;
   &:global(.dark) {
     background-color: $dark-body-background;
     color: $dark-body-font-color;
+  }
+
+  @include breakpoint(large) {
+    font-size: $global-font-size;
   }
 }
 

@@ -82,11 +82,11 @@ $light-gray: #ececec;
 $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;
 $black: #0c0c0c;
-$white: #fbfbfb;
+$white: #efefef;
 $body-background: $white;
 $dark-body-background: #24292e;
 $body-font-color: $black;
-$dark-body-font-color: $light-gray;
+$dark-body-font-color: $medium-gray;
 $body-font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
 $body-antialiased: true;
 $global-margin: 1rem;
@@ -808,8 +808,8 @@ $switch-cursor-disabled: not-allowed;
 // 50. Table
 // ---------
 
-$table-background: $body-background;
-$dark-table-background: $dark-body-background;
+$table-background: rgba(#000000, 0);
+$dark-table-background: rgba(#000000, 0);
 $table-color-scale: 5%;
 $table-border: 1px solid $medium-gray;
 $dark-table-border: 1px solid $dark-gray;

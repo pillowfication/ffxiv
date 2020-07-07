@@ -12,14 +12,14 @@ export class Jellyfish extends Component {
       <div className={zf.cell}>
         <h4>Jellyfish Route</h4>
         <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
-          <div className={cn(zf.cell, zf.large4)}>
-            <h5>1 - {DEST_MAP.G} {TIME_MAP.D}</h5>
+          <div className={cn(zf.cell, zf.medium4)}>
+            <h6>1. {DEST_MAP.G} {TIME_MAP.D}</h6>
             <ul className={styles.catches}>
               <li><p>No jellyfish here.</p></li>
             </ul>
           </div>
-          <div className={cn(zf.cell, zf.large4)}>
-            <h5>2 - {DEST_MAP.S} {TIME_MAP.S}</h5>
+          <div className={cn(zf.cell, zf.medium4)}>
+            <h6>2. {DEST_MAP.S} {TIME_MAP.S}</h6>
             <ul className={styles.catches}>
               <li>
                 DH &lt;5s<br />
@@ -37,8 +37,8 @@ export class Jellyfish extends Component {
               </li>
             </ul>
           </div>
-          <div className={cn(zf.cell, zf.large4)}>
-            <h5>3 - {DEST_MAP.R} {TIME_MAP.N}</h5>
+          <div className={cn(zf.cell, zf.medium4)}>
+            <h6>3. {DEST_MAP.R} {TIME_MAP.N}</h6>
             <ul className={styles.catches}>
               <li>
                 IC–DH<br />
@@ -72,8 +72,8 @@ export class Seadragons extends Component {
       <div className={zf.cell}>
         <h4>Seadragons Route</h4>
         <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
-          <div className={cn(zf.cell, zf.large4)}>
-            <h5>1 - {DEST_MAP.S} {TIME_MAP.N}</h5>
+          <div className={cn(zf.cell, zf.medium4)}>
+            <h6>1. {DEST_MAP.S} {TIME_MAP.N}</h6>
             <ul className={styles.catches}>
               <li>
                 IC–DH at 10-18s<br />
@@ -91,14 +91,14 @@ export class Seadragons extends Component {
               </li>
             </ul>
           </div>
-          <div className={cn(zf.cell, zf.large4)}>
-            <h5>2 - {DEST_MAP.G} {TIME_MAP.D}</h5>
+          <div className={cn(zf.cell, zf.medium4)}>
+            <h6>2. {DEST_MAP.G} {TIME_MAP.D}</h6>
             <ul className={styles.catches}>
               <li><p>No seadragons here.</p></li>
             </ul>
           </div>
-          <div className={cn(zf.cell, zf.large4)}>
-            <h5>3 - {DEST_MAP.N} {TIME_MAP.S}</h5>
+          <div className={cn(zf.cell, zf.medium4)}>
+            <h6>3. {DEST_MAP.N} {TIME_MAP.S}</h6>
             <ul className={styles.catches}>
               <li>
                 IC–DH<br />
@@ -140,8 +140,8 @@ export class Sharks extends Component {
       <div className={zf.cell}>
         <h4>Sharks Route</h4>
         <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
-          <div className={cn(zf.cell, zf.large4)}>
-            <h5>1 - {DEST_MAP.G} {TIME_MAP.S}</h5>
+          <div className={cn(zf.cell, zf.medium4)}>
+            <h6>1. {DEST_MAP.G} {TIME_MAP.S}</h6>
             <ul className={styles.catches}>
               <li>
                 IC; DH–IC–DH post-spectral<br />
@@ -169,14 +169,14 @@ export class Sharks extends Component {
               </li>
             </ul>
           </div>
-          <div className={cn(zf.cell, zf.large4)}>
-            <h5>2 - {DEST_MAP.S} {TIME_MAP.N}</h5>
+          <div className={cn(zf.cell, zf.medium4)}>
+            <h6>2. {DEST_MAP.S} {TIME_MAP.N}</h6>
             <ul className={styles.catches}>
               <li><p>No sharks here.</p><p>Try for Coral Manta?<br />(but save GP)</p></li>
             </ul>
           </div>
-          <div className={cn(zf.cell, zf.large4)}>
-            <h5>3 - {DEST_MAP.R} {TIME_MAP.D}</h5>
+          <div className={cn(zf.cell, zf.medium4)}>
+            <h6>3. {DEST_MAP.R} {TIME_MAP.D}</h6>
             <ul className={styles.catches}>
               <li>
                 IC–DH; DH–IC–DH post-spectral<br />
@@ -212,14 +212,14 @@ export class Octopodes extends Component {
       <div className={zf.cell}>
         <h4>Octopodes Route</h4>
         <div className={cn(styles.routeTable, zf.gridX, zf.gridPaddingX)}>
-          <div className={cn(zf.cell, zf.large4)}>
-            <h5>1 - {DEST_MAP.S} {TIME_MAP.D}</h5>
+          <div className={cn(zf.cell, zf.medium4)}>
+            <h6>1. {DEST_MAP.S} {TIME_MAP.D}</h6>
             <ul className={styles.catches}>
               <li><p>No octopodes here.</p></li>
             </ul>
           </div>
-          <div className={cn(zf.cell, zf.large4)}>
-            <h5>2 - {DEST_MAP.G} {TIME_MAP.S}</h5>
+          <div className={cn(zf.cell, zf.medium4)}>
+            <h6>2. {DEST_MAP.G} {TIME_MAP.S}</h6>
             <ul className={styles.catches}>
               <li>
                 IC–DH at 16-28s<br />
@@ -237,8 +237,8 @@ export class Octopodes extends Component {
               </li>
             </ul>
           </div>
-          <div className={cn(zf.cell, zf.large4)}>
-            <h5>3 - {DEST_MAP.N} {TIME_MAP.N}</h5>
+          <div className={cn(zf.cell, zf.medium4)}>
+            <h6>3. {DEST_MAP.N} {TIME_MAP.N}</h6>
             <ul className={styles.catches}>
               <li>
                 DH–IC–DH at 4s<br />
