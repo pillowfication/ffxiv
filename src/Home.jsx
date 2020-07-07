@@ -44,6 +44,9 @@ class Home extends Component {
 
         {createTitle('oceanFishing')}
         <p>Schedule for upcoming ocean fishing voyages, with information on blue fish and achievements.</p>
+
+        {createTitle('weather')}
+        <p>Schedule for weather in Eorzea, and calculator for upcoming weather patterns.</p>
       </>
     )
   }
