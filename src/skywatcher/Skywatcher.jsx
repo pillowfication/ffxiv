@@ -6,7 +6,7 @@ import WeatherIcon from './WeatherIcon.jsx'
 import calculateWeathers from './calculate-weathers'
 import * as zones from './zones'
 import zf from '../foundation.scss'
-import styles from './Weather.scss'
+import styles from './Skywatcher.scss'
 
 const REGIONS = [
   zones.LA_NOSCEA,
@@ -22,7 +22,7 @@ const REGIONS = [
 const ZONES = REGIONS.map(region => region.zones).flat()
 const WEATHERS_COUNT = 5
 
-class Weather extends Component {
+class Skywatcher extends Component {
   constructor (props) {
     super(props)
   }
@@ -68,4 +68,4 @@ class Weather extends Component {
   }
 }
 
-export default Weather
+export default Skywatcher

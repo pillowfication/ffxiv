@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import propTypes from 'prop-types'
 import cn from 'classnames'
 
-import styles from './Weather.scss'
+import styles from './Skywatcher.scss'
 
 export const ICON_TITLES = {
   clearSkies: 'Clear Skies',

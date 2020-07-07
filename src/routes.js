@@ -17,9 +17,9 @@ const routes = {
     component: React.lazy(() => import('./ocean-fishing/OceanFishing.jsx'))
   },
   weather: {
-    title: 'Weather',
-    path: '/weather',
-    component: React.lazy(() => import('./weather/Weather.jsx'))
+    title: 'Skywatcher',
+    path: '/skywatcher',
+    component: React.lazy(() => import('./skywatcher/Skywatcher.jsx'))
   }
 }
 
