@@ -14,7 +14,10 @@ function calculateWeathers (zoneIds, count = 1, now = new Date()) {
       zoneWeathers.push(eorzeaWeather.getWeather(new Date(time)))
     }
 
-    weathers[zoneId] = zoneWeathers
+    weathers[zoneId] = {
+      zoneName: eorzeaWeather.getZoneName(),
+      zoneWeathers
+    }
   })
 
   return weathers

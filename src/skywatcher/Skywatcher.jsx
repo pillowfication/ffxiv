@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import cn from 'classnames'
-import EorzeaWeather from 'eorzea-weather'
 
 import WeatherIcon from './WeatherIcon.jsx'
 import calculateWeathers from './calculate-weathers'
@@ -74,8 +73,8 @@ class Skywatcher extends Component {
                   </tr>
                   {region.zones.map(zone =>
                     <tr key={zone}>
-                      <th className={styles.zone}>{(new EorzeaWeather(zone)).getZoneName()}</th>
-                      {weathers[zone].map((weather, index) =>
+                      <th className={styles.zone}>{weathers[zone].zoneName}</th>
+                      {weathers[zone].zoneWeathers.map((weather, index) =>
                         <td key={index}>
                           <WeatherIcon name={weather} />
                           <br />
