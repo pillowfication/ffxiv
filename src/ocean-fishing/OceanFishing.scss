@@ -23,11 +23,11 @@
     }
   }
 
-  tbody .hover, tbody tr:hover {
-    background-color: lighten($primary-color, 60%);
+  tbody .hover {
+    background-color: $table-row-hover;
     transition: background-color 0.1s linear;
     :global(.dark) & {
-      background-color: darken($primary-color, 10%);
+      background-color: $dark-table-row-hover;
     }
   }
 

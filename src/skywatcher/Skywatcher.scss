@@ -1,3 +1,5 @@
+@import "../settings";
+
 .weathers {
   white-space: nowrap;
   text-align: center;
@@ -5,13 +7,20 @@
   & td {
     width: 8.5em;
     padding: 0.5em 0.1em;
-    font-size: 0.75em;
-    // border: 1px solid black;
+    font-size: 0.8em;
   }
 }
 
 .region {
   text-align: left;
+
+  &:hover {
+    background: none !important;
+  }
+
+  & h4 {
+    margin: $global-margin 0 0;
+  }
 }
 
 .zone {
@@ -51,8 +60,8 @@ $weather-icons: (
     image: url("./weather-icons.png");
     size: (length($weather-icons) * 100%) 100%;
   }
-  // margin: .15em;
-  // vertical-align: sub;
+  margin: .15em;
+  vertical-align: sub;
 }
 @each $icon in $weather-icons {
   $i: index($weather-icons, $icon);

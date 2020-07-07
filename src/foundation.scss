@@ -77,3 +77,13 @@
     background-color: rgba($alert-color, 0.3);
   }
 }
+
+table.hover {
+  :global(.dark) & {
+    & tbody tr {
+      &:hover {
+        background-color: $dark-table-row-hover;
+      }
+    }
+  }
+}

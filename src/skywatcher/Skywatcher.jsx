@@ -37,14 +37,16 @@ class Skywatcher extends Component {
 
     return (
       <>
-        <h1>Weather</h1>
+        <h1>Skywatcher</h1>
         <div className={zf.tableScroll}>
-          <table className={styles.weathers}>
+          <table className={cn(styles.weathers, zf.hover)}>
             <tbody>
               {REGIONS.map(region =>
                 <React.Fragment key={region.name}>
                   <tr className={styles.region}>
-                    <th colSpan={WEATHERS_COUNT + 2}>{region.name}</th>
+                    <th colSpan={WEATHERS_COUNT + 2}>
+                      <h4>{region.name}</h4>
+                    </th>
                   </tr>
                   {region.zones.map(zone =>
                     <tr key={zone}>
