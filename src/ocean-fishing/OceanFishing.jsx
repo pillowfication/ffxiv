@@ -21,7 +21,7 @@ import styles from './OceanFishing.scss'
 
 const UTC = moment().utcOffset()
 const JST_UTC = 540
-const UPDATE_INTERVAL = 60000
+const UPDATE_INTERVAL = 60 * 1000
 
 function paddedZero (n) {
   return n > 9 ? n : '0' + n
@@ -75,7 +75,7 @@ class OceanFishing extends Component {
   }
 
   componentWillUnmount () {
-    clearInterval(this.interval)
+    this.interval && clearInterval(this.interval)
   }
 
   updateTime () {

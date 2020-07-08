@@ -22,12 +22,11 @@ const REGIONS = [
 const ZONES = REGIONS.map(region => region.zones).flat()
 const WEATHERS_COUNT = 5
 const WEATHER_THUNDERSTORM = 'Thunder' + String.fromCharCode(173) + 'storms'
-const _1HR = 60 * 60 * 1000
-const _1DAY = 24 * _1HR
 const EORZEAN_RATIO = 1440 / 70
+const UPDATE_INTERVAL = 1000
 
-function getEorzeanHour (time) {
-  return Math.floor((time * EORZEAN_RATIO % _1DAY) / _1HR)
+function getEorzeanTime (now) {
+  return new Date(Math.floor(now.getTime() * EORZEAN_RATIO))
 }
 
 function padZeroes (str) {
@@ -38,11 +37,27 @@ class Skywatcher extends Component {
   constructor (props) {
     super(props)
 
+    this.state = {
+      now: new Date()
+    }
+
+    this.updateTime = this.updateTime.bind(this)
     this.handleOnSelectFilter = this.handleOnSelectFilter.bind(this)
   }
 
   componentDidMount () {
     document.title = 'Weather'
+    this.interval = setInterval(this.updateTime, UPDATE_INTERVAL)
+  }
+
+  componentWillUnmount () {
+    this.interval && clearInterval(this.interval)
+  }
+
+  updateTime () {
+    this.setState({
+      now: new Date()
+    })
   }
 
   handleOnSelectFilter (event) {
@@ -55,18 +70,18 @@ class Skywatcher extends Component {
 
   render () {
     const { location } = this.props
-    const now = new Date()
+    const { now } = this.state
     const weathers = calculateWeathers(ZONES, WEATHERS_COUNT, now)
     const query = new URLSearchParams(location.search)
     const filter = query.get('filter')
     const region = filter && REGIONS.find(region => region.query === filter)
-    const timeChunk = Math.floor(getEorzeanHour(now.getTime()) / 8) * 8
-    const eorzeaTime = new Date(Math.floor(now.getTime() * (1440 / 70)))
+    const eorzeanTime = getEorzeanTime(now)
+    const timeChunk = Math.floor(eorzeanTime.getHours() / 8) * 8
 
     return (
       <>
         <h1>Skywatcher</h1>
-        <p>The time in Eorzea is <strong>{padZeroes(eorzeaTime.getHours())}:{padZeroes(eorzeaTime.getMinutes())}</strong>.</p>
+        <p>The time in Eorzea is <strong>{padZeroes(eorzeanTime.getHours())}:{padZeroes(eorzeanTime.getMinutes())}</strong>.</p>
         <div className={cn(zf.gridX, zf.gridPaddingX)}>
           <fieldset className={cn(zf.cell)}>
             <select onChange={this.handleOnSelectFilter} value={filter || 'none'}>
