@@ -11,6 +11,7 @@ export const LA_NOSCEA = {
     EorzeaWeather.ZONE_WESTERN_LA_NOSCEA,
     EorzeaWeather.ZONE_UPPER_LA_NOSCEA,
     EorzeaWeather.ZONE_OUTER_LA_NOSCEA
+    // EorzeaWeather.ZONE_WOLVES_DEN_PIER
   ]
 }
 
@@ -111,6 +112,7 @@ export const OTHERS = {
     EorzeaWeather.ZONE_MIST,
     EorzeaWeather.ZONE_THE_LAVENDER_BEDS,
     EorzeaWeather.ZONE_THE_GOBLET,
-    EorzeaWeather.ZONE_SHIROGANE
+    EorzeaWeather.ZONE_SHIROGANE,
+    EorzeaWeather.ZONE_THE_DIADEM
   ]
 }

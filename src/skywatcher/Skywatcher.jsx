@@ -21,6 +21,18 @@ const REGIONS = [
 ]
 const ZONES = REGIONS.map(region => region.zones).flat()
 const WEATHERS_COUNT = 5
+const WEATHER_THUNDERSTORM = 'Thunder' + String.fromCharCode(173) + 'storms'
+const _1HR = 60 * 60 * 1000
+const _1DAY = 24 * _1HR
+const EORZEAN_RATIO = 1440 / 70
+
+function getEorzeanHour (time) {
+  return Math.floor((time * EORZEAN_RATIO % _1DAY) / _1HR)
+}
+
+function padZeroes (str) {
+  return ('0' + str).slice(-2)
+}
 
 class Skywatcher extends Component {
   constructor (props) {
@@ -43,14 +55,18 @@ class Skywatcher extends Component {
 
   render () {
     const { location } = this.props
-    const weathers = calculateWeathers(ZONES, WEATHERS_COUNT)
+    const now = new Date()
+    const weathers = calculateWeathers(ZONES, WEATHERS_COUNT, now)
     const query = new URLSearchParams(location.search)
     const filter = query.get('filter')
     const region = filter && REGIONS.find(region => region.query === filter)
+    const timeChunk = Math.floor(getEorzeanHour(now.getTime()) / 8) * 8
+    const eorzeaTime = new Date(Math.floor(now.getTime() * (1440 / 70)))
 
     return (
       <>
         <h1>Skywatcher</h1>
+        <p>The time in Eorzea is <strong>{padZeroes(eorzeaTime.getHours())}:{padZeroes(eorzeaTime.getMinutes())}</strong>.</p>
         <div className={cn(zf.gridX, zf.gridPaddingX)}>
           <fieldset className={cn(zf.cell)}>
             <select onChange={this.handleOnSelectFilter} value={filter || 'none'}>
@@ -71,6 +87,14 @@ class Skywatcher extends Component {
                       <h4>{region.name}</h4>
                     </th>
                   </tr>
+                  <tr className={styles.time}>
+                    <th />
+                    {Array(WEATHERS_COUNT + 1).fill().map((_, index) =>
+                      <th key={index} scope='col'>
+                        {padZeroes((24 + timeChunk + 8 * (index - 1)) % 24) + ':00'}
+                      </th>
+                    )}
+                  </tr>
                   {region.zones.map(zone =>
                     <tr key={zone}>
                       <th className={styles.zone}>{weathers[zone].zoneName}</th>
@@ -78,7 +102,7 @@ class Skywatcher extends Component {
                         <td key={index}>
                           <WeatherIcon name={weather} />
                           <br />
-                          {weather}
+                          {weather === 'Thunderstorms' ? WEATHER_THUNDERSTORM : weather}
                         </td>
                       )}
                     </tr>

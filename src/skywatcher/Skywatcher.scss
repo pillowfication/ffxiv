@@ -1,32 +1,48 @@
 @import "../settings";
 
 .weathers {
-  white-space: nowrap;
   text-align: center;
 
   & td {
-    width: 8.5em;
-    padding: 0.5em 0.1em;
-    font-size: 0.8em;
+    width: 6em;
+    padding: 0.2em 0.2em;
+    font-size: 0.85em;
+    vertical-align: top;
+  }
+
+  & th, & td {
+    &:nth-child(3) {
+      background-color: rgba($primary-color, 0.1);
+      :global(.dark) & {
+        background-color: rgba(darken($primary-color, 25%), 0.3);
+      }
+    }
   }
 }
 
 .region {
   text-align: left;
+  margin: 0;
+
+  &:not(:first-child) h4 {
+    margin-top: (2 * $global-margin);
+  }
 
   &:hover {
     background: none !important;
   }
+}
 
-  & h4 {
-    margin: $global-margin 0 0;
+.time {
+  &:hover {
+    background: none !important;
   }
 }
 
 .zone {
   text-align: left;
   font-weight: normal;
-  padding: 0.2em 0.2em 0.2em 0.5em;
+  padding: 0.2em 0.2em 0.2em 1em;
 }
 
 $weather-icons: (
@@ -60,7 +76,7 @@ $weather-icons: (
     image: url("./weather-icons.png");
     size: (length($weather-icons) * 100%) 100%;
   }
-  margin: .15em;
+  margin-top: 0.2em;
   vertical-align: sub;
 }
 @each $icon in $weather-icons {
