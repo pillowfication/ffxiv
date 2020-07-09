@@ -27,7 +27,8 @@
     "file-loader": "^6.0.0",
     "next": "9.4.4",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "url-loader": "^4.1.0"
   },
   "devDependencies": {
     "standard": "^14.3.4"

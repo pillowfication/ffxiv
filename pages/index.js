@@ -3,7 +3,8 @@ import Link from '../src/Link'
 import { makeStyles, fade } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
-import Lulu from '../modules/home/lulu.svg'
+import MuiLink from '@material-ui/core/Link'
+import Lulu from '../public/images/lulu-icon.svg'
 
 const useStyles = makeStyles((theme) => ({
   splash: {
@@ -82,7 +83,7 @@ export default function Index () {
         <Typography variant='h5'>Mini Cactpot</Typography>
       </Link>
       <Typography paragraph>
-        Calculator for the <a href='https://na.finalfantasyxiv.com/lodestone/playguide/contentsguide/goldsaucer/cactpot/'>Mini Cactpot</a> lottery.
+        Calculator for the <MuiLink href='https://na.finalfantasyxiv.com/lodestone/playguide/contentsguide/goldsaucer/cactpot/'>Mini Cactpot</MuiLink> lottery.
       </Typography>
 
       <Link href='/ocean-fishing'>

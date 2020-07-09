@@ -14,11 +14,21 @@ export const lightTheme = createMuiTheme({
   },
   typography: {
     fontFamily: '"Open Sans", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif',
+    h1: {
+      fontSize: '3rem'
+    },
     h5: {
       fontWeight: 700
     },
     h6: {
       fontWeight: 700
+    }
+  },
+  overrides: {
+    MuiLink: {
+      root: {
+        color: '#0f3d87'
+      }
     }
   }
 })
@@ -40,11 +50,21 @@ export const darkTheme = createMuiTheme({
   },
   typography: {
     fontFamily: '"Open Sans", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif',
+    h1: {
+      fontSize: '3rem'
+    },
     h5: {
       fontWeight: 700
     },
     h6: {
       fontWeight: 700
+    }
+  },
+  overrides: {
+    MuiLink: {
+      root: {
+        color: '#1966e3'
+      }
     }
   }
 })

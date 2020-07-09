@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
 import Link from 'next/link'
-import { ThemeProvider, makeStyles, withStyles } from '@material-ui/core/styles'
+import { ThemeProvider, makeStyles /* , withStyles */ } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
@@ -18,7 +18,9 @@ import { lightTheme, darkTheme } from '../src/themes'
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
-    minHeight: 0
+    minHeight: 0,
+    paddingTop: theme.spacing(0.5),
+    paddingBottom: theme.spacing(0.5)
   },
   homeIcon: {
     marginRight: theme.spacing(1)
@@ -27,23 +29,15 @@ const useStyles = makeStyles((theme) => ({
     textTransform: 'none'
   },
   main: {
-    paddingTop: '4rem'
+    paddingTop: '4rem',
+    paddingBottom: '6rem'
   }
 }))
 
-const GlobalStyles = withStyles((theme) => ({
-  '@global': {
-    'a, a.MuiLink-root': {
-      textDecoration: 'none',
-      color: theme.palette.type === 'light'
-        ? theme.palette.primary.main
-        : theme.palette.primary.light
-    },
-    'a.MuiLink-root:hover': {
-      textDecoration: 'none'
-    }
-  }
-}), { name: 'GlobalStyles' })(() => <></>)
+// const GlobalStyles = withStyles((theme) => ({
+//   '@global': {
+//   }
+// }), { name: 'GlobalStyles' })(() => <></>)
 
 export default function App (props) {
   const { Component, pageProps } = props
@@ -74,7 +68,7 @@ export default function App (props) {
       </Head>
       <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
         <CssBaseline />
-        <GlobalStyles />
+        {/* <GlobalStyles /> */}
         <AppBar position='fixed'>
           <Container maxWidth='lg'>
             <Grid container justify='space-between' alignItems='center'>
