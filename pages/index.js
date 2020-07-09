@@ -3,6 +3,7 @@ import Link from '../src/Link'
 import { makeStyles, fade } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
+import Lulu from '../modules/home/lulu.svg'
 
 const useStyles = makeStyles((theme) => ({
   splash: {
@@ -19,25 +20,26 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   luluContainer: {
-    width: '16rem',
-    height: '20rem',
+    width: '300px',
+    height: '400px',
     margin: '0 auto',
     overflow: 'hidden',
     border: '2px solid black',
-    borderRadius: '3em',
+    borderRadius: '48px',
     textAlign: 'center',
     backgroundColor: theme.palette.type === 'light'
       ? fade(theme.palette.primary.main, 0.2)
       : fade(theme.palette.primary.dark, 0.5),
     [theme.breakpoints.down('sm')]: {
       width: '15rem',
-      height: '15rem',
-      borderRadius: '50%'
+      height: '15rem'
     },
-    '& img': {
-      width: '100%',
+    '& svg': {
+      width: '300px',
+      height: '600px',
       [theme.breakpoints.down('sm')]: {
-        width: '12rem'
+        width: '12rem',
+        height: '22rem'
       }
     }
   },
@@ -55,7 +57,7 @@ export default function Index () {
       <Grid container alignItems='flex-end' spacing={4} className={classes.splash}>
         <Grid item xs={12} className={classes.gridShrink}>
           <div className={classes.luluContainer}>
-            <img src='./lulu.svg' />
+            <Lulu />
           </div>
         </Grid>
         <Grid item xs={12} className={classes.gridGrow}>
