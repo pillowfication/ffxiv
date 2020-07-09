@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
-import Link from 'next/Link'
+import Link from 'next/link'
 import { ThemeProvider, makeStyles, withStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Typography from '@material-ui/core/Typography'
@@ -47,7 +47,7 @@ const GlobalStyles = withStyles((theme) => ({
 
 export default function App (props) {
   const { Component, pageProps } = props
-  const [darkMode, setDarkMode] = useState(false)
+  const [theme, setTheme] = useState('light')
   const classes = useStyles()
 
   useEffect(() => {
@@ -55,10 +55,15 @@ export default function App (props) {
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles)
     }
+    setTheme((typeof window !== 'undefined' && window.localStorage.getItem('theme')) || 'light')
   }, [])
 
+  useEffect(() => {
+    window.localStorage.setItem('theme', theme)
+  }, [theme])
+
   const handleChangeTheme = (event) => {
-    setDarkMode(!darkMode)
+    setTheme(theme === 'light' ? 'dark' : 'light')
   }
 
   return (
@@ -67,7 +72,7 @@ export default function App (props) {
         <title>Lulu’s FFXIV Tools</title>
         <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width' />
       </Head>
-      <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+      <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
         <CssBaseline />
         <GlobalStyles />
         <AppBar position='fixed'>
@@ -87,7 +92,7 @@ export default function App (props) {
                 <Toolbar disableGutters className={classes.toolbar}>
                   <Brightness5Icon />
                   <Switch
-                    checked={darkMode}
+                    checked={theme === 'dark'}
                     onChange={handleChangeTheme}
                   />
                   <Brightness2Icon />
