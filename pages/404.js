@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { makeStyles } from '@material-ui/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 
@@ -24,7 +24,7 @@ export default function _404 () {
   return (
     <>
       <Typography variant='h1' gutterBottom>404</Typography>
-      <Typography paragraph variant='body1'>This page does not exist.</Typography>
+      <Typography paragraph>This page does not exist.</Typography>
       <Link href='/'>
         <Button color='primary' variant='contained'>Go home</Button>
       </Link>

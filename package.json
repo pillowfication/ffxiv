@@ -25,9 +25,13 @@
     "@material-ui/icons": "^4.9.1",
     "@svgr/webpack": "^5.4.0",
     "file-loader": "^6.0.0",
+    "highlight.js": "^10.1.1",
+    "moment": "^2.27.0",
     "next": "9.4.4",
+    "raw-loader": "^4.0.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-highlight.js": "^1.0.7",
     "url-loader": "^4.1.0"
   },
   "devDependencies": {

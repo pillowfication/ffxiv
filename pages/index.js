@@ -73,28 +73,28 @@ export default function Index () {
       </Grid>
 
       <Link href='/high-or-low'>
-        <Typography variant='h5'>High or Low</Typography>
+        <Typography variant='h5' display='inline'>High or Low</Typography>
       </Link>
       <Typography paragraph>
         Calculator for the guessing game “High or Low” played against Tista-Bie in Eulmore.
       </Typography>
 
       <Link href='/mini-cactpot'>
-        <Typography variant='h5'>Mini Cactpot</Typography>
+        <Typography variant='h5' display='inline'>Mini Cactpot</Typography>
       </Link>
       <Typography paragraph>
         Calculator for the <MuiLink href='https://na.finalfantasyxiv.com/lodestone/playguide/contentsguide/goldsaucer/cactpot/'>Mini Cactpot</MuiLink> lottery.
       </Typography>
 
       <Link href='/ocean-fishing'>
-        <Typography variant='h5'>Ocean Fishing</Typography>
+        <Typography variant='h5' display='inline'>Ocean Fishing</Typography>
       </Link>
       <Typography paragraph>
         Schedule for upcoming ocean fishing voyages, with information on blue fish and achievements.
       </Typography>
 
       <Link href='/skywatcher'>
-        <Typography variant='h5'>Skywatcher</Typography>
+        <Typography variant='h5' display='inline'>Skywatcher</Typography>
       </Link>
       <Typography paragraph>
         Schedule for weather in Eorzea, and calculator for upcoming weather patterns.

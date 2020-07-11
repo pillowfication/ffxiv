@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
 import Link from 'next/link'
-import { ThemeProvider, makeStyles /* , withStyles */ } from '@material-ui/core/styles'
+import { ThemeProvider, makeStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
@@ -34,10 +34,18 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-// const GlobalStyles = withStyles((theme) => ({
-//   '@global': {
-//   }
-// }), { name: 'GlobalStyles' })(() => <></>)
+const useGlobalStyles = makeStyles((theme) => ({
+  '@global': {
+    section: {
+      marginBottom: theme.spacing(4)
+    }
+  }
+}))
+
+const GlobalStyles = (props) => {
+  useGlobalStyles()
+  return null
+}
 
 export default function App (props) {
   const { Component, pageProps } = props
@@ -65,10 +73,11 @@ export default function App (props) {
       <Head>
         <title>Lulu’s FFXIV Tools</title>
         <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width' />
+
       </Head>
       <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
         <CssBaseline />
-        {/* <GlobalStyles /> */}
+        <GlobalStyles />
         <AppBar position='fixed'>
           <Container maxWidth='lg'>
             <Grid container justify='space-between' alignItems='center'>
@@ -95,7 +104,7 @@ export default function App (props) {
             </Grid>
           </Container>
         </AppBar>
-        <Container maxWidth='lg' className={classes.main}>
+        <Container maxWidth='lg' className={classes.main} component='main'>
           <Component {...pageProps} />
         </Container>
       </ThemeProvider>

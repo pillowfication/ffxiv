@@ -1,11 +1,14 @@
 import { createMuiTheme } from '@material-ui/core/styles'
+import { lighten } from '@material-ui/core/styles/colorManipulator'
+
+const PRIMARY_COLOR = '#0f3d87'
 
 export const lightTheme = createMuiTheme({
   palette: {
     type: 'light',
     primary: {
-      light: '#1966e3',
-      main: '#0f3d87',
+      light: lighten(PRIMARY_COLOR, 0.5),
+      main: PRIMARY_COLOR,
       dark: '#082554'
     },
     background: {
@@ -18,16 +21,28 @@ export const lightTheme = createMuiTheme({
       fontSize: '3rem'
     },
     h5: {
+      fontSize: '1.3rem',
       fontWeight: 700
     },
     h6: {
-      fontWeight: 700
+      fontSize: '1rem',
+      fontWeight: 600
     }
   },
   overrides: {
     MuiLink: {
       root: {
-        color: '#0f3d87'
+        color: PRIMARY_COLOR
+      }
+    },
+    MuiTableHead: {
+      root: {
+        backgroundColor: '#e0e0e0'
+      }
+    },
+    MuiTableBody: {
+      root: {
+        backgroundColor: '#f5f5f5'
       }
     }
   }
@@ -38,7 +53,7 @@ export const darkTheme = createMuiTheme({
     type: 'dark',
     primary: {
       light: '#1966e3',
-      main: '#0f3d87',
+      main: PRIMARY_COLOR,
       dark: '#082554'
     },
     text: {
@@ -54,16 +69,47 @@ export const darkTheme = createMuiTheme({
       fontSize: '3rem'
     },
     h5: {
+      fontSize: '1.3rem',
       fontWeight: 700
     },
     h6: {
-      fontWeight: 700
+      fontSize: '1rem',
+      fontWeight: 600
     }
   },
   overrides: {
     MuiLink: {
       root: {
         color: '#1966e3'
+      }
+    },
+    MuiFormLabel: {
+      root: {
+        '&$focused': {
+          color: '#1966e3'
+        }
+      }
+    },
+    MuiInput: {
+      underline: {
+        '&::after': {
+          borderBottomColor: '#1966e3'
+        }
+      }
+    },
+    MuiPaper: {
+      root: {
+        backgroundColor: '#31363f'
+      }
+    },
+    MuiTableHead: {
+      root: {
+        backgroundColor: '#2c313a'
+      }
+    },
+    MuiTableBody: {
+      root: {
+        backgroundColor: '#31363f'
       }
     }
   }

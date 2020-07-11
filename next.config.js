@@ -18,6 +18,13 @@ module.exports = {
       }]
     })
 
+    config.module.rules.push({
+      test: /\.ffmacro$/,
+      use: [{
+        loader: 'raw-loader'
+      }]
+    })
+
     return config
   }
 }
