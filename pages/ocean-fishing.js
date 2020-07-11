@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import moment from 'moment'
+import { paddedZero } from '../modules/utils'
 import Typography from '@material-ui/core/Typography'
 import Link from '@material-ui/core/Link'
 import OceanFishingTable from '../modules/ocean-fishing/OceanFishingTable'
@@ -8,10 +9,6 @@ import AchievementsInformation from '../modules/ocean-fishing/AchievementsInform
 
 const JST_UTC = 540
 const UPDATE_INTERVAL = 30 * 1000
-
-function paddedZero (n) {
-  return n > 9 ? n : '0' + n
-}
 
 function toUTCString (utc) {
   return `UTC${utc >= 0 ? '+' : '−'}${paddedZero(Math.abs(utc / 60 | 0))}:${paddedZero(Math.abs(utc) % 60)}`

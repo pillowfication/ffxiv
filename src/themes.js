@@ -1,5 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles'
-import { lighten } from '@material-ui/core/styles/colorManipulator'
+import { lighten, fade } from '@material-ui/core/styles/colorManipulator'
 
 const PRIMARY_COLOR = '#0f3d87'
 
@@ -13,6 +13,9 @@ export const lightTheme = createMuiTheme({
     },
     background: {
       default: '#fafbfc'
+    },
+    action: {
+      hover: fade(PRIMARY_COLOR, 0.15)
     }
   },
   typography: {
