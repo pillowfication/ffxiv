@@ -73,7 +73,7 @@ export default function App (props) {
       <Head>
         <title>Lulu’s FFXIV Tools</title>
         <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width' />
-
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_HTML' />
       </Head>
       <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
         <CssBaseline />

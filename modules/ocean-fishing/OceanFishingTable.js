@@ -12,7 +12,7 @@ import Grid from '@material-ui/core/Grid'
 import FormControl from '@material-ui/core/FormControl'
 import InputLabel from '@material-ui/core/InputLabel'
 import TextField from '@material-ui/core/TextField'
-import NativeSelect from '@material-ui/core/NativeSelect'
+import Select from '@material-ui/core/Select'
 import Paper from '@material-ui/core/Paper'
 import TableContainer from '@material-ui/core/TableContainer'
 import Table from '@material-ui/core/Table'
@@ -133,6 +133,7 @@ export default function OceanFishingTable (props) {
         <Grid item xs={12} sm={6}>
           <FormControl fullWidth>
             <TextField
+              variant='filled'
               label='Number of rows'
               type='number'
               value={numRows}
@@ -142,10 +143,11 @@ export default function OceanFishingTable (props) {
           </FormControl>
         </Grid>
         <Grid item xs={12} sm={6}>
-          <FormControl fullWidth>
+          <FormControl fullWidth variant='filled'>
             {/* Change to MUI Select when <optgroup> is possible */}
             <InputLabel>Filter Route</InputLabel>
-            <NativeSelect
+            <Select
+              native
               value={filter}
               onChange={handleSelectFilter}
             >
@@ -170,7 +172,7 @@ export default function OceanFishingTable (props) {
                 <option value='sharks'>Sharks</option>
                 <option value='octopodes'>Octopodes</option>
               </optgroup>
-            </NativeSelect>
+            </Select>
           </FormControl>
         </Grid>
       </Grid>
