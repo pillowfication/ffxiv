@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     textTransform: 'none'
   },
   main: {
-    paddingTop: '4rem',
+    paddingTop: '6rem',
     paddingBottom: '6rem'
   }
 }))

@@ -19,16 +19,17 @@ export const lightTheme = createMuiTheme({
     }
   },
   typography: {
+    fontSize: 20,
     fontFamily: '"Open Sans", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif',
     h1: {
       fontSize: '3rem'
     },
     h5: {
-      fontSize: '1.5rem',
+      fontSize: '1.75rem',
       fontWeight: 700
     },
     h6: {
-      fontSize: '1.1rem',
+      fontSize: '1.3rem',
       fontWeight: 600
     }
   },
@@ -67,16 +68,17 @@ export const darkTheme = createMuiTheme({
     }
   },
   typography: {
+    fontSize: 20,
     fontFamily: '"Open Sans", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif',
     h1: {
       fontSize: '3rem'
     },
     h5: {
-      fontSize: '1.5rem',
+      fontSize: '1.75rem',
       fontWeight: 700
     },
     h6: {
-      fontSize: '1.1rem',
+      fontSize: '1.3rem',
       fontWeight: 600
     }
   },

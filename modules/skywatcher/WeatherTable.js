@@ -45,14 +45,22 @@ const useStyles = makeStyles((theme) => ({
   weatherTime: {
     textAlign: 'center',
     paddingLeft: theme.spacing(0.5),
-    paddingRight: theme.spacing(0.5)
+    paddingRight: theme.spacing(0.5),
+    '&:last-child': {
+      paddingRight: theme.spacing(1),
+      width: 100 + theme.spacing(1.5)
+    }
   },
   weatherCell: {
     width: '100px',
     paddingLeft: theme.spacing(0.5),
     paddingRight: theme.spacing(0.5),
     textAlign: 'center',
-    verticalAlign: 'top'
+    verticalAlign: 'top',
+    '&:last-child': {
+      paddingRight: theme.spacing(1),
+      width: 100 + theme.spacing(1.5)
+    }
   },
   current: {
     backgroundColor: theme.palette.action.hover,
