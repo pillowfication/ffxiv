@@ -6,28 +6,30 @@ import { fade } from '@material-ui/core/styles/colorManipulator'
 import TextField from '@material-ui/core/TextField'
 
 const useStyles = makeStyles((theme) => ({
-  card: {
+  cell: {
     width: '6em',
-    height: '9em',
-    margin: theme.spacing(2),
-    border: theme.palette.type === 'dark' ? '1px solid gray' : '1px solid black',
+    height: '6em',
     backgroundColor: theme.palette.type === 'dark' ? theme.palette.grey[900] : theme.palette.grey[100],
-    borderRadius: '0.5em'
+    borderRadius: 0,
+    [theme.breakpoints.up('md')]: {
+      width: '7.5em',
+      height: '7.5em'
+    }
   },
-  cardInput: {
+  cellInput: {
     textAlign: 'center',
     fontSize: '3em'
   },
-  disabled: {
-    backgroundColor: fade(theme.palette.primary.main, 0.15),
-    '& $cardInput': {
-      fontSize: '2em'
-    }
+  suggested: {
+    backgroundColor: fade(theme.palette.primary.main, 0.2)
+  },
+  error: {
+    backgroundColor: fade(theme.palette.error.main, 0.25)
   }
 }))
 
-export default function HighOrLowCard (props) {
-  const { value, disabled, error, onInputDigit } = props
+export default function MiniCactpotCell (props) {
+  const { value, suggested, error, onInputDigit } = props
   const classes = useStyles()
 
   const handleInputDigit = (event) => {
@@ -45,19 +47,18 @@ export default function HighOrLowCard (props) {
   return (
     <TextField
       variant='outlined'
-      disabled={disabled}
       error={error}
-      InputProps={{ className: cn(classes.card, disabled && classes.disabled) }}
-      inputProps={{ className: classes.cardInput }}
+      InputProps={{ className: cn(classes.cell, suggested && classes.suggested, error && classes.error) }}
+      inputProps={{ className: classes.cellInput }}
       onKeyDown={handleInputDigit}
-      value={disabled ? '?' : (value || '')}
+      value={value || ''}
     />
   )
 }
 
-HighOrLowCard.propTypes = {
+MiniCactpotCell.propTypes = {
   value: PropTypes.number,
-  disabled: PropTypes.bool,
+  suggested: PropTypes.bool,
   error: PropTypes.bool,
   onInputDigit: PropTypes.func
 }
