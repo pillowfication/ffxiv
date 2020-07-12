@@ -27,12 +27,12 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2)
   },
   schedule: {
-    minWidth: theme.breakpoints.values.sm,
     '& td': {
       paddingTop: theme.spacing(0.25),
       paddingBottom: theme.spacing(0.25),
       paddingLeft: theme.spacing(1),
-      paddingRight: theme.spacing(2)
+      paddingRight: theme.spacing(1),
+      whiteSpace: 'nowrap'
     },
     '& tbody tr:hover': {
       cursor: 'pointer'
@@ -40,6 +40,11 @@ const useStyles = makeStyles((theme) => ({
   },
   hoverRow: {
     backgroundColor: theme.palette.action.hover
+  },
+  dateCell: {
+    'td&': {
+      paddingLeft: theme.spacing(2)
+    }
   },
   timeCell: {
     '& svg': {
@@ -209,7 +214,7 @@ export default function OceanFishingTable (props) {
                       onMouseOver={handleHoverRow[destinationCode]}
                       onClick={handleSelectRow[destinationCode]}
                     >
-                      <TableCell>
+                      <TableCell className={classes.dateCell}>
                         {dateChange && <Typography variant='body2' align='right'>{date}</Typography>}
                       </TableCell>
                       <TableCell>

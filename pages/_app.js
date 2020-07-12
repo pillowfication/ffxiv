@@ -38,6 +38,9 @@ const useGlobalStyles = makeStyles((theme) => ({
   '@global': {
     section: {
       marginBottom: theme.spacing(4)
+    },
+    code: {
+      fontSize: '1.2em'
     }
   }
 }))
