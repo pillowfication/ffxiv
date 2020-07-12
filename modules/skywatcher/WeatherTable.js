@@ -22,19 +22,8 @@ import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import WeatherIcon from './WeatherIcon'
 
-const REGIONS_LIST = [
-  REGIONS.LA_NOSCEA,
-  REGIONS.THE_BLACK_SHROUD,
-  REGIONS.THANALAN,
-  REGIONS.ISHGARD_AND_SURROUNDING_AREAS,
-  REGIONS.GYR_ABANIA,
-  REGIONS.THE_FAR_EAST,
-  REGIONS.NORVRANDT,
-  REGIONS.EUREKA,
-  REGIONS.OTHERS
-]
+const { REGIONS_LIST } = REGIONS
 const ZONES_LIST = REGIONS_LIST.map(region => region.zones).flat()
-const WEATHER_THUNDERSTORM = 'Thunder' + String.fromCharCode(173) + 'storms'
 const WEATHER_CELL_WIDTH = 75
 
 const useStyles = makeStyles((theme) => ({
@@ -42,7 +31,9 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2)
   },
   weatherTable: {
-    marginBottom: theme.spacing(4)
+    ':not(:last-child) > &': {
+      marginBottom: theme.spacing(4)
+    }
   },
   weatherTime: {
     textAlign: 'center',
@@ -119,6 +110,7 @@ export default function WeatherTable (props) {
 
     return (
       <section>
+        <Typography variant='h5' gutterBottom>Upcoming Weather</Typography>
         <FormControl variant='filled' fullWidth margin='dense' className={classes.selectRegion}>
           <InputLabel>Select a region</InputLabel>
           <Select onChange={handleSelectFilter} value={filter || 'none'}>
@@ -131,7 +123,7 @@ export default function WeatherTable (props) {
         <NoSsr>
           {(filteredRegion ? [filteredRegion] : REGIONS_LIST).map((region) =>
             <React.Fragment key={region.name}>
-              <Typography variant='h5' gutterBottom>{region.name}</Typography>
+              <Typography variant='h6' gutterBottom>{region.name}</Typography>
               <TableContainer>
                 <Table size='small' className={classes.weatherTable}>
                   <TableHead>
@@ -153,10 +145,6 @@ export default function WeatherTable (props) {
                         {weathers[zone].zoneWeathers.map((weather, index) =>
                           <TableCell key={index} className={cn(classes.weatherCell, index === 1 && classes.current)}>
                             <WeatherIcon name={weather} />
-                            <br />
-                            <Typography variant='caption'>
-                              {weather === 'Thunderstorms' ? WEATHER_THUNDERSTORM : weather}
-                            </Typography>
                           </TableCell>
                         )}
                       </TableRow>
