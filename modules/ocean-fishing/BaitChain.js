@@ -16,14 +16,14 @@ const useStyles = makeStyles((theme) => ({
   },
   chevron: {
     position: 'relative',
-    top: '-0.25em',
-    marginLeft: '-0.25em',
-    marginRight: '-0.25em'
+    top: '-0.3em',
+    marginLeft: '-0.15em',
+    marginRight: '-0.15em'
   },
   dh: {
     position: 'relative',
-    top: '-0.7em',
-    marginLeft: theme.spacing(0.25)
+    top: '-0.8em',
+    marginLeft: theme.spacing(1)
   }
 }))
 

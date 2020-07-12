@@ -215,13 +215,13 @@ export default function OceanFishingTable (props) {
                       onClick={handleSelectRow[destinationCode]}
                     >
                       <TableCell className={classes.dateCell}>
-                        {dateChange && <Typography variant='body2' align='right'>{date}</Typography>}
+                        {dateChange && <Typography align='right'>{date}</Typography>}
                       </TableCell>
                       <TableCell>
-                        <Typography variant='body2'>{time.format('HH:mm')}</Typography>
+                        <Typography>{time.format('HH:mm')}</Typography>
                       </TableCell>
                       <TableCell>
-                        <Typography variant='body2' align='right'>{DEST_MAP[destinationCode[0]]}</Typography>
+                        <Typography align='right'>{DEST_MAP[destinationCode[0]]}</Typography>
                       </TableCell>
                       <TableCell className={classes.timeCell}>
                         {TIME_MAP[destinationCode[1]]}

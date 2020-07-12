@@ -15,9 +15,9 @@ const useStyles = makeStyles((theme) => ({
   },
   sup: {
     position: 'absolute',
-    left: '2.25em',
-    top: '-0.1em',
-    fontSize: '0.75em'
+    left: '2.3em',
+    top: '-0.2em',
+    fontSize: '0.85em'
   },
   light: {
     backgroundColor: theme.palette.type === 'dark' ? '#078203' : '#aaffaa'

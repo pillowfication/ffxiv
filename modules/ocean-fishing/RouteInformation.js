@@ -21,6 +21,10 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: '0',
       display: 'block'
     }
+  },
+  headerTime: {
+    position: 'relative',
+    top: '-0.2em'
   }
 }))
 
@@ -44,7 +48,7 @@ export default function RouteInformation (props) {
   return (
     <section>
       <Typography variant='h5' gutterBottom>
-        {DEST_MAP[name]} {TIME_MAP[time]}
+        {DEST_MAP[name]} <span className={classes.headerTime}>{TIME_MAP[time]}</span>
         <Typography display='inline' className={classes.headerSub}>
           next is {
             timeUntil <= 0
