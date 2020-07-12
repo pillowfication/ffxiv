@@ -2,8 +2,9 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import cn from 'classnames'
 import PropTypes from 'prop-types'
+import Typography from '@material-ui/core/Typography'
 
-const ICONS = [
+export const WEATHERS = [
   'Clear Skies',
   'Fair Skies',
   'Clouds',
@@ -24,9 +25,10 @@ const ICONS = [
   'Umbral Static',
   'Umbral Wind'
 ]
+const WEATHER_THUNDERSTORM = 'Thunder' + String.fromCharCode(173) + 'storms'
 
 export const ICON_TITLES = {}
-for (const icon of ICONS) {
+for (const icon of WEATHERS) {
   ICON_TITLES[toCamelCase(icon)] = icon
 }
 
@@ -42,10 +44,10 @@ const useStyles = makeStyles((theme) => {
       width: '30px',
       height: '30px',
       backgroundImage: 'url("./images/weather-icons.png")',
-      backgroundSize: `${ICONS.length * 100}% 100%`
+      backgroundSize: `${WEATHERS.length * 100}% 100%`
     }
   }
-  ICONS.forEach((icon, index) => {
+  WEATHERS.forEach((icon, index) => {
     styles[toCamelCase(icon)] = {
       backgroundPosition: `${index * -100}% 0%`
     }
@@ -54,11 +56,18 @@ const useStyles = makeStyles((theme) => {
 })
 
 export default function WeatherIcon (props) {
+  const { name } = props
   const classes = useStyles()
-  const name = toCamelCase(props.name)
+  const baseName = toCamelCase(name)
 
   return (
-    <div className={cn(classes.weatherIcon, classes[name])} title={ICON_TITLES[name]} />
+    <>
+      <div className={cn(classes.weatherIcon, classes[baseName])} title={ICON_TITLES[baseName]} />
+      <br />
+      <Typography variant='caption'>
+        {name === 'Thunderstorms' ? WEATHER_THUNDERSTORM : name}
+      </Typography>
+    </>
   )
 }
 
