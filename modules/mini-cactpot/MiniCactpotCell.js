@@ -7,8 +7,8 @@ import TextField from '@material-ui/core/TextField'
 
 const useStyles = makeStyles((theme) => ({
   cell: {
-    width: '6em',
-    height: '6em',
+    width: '5em',
+    height: '5em',
     backgroundColor: theme.palette.type === 'dark' ? theme.palette.grey[900] : theme.palette.grey[100],
     borderRadius: 0,
     [theme.breakpoints.up('md')]: {
@@ -18,7 +18,10 @@ const useStyles = makeStyles((theme) => ({
   },
   cellInput: {
     textAlign: 'center',
-    fontSize: '3em'
+    fontSize: '2.5em',
+    [theme.breakpoints.up('md')]: {
+      fontSize: '4em'
+    }
   },
   suggested: {
     backgroundColor: fade(theme.palette.primary.main, 0.2)
