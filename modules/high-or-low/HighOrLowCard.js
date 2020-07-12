@@ -7,12 +7,17 @@ import TextField from '@material-ui/core/TextField'
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    width: '6em',
-    height: '9em',
-    margin: theme.spacing(2),
+    width: '4em',
+    height: '6em',
+    margin: theme.spacing(1),
     border: theme.palette.type === 'dark' ? '1px solid gray' : '1px solid black',
     backgroundColor: theme.palette.type === 'dark' ? theme.palette.grey[900] : theme.palette.grey[100],
-    borderRadius: '0.5em'
+    borderRadius: '0.5em',
+    [theme.breakpoints.up('md')]: {
+      width: '6em',
+      height: '9em',
+      margin: theme.spacing(2)
+    }
   },
   cardInput: {
     textAlign: 'center',

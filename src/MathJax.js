@@ -30,6 +30,8 @@ const useStyles = makeStyles((theme) => ({
     wordWrap: 'break-word'
   },
   mathJaxBlock: {
+    maxWidth: '100%',
+    overflowX: 'auto',
     fontSize: '1.125em'
   },
   mathJaxInline: {
