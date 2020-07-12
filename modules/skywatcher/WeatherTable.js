@@ -14,6 +14,7 @@ import FormControl from '@material-ui/core/FormControl'
 import InputLabel from '@material-ui/core/InputLabel'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
+import TableContainer from '@material-ui/core/TableContainer'
 import Table from '@material-ui/core/Table'
 import TableHead from '@material-ui/core/TableHead'
 import TableBody from '@material-ui/core/TableBody'
@@ -34,6 +35,7 @@ const REGIONS_LIST = [
 ]
 const ZONES_LIST = REGIONS_LIST.map(region => region.zones).flat()
 const WEATHER_THUNDERSTORM = 'Thunder' + String.fromCharCode(173) + 'storms'
+const WEATHER_CELL_WIDTH = 75
 
 const useStyles = makeStyles((theme) => ({
   selectRegion: {
@@ -48,18 +50,27 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: theme.spacing(0.5),
     '&:last-child': {
       paddingRight: theme.spacing(1),
-      width: 100 + theme.spacing(1.5)
+      width: WEATHER_CELL_WIDTH + theme.spacing(1.5)
     }
   },
+  regionCell: {
+    minWidth: 200
+  },
   weatherCell: {
-    width: '100px',
+    width: WEATHER_CELL_WIDTH + theme.spacing(1),
     paddingLeft: theme.spacing(0.5),
     paddingRight: theme.spacing(0.5),
     textAlign: 'center',
     verticalAlign: 'top',
+    lineHeight: 1,
+    '& span': {
+      display: 'inline-block',
+      width: WEATHER_CELL_WIDTH,
+      lineHeight: 1.1
+    },
     '&:last-child': {
       paddingRight: theme.spacing(1),
-      width: 100 + theme.spacing(1.5)
+      width: WEATHER_CELL_WIDTH + theme.spacing(1.5)
     }
   },
   current: {
@@ -99,7 +110,7 @@ export default function WeatherTable (props) {
   }
 
   if (now) {
-    const weathersCount = lg ? 8 : md ? 6 : sm ? 3 : 1
+    const weathersCount = lg ? 9 : md ? 7 : sm ? 6 : 3
     const weathers = calculateWeathers(ZONES_LIST, weathersCount, now)
     const eorzeanTime = getEorzeanTime(now)
     const timeChunk = Math.floor(eorzeanTime.getUTCHours() / 8) * 8
@@ -121,34 +132,38 @@ export default function WeatherTable (props) {
           {(filteredRegion ? [filteredRegion] : REGIONS_LIST).map((region) =>
             <React.Fragment key={region.name}>
               <Typography variant='h5' gutterBottom>{region.name}</Typography>
-              <Table size='small' className={classes.weatherTable}>
-                <TableHead>
-                  <TableRow>
-                    <TableCell />
-                    {Array(weathersCount + 1).fill().map((_, index) =>
-                      <TableCell key={index} className={cn(classes.weatherTime, index === 1 && classes.current)}>
-                        {paddedZero((24 + timeChunk + 8 * (index - 1)) % 24) + ':00'}
-                      </TableCell>
-                    )}
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {region.zones.map(zone =>
-                    <TableRow key={zone} hover>
-                      <TableCell component='th' scope='row'>{weathers[zone].zoneName}</TableCell>
-                      {weathers[zone].zoneWeathers.map((weather, index) =>
-                        <TableCell key={index} className={cn(classes.weatherCell, index === 1 && classes.current)}>
-                          <WeatherIcon name={weather} />
-                          <br />
-                          <Typography variant='caption'>
-                            {weather === 'Thunderstorms' ? WEATHER_THUNDERSTORM : weather}
-                          </Typography>
+              <TableContainer>
+                <Table size='small' className={classes.weatherTable}>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell />
+                      {Array(weathersCount + 1).fill().map((_, index) =>
+                        <TableCell key={index} className={cn(classes.weatherTime, index === 1 && classes.current)}>
+                          {paddedZero((24 + timeChunk + 8 * (index - 1)) % 24) + ':00'}
                         </TableCell>
                       )}
                     </TableRow>
-                  )}
-                </TableBody>
-              </Table>
+                  </TableHead>
+                  <TableBody>
+                    {region.zones.map(zone =>
+                      <TableRow key={zone} hover>
+                        <TableCell component='th' scope='row' className={classes.regionCell}>
+                          {weathers[zone].zoneName}
+                        </TableCell>
+                        {weathers[zone].zoneWeathers.map((weather, index) =>
+                          <TableCell key={index} className={cn(classes.weatherCell, index === 1 && classes.current)}>
+                            <WeatherIcon name={weather} />
+                            <br />
+                            <Typography variant='caption'>
+                              {weather === 'Thunderstorms' ? WEATHER_THUNDERSTORM : weather}
+                            </Typography>
+                          </TableCell>
+                        )}
+                      </TableRow>
+                    )}
+                  </TableBody>
+                </Table>
+              </TableContainer>
             </React.Fragment>)}
         </NoSsr>
       </section>

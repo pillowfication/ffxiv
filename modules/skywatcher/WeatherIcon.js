@@ -41,7 +41,6 @@ const useStyles = makeStyles((theme) => {
       display: 'inline-block',
       width: '30px',
       height: '30px',
-      marginBottom: '-0.5em',
       backgroundImage: 'url("./images/weather-icons.png")',
       backgroundSize: `${ICONS.length * 100}% 100%`
     }

@@ -19,7 +19,7 @@ export const lightTheme = createMuiTheme({
     }
   },
   typography: {
-    fontSize: 20,
+    fontSize: 16,
     fontFamily: '"Open Sans", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif',
     h1: {
       fontSize: '3rem'
@@ -68,7 +68,7 @@ export const darkTheme = createMuiTheme({
     }
   },
   typography: {
-    fontSize: 20,
+    fontSize: 16,
     fontFamily: '"Open Sans", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif',
     h1: {
       fontSize: '3rem'
