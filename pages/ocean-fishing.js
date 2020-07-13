@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import moment from 'moment'
-import { paddedZero } from '../modules/utils'
+import { paddedZero } from '../src/utils'
 import Typography from '@material-ui/core/Typography'
 import Link from '@material-ui/core/Link'
-import OceanFishingTable from '../modules/ocean-fishing/OceanFishingTable'
-import RouteInformation from '../modules/ocean-fishing/RouteInformation'
-import AchievementsInformation from '../modules/ocean-fishing/AchievementsInformation'
+import OceanFishingTable from '../src/ocean-fishing/OceanFishingTable'
+import RouteInformation from '../src/ocean-fishing/RouteInformation'
+import AchievementsInformation from '../src/ocean-fishing/AchievementsInformation'
 
 const JST_UTC = 540
 const UPDATE_INTERVAL = 30 * 1000

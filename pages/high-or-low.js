@@ -1,7 +1,7 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import MathJax from '../src/MathJax'
-import HighOrLowCalculator from '../modules/high-or-low/HighOrLowCalculator'
+import HighOrLowCalculator from '../src/high-or-low/HighOrLowCalculator'
 
 export default function HighOrLow () {
   return (

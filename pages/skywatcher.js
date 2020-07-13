@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import getEorzeanTime from '../modules/skywatcher/get-eorzean-time'
+import getEorzeanTime from '../src/skywatcher/get-eorzean-time'
 import Typography from '@material-ui/core/Typography'
-import WeatherTable from '../modules/skywatcher/WeatherTable'
-import WeatherForecaster from '../modules/skywatcher/WeatherForecaster'
+import WeatherTable from '../src/skywatcher/WeatherTable'
+import WeatherForecaster from '../src/skywatcher/WeatherForecaster'
 
 const UPDATE_INTERVAL = 1000
 
