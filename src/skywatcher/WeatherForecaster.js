@@ -102,7 +102,8 @@ export default function WeatherForecaster (props) {
   const [times, setTimes] = useState({ 0: true, 8: true, 16: true })
   const classes = useStyles()
   const possibleWeathers = zone && getPossibleWeathers(zone.zoneId)
-  const forecast = zone && (times[0] || times[8] || times[16]) && forecastWeather(
+  const hasTime = times[0] || times[8] || times[16]
+  const forecast = zone && hasTime && forecastWeather(
     zone.zoneId,
     now || new Date(),
     transitionWeather,
@@ -183,6 +184,10 @@ export default function WeatherForecaster (props) {
             </FormGroup>
           </FormControl>
         </Grid>
+        {zone && !hasTime &&
+          <Grid item xs={12}>
+            <Typography><strong>Error:</strong> At least one time must be selected.</Typography>
+          </Grid>}
         {forecast &&
           <Grid item xs={12}>
             <Typography variant='h6' gutterBottom>Next 10 matches</Typography>
