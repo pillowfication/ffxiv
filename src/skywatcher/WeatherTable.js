@@ -142,7 +142,7 @@ export default function WeatherTable (props) {
                     {zones.map((zoneId) =>
                       <TableRow key={zoneId} hover>
                         <TableCell component='th' scope='row' className={classes.regionCell}>
-                          {eorzeaWeather.translateZone(zoneId)}
+                          <Typography>{eorzeaWeather.translateZone(zoneId)}</Typography>
                         </TableCell>
                         {weathers[zoneId].map((weatherId, index) =>
                           <TableCell key={index} className={cn(classes.weatherCell, index === 1 && classes.current)}>

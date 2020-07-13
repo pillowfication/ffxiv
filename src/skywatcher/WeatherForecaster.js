@@ -58,6 +58,10 @@ const useStyles = makeStyles((theme) => ({
       display: 'none'
     }
   },
+  dateCell: {
+    width: '100px',
+    textAlign: 'right'
+  },
   forecastCell: {
     whiteSpace: 'nowrap'
   },
@@ -185,18 +189,41 @@ export default function WeatherForecaster (props) {
             <TableContainer>
               <Table size='small' className={classes.weatherTable}>
                 <TableBody>
-                  {forecast.map(({ date, bell, previousWeather, currentWeather }, index) =>
-                    <TableRow key={index} hover>
-                      <TableCell className={classes.forecastCell}>
-                        {moment(date).format('MM/DD')} at {moment(date).format('HH:mm')} -  {moment.duration(moment(date).diff()).humanize(true)}
-                      </TableCell>
-                      <TableCell className={classes.bellCell}>{displayBell((bell + 16) % 24)}</TableCell>
-                      <TableCell className={classes.weatherCell}><WeatherIcon weatherId={previousWeather} /></TableCell>
-                      <TableCell className={classes.transitionCell}><ArrowForwardIcon /></TableCell>
-                      <TableCell className={classes.bellCell}>{displayBell(bell)}</TableCell>
-                      <TableCell className={classes.weatherCell}><WeatherIcon weatherId={currentWeather} /></TableCell>
-                    </TableRow>
-                  )}
+                  {(() => {
+                    let previousDate = ''
+                    return forecast.map(({ date, bell, previousWeather, currentWeather }, index) => {
+                      const momentDate = moment(date)
+                      const currentDate = momentDate.format('MM/DD')
+                      return (
+                        <TableRow key={index} hover>
+                          <TableCell className={classes.dateCell}>
+                            <Typography>{previousDate !== (previousDate = currentDate) ? currentDate : null}</Typography>
+                          </TableCell>
+                          <TableCell className={classes.dateCell}>
+                            <Typography>{momentDate.format('HH:mm')}</Typography>
+                          </TableCell>
+                          <TableCell className={classes.forecastCell}>
+                            <Typography>{moment.duration(momentDate.diff(now)).humanize(true)}</Typography>
+                          </TableCell>
+                          <TableCell className={classes.bellCell}>
+                            <Typography>{displayBell((bell + 16) % 24)}</Typography>
+                          </TableCell>
+                          <TableCell className={classes.weatherCell}>
+                            <WeatherIcon weatherId={previousWeather} />
+                          </TableCell>
+                          <TableCell className={classes.transitionCell}>
+                            <ArrowForwardIcon />
+                          </TableCell>
+                          <TableCell className={classes.bellCell}>
+                            <Typography>{displayBell(bell)}</Typography>
+                          </TableCell>
+                          <TableCell className={classes.weatherCell}>
+                            <WeatherIcon weatherId={currentWeather} />
+                          </TableCell>
+                        </TableRow>
+                      )
+                    })
+                  })()}
                 </TableBody>
               </Table>
             </TableContainer>
