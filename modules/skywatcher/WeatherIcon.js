@@ -2,40 +2,32 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import cn from 'classnames'
 import PropTypes from 'prop-types'
+import EorzeaWeather from '@pillowfication/eorzea-weather'
 import Typography from '@material-ui/core/Typography'
 
-export const WEATHERS = [
-  'Clear Skies',
-  'Fair Skies',
-  'Clouds',
-  'Wind',
-  'Gales',
-  'Fog',
-  'Rain',
-  'Showers',
-  'Thunder',
-  'Thunderstorms',
-  'Dust Storms',
-  'Sandstorms',
-  'Heat Waves',
-  'Hot Spells',
-  'Snow',
-  'Blizzards',
-  'Gloom',
-  'Umbral Static',
-  'Umbral Wind'
+const WEATHERS = [
+  EorzeaWeather.WEATHER_CLEAR_SKIES,
+  EorzeaWeather.WEATHER_FAIR_SKIES,
+  EorzeaWeather.WEATHER_CLOUDS,
+  EorzeaWeather.WEATHER_WIND,
+  EorzeaWeather.WEATHER_GALES,
+  EorzeaWeather.WEATHER_FOG,
+  EorzeaWeather.WEATHER_RAIN,
+  EorzeaWeather.WEATHER_SHOWERS,
+  EorzeaWeather.WEATHER_THUNDER,
+  EorzeaWeather.WEATHER_THUNDERSTORMS,
+  EorzeaWeather.WEATHER_DUST_STORMS,
+  'sandstorms', // EorzeaWeather.WEATHER_SANDSTORMS,
+  EorzeaWeather.WEATHER_HEAT_WAVES,
+  'hotSpells', // EorzeaWeather.WEATHER_HOT_SPELLS,
+  EorzeaWeather.WEATHER_SNOW,
+  EorzeaWeather.WEATHER_BLIZZARDS,
+  EorzeaWeather.WEATHER_GLOOM,
+  EorzeaWeather.WEATHER_UMBRAL_STATIC,
+  EorzeaWeather.WEATHER_UMBRAL_WIND
 ]
+
 const WEATHER_THUNDERSTORM = 'Thunder' + String.fromCharCode(173) + 'storms'
-
-export const ICON_TITLES = {}
-for (const icon of WEATHERS) {
-  ICON_TITLES[toCamelCase(icon)] = icon
-}
-
-function toCamelCase (str) {
-  str = str.replace(' ', '')
-  return str[0].toLowerCase() + str.slice(1)
-}
 
 const useStyles = makeStyles((theme) => {
   const styles = {
@@ -47,8 +39,8 @@ const useStyles = makeStyles((theme) => {
       backgroundSize: `${WEATHERS.length * 100}% 100%`
     }
   }
-  WEATHERS.forEach((icon, index) => {
-    styles[toCamelCase(icon)] = {
+  WEATHERS.forEach((weatherId, index) => {
+    styles[weatherId] = {
       backgroundPosition: `${index * -100}% 0%`
     }
   })
@@ -56,34 +48,21 @@ const useStyles = makeStyles((theme) => {
 })
 
 export default function WeatherIcon (props) {
-  const { name } = props
+  const { weatherId, locale = 'en' } = props
   const classes = useStyles()
-  const baseName = toCamelCase(name)
+  const weatherString = EorzeaWeather.translateWeather(weatherId, locale)
 
   return (
     <>
-      <div className={cn(classes.weatherIcon, classes[baseName])} title={ICON_TITLES[baseName]} />
+      <div className={cn(classes.weatherIcon, classes[weatherId])} title={weatherString} />
       <br />
       <Typography variant='caption'>
-        {name === 'Thunderstorms' ? WEATHER_THUNDERSTORM : name}
+        {weatherString === 'Thunderstorms' ? WEATHER_THUNDERSTORM : weatherString}
       </Typography>
     </>
   )
 }
 
 WeatherIcon.propTypes = {
-  name: function (props, propName, componentName) {
-    const propTypesError = PropTypes.string.isRequired.apply(this, arguments)
-    if (propTypesError) {
-      return propTypesError
-    }
-
-    const key = toCamelCase(props[propName])
-    if (ICON_TITLES[key] === undefined) {
-      return new Error(
-        `Invalid prop \`${propName}\` supplied to \`${componentName}\`.` +
-        ` Unknown name '${props[propName]}'.`
-      )
-    }
-  }
+  weatherId: PropTypes.oneOf(WEATHERS).isRequired
 }

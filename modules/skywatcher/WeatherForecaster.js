@@ -2,10 +2,9 @@ import React, { useState } from 'react'
 import moment from 'moment'
 import { makeStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
-import EorzeaWeather from 'eorzea-weather'
-import getPossibleWeathers from './get-possible-weathers'
+import EorzeaWeather, { chances } from '@pillowfication/eorzea-weather'
 import forecastWeather from './forecast-weather'
-import { REGIONS_LIST } from './regions'
+import REGIONS from './regions'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import TableContainer from '@material-ui/core/TableContainer'
@@ -28,17 +27,21 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
 import WeatherIcon from './WeatherIcon'
 
 const ZONES = []
-for (const region of REGIONS_LIST) {
-  for (const zone of region.zones) {
-    ZONES.push({ zoneId: zone, region: region.name })
+for (const { regionId, zones } of REGIONS) {
+  for (const zoneId of zones) {
+    ZONES.push({ regionId, zoneId })
   }
 }
 
 const WEATHER_CELL_WIDTH = 75
-const translateZone = EorzeaWeather.prototype.translate.bind({ locale: 'en' })
+const eorzeaWeather = new EorzeaWeather({ locale: 'en' })
 
 function displayBell (bell) {
   return bell > 9 ? bell + ':00' : '0' + bell + ':00'
+}
+
+function getPossibleWeathers (zoneId) {
+  return chances[zoneId].map(({ w: weatherId }) => weatherId)
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -88,6 +91,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default function WeatherForecaster (props) {
+  const { now } = props
   const [zone, setZone] = useState(null)
   const [transitionWeather, setTransitionWeather] = useState('none')
   const [targetWeather, setTargetWeather] = useState('none')
@@ -96,7 +100,7 @@ export default function WeatherForecaster (props) {
   const possibleWeathers = zone && getPossibleWeathers(zone.zoneId)
   const forecast = zone && (times[0] || times[8] || times[16]) && forecastWeather(
     zone.zoneId,
-    new Date(),
+    now || new Date(),
     transitionWeather,
     targetWeather,
     times
@@ -119,11 +123,9 @@ export default function WeatherForecaster (props) {
         <Grid item xs={12} md={4}>
           <Autocomplete
             options={ZONES}
-            groupBy={(option) => option.region}
-            getOptionLabel={(option) => translateZone('zones.' + option.zoneId)}
-            renderInput={
-              (params) => <TextField {...params} label='Select a zone' />
-            }
+            groupBy={(zone) => eorzeaWeather.translateRegion(zone.regionId)}
+            getOptionLabel={(option) => eorzeaWeather.translateZone(option.zoneId)}
+            renderInput={(params) => <TextField {...params} label='Select a zone' />}
             value={zone}
             getOptionSelected={(opt1, opt2) => opt1.zoneId === opt2.zoneId}
             onChange={handleSelectZone}
@@ -139,7 +141,7 @@ export default function WeatherForecaster (props) {
             >
               <MenuItem value='none'>{possibleWeathers ? 'Any weather' : 'Select a zone first'}</MenuItem>
               {possibleWeathers && possibleWeathers.map((weather) =>
-                <MenuItem key={weather} value={weather}>{weather}</MenuItem>
+                <MenuItem key={weather} value={weather}>{eorzeaWeather.translateWeather(weather)}</MenuItem>
               )}
             </Select>
           </FormControl>
@@ -153,7 +155,7 @@ export default function WeatherForecaster (props) {
             >
               <MenuItem value='none'>{possibleWeathers ? 'Any weather' : 'Select a zone first'}</MenuItem>
               {possibleWeathers && possibleWeathers.map((weather) =>
-                <MenuItem key={weather} value={weather}>{weather}</MenuItem>
+                <MenuItem key={weather} value={weather}>{eorzeaWeather.translateWeather(weather)}</MenuItem>
               )}
             </Select>
           </FormControl>
@@ -189,10 +191,10 @@ export default function WeatherForecaster (props) {
                         {moment(date).format('MM/DD')} at {moment(date).format('HH:mm')} -  {moment.duration(moment(date).diff()).humanize(true)}
                       </TableCell>
                       <TableCell className={classes.bellCell}>{displayBell((bell + 16) % 24)}</TableCell>
-                      <TableCell className={classes.weatherCell}><WeatherIcon name={previousWeather} /></TableCell>
+                      <TableCell className={classes.weatherCell}><WeatherIcon weatherId={previousWeather} /></TableCell>
                       <TableCell className={classes.transitionCell}><ArrowForwardIcon /></TableCell>
                       <TableCell className={classes.bellCell}>{displayBell(bell)}</TableCell>
-                      <TableCell className={classes.weatherCell}><WeatherIcon name={currentWeather} /></TableCell>
+                      <TableCell className={classes.weatherCell}><WeatherIcon weatherId={currentWeather} /></TableCell>
                     </TableRow>
                   )}
                 </TableBody>

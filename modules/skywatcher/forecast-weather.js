@@ -1,7 +1,9 @@
-import EorzeaWeather from 'eorzea-weather'
+import EorzeaWeather from '@pillowfication/eorzea-weather'
+
+const eorzeaWeather = new EorzeaWeather()
 
 const EORZEAN_RATIO = 1440 / 70
-const _8HR = 8 * 60 * 60 * 1000
+const _8HR = 8 * 60 * 60 * 1000 / EORZEAN_RATIO
 
 export default function forecastWeather (
   zoneId,
@@ -10,24 +12,23 @@ export default function forecastWeather (
   targetWeather = 'none',
   bells = []
 ) {
-  let bell = ((now.getTime() * EORZEAN_RATIO) / _8HR | 0) - 1
+  let bell = (now.getTime() / _8HR | 0) - 1
   const occurences = []
-  const eorzeaWeather = new EorzeaWeather(zoneId)
   transitionWeather = transitionWeather === 'none' ? null : transitionWeather
   targetWeather = targetWeather === 'none' ? null : targetWeather
 
   let previousWeather
-  let currentWeather = eorzeaWeather.getWeather(new Date(bell * _8HR / EORZEAN_RATIO))
+  let currentWeather = eorzeaWeather._getWeather(zoneId, bell * _8HR)
   while (occurences.length < 10) {
-    const date = new Date(++bell * _8HR / EORZEAN_RATIO)
+    const date = ++bell * _8HR
     previousWeather = currentWeather
-    currentWeather = eorzeaWeather.getWeather(date)
+    currentWeather = eorzeaWeather._getWeather(zoneId, ++bell * _8HR)
     if ((!transitionWeather || previousWeather === transitionWeather) &&
       (!targetWeather || currentWeather === targetWeather)) {
       const currBell = (bell % 3) * 8
       if (bells[currBell]) {
         occurences.push({
-          date,
+          date: new Date(date),
           bell: currBell,
           previousWeather,
           currentWeather
@@ -35,7 +36,6 @@ export default function forecastWeather (
       }
     }
   }
+
   return occurences
 }
-
-typeof window !== 'undefined' && (window.asdf = forecastWeather)
