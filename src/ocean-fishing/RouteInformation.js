@@ -5,6 +5,7 @@ import calculateVoyages, { LULU_EPOCH } from './calculate-voyages'
 import { DEST_MAP, TIME_MAP, ROUTE_MAP, FISH_MAP, BLUE_FISH_MAP } from './maps'
 import BAIT_GROUPS from './bait-groups'
 import { makeStyles } from '@material-ui/core/styles'
+import Section from '../Section'
 import Typography from '@material-ui/core/Typography'
 import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
@@ -30,9 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function RouteInformation (props) {
   const { now, selectedRoute } = props
-  if (!now || !selectedRoute) {
-    return null
-  }
+  if (!now || !selectedRoute) return null
 
   const classes = useStyles()
   const [name, time] = selectedRoute
@@ -46,17 +45,20 @@ export default function RouteInformation (props) {
   const timeUntil = nextMoment.diff(now)
 
   return (
-    <section>
-      <Typography variant='h5' gutterBottom>
-        {DEST_MAP[name]} <span className={classes.headerTime}>{TIME_MAP[time]}</span>
-        <Typography display='inline' className={classes.headerSub}>
-          next is {
-            timeUntil <= 0
-              ? 'boarding now / en route'
-              : `${moment.duration(timeUntil).humanize(true)} at ${nextMoment.format('HH:mm')}`
-          }
-        </Typography>
-      </Typography>
+    <Section
+      title={
+        <>
+          {DEST_MAP[name]} <span className={classes.headerTime}>{TIME_MAP[time]}</span>
+          <Typography display='inline' className={classes.headerSub}>
+            next is {
+              timeUntil <= 0
+                ? 'boarding now / en route'
+                : `${moment.duration(timeUntil).humanize(true)} at ${nextMoment.format('HH:mm')}`
+            }
+          </Typography>
+        </>
+      }
+    >
       <RouteCardContainer>
         {routeStops.map((stop, index) =>
           <RouteCard key={index}>
@@ -85,7 +87,7 @@ export default function RouteInformation (props) {
           </RouteCard>
         )}
       </RouteCardContainer>
-    </section>
+    </Section>
   )
 }
 

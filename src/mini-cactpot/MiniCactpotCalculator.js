@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { LINES, validateGrid, getSuggestion } from './calculate-mini-cactpot'
+import Section from '../Section'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
@@ -70,7 +71,7 @@ export default function MiniCactpotCalculator (props) {
   }
 
   return (
-    <section>
+    <Section>
       <Grid container spacing={4}>
         <Grid item xs={12} className={classes.gridShrink}>
           <div className={classes.cellsContainer}>
@@ -122,6 +123,6 @@ export default function MiniCactpotCalculator (props) {
           <Button variant='contained' color='secondary' onClick={handleClickReset}>Reset</Button>
         </Grid>
       </Grid>
-    </section>
+    </Section>
   )
 }

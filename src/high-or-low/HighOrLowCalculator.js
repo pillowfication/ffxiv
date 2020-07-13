@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import Section from '../Section'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import HighOrLowCard from './HighOrLowCard'
@@ -27,7 +28,7 @@ export default function HighOrLowCalculator (props) {
   }
 
   return (
-    <section>
+    <Section>
       <div className={classes.cardsContainer}>
         <HighOrLowCard value={tb1} error={tb1Err} onInputDigit={setTb1} />
         <HighOrLowCard value={tb2} error={tb2Err} onInputDigit={setTb2} />
@@ -56,6 +57,6 @@ export default function HighOrLowCalculator (props) {
         })()}
         <Button variant='contained' color='secondary' onClick={handleClickReset}>Reset</Button>
       </div>
-    </section>
+    </Section>
   )
 }

@@ -3,10 +3,11 @@ import PropTypes from 'prop-types'
 import { DEST_MAP, TIME_MAP, ACHIEVEMENTS_MAP } from './maps'
 import BAIT_GROUPS from './bait-groups'
 import { makeStyles } from '@material-ui/core/styles'
+import Section from '../Section'
 import Typography from '@material-ui/core/Typography'
 import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
-import Highlight from '../../src/Highlight.js'
+import Highlight from '../Highlight'
 import RouteCardContainer from './RouteCardContainer'
 import RouteCard from './RouteCard'
 import BaitList from './BaitList'
@@ -30,19 +31,22 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AchievementsInformation (props) {
   const { selectedRoute } = props
-  const achievement = selectedRoute && ACHIEVEMENTS_MAP[selectedRoute]
-  if (!achievement) {
-    return null
-  }
+  if (!selectedRoute) return null
+
   const classes = useStyles()
+  const achievement = selectedRoute && ACHIEVEMENTS_MAP[selectedRoute]
 
   switch (achievement) {
     case 'What Did Jellyfish Do to You?':
       return (
-        <section>
-          <Typography variant='h5' gutterBottom>
-            Jellyfish Route <OceanFishIcon name={achievement} className={classes.achievementIcon} />
-          </Typography>
+        <Section
+          title={
+            <>
+              Jellyfish Route
+              <OceanFishIcon name={achievement} className={classes.achievementIcon} />
+            </>
+          }
+        >
           <RouteCardContainer className={classes.achievementInfo}>
             <RouteCard>
               <CardHeader
@@ -109,14 +113,18 @@ export default function AchievementsInformation (props) {
           <Highlight language='plaintext'>
             {jellyfishMacro}
           </Highlight>
-        </section>
+        </Section>
       )
     case 'What Did Seadragons Do to You?':
       return (
-        <section>
-          <Typography variant='h5' gutterBottom>
-            Seadragons Route <OceanFishIcon name={achievement} className={classes.achievementIcon} />
-          </Typography>
+        <Section
+          title={
+            <>
+              Seadragons Route
+              <OceanFishIcon name={achievement} className={classes.achievementIcon} />
+            </>
+          }
+        >
           <RouteCardContainer className={classes.achievementInfo}>
             <RouteCard>
               <CardHeader
@@ -183,14 +191,18 @@ export default function AchievementsInformation (props) {
           <Highlight language='plaintext'>
             {seadragonsMacro}
           </Highlight>
-        </section>
+        </Section>
       )
     case 'What Did Sharks Do to You?':
       return (
-        <section>
-          <Typography variant='h5' gutterBottom>
-            Sharks Route <OceanFishIcon name={achievement} className={classes.achievementIcon} />
-          </Typography>
+        <Section
+          title={
+            <>
+              Sharks Route
+              <OceanFishIcon name={achievement} className={classes.achievementIcon} />
+            </>
+          }
+        >
           <RouteCardContainer className={classes.achievementInfo}>
             <RouteCard>
               <CardHeader
@@ -278,14 +290,18 @@ export default function AchievementsInformation (props) {
               </CardContent>
             </RouteCard>
           </RouteCardContainer>
-        </section>
+        </Section>
       )
     case 'What Did Octopodes Do to You?':
       return (
-        <section>
-          <Typography variant='h5' gutterBottom>
-            Octopodes Route <OceanFishIcon name={achievement} className={classes.achievementIcon} />
-          </Typography>
+        <Section
+          title={
+            <>
+              Octopodes Route
+              <OceanFishIcon name={achievement} className={classes.achievementIcon} />
+            </>
+          }
+        >
           <RouteCardContainer className={classes.achievementInfo}>
             <RouteCard>
               <CardHeader
@@ -352,7 +368,7 @@ export default function AchievementsInformation (props) {
           <Highlight language='plaintext'>
             {octopodesMacro}
           </Highlight>
-        </section>
+        </Section>
       )
   }
 }

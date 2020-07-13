@@ -9,6 +9,7 @@ import REGIONS from './regions'
 import getEorzeanTime from './get-eorzean-time'
 import calculateWeathers from './calculate-weathers'
 import { paddedZero } from '../utils'
+import Section from '../Section'
 import Typography from '@material-ui/core/Typography'
 import NoSsr from '@material-ui/core/NoSsr'
 import FormControl from '@material-ui/core/FormControl'
@@ -102,8 +103,7 @@ export default function WeatherTable (props) {
   }
 
   return (
-    <section>
-      <Typography variant='h5' gutterBottom>Upcoming Weather</Typography>
+    <Section title='Upcoming Weather'>
       <FormControl variant='filled' fullWidth margin='dense' className={classes.selectRegion}>
         <InputLabel>Select a region</InputLabel>
         <Select onChange={handleSelectFilter} value={filter || 'none'}>
@@ -157,7 +157,7 @@ export default function WeatherTable (props) {
             </React.Fragment>)
         })()}
       </NoSsr>
-    </section>
+    </Section>
   )
 }
 

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import EorzeaWeather, { chances } from '@pillowfication/eorzea-weather'
 import forecastWeather from './forecast-weather'
 import REGIONS from './regions'
+import Section from '../Section'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import TableContainer from '@material-ui/core/TableContainer'
@@ -122,8 +123,7 @@ export default function WeatherForecaster (props) {
   }
 
   return (
-    <section>
-      <Typography variant='h5' gutterBottom>Forecaster</Typography>
+    <Section title='Forecaster'>
       <Grid container spacing={2}>
         <Grid item xs={12} md={4}>
           <Autocomplete
@@ -234,7 +234,7 @@ export default function WeatherForecaster (props) {
             </TableContainer>
           </Grid>}
       </Grid>
-    </section>
+    </Section>
   )
 }
 

@@ -20,6 +20,7 @@ import TableHead from '@material-ui/core/TableHead'
 import TableBody from '@material-ui/core/TableBody'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
+import Section from '../Section'
 import OceanFishIcon from './OceanFishIcon'
 
 const useStyles = makeStyles((theme) => ({
@@ -132,8 +133,7 @@ export default function OceanFishingTable (props) {
   let previousDate
 
   return (
-    <section>
-      <Typography variant='h5' gutterBottom>Schedule</Typography>
+    <Section title='Schedule'>
       <Grid container spacing={2} className={classes.form}>
         <Grid item xs={12} sm={6}>
           <FormControl fullWidth>
@@ -204,18 +204,18 @@ export default function OceanFishingTable (props) {
                     .add(day, 'days').add(hour, 'hours')
                     .utcOffset(moment().utcOffset())
                   const date = time.format('M/D')
-                  const dateChange = previousDate !== (previousDate = date)
 
                   return (
                     <TableRow
                       key={`${day}:${hour}`}
-                      hover
+                      hover={filter === 'none'}
                       className={cn(filter === 'none' && hover === destinationCode && classes.hoverRow)}
                       onMouseOver={handleHoverRow[destinationCode]}
                       onClick={handleSelectRow[destinationCode]}
                     >
                       <TableCell className={classes.dateCell}>
-                        {dateChange && <Typography align='right'>{date}</Typography>}
+                        {(previousDate !== (previousDate = date)) &&
+                          <Typography align='right'>{date}</Typography>}
                       </TableCell>
                       <TableCell>
                         <Typography>{time.format('HH:mm')}</Typography>
@@ -238,7 +238,7 @@ export default function OceanFishingTable (props) {
             </Table>
           </TableContainer>}
       </NoSsr>
-    </section>
+    </Section>
   )
 }
 
