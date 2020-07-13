@@ -78,9 +78,9 @@ const useStyles = makeStyles((theme) => {
   const styles = {
     oceanFishIcon: {
       display: 'inline-block',
-      width: '2.25em',
-      height: '2.25em',
-      margin: theme.spacing(0.25),
+      width: '2.5em',
+      height: '2.5em',
+      margin: theme.spacing(0.5),
       backgroundImage: 'url("/images/ocean-fish.png")',
       backgroundSize: `${CHUNK_SIZE * 100}% ${(ICONS.length / CHUNK_SIZE | 0) * 100}%`
     }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
+import Typography from '@material-ui/core/Typography'
 import BaitChain from './BaitChain'
 
 const useStyles = makeStyles((theme) => ({
@@ -24,7 +25,7 @@ export default function BaitGroup (props) {
         <ul className={classes.intuitionFishes}>
           {intuitionFishes.map(({ count, bait }, index) =>
             <li key={index}>
-              <span className={classes.count}>{count}</span>
+              <Typography className={classes.count} display='inline'>{count}</Typography>
               <BaitChain bait={bait} />
             </li>
           )}

@@ -6,7 +6,7 @@ const ustStyles = makeStyles((theme) => ({
       marginBottom: theme.spacing(4)
     },
     code: {
-      fontSize: '1.25em'
+      fontSize: '1.4em'
     }
   }
 }))

@@ -63,7 +63,7 @@ export default function AchievementsInformation (props) {
               <CardContent>
                 <BaitList
                   baitGroups={[{
-                    header: 'DH <5s',
+                    header: 'DH at <5s',
                     baitGroup: BAIT_GROUPS['La Noscean Jelly']
                   }, {
                     header: 'IC–DH',
