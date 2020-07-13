@@ -4,6 +4,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { ThemeProvider, makeStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
+import GlobalStyles from '../src/GlobalStyles'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
@@ -33,22 +34,6 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: '6rem'
   }
 }))
-
-const useGlobalStyles = makeStyles((theme) => ({
-  '@global': {
-    section: {
-      marginBottom: theme.spacing(4)
-    },
-    code: {
-      fontSize: '1.2em'
-    }
-  }
-}))
-
-const GlobalStyles = (props) => {
-  useGlobalStyles()
-  return null
-}
 
 export default function App (props) {
   const { Component, pageProps } = props
