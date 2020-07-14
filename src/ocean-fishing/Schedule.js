@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function OceanFishingTable (props) {
+export default function Schedule (props) {
   const { now, onSelectRoute } = props
   const [numRows, setNumRows] = useState(10)
   const [filter, setFilter] = useState('none')
@@ -68,12 +68,10 @@ export default function OceanFishingTable (props) {
   const classes = useStyles()
   const router = useRouter()
   const firstRender = useRef(false)
-  const voyagesCache = useRef(null)
 
   useEffect(() => {
     const queryFilter = FILTER_MAP[router.query.filter] ? router.query.filter : 'none'
     if ((!firstRender.current && now) || filter !== queryFilter) {
-      voyagesCache.current = null
       firstRender.current = true
       setFilter(queryFilter)
       onSelectRoute(
@@ -83,7 +81,6 @@ export default function OceanFishingTable (props) {
   })
 
   const handleInputNumRows = (event) => {
-    voyagesCache.current = null
     setNumRows(event.target.value)
   }
 
@@ -97,7 +94,6 @@ export default function OceanFishingTable (props) {
   }
 
   const handleSelectFilter = (event) => {
-    voyagesCache.current = null
     const filter = event.target.value
     router.push({
       pathname: router.pathname,
@@ -124,12 +120,11 @@ export default function OceanFishingTable (props) {
     RN: onSelectRoute.bind(null, 'RN')
   }
 
-  const upcomingVoyages = now &&
-    (voyagesCache.current || (voyagesCache.current = calculateVoyages(
-      now,
-      Math.min(Math.max(Number(numRows) || 10, 1), 50),
-      FILTER_MAP[filter] || null
-    )))
+  const upcomingVoyages = now && calculateVoyages(
+    now,
+    Math.min(Math.max(Number(numRows) || 10, 1), 50),
+    FILTER_MAP[filter] || null
+  )
   let previousDate
 
   return (
@@ -242,7 +237,7 @@ export default function OceanFishingTable (props) {
   )
 }
 
-OceanFishingTable.propTypes = {
+Schedule.propTypes = {
   now: PropTypes.object,
   onSelectRoute: PropTypes.func.isRequired
 }
