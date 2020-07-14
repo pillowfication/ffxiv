@@ -370,6 +370,8 @@ export default function AchievementsInformation (props) {
           </Highlight>
         </Section>
       )
+    default:
+      return null
   }
 }
 
