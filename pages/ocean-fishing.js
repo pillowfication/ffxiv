@@ -3,6 +3,7 @@ import moment from 'moment'
 import { paddedZero } from '../src/utils'
 import Typography from '@material-ui/core/Typography'
 import Link from '@material-ui/core/Link'
+import Page from '../src/Page'
 import OceanFishingTable from '../src/ocean-fishing/OceanFishingTable'
 import RouteInformation from '../src/ocean-fishing/RouteInformation'
 import AchievementsInformation from '../src/ocean-fishing/AchievementsInformation'
@@ -29,14 +30,13 @@ export default function OceanFishing () {
   }, [])
 
   return (
-    <>
-      <Typography variant='h1' gutterBottom>Ocean Fishing</Typography>
+    <Page title='Ocean Fishing'>
       <Typography paragraph>
         Your <Link href='https://en.wikipedia.org/wiki/UTC_offset'>UTC offset</Link> is ({now ? toUTCString(moment().utcOffset()) : '…'}). The time in Japan ({toUTCString(JST_UTC)}) is <strong>{now ? now.utcOffset(JST_UTC).format('HH:mm') : '…'}</strong>.
       </Typography>
       <OceanFishingTable now={now} onSelectRoute={setSelectedRoute} />
       <RouteInformation now={now} selectedRoute={selectedRoute} />
       <AchievementsInformation selectedRoute={selectedRoute} />
-    </>
+    </Page>
   )
 }

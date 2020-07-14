@@ -1,12 +1,11 @@
 import React from 'react'
-import Typography from '@material-ui/core/Typography'
+import Page from '../src/Page'
 import MiniCactpotCalculator from '../src/mini-cactpot/MiniCactpotCalculator'
 
 export default function MiniCactpot () {
   return (
-    <>
-      <Typography variant='h1' gutterBottom>Mini Cactpot</Typography>
+    <Page title='Mini Cactpot'>
       <MiniCactpotCalculator />
-    </>
+    </Page>
   )
 }
