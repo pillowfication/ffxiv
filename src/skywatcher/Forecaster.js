@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import moment from 'moment'
 import { makeStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import EorzeaWeather, { chances } from '@pillowfication/eorzea-weather'
 import forecastWeather from './forecast-weather'
 import REGIONS from './regions'
+import getEorzeanTime from './get-eorzean-time'
 import Section from '../Section'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
@@ -39,10 +40,6 @@ const eorzeaWeather = new EorzeaWeather({ locale: 'en' })
 
 function displayBell (bell) {
   return bell > 9 ? bell + ':00' : '0' + bell + ':00'
-}
-
-function getPossibleWeathers (zoneId) {
-  return chances[zoneId].map(({ w: weatherId }) => weatherId)
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -85,40 +82,62 @@ const useStyles = makeStyles((theme) => ({
       lineHeight: 1.1
     },
     '&:last-child': {
-      paddingRight: theme.spacing(1),
-      width: WEATHER_CELL_WIDTH + theme.spacing(1.5)
+      paddingRight: theme.spacing(5),
+      width: WEATHER_CELL_WIDTH + theme.spacing(5.5)
     }
   },
   transitionCell: {
     width: 50,
+    padding: theme.spacing(1),
     textAlign: 'center'
   }
 }))
 
-export default function WeatherForecaster (props) {
+export default function Forecaster (props) {
   const { now } = props
   const [zone, setZone] = useState(null)
   const [transitionWeather, setTransitionWeather] = useState('none')
   const [targetWeather, setTargetWeather] = useState('none')
   const [times, setTimes] = useState({ 0: true, 8: true, 16: true })
   const classes = useStyles()
-  const possibleWeathers = zone && getPossibleWeathers(zone.zoneId)
+  const cachedForecast = useRef(null)
+
+  useEffect(() => {
+    if (!now || getEorzeanTime(now).getUTCMinutes() === 0) {
+      cachedForecast.current = null
+    }
+  })
+
+  const possibleWeathers = zone && chances[zone.zoneId].map(({ w: weatherId }) => weatherId)
   const hasTime = times[0] || times[8] || times[16]
-  const forecast = zone && hasTime && forecastWeather(
-    zone.zoneId,
-    now || new Date(),
-    transitionWeather,
-    targetWeather,
-    times
-  )
+  const forecast = zone && hasTime &&
+    (cachedForecast.current || (cachedForecast.current = forecastWeather(
+      zone.zoneId,
+      now,
+      transitionWeather === 'none' ? null : transitionWeather,
+      targetWeather === 'none' ? null : targetWeather,
+      times
+    )))
 
   const handleSelectZone = (event, newZone) => {
+    cachedForecast.current = null
     setZone(newZone)
     setTransitionWeather('none')
     setTargetWeather('none')
   }
 
+  const handleSelectTransitionWeather = (event) => {
+    cachedForecast.current = null
+    setTransitionWeather(event.target.value)
+  }
+
+  const handleSelectTargetWeather = (event) => {
+    cachedForecast.current = null
+    setTransitionWeather(event.target.value)
+  }
+
   const handleSelectTimes = (timeSlot) => {
+    cachedForecast.current = null
     setTimes({ ...times, [timeSlot]: !times[timeSlot] })
   }
 
@@ -142,7 +161,7 @@ export default function WeatherForecaster (props) {
             <Select
               value={transitionWeather}
               disabled={!zone}
-              onChange={(event) => { setTransitionWeather(event.target.value) }}
+              onChange={handleSelectTransitionWeather}
             >
               <MenuItem value='none'>{possibleWeathers ? 'Any weather' : 'Select a zone first'}</MenuItem>
               {possibleWeathers && possibleWeathers.map((weather) =>
@@ -156,7 +175,7 @@ export default function WeatherForecaster (props) {
             <Select
               value={targetWeather}
               disabled={!zone}
-              onChange={(event) => { setTargetWeather(event.target.value) }}
+              onChange={handleSelectTargetWeather}
             >
               <MenuItem value='none'>{possibleWeathers ? 'Any weather' : 'Select a zone first'}</MenuItem>
               {possibleWeathers && possibleWeathers.map((weather) =>
@@ -196,7 +215,7 @@ export default function WeatherForecaster (props) {
                 <TableBody>
                   {(() => {
                     let previousDate = ''
-                    return forecast.map(({ date, bell, previousWeather, currentWeather }, index) => {
+                    return forecast.map(({ date, timeChunk, previousWeather, currentWeather }, index) => {
                       const momentDate = moment(date)
                       const currentDate = momentDate.format('MM/DD')
                       return (
@@ -211,7 +230,7 @@ export default function WeatherForecaster (props) {
                             <Typography>{moment.duration(momentDate.diff(now)).humanize(true)}</Typography>
                           </TableCell>
                           <TableCell className={classes.bellCell}>
-                            <Typography>{displayBell((bell + 16) % 24)}</Typography>
+                            <Typography>{displayBell((timeChunk + 16) % 24)}</Typography>
                           </TableCell>
                           <TableCell className={classes.weatherCell}>
                             <WeatherIcon weatherId={previousWeather} />
@@ -220,7 +239,7 @@ export default function WeatherForecaster (props) {
                             <ArrowForwardIcon />
                           </TableCell>
                           <TableCell className={classes.bellCell}>
-                            <Typography>{displayBell(bell)}</Typography>
+                            <Typography>{displayBell(timeChunk)}</Typography>
                           </TableCell>
                           <TableCell className={classes.weatherCell}>
                             <WeatherIcon weatherId={currentWeather} />
@@ -238,6 +257,6 @@ export default function WeatherForecaster (props) {
   )
 }
 
-WeatherForecaster.propTypes = {
+Forecaster.propTypes = {
   now: PropTypes.object
 }
