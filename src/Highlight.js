@@ -7,8 +7,9 @@ import Paper from '@material-ui/core/Paper'
 
 const useStyles = makeStyles((theme) => ({
   highlight: {
+    marginBottom: theme.spacing(2),
     '& pre': {
-      margin: theme.spacing(2)
+      margin: theme.spacing(1)
     },
     '& code': {
       background: 'none'
