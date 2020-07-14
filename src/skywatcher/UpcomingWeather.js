@@ -4,10 +4,12 @@ import { makeStyles, useTheme } from '@material-ui/core/styles'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import cn from 'classnames'
 import PropTypes from 'prop-types'
-import * as REGIONS from './regions'
+import EorzeaWeather from '@pillowfication/eorzea-weather'
+import REGIONS from './regions'
 import getEorzeanTime from './get-eorzean-time'
 import calculateWeathers from './calculate-weathers'
 import { paddedZero } from '../utils'
+import Section from '../Section'
 import Typography from '@material-ui/core/Typography'
 import NoSsr from '@material-ui/core/NoSsr'
 import FormControl from '@material-ui/core/FormControl'
@@ -22,9 +24,9 @@ import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import WeatherIcon from './WeatherIcon'
 
-const { REGIONS_LIST } = REGIONS
-const ZONES_LIST = REGIONS_LIST.map(region => region.zones).flat()
+const ZONES = REGIONS.map(region => region.zones).flat()
 const WEATHER_CELL_WIDTH = 75
+const eorzeaWeather = new EorzeaWeather({ locale: 'en' })
 
 const useStyles = makeStyles((theme) => ({
   selectRegion: {
@@ -72,23 +74,30 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function WeatherTable (props) {
+export default function UpcomingWeather (props) {
   const { now } = props
-  const [filter, setFilter] = useState(null)
+  const [filter, setFilter] = useState('none')
   const classes = useStyles()
   const router = useRouter()
   const firstRender = useRef(false)
+  const cachedForecast = useRef(null)
   const theme = useTheme()
   const sm = useMediaQuery(theme.breakpoints.up('sm'))
   const md = useMediaQuery(theme.breakpoints.up('md'))
   const lg = useMediaQuery(theme.breakpoints.up('lg'))
 
   useEffect(() => {
-    const queryFilter =
-      REGIONS_LIST.find((region) => region.query === router.query.filter) ? router.query.filter : 'none'
+    const queryFilter = REGIONS.find((region) => region.query === router.query.filter)
+      ? router.query.filter
+      : 'none'
     if ((!firstRender.current && now) || filter !== queryFilter) {
       firstRender.current = true
+      cachedForecast.current = null
       setFilter(queryFilter)
+    }
+
+    if (!now || getEorzeanTime(now).getUTCMinutes() === 0) {
+      cachedForecast.current = null
     }
   })
 
@@ -100,30 +109,30 @@ export default function WeatherTable (props) {
     })
   }
 
-  if (now) {
-    const weathersCount = lg ? 9 : md ? 7 : sm ? 6 : 3
-    const weathers = calculateWeathers(ZONES_LIST, weathersCount, now)
-    const eorzeanTime = getEorzeanTime(now)
-    const timeChunk = Math.floor(eorzeanTime.getUTCHours() / 8) * 8
-    const filteredRegion = filter && filter !== 'none' &&
-      REGIONS_LIST.find((region) => region.query === filter)
+  return (
+    <Section title='Upcoming Weather'>
+      <FormControl variant='filled' fullWidth margin='dense' className={classes.selectRegion}>
+        <InputLabel>Select a region</InputLabel>
+        <Select onChange={handleSelectFilter} value={filter}>
+          <MenuItem value='none'>Show all regions</MenuItem>
+          {REGIONS.map(({ regionId, query }) =>
+            <MenuItem key={query} value={query}>{eorzeaWeather.translateRegion(regionId)}</MenuItem>
+          )}
+        </Select>
+      </FormControl>
+      <NoSsr>
+        {(() => {
+          if (!now) return null
 
-    return (
-      <section>
-        <Typography variant='h5' gutterBottom>Upcoming Weather</Typography>
-        <FormControl variant='filled' fullWidth margin='dense' className={classes.selectRegion}>
-          <InputLabel>Select a region</InputLabel>
-          <Select onChange={handleSelectFilter} value={filter || 'none'}>
-            <MenuItem value='none'>Show all regions</MenuItem>
-            {REGIONS_LIST.map(region =>
-              <MenuItem key={region.query} value={region.query}>{region.name}</MenuItem>
-            )}
-          </Select>
-        </FormControl>
-        <NoSsr>
-          {(filteredRegion ? [filteredRegion] : REGIONS_LIST).map((region) =>
-            <React.Fragment key={region.name}>
-              <Typography variant='h6' gutterBottom>{region.name}</Typography>
+          const weathersCount = lg ? 9 : md ? 7 : sm ? 6 : 3
+          const weathers = cachedForecast.current || (cachedForecast.current = calculateWeathers(ZONES, 9, now))
+          const eorzeanTime = getEorzeanTime(now)
+          const timeChunk = Math.floor(eorzeanTime.getUTCHours() / 8) * 8
+          const filteredRegion = filter !== 'none' && REGIONS.find((region) => region.query === filter)
+
+          return (filteredRegion ? [filteredRegion] : REGIONS).map(({ regionId, zones }) =>
+            <React.Fragment key={regionId}>
+              <Typography variant='h6' gutterBottom>{eorzeaWeather.translateRegion(regionId)}</Typography>
               <TableContainer>
                 <Table size='small' className={classes.weatherTable}>
                   <TableHead>
@@ -137,14 +146,14 @@ export default function WeatherTable (props) {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {region.zones.map(zone =>
-                      <TableRow key={zone} hover>
+                    {zones.map((zoneId) =>
+                      <TableRow key={zoneId} hover>
                         <TableCell component='th' scope='row' className={classes.regionCell}>
-                          {weathers[zone].zoneName}
+                          <Typography>{eorzeaWeather.translateZone(zoneId)}</Typography>
                         </TableCell>
-                        {weathers[zone].zoneWeathers.map((weather, index) =>
+                        {weathers[zoneId].slice(0, weathersCount + 1).map((weatherId, index) =>
                           <TableCell key={index} className={cn(classes.weatherCell, index === 1 && classes.current)}>
-                            <WeatherIcon name={weather} />
+                            <WeatherIcon weatherId={weatherId} />
                           </TableCell>
                         )}
                       </TableRow>
@@ -152,28 +161,13 @@ export default function WeatherTable (props) {
                   </TableBody>
                 </Table>
               </TableContainer>
-            </React.Fragment>)}
-        </NoSsr>
-      </section>
-    )
-  } else {
-    return (
-      <section>
-        <FormControl variant='filled' fullWidth>
-          <InputLabel>Select a region</InputLabel>
-          <Select onChange={handleSelectFilter} value={filter || 'none'}>
-            <MenuItem value='none'>Show all regions</MenuItem>
-            {REGIONS_LIST.map(region =>
-              <MenuItem key={region.query} value={region.query}>{region.name}</MenuItem>
-            )}
-          </Select>
-        </FormControl>
-        <NoSsr />
-      </section>
-    )
-  }
+            </React.Fragment>)
+        })()}
+      </NoSsr>
+    </Section>
+  )
 }
 
-WeatherTable.propTypes = {
+UpcomingWeather.propTypes = {
   now: PropTypes.object
 }

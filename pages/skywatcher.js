@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import getEorzeanTime from '../modules/skywatcher/get-eorzean-time'
+import getEorzeanTime from '../src/skywatcher/get-eorzean-time'
 import Typography from '@material-ui/core/Typography'
-import WeatherTable from '../modules/skywatcher/WeatherTable'
-import WeatherForecaster from '../modules/skywatcher/WeatherForecaster'
+import UpcomingWeather from '../src/skywatcher/UpcomingWeather'
+import Forecaster from '../src/skywatcher/Forecaster'
+import About from '../src/skywatcher/About'
 
-const UPDATE_INTERVAL = 1000
+const UPDATE_INTERVAL = 2917
 
 export default function Skywatcher (props) {
   const [now, setNow] = useState(null)
@@ -25,8 +26,9 @@ export default function Skywatcher (props) {
       <Typography paragraph>
         The time in Eorzea is <b>{now ? getEorzeanTime(now).toString() : '…'}</b>.
       </Typography>
-      <WeatherForecaster now={now} />
-      <WeatherTable now={now} />
+      <Forecaster now={now} />
+      <UpcomingWeather now={now} />
+      <About />
     </>
   )
 }

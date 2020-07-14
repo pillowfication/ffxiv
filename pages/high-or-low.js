@@ -1,14 +1,15 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
+import Section from '../src/Section'
 import MathJax from '../src/MathJax'
-import HighOrLowCalculator from '../modules/high-or-low/HighOrLowCalculator'
+import HighOrLowCalculator from '../src/high-or-low/HighOrLowCalculator'
 
 export default function HighOrLow () {
   return (
     <>
       <Typography variant='h1' gutterBottom>High or Low</Typography>
       <HighOrLowCalculator />
-      <section>
+      <Section title='About'>
         <Typography variant='h5' gutterBottom>About</Typography>
         <Typography paragraph>
           The deck contains 9 cards valued 1 through 9. You and Tista-Bie are dealt 3 cards each, with 2 of hers and 1 of yours revealed. You guess if the sum of your 3 cards is higher or lower than the sum of her 3 cards. You win if you are correct.
@@ -33,7 +34,7 @@ export default function HighOrLow () {
         <Typography paragraph>
           In this scenario, you should guess <b>Low</b>.
         </Typography>
-      </section>
+      </Section>
     </>
   )
 }

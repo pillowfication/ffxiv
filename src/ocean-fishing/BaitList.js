@@ -23,7 +23,7 @@ export default function BaitList (props) {
     <ul className={classes.baitGroups}>
       {baitGroups.map(({ header, baitGroup }, index) =>
         <li key={index}>
-          <Typography variant='body2'>{header}</Typography>
+          <Typography gutterBottom>{header}</Typography>
           {baitGroup}
         </li>
       )}

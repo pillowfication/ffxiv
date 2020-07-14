@@ -1,6 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
+import Typography from '@material-ui/core/Typography'
 import OceanFishIcon from './OceanFishIcon'
 import Tug from './Tug'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
@@ -16,14 +17,14 @@ const useStyles = makeStyles((theme) => ({
   },
   chevron: {
     position: 'relative',
-    top: '-0.25em',
-    marginLeft: '-0.25em',
-    marginRight: '-0.25em'
+    top: '-0.35em',
+    marginLeft: '-0.15em',
+    marginRight: '-0.15em'
   },
   dh: {
     position: 'relative',
-    top: '-0.7em',
-    marginLeft: theme.spacing(0.25)
+    top: '-0.95em',
+    marginLeft: theme.spacing(1)
   }
 }))
 
@@ -38,9 +39,9 @@ export default function BaitChain (props) {
           <div className={classes.bait}>
             <OceanFishIcon name={name} />
             {tug && <Tug sup strength={tug} />}
-            {dh && <span className={classes.dh}>DH: {dh}</span>}
+            {dh && <Typography className={classes.dh} display='inline'>DH: {dh}</Typography>}
           </div>
-          {index < bait.length - 1 && <ChevronRightIcon fontSize='small' className={classes.chevron} />}
+          {index < bait.length - 1 && <ChevronRightIcon className={classes.chevron} />}
         </React.Fragment>
       )}
     </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
-import MiniCactpotCalculator from '../modules/mini-cactpot/MiniCactpotCalculator'
+import MiniCactpotCalculator from '../src/mini-cactpot/MiniCactpotCalculator'
 
 export default function MiniCactpot () {
   return (

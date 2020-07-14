@@ -48,6 +48,11 @@ export const lightTheme = createMuiTheme({
       root: {
         backgroundColor: '#f5f5f5'
       }
+    },
+    MuiTableCell: {
+      head: {
+        fontWeight: 'bold'
+      }
     }
   }
 })
@@ -115,6 +120,11 @@ export const darkTheme = createMuiTheme({
     MuiTableBody: {
       root: {
         backgroundColor: '#31363f'
+      }
+    },
+    MuiTableCell: {
+      head: {
+        fontWeight: 'bold'
       }
     }
   }
