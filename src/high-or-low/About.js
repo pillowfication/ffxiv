@@ -1,7 +1,7 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
-import Section from '../src/Section'
-import MathJax from '../src/MathJax'
+import Section from '../Section'
+import MathJax from '../MathJax'
 
 export default function About () {
   return (
