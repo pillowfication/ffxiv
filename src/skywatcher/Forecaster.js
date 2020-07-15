@@ -93,14 +93,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function Forecaster (props) {
-  const { now } = props
+const Forecaster = ({ now }) => {
   const [zone, setZone] = useState(null)
   const [transitionWeather, setTransitionWeather] = useState('none')
   const [targetWeather, setTargetWeather] = useState('none')
   const [times, setTimes] = useState({ 0: true, 8: true, 16: true })
-  const classes = useStyles()
   const cachedForecast = useRef(null)
+  const classes = useStyles()
 
   useEffect(() => {
     if (!now || getEorzeanTime(now).getUTCMinutes() === 0) {
@@ -133,7 +132,7 @@ export default function Forecaster (props) {
 
   const handleSelectTargetWeather = (event) => {
     cachedForecast.current = null
-    setTransitionWeather(event.target.value)
+    setTargetWeather(event.target.value)
   }
 
   const handleSelectTimes = (timeSlot) => {
@@ -260,3 +259,5 @@ export default function Forecaster (props) {
 Forecaster.propTypes = {
   now: PropTypes.object
 }
+
+export default Forecaster

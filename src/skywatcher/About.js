@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Section from '../Section'
 import Typography from '@material-ui/core/Typography'
@@ -20,8 +20,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default memo(function About (props) {
-  console.log('render')
+const About = () => {
   const classes = useStyles()
 
   return (
@@ -99,4 +98,6 @@ const weatherChance = step2 % 100
       </Table>
     </Section>
   )
-})
+}
+
+export default About

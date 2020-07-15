@@ -47,8 +47,7 @@ const useStyles = makeStyles((theme) => {
   return styles
 })
 
-export default function WeatherIcon (props) {
-  const { weatherId, locale = 'en' } = props
+const WeatherIcon = ({ weatherId, locale = 'en' }) => {
   const classes = useStyles()
   const weatherString = EorzeaWeather.translateWeather(weatherId, locale)
 
@@ -64,5 +63,8 @@ export default function WeatherIcon (props) {
 }
 
 WeatherIcon.propTypes = {
-  weatherId: PropTypes.oneOf(WEATHERS).isRequired
+  weatherId: PropTypes.oneOf(WEATHERS).isRequired,
+  locale: PropTypes.oneOf(['en', 'ja'])
 }
+
+export default WeatherIcon

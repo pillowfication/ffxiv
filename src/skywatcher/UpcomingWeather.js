@@ -74,8 +74,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function UpcomingWeather (props) {
-  const { now } = props
+const UpcomingWeather = ({ now }) => {
   const [filter, setFilter] = useState('none')
   const classes = useStyles()
   const router = useRouter()
@@ -171,3 +170,5 @@ export default function UpcomingWeather (props) {
 UpcomingWeather.propTypes = {
   now: PropTypes.object
 }
+
+export default UpcomingWeather

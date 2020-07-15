@@ -4,14 +4,13 @@ const EORZEAN_RATIO = 1440 / 70
 const _8HR = 8 * 3600 * 1000 / EORZEAN_RATIO
 const eorzeaWeather = new EorzeaWeather()
 
-export default function forecastWeather (
+function forecastWeather (
   zoneId,
   now = new Date(),
   transitionWeather,
   targetWeather,
   timeChunks = { 0: true, 8: true, 16: true }
 ) {
-  console.log('forecast weather')
   let timeChunk = (now.getTime() / _8HR | 0) - 1
   const occurences = []
   let previousWeather
@@ -39,3 +38,5 @@ export default function forecastWeather (
 
   return occurences
 }
+
+export default forecastWeather
