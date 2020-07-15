@@ -73,18 +73,16 @@ const useStyles = makeStyles((theme) => ({
       width: WEATHER_CELL_WIDTH + theme.spacing(1.5)
     }
   },
-  previous: {
-    backgroundColor: theme.palette.action.hover
-  },
   current: {
-    position: 'relative'
+    position: 'relative',
+    backgroundColor: theme.palette.action.hover
   },
   timeLine: {
     position: 'absolute',
     display: 'block',
     top: 0,
     left: 0,
-    bottom: 0,
+    bottom: -1,
     width: ({ now }) => {
       if (!now) return 0
 
@@ -93,8 +91,7 @@ const useStyles = makeStyles((theme) => ({
       const minutes = hours * 60 + eorzeanTime.getUTCMinutes()
       return `${minutes / 480 * 100}%`
     },
-    backgroundColor: theme.palette.action.hover,
-    borderRight: `1px solid ${fade(theme.palette.action.hover, 0.25)}`
+    borderRight: `2px solid ${fade(theme.palette.action.hover, 0.2)}`
   }
 }))
 
