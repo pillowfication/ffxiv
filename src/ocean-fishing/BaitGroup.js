@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function BaitGroup (props) {
+const BaitGroup = (props) => {
   const { bait, intuitionFishes } = props
   const classes = useStyles()
 
@@ -41,3 +41,5 @@ BaitGroup.propTypes = {
     bait: BaitChain.propTypes.bait
   }).isRequired)
 }
+
+export default BaitGroup

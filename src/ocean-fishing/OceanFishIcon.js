@@ -97,7 +97,7 @@ const useStyles = makeStyles((theme) => {
   return styles
 })
 
-export default function OceanFishIcon (props) {
+const OceanFishIcon = (props) => {
   const { name } = props
   const classes = useStyles()
 
@@ -119,3 +119,5 @@ OceanFishIcon.propTypes = {
     }
   }
 }
+
+export default OceanFishIcon

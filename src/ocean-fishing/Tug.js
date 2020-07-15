@@ -30,9 +30,10 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function Tug (props) {
+const Tug = (props) => {
   const { sup, strength } = props
   const classes = useStyles()
+
   switch (strength) {
     case 1:
       return <span className={cn(classes.tug, sup && classes.sup, classes.light)} title='Light tug'>!</span>
@@ -51,3 +52,5 @@ Tug.propTypes = {
 Tug.Light = () => <Tug strength={1} />
 Tug.Medium = () => <Tug strength={2} />
 Tug.Heavy = () => <Tug strength={3} />
+
+export default Tug

@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function RouteCard (props) {
+const RouteCard = (props) => {
   const classes = useStyles()
 
   return (
@@ -20,3 +20,5 @@ export default function RouteCard (props) {
     </Grid>
   )
 }
+
+export default RouteCard

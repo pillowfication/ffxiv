@@ -22,14 +22,14 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2)
   },
   achievementIcon: {
-    marginTop: '0',
-    marginBottom: '0',
+    marginTop: 0,
+    marginBottom: 0,
     fontSize: '0.65em',
     verticalAlign: 'sub'
   }
 }))
 
-export default function AchievementsInformation (props) {
+const AchievementsInformation = (props) => {
   const { selectedRoute } = props
   if (!selectedRoute) return null
 
@@ -378,3 +378,5 @@ export default function AchievementsInformation (props) {
 AchievementsInformation.propTypes = {
   selectedRoute: PropTypes.oneOf(['ND', 'NS', 'NN', 'RD', 'RS', 'RN'])
 }
+
+export default AchievementsInformation

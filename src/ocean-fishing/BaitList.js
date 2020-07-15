@@ -7,15 +7,15 @@ import Typography from '@material-ui/core/Typography'
 const useStyles = makeStyles((theme) => ({
   baitGroups: {
     listStyleType: 'none',
-    margin: '0',
-    paddingLeft: '0',
+    margin: 0,
+    paddingLeft: 0,
     '& > li:not(:last-child)': {
       paddingBottom: theme.spacing(1)
     }
   }
 }))
 
-export default function BaitList (props) {
+const BaitList = (props) => {
   const { baitGroups } = props
   const classes = useStyles()
 
@@ -39,3 +39,5 @@ BaitList.propTypes = {
     }).isRequired
   ).isRequired
 }
+
+export default BaitList

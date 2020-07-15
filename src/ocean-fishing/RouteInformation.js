@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   headerSub: {
     marginLeft: theme.spacing(2),
     [theme.breakpoints.down('xs')]: {
-      marginLeft: '0',
+      marginLeft: 0,
       display: 'block'
     }
   },
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function RouteInformation (props) {
+const RouteInformation = (props) => {
   const { now, selectedRoute } = props
   if (!now || !selectedRoute) return null
 
@@ -50,11 +50,9 @@ export default function RouteInformation (props) {
         <>
           {DEST_MAP[name]} <span className={classes.headerTime}>{TIME_MAP[time]}</span>
           <Typography display='inline' className={classes.headerSub}>
-            next is {
-              timeUntil <= 0
-                ? 'boarding now / en route'
-                : `${moment.duration(timeUntil).humanize(true)} at ${nextMoment.format('HH:mm')}`
-            }
+            next is {timeUntil <= 0
+              ? 'boarding now / en route'
+              : `${moment.duration(timeUntil).humanize(true)} at ${nextMoment.format('HH:mm')}`}
           </Typography>
         </>
       }
@@ -95,3 +93,5 @@ RouteInformation.propTypes = {
   now: PropTypes.object,
   selectedRoute: PropTypes.oneOf(['ND', 'NS', 'NN', 'RD', 'RS', 'RN'])
 }
+
+export default RouteInformation

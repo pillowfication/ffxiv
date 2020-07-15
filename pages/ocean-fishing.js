@@ -15,7 +15,7 @@ function toUTCString (utc) {
   return `UTC${utc >= 0 ? '+' : '−'}${paddedZero(Math.abs(utc / 60 | 0))}:${paddedZero(Math.abs(utc) % 60)}`
 }
 
-export default function OceanFishing () {
+const OceanFishing = (props) => {
   const [now, setNow] = useState(null)
   const [selectedRoute, setSelectedRoute] = useState(null)
 
@@ -40,3 +40,5 @@ export default function OceanFishing () {
     </Page>
   )
 }
+
+export default OceanFishing

@@ -7,7 +7,6 @@ import calculateVoyages, { LULU_EPOCH } from './calculate-voyages'
 import { DEST_MAP, TIME_MAP, OBJECTIVES_MAP, FILTER_MAP } from './maps'
 import { makeStyles } from '@material-ui/core/styles'
 import NoSsr from '@material-ui/core/NoSsr'
-import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import FormControl from '@material-ui/core/FormControl'
 import InputLabel from '@material-ui/core/InputLabel'
@@ -24,16 +23,20 @@ import Section from '../Section'
 import OceanFishIcon from './OceanFishIcon'
 
 const useStyles = makeStyles((theme) => ({
-  form: {
-    marginBottom: theme.spacing(2)
-  },
   schedule: {
     '& td': {
       paddingTop: theme.spacing(0.25),
       paddingBottom: theme.spacing(0.25),
       paddingLeft: theme.spacing(1),
       paddingRight: theme.spacing(1),
-      whiteSpace: 'nowrap'
+      whiteSpace: 'nowrap',
+      fontSize: '1.25em'
+    },
+    '& td:first-child': {
+      paddingLeft: theme.spacing(2)
+    },
+    '& td:last-child': {
+      paddingRight: theme.spacing(2)
     },
     '& tbody tr:hover': {
       cursor: 'pointer'
@@ -42,25 +45,21 @@ const useStyles = makeStyles((theme) => ({
   hoverRow: {
     backgroundColor: theme.palette.action.hover
   },
-  dateCell: {
-    'td&': {
-      paddingLeft: theme.spacing(2)
-    }
-  },
   timeCell: {
     '& svg': {
-      top: '0',
+      top: 0,
       verticalAlign: 'middle'
     }
   },
   objectivesCell: {
     '& div': {
-      verticalAlign: 'middle'
+      verticalAlign: 'middle',
+      fontSize: '1rem'
     }
   }
 }))
 
-export default function Schedule (props) {
+const Schedule = (props) => {
   const { now, onSelectRoute } = props
   const [numRows, setNumRows] = useState(10)
   const [filter, setFilter] = useState('none')
@@ -68,6 +67,12 @@ export default function Schedule (props) {
   const classes = useStyles()
   const router = useRouter()
   const firstRender = useRef(false)
+
+  const upcomingVoyages = now && calculateVoyages(
+    now,
+    Math.min(Math.max(Number(numRows) || 10, 1), 50),
+    FILTER_MAP[filter] || null
+  )
 
   useEffect(() => {
     const queryFilter = FILTER_MAP[router.query.filter] ? router.query.filter : 'none'
@@ -120,13 +125,6 @@ export default function Schedule (props) {
     RN: onSelectRoute.bind(null, 'RN')
   }
 
-  const upcomingVoyages = now && calculateVoyages(
-    now,
-    Math.min(Math.max(Number(numRows) || 10, 1), 50),
-    FILTER_MAP[filter] || null
-  )
-  let previousDate
-
   return (
     <Section title='Schedule'>
       <Grid container spacing={2} className={classes.form}>
@@ -175,64 +173,63 @@ export default function Schedule (props) {
             </Select>
           </FormControl>
         </Grid>
-      </Grid>
-      <NoSsr>
-        {now &&
-          <TableContainer component={Paper}>
-            <Table size='small' className={classes.schedule}>
-              <TableHead>
-                <TableRow>
-                  <TableCell colSpan={2}>
-                    <Typography align='center'>Time</Typography>
-                  </TableCell>
-                  <TableCell colSpan={2}>
-                    <Typography align='center'>Route</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography align='center'>Objectives</Typography>
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody onMouseOut={handleHoverRow.none}>
-                {upcomingVoyages.map(({ day, hour, destinationCode }) => {
-                  const time = LULU_EPOCH.clone()
-                    .add(day, 'days').add(hour, 'hours')
-                    .utcOffset(moment().utcOffset())
-                  const date = time.format('M/D')
-
-                  return (
-                    <TableRow
-                      key={`${day}:${hour}`}
-                      hover={filter === 'none'}
-                      className={cn(filter === 'none' && hover === destinationCode && classes.hoverRow)}
-                      onMouseOver={handleHoverRow[destinationCode]}
-                      onClick={handleSelectRow[destinationCode]}
-                    >
-                      <TableCell className={classes.dateCell}>
-                        {(previousDate !== (previousDate = date)) &&
-                          <Typography align='right'>{date}</Typography>}
-                      </TableCell>
-                      <TableCell>
-                        <Typography>{time.format('HH:mm')}</Typography>
-                      </TableCell>
-                      <TableCell>
-                        <Typography align='right'>{DEST_MAP[destinationCode[0]]}</Typography>
-                      </TableCell>
-                      <TableCell className={classes.timeCell}>
-                        {TIME_MAP[destinationCode[1]]}
-                      </TableCell>
-                      <TableCell className={classes.objectivesCell}>
-                        {OBJECTIVES_MAP[destinationCode].map((name, index) =>
-                          <OceanFishIcon key={index} name={name} />
-                        )}
-                      </TableCell>
+        <NoSsr>
+          {now &&
+            <Grid item xs={12}>
+              <TableContainer component={Paper}>
+                <Table size='small' className={classes.schedule}>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell colSpan={2} align='center'>Time</TableCell>
+                      <TableCell colSpan={2} align='center'>Route</TableCell>
+                      <TableCell align='center'>Objectives</TableCell>
                     </TableRow>
-                  )
-                })}
-              </TableBody>
-            </Table>
-          </TableContainer>}
-      </NoSsr>
+                  </TableHead>
+                  <TableBody onMouseOut={handleHoverRow.none}>
+                    {(() => {
+                      let previousDate
+
+                      return upcomingVoyages.map(({ day, hour, destinationCode }) => {
+                        const time = LULU_EPOCH.clone()
+                          .add(day, 'days').add(hour, 'hours')
+                          .utcOffset(moment().utcOffset())
+                        const date = time.format('M/D')
+
+                        return (
+                          <TableRow
+                            key={`${day}:${hour}`}
+                            hover={filter === 'none'}
+                            className={cn(filter === 'none' && hover === destinationCode && classes.hoverRow)}
+                            onMouseOver={handleHoverRow[destinationCode]}
+                            onClick={handleSelectRow[destinationCode]}
+                          >
+                            <TableCell align='right'>
+                              {previousDate !== (previousDate = date) && date}
+                            </TableCell>
+                            <TableCell>
+                              {time.format('HH:mm')}
+                            </TableCell>
+                            <TableCell align='right'>
+                              {DEST_MAP[destinationCode[0]]}
+                            </TableCell>
+                            <TableCell className={classes.timeCell}>
+                              {TIME_MAP[destinationCode[1]]}
+                            </TableCell>
+                            <TableCell className={classes.objectivesCell}>
+                              {OBJECTIVES_MAP[destinationCode].map((name, index) =>
+                                <OceanFishIcon key={index} name={name} />
+                              )}
+                            </TableCell>
+                          </TableRow>
+                        )
+                      })
+                    })()}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Grid>}
+        </NoSsr>
+      </Grid>
     </Section>
   )
 }
@@ -241,3 +238,5 @@ Schedule.propTypes = {
   now: PropTypes.object,
   onSelectRoute: PropTypes.func.isRequired
 }
+
+export default Schedule

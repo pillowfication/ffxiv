@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function BaitChain (props) {
+const BaitChain = (props) => {
   const { bait } = props
   const classes = useStyles()
 
@@ -57,3 +57,5 @@ BaitChain.propTypes = {
     })
   )
 }
+
+export default BaitChain
