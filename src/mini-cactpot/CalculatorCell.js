@@ -31,8 +31,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function MiniCactpotCell (props) {
-  const { value, suggested, error, onInputDigit } = props
+const CalculatorCell = ({ value, suggested, error, onInputDigit }) => {
   const classes = useStyles()
 
   const handleInputDigit = (event) => {
@@ -59,9 +58,11 @@ export default function MiniCactpotCell (props) {
   )
 }
 
-MiniCactpotCell.propTypes = {
+CalculatorCell.propTypes = {
   value: PropTypes.number,
   suggested: PropTypes.bool,
   error: PropTypes.bool,
-  onInputDigit: PropTypes.func
+  onInputDigit: PropTypes.func.isRequired
 }
+
+export default CalculatorCell

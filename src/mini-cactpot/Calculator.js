@@ -5,7 +5,7 @@ import Section from '../Section'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
-import MiniCactpotCell from './MiniCactpotCell'
+import CalculatorCell from './CalculatorCell'
 
 const useStyles = makeStyles((theme) => ({
   gridShrink: {
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function MiniCactpotCalculator (props) {
+const Calculator = () => {
   const [grid, setGrid] = useState(Array(9).fill(null))
   const classes = useStyles()
 
@@ -78,7 +78,7 @@ export default function MiniCactpotCalculator (props) {
             {[0, 1, 2, null, 3, 4, 5, null, 6, 7, 8].map((cellIndex, index) =>
               cellIndex !== null
                 ? (
-                  <MiniCactpotCell
+                  <CalculatorCell
                     key={index}
                     value={grid[cellIndex]}
                     suggested={suggestedCells[cellIndex]}
@@ -126,3 +126,5 @@ export default function MiniCactpotCalculator (props) {
     </Section>
   )
 }
+
+export default Calculator

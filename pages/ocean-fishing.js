@@ -15,7 +15,7 @@ function toUTCString (utc) {
   return `UTC${utc >= 0 ? '+' : '−'}${paddedZero(Math.abs(utc / 60 | 0))}:${paddedZero(Math.abs(utc) % 60)}`
 }
 
-const OceanFishing = (props) => {
+const OceanFishing = () => {
   const [now, setNow] = useState(null)
   const [selectedRoute, setSelectedRoute] = useState(null)
 

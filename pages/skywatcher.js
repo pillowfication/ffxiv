@@ -8,7 +8,7 @@ import About from '../src/skywatcher/About'
 
 const UPDATE_INTERVAL = 175 / 60 * 1000
 
-const Skywatcher = (props) => {
+const Skywatcher = () => {
   const [now, setNow] = useState(null)
 
   useEffect(() => {

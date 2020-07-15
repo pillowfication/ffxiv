@@ -1,11 +1,13 @@
 import React from 'react'
 import Page from '../src/Page'
-import MiniCactpotCalculator from '../src/mini-cactpot/MiniCactpotCalculator'
+import Calculator from '../src/mini-cactpot/Calculator'
 
-export default function MiniCactpot () {
+const MiniCactpot = () => {
   return (
     <Page title='Mini Cactpot'>
-      <MiniCactpotCalculator />
+      <Calculator />
     </Page>
   )
 }
+
+export default MiniCactpot
