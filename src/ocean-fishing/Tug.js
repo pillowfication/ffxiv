@@ -30,8 +30,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const Tug = (props) => {
-  const { sup, strength } = props
+const Tug = ({ sup, strength }) => {
   const classes = useStyles()
 
   switch (strength) {

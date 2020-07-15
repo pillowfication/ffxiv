@@ -9,13 +9,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const RouteCard = (props) => {
+const RouteCard = ({ children }) => {
   const classes = useStyles()
 
   return (
     <Grid item xs={12} md={4}>
       <Card variant='outlined' className={classes.routeCard}>
-        {props.children}
+        {children}
       </Card>
     </Grid>
   )

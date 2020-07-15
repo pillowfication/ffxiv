@@ -29,8 +29,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const AchievementsInformation = (props) => {
-  const { selectedRoute } = props
+const AchievementsInformation = ({ selectedRoute }) => {
   if (!selectedRoute) return null
 
   const classes = useStyles()

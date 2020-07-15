@@ -97,12 +97,11 @@ const useStyles = makeStyles((theme) => {
   return styles
 })
 
-const OceanFishIcon = (props) => {
-  const { name } = props
+const OceanFishIcon = ({ name, className }) => {
   const classes = useStyles()
 
   return (
-    <div className={cn(classes.oceanFishIcon, classes[camelCase(name)], props.className)} title={name} />
+    <div className={cn(classes.oceanFishIcon, classes[camelCase(name)], className)} title={name} />
   )
 }
 
