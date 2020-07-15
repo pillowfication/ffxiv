@@ -1,17 +1,20 @@
 import { makeStyles } from '@material-ui/core/styles'
 
-const ustStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   '@global': {
     section: {
       marginBottom: theme.spacing(4)
     },
     code: {
-      fontSize: '1.4em'
+      fontFamily: 'Consolas, "Liberation Mono", Courier, monospace',
+      'pre &': {
+        fontSize: '1.125em'
+      }
     }
   }
 }))
 
 export default function GlobalStyles (props) {
-  ustStyles()
+  useStyles()
   return null
 }

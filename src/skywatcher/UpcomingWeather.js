@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { fade } from '@material-ui/core/styles/colorManipulator'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import cn from 'classnames'
 import PropTypes from 'prop-types'
@@ -33,6 +34,12 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2)
   },
   weatherTable: {
+    '& thead th': {
+      fontWeight: 'normal',
+      '&$current': {
+        fontWeight: 'bold'
+      }
+    },
     ':not(:last-child) > &': {
       marginBottom: theme.spacing(4)
     }
@@ -66,17 +73,35 @@ const useStyles = makeStyles((theme) => ({
       width: WEATHER_CELL_WIDTH + theme.spacing(1.5)
     }
   },
+  previous: {
+    backgroundColor: theme.palette.action.hover
+  },
   current: {
+    position: 'relative'
+  },
+  timeLine: {
+    position: 'absolute',
+    display: 'block',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    width: ({ now }) => {
+      if (!now) return 0
+
+      const eorzeanTime = getEorzeanTime(now)
+      const hours = eorzeanTime.getUTCHours() % 8
+      const minutes = hours * 60 + eorzeanTime.getUTCMinutes()
+      return `${minutes / 480 * 100}%`
+    },
     backgroundColor: theme.palette.action.hover,
-    'th&': {
-      fontWeight: 'bold'
-    }
+    borderRight: `1px solid ${fade(theme.palette.action.hover, 0.25)}`
   }
 }))
 
-const UpcomingWeather = ({ now }) => {
+const UpcomingWeather = (props) => {
+  const { now } = props
   const [filter, setFilter] = useState('none')
-  const classes = useStyles()
+  const classes = useStyles(props)
   const router = useRouter()
   const firstRender = useRef(false)
   const cachedForecast = useRef(null)
@@ -139,9 +164,10 @@ const UpcomingWeather = ({ now }) => {
                       <TableCell />
                       {Array(weathersCount + 1).fill().map((_, index) =>
                         <TableCell key={index} className={cn(classes.weatherTime, index === 1 && classes.current)}>
-                          {paddedZero((24 + timeChunk + 8 * (index - 1)) % 24) + ':00'}
-                        </TableCell>
-                      )}
+                          {index === 1
+                            ? eorzeanTime.toString()
+                            : paddedZero((24 + timeChunk + 8 * (index - 1)) % 24) + ':00'}
+                        </TableCell>)}
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -151,7 +177,14 @@ const UpcomingWeather = ({ now }) => {
                           <Typography>{eorzeaWeather.translateZone(zoneId)}</Typography>
                         </TableCell>
                         {weathers[zoneId].slice(0, weathersCount + 1).map((weatherId, index) =>
-                          <TableCell key={index} className={cn(classes.weatherCell, index === 1 && classes.current)}>
+                          <TableCell
+                            key={index}
+                            className={cn(classes.weatherCell, {
+                              [classes.previous]: index === 0,
+                              [classes.current]: index === 1
+                            })}
+                          >
+                            {index === 1 && <div className={classes.timeLine} />}
                             <WeatherIcon weatherId={weatherId} />
                           </TableCell>
                         )}
