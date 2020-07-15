@@ -31,8 +31,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function HighOrLowCard (props) {
-  const { value, disabled, error, onInputDigit } = props
+const HighOrLowCard = ({ value, disabled, error, onInputDigit }) => {
   const classes = useStyles()
 
   const handleInputDigit = (event) => {
@@ -66,3 +65,5 @@ HighOrLowCard.propTypes = {
   error: PropTypes.bool,
   onInputDigit: PropTypes.func
 }
+
+export default HighOrLowCard
