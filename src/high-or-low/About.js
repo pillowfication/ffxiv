@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography'
 import Section from '../Section'
 import MathJax from '../MathJax'
 
-export default function About () {
+const About = () => {
   return (
     <Section title='About'>
       <Typography paragraph>
@@ -32,3 +32,5 @@ export default function About () {
     </Section>
   )
 }
+
+export default About
