@@ -14,8 +14,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const BaitGroup = (props) => {
-  const { bait, intuitionFishes } = props
+const BaitGroup = ({ bait, intuitionFishes }) => {
   const classes = useStyles()
 
   return (

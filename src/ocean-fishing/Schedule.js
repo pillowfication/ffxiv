@@ -59,8 +59,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const Schedule = (props) => {
-  const { now, onSelectRoute } = props
+const Schedule = ({ now, onSelectRoute }) => {
   const [numRows, setNumRows] = useState(10)
   const [filter, setFilter] = useState('none')
   const [hover, setHover] = useState(null)

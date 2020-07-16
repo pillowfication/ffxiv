@@ -8,9 +8,9 @@ export const DEST_MAP = {
 }
 
 export const TIME_MAP = {
-  D: <TimeIcon time='D' />,
-  S: <TimeIcon time='S' />,
-  N: <TimeIcon time='N' />
+  D: <TimeIcon.Day />,
+  S: <TimeIcon.Sunset />,
+  N: <TimeIcon.Night />
 }
 
 export const OBJECTIVES_MAP = {
