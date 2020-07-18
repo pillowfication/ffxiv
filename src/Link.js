@@ -21,7 +21,7 @@ NextComposed.propTypes = {
   prefetch: PropTypes.bool
 }
 
-function Link (props) {
+const Link = (props) => {
   const {
     href,
     activeClassName = 'active',

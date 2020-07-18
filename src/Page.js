@@ -2,13 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Typography from '@material-ui/core/Typography'
 
-export default function Page (props) {
-  const { title } = props
-
+const Page = ({ title, children }) => {
   return (
     <>
       <Typography variant='h1' gutterBottom>{title}</Typography>
-      {props.children}
+      {children}
     </>
   )
 }
@@ -16,3 +14,5 @@ export default function Page (props) {
 Page.propTypes = {
   title: PropTypes.string.isRequired
 }
+
+export default Page

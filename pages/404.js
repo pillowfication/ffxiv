@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function _404 () {
+const _404 = () => {
   const classes = useStyles()
 
   return (
@@ -36,3 +36,5 @@ export default function _404 () {
     </>
   )
 }
+
+export default _404

@@ -35,8 +35,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function App (props) {
-  const { Component, pageProps } = props
+const App = ({ Component, pageProps }) => {
   const [theme, setTheme] = useState('light')
   const classes = useStyles()
 
@@ -104,3 +103,5 @@ App.propTypes = {
   Component: PropTypes.elementType.isRequired,
   pageProps: PropTypes.object.isRequired
 }
+
+export default App

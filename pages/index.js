@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function Index () {
+const Index = () => {
   const classes = useStyles()
 
   return (
@@ -102,3 +102,5 @@ export default function Index () {
     </>
   )
 }
+
+export default Index
