@@ -1,5 +1,9 @@
 module.exports = {
-  webpack (config) {
+  webpack (config, { isServer }) {
+    if (isServer) {
+      require('./generate-sitemap')
+    }
+
     config.module.rules.push({
       test: /\.svg$/,
       use: [{
