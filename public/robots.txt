@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://ffxiv.pf-n.co/sitemap.xml
