@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { ThemeProvider, makeStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import GlobalStyles from '../src/GlobalStyles'
@@ -38,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
 const App = ({ Component, pageProps }) => {
   const [theme, setTheme] = useState('light')
   const classes = useStyles()
+  const { asPath } = useRouter()
 
   useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side')
@@ -60,6 +62,7 @@ const App = ({ Component, pageProps }) => {
       <Head>
         <title>Lulu’s FFXIV Tools</title>
         <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width' />
+        <link rel='canonical' href={`http://pf-n.co${asPath}`} />
         <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_HTML' />
       </Head>
       <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
