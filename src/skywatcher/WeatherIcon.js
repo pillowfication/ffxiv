@@ -47,24 +47,29 @@ const useStyles = makeStyles((theme) => {
   return styles
 })
 
-const WeatherIcon = ({ weatherId, locale = 'en' }) => {
+const WeatherIcon = ({ weatherId, locale = 'en', showLabel = true }) => {
   const classes = useStyles()
   const weatherString = EorzeaWeather.translateWeather(weatherId, locale)
 
   return (
     <>
       <div className={cn(classes.weatherIcon, classes[weatherId])} title={weatherString} />
-      <br />
-      <Typography variant='caption'>
-        {weatherString === 'Thunderstorms' ? WEATHER_THUNDERSTORM : weatherString}
-      </Typography>
+      {showLabel && (
+        <>
+          <br />
+          <Typography variant='caption'>
+            {weatherString === 'Thunderstorms' ? WEATHER_THUNDERSTORM : weatherString}
+          </Typography>
+        </>
+      )}
     </>
   )
 }
 
 WeatherIcon.propTypes = {
   weatherId: PropTypes.oneOf(WEATHERS).isRequired,
-  locale: PropTypes.oneOf(['en', 'ja'])
+  locale: PropTypes.oneOf(['en', 'ja']),
+  showLabel: PropTypes.bool
 }
 
 export default WeatherIcon

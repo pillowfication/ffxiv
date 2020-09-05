@@ -13,8 +13,11 @@ import { paddedZero } from '../utils'
 import Section from '../Section'
 import Typography from '@material-ui/core/Typography'
 import NoSsr from '@material-ui/core/NoSsr'
+import Grid from '@material-ui/core/Grid'
 import FormControl from '@material-ui/core/FormControl'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
 import InputLabel from '@material-ui/core/InputLabel'
+import Checkbox from '@material-ui/core/Checkbox'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import TableContainer from '@material-ui/core/TableContainer'
@@ -30,7 +33,7 @@ const WEATHER_CELL_WIDTH = 75
 const eorzeaWeather = new EorzeaWeather({ locale: 'en' })
 
 const useStyles = makeStyles((theme) => ({
-  selectRegion: {
+  options: {
     marginBottom: theme.spacing(2)
   },
   weatherTable: {
@@ -98,6 +101,8 @@ const useStyles = makeStyles((theme) => ({
 const UpcomingWeather = (props) => {
   const { now } = props
   const [filter, setFilter] = useState('none')
+  const [showLabels, setShowLabels] = useState(true)
+  const [showLocalTime, setShowLocalTime] = useState(false)
   const classes = useStyles(props)
   const router = useRouter()
   const firstRender = useRef(false)
@@ -130,17 +135,53 @@ const UpcomingWeather = (props) => {
     })
   }
 
+  const handleToggleLabels = () => {
+    setShowLabels(!showLabels)
+  }
+
+  const handleToggleLocalTime = () => {
+    setShowLocalTime(!showLocalTime)
+  }
+
   return (
     <Section title='Upcoming Weather'>
-      <FormControl variant='filled' fullWidth margin='dense' className={classes.selectRegion}>
-        <InputLabel>Select a region</InputLabel>
-        <Select onChange={handleSelectFilter} value={filter}>
-          <MenuItem value='none'>Show all regions</MenuItem>
-          {REGIONS.map(({ regionId, query }) =>
-            <MenuItem key={query} value={query}>{eorzeaWeather.translateRegion(regionId)}</MenuItem>
-          )}
-        </Select>
-      </FormControl>
+      <Grid container spacing={1} className={classes.options}>
+        <Grid item xs={12}>
+          <FormControl variant='filled' fullWidth margin='dense'>
+            <InputLabel>Select a region</InputLabel>
+            <Select onChange={handleSelectFilter} value={filter}>
+              <MenuItem value='none'>Show all regions</MenuItem>
+              {REGIONS.map(({ regionId, query }) =>
+                <MenuItem key={query} value={query}>{eorzeaWeather.translateRegion(regionId)}</MenuItem>
+              )}
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={6}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={showLabels}
+                onChange={handleToggleLabels}
+                color='primary'
+              />
+            }
+            label='Show Labels'
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={showLocalTime}
+                onChange={handleToggleLocalTime}
+                color='primary'
+              />
+            }
+            label='Show local times'
+          />
+        </Grid>
+      </Grid>
       <NoSsr>
         {(() => {
           if (!now) return null
@@ -182,7 +223,7 @@ const UpcomingWeather = (props) => {
                             })}
                           >
                             {index === 1 && <div className={classes.timeLine} />}
-                            <WeatherIcon weatherId={weatherId} />
+                            <WeatherIcon weatherId={weatherId} showLabel={showLabels} />
                           </TableCell>
                         )}
                       </TableRow>
