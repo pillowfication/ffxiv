@@ -7,7 +7,7 @@ import cn from 'classnames'
 import PropTypes from 'prop-types'
 import EorzeaWeather from '@pillowfication/eorzea-weather'
 import REGIONS from './regions'
-import getEorzeanTime from './get-eorzean-time'
+import { getEorzeanTime, getLocalTime } from './get-eorzean-time'
 import calculateWeathers from './calculate-weathers'
 import { paddedZero } from '../utils'
 import Section from '../Section'
@@ -30,7 +30,12 @@ import WeatherIcon from './WeatherIcon'
 
 const ZONES = REGIONS.map(region => region.zones).flat()
 const WEATHER_CELL_WIDTH = 75
+const BELL = 8 * 3600000 / (1440 / 70)
 const eorzeaWeather = new EorzeaWeather({ locale: 'en' })
+
+function displayDate (date) {
+  return paddedZero(date.getHours()) + ':' + paddedZero(date.getMinutes())
+}
 
 const useStyles = makeStyles((theme) => ({
   options: {
@@ -191,6 +196,12 @@ const UpcomingWeather = (props) => {
           const eorzeanTime = getEorzeanTime(now)
           const timeChunk = Math.floor(eorzeanTime.getUTCHours() / 8) * 8
           const filteredRegion = filter !== 'none' && REGIONS.find((region) => region.query === filter)
+          let currentBell = new Date(eorzeanTime.getTime())
+          currentBell.setUTCHours(timeChunk)
+          currentBell.setUTCMinutes(0)
+          currentBell.setUTCSeconds(0)
+          currentBell.setUTCMilliseconds(0)
+          currentBell = getLocalTime(currentBell)
 
           return (filteredRegion ? [filteredRegion] : REGIONS).map(({ regionId, zones }) =>
             <React.Fragment key={regionId}>
@@ -202,9 +213,25 @@ const UpcomingWeather = (props) => {
                       <TableCell />
                       {Array(weathersCount + 1).fill().map((_, index) =>
                         <TableCell key={index} className={cn(classes.weatherTime, index === 1 && classes.current)}>
-                          {index === 1
-                            ? eorzeanTime.toString()
-                            : paddedZero((24 + timeChunk + 8 * (index - 1)) % 24) + ':00'}
+                          {showLocalTime ? (
+                            index === 1 ? (
+                              <>
+                                {eorzeanTime.toString()} ET
+                                <br />
+                                {displayDate(now)} LT
+                              </>
+                            ) : (
+                              <>
+                                {paddedZero((24 + timeChunk + 8 * (index - 1)) % 24) + ':00'} ET
+                                <br />
+                                {displayDate(new Date(currentBell.getTime() + BELL * (index - 1)))} LT
+                              </>
+                            )
+                          ) : (
+                            index === 1
+                              ? eorzeanTime.toString()
+                              : paddedZero((24 + timeChunk + 8 * (index - 1)) % 24) + ':00'
+                          )}
                         </TableCell>)}
                     </TableRow>
                   </TableHead>
