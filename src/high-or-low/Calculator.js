@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function HighOrLowCalculator (props) {
+const Calculator = () => {
   const [tb1, setTb1] = useState(null)
   const [tb2, setTb2] = useState(null)
   const [me, setMe] = useState(null)
@@ -73,3 +73,5 @@ export default function HighOrLowCalculator (props) {
     </Section>
   )
 }
+
+export default Calculator

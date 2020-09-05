@@ -17,13 +17,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function Highlight (props) {
+const Highlight = ({ className, ...props }) => {
   const theme = useTheme()
   const classes = useStyles()
   const themeCss = theme.palette.type === 'dark' ? 'atom-one-dark' : 'github'
 
   return (
-    <Paper variant='outlined' className={cn(classes.highlight, props.className)}>
+    <Paper variant='outlined' className={cn(classes.highlight, className)}>
       <Head>
         <link
           key='hljs-css'
@@ -35,3 +35,5 @@ export default function Highlight (props) {
     </Paper>
   )
 }
+
+export default Highlight

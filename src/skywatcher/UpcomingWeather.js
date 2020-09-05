@@ -1,19 +1,23 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { fade } from '@material-ui/core/styles/colorManipulator'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import cn from 'classnames'
 import PropTypes from 'prop-types'
 import EorzeaWeather from '@pillowfication/eorzea-weather'
 import REGIONS from './regions'
-import getEorzeanTime from './get-eorzean-time'
+import { getEorzeanTime, getLocalTime } from './get-eorzean-time'
 import calculateWeathers from './calculate-weathers'
 import { paddedZero } from '../utils'
 import Section from '../Section'
 import Typography from '@material-ui/core/Typography'
 import NoSsr from '@material-ui/core/NoSsr'
+import Grid from '@material-ui/core/Grid'
 import FormControl from '@material-ui/core/FormControl'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
 import InputLabel from '@material-ui/core/InputLabel'
+import Checkbox from '@material-ui/core/Checkbox'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import TableContainer from '@material-ui/core/TableContainer'
@@ -26,13 +30,24 @@ import WeatherIcon from './WeatherIcon'
 
 const ZONES = REGIONS.map(region => region.zones).flat()
 const WEATHER_CELL_WIDTH = 75
+const BELL = 8 * 3600000 / (1440 / 70)
 const eorzeaWeather = new EorzeaWeather({ locale: 'en' })
 
+function displayDate (date) {
+  return paddedZero(date.getHours()) + ':' + paddedZero(date.getMinutes())
+}
+
 const useStyles = makeStyles((theme) => ({
-  selectRegion: {
+  options: {
     marginBottom: theme.spacing(2)
   },
   weatherTable: {
+    '& thead th': {
+      fontWeight: 'normal',
+      '&$current': {
+        fontWeight: 'bold'
+      }
+    },
     ':not(:last-child) > &': {
       marginBottom: theme.spacing(4)
     }
@@ -67,16 +82,33 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   current: {
-    backgroundColor: theme.palette.action.hover,
-    'th&': {
-      fontWeight: 'bold'
-    }
+    position: 'relative',
+    backgroundColor: theme.palette.action.hover
+  },
+  timeLine: {
+    position: 'absolute',
+    display: 'block',
+    top: 0,
+    left: 0,
+    bottom: -1,
+    width: ({ now }) => {
+      if (!now) return 0
+
+      const eorzeanTime = getEorzeanTime(now)
+      const hours = eorzeanTime.getUTCHours() % 8
+      const minutes = hours * 60 + eorzeanTime.getUTCMinutes()
+      return `${minutes / 480 * 100}%`
+    },
+    borderRight: `2px solid ${fade(theme.palette.action.hover, 0.2)}`
   }
 }))
 
-const UpcomingWeather = ({ now }) => {
+const UpcomingWeather = (props) => {
+  const { now } = props
   const [filter, setFilter] = useState('none')
-  const classes = useStyles()
+  const [showLabels, setShowLabels] = useState(true)
+  const [showLocalTime, setShowLocalTime] = useState(false)
+  const classes = useStyles(props)
   const router = useRouter()
   const firstRender = useRef(false)
   const cachedForecast = useRef(null)
@@ -108,17 +140,53 @@ const UpcomingWeather = ({ now }) => {
     })
   }
 
+  const handleToggleLabels = () => {
+    setShowLabels(!showLabels)
+  }
+
+  const handleToggleLocalTime = () => {
+    setShowLocalTime(!showLocalTime)
+  }
+
   return (
     <Section title='Upcoming Weather'>
-      <FormControl variant='filled' fullWidth margin='dense' className={classes.selectRegion}>
-        <InputLabel>Select a region</InputLabel>
-        <Select onChange={handleSelectFilter} value={filter}>
-          <MenuItem value='none'>Show all regions</MenuItem>
-          {REGIONS.map(({ regionId, query }) =>
-            <MenuItem key={query} value={query}>{eorzeaWeather.translateRegion(regionId)}</MenuItem>
-          )}
-        </Select>
-      </FormControl>
+      <Grid container spacing={1} className={classes.options}>
+        <Grid item xs={12}>
+          <FormControl variant='filled' fullWidth margin='dense'>
+            <InputLabel>Select a region</InputLabel>
+            <Select onChange={handleSelectFilter} value={filter}>
+              <MenuItem value='none'>Show all regions</MenuItem>
+              {REGIONS.map(({ regionId, query }) =>
+                <MenuItem key={query} value={query}>{eorzeaWeather.translateRegion(regionId)}</MenuItem>
+              )}
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={6}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={showLabels}
+                onChange={handleToggleLabels}
+                color='primary'
+              />
+            }
+            label='Show Labels'
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={showLocalTime}
+                onChange={handleToggleLocalTime}
+                color='primary'
+              />
+            }
+            label='Show local times'
+          />
+        </Grid>
+      </Grid>
       <NoSsr>
         {(() => {
           if (!now) return null
@@ -128,6 +196,12 @@ const UpcomingWeather = ({ now }) => {
           const eorzeanTime = getEorzeanTime(now)
           const timeChunk = Math.floor(eorzeanTime.getUTCHours() / 8) * 8
           const filteredRegion = filter !== 'none' && REGIONS.find((region) => region.query === filter)
+          let currentBell = new Date(eorzeanTime.getTime())
+          currentBell.setUTCHours(timeChunk)
+          currentBell.setUTCMinutes(0)
+          currentBell.setUTCSeconds(0)
+          currentBell.setUTCMilliseconds(0)
+          currentBell = getLocalTime(currentBell)
 
           return (filteredRegion ? [filteredRegion] : REGIONS).map(({ regionId, zones }) =>
             <React.Fragment key={regionId}>
@@ -139,9 +213,26 @@ const UpcomingWeather = ({ now }) => {
                       <TableCell />
                       {Array(weathersCount + 1).fill().map((_, index) =>
                         <TableCell key={index} className={cn(classes.weatherTime, index === 1 && classes.current)}>
-                          {paddedZero((24 + timeChunk + 8 * (index - 1)) % 24) + ':00'}
-                        </TableCell>
-                      )}
+                          {showLocalTime ? (
+                            index === 1 ? (
+                              <>
+                                {eorzeanTime.toString()} ET
+                                <br />
+                                {displayDate(now)} LT
+                              </>
+                            ) : (
+                              <>
+                                {paddedZero((24 + timeChunk + 8 * (index - 1)) % 24) + ':00'} ET
+                                <br />
+                                {displayDate(new Date(currentBell.getTime() + BELL * (index - 1)))} LT
+                              </>
+                            )
+                          ) : (
+                            index === 1
+                              ? eorzeanTime.toString()
+                              : paddedZero((24 + timeChunk + 8 * (index - 1)) % 24) + ':00'
+                          )}
+                        </TableCell>)}
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -151,8 +242,15 @@ const UpcomingWeather = ({ now }) => {
                           <Typography>{eorzeaWeather.translateZone(zoneId)}</Typography>
                         </TableCell>
                         {weathers[zoneId].slice(0, weathersCount + 1).map((weatherId, index) =>
-                          <TableCell key={index} className={cn(classes.weatherCell, index === 1 && classes.current)}>
-                            <WeatherIcon weatherId={weatherId} />
+                          <TableCell
+                            key={index}
+                            className={cn(classes.weatherCell, {
+                              [classes.previous]: index === 0,
+                              [classes.current]: index === 1
+                            })}
+                          >
+                            {index === 1 && <div className={classes.timeLine} />}
+                            <WeatherIcon weatherId={weatherId} showLabel={showLabels} />
                           </TableCell>
                         )}
                       </TableRow>

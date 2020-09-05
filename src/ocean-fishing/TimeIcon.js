@@ -17,10 +17,10 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const TimeIcon = (props) => {
+const TimeIcon = ({ time }) => {
   const classes = useStyles()
 
-  switch (props.time) {
+  switch (time) {
     case 'D':
       return (
         <svg width={ICON_SIZE} height={ICON_SIZE} className={classes.timeIcon} title='Day'>

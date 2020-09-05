@@ -29,8 +29,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const RouteInformation = (props) => {
-  const { now, selectedRoute } = props
+const RouteInformation = ({ now, selectedRoute }) => {
   if (!now || !selectedRoute) return null
 
   const classes = useStyles()

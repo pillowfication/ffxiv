@@ -28,8 +28,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const BaitChain = (props) => {
-  const { bait } = props
+const BaitChain = ({ bait }) => {
   const classes = useStyles()
 
   return (
