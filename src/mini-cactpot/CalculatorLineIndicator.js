@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  arrow: {
     margin: theme.spacing(1),
     fontSize: '2em',
     transform: ({ rotate }) => `rotate(${rotate}deg)`
@@ -16,7 +16,7 @@ const CalculatorLineIndicator = ({ rotate, suggested }) => {
 
   return (
     <ArrowForwardIcon
-      className={classes.root}
+      className={classes.arrow}
       color={suggested ? 'primary' : 'disabled'}
     />
   )
