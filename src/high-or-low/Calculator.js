@@ -63,7 +63,7 @@ const Calculator = () => {
               } else if (high < low) {
                 return <Typography paragraph>You are <b>Low</b> ({toPercent(low, sum)})</Typography>
               } else {
-                return <Typography paragraph>You are <b>High</b> or <b>Low</b> (50%)</Typography>
+                return <Typography paragraph>You are <b>High</b> or <b>Low</b> ({toPercent(low, sum)})</Typography>
               }
             }
           }
