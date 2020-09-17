@@ -115,7 +115,7 @@ const Index = () => {
 
       <IndexSection url='/wondrous-tails' title='Wondrous Tails'>
         <Typography paragraph>
-          Wondrous Tails.
+          Calculator for the Wondrous Tails mini-game.
         </Typography>
       </IndexSection>
     </>
