@@ -112,6 +112,12 @@ const Index = () => {
           Schedule for weather in Eorzea, and calculator for upcoming weather patterns.
         </Typography>
       </IndexSection>
+
+      <IndexSection url='/wondrous-tails' title='Wondrous Tails'>
+        <Typography paragraph>
+          Wondrous Tails.
+        </Typography>
+      </IndexSection>
     </>
   )
 }
