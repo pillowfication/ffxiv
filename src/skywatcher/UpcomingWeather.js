@@ -108,6 +108,7 @@ const UpcomingWeather = (props) => {
   const [filter, setFilter] = useState('none')
   const [showLabels, setShowLabels] = useState(true)
   const [showLocalTime, setShowLocalTime] = useState(false)
+  const [showWeatherChance, setShowWeatherChance] = useState(false)
   const classes = useStyles(props)
   const router = useRouter()
   const firstRender = useRef(false)
@@ -148,6 +149,10 @@ const UpcomingWeather = (props) => {
     setShowLocalTime(!showLocalTime)
   }
 
+  const handleToggleWeatherChance = () => {
+    setShowWeatherChance(!showWeatherChance)
+  }
+
   return (
     <Section title='Upcoming Weather'>
       <Grid container spacing={1} className={classes.options}>
@@ -162,7 +167,7 @@ const UpcomingWeather = (props) => {
             </Select>
           </FormControl>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={4}>
           <FormControlLabel
             control={
               <Checkbox
@@ -174,7 +179,7 @@ const UpcomingWeather = (props) => {
             label='Show Labels'
           />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={4}>
           <FormControlLabel
             control={
               <Checkbox
@@ -186,13 +191,26 @@ const UpcomingWeather = (props) => {
             label='Show local times'
           />
         </Grid>
+        <Grid item xs={4}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={showWeatherChance}
+                onChange={handleToggleWeatherChance}
+                color='primary'
+              />
+            }
+            label={<>Show <code>weatherChance</code></>}
+          />
+        </Grid>
       </Grid>
       <NoSsr>
         {(() => {
           if (!now) return null
 
           const weathersCount = lg ? 9 : md ? 7 : sm ? 6 : 3
-          const weathers = cachedForecast.current || (cachedForecast.current = calculateWeathers(ZONES, 9, now))
+          const { weathers, weatherChances } = cachedForecast.current ||
+            (cachedForecast.current = calculateWeathers(ZONES, 9, now))
           const eorzeanTime = getEorzeanTime(now)
           const timeChunk = Math.floor(eorzeanTime.getUTCHours() / 8) * 8
           const filteredRegion = filter !== 'none' && REGIONS.find((region) => region.query === filter)
@@ -231,6 +249,12 @@ const UpcomingWeather = (props) => {
                             index === 1
                               ? eorzeanTime.toString()
                               : paddedZero((24 + timeChunk + 8 * (index - 1)) % 24) + ':00'
+                          )}
+                          {showWeatherChance && (
+                            <>
+                              <br />
+                              {paddedZero(weatherChances[index])}
+                            </>
                           )}
                         </TableCell>)}
                     </TableRow>
