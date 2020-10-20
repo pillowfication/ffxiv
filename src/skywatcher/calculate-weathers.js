@@ -1,7 +1,6 @@
 import EorzeaWeather from '@pillowfication/eorzea-weather'
 
 const eorzeaWeather = new EorzeaWeather()
-console.log(eorzeaWeather)
 const _8HR = 8 * 175 * 1000
 
 function calculateWeathers (zoneIds, count = 1, now = Date.now()) {
