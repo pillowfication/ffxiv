@@ -6,18 +6,27 @@ import UpcomingWeather from '../src/skywatcher/UpcomingWeather'
 import Forecaster from '../src/skywatcher/Forecaster'
 import About from '../src/skywatcher/About'
 
-const UPDATE_INTERVAL = 175 / 60 * 1000
+const UPDATE_INTERVAL = 175 / 60 * 1000 / 2
 
 const Skywatcher = () => {
   const [now, setNow] = useState(null)
 
   useEffect(() => {
     const setTime = () => { setNow(new Date()) }
-    const interval = setInterval(setTime, UPDATE_INTERVAL)
+    let interval
+
+    const loop = () => {
+      interval = setTimeout(() => {
+        setTime()
+        loop()
+      }, UPDATE_INTERVAL)
+    }
+    loop()
+
     setTime()
 
     return () => {
-      clearInterval(interval)
+      clearTimeout(interval)
     }
   }, [])
 
