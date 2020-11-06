@@ -3,6 +3,7 @@ import moment from 'moment'
 import { paddedZero } from '../src/utils'
 import Typography from '@material-ui/core/Typography'
 import Link from '@material-ui/core/Link'
+import Alert from '@material-ui/lab/Alert'
 import Page from '../src/Page'
 import UpcomingVoyages from '../src/ocean-fishing/UpcomingVoyages'
 import RouteInformation from '../src/ocean-fishing/RouteInformation'
@@ -31,6 +32,7 @@ const OceanFishing = () => {
 
   return (
     <Page title='Ocean Fishing'>
+      <Alert severity='error' style={{ marginBottom: '1em' }}>The schedule may be off by an hour due to daylight savings. Working on it...</Alert>
       <Typography paragraph>
         Your <Link href='https://en.wikipedia.org/wiki/UTC_offset'>UTC offset</Link> is ({now ? toUTCString(moment().utcOffset()) : '…'}). The time in Japan ({toUTCString(JST_UTC)}) is <strong>{now ? now.utcOffset(JST_UTC).format('HH:mm') : '…'}</strong>.
       </Typography>
