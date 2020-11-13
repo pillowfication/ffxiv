@@ -1,17 +1,23 @@
-import moment from 'moment'
+const _9HR = 32400000
 
-// Cycle repeats every 6 days; subtract time to make sure we're in the future
-export const LULU_EPOCH = moment('2020-06-28 00:00+09:00').subtract(666, 'days')
-const DEST_CYCLE = ['N', 'R']
-const TIME_CYCLE = ['D', 'S', 'N']
+// Cycle repeats every 6 days starting at this epoch
+const LULU_EPOCH = 1593270000000 + _9HR
+const DEST_CYCLE = 'NR'
+const TIME_CYCLE = 'DSN'
 
-function calculateVoyages (time, count, filter) {
-  // Important that `time` is UTC+09:00
-  let day = time.diff(LULU_EPOCH, 'days')
-  let hour = time.hour()
+function fromEpoch (day, hour) {
+  return new Date(LULU_EPOCH + day * 86400000 + hour * 3600000 - _9HR)
+}
+
+function calculateVoyages (date, count, filter) {
+  date = new Date(date.getTime() + _9HR)
+  let day = Math.floor((date.getTime() - LULU_EPOCH) / 86400000)
+  let hour = date.getUTCHours()
 
   // Adjust time to fall on the next voyage, including any ongoing
-  if (time.minute() < 45) hour -= 1
+  if (date.getUTCMinutes() < 45) {
+    hour -= 1
+  }
   hour += (hour & 1) ? 2 : 1
   if (hour === 0) {
     day -= 1
@@ -31,7 +37,7 @@ function calculateVoyages (time, count, filter) {
   while (upcomingVoyages.length < count) {
     const destinationCode = DEST_CYCLE[destIndex] + TIME_CYCLE[timeIndex]
     if (!filter || filter.includes(destinationCode)) {
-      upcomingVoyages.push({ day, hour, destinationCode })
+      upcomingVoyages.push({ time: fromEpoch(day, hour), destinationCode })
     }
     if (hour === 23) {
       day += 1

@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
-import moment from 'moment'
 import cn from 'classnames'
 import PropTypes from 'prop-types'
-import calculateVoyages, { LULU_EPOCH } from './calculate-voyages'
+import calculateVoyages from './calculate-voyages'
 import { DEST_MAP, TIME_MAP, OBJECTIVES_MAP, FILTER_MAP } from './maps'
+import { timeUntil } from './utils'
 import { makeStyles } from '@material-ui/core/styles'
 import NoSsr from '@material-ui/core/NoSsr'
 import Grid from '@material-ui/core/Grid'
@@ -193,28 +193,26 @@ const UpcomingVoyages = ({ now, onSelectRoute }) => {
                     {(() => {
                       let previousDate
 
-                      return upcomingVoyages.map(({ day, hour, destinationCode }) => {
-                        const time = LULU_EPOCH.clone()
-                          .add(day, 'days').add(hour, 'hours')
-                          .utcOffset(moment().utcOffset())
-                        const date = time.format('M/D')
+                      return upcomingVoyages.map(({ time, destinationCode }) => {
+                        const dateString = time.toLocaleDateString(undefined, { month: '2-digit', day: '2-digit' })
+                        const timeString = time.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })
 
                         return (
                           <TableRow
-                            key={`${day}:${hour}`}
+                            key={time.getTime()}
                             hover={filter === 'none'}
                             className={cn(filter === 'none' && hover === destinationCode && classes.hoverRow)}
                             onMouseOver={handleHoverRow[destinationCode]}
                             onClick={handleSelectRow[destinationCode]}
                           >
                             <TableCell align='right'>
-                              {previousDate !== (previousDate = date) && date}
+                              {previousDate !== (previousDate = dateString) && dateString}
                             </TableCell>
                             <TableCell>
-                              {time.format('HH:mm')}
+                              {timeString}
                             </TableCell>
                             <TableCell>
-                              <span className={classes.timeUntil}>{moment.duration(time.diff(now)).humanize(true)}</span>
+                              <span className={classes.timeUntil}>{timeUntil(now, time)}</span>
                             </TableCell>
                             <TableCell align='right'>
                               {DEST_MAP[destinationCode[0]]}

@@ -1,9 +1,9 @@
 import React from 'react'
-import moment from 'moment'
 import PropTypes from 'prop-types'
-import calculateVoyages, { LULU_EPOCH } from './calculate-voyages'
+import calculateVoyages from './calculate-voyages'
 import { DEST_MAP, TIME_MAP, ROUTE_MAP, FISH_MAP, BLUE_FISH_MAP } from './maps'
 import BAIT_GROUPS from './bait-groups'
+import { timeUntil } from './utils'
 import { makeStyles } from '@material-ui/core/styles'
 import Section from '../Section'
 import Typography from '@material-ui/core/Typography'
@@ -38,10 +38,6 @@ const RouteInformation = ({ now, selectedRoute }) => {
   const routeStops = ROUTE_MAP[name]
     .map((dest, index) => dest + TIMES[(timeIndex + index + 1) % 3])
   const next = calculateVoyages(now, 1, selectedRoute)[0]
-  const nextMoment = LULU_EPOCH.clone()
-    .add(next.day, 'days').add(next.hour, 'hours')
-    .utcOffset(moment().utcOffset())
-  const timeUntil = nextMoment.diff(now)
 
   return (
     <Section
@@ -49,9 +45,7 @@ const RouteInformation = ({ now, selectedRoute }) => {
         <>
           {DEST_MAP[name]} <span className={classes.headerTime}>{TIME_MAP[time]}</span>
           <Typography display='inline' className={classes.headerSub}>
-            next is {timeUntil <= 0
-              ? 'boarding now / en route'
-              : `${moment.duration(timeUntil).humanize(true)} at ${nextMoment.format('HH:mm')}`}
+            {timeUntil(now, next.time, true)}
           </Typography>
         </>
       }
