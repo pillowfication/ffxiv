@@ -4,16 +4,17 @@ import UpcomingVoyages from '../src/ocean-fishing/UpcomingVoyages'
 import RouteInformation from '../src/ocean-fishing/RouteInformation'
 import AchievementsInformation from '../src/ocean-fishing/AchievementsInformation'
 
-const UPDATE_INTERVAL = 30 * 1000
-
 const OceanFishing = () => {
   const [now, setNow] = useState(null)
   const [selectedRoute, setSelectedRoute] = useState(null)
 
   useEffect(() => {
-    const setTime = () => { setNow(new Date()) }
-    const interval = setInterval(setTime, UPDATE_INTERVAL)
-    setTime()
+    let interval
+    (function loop () {
+      const now = new Date()
+      setNow(now)
+      interval = setTimeout(loop, 60000 - now.getTime() % 60000)
+    })()
 
     return () => {
       clearInterval(interval)
