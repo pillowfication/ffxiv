@@ -2,32 +2,31 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import cn from 'classnames'
 import PropTypes from 'prop-types'
-import EorzeaWeather from '@pillowfication/eorzea-weather'
 import Typography from '@material-ui/core/Typography'
+import { translateId } from './weather'
+import * as WEATHERS from './weather/consts/weathers'
 
-const WEATHERS = [
-  EorzeaWeather.WEATHER_CLEAR_SKIES,
-  EorzeaWeather.WEATHER_FAIR_SKIES,
-  EorzeaWeather.WEATHER_CLOUDS,
-  EorzeaWeather.WEATHER_WIND,
-  EorzeaWeather.WEATHER_GALES,
-  EorzeaWeather.WEATHER_FOG,
-  EorzeaWeather.WEATHER_RAIN,
-  EorzeaWeather.WEATHER_SHOWERS,
-  EorzeaWeather.WEATHER_THUNDER,
-  EorzeaWeather.WEATHER_THUNDERSTORMS,
-  EorzeaWeather.WEATHER_DUST_STORMS,
-  'sandstorms', // EorzeaWeather.WEATHER_SANDSTORMS,
-  EorzeaWeather.WEATHER_HEAT_WAVES,
-  'hotSpells', // EorzeaWeather.WEATHER_HOT_SPELLS,
-  EorzeaWeather.WEATHER_SNOW,
-  EorzeaWeather.WEATHER_BLIZZARDS,
-  EorzeaWeather.WEATHER_GLOOM,
-  EorzeaWeather.WEATHER_UMBRAL_STATIC,
-  EorzeaWeather.WEATHER_UMBRAL_WIND
+const WEATHER_IDS = [
+  WEATHERS.CLEAR_SKIES,
+  WEATHERS.FAIR_SKIES,
+  WEATHERS.CLOUDS,
+  WEATHERS.WIND,
+  WEATHERS.GALES,
+  WEATHERS.FOG,
+  WEATHERS.RAIN,
+  WEATHERS.SHOWERS,
+  WEATHERS.THUNDER,
+  WEATHERS.THUNDERSTORMS,
+  WEATHERS.DUST_STORMS,
+  WEATHERS.SANDSTORMS,
+  WEATHERS.HEAT_WAVES,
+  WEATHERS.HOT_SPELLS,
+  WEATHERS.SNOW,
+  WEATHERS.BLIZZARDS,
+  WEATHERS.GLOOM,
+  WEATHERS.UMBRAL_STATIC,
+  WEATHERS.UMBRAL_WIND
 ]
-
-const WEATHER_THUNDERSTORM = 'Thunder' + String.fromCharCode(173) + 'storms'
 
 const useStyles = makeStyles((theme) => {
   const styles = {
@@ -36,20 +35,18 @@ const useStyles = makeStyles((theme) => {
       width: '30px',
       height: '30px',
       backgroundImage: 'url("./images/weather-icons.png")',
-      backgroundSize: `${WEATHERS.length * 100}% 100%`
+      backgroundSize: `${WEATHER_IDS.length * 100}% 100%`
     }
   }
-  WEATHERS.forEach((weatherId, index) => {
-    styles[weatherId] = {
-      backgroundPosition: `${index * -100}% 0%`
-    }
+  WEATHER_IDS.forEach((weatherId, index) => {
+    styles[weatherId] = { backgroundPosition: `${index * -100}% 0%` }
   })
   return styles
 })
 
-const WeatherIcon = ({ weatherId, locale = 'en', showLabel = true }) => {
+const WeatherIcon = ({ weatherId, showLabel = true }) => {
   const classes = useStyles()
-  const weatherString = EorzeaWeather.translateWeather(weatherId, locale)
+  const weatherString = translateId(weatherId)
 
   return (
     <>
@@ -57,9 +54,7 @@ const WeatherIcon = ({ weatherId, locale = 'en', showLabel = true }) => {
       {showLabel && (
         <>
           <br />
-          <Typography variant='caption'>
-            {weatherString === 'Thunderstorms' ? WEATHER_THUNDERSTORM : weatherString}
-          </Typography>
+          <Typography variant='caption'>{weatherString}</Typography>
         </>
       )}
     </>
@@ -67,9 +62,8 @@ const WeatherIcon = ({ weatherId, locale = 'en', showLabel = true }) => {
 }
 
 WeatherIcon.propTypes = {
-  weatherId: PropTypes.oneOf(WEATHERS).isRequired,
-  locale: PropTypes.oneOf(['en', 'ja']),
+  weatherId: PropTypes.oneOf(WEATHER_IDS).isRequired,
   showLabel: PropTypes.bool
 }
 
-export default WeatherIcon
+export default React.memo(WeatherIcon)
