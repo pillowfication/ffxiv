@@ -146,6 +146,9 @@ const AchievementsInformation = ({ selectedRoute }) => {
                 <Typography paragraph>
                   There’s possibly a blind DH at 14-17s.
                 </Typography>
+                <Typography paragraph>
+                  Clouds and Fog weather will remove Shaggy Seadragons (requeue).
+                </Typography>
                 <Typography variant='overline'>Spectral</Typography>
                 <Typography paragraph>
                   Spectral is bad. Sit on IC if you have it going into spectral, instead of catching Aetheric Seadragons.
