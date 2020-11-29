@@ -24,8 +24,16 @@ const useStyles = makeStyles((theme) => ({
   achievementIcon: {
     marginTop: 0,
     marginBottom: 0,
+    marginLeft: '0.5em',
     fontSize: '0.65em',
     verticalAlign: 'sub'
+  },
+  headerSub: {
+    marginLeft: theme.spacing(2),
+    [theme.breakpoints.down('xs')]: {
+      marginLeft: 0,
+      display: 'block'
+    }
   }
 }))
 
@@ -43,6 +51,9 @@ const AchievementsInformation = ({ selectedRoute }) => {
             <>
               Jellyfish Route
               <OceanFishIcon name={achievement} className={classes.achievementIcon} />
+              <Typography display='inline' className={classes.headerSub}>
+                catch 150 jellyfish
+              </Typography>
             </>
           }
         >
@@ -121,6 +132,9 @@ const AchievementsInformation = ({ selectedRoute }) => {
             <>
               Seadragons Route
               <OceanFishIcon name={achievement} className={classes.achievementIcon} />
+              <Typography display='inline' className={classes.headerSub}>
+                catch 100 seadragons
+              </Typography>
             </>
           }
         >
@@ -202,6 +216,9 @@ const AchievementsInformation = ({ selectedRoute }) => {
             <>
               Sharks Route
               <OceanFishIcon name={achievement} className={classes.achievementIcon} />
+              <Typography display='inline' className={classes.headerSub}>
+                catch 200 sharks
+              </Typography>
             </>
           }
         >
@@ -301,6 +318,9 @@ const AchievementsInformation = ({ selectedRoute }) => {
             <>
               Octopodes Route
               <OceanFishIcon name={achievement} className={classes.achievementIcon} />
+              <Typography display='inline' className={classes.headerSub}>
+                catch 150 octopodes
+              </Typography>
             </>
           }
         >
