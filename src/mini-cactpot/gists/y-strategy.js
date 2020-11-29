@@ -47,18 +47,9 @@ function getPermutations (digits) {
   }
 }
 
-function rotatePermutation (permutation) {
-  return [
-    permutation[2],
-    permutation[5],
-    permutation[8],
-    permutation[1],
-    permutation[4],
-    permutation[7],
-    permutation[0],
-    permutation[3],
-    permutation[6]
-  ]
+function rotatePermutation (permutation, count) {
+  const rotation = [2, 5, 8, 1, 4, 7, 0, 3, 6].map(index => permutation[index])
+  return count <= 1 ? rotation : rotatePermutation(rotation, count - 1)
 }
 
 function scoreLine (permutation, lineId) {
@@ -82,14 +73,14 @@ for (const permutation of getPermutations(9)) {
     switch (revealedIndex) {
       case 3:
       case 8:
-        perm = rotatePermutation(perm)
+        perm = rotatePermutation(perm, 1)
         break
       case 1:
       case 6:
-        perm = rotatePermutation(rotatePermutation(perm))
+        perm = rotatePermutation(perm, 2)
         break
       case 5:
-        perm = rotatePermutation(rotatePermutation(rotatePermutation(perm)))
+        perm = rotatePermutation(perm, 3)
     }
 
     // Count how many revealed squares are 1, 2, or 3 and are 7, 8, or 9

@@ -1,4 +1,4 @@
-const CACHE = require('./cache.json')
+const CACHE = require('./gists/cache.json')
 
 const PAYOUTS = {
   6: 10000,
