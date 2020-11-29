@@ -17,7 +17,7 @@ const OceanFishing = () => {
     })()
 
     return () => {
-      clearInterval(interval)
+      clearTimeout(interval)
     }
   }, [])
 

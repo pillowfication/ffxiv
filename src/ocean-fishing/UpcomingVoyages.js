@@ -4,7 +4,7 @@ import cn from 'classnames'
 import PropTypes from 'prop-types'
 import calculateVoyages from './calculate-voyages'
 import { DEST_MAP, TIME_MAP, OBJECTIVES_MAP, FILTER_MAP } from './maps'
-import { timeUntil } from './utils'
+import { toTimeString, timeUntil } from './utils'
 import { makeStyles } from '@material-ui/core/styles'
 import NoSsr from '@material-ui/core/NoSsr'
 import Grid from '@material-ui/core/Grid'
@@ -195,7 +195,7 @@ const UpcomingVoyages = ({ now, onSelectRoute }) => {
 
                       return upcomingVoyages.map(({ time, destinationCode }) => {
                         const dateString = time.toLocaleDateString(undefined, { month: '2-digit', day: '2-digit' })
-                        const timeString = time.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })
+                        const timeString = toTimeString(time, true)
 
                         return (
                           <TableRow
