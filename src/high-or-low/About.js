@@ -1,7 +1,7 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import Section from '../Section'
-import MathJax from '../MathJax'
+import { $, $$ } from '../MathJax'
 
 const About = () => {
   return (
@@ -12,19 +12,19 @@ const About = () => {
       <Typography paragraph>
         There is a simple way to determine if your sum is more likely to be higher or lower. Calculate the <strong>scores</strong> of you and Tista-Bie according to the following formula:
       </Typography>
-      <MathJax $$={`
+      {$$(`
         \\begin{align}
           \\text{Your Score} & = (\\text{Your Card}) \\times 5 + 45, \\\\
           \\text{TB’s Score} & = (\\text{TB’s Cards}) \\times 7.
-        \\end{align}`}
-      />
+        \\end{align}
+      `)}
       <Typography paragraph>
         Then make your guess based on if your score is higher or lower than Tista-Bie’s score.
       </Typography>
       <Typography paragraph>
-        For example, if your card is <MathJax $='7' />, then your score is <MathJax $='7 \times 5 + 45 = 80' />.
+        For example, if your card is {$('7')}, then your score is {$('7 \\times 5 + 45 = 80')}.
         <br />
-        If Tista-Bie’s cards are <MathJax $='4' /> and <MathJax $='8' />, then her score is <MathJax $='(4 + 8) \times 7 = 84' />.
+        If Tista-Bie’s cards are {$('4')} and {$('8')}, then her score is {$('(4 + 8) \\times 7 = 84')}.
       </Typography>
       <Typography paragraph>
         In this scenario, you should guess <b>Low</b>.

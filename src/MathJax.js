@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
-import AirbnbPropTypes from 'airbnb-prop-types'
 import Highlight from './Highlight'
 
 const setImmediatePolyfill = typeof setImmediate !== 'undefined'
@@ -39,48 +38,27 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 // TODO: SSR still not happy
-const MathJaxComponent = ({ $, $$ }) => {
+const MathJaxComponent = ({ math, displayMode }) => {
   const [isMounted, setIsMounted] = useState(false)
   const classes = useStyles()
-  useEffect(() => { isMounted && queueRenderMath() }, [isMounted, $, $$])
+  useEffect(() => { isMounted && queueRenderMath() }, [isMounted, math, displayMode])
   useEffect(() => { setIsMounted(true) }, [])
 
   return (
     !isMounted || typeof MathJax === 'undefined'
-      ? $$
-        ? <Highlight language='latex' className={classes.noMathJaxBlock}>{`\\[${$$}\\]`}</Highlight>
-        : <span className={classes.noMathJaxInline}>{`\\(${$}\\)`}</span>
-      : $$
-        ? <div className={classes.mathJaxBlock}>{`\\[${$$}\\]`}</div>
-        : <span className={classes.mathJaxInline}>{`\\(${$}\\)`}</span>
+      ? displayMode
+        ? <Highlight language='latex' className={classes.noMathJaxBlock}>{`\\[${math}\\]`}</Highlight>
+        : <span className={classes.noMathJaxInline}>{`\\(${math}\\)`}</span>
+      : displayMode
+        ? <div className={classes.mathJaxBlock}>{`\\[${math}\\]`}</div>
+        : <span className={classes.mathJaxInline}>{`\\(${math}\\)`}</span>
   )
 }
 
-const exclusivePropTypes = {
-  $: PropTypes.string,
-  $$: PropTypes.string
-}
-const exclusiveProps = Object.keys(exclusivePropTypes)
-
 MathJaxComponent.propTypes = {
-  ...Object.fromEntries(exclusiveProps.map(exclusiveProp => [
-    exclusiveProp,
-    AirbnbPropTypes.and([
-      exclusivePropTypes[exclusiveProp],
-      (props, propName, componentName) => {
-        const propList = exclusiveProps.join(', ')
-        const exclusivePropCount = Object.keys(props)
-          .filter(prop => props[prop] != null)
-          .reduce((count, prop) => (count + (exclusivePropTypes[prop] ? 1 : 0)), 0)
-        if (exclusivePropCount > 1) {
-          return new Error(`A ${componentName} cannot have more than one of these props: ${propList}`)
-        }
-        if (exclusivePropCount < 1) {
-          return new Error(`A ${componentName} must have at least one of these props: ${propList}`)
-        }
-      }
-    ])
-  ]))
+  math: PropTypes.string.isRequired,
+  displayMode: PropTypes.bool
 }
 
-export default MathJaxComponent
+export const $ = (math) => <MathJaxComponent math={math} />
+export const $$ = (math) => <MathJaxComponent math={math} displayMode />
