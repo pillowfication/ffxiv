@@ -45,6 +45,11 @@ const useStyles = makeStyles((theme) => ({
   hoverRow: {
     backgroundColor: theme.palette.action.hover
   },
+  timeUntil: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
+    }
+  },
   timeCell: {
     '& svg': {
       top: 0,
@@ -59,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const Schedule = ({ now, onSelectRoute }) => {
+const UpcomingVoyages = ({ now, onSelectRoute }) => {
   const [numRows, setNumRows] = useState(10)
   const [filter, setFilter] = useState('none')
   const [hover, setHover] = useState(null)
@@ -125,7 +130,7 @@ const Schedule = ({ now, onSelectRoute }) => {
   }
 
   return (
-    <Section title='Schedule'>
+    <Section title='Upcoming Voyages'>
       <Grid container spacing={2} className={classes.form}>
         <Grid item xs={12} sm={6}>
           <FormControl fullWidth>
@@ -179,7 +184,7 @@ const Schedule = ({ now, onSelectRoute }) => {
                 <Table size='small' className={classes.schedule}>
                   <TableHead>
                     <TableRow>
-                      <TableCell colSpan={2} align='center'>Time</TableCell>
+                      <TableCell colSpan={3} align='center'>Time</TableCell>
                       <TableCell colSpan={2} align='center'>Route</TableCell>
                       <TableCell align='center'>Objectives</TableCell>
                     </TableRow>
@@ -208,6 +213,9 @@ const Schedule = ({ now, onSelectRoute }) => {
                             <TableCell>
                               {time.format('HH:mm')}
                             </TableCell>
+                            <TableCell>
+                              <span className={classes.timeUntil}>{moment.duration(time.diff(now)).humanize(true)}</span>
+                            </TableCell>
                             <TableCell align='right'>
                               {DEST_MAP[destinationCode[0]]}
                             </TableCell>
@@ -233,9 +241,9 @@ const Schedule = ({ now, onSelectRoute }) => {
   )
 }
 
-Schedule.propTypes = {
+UpcomingVoyages.propTypes = {
   now: PropTypes.object,
   onSelectRoute: PropTypes.func.isRequired
 }
 
-export default Schedule
+export default UpcomingVoyages

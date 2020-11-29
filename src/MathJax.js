@@ -39,8 +39,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 // TODO: SSR still not happy
-export default function MathJaxComponent (props) {
-  const { $, $$ } = props
+const MathJaxComponent = ({ $, $$ }) => {
   const [isMounted, setIsMounted] = useState(false)
   const classes = useStyles()
   useEffect(() => { isMounted && queueRenderMath() }, [isMounted, $, $$])
@@ -83,3 +82,5 @@ MathJaxComponent.propTypes = {
     ])
   ]))
 }
+
+export default MathJaxComponent

@@ -14,7 +14,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function GlobalStyles (props) {
+const GlobalStyles = () => {
   useStyles()
   return null
 }
+
+export default GlobalStyles

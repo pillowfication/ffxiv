@@ -1,6 +1,7 @@
 import React from 'react'
-import Link from '../src/Link'
+import PropTypes from 'prop-types'
 import { makeStyles, fade } from '@material-ui/core/styles'
+import Link from '../src/Link'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import MuiLink from '@material-ui/core/Link'
@@ -50,7 +51,23 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function Index () {
+const IndexSection = ({ url, title, children }) => {
+  return (
+    <>
+      <Link href={url}>
+        <Typography variant='h5' display='inline'>{title}</Typography>
+      </Link>
+      {children}
+    </>
+  )
+}
+
+IndexSection.propTypes = {
+  url: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
+}
+
+const Index = () => {
   const classes = useStyles()
 
   return (
@@ -72,33 +89,31 @@ export default function Index () {
         </Grid>
       </Grid>
 
-      <Link href='/high-or-low'>
-        <Typography variant='h5' display='inline'>High or Low</Typography>
-      </Link>
-      <Typography paragraph>
-        Calculator for the guessing game “High or Low” played against Tista-Bie in Eulmore.
-      </Typography>
+      <IndexSection url='/high-or-low' title='High or Low'>
+        <Typography paragraph>
+          Calculator for the guessing game “High or Low” played against Tista-Bie in Eulmore.
+        </Typography>
+      </IndexSection>
 
-      <Link href='/mini-cactpot'>
-        <Typography variant='h5' display='inline'>Mini Cactpot</Typography>
-      </Link>
-      <Typography paragraph>
-        Calculator for the <MuiLink href='https://na.finalfantasyxiv.com/lodestone/playguide/contentsguide/goldsaucer/cactpot/'>Mini Cactpot</MuiLink> lottery.
-      </Typography>
+      <IndexSection url='/mini-cactpot' title='Mini Cactpot'>
+        <Typography paragraph>
+          Calculator for the <MuiLink href='https://na.finalfantasyxiv.com/lodestone/playguide/contentsguide/goldsaucer/cactpot/'>Mini Cactpot</MuiLink> lottery.
+        </Typography>
+      </IndexSection>
 
-      <Link href='/ocean-fishing'>
-        <Typography variant='h5' display='inline'>Ocean Fishing</Typography>
-      </Link>
-      <Typography paragraph>
-        Schedule for upcoming ocean fishing voyages, with information on blue fish and achievements.
-      </Typography>
+      <IndexSection url='/ocean-fishing' title='Ocean Fishing'>
+        <Typography paragraph>
+          Schedule for upcoming ocean fishing voyages, with information on blue fish and achievements.
+        </Typography>
+      </IndexSection>
 
-      <Link href='/skywatcher'>
-        <Typography variant='h5' display='inline'>Skywatcher</Typography>
-      </Link>
-      <Typography paragraph>
-        Schedule for weather in Eorzea, and calculator for upcoming weather patterns.
-      </Typography>
+      <IndexSection url='/skywatcher' title='Skywatcher'>
+        <Typography paragraph>
+          Schedule for weather in Eorzea, and calculator for upcoming weather patterns.
+        </Typography>
+      </IndexSection>
     </>
   )
 }
+
+export default Index

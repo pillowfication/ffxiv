@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import getEorzeanTime from '../src/skywatcher/get-eorzean-time'
+import { getEorzeanTime } from '../src/skywatcher/get-eorzean-time'
 import Typography from '@material-ui/core/Typography'
 import Page from '../src/Page'
 import UpcomingWeather from '../src/skywatcher/UpcomingWeather'
