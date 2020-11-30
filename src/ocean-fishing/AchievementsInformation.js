@@ -52,7 +52,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
               Jellyfish Route
               <OceanFishIcon name={achievement} className={classes.achievementIcon} />
               <Typography display='inline' className={classes.headerSub}>
-                catch 150 jellyfish
+                catch 150 jellyfish (18.75 each)
               </Typography>
             </>
           }
@@ -133,7 +133,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
               Seadragons Route
               <OceanFishIcon name={achievement} className={classes.achievementIcon} />
               <Typography display='inline' className={classes.headerSub}>
-                catch 100 seadragons
+                catch 100 seadragons (12.5 each)
               </Typography>
             </>
           }
@@ -217,7 +217,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
               Sharks Route
               <OceanFishIcon name={achievement} className={classes.achievementIcon} />
               <Typography display='inline' className={classes.headerSub}>
-                catch 200 sharks
+                catch 200 sharks (25 each)
               </Typography>
             </>
           }
@@ -319,7 +319,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
               Octopodes Route
               <OceanFishIcon name={achievement} className={classes.achievementIcon} />
               <Typography display='inline' className={classes.headerSub}>
-                catch 150 octopodes
+                catch 150 octopodes (18.75 each)
               </Typography>
             </>
           }
