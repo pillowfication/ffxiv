@@ -79,7 +79,7 @@ export default {
   Stonescale: createBaitChain(
     [{ name: 'Rat Tail' }, { name: 'Stonescale', tug: 3 }],
     [{
-      count: 2,
+      count: 1,
       bait: [PLUMP_WORM, { name: 'Deep-sea Eel', tug: 2 }]
     }, {
       count: 1,
