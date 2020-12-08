@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Alert from '@material-ui/lab/Alert'
 import Page from '../src/Page'
 import UpcomingVoyages from '../src/ocean-fishing/UpcomingVoyages'
 import RouteInformation from '../src/ocean-fishing/RouteInformation'
@@ -23,6 +24,9 @@ const OceanFishing = () => {
 
   return (
     <Page title='Ocean Fishing'>
+      <section>
+        <Alert severity='info'>Information on new routes may be missing or incorrect.</Alert>
+      </section>
       <UpcomingVoyages now={now} onSelectRoute={setSelectedRoute} />
       <RouteInformation now={now} selectedRoute={selectedRoute} />
       <AchievementsInformation selectedRoute={selectedRoute} />

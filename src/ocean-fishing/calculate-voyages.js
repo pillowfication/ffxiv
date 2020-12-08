@@ -2,8 +2,8 @@ const _9HR = 32400000
 
 // Cycle repeats every 6 days starting at this epoch
 const LULU_EPOCH = 1593270000000 + _9HR
-const DEST_CYCLE = 'NR'
-const TIME_CYCLE = 'DSN'
+const DEST_CYCLE = 'BTNR'
+const TIME_CYCLE = 'SSSSNNNNDDDD'
 
 function fromEpoch (day, hour) {
   return new Date(LULU_EPOCH + day * 86400000 + hour * 3600000 - _9HR)
@@ -29,8 +29,8 @@ function calculateVoyages (date, count, filter) {
 
   // Find the current voyage
   const voyageNumber = hour >> 1
-  let destIndex = (day + voyageNumber) % 2
-  let timeIndex = ((day >> 1) + (voyageNumber >> 1)) % 3
+  let destIndex = (day + voyageNumber) % 4
+  let timeIndex = (day + voyageNumber) % 12
 
   // Loop until however many voyages are found
   const upcomingVoyages = []
@@ -42,11 +42,12 @@ function calculateVoyages (date, count, filter) {
     if (hour === 23) {
       day += 1
       hour = 1
-      timeIndex = (timeIndex + ((day & 1) ? 1 : 2)) % 3 // Time shifts every other day
+      destIndex = (destIndex + 2) % 4
+      timeIndex = (timeIndex + 2) % 12
     } else {
       hour += 2
-      destIndex = (destIndex + 1) % 2
-      timeIndex = (timeIndex + ((hour >> 1 & 1) ? 0 : 1)) % 3
+      destIndex = (destIndex + 1) % 4
+      timeIndex = (timeIndex + 1) % 12
     }
   }
 

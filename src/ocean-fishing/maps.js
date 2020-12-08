@@ -1,60 +1,84 @@
 import TimeIcon from './TimeIcon'
 
 export const DEST_MAP = {
-  S: 'Southern Strait',
+  B: 'Bloodbrine Sea',
+  C: 'Cieldalaes',
   G: 'Galadion Bay',
-  N: 'Northern Strait',
-  R: 'Rhotano Sea'
+  N: 'Northern Strait of Merlthor',
+  R: 'Rhotano Sea',
+  S: 'Southern Strait of Merlthor',
+  T: 'Rothlyt Sound'
 }
 
 export const TIME_MAP = {
   D: <TimeIcon.Day />,
-  S: <TimeIcon.Sunset />,
-  N: <TimeIcon.Night />
+  N: <TimeIcon.Night />,
+  S: <TimeIcon.Sunset />
 }
 
 export const OBJECTIVES_MAP = {
+  BD: [],
+  BN: [],
+  BS: [],
   ND: ['Sothis', 'Elasmosaurus'],
-  RD: ['What Did Sharks Do to You?', 'Coral Manta'],
-  NS: ['What Did Seadragons Do to You?', 'Coral Manta'],
-  RS: ['Sothis', 'Stonescale'],
   NN: ['What Did Octopodes Do to You?'],
-  RN: ['What Did Jellyfish Do to You?']
+  NS: ['What Did Seadragons Do to You?', 'Coral Manta'],
+  RD: ['What Did Sharks Do to You?', 'Coral Manta'],
+  RN: ['What Did Jellyfish Do to You?'],
+  RS: ['Sothis', 'Stonescale'],
+  TD: [],
+  TN: [],
+  TS: []
 }
 
 export const ROUTE_MAP = {
+  B: ['C', 'N', 'B'],
   N: ['S', 'G', 'N'],
-  R: ['G', 'S', 'R']
+  R: ['G', 'S', 'R'],
+  T: ['C', 'R', 'T']
 }
 
 export const FISH_MAP = {
-  S: ['Spectral Discus', 'Little Leviathan'],
+  B: [],
+  C: [],
   G: ['Spectral Megalodon', 'Drunkfish'],
   N: ['Spectral Sea Bo', 'Shooting Star'],
-  R: ['Spectral Bass', 'Sabaton']
+  R: ['Spectral Bass', 'Sabaton'],
+  S: ['Spectral Discus', 'Little Leviathan'],
+  T: []
 }
 
 export const BLUE_FISH_MAP = {
   GN: 'Sothis',
-  SN: 'Coral Manta',
   ND: 'Elasmosaurus',
-  RS: 'Stonescale'
+  RS: 'Stonescale',
+  SN: 'Coral Manta'
 }
 
 export const ACHIEVEMENTS_MAP = {
-  RN: 'What Did Jellyfish Do to You?',
+  NN: 'What Did Octopodes Do to You?',
   NS: 'What Did Seadragons Do to You?',
   RD: 'What Did Sharks Do to You?',
-  NN: 'What Did Octopodes Do to You?'
+  RN: 'What Did Jellyfish Do to You?'
 }
 
 export const FILTER_MAP = {
+  B: ['BD', 'BN', 'BS'],
+  N: ['ND', 'NN', 'NS'],
+  R: ['RD', 'RN', 'RS'],
+  T: ['TD', 'TN', 'TS'],
+  BD: ['BD'],
+  BN: ['BN'],
+  BS: ['BS'],
   ND: ['ND'],
-  RD: ['RD'],
-  NS: ['NS'],
-  RS: ['RS'],
   NN: ['NN'],
+  NS: ['NS'],
+  RD: ['RD'],
   RN: ['RN'],
+  RS: ['RS'],
+  TD: ['TD'],
+  TN: ['TN'],
+  TS: ['TS'],
   sothis: ['ND', 'RS'],
   coral_manta: ['RD', 'NS'],
   elasmosaurus: ['ND'],

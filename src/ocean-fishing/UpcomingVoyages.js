@@ -112,21 +112,33 @@ const UpcomingVoyages = ({ now, onSelectRoute }) => {
 
   const handleHoverRow = {
     none: setHover.bind(null, null),
+    BD: setHover.bind(null, 'BD'),
+    BN: setHover.bind(null, 'BN'),
+    BS: setHover.bind(null, 'BS'),
     ND: setHover.bind(null, 'ND'),
-    NS: setHover.bind(null, 'NS'),
     NN: setHover.bind(null, 'NN'),
+    NS: setHover.bind(null, 'NS'),
     RD: setHover.bind(null, 'RD'),
+    RN: setHover.bind(null, 'RN'),
     RS: setHover.bind(null, 'RS'),
-    RN: setHover.bind(null, 'RN')
+    TD: setHover.bind(null, 'TD'),
+    TN: setHover.bind(null, 'TN'),
+    TS: setHover.bind(null, 'TS')
   }
 
   const handleSelectRow = {
+    BD: onSelectRoute.bind(null, 'BD'),
+    BN: onSelectRoute.bind(null, 'BN'),
+    BS: onSelectRoute.bind(null, 'BS'),
     ND: onSelectRoute.bind(null, 'ND'),
-    NS: onSelectRoute.bind(null, 'NS'),
     NN: onSelectRoute.bind(null, 'NN'),
+    NS: onSelectRoute.bind(null, 'NS'),
     RD: onSelectRoute.bind(null, 'RD'),
+    RN: onSelectRoute.bind(null, 'RN'),
     RS: onSelectRoute.bind(null, 'RS'),
-    RN: onSelectRoute.bind(null, 'RN')
+    TD: onSelectRoute.bind(null, 'TD'),
+    TN: onSelectRoute.bind(null, 'TN'),
+    TS: onSelectRoute.bind(null, 'TS')
   }
 
   return (
@@ -154,10 +166,26 @@ const UpcomingVoyages = ({ now, onSelectRoute }) => {
               onChange={handleSelectFilter}
             >
               <option value='none'>No filter</option>
-              <optgroup label='Route'>
+              <optgroup label='Bloodbrine Sea'>
+                <option value='B'>Bloodbrine Sea</option>
+                <option value='BD'>Bloodbrine Sea - Day</option>
+                <option value='BS'>Bloodbrine Sea - Sunset</option>
+                <option value='BN'>Bloodbrine Sea - Night</option>
+              </optgroup>
+              <optgroup label='Rothlyt Sound'>
+                <option value='T'>Rothlyt Sound</option>
+                <option value='TD'>Rothlyt Sound - Day</option>
+                <option value='TS'>Rothlyt Sound - Sunset</option>
+                <option value='TN'>Rothlyt Sound - Night</option>
+              </optgroup>
+              <optgroup label='Northern Strait'>
+                <option value='N'>Northern Strait</option>
                 <option value='ND'>Northern Strait - Day</option>
                 <option value='NS'>Northern Strait - Sunset</option>
                 <option value='NN'>Northern Strait - Night</option>
+              </optgroup>
+              <optgroup label='Rhotano Sea'>
+                <option value='R'>Rhotano Sea</option>
                 <option value='RD'>Rhotano Sea - Day</option>
                 <option value='RS'>Rhotano Sea - Sunset</option>
                 <option value='RN'>Rhotano Sea - Night</option>

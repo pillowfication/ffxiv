@@ -84,7 +84,7 @@ const RouteInformation = ({ now, selectedRoute }) => {
 
 RouteInformation.propTypes = {
   now: PropTypes.object,
-  selectedRoute: PropTypes.oneOf(['ND', 'NS', 'NN', 'RD', 'RS', 'RN'])
+  selectedRoute: PropTypes.oneOf(['BD', 'BN', 'BS', 'ND', 'NN', 'NS', 'RD', 'RN', 'RS', 'TD', 'TN', 'TS'])
 }
 
 export default RouteInformation
