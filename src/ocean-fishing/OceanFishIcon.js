@@ -2,72 +2,10 @@ import React from 'react'
 import cn from 'classnames'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
+import ICONS from './gists/icons'
 
-export const ICONS = [
-  'Ragworm',
-  'Krill',
-  'Plump Worm',
-  'Versatile Lure',
-  'Glowworm',
-  'Shrimp Cage Feeder',
-  'Heavy Steel Jig',
-  'Rat Tail',
-  //
-  'Galadion Chovy',
-  'Heavenskey',
-  'Navigator’s Print',
-  'Ghoul Barracuda',
-  'Gladius',
-  'Hi-aetherlouse',
-  'Great Grandmarlin',
-  'Tossed Dagger',
-  //
-  'Elder Dinichthys',
-  'Gugrusaurus',
-  'Crimson Monkfish',
-  'Deep-sea Eel',
-  'Silencer',
-  'La Noscean Jelly',
-  'Sea Nettle',
-  'Floating Saucer',
-  //
-  'Shaggy Seadragon',
-  'Aetheric Seadragon',
-  'Coral Seadragon',
-  'Tarnished Shark',
-  'Ghost Shark',
-  'Quicksilver Blade',
-  'Funnel Shark',
-  'Chrome Hammerhead',
-  //
-  'Sweeper',
-  'Executioner',
-  'Cyan Octopus',
-  'Merman’s Mane',
-  'Mopbeard',
-  null,
-  null,
-  null,
-  //
-  'Spectral Megalodon',
-  'Spectral Discus',
-  'Spectral Sea Bo',
-  'Spectral Bass',
-  'Drunkfish',
-  'Little Leviathan',
-  'Shooting Star',
-  'Sabaton',
-  //
-  'Sothis',
-  'Coral Manta',
-  'Elasmosaurus',
-  'Stonescale',
-  'What Did Octopodes Do to You?',
-  'What Did Sharks Do to You?',
-  'What Did Jellyfish Do to You?',
-  'What Did Seadragons Do to You?'
-]
-const CHUNK_SIZE = 8
+const ICON_ROWS = ICONS.length
+const ICON_COLS = Math.max(...ICONS.map(row => row.length))
 
 function camelCase (str) {
   str = str.replace(/[^a-z]/g, '')
@@ -82,16 +20,15 @@ const useStyles = makeStyles((theme) => {
       height: '2.5em',
       margin: theme.spacing(0.5),
       backgroundImage: 'url("/images/ocean-fish.png")',
-      backgroundSize: `${CHUNK_SIZE * 100}% ${(ICONS.length / CHUNK_SIZE | 0) * 100}%`
+      backgroundSize: `${ICON_COLS * 100}% ${ICON_ROWS * 100}%`
     }
   }
 
-  for (let i = 0; i < ICONS.length; ++i) {
-    if (!ICONS[i]) continue
-    const row = i / CHUNK_SIZE | 0
-    const col = i % CHUNK_SIZE
-    styles[camelCase(ICONS[i])] = {
-      backgroundPosition: `${col * -100}% ${row * -100}%`
+  for (let row = 0; row < ICON_ROWS; ++row) {
+    for (let col = 0; col < ICONS[row].length; ++col) {
+      styles[camelCase(ICONS[row][col])] = {
+        backgroundPosition: `${col * -100}% ${row * -100}%`
+      }
     }
   }
   return styles
