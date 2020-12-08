@@ -19,7 +19,7 @@ export const TIME_MAP = {
 export const OBJECTIVES_MAP = {
   BD: [],
   BN: [],
-  BS: [],
+  BS: ['Elasmosaurus'],
   ND: ['Sothis', 'Elasmosaurus'],
   NN: ['What Did Octopodes Do to You?'],
   NS: ['What Did Seadragons Do to You?', 'Coral Manta'],
@@ -27,7 +27,7 @@ export const OBJECTIVES_MAP = {
   RN: ['What Did Jellyfish Do to You?'],
   RS: ['Sothis', 'Stonescale'],
   TD: [],
-  TN: [],
+  TN: ['Stonescale'],
   TS: []
 }
 
@@ -81,8 +81,8 @@ export const FILTER_MAP = {
   TS: ['TS'],
   sothis: ['ND', 'RS'],
   coral_manta: ['RD', 'NS'],
-  elasmosaurus: ['ND'],
-  stonescale: ['RS'],
+  elasmosaurus: ['BS', 'ND'],
+  stonescale: ['RS', 'TN'],
   jellyfish: ['RN'],
   seadragons: ['NS'],
   sharks: ['RD'],
