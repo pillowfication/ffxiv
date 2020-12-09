@@ -96,6 +96,72 @@ module.exports = [[
   'Slipsnail',
   'Stonescale'
 ], [
+  'Tortoiseshell Crab',
+  'Lady\'s Cameo',
+  'Metallic Boxfish',
+  'Goobbue Ray',
+  'Watermoura',
+  'King Cobrafish',
+  'Mamahi-mahi',
+  'Lavandin Remora',
+  'Spectral Butterfly',
+  'Cieldalaes Geode'
+], [
+  'Titanshell Crab',
+  'Mythril Boxfish',
+  'Mistbeard\'s Cup',
+  'Anomalocaris Saron',
+  'Flaming Eel',
+  'Jetborne Manta',
+  'Devil\'s Sting',
+  'Callichthyid',
+  'Meandering Mora',
+  'Hafgufa'
+], [
+  'Thaliak Crab',
+  'Star of the Destroyer',
+  'True Scad',
+  'Blooded Wrasse',
+  'Bloodpolish Crab',
+  'Blue Stitcher',
+  'Bloodfresh Tuna',
+  'Sunken Mask',
+  'Spectral Eel',
+  'Bareface'
+], [
+  'Oracular Crab',
+  'Dravanian Bream',
+  'Skaldminni',
+  'Serrated Clam',
+  'Beatific Vision',
+  'Exterminator',
+  'Gory Tuna',
+  'Ticinepomis',
+  'Quartz Hammerhead',
+  'Seafaring Toad'
+], [
+  'Crow Puffer',
+  'Rothlyt Kelp',
+  'Living Lantern',
+  'Honeycomb Fish',
+  'Godsbed',
+  'Lansquenet',
+  'Thavnairian Shark',
+  'Nephrite Eel',
+  'Spectresaur',
+  'Ginkgo Fin'
+], [
+  'Garum Jug',
+  'Smooth Jaguar',
+  'Rothlyt Mussel',
+  'Levi Elver',
+  'Pearl Bombfish',
+  'Trollfish',
+  'Panoptes',
+  'Crepe Sole',
+  'Knifejaw',
+  'Placodus'
+], [
   'What Did Octopodes Do to You?',
   'What Did Sharks Do to You?',
   'What Did Jellyfish Do to You?',

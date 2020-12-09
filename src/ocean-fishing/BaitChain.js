@@ -37,7 +37,7 @@ const BaitChain = ({ bait }) => {
         <React.Fragment key={index}>
           <div className={classes.bait}>
             <OceanFishIcon name={name} />
-            {tug && <Tug sup strength={tug} />}
+            {tug ? <Tug sup strength={tug} /> : null}
             {dh && <Typography className={classes.dh} display='inline'>DH: {dh}</Typography>}
           </div>
           {index < bait.length - 1 && <ChevronRightIcon className={classes.chevron} />}

@@ -39,13 +39,13 @@ export const ROUTE_MAP = {
 }
 
 export const FISH_MAP = {
-  B: [],
-  C: [],
+  B: ['Spectral Eel', 'Bareface'],
+  C: ['Spectral Butterfly', 'Cieldalaes Geode'],
   G: ['Spectral Megalodon', 'Drunkfish'],
   N: ['Spectral Sea Bo', 'Shooting Star'],
   R: ['Spectral Bass', 'Sabaton'],
   S: ['Spectral Discus', 'Little Leviathan'],
-  T: []
+  T: ['Spectresaur', 'Ginkgo Fin']
 }
 
 export const BLUE_FISH_MAP = {

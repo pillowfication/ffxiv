@@ -25,7 +25,7 @@ const OceanFishing = () => {
   return (
     <Page title='Ocean Fishing'>
       <section>
-        <Alert severity='info'>Information on new routes may be missing or incorrect.</Alert>
+        <Alert severity='info'>Information on new routes may be missing or incorrect. <b>Versatile Lure</b> may be used in place of unknown baits.</Alert>
       </section>
       <UpcomingVoyages now={now} onSelectRoute={setSelectedRoute} />
       <RouteInformation now={now} selectedRoute={selectedRoute} />

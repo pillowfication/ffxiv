@@ -19,7 +19,9 @@ const overrides = {
   Sabaton: '/i/029000/029077.png',
   Silencer: '/i/029000/029156.png',
   Executioner: '/i/029000/029092.png',
-  'Prodigal Son': '/i/029000/029331.png'
+  'Prodigal Son': '/i/029000/029331.png',
+  'Beatific Vision': '/i/029000/029098.png',
+  Exterminator: '/i/029000/029347.png'
 }
 
 const canvas = createCanvas(ICON_COLS * ICON_SIZE, ICON_ROWS * ICON_SIZE)

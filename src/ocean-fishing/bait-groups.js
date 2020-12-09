@@ -10,6 +10,7 @@ function createBaitChain (bait, intuitionFishes) {
 const RAGWORM = { name: 'Ragworm' }
 const KRILL = { name: 'Krill' }
 const PLUMP_WORM = { name: 'Plump Worm' }
+const VERSATILE_LURE = { name: 'Versatile Lure' }
 
 export default {
   'Spectral Discus': createBaitChain(
@@ -23,6 +24,15 @@ export default {
   ),
   'Spectral Bass': createBaitChain(
     [PLUMP_WORM, { name: 'Spectral Bass', tug: 3 }]
+  ),
+  'Spectral Butterfly': createBaitChain(
+    [RAGWORM, { name: 'Spectral Butterfly', tug: 3 }]
+  ),
+  'Spectral Eel': createBaitChain(
+    [KRILL, { name: 'Spectral Eel', tug: 3 }]
+  ),
+  Spectresaur: createBaitChain(
+    [VERSATILE_LURE, { name: 'Spectresaur', tug: 3 }]
   ),
   'Little Leviathan': createBaitChain(
     [PLUMP_WORM, { name: 'Little Leviathan', tug: 3 }],
@@ -50,6 +60,30 @@ export default {
     [{
       count: 2,
       bait: [PLUMP_WORM, { name: 'Crimson Monkfish', tug: 2 }]
+    }]
+  ),
+  'Cieldalaes Geode': createBaitChain(
+    [KRILL, { name: 'Cieldalaes Geode', tug: 3 }],
+    [{
+      count: 3,
+      bait: [VERSATILE_LURE, { name: 'Metallic Boxfish', tug: 1 }]
+    }]
+  ),
+  Bareface: createBaitChain(
+    [KRILL, { name: 'Cieldalaes Geode', tug: 3 }],
+    [{
+      count: 1,
+      bait: [KRILL, { name: 'Blue Stitcher', tug: 1 }]
+    }, {
+      count: 2,
+      bait: [RAGWORM, { name: 'Sunken Mask', tug: 0 }]
+    }]
+  ),
+  'Ginkgo Fin': createBaitChain(
+    [RAGWORM, { name: 'Ginkgo Fin', tug: 3 }],
+    [{
+      count: 3,
+      bait: [RAGWORM, { name: 'Rothlyt Kelp', tug: 0 }]
     }]
   ),
   'Coral Manta': createBaitChain(
