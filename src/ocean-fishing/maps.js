@@ -17,9 +17,9 @@ export const TIME_MAP = {
 }
 
 export const OBJECTIVES_MAP = {
-  BD: [],
+  BD: ['Seafaring Toad'],
   BN: [],
-  BS: ['Elasmosaurus'],
+  BS: ['Elasmosaurus', 'Hafgufa'],
   ND: ['Sothis', 'Elasmosaurus'],
   NN: ['What Did Octopodes Do to You?'],
   NS: ['What Did Seadragons Do to You?', 'Coral Manta'],
@@ -28,7 +28,7 @@ export const OBJECTIVES_MAP = {
   RS: ['Sothis', 'Stonescale'],
   TD: [],
   TN: ['Stonescale'],
-  TS: []
+  TS: ['Hafgufa', 'Placodus']
 }
 
 export const ROUTE_MAP = {
@@ -49,10 +49,13 @@ export const FISH_MAP = {
 }
 
 export const BLUE_FISH_MAP = {
+  BD: 'Seafaring Toad',
+  CN: 'Hafgufa',
   GN: 'Sothis',
   ND: 'Elasmosaurus',
   RS: 'Stonescale',
-  SN: 'Coral Manta'
+  SN: 'Coral Manta',
+  TS: 'Placodus'
 }
 
 export const ACHIEVEMENTS_MAP = {
@@ -83,6 +86,9 @@ export const FILTER_MAP = {
   coral_manta: ['RD', 'NS'],
   elasmosaurus: ['BS', 'ND'],
   stonescale: ['RS', 'TN'],
+  hafgufa: ['BS', 'TS'],
+  seafaring_toad: ['BD'],
+  placodus: ['TS'],
   jellyfish: ['RN'],
   seadragons: ['NS'],
   sharks: ['RD'],

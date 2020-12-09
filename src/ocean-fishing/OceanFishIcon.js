@@ -48,11 +48,14 @@ OceanFishIcon.propTypes = {
     if (propTypesError) {
       return propTypesError
     }
-    if (ICONS.indexOf(props[propName]) === -1) {
-      return new Error(
-        `Invalid prop \`${propName}\` supplied to \`${componentName}\`. Unknown name '${props[propName]}'.`
-      )
+    for (const row of ICONS) {
+      if (row.indexOf(props[propName]) >= 0) {
+        return
+      }
     }
+    return new Error(
+      `Invalid prop \`${propName}\` supplied to \`${componentName}\`. Unknown name '${props[propName]}'.`
+    )
   }
 }
 

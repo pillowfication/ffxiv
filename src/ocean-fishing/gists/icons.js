@@ -6,7 +6,8 @@ module.exports = [[
   'Glowworm',
   'Shrimp Cage Feeder',
   'Heavy Steel Jig',
-  'Rat Tail'
+  'Rat Tail',
+  'Squid Strip'
 ], [
   'Galadion Goby',
   'Galadion Chovy',

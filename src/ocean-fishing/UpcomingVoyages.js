@@ -25,6 +25,7 @@ import OceanFishIcon from './OceanFishIcon'
 const useStyles = makeStyles((theme) => ({
   schedule: {
     '& td': {
+      height: 53,
       paddingTop: theme.spacing(0.25),
       paddingBottom: theme.spacing(0.25),
       paddingLeft: theme.spacing(1),
@@ -195,6 +196,9 @@ const UpcomingVoyages = ({ now, onSelectRoute }) => {
                 <option value='coral_manta'>Coral Manta</option>
                 <option value='elasmosaurus'>Elasmosaurus</option>
                 <option value='stonescale'>Stonescale</option>
+                <option value='hafgufa'>Hafgufa</option>
+                <option value='seafaring_toad'>Seafaring Toad</option>
+                <option value='placodus'>Placodus</option>
               </optgroup>
               <optgroup label='Achievements'>
                 <option value='jellyfish'>Jellyfish</option>

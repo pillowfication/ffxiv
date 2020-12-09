@@ -66,24 +66,31 @@ export default {
     [KRILL, { name: 'Cieldalaes Geode', tug: 3 }],
     [{
       count: 3,
-      bait: [VERSATILE_LURE, { name: 'Metallic Boxfish', tug: 1 }]
+      bait: [RAGWORM, { name: 'Metallic Boxfish', tug: 1 }]
     }]
   ),
   Bareface: createBaitChain(
-    [KRILL, { name: 'Cieldalaes Geode', tug: 3 }],
+    [KRILL, { name: 'Bareface', tug: 3 }],
     [{
       count: 1,
       bait: [KRILL, { name: 'Blue Stitcher', tug: 1 }]
     }, {
       count: 2,
-      bait: [RAGWORM, { name: 'Sunken Mask', tug: 0 }]
+      bait: [RAGWORM, { name: 'Sunken Mask', tug: 3 }]
     }]
   ),
   'Ginkgo Fin': createBaitChain(
     [RAGWORM, { name: 'Ginkgo Fin', tug: 3 }],
     [{
       count: 3,
-      bait: [RAGWORM, { name: 'Rothlyt Kelp', tug: 0 }]
+      bait: [RAGWORM, { name: 'Rothlyt Kelp', tug: 1 }]
+    }]
+  ),
+  'Seafaring Toad': createBaitChain(
+    [VERSATILE_LURE, { name: 'Seafaring Toad', tug: 3 }],
+    [{
+      count: 3,
+      bait: [VERSATILE_LURE, { name: 'Beatific Vision', tug: 2 }]
     }]
   ),
   'Coral Manta': createBaitChain(
@@ -100,7 +107,7 @@ export default {
       bait: [RAGWORM, { name: 'Heavenskey', tug: 1 }]
     }, {
       count: 1,
-      bait: [KRILL, { name: 'Navigator’s Print', tug: 1 }]
+      bait: [KRILL, { name: 'Navigator\'s Print', tug: 1 }]
     }]
   ),
   Elasmosaurus: createBaitChain(
@@ -118,6 +125,23 @@ export default {
     }, {
       count: 1,
       bait: [RAGWORM, { name: 'Silencer', tug: 1 }]
+    }]
+  ),
+  Hafgufa: createBaitChain(
+    [{ name: 'Squid Strip' }, { name: 'Hafgufa', tug: 3 }],
+    [{
+      count: 2,
+      bait: [PLUMP_WORM, { name: 'Jetborne Manta', tug: 3 }]
+    }, {
+      count: 1,
+      bait: [KRILL, { name: 'Mistbeard\'s Cup', tug: 2 }]
+    }]
+  ),
+  Placodus: createBaitChain(
+    [RAGWORM, { name: 'Rothlyt Mussel', tug: 3 }, { name: 'Placodus', tug: 3 }],
+    [{
+      count: 1,
+      bait: [RAGWORM, { name: 'Rothlyt Mussel', tug: 3 }, { name: 'Trollfish', tug: 0 }]
     }]
   ),
   'La Noscean Jelly': createBaitChain(
