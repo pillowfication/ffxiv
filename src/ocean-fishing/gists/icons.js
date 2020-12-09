@@ -46,7 +46,7 @@ module.exports = [[
   'Great Grandmarlin',
   'Shipwreck\'s Sail',
   'Charlatan Survivor',
-  'Hi-Aetherlouse',
+  'Hi-aetherlouse',
   'Azeyma\'s Sleeve',
   'Aetheric Seadragon',
   'Mythril Sovereign',
