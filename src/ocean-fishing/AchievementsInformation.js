@@ -348,7 +348,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
                     baitGroup: BAIT_GROUPS['Cyan Octopus']
                   }, {
                     header: 'DH–IC–DH at <3s',
-                    baitGroup: BAIT_GROUPS['Merman’s Mane']
+                    baitGroup: BAIT_GROUPS['Merman\'s Mane']
                   }]}
                 />
               </CardContent>
@@ -390,6 +390,80 @@ const AchievementsInformation = ({ selectedRoute }) => {
           <Highlight language='plaintext'>
             {octopodesMacro}
           </Highlight>
+        </Section>
+      )
+    case 'What Did Balloons Do to You?':
+      return (
+        <Section
+          title={
+            <>
+              Balloons Route
+              <OceanFishIcon name={achievement} className={classes.achievementIcon} />
+              <Typography display='inline' className={classes.headerSub}>
+                catch 250 balloons (31.25 each)
+              </Typography>
+            </>
+          }
+        >
+          <RouteCardContainer className={classes.achievementInfo}>
+            <RouteCard>
+              <CardHeader
+                title={<Typography variant='h6'>1. {DEST_MAP.C} {TIME_MAP.D}</Typography>}
+                disableTypography
+              />
+              <CardContent>
+                <BaitList
+                  baitGroups={[{
+                    header: 'Metallic Boxfish',
+                    baitGroup: BAIT_GROUPS['Metallic Boxfish']
+                  }, {
+                    header: 'Mythril Boxfish',
+                    baitGroup: BAIT_GROUPS['Mythril Boxfish']
+                  }]}
+                />
+              </CardContent>
+            </RouteCard>
+            <RouteCard>
+              <CardHeader
+                title={<Typography variant='h6'>2. {DEST_MAP.R} {TIME_MAP.S}</Typography>}
+                disableTypography
+              />
+              <CardContent>
+                <BaitList
+                  baitGroups={[{
+                    header: 'Lampfish',
+                    baitGroup: BAIT_GROUPS.Lampfish
+                  }, {
+                    header: 'Silencer',
+                    baitGroup: BAIT_GROUPS.Silencer
+                  }]}
+                />
+              </CardContent>
+            </RouteCard>
+            <RouteCard>
+              <CardHeader
+                title={<Typography variant='h6'>3. {DEST_MAP.T} {TIME_MAP.D}</Typography>}
+                disableTypography
+              />
+              <CardContent>
+                <BaitList
+                  baitGroups={[{
+                    header: 'Crow Puffer',
+                    baitGroup: BAIT_GROUPS['Crow Puffer']
+                  }, {
+                    header: 'Honeycomb Fish',
+                    baitGroup: BAIT_GROUPS['Honeycomb Fish']
+                  }, {
+                    header: 'Garum Jug',
+                    baitGroup: BAIT_GROUPS['Garum Jug']
+                  }, {
+                    header: 'Pearl Bombfish',
+                    baitGroup: BAIT_GROUPS['Pearl Bombfish']
+                  }]}
+                />
+              </CardContent>
+            </RouteCard>
+          </RouteCardContainer>
         </Section>
       )
     default:

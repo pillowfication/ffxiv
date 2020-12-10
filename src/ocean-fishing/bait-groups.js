@@ -177,16 +177,40 @@ export default {
   Sweeper: createBaitChain(
     [PLUMP_WORM, { name: 'Sweeper', tug: 2, dh: 2 }]
   ),
+  Silencer: createBaitChain(
+    [RAGWORM, { name: 'Silencer', tug: 1, dh: 4 }]
+  ),
   Executioner: createBaitChain(
     [PLUMP_WORM, { name: 'Executioner', tug: 3, dh: 4 }]
+  ),
+  Lampfish: createBaitChain(
+    [RAGWORM, { name: 'Lampfish', tug: 1, dh: 2 }]
   ),
   'Cyan Octopus': createBaitChain(
     [KRILL, { name: 'Cyan Octopus', tug: 2, dh: 4 }]
   ),
-  'Merman’s Mane': createBaitChain(
+  'Merman\'s Mane': createBaitChain(
     [KRILL, { name: 'Merman’s Mane', tug: 2, dh: 4 }]
   ),
   Mopbeard: createBaitChain(
     [KRILL, { name: 'Mopbeard', tug: 2, dh: 4 }]
+  ),
+  'Metallic Boxfish': createBaitChain(
+    [RAGWORM, { name: 'Metallic Boxfish', tug: 1, dh: 2 }]
+  ),
+  'Mythril Boxfish': createBaitChain(
+    [RAGWORM, { name: 'Mythril Boxfish', tug: 1, dh: 4 }]
+  ),
+  'Crow Puffer': createBaitChain(
+    [RAGWORM, { name: 'Crow Puffer', tug: 1, dh: 2 }]
+  ),
+  'Honeycomb Fish': createBaitChain(
+    [RAGWORM, { name: 'Honeycomb Fish', tug: 1, dh: 4 }]
+  ),
+  'Garum Jug': createBaitChain(
+    [RAGWORM, { name: 'Garum Jug', tug: 1, dh: 4 }]
+  ),
+  'Pearl Bombfish': createBaitChain(
+    [RAGWORM, { name: 'Pearl Bombfish', tug: 1, dh: '?' }]
   )
 }

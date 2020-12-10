@@ -18,7 +18,7 @@ export const TIME_MAP = {
 
 export const OBJECTIVES_MAP = {
   BD: ['Seafaring Toad'],
-  BN: [],
+  BN: ['What Did Mantas Do to You?'],
   BS: ['Elasmosaurus', 'Hafgufa'],
   ND: ['Sothis', 'Elasmosaurus'],
   NN: ['What Did Octopodes Do to You?'],
@@ -27,7 +27,7 @@ export const OBJECTIVES_MAP = {
   RN: ['What Did Jellyfish Do to You?'],
   RS: ['Sothis', 'Stonescale'],
   TD: [],
-  TN: ['Stonescale'],
+  TN: ['What Did Balloons Do to You?', 'Stonescale'],
   TS: ['Hafgufa', 'Placodus']
 }
 
@@ -59,10 +59,12 @@ export const BLUE_FISH_MAP = {
 }
 
 export const ACHIEVEMENTS_MAP = {
+  BN: 'What Did Mantas Do to You?',
   NN: 'What Did Octopodes Do to You?',
   NS: 'What Did Seadragons Do to You?',
   RD: 'What Did Sharks Do to You?',
-  RN: 'What Did Jellyfish Do to You?'
+  RN: 'What Did Jellyfish Do to You?',
+  TN: 'What Did Balloons Do to You?'
 }
 
 export const FILTER_MAP = {
