@@ -7,7 +7,8 @@ module.exports = [[
   'Shrimp Cage Feeder',
   'Heavy Steel Jig',
   'Rat Tail',
-  'Squid Strip'
+  'Squid Strip',
+  'Pill Bug'
 ], [
   'Galadion Goby',
   'Galadion Chovy',
@@ -166,5 +167,8 @@ module.exports = [[
   'What Did Octopodes Do to You?',
   'What Did Sharks Do to You?',
   'What Did Jellyfish Do to You?',
-  'What Did Seadragons Do to You?'
+  'What Did Seadragons Do to You?',
+  'What Did Balloons Do to You?',
+  'What Did Crabs Do to You?',
+  'What Did Mantas Do to You?'
 ]]

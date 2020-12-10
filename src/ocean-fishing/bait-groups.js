@@ -73,9 +73,6 @@ export default {
     [KRILL, { name: 'Bareface', tug: 3 }],
     [{
       count: 1,
-      bait: [KRILL, { name: 'Blue Stitcher', tug: 1 }]
-    }, {
-      count: 2,
       bait: [RAGWORM, { name: 'Sunken Mask', tug: 3 }]
     }]
   ),
@@ -87,10 +84,10 @@ export default {
     }]
   ),
   'Seafaring Toad': createBaitChain(
-    [VERSATILE_LURE, { name: 'Seafaring Toad', tug: 3 }],
+    [{ name: 'Pill Bug' }, { name: 'Seafaring Toad', tug: 3 }],
     [{
       count: 3,
-      bait: [VERSATILE_LURE, { name: 'Beatific Vision', tug: 2 }]
+      bait: [KRILL, { name: 'Beatific Vision', tug: 2 }]
     }]
   ),
   'Coral Manta': createBaitChain(
