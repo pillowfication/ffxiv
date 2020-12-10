@@ -201,10 +201,13 @@ const UpcomingVoyages = ({ now, onSelectRoute }) => {
                 <option value='placodus'>Placodus</option>
               </optgroup>
               <optgroup label='Achievements'>
+                <option value='octopodes'>Octopodes</option>
+                <option value='sharks'>Sharks</option>
                 <option value='jellyfish'>Jellyfish</option>
                 <option value='seadragons'>Seadragons</option>
-                <option value='sharks'>Sharks</option>
-                <option value='octopodes'>Octopodes</option>
+                <option value='balloons'>Balloons</option>
+                {/* <option value='crabs'>Crabs</option> */}
+                <option value='mantas'>Mantas</option>
               </optgroup>
             </Select>
           </FormControl>

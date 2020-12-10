@@ -44,6 +44,189 @@ const AchievementsInformation = ({ selectedRoute }) => {
   const achievement = selectedRoute && ACHIEVEMENTS_MAP[selectedRoute]
 
   switch (achievement) {
+    case 'What Did Octopodes Do to You?':
+      return (
+        <Section
+          title={
+            <>
+              Octopodes Route
+              <OceanFishIcon name={achievement} className={classes.achievementIcon} />
+              <Typography display='inline' className={classes.headerSub}>
+                catch 150 octopodes (18.75 each)
+              </Typography>
+            </>
+          }
+        >
+          <RouteCardContainer className={classes.achievementInfo}>
+            <RouteCard>
+              <CardHeader
+                title={<Typography variant='h6'>1. {DEST_MAP.S} {TIME_MAP.D}</Typography>}
+                disableTypography
+              />
+              <CardContent>
+                <Typography paragraph>
+                  No octopodes here.
+                </Typography>
+              </CardContent>
+            </RouteCard>
+            <RouteCard>
+              <CardHeader
+                title={<Typography variant='h6'>2. {DEST_MAP.G} {TIME_MAP.S}</Typography>}
+                disableTypography
+              />
+              <CardContent>
+                <BaitList
+                  baitGroups={[{
+                    header: 'IC–DH at 16-28s',
+                    baitGroup: BAIT_GROUPS['Cyan Octopus']
+                  }, {
+                    header: 'DH–IC–DH at <3s',
+                    baitGroup: BAIT_GROUPS['Merman\'s Mane']
+                  }]}
+                />
+              </CardContent>
+              <CardContent>
+                <Typography variant='overline'>Non-spectral</Typography>
+                <Typography paragraph>
+                  Can blind DH the Cyan Octopodes at 25s, or at 19s with a SS’d Jasperhead.
+                </Typography>
+                <Typography variant='overline'>Spectral</Typography>
+                <Typography paragraph>
+                  Only the instant <Tug.Medium /> is Merman’s Mane; any later is not.
+                </Typography>
+              </CardContent>
+            </RouteCard>
+            <RouteCard>
+              <CardHeader
+                title={<Typography variant='h6'>3. {DEST_MAP.R} {TIME_MAP.D}</Typography>}
+                disableTypography
+              />
+              <CardContent>
+                <BaitList
+                  baitGroups={[{
+                    header: 'DH–IC–DH at 4s',
+                    baitGroup: BAIT_GROUPS.Mopbeard
+                  }]}
+                />
+              </CardContent>
+              <CardContent>
+                <Typography variant='overline'>Spectral</Typography>
+                <Typography paragraph>
+                  The earlier <Tug.Medium /> is Coccosteus.
+                </Typography>
+              </CardContent>
+            </RouteCard>
+          </RouteCardContainer>
+          <Typography paragraph>
+            Sample octopodes macro
+          </Typography>
+          <Highlight language='plaintext'>
+            {octopodesMacro}
+          </Highlight>
+        </Section>
+      )
+    case 'What Did Sharks Do to You?':
+      return (
+        <Section
+          title={
+            <>
+              Sharks Route
+              <OceanFishIcon name={achievement} className={classes.achievementIcon} />
+              <Typography display='inline' className={classes.headerSub}>
+                catch 200 sharks (25 each)
+              </Typography>
+            </>
+          }
+        >
+          <RouteCardContainer className={classes.achievementInfo}>
+            <RouteCard>
+              <CardHeader
+                title={<Typography variant='h6'>1. {DEST_MAP.G} {TIME_MAP.S}</Typography>}
+                disableTypography
+              />
+              <CardContent>
+                <BaitList
+                  baitGroups={[{
+                    header: 'IC; DH–IC–DH post-spectral',
+                    baitGroup: BAIT_GROUPS['Tarnished Shark']
+                  }, {
+                    header: 'IC–DH',
+                    baitGroup: BAIT_GROUPS['Ghost Shark']
+                  }, {
+                    header: 'No buffs',
+                    baitGroup: BAIT_GROUPS['Quicksilver Blade']
+                  }, {
+                    header: 'DH–IC–DH',
+                    baitGroup: BAIT_GROUPS['Funnel Shark']
+                  }]}
+                />
+              </CardContent>
+              <CardContent>
+                <Typography variant='overline'>Pre-spectral</Typography>
+                <Typography paragraph>
+                  Save GP when possible; IC if capped.
+                </Typography>
+                <Typography variant='overline'>Spectral</Typography>
+                <Typography paragraph>
+                  Hook any <Tug.Medium /> and <Tug.Heavy />. IC–DH if you catch a Ghost Shark; <Tug.Heavy /> is a blind DH–IC–DH.
+                </Typography>
+                <Typography variant='overline'>Post-spectral</Typography>
+                <Typography paragraph>
+                  Spend all remaining GP with blind DH–IC–DH Tarnished Sharks.
+                </Typography>
+              </CardContent>
+            </RouteCard>
+            <RouteCard>
+              <CardHeader
+                title={<Typography variant='h6'>2. {DEST_MAP.S} {TIME_MAP.N}</Typography>}
+                disableTypography
+              />
+              <CardContent>
+                <Typography paragraph>
+                  No sharks here.
+                </Typography>
+                <Typography paragraph>
+                  Try for Coral Manta?<br />(but save GP)
+                </Typography>
+              </CardContent>
+            </RouteCard>
+            <RouteCard>
+              <CardHeader
+                title={<Typography variant='h6'>3. {DEST_MAP.R} {TIME_MAP.D}</Typography>}
+                disableTypography
+              />
+              <CardContent>
+                <BaitList
+                  baitGroups={[{
+                    header: 'IC–DH; DH–IC–DH post-spectral',
+                    baitGroup: BAIT_GROUPS['Chrome Hammerhead']
+                  }, {
+                    header: 'No buffs',
+                    baitGroup: BAIT_GROUPS.Sweeper
+                  }, {
+                    header: 'DH–IC–DH',
+                    baitGroup: BAIT_GROUPS.Executioner
+                  }]}
+                />
+              </CardContent>
+              <CardContent>
+                <Typography variant='overline'>Pre-spectral</Typography>
+                <Typography paragraph>
+                  Can’t blind DH Chrome Hammerheads.
+                </Typography>
+                <Typography variant='overline'>Spectral</Typography>
+                <Typography paragraph>
+                  Hook <Tug.Medium /> and <Tug.Heavy />. If you catch a Sweeper, can use IC if high on GP. <Tug.Heavy /> is a blind DH.
+                </Typography>
+                <Typography variant='overline'>Post-spectral</Typography>
+                <Typography paragraph>
+                  Can blind DH Chrome Hammerheads.
+                </Typography>
+              </CardContent>
+            </RouteCard>
+          </RouteCardContainer>
+        </Section>
+      )
     case 'What Did Jellyfish Do to You?':
       return (
         <Section
@@ -209,189 +392,6 @@ const AchievementsInformation = ({ selectedRoute }) => {
           </Highlight>
         </Section>
       )
-    case 'What Did Sharks Do to You?':
-      return (
-        <Section
-          title={
-            <>
-              Sharks Route
-              <OceanFishIcon name={achievement} className={classes.achievementIcon} />
-              <Typography display='inline' className={classes.headerSub}>
-                catch 200 sharks (25 each)
-              </Typography>
-            </>
-          }
-        >
-          <RouteCardContainer className={classes.achievementInfo}>
-            <RouteCard>
-              <CardHeader
-                title={<Typography variant='h6'>1. {DEST_MAP.G} {TIME_MAP.S}</Typography>}
-                disableTypography
-              />
-              <CardContent>
-                <BaitList
-                  baitGroups={[{
-                    header: 'IC; DH–IC–DH post-spectral',
-                    baitGroup: BAIT_GROUPS['Tarnished Shark']
-                  }, {
-                    header: 'IC–DH',
-                    baitGroup: BAIT_GROUPS['Ghost Shark']
-                  }, {
-                    header: 'No buffs',
-                    baitGroup: BAIT_GROUPS['Quicksilver Blade']
-                  }, {
-                    header: 'DH–IC–DH',
-                    baitGroup: BAIT_GROUPS['Funnel Shark']
-                  }]}
-                />
-              </CardContent>
-              <CardContent>
-                <Typography variant='overline'>Pre-spectral</Typography>
-                <Typography paragraph>
-                  Save GP when possible; IC if capped.
-                </Typography>
-                <Typography variant='overline'>Spectral</Typography>
-                <Typography paragraph>
-                  Hook any <Tug.Medium /> and <Tug.Heavy />. IC–DH if you catch a Ghost Shark; <Tug.Heavy /> is a blind DH–IC–DH.
-                </Typography>
-                <Typography variant='overline'>Post-spectral</Typography>
-                <Typography paragraph>
-                  Spend all remaining GP with blind DH–IC–DH Tarnished Sharks.
-                </Typography>
-              </CardContent>
-            </RouteCard>
-            <RouteCard>
-              <CardHeader
-                title={<Typography variant='h6'>2. {DEST_MAP.S} {TIME_MAP.N}</Typography>}
-                disableTypography
-              />
-              <CardContent>
-                <Typography paragraph>
-                  No sharks here.
-                </Typography>
-                <Typography paragraph>
-                  Try for Coral Manta?<br />(but save GP)
-                </Typography>
-              </CardContent>
-            </RouteCard>
-            <RouteCard>
-              <CardHeader
-                title={<Typography variant='h6'>3. {DEST_MAP.R} {TIME_MAP.D}</Typography>}
-                disableTypography
-              />
-              <CardContent>
-                <BaitList
-                  baitGroups={[{
-                    header: 'IC–DH; DH–IC–DH post-spectral',
-                    baitGroup: BAIT_GROUPS['Chrome Hammerhead']
-                  }, {
-                    header: 'No buffs',
-                    baitGroup: BAIT_GROUPS.Sweeper
-                  }, {
-                    header: 'DH–IC–DH',
-                    baitGroup: BAIT_GROUPS.Executioner
-                  }]}
-                />
-              </CardContent>
-              <CardContent>
-                <Typography variant='overline'>Pre-spectral</Typography>
-                <Typography paragraph>
-                  Can’t blind DH Chrome Hammerheads.
-                </Typography>
-                <Typography variant='overline'>Spectral</Typography>
-                <Typography paragraph>
-                  Hook <Tug.Medium /> and <Tug.Heavy />. If you catch a Sweeper, can use IC if high on GP. <Tug.Heavy /> is a blind DH.
-                </Typography>
-                <Typography variant='overline'>Post-spectral</Typography>
-                <Typography paragraph>
-                  Can blind DH Chrome Hammerheads.
-                </Typography>
-              </CardContent>
-            </RouteCard>
-          </RouteCardContainer>
-        </Section>
-      )
-    case 'What Did Octopodes Do to You?':
-      return (
-        <Section
-          title={
-            <>
-              Octopodes Route
-              <OceanFishIcon name={achievement} className={classes.achievementIcon} />
-              <Typography display='inline' className={classes.headerSub}>
-                catch 150 octopodes (18.75 each)
-              </Typography>
-            </>
-          }
-        >
-          <RouteCardContainer className={classes.achievementInfo}>
-            <RouteCard>
-              <CardHeader
-                title={<Typography variant='h6'>1. {DEST_MAP.S} {TIME_MAP.D}</Typography>}
-                disableTypography
-              />
-              <CardContent>
-                <Typography paragraph>
-                  No octopodes here.
-                </Typography>
-              </CardContent>
-            </RouteCard>
-            <RouteCard>
-              <CardHeader
-                title={<Typography variant='h6'>2. {DEST_MAP.G} {TIME_MAP.S}</Typography>}
-                disableTypography
-              />
-              <CardContent>
-                <BaitList
-                  baitGroups={[{
-                    header: 'IC–DH at 16-28s',
-                    baitGroup: BAIT_GROUPS['Cyan Octopus']
-                  }, {
-                    header: 'DH–IC–DH at <3s',
-                    baitGroup: BAIT_GROUPS['Merman\'s Mane']
-                  }]}
-                />
-              </CardContent>
-              <CardContent>
-                <Typography variant='overline'>Non-spectral</Typography>
-                <Typography paragraph>
-                  Can blind DH the Cyan Octopodes at 25s, or at 19s with a SS’d Jasperhead.
-                </Typography>
-                <Typography variant='overline'>Spectral</Typography>
-                <Typography paragraph>
-                  Only the instant <Tug.Medium /> is Merman’s Mane; any later is not.
-                </Typography>
-              </CardContent>
-            </RouteCard>
-            <RouteCard>
-              <CardHeader
-                title={<Typography variant='h6'>3. {DEST_MAP.R} {TIME_MAP.D}</Typography>}
-                disableTypography
-              />
-              <CardContent>
-                <BaitList
-                  baitGroups={[{
-                    header: 'DH–IC–DH at 4s',
-                    baitGroup: BAIT_GROUPS.Mopbeard
-                  }]}
-                />
-              </CardContent>
-              <CardContent>
-                <Typography variant='overline'>Spectral</Typography>
-                <Typography paragraph>
-                  The earlier <Tug.Medium /> is Coccosteus.
-                </Typography>
-              </CardContent>
-            </RouteCard>
-          </RouteCardContainer>
-          <Typography paragraph>
-            Sample octopodes macro
-          </Typography>
-          <Highlight language='plaintext'>
-            {octopodesMacro}
-          </Highlight>
-        </Section>
-      )
     case 'What Did Balloons Do to You?':
       return (
         <Section
@@ -459,6 +459,65 @@ const AchievementsInformation = ({ selectedRoute }) => {
                   }, {
                     header: 'Pearl Bombfish',
                     baitGroup: BAIT_GROUPS['Pearl Bombfish']
+                  }]}
+                />
+              </CardContent>
+            </RouteCard>
+          </RouteCardContainer>
+        </Section>
+      )
+    case 'What Did Mantas Do to You?':
+      return (
+        <Section
+          title={
+            <>
+              Mantas Route
+              <OceanFishIcon name={achievement} className={classes.achievementIcon} />
+              <Typography display='inline' className={classes.headerSub}>
+                catch 25 mantas (solo)
+              </Typography>
+            </>
+          }
+        >
+          <RouteCardContainer className={classes.achievementInfo}>
+            <RouteCard>
+              <CardHeader
+                title={<Typography variant='h6'>1. {DEST_MAP.C} {TIME_MAP.D}</Typography>}
+                disableTypography
+              />
+              <CardContent>
+                <BaitList
+                  baitGroups={[{
+                    header: 'Goobbue Ray',
+                    baitGroup: BAIT_GROUPS['Goobbue Ray']
+                  }, {
+                    header: 'Jetborne Manta',
+                    baitGroup: BAIT_GROUPS['Jetborne Manta']
+                  }]}
+                />
+              </CardContent>
+            </RouteCard>
+            <RouteCard>
+              <CardHeader
+                title={<Typography variant='h6'>2. {DEST_MAP.N} {TIME_MAP.S}</Typography>}
+                disableTypography
+              />
+              <CardContent>
+                <Typography paragraph>
+                  No mantas here.
+                </Typography>
+              </CardContent>
+            </RouteCard>
+            <RouteCard>
+              <CardHeader
+                title={<Typography variant='h6'>3. {DEST_MAP.B} {TIME_MAP.N}</Typography>}
+                disableTypography
+              />
+              <CardContent>
+                <BaitList
+                  baitGroups={[{
+                    header: 'Skaldminni',
+                    baitGroup: BAIT_GROUPS.Skaldminni
                   }]}
                 />
               </CardContent>

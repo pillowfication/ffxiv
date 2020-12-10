@@ -85,14 +85,17 @@ export const FILTER_MAP = {
   TN: ['TN'],
   TS: ['TS'],
   sothis: ['ND', 'RS'],
-  coral_manta: ['RD', 'NS'],
+  coral_manta: ['NS', 'RD'],
   elasmosaurus: ['BS', 'ND'],
   stonescale: ['RS', 'TN'],
   hafgufa: ['BS', 'TS'],
   seafaring_toad: ['BD'],
   placodus: ['TS'],
+  octopodes: ['NN'],
+  sharks: ['RD'],
   jellyfish: ['RN'],
   seadragons: ['NS'],
-  sharks: ['RD'],
-  octopodes: ['NN']
+  balloons: ['TN'],
+  // crabs: [],
+  mantas: ['BN']
 }
