@@ -344,7 +344,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
                   There’s possibly a blind DH at 14-17s.
                 </Typography>
                 <Typography paragraph>
-                  Clouds and Fog weather will remove Shaggy Seadragons (requeue).
+                  Clouds and Fog weather will remove Shaggy Seadragons.
                 </Typography>
                 <Typography variant='overline'>Spectral</Typography>
                 <Typography paragraph>
@@ -488,13 +488,23 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <BaitList
                   baitGroups={[{
-                    header: 'Goobbue Ray',
+                    header: 'DH at >15s; DH–IC–DH post-spectral',
                     baitGroup: BAIT_GROUPS['Goobbue Ray']
                   }, {
-                    header: 'Jetborne Manta',
+                    header: 'DH–IC–DH',
                     baitGroup: BAIT_GROUPS['Jetborne Manta']
                   }]}
                 />
+              </CardContent>
+              <CardContent>
+                <Typography variant='overline'>Non-spectral</Typography>
+                <Typography paragraph>
+                  Blind DH after 15s. The earlier <Tug.Medium /> is Tortoiseshell Crab. Save GP for spectral current.
+                </Typography>
+                <Typography variant='overline'>Spectral</Typography>
+                <Typography paragraph>
+                  The other <Tug.Heavy /> is Callichthyid.
+                </Typography>
               </CardContent>
             </RouteCard>
             <RouteCard>
@@ -516,10 +526,16 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <BaitList
                   baitGroups={[{
-                    header: 'Skaldminni',
+                    header: 'DH at >6s',
                     baitGroup: BAIT_GROUPS.Skaldminni
                   }]}
                 />
+              </CardContent>
+              <CardContent>
+                <Typography variant='overline'>Spectral</Typography>
+                <Typography paragraph>
+                  Need confirmation on tug timings. Beatific Vision and Gory Tuna may be &lt;5s.
+                </Typography>
               </CardContent>
             </RouteCard>
           </RouteCardContainer>

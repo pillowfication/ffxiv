@@ -26,7 +26,7 @@ export const OBJECTIVES_MAP = {
   RD: ['What Did Sharks Do to You?', 'Coral Manta'],
   RN: ['What Did Jellyfish Do to You?'],
   RS: ['Sothis', 'Stonescale'],
-  TD: [],
+  TD: ['What Did Balloons Do to You?'],
   TN: ['What Did Balloons Do to You?', 'Stonescale'],
   TS: ['Hafgufa', 'Placodus']
 }
@@ -64,6 +64,7 @@ export const ACHIEVEMENTS_MAP = {
   NS: 'What Did Seadragons Do to You?',
   RD: 'What Did Sharks Do to You?',
   RN: 'What Did Jellyfish Do to You?',
+  TD: 'What Did Balloons Do to You?',
   TN: 'What Did Balloons Do to You?'
 }
 
@@ -95,7 +96,7 @@ export const FILTER_MAP = {
   sharks: ['RD'],
   jellyfish: ['RN'],
   seadragons: ['NS'],
-  balloons: ['TN'],
+  balloons: ['TD', 'TN'],
   // crabs: [],
   mantas: ['BN']
 }
