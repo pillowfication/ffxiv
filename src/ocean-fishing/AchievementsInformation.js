@@ -488,10 +488,10 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <BaitList
                   baitGroups={[{
-                    header: 'DH at >15s; DH–IC–DH post-spectral',
+                    header: 'IC; IC–DH post-spectral',
                     baitGroup: BAIT_GROUPS['Goobbue Ray']
                   }, {
-                    header: 'DH–IC–DH',
+                    header: 'DH at <6s',
                     baitGroup: BAIT_GROUPS['Jetborne Manta']
                   }]}
                 />
@@ -499,11 +499,11 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <Typography variant='overline'>Non-spectral</Typography>
                 <Typography paragraph>
-                  Blind DH after 15s. The earlier <Tug.Medium /> is Tortoiseshell Crab. Save GP for spectral current.
+                  IC if capped, but save GP for spectral current. Possible blind DH at &gt;15s. (?)
                 </Typography>
                 <Typography variant='overline'>Spectral</Typography>
                 <Typography paragraph>
-                  The other <Tug.Heavy /> is Callichthyid.
+                  Reel all <Tug.Heavy />. Callichthyid appears at 6s. (?)
                 </Typography>
               </CardContent>
             </RouteCard>
@@ -534,7 +534,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <Typography variant='overline'>Spectral</Typography>
                 <Typography paragraph>
-                  Need confirmation on tug timings. Beatific Vision and Gory Tuna may be &lt;5s.
+                  Reel all <Tug.Medium />. Beatific Vision and Gory Tuna go away at 5s. (?)
                 </Typography>
               </CardContent>
             </RouteCard>
