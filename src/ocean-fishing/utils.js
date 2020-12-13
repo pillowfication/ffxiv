@@ -1,3 +1,5 @@
+import { ROUTE_MAP } from './maps'
+
 export function toTimeString (now, padded) {
   const hours = now.getHours()
   const displayHours = hours % 12 === 0 ? 12 : hours % 12
@@ -32,4 +34,10 @@ export function timeUntil (now, then, full) {
       ? `next is in ${minutes} ${minutes > 1 ? 'minutes' : 'minute'} at ${toTimeString(then)}`
       : `in ${minutes} ${minutes > 1 ? 'minutes' : 'minute'}`
   }
+}
+
+export function getStops (destinationCode) {
+  const stops = ROUTE_MAP[destinationCode[0]]
+  const timeIndex = 'DSN'.indexOf(destinationCode[1])
+  return stops.map((stop, index) => stop + 'DSN'.charAt((index + timeIndex + 1) % 3))
 }

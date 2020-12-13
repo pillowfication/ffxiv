@@ -13,6 +13,7 @@ import RouteCard from './RouteCard'
 import BaitList from './BaitList'
 import OceanFishIcon from './OceanFishIcon'
 import Tug from './Tug'
+import { getStops } from './utils'
 import jellyfishMacro from './macros/jellyfish.ffmacro'
 import seadragonsMacro from './macros/seadragons.ffmacro'
 import octopodesMacro from './macros/octopodes.ffmacro'
@@ -42,6 +43,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
 
   const classes = useStyles()
   const achievement = selectedRoute && ACHIEVEMENTS_MAP[selectedRoute]
+  const stops = getStops(selectedRoute)
 
   switch (achievement) {
     case 'What Did Octopodes Do to You?':
@@ -60,7 +62,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
           <RouteCardContainer className={classes.achievementInfo}>
             <RouteCard>
               <CardHeader
-                title={<Typography variant='h6'>1. {DEST_MAP.S} {TIME_MAP.D}</Typography>}
+                title={<Typography variant='h6'>1. {DEST_MAP[stops[0][0]]} {TIME_MAP[stops[0][1]]}</Typography>}
                 disableTypography
               />
               <CardContent>
@@ -71,7 +73,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
             </RouteCard>
             <RouteCard>
               <CardHeader
-                title={<Typography variant='h6'>2. {DEST_MAP.G} {TIME_MAP.S}</Typography>}
+                title={<Typography variant='h6'>2. {DEST_MAP[stops[1][0]]} {TIME_MAP[stops[1][1]]}</Typography>}
                 disableTypography
               />
               <CardContent>
@@ -98,7 +100,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
             </RouteCard>
             <RouteCard>
               <CardHeader
-                title={<Typography variant='h6'>3. {DEST_MAP.R} {TIME_MAP.D}</Typography>}
+                title={<Typography variant='h6'>3. {DEST_MAP[stops[2][0]]} {TIME_MAP[stops[2][1]]}</Typography>}
                 disableTypography
               />
               <CardContent>
@@ -141,7 +143,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
           <RouteCardContainer className={classes.achievementInfo}>
             <RouteCard>
               <CardHeader
-                title={<Typography variant='h6'>1. {DEST_MAP.G} {TIME_MAP.S}</Typography>}
+                title={<Typography variant='h6'>1. {DEST_MAP[stops[0][0]]} {TIME_MAP[stops[0][1]]}</Typography>}
                 disableTypography
               />
               <CardContent>
@@ -178,7 +180,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
             </RouteCard>
             <RouteCard>
               <CardHeader
-                title={<Typography variant='h6'>2. {DEST_MAP.S} {TIME_MAP.N}</Typography>}
+                title={<Typography variant='h6'>2. {DEST_MAP[stops[1][0]]} {TIME_MAP[stops[1][1]]}</Typography>}
                 disableTypography
               />
               <CardContent>
@@ -192,7 +194,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
             </RouteCard>
             <RouteCard>
               <CardHeader
-                title={<Typography variant='h6'>3. {DEST_MAP.R} {TIME_MAP.D}</Typography>}
+                title={<Typography variant='h6'>3. {DEST_MAP[stops[2][0]]} {TIME_MAP[stops[2][1]]}</Typography>}
                 disableTypography
               />
               <CardContent>
@@ -243,7 +245,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
           <RouteCardContainer className={classes.achievementInfo}>
             <RouteCard>
               <CardHeader
-                title={<Typography variant='h6'>1. {DEST_MAP.G} {TIME_MAP.D}</Typography>}
+                title={<Typography variant='h6'>1. {DEST_MAP[stops[0][0]]} {TIME_MAP[stops[0][1]]}</Typography>}
                 disableTypography
               />
               <CardContent>
@@ -254,7 +256,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
             </RouteCard>
             <RouteCard>
               <CardHeader
-                title={<Typography variant='h6'>2. {DEST_MAP.S} {TIME_MAP.S}</Typography>}
+                title={<Typography variant='h6'>2. {DEST_MAP[stops[1][0]]} {TIME_MAP[stops[1][1]]}</Typography>}
                 disableTypography
               />
               <CardContent>
@@ -281,7 +283,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
             </RouteCard>
             <RouteCard>
               <CardHeader
-                title={<Typography variant='h6'>3. {DEST_MAP.R} {TIME_MAP.N}</Typography>}
+                title={<Typography variant='h6'>3. {DEST_MAP[stops[2][0]]} {TIME_MAP[stops[2][1]]}</Typography>}
                 disableTypography
               />
               <CardContent>
@@ -324,7 +326,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
           <RouteCardContainer className={classes.achievementInfo}>
             <RouteCard>
               <CardHeader
-                title={<Typography variant='h6'>1. {DEST_MAP.S} {TIME_MAP.N}</Typography>}
+                title={<Typography variant='h6'>1. {DEST_MAP[stops[0][0]]} {TIME_MAP[stops[0][1]]}</Typography>}
                 disableTypography
               />
               <CardContent>
@@ -354,7 +356,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
             </RouteCard>
             <RouteCard>
               <CardHeader
-                title={<Typography variant='h6'>2. {DEST_MAP.G} {TIME_MAP.D}</Typography>}
+                title={<Typography variant='h6'>2. {DEST_MAP[stops[1][0]]} {TIME_MAP[stops[1][1]]}</Typography>}
                 disableTypography
               />
               <CardContent>
@@ -365,7 +367,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
             </RouteCard>
             <RouteCard>
               <CardHeader
-                title={<Typography variant='h6'>3. {DEST_MAP.N} {TIME_MAP.S}</Typography>}
+                title={<Typography variant='h6'>3. {DEST_MAP[stops[2][0]]} {TIME_MAP[stops[2][1]]}</Typography>}
                 disableTypography
               />
               <CardContent>
@@ -408,7 +410,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
           <RouteCardContainer className={classes.achievementInfo}>
             <RouteCard>
               <CardHeader
-                title={<Typography variant='h6'>1. {DEST_MAP.C} {TIME_MAP.D}</Typography>}
+                title={<Typography variant='h6'>1. {DEST_MAP[stops[0][0]]} {TIME_MAP[stops[0][1]]}</Typography>}
                 disableTypography
               />
               <CardContent>
@@ -425,7 +427,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
             </RouteCard>
             <RouteCard>
               <CardHeader
-                title={<Typography variant='h6'>2. {DEST_MAP.R} {TIME_MAP.S}</Typography>}
+                title={<Typography variant='h6'>2. {DEST_MAP[stops[1][0]]} {TIME_MAP[stops[1][1]]}</Typography>}
                 disableTypography
               />
               <CardContent>
@@ -442,7 +444,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
             </RouteCard>
             <RouteCard>
               <CardHeader
-                title={<Typography variant='h6'>3. {DEST_MAP.T} {TIME_MAP.D}</Typography>}
+                title={<Typography variant='h6'>3. {DEST_MAP[stops[2][0]]} {TIME_MAP[stops[2][1]]}</Typography>}
                 disableTypography
               />
               <CardContent>
@@ -482,7 +484,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
           <RouteCardContainer className={classes.achievementInfo}>
             <RouteCard>
               <CardHeader
-                title={<Typography variant='h6'>1. {DEST_MAP.C} {TIME_MAP.S}</Typography>}
+                title={<Typography variant='h6'>1. {DEST_MAP[stops[0][0]]} {TIME_MAP[stops[0][1]]}</Typography>}
                 disableTypography
               />
               <CardContent>
@@ -499,7 +501,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
             </RouteCard>
             <RouteCard>
               <CardHeader
-                title={<Typography variant='h6'>2. {DEST_MAP.N} {TIME_MAP.N}</Typography>}
+                title={<Typography variant='h6'>2. {DEST_MAP[stops[1][0]]} {TIME_MAP[stops[1][1]]}</Typography>}
                 disableTypography
               />
               <CardContent>
@@ -516,7 +518,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
             </RouteCard>
             <RouteCard>
               <CardHeader
-                title={<Typography variant='h6'>3. {DEST_MAP.B} {TIME_MAP.D}</Typography>}
+                title={<Typography variant='h6'>3. {DEST_MAP[stops[2][0]]} {TIME_MAP[stops[2][1]]}</Typography>}
                 disableTypography
               />
               <CardContent>
@@ -556,7 +558,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
           <RouteCardContainer className={classes.achievementInfo}>
             <RouteCard>
               <CardHeader
-                title={<Typography variant='h6'>1. {DEST_MAP.C} {TIME_MAP.D}</Typography>}
+                title={<Typography variant='h6'>1. {DEST_MAP[stops[0][0]]} {TIME_MAP[stops[0][1]]}</Typography>}
                 disableTypography
               />
               <CardContent>
@@ -583,7 +585,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
             </RouteCard>
             <RouteCard>
               <CardHeader
-                title={<Typography variant='h6'>2. {DEST_MAP.N} {TIME_MAP.S}</Typography>}
+                title={<Typography variant='h6'>2. {DEST_MAP[stops[1][0]]} {TIME_MAP[stops[1][1]]}</Typography>}
                 disableTypography
               />
               <CardContent>
@@ -594,7 +596,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
             </RouteCard>
             <RouteCard>
               <CardHeader
-                title={<Typography variant='h6'>3. {DEST_MAP.B} {TIME_MAP.N}</Typography>}
+                title={<Typography variant='h6'>3. {DEST_MAP[stops[2][0]]} {TIME_MAP[stops[2][1]]}</Typography>}
                 disableTypography
               />
               <CardContent>
