@@ -112,34 +112,15 @@ const UpcomingVoyages = ({ now, onSelectRoute }) => {
   }
 
   const handleHoverRow = {
-    none: setHover.bind(null, null),
-    BD: setHover.bind(null, 'BD'),
-    BN: setHover.bind(null, 'BN'),
-    BS: setHover.bind(null, 'BS'),
-    ND: setHover.bind(null, 'ND'),
-    NN: setHover.bind(null, 'NN'),
-    NS: setHover.bind(null, 'NS'),
-    RD: setHover.bind(null, 'RD'),
-    RN: setHover.bind(null, 'RN'),
-    RS: setHover.bind(null, 'RS'),
-    TD: setHover.bind(null, 'TD'),
-    TN: setHover.bind(null, 'TN'),
-    TS: setHover.bind(null, 'TS')
+    none: setHover.bind(null, null)
   }
-
-  const handleSelectRow = {
-    BD: onSelectRoute.bind(null, 'BD'),
-    BN: onSelectRoute.bind(null, 'BN'),
-    BS: onSelectRoute.bind(null, 'BS'),
-    ND: onSelectRoute.bind(null, 'ND'),
-    NN: onSelectRoute.bind(null, 'NN'),
-    NS: onSelectRoute.bind(null, 'NS'),
-    RD: onSelectRoute.bind(null, 'RD'),
-    RN: onSelectRoute.bind(null, 'RN'),
-    RS: onSelectRoute.bind(null, 'RS'),
-    TD: onSelectRoute.bind(null, 'TD'),
-    TN: onSelectRoute.bind(null, 'TN'),
-    TS: onSelectRoute.bind(null, 'TS')
+  const handleSelectRow = {}
+  for (const route of ['B', 'N', 'R', 'T']) {
+    for (const time of ['D', 'N', 'S']) {
+      const code = route + time
+      handleHoverRow[code] = setHover.bind(null, code)
+      handleSelectRow[code] = onSelectRoute.bind(null, code)
+    }
   }
 
   return (
@@ -206,7 +187,7 @@ const UpcomingVoyages = ({ now, onSelectRoute }) => {
                 <option value='jellyfish'>Jellyfish</option>
                 <option value='seadragons'>Seadragons</option>
                 <option value='balloons'>Balloons</option>
-                {/* <option value='crabs'>Crabs</option> */}
+                <option value='crabs'>Crabs</option>
                 <option value='mantas'>Mantas</option>
               </optgroup>
             </Select>

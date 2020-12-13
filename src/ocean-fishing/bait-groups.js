@@ -23,6 +23,12 @@ export default {
       bait: [RAGWORM, { name: 'Sunken Mask', tug: 3 }]
     }]
   ),
+  'Bartholomew the Chopper': createBaitChain(
+    [RAGWORM, { name: 'Bartholomew the Chopper', tug: 1, dh: 4 }]
+  ),
+  'Bloodpolish Crab': createBaitChain(
+    [RAGWORM, { name: 'Bloodpolish Crab', tug: 1, dh: 4 }]
+  ),
   'Chrome Hammerhead': createBaitChain(
     [PLUMP_WORM, { name: 'Chrome Hammerhead', tug: 3, dh: 4 }]
   ),
@@ -65,6 +71,9 @@ export default {
   ),
   Executioner: createBaitChain(
     [PLUMP_WORM, { name: 'Executioner', tug: 3, dh: 4 }]
+  ),
+  Exterminator: createBaitChain(
+    [RAGWORM, { name: 'Exterminator', tug: 1, dh: 4 }]
   ),
   'Floating Saucer': createBaitChain(
     [KRILL, { name: 'Floating Saucer', tug: 1, dh: 4 }]
@@ -128,6 +137,12 @@ export default {
   ),
   'Mythril Boxfish': createBaitChain(
     [RAGWORM, { name: 'Mythril Boxfish', tug: 1, dh: 4 }]
+  ),
+  'Net Crawler': createBaitChain(
+    [KRILL, { name: 'Net Crawler', tug: 2, dh: 2 }]
+  ),
+  'Oracular Crab': createBaitChain(
+    [RAGWORM, { name: 'Oracular Crab', tug: 1, dh: 4 }]
   ),
   'Pearl Bombfish': createBaitChain(
     [RAGWORM, { name: 'Pearl Bombfish', tug: 1, dh: 4 }]
@@ -221,5 +236,14 @@ export default {
   ),
   'Tarnished Shark': createBaitChain(
     [PLUMP_WORM, { name: 'Tarnished Shark', tug: 3, dh: 2 }]
+  ),
+  'Thaliak Crab': createBaitChain(
+    [RAGWORM, { name: 'Thaliak Crab', tug: 1, dh: 2 }]
+  ),
+  'Titanshell Crab': createBaitChain(
+    [KRILL, { name: 'Titanshell Crab', tug: 2, dh: 4 }]
+  ),
+  'Tortoiseshell Crab': createBaitChain(
+    [KRILL, { name: 'Tortoiseshell Crab', tug: 2, dh: 2 }]
   )
 }

@@ -466,6 +466,80 @@ const AchievementsInformation = ({ selectedRoute }) => {
           </RouteCardContainer>
         </Section>
       )
+    case 'What Did Crabs Do to You?':
+      return (
+        <Section
+          title={
+            <>
+              Crabs Route
+              <OceanFishIcon name={achievement} className={classes.achievementIcon} />
+              <Typography display='inline' className={classes.headerSub}>
+                catch 250 crabs (31.25 each)
+              </Typography>
+            </>
+          }
+        >
+          <RouteCardContainer className={classes.achievementInfo}>
+            <RouteCard>
+              <CardHeader
+                title={<Typography variant='h6'>1. {DEST_MAP.C} {TIME_MAP.S}</Typography>}
+                disableTypography
+              />
+              <CardContent>
+                <BaitList
+                  baitGroups={[{
+                    header: 'Tortoiseshell Crab',
+                    baitGroup: BAIT_GROUPS['Tortoiseshell Crab']
+                  }, {
+                    header: 'Titanshell Crab',
+                    baitGroup: BAIT_GROUPS['Titanshell Crab']
+                  }]}
+                />
+              </CardContent>
+            </RouteCard>
+            <RouteCard>
+              <CardHeader
+                title={<Typography variant='h6'>2. {DEST_MAP.N} {TIME_MAP.N}</Typography>}
+                disableTypography
+              />
+              <CardContent>
+                <BaitList
+                  baitGroups={[{
+                    header: 'Net Crawler',
+                    baitGroup: BAIT_GROUPS['Net Crawler']
+                  }, {
+                    header: 'Bartholomew the Chopper',
+                    baitGroup: BAIT_GROUPS['Bartholomew the Chopper']
+                  }]}
+                />
+              </CardContent>
+            </RouteCard>
+            <RouteCard>
+              <CardHeader
+                title={<Typography variant='h6'>3. {DEST_MAP.B} {TIME_MAP.D}</Typography>}
+                disableTypography
+              />
+              <CardContent>
+                <BaitList
+                  baitGroups={[{
+                    header: 'Thaliak Crab',
+                    baitGroup: BAIT_GROUPS['Thaliak Crab']
+                  }, {
+                    header: 'Bloodpolish Crab',
+                    baitGroup: BAIT_GROUPS['Bloodpolish Crab']
+                  }, {
+                    header: 'Oracular Crab',
+                    baitGroup: BAIT_GROUPS['Oracular Crab']
+                  }, {
+                    header: 'Exterminator',
+                    baitGroup: BAIT_GROUPS.Exterminator
+                  }]}
+                />
+              </CardContent>
+            </RouteCard>
+          </RouteCardContainer>
+        </Section>
+      )
     case 'What Did Mantas Do to You?':
       return (
         <Section
