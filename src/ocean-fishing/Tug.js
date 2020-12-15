@@ -1,7 +1,8 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import cn from 'classnames'
 import PropTypes from 'prop-types'
+import cn from 'classnames'
+import { makeStyles } from '@material-ui/core/styles'
+import Tooltip from '@material-ui/core/Tooltip'
 
 const useStyles = makeStyles((theme) => ({
   tug: {
@@ -35,13 +36,23 @@ const Tug = ({ sup, strength, className, ...props }) => {
 
   switch (strength) {
     case 1:
-      return <span className={cn(classes.tug, sup && classes.sup, classes.light, className)} title='Light tug' {...props}>!</span>
+      return (
+        <Tooltip arrow placement='top' title='Light tug'>
+          <span className={cn(classes.tug, sup && classes.sup, classes.light, className)} {...props}>!</span>
+        </Tooltip>
+      )
     case 2:
-      return <span className={cn(classes.tug, sup && classes.sup, classes.medium, className)} title='Medium tug' {...props}>!!</span>
+      return (
+        <Tooltip arrow placement='top' title='Medium tug'>
+          <span className={cn(classes.tug, sup && classes.sup, classes.medium, className)} {...props}>!!</span>
+        </Tooltip>
+      )
     case 3:
-      return <span className={cn(classes.tug, sup && classes.sup, classes.heavy, className)} title='Heavy tug' {...props}>!!!</span>
-    default:
-      return null
+      return (
+        <Tooltip arrow placement='top' title='Heavy tug'>
+          <span className={cn(classes.tug, sup && classes.sup, classes.heavy, className)} {...props}>!!!</span>
+        </Tooltip>
+      )
   }
 }
 

@@ -34,7 +34,7 @@ const FishRow = ({ fish, time }) => {
   const isDisabled = fish.time && fish.time.indexOf(time) === -1
 
   return (
-    <TableRow className={cn(isDisabled && classes.disabled)}>
+    <TableRow hover className={cn(isDisabled && classes.disabled)}>
       <TableCell>
         <OceanFishIcon name={fish.name} />
       </TableCell>
@@ -47,7 +47,7 @@ const FishRow = ({ fish, time }) => {
           .map((bait) => <OceanFishIcon key={bait} name={bait} />)}
       </TableCell>
       <TableCell align='center'>
-        <Tug strength={fish.tug} className={classes.tableTug} />
+        {fish.tug && <Tug strength={fish.tug} className={classes.tableTug} />}
       </TableCell>
       <TableCell align='center'>
         <Typography>{fish.points}</Typography>

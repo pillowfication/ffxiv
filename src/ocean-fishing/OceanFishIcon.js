@@ -2,6 +2,7 @@ import React from 'react'
 import cn from 'classnames'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
+import Tooltip from '@material-ui/core/Tooltip'
 import ICONS from './gists/icons'
 
 const ICON_ROWS = ICONS.length
@@ -35,14 +36,12 @@ const useStyles = makeStyles((theme) => {
 })
 
 const OceanFishIcon = ({ name, className }) => {
-  if (!name) {
-    return '?'
-  }
-
   const classes = useStyles()
 
   return (
-    <div className={cn(classes.oceanFishIcon, classes[camelCase(name)], className)} title={name} />
+    <Tooltip arrow placement='top' title={name}>
+      <div className={cn(classes.oceanFishIcon, classes[camelCase(name)], className)} />
+    </Tooltip>
   )
 }
 
@@ -63,4 +62,4 @@ OceanFishIcon.propTypes = {
   }
 }
 
-export default OceanFishIcon
+export default React.memo(OceanFishIcon)

@@ -130,7 +130,7 @@ export default {
     [RAGWORM, { name: 'Metallic Boxfish', tug: 1, dh: 2 }]
   ),
   'Merman\'s Mane': createBaitChain(
-    [KRILL, { name: 'Merman’s Mane', tug: 2, dh: 4 }]
+    [KRILL, { name: 'Merman\'s Mane', tug: 2, dh: 4 }]
   ),
   Mopbeard: createBaitChain(
     [KRILL, { name: 'Mopbeard', tug: 2, dh: 4 }]

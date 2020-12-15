@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import cn from 'classnames'
 import PropTypes from 'prop-types'
 import Typography from '@material-ui/core/Typography'
+import Tooltip from '@material-ui/core/Tooltip'
 import { translateId } from './weather'
 import * as WEATHERS from './weather/consts/weathers'
 
@@ -50,7 +51,9 @@ const WeatherIcon = ({ weatherId, showLabel = true }) => {
 
   return (
     <>
-      <div className={cn(classes.weatherIcon, classes[weatherId])} title={weatherString} />
+      <Tooltip arrow placement='top' title={weatherString}>
+        <div className={cn(classes.weatherIcon, classes[weatherId])} />
+      </Tooltip>
       {showLabel && (
         <>
           <br />
