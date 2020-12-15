@@ -68,7 +68,7 @@ for (const region of REGIONS) {
 }
 
 function isBlue (elem) {
-  for (const className of ['s36', 's46']) {
+  for (const className of ['s36', 's46', 's73']) {
     if (elem.hasClass(className)) {
       return true
     }
@@ -86,6 +86,9 @@ function parseTimer (str) {
   }
   if (/^.*@.*$/.test(str)) {
     return parseTimer(str.split('@')[1])
+  }
+  if (/^.*\/.*$/.test(str)) {
+    return parseTimer(str.split('/')[1])
   }
   if (/^0 caught$/.test(str)) {
     return -1
@@ -205,4 +208,4 @@ _.merge(data, {
   }
 })
 
-fs.writeFileSync(path.resolve(__dirname, './fish.json'), JSON.stringify(data))
+fs.writeFileSync(path.resolve(__dirname, './fish.json'), JSON.stringify(data, null, 2))
