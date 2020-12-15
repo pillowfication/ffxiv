@@ -130,7 +130,7 @@ export default {
     [RAGWORM, { name: 'Mythril Boxfish', tug: 1, dh: 4 }]
   ),
   'Pearl Bombfish': createBaitChain(
-    [RAGWORM, { name: 'Pearl Bombfish', tug: 1, dh: 4 }]
+    [KRILL, { name: 'Pearl Bombfish', tug: 2, dh: 4 }]
   ),
   Placodus: createBaitChain(
     [RAGWORM, { name: 'Rothlyt Mussel', tug: 3 }, { name: 'Placodus', tug: 3 }],

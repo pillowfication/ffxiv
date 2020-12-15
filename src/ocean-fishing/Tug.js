@@ -30,16 +30,18 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const Tug = ({ sup, strength }) => {
+const Tug = ({ sup, strength, className, ...props }) => {
   const classes = useStyles()
 
   switch (strength) {
     case 1:
-      return <span className={cn(classes.tug, sup && classes.sup, classes.light)} title='Light tug'>!</span>
+      return <span className={cn(classes.tug, sup && classes.sup, classes.light, className)} title='Light tug' {...props}>!</span>
     case 2:
-      return <span className={cn(classes.tug, sup && classes.sup, classes.medium)} title='Medium tug'>!!</span>
+      return <span className={cn(classes.tug, sup && classes.sup, classes.medium, className)} title='Medium tug' {...props}>!!</span>
     case 3:
-      return <span className={cn(classes.tug, sup && classes.sup, classes.heavy)} title='Heavy tug'>!!!</span>
+      return <span className={cn(classes.tug, sup && classes.sup, classes.heavy, className)} title='Heavy tug' {...props}>!!!</span>
+    default:
+      return null
   }
 }
 

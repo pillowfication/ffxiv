@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import Alert from '@material-ui/lab/Alert'
-import Page from '../../src/Page'
-import UpcomingVoyages from '../../src/ocean-fishing/UpcomingVoyages'
-import RouteInformation from '../../src/ocean-fishing/RouteInformation'
-import AchievementsInformation from '../../src/ocean-fishing/AchievementsInformation'
+import Page from '../src/Page'
+import UpcomingVoyages from '../src/ocean-fishing/UpcomingVoyages'
+import RouteInformation from '../src/ocean-fishing/RouteInformation'
+import AchievementsInformation from '../src/ocean-fishing/AchievementsInformation'
 
 const OceanFishing = () => {
   const [now, setNow] = useState(null)
