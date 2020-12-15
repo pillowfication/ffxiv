@@ -2,6 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const _ = require('lodash')
 const cheerio = require('cheerio')
+const WEATHERS = require('../../skywatcher/weather/consts/weathers')
 
 // https://docs.google.com/spreadsheets/d/1brCfvmSdYl7RcY9lkgm_ds8uaFqq7qaxOOz-5BfHuuk/edit#gid=1833732342
 const SHEET = fs.readFileSync(path.resolve(__dirname, './ocean-fishing.html'))
@@ -58,7 +59,7 @@ for (const region of REGIONS) {
       // hookset: tr.find('td:nth-child(12)').text().trim(),
       timer: parseTimer(tr.find('td:nth-child(13)').text().trim()),
       time: parseTime(tr.find('td:nth-child(14)').text().trim()),
-      weathers: tr.find('td:nth-child(15)').text().trim(),
+      weathers: parseWeathers(tr.find('td:nth-child(15)').text().trim()),
       // buff: tr.find('td:nth-child(16)').text().trim(),
       stars: parseStars(tr.find('td:nth-child(17)').text().trim())
       // canvas: tr.find('td:nth-child(18)').text().trim(),
@@ -145,6 +146,65 @@ function parseTime (str) {
   }
   console.log('UNKNOWN TIME:', str)
   return null
+}
+
+function parseWeathers (str) {
+  if (!str) {
+    return null
+  }
+  if (/^all$/i.test(str)) {
+    return { type: 'ALL' }
+  }
+  if (/^(restricted|not all), [a-z/]+ OK$/i.test(str)) {
+    return {
+      type: 'OK',
+      list: parseWeatherNames(str.match(/^(?:restricted|not all), ([a-z /]+) OK$/i)[1].split('/'))
+    }
+  }
+  if (/^restricted from [a-z /]+$/i.test(str)) {
+    return {
+      type: 'NOT OK',
+      list: parseWeatherNames(str.match(/^restricted from ([a-z /]+)$/i)[1].split('/'))
+    }
+  }
+  if (/^restricted \(likely just from clear\)$/i.test(str)) {
+    return {
+      type: 'NOT OK',
+      list: [WEATHERS.CLEAR_SKIES]
+    }
+  }
+  if (str.indexOf('/') !== -1) {
+    return {
+      type: 'OK',
+      list: parseWeatherNames(str.split('/'))
+    }
+  }
+  console.log('UNKNOWN WEATHERS:', str)
+  return null
+}
+
+function parseWeatherNames (weathers) {
+  const map = {
+    [WEATHERS.CLEAR_SKIES]: ['clear'],
+    [WEATHERS.CLOUDS]: ['clouds'],
+    [WEATHERS.DUST_STORMS]: ['dust'],
+    [WEATHERS.FAIR_SKIES]: ['fair'],
+    [WEATHERS.FOG]: ['fog'],
+    [WEATHERS.HEAT_WAVES]: ['heat', 'heat waves'],
+    [WEATHERS.RAIN]: ['rain'],
+    [WEATHERS.SHOWERS]: ['showers'],
+    [WEATHERS.THUNDER]: ['thunder'],
+    [WEATHERS.THUNDERSTORMS]: ['thunderstorms', 'storms']
+  }
+  return weathers.map((weather) => {
+    for (const key in map) {
+      if (map[key].includes(weather.toLowerCase())) {
+        return key
+      }
+    }
+    console.log('UNKNOWN WEATHER NAME:', weather)
+    return null
+  }).filter((x) => x)
 }
 
 function parseStars (str) {

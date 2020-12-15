@@ -12,7 +12,9 @@
         11
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 1
     },
     {
@@ -27,7 +29,9 @@
         13
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 1
     },
     {
@@ -42,7 +46,15 @@
         19
       ],
       "time": "DSN",
-      "weathers": "Restricted, Fair/Clouds/Fog/Clear OK",
+      "weathers": {
+        "type": "OK",
+        "list": [
+          "fairSkies",
+          "clouds",
+          "fog",
+          "clearSkies"
+        ]
+      },
       "stars": 1
     },
     {
@@ -57,7 +69,15 @@
         24
       ],
       "time": "DSN",
-      "weathers": "Restricted, Fair/Rain/Showers/Clear OK",
+      "weathers": {
+        "type": "OK",
+        "list": [
+          "fairSkies",
+          "rain",
+          "showers",
+          "clearSkies"
+        ]
+      },
       "stars": 2
     },
     {
@@ -72,7 +92,12 @@
         36
       ],
       "time": "DSN",
-      "weathers": "Restricted from SHOWERS",
+      "weathers": {
+        "type": "NOT OK",
+        "list": [
+          "showers"
+        ]
+      },
       "stars": 2
     },
     {
@@ -90,7 +115,9 @@
         19
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 2
     },
     {
@@ -105,7 +132,9 @@
         29
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 3
     },
     {
@@ -120,7 +149,9 @@
         25
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 3
     },
     {
@@ -135,7 +166,7 @@
         37
       ],
       "time": "DSN",
-      "weathers": "Not All",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -150,7 +181,9 @@
         28
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     }
   ],
@@ -167,7 +200,9 @@
         6
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -182,7 +217,9 @@
         6
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -197,7 +234,9 @@
         7
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -212,7 +251,9 @@
         10
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -227,7 +268,9 @@
         7
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -242,7 +285,9 @@
         12
       ],
       "time": "D",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -257,7 +302,9 @@
         7
       ],
       "time": "S",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -272,7 +319,9 @@
         12
       ],
       "time": "S",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -287,7 +336,9 @@
         18
       ],
       "time": "D",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -302,7 +353,9 @@
         11
       ],
       "time": "N",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 5
     }
   ],
@@ -319,7 +372,15 @@
         10
       ],
       "time": "DSN",
-      "weathers": "Fair/Fog/Clouds/Clear",
+      "weathers": {
+        "type": "OK",
+        "list": [
+          "fairSkies",
+          "fog",
+          "clouds",
+          "clearSkies"
+        ]
+      },
       "stars": 1
     },
     {
@@ -337,7 +398,9 @@
         7
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 1
     },
     {
@@ -352,7 +415,9 @@
         12
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 1
     },
     {
@@ -367,7 +432,9 @@
         13
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 2
     },
     {
@@ -382,7 +449,13 @@
         22
       ],
       "time": "DSN",
-      "weathers": "Fair/Wind/Gales/Fog?/Clear",
+      "weathers": {
+        "type": "OK",
+        "list": [
+          "fairSkies",
+          "clearSkies"
+        ]
+      },
       "stars": 2
     },
     {
@@ -397,7 +470,9 @@
         22
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 2
     },
     {
@@ -412,7 +487,9 @@
         28
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 3
     },
     {
@@ -426,7 +503,9 @@
         13
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 3
     },
     {
@@ -441,7 +520,7 @@
         36
       ],
       "time": "DSN",
-      "weathers": "Not All",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -456,7 +535,9 @@
         27
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     }
   ],
@@ -473,7 +554,9 @@
         9
       ],
       "time": "S",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -487,7 +570,9 @@
         3
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -502,7 +587,9 @@
         5
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -517,7 +604,9 @@
         7
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -532,7 +621,9 @@
         8
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -547,7 +638,9 @@
         8
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -561,7 +654,9 @@
         6
       ],
       "time": "N",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -576,7 +671,9 @@
         8
       ],
       "time": "D",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -590,7 +687,9 @@
         4
       ],
       "time": "S",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -605,7 +704,9 @@
         11
       ],
       "time": "N",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 5
     }
   ],
@@ -622,7 +723,14 @@
         10
       ],
       "time": "DSN",
-      "weathers": "Fair/Fog/Clear/Clouds Not Snow?",
+      "weathers": {
+        "type": "OK",
+        "list": [
+          "fairSkies",
+          "fog",
+          "clearSkies"
+        ]
+      },
       "stars": 1
     },
     {
@@ -637,7 +745,9 @@
         13
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 1
     },
     {
@@ -652,7 +762,9 @@
         25
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 1
     },
     {
@@ -667,7 +779,9 @@
         18
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 2
     },
     {
@@ -682,7 +796,13 @@
         25
       ],
       "time": "DSN",
-      "weathers": "Fair/Snow/Blizzard/Clear",
+      "weathers": {
+        "type": "OK",
+        "list": [
+          "fairSkies",
+          "clearSkies"
+        ]
+      },
       "stars": 2
     },
     {
@@ -697,7 +817,9 @@
         22
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 2
     },
     {
@@ -712,7 +834,9 @@
         28
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 3
     },
     {
@@ -726,7 +850,9 @@
         16
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 3
     },
     {
@@ -741,7 +867,7 @@
         38
       ],
       "time": "DSN",
-      "weathers": "Not All",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -756,7 +882,9 @@
         27
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     }
   ],
@@ -773,7 +901,9 @@
         5
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -788,7 +918,9 @@
         5
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -803,7 +935,9 @@
         8
       ],
       "time": "N",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -818,7 +952,9 @@
         7
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -833,7 +969,9 @@
         9
       ],
       "time": "N",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -848,7 +986,9 @@
         8
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -866,7 +1006,9 @@
         10
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -881,7 +1023,9 @@
         12
       ],
       "time": "S",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -896,7 +1040,9 @@
         10
       ],
       "time": "S",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -911,7 +1057,9 @@
         10
       ],
       "time": "D",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 5
     }
   ],
@@ -928,7 +1076,12 @@
         13
       ],
       "time": "DSN",
-      "weathers": "Restricted from HEAT WAVES",
+      "weathers": {
+        "type": "NOT OK",
+        "list": [
+          "heatWaves"
+        ]
+      },
       "stars": 1
     },
     {
@@ -943,7 +1096,9 @@
         13
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 1
     },
     {
@@ -958,7 +1113,15 @@
         14
       ],
       "time": "DSN",
-      "weathers": "Not All, Fair/Clouds/Fog/Clear OK",
+      "weathers": {
+        "type": "OK",
+        "list": [
+          "fairSkies",
+          "clouds",
+          "fog",
+          "clearSkies"
+        ]
+      },
       "stars": 1
     },
     {
@@ -973,7 +1136,9 @@
         18
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 2
     },
     {
@@ -988,7 +1153,9 @@
         33
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 2
     },
     {
@@ -1003,7 +1170,15 @@
         19
       ],
       "time": "DSN",
-      "weathers": "Not All, Fair/Dust/Heat/Clear OK",
+      "weathers": {
+        "type": "OK",
+        "list": [
+          "fairSkies",
+          "dustStorms",
+          "heatWaves",
+          "clearSkies"
+        ]
+      },
       "stars": 2
     },
     {
@@ -1018,7 +1193,9 @@
         26
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 3
     },
     {
@@ -1033,7 +1210,9 @@
         16
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 3
     },
     {
@@ -1048,7 +1227,7 @@
         36
       ],
       "time": "DSN",
-      "weathers": "Not All",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -1063,7 +1242,9 @@
         19
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     }
   ],
@@ -1080,7 +1261,9 @@
         5
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -1095,7 +1278,9 @@
         7
       ],
       "time": "D",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -1110,7 +1295,9 @@
         7
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -1125,7 +1312,9 @@
         11
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -1140,7 +1329,9 @@
         10
       ],
       "time": "D",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -1155,7 +1346,9 @@
         11
       ],
       "time": "N",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -1170,7 +1363,9 @@
         9
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -1185,7 +1380,9 @@
         8
       ],
       "time": "DSN",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -1200,7 +1397,9 @@
         8
       ],
       "time": "N",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 4
     },
     {
@@ -1215,7 +1414,9 @@
         12
       ],
       "time": "S",
-      "weathers": "All",
+      "weathers": {
+        "type": "ALL"
+      },
       "stars": 5
     }
   ],
@@ -1232,7 +1433,7 @@
         15
       ],
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 1
     },
     {
@@ -1247,7 +1448,15 @@
         22
       ],
       "time": "",
-      "weathers": "Restricted, FAIR/CLOUDS/FOG/CLEAR OK",
+      "weathers": {
+        "type": "OK",
+        "list": [
+          "fairSkies",
+          "clouds",
+          "fog",
+          "clearSkies"
+        ]
+      },
       "stars": 1
     },
     {
@@ -1262,7 +1471,7 @@
         12
       ],
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 1
     },
     {
@@ -1277,7 +1486,7 @@
         23
       ],
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 2
     },
     {
@@ -1292,7 +1501,12 @@
         23
       ],
       "time": "",
-      "weathers": "Restricted from THUNDERSTORMS",
+      "weathers": {
+        "type": "NOT OK",
+        "list": [
+          "thunderstorms"
+        ]
+      },
       "stars": 2
     },
     {
@@ -1307,7 +1521,15 @@
         10
       ],
       "time": "",
-      "weathers": "Restricted, FAIR/THUNDER/THUNDERSTORMS/CLEAR OK",
+      "weathers": {
+        "type": "OK",
+        "list": [
+          "fairSkies",
+          "thunder",
+          "thunderstorms",
+          "clearSkies"
+        ]
+      },
       "stars": 2
     },
     {
@@ -1319,7 +1541,7 @@
       "tug": 3,
       "timer": 25,
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 3
     },
     {
@@ -1334,7 +1556,7 @@
         25
       ],
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 3
     },
     {
@@ -1349,7 +1571,12 @@
         18
       ],
       "time": "",
-      "weathers": "Restricted (Likely just from Clear)",
+      "weathers": {
+        "type": "NOT OK",
+        "list": [
+          "clearSkies"
+        ]
+      },
       "stars": 4
     },
     {
@@ -1364,7 +1591,7 @@
         27
       ],
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     }
   ],
@@ -1381,7 +1608,7 @@
         5
       ],
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -1396,7 +1623,7 @@
         5
       ],
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -1411,7 +1638,7 @@
         5
       ],
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -1426,7 +1653,7 @@
         6
       ],
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -1438,7 +1665,7 @@
       "tug": 2,
       "timer": 7.5,
       "time": "S",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -1453,7 +1680,7 @@
         10
       ],
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -1468,7 +1695,7 @@
         10
       ],
       "time": "D",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -1483,7 +1710,7 @@
         7
       ],
       "time": "D",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -1495,7 +1722,7 @@
       "tug": 2,
       "timer": 12,
       "time": "S",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -1507,7 +1734,7 @@
       "tug": 3,
       "timer": 10,
       "time": "N",
-      "weathers": "",
+      "weathers": null,
       "stars": 5
     }
   ],
@@ -1524,7 +1751,7 @@
         8
       ],
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 1
     },
     {
@@ -1539,7 +1766,15 @@
         15
       ],
       "time": "",
-      "weathers": "Restricted, FAIR/CLOUDS/FOG/CLEAR OK",
+      "weathers": {
+        "type": "OK",
+        "list": [
+          "fairSkies",
+          "clouds",
+          "fog",
+          "clearSkies"
+        ]
+      },
       "stars": 1
     },
     {
@@ -1554,7 +1789,7 @@
         12
       ],
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 1
     },
     {
@@ -1569,7 +1804,12 @@
         14
       ],
       "time": "",
-      "weathers": "Restricted from SHOWERS",
+      "weathers": {
+        "type": "NOT OK",
+        "list": [
+          "showers"
+        ]
+      },
       "stars": 2
     },
     {
@@ -1584,7 +1824,7 @@
         28
       ],
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 2
     },
     {
@@ -1599,7 +1839,15 @@
         10
       ],
       "time": "",
-      "weathers": "Restricted, FAIR/RAIN//SHOWERS/CLEAR OK",
+      "weathers": {
+        "type": "OK",
+        "list": [
+          "fairSkies",
+          "rain",
+          "showers",
+          "clearSkies"
+        ]
+      },
       "stars": 2
     },
     {
@@ -1614,7 +1862,7 @@
         20
       ],
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 3
     },
     {
@@ -1629,7 +1877,7 @@
         20
       ],
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 3
     },
     {
@@ -1644,7 +1892,12 @@
         16
       ],
       "time": "",
-      "weathers": "Restricted (Likely just from Clear)",
+      "weathers": {
+        "type": "NOT OK",
+        "list": [
+          "clearSkies"
+        ]
+      },
       "stars": 4
     },
     {
@@ -1659,7 +1912,7 @@
         10
       ],
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     }
   ],
@@ -1676,7 +1929,7 @@
         3
       ],
       "time": "D",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -1688,7 +1941,7 @@
       "tug": 1,
       "timer": 3,
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -1700,7 +1953,7 @@
       "tug": 2,
       "timer": 6,
       "time": "N",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -1712,7 +1965,7 @@
       "tug": 1,
       "timer": 3,
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -1724,7 +1977,7 @@
       "tug": 2,
       "timer": null,
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -1736,7 +1989,7 @@
       "tug": 1,
       "timer": 6,
       "time": "D",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -1751,7 +2004,7 @@
         5
       ],
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -1766,7 +2019,7 @@
         4
       ],
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -1781,7 +2034,7 @@
         8
       ],
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -1793,7 +2046,7 @@
       "tug": null,
       "timer": null,
       "time": "D",
-      "weathers": "",
+      "weathers": null,
       "stars": 5
     }
   ],
@@ -1810,7 +2063,7 @@
         7
       ],
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 1
     },
     {
@@ -1828,7 +2081,7 @@
         11
       ],
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 1
     },
     {
@@ -1843,7 +2096,15 @@
         10
       ],
       "time": "",
-      "weathers": "Restricted, FAIR/CLOUDS/FOG/CLEAR OK",
+      "weathers": {
+        "type": "OK",
+        "list": [
+          "fairSkies",
+          "clouds",
+          "fog",
+          "clearSkies"
+        ]
+      },
       "stars": 1
     },
     {
@@ -1858,7 +2119,7 @@
         23
       ],
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 2
     },
     {
@@ -1873,7 +2134,15 @@
         26
       ],
       "time": "",
-      "weathers": "Restricted, FAIR/THUNDER/STORMS/CLEAR OK",
+      "weathers": {
+        "type": "OK",
+        "list": [
+          "fairSkies",
+          "thunder",
+          "thunderstorms",
+          "clearSkies"
+        ]
+      },
       "stars": 2
     },
     {
@@ -1888,7 +2157,12 @@
         23
       ],
       "time": "",
-      "weathers": "Restricted from THUNDERSTORMS",
+      "weathers": {
+        "type": "NOT OK",
+        "list": [
+          "thunderstorms"
+        ]
+      },
       "stars": 2
     },
     {
@@ -1903,7 +2177,7 @@
         16
       ],
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 3
     },
     {
@@ -1918,7 +2192,7 @@
         25
       ],
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 3
     },
     {
@@ -1933,7 +2207,12 @@
         21
       ],
       "time": "",
-      "weathers": "Restricted (Likely just from Clear)",
+      "weathers": {
+        "type": "NOT OK",
+        "list": [
+          "clearSkies"
+        ]
+      },
       "stars": 4
     },
     {
@@ -1948,7 +2227,7 @@
         18
       ],
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     }
   ],
@@ -1962,7 +2241,7 @@
       "tug": 1,
       "timer": 2,
       "time": "DN",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -1974,7 +2253,7 @@
       "tug": 2,
       "timer": 2,
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -1986,7 +2265,7 @@
       "tug": 1,
       "timer": 2,
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -1998,7 +2277,7 @@
       "tug": 2,
       "timer": 2,
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -2010,7 +2289,7 @@
       "tug": 2,
       "timer": 5,
       "time": "DN",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -2021,7 +2300,7 @@
       "tug": 1,
       "timer": 3,
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -2035,7 +2314,7 @@
         7
       ],
       "time": "D",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -2050,7 +2329,7 @@
         7
       ],
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -2065,7 +2344,7 @@
         9
       ],
       "time": "",
-      "weathers": "",
+      "weathers": null,
       "stars": 4
     },
     {
@@ -2076,7 +2355,7 @@
       "tug": null,
       "timer": null,
       "time": "S",
-      "weathers": "",
+      "weathers": null,
       "stars": 5
     }
   ]

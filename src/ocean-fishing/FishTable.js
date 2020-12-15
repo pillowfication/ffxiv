@@ -11,6 +11,7 @@ import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import OceanFishIcon from './OceanFishIcon'
 import Tug from './Tug'
+import WeatherIcon from '../skywatcher/WeatherIcon'
 import FISH from './gists/fish.json'
 
 const useStyles = makeStyles((theme) => ({
@@ -34,14 +35,55 @@ const FishRow = ({ fish, time }) => {
 
   return (
     <TableRow className={cn(isDisabled && classes.disabled)}>
-      <TableCell><OceanFishIcon name={fish.name} /></TableCell>
-      <TableCell><Typography>{fish.name}</Typography></TableCell>
-      <TableCell align='center'>{[fish.bait, fish.mooch].filter((x) => x).map((bait) => <OceanFishIcon key={bait} name={bait} />)}</TableCell>
-      <TableCell align='center'><Tug strength={fish.tug} className={classes.tableTug} /></TableCell>
-      <TableCell align='center'><Typography>{fish.points}</Typography></TableCell>
-      <TableCell align='center'><Typography>{Array.isArray(fish.doubleHook) ? fish.doubleHook.join(', ') : fish.doubleHook}</Typography></TableCell>
-      <TableCell align='center'><Typography>{Array.isArray(fish.timer) ? fish.timer.join('-') : fish.timer}</Typography></TableCell>
-      <TableCell align='center'>{fish.time === 'DSN' ? <Typography>Any</Typography> : fish.time.split('').map((time) => TIME_MAP[time])}</TableCell>
+      <TableCell>
+        <OceanFishIcon name={fish.name} />
+      </TableCell>
+      <TableCell>
+        <Typography>{fish.name}</Typography>
+      </TableCell>
+      <TableCell align='center'>
+        {[fish.bait, fish.mooch]
+          .filter((x) => x)
+          .map((bait) => <OceanFishIcon key={bait} name={bait} />)}
+      </TableCell>
+      <TableCell align='center'>
+        <Tug strength={fish.tug} className={classes.tableTug} />
+      </TableCell>
+      <TableCell align='center'>
+        <Typography>{fish.points}</Typography>
+      </TableCell>
+      <TableCell align='center'>
+        <Typography>{Array.isArray(fish.doubleHook) ? fish.doubleHook.join(', ') : fish.doubleHook}</Typography>
+      </TableCell>
+      <TableCell align='center'>
+        <Typography>{Array.isArray(fish.timer) ? fish.timer.join('-') : fish.timer}</Typography>
+      </TableCell>
+      <TableCell align='center'>
+        {fish.time === 'DSN'
+          ? <Typography>Any</Typography>
+          : fish.time.split('').map((time) => TIME_MAP[time])}
+      </TableCell>
+      <TableCell align='center'>
+        {fish.weathers && (() => {
+          switch (fish.weathers.type) {
+            case 'ALL':
+              return <Typography>Any</Typography>
+            case 'OK':
+              return fish.weathers.list.map((weather) =>
+                <WeatherIcon key={weather} weatherId={weather} showLabel={false} />
+              )
+            case 'NOT OK':
+              return (
+                <>
+                  <span style={{ verticalAlign: 'super' }}>Not&nbsp;</span>
+                  {fish.weathers.list.map((weather) =>
+                    <WeatherIcon key={weather} weatherId={weather} showLabel={false} />
+                  )}
+                </>
+              )
+          }
+        })()}
+      </TableCell>
     </TableRow>
   )
 }
@@ -60,6 +102,7 @@ const FishTable = ({ regions, time }) => {
           <TableCell align='center'>Double Hook</TableCell>
           <TableCell align='center'>Line Time</TableCell>
           <TableCell align='center'>Time</TableCell>
+          <TableCell align='center'>Weather</TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
@@ -74,6 +117,7 @@ const FishTable = ({ regions, time }) => {
           <TableCell align='center'>Double Hook</TableCell>
           <TableCell align='center'>Line Time</TableCell>
           <TableCell align='center'>Time</TableCell>
+          <TableCell align='center'>Weather</TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
