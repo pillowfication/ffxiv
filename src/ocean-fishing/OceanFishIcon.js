@@ -35,6 +35,10 @@ const useStyles = makeStyles((theme) => {
 })
 
 const OceanFishIcon = ({ name, className }) => {
+  if (!name) {
+    return '?'
+  }
+
   const classes = useStyles()
 
   return (
