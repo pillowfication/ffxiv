@@ -416,13 +416,23 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <BaitList
                   baitGroups={[{
-                    header: 'Metallic Boxfish',
+                    header: 'IC–DH',
                     baitGroup: BAIT_GROUPS['Metallic Boxfish']
                   }, {
-                    header: 'Mythril Boxfish',
+                    header: 'DH at <5s',
                     baitGroup: BAIT_GROUPS['Mythril Boxfish']
                   }]}
                 />
+              </CardContent>
+              <CardContent>
+                <Typography variant='overline'>Non-spectral</Typography>
+                <Typography paragraph>
+                  In general, IC–DH when possible and don’t rely heavily on spectrals.
+                </Typography>
+                <Typography variant='overline'>Spectral</Typography>
+                <Typography paragraph>
+                  Anomalocaris Saron appears at 5s.
+                </Typography>
               </CardContent>
             </RouteCard>
             <RouteCard>
@@ -433,13 +443,18 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <BaitList
                   baitGroups={[{
-                    header: 'Lampfish',
+                    header: 'IC–DH',
                     baitGroup: BAIT_GROUPS.Lampfish
                   }, {
-                    header: 'Silencer',
+                    header: 'IC–DH',
                     baitGroup: BAIT_GROUPS.Silencer
                   }]}
                 />
+              </CardContent>
+              <CardContent>
+                <Typography paragraph>
+                  Nothing to say about this.
+                </Typography>
               </CardContent>
             </RouteCard>
             <RouteCard>
@@ -450,19 +465,29 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <BaitList
                   baitGroups={[{
-                    header: 'Crow Puffer',
+                    header: 'No buffs',
                     baitGroup: BAIT_GROUPS['Crow Puffer']
                   }, {
-                    header: 'Honeycomb Fish',
+                    header: 'DH at >12s',
                     baitGroup: BAIT_GROUPS['Honeycomb Fish']
                   }, {
-                    header: 'Garum Jug',
+                    header: 'IC–DH',
                     baitGroup: BAIT_GROUPS['Garum Jug']
                   }, {
-                    header: 'Pearl Bombfish',
+                    header: 'IC–DH',
                     baitGroup: BAIT_GROUPS['Pearl Bombfish']
                   }]}
                 />
+              </CardContent>
+              <CardContent>
+                <Typography variant='overline'>Non-spectral</Typography>
+                <Typography paragraph>
+                  Save GP when possible to blind DH Honeycomb Fish after 12s.
+                </Typography>
+                <Typography variant='overline'>Spectral</Typography>
+                <Typography paragraph>
+                  Don’t blind DH.
+                </Typography>
               </CardContent>
             </RouteCard>
           </RouteCardContainer>
@@ -575,11 +600,11 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <Typography variant='overline'>Non-spectral</Typography>
                 <Typography paragraph>
-                  IC if capped, but save GP for spectral current. Possible blind DH at &gt;15s. (?)
+                  IC if capped, but save GP for spectral current. Possible blind DH at &gt;15s.
                 </Typography>
                 <Typography variant='overline'>Spectral</Typography>
                 <Typography paragraph>
-                  Reel all <Tug.Heavy />. Callichthyid appears at 6s. (?)
+                  Reel all <Tug.Heavy />. Callichthyid appears at 6s.
                 </Typography>
               </CardContent>
             </RouteCard>
@@ -610,7 +635,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <Typography variant='overline'>Spectral</Typography>
                 <Typography paragraph>
-                  Reel all <Tug.Medium />. Beatific Vision and Gory Tuna go away at 5s. (?)
+                  Reel all <Tug.Medium />. Beatific Vision and Gory Tuna go away at 5s.
                 </Typography>
               </CardContent>
             </RouteCard>

@@ -1,6 +1,6 @@
 const _9HR = 32400000
 
-// Cycle repeats every 6 days starting at this epoch
+// Cycle repeats every 12 days starting at this epoch
 const LULU_EPOCH = 1593270000000 + _9HR
 const DEST_CYCLE = 'BTNR'
 const TIME_CYCLE = 'SSSSNNNNDDDD'
