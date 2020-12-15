@@ -47,17 +47,17 @@ for (const region of REGIONS) {
         }
         console.log('UNKNOWN BAIT FOR:', tr.find('td:nth-child(3)').text().trim())
       })(),
-      ragwormTimer: parseTimer(tr.find('td:nth-child(4)').text().trim()),
-      krillTimer: parseTimer(tr.find('td:nth-child(5)').text().trim()),
-      plumpWormTimer: parseTimer(tr.find('td:nth-child(6)').text().trim()),
-      versatileLureTimer: parseTimer(tr.find('td:nth-child(7)').text().trim()),
+      // ragwormTimer: parseTimer(tr.find('td:nth-child(4)').text().trim()),
+      // krillTimer: parseTimer(tr.find('td:nth-child(5)').text().trim()),
+      // plumpWormTimer: parseTimer(tr.find('td:nth-child(6)').text().trim()),
+      // versatileLureTimer: parseTimer(tr.find('td:nth-child(7)').text().trim()),
       points: parsePoints(tr.find('td:nth-child(8)').text().trim()),
       doubleHook: parseDoubleHook(tr.find('td:nth-child(9)').text().trim()),
       mooch: tr.find('td:nth-child(10)').text().trim(),
       tug: parseTug(tr.find('td:nth-child(11)').text().trim()),
       // hookset: tr.find('td:nth-child(12)').text().trim(),
       timer: parseTimer(tr.find('td:nth-child(13)').text().trim()),
-      time: tr.find('td:nth-child(14)').text().trim(),
+      time: parseTime(tr.find('td:nth-child(14)').text().trim()),
       weathers: tr.find('td:nth-child(15)').text().trim(),
       // buff: tr.find('td:nth-child(16)').text().trim(),
       stars: parseStars(tr.find('td:nth-child(17)').text().trim())
@@ -127,6 +127,23 @@ function parseTug (str) {
   return null
 }
 
+function parseTime (str) {
+  if (/^all$/i.test(str)) {
+    return 'DSN'
+  }
+  let time = ''
+  for (const val of ['Day', 'Sunset', 'Night']) {
+    if ((new RegExp(val, 'i')).test(str)) {
+      time += val.charAt(0)
+    }
+  }
+  if (time.length >= 0) {
+    return time
+  }
+  console.log('UNKNOWN TIME:', str)
+  return null
+}
+
 function parseStars (str) {
   if (/^\d+$/.test(str)) {
     return Number(str)
@@ -135,4 +152,57 @@ function parseStars (str) {
   return null
 }
 
-fs.writeFileSync(path.resolve(__dirname, './fish.json'), JSON.stringify(data, null, 2))
+_.merge(data, {
+  'Galadion Spectral Current': {
+    9: {
+      bait: 'Glowworm'
+    }
+  },
+  'Southern Merlthor Spectral Current': {
+    4: {
+      name: 'Hi-aetherlouse'
+    },
+    9: {
+      bait: 'Shrimp Cage Feeder'
+    }
+  },
+  'Northern Merlthor Spectral Current': {
+    9: {
+      bait: 'Heavy Steel Jig'
+    }
+  },
+  'Rhotano Spectral Current': {
+    9: {
+      bait: 'Rat Tail'
+    }
+  },
+  'Cieldalaes Spectral Current': {
+    9: {
+      bait: 'Squid Strip'
+    }
+  },
+  'Bloodbrine Spectral Current': {
+    9: {
+      bait: 'Pill Bug'
+    }
+  },
+  'Rothlyt Spectral Current': {
+    1: {
+      mooch: 'Rothlyt Mussel'
+    },
+    3: {
+      mooch: 'Rothlyt Mussel'
+    },
+    5: {
+      mooch: 'Rothlyt Mussel'
+    },
+    6: {
+      mooch: 'Rothlyt Mussel'
+    },
+    9: {
+      mooch: 'Rothlyt Mussel'
+    }
+  }
+})
+
+fs.writeFileSync(path.resolve(__dirname, './fish.json'), JSON.stringify(data))

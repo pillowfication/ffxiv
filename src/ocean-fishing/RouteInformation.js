@@ -12,19 +12,13 @@ import Tab from '@material-ui/core/Tab'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/Checkbox'
 import Typography from '@material-ui/core/Typography'
-import Table from '@material-ui/core/Table'
-import TableHead from '@material-ui/core/TableHead'
-import TableBody from '@material-ui/core/TableBody'
-import TableRow from '@material-ui/core/TableRow'
-import TableCell from '@material-ui/core/TableCell'
+import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
 import RouteCardContainer from './RouteCardContainer'
 import RouteCard from './RouteCard'
+import FishPanel from './FishPanel'
 import BaitList from './BaitList'
-import OceanFishIcon from './OceanFishIcon'
-import Tug from './Tug'
-import FISH from './gists/fish.json'
 
 const TIMES = 'DSN'
 
@@ -39,89 +33,8 @@ const useStyles = makeStyles((theme) => ({
   headerTime: {
     position: 'relative',
     top: '-0.2em'
-  },
-  table: {
-    '& td': {
-      padding: 0
-    }
-  },
-  tableTug: {
-    fontSize: '1.5em'
   }
 }))
-
-function TabPanel ({ children, tab, index, stop }) {
-  const classes = useStyles()
-
-  return (
-    <div hidden={tab !== index}>
-      {tab === index && (() => {
-        let regions
-        switch (stop[0]) {
-          case 'G': regions = ['Outer Galadion Bay', 'Galadion Spectral Current']; break
-          case 'S': regions = ['The Southern Strait of Merlthor', 'Southern Merlthor Spectral Current']; break
-          case 'N': regions = ['The Northern Strait of Merlthor', 'Northern Merlthor Spectral Current']; break
-          case 'R': regions = ['Open Rhotano Sea', 'Rhotano Spectral Current']; break
-          case 'C': regions = ['Cieldalaes Margin', 'Cieldalaes Spectral Current']; break
-          case 'B': regions = ['Open Bloodbrine Sea', 'Bloodbrine Spectral Current']; break
-          case 'T': regions = ['Outer Rothlyt Sound', 'Rothlyt Spectral Current']; break
-        }
-        return (
-          <div>
-            <Table size='small' className={classes.table}>
-              <TableHead>
-                <TableRow>
-                  <TableCell colspan={2} align='center'>Fish</TableCell>
-                  <TableCell align='center'>Bait</TableCell>
-                  <TableCell align='center'>Tug</TableCell>
-                  <TableCell align='center'>Points</TableCell>
-                  <TableCell align='center'>Double Hook</TableCell>
-                  <TableCell align='center'>Line Time</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {FISH[regions[0]].map((fish) =>
-                  <TableRow key={fish.name}>
-                    <TableCell><OceanFishIcon name={fish.name} /></TableCell>
-                    <TableCell><Typography>{fish.name}</Typography></TableCell>
-                    <TableCell align='center'><OceanFishIcon name={fish.bait} /></TableCell>
-                    <TableCell align='center'><Tug strength={fish.tug} className={classes.tableTug} /></TableCell>
-                    <TableCell align='center'><Typography>{fish.points}</Typography></TableCell>
-                    <TableCell align='center'><Typography>{Array.isArray(fish.doubleHook) ? fish.doubleHook.join(', ') : fish.doubleHook}</Typography></TableCell>
-                    <TableCell align='center'><Typography>{Array.isArray(fish.timer) ? fish.timer.join('-') : fish.timer}</Typography></TableCell>
-                  </TableRow>
-                )}
-              </TableBody>
-              <TableHead>
-                <TableRow>
-                  <TableCell colSpan={2} align='center'>Fish</TableCell>
-                  <TableCell align='center'>Bait</TableCell>
-                  <TableCell align='center'>Tug</TableCell>
-                  <TableCell align='center'>Points</TableCell>
-                  <TableCell align='center'>Double Hook</TableCell>
-                  <TableCell align='center'>Line Time</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {FISH[regions[1]].map((fish) =>
-                  <TableRow key={fish.name}>
-                    <TableCell><OceanFishIcon name={fish.name} /></TableCell>
-                    <TableCell><Typography>{fish.name}</Typography></TableCell>
-                    <TableCell align='center'><OceanFishIcon name={fish.bait} /></TableCell>
-                    <TableCell align='center'><Tug strength={fish.tug} className={classes.tableTug} /></TableCell>
-                    <TableCell align='center'><Typography>{fish.points}</Typography></TableCell>
-                    <TableCell align='center'><Typography>{Array.isArray(fish.doubleHook) ? fish.doubleHook.join(', ') : fish.doubleHook}</Typography></TableCell>
-                    <TableCell align='center'><Typography>{Array.isArray(fish.timer) ? fish.timer.join('-') : fish.timer}</Typography></TableCell>
-                  </TableRow>
-                )}
-              </TableBody>
-            </Table>
-          </div>
-        )
-      })()}
-    </div>
-  )
-}
 
 const RouteInformation = ({ now, selectedRoute }) => {
   if (!now || !selectedRoute) return null
@@ -170,16 +83,16 @@ const RouteInformation = ({ now, selectedRoute }) => {
       {(() => {
         if (showAllFish) {
           return (
-            <>
+            <Card variant='outlined'>
               <Tabs variant='fullWidth' value={tab} onChange={handleChangeTab}>
                 {routeStops.map((stop, index) =>
                   <Tab key={index} label={<>{index + 1}. {DEST_MAP[stop[0]]} {TIME_MAP[stop[1]]}</>} />
                 )}
               </Tabs>
               {routeStops.map((stop, index) =>
-                <TabPanel key={index} tab={tab} index={index} stop={stop} />
+                <FishPanel key={index} tab={tab} index={index} stop={stop} />
               )}
-            </>
+            </Card>
           )
         } else {
           return (
