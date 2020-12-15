@@ -515,13 +515,23 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <BaitList
                   baitGroups={[{
-                    header: 'Tortoiseshell Crab',
+                    header: 'DH at <14s',
                     baitGroup: BAIT_GROUPS['Tortoiseshell Crab']
                   }, {
-                    header: 'Titanshell Crab',
+                    header: 'IC–DH',
                     baitGroup: BAIT_GROUPS['Titanshell Crab']
                   }]}
                 />
+              </CardContent>
+              <CardContent>
+                <Typography variant='overline'>Non-spectral</Typography>
+                <Typography paragraph>
+                  In general, IC–DH when possible and don’t rely heavily on spectrals. Tortoiseshell Crab can be blind DH before 14s.
+                </Typography>
+                <Typography variant='overline'>Spectral</Typography>
+                <Typography paragraph>
+                  Anomalocaris Saron appears at 5s.
+                </Typography>
               </CardContent>
             </RouteCard>
             <RouteCard>
@@ -532,13 +542,18 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <BaitList
                   baitGroups={[{
-                    header: 'Net Crawler',
+                    header: 'IC–DH',
                     baitGroup: BAIT_GROUPS['Net Crawler']
                   }, {
-                    header: 'Bartholomew the Chopper',
+                    header: 'IC–DH',
                     baitGroup: BAIT_GROUPS['Bartholomew the Chopper']
                   }]}
                 />
+              </CardContent>
+              <CardContent>
+                <Typography paragraph>
+                  Nothing to say about this.
+                </Typography>
               </CardContent>
             </RouteCard>
             <RouteCard>
@@ -549,19 +564,29 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <BaitList
                   baitGroups={[{
-                    header: 'Thaliak Crab',
+                    header: 'No buffs',
                     baitGroup: BAIT_GROUPS['Thaliak Crab']
                   }, {
-                    header: 'Bloodpolish Crab',
+                    header: 'DH at >15s',
                     baitGroup: BAIT_GROUPS['Bloodpolish Crab']
                   }, {
-                    header: 'Oracular Crab',
+                    header: 'No Buffs',
                     baitGroup: BAIT_GROUPS['Oracular Crab']
                   }, {
-                    header: 'Exterminator',
+                    header: 'DH at 6s',
                     baitGroup: BAIT_GROUPS.Exterminator
                   }]}
                 />
+              </CardContent>
+              <CardContent>
+                <Typography variant='overline'>Non-spectral</Typography>
+                <Typography paragraph>
+                  Save GP when possible to blind DH Bloodpolish Crabs after 15s.
+                </Typography>
+                <Typography variant='overline'>Spectral</Typography>
+                <Typography paragraph>
+                  Can blind DH Exterminators at 6s.
+                </Typography>
               </CardContent>
             </RouteCard>
           </RouteCardContainer>

@@ -65,7 +65,7 @@ const RouteInformation = ({ now, selectedRoute }) => {
               {timeUntil(now, next.time, true)}
             </Typography>
           </Grid>
-          <Grid item xs={12} lg={4}>
+          <Grid item xs={12} lg={4} align='right'>
             <FormControlLabel
               control={
                 <Checkbox
@@ -74,7 +74,7 @@ const RouteInformation = ({ now, selectedRoute }) => {
                   color='primary'
                 />
               }
-              label='Show all fish (WIP)'
+              label='Show all fish'
             />
           </Grid>
         </Grid>
