@@ -148,6 +148,24 @@ const UpcomingVoyages = ({ now, onSelectRoute }) => {
               onChange={handleSelectFilter}
             >
               <option value='none'>No filter</option>
+              <optgroup label='Blue Fish'>
+                <option value='sothis'>Sothis</option>
+                <option value='coral_manta'>Coral Manta</option>
+                <option value='elasmosaurus'>Elasmosaurus</option>
+                <option value='stonescale'>Stonescale</option>
+                <option value='hafgufa'>Hafgufa</option>
+                <option value='seafaring_toad'>Seafaring Toad</option>
+                <option value='placodus'>Placodus</option>
+              </optgroup>
+              <optgroup label='Achievements'>
+                <option value='octopodes'>Octopodes</option>
+                <option value='sharks'>Sharks</option>
+                <option value='jellyfish'>Jellyfish</option>
+                <option value='seadragons'>Seadragons</option>
+                <option value='balloons'>Balloons</option>
+                <option value='crabs'>Crabs</option>
+                <option value='mantas'>Mantas</option>
+              </optgroup>
               <optgroup label='Bloodbrine Sea'>
                 <option value='B'>Bloodbrine Sea</option>
                 <option value='BD'>Bloodbrine Sea - Day</option>
@@ -171,24 +189,6 @@ const UpcomingVoyages = ({ now, onSelectRoute }) => {
                 <option value='RD'>Rhotano Sea - Day</option>
                 <option value='RS'>Rhotano Sea - Sunset</option>
                 <option value='RN'>Rhotano Sea - Night</option>
-              </optgroup>
-              <optgroup label='Blue Fish'>
-                <option value='sothis'>Sothis</option>
-                <option value='coral_manta'>Coral Manta</option>
-                <option value='elasmosaurus'>Elasmosaurus</option>
-                <option value='stonescale'>Stonescale</option>
-                <option value='hafgufa'>Hafgufa</option>
-                <option value='seafaring_toad'>Seafaring Toad</option>
-                <option value='placodus'>Placodus</option>
-              </optgroup>
-              <optgroup label='Achievements'>
-                <option value='octopodes'>Octopodes</option>
-                <option value='sharks'>Sharks</option>
-                <option value='jellyfish'>Jellyfish</option>
-                <option value='seadragons'>Seadragons</option>
-                <option value='balloons'>Balloons</option>
-                <option value='crabs'>Crabs</option>
-                <option value='mantas'>Mantas</option>
               </optgroup>
             </Select>
           </FormControl>

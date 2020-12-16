@@ -71,7 +71,7 @@ const FishTable = ({ regions, time, checklist, setChecklist }) => {
                 hover
                 className={cn(time && fish.time && fish.time.indexOf(time) === -1 && classes.disabled)}
               >
-                <TableCell>
+                <TableCell align='center'>
                   <IconButton
                     className={checklist.includes(fish.name) ? classes.checked : classes.unchecked}
                     onClick={() => {
