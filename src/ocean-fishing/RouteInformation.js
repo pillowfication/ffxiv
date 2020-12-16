@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const RouteInformation = ({ now, selectedRoute }) => {
+const RouteInformation = ({ now, selectedRoute, checklist, setChecklist }) => {
   if (!now || !selectedRoute) return null
 
   const classes = useStyles()
@@ -90,7 +90,7 @@ const RouteInformation = ({ now, selectedRoute }) => {
                 )}
               </Tabs>
               {routeStops.map((stop, index) =>
-                <FishPanel key={index} tab={tab} index={index} stop={stop} />
+                <FishPanel key={index} tab={tab} index={index} stop={stop} checklist={checklist} setChecklist={setChecklist} />
               )}
             </Card>
           )

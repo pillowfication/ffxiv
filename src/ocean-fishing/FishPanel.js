@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import FishTable from './FishTable'
 
-function FishPanel ({ children, tab, index, stop }) {
+function FishPanel ({ children, tab, index, stop, checklist, setChecklist }) {
   return (
     <div hidden={tab !== index}>
       {tab === index && (() => {
@@ -16,7 +16,7 @@ function FishPanel ({ children, tab, index, stop }) {
           case 'B': regions = ['Open Bloodbrine Sea', 'Bloodbrine Spectral Current']; break
           case 'T': regions = ['Outer Rothlyt Sound', 'Rothlyt Spectral Current']; break
         }
-        return <FishTable regions={regions} time={stop[1]} />
+        return <FishTable regions={regions} time={stop[1]} checklist={checklist} setChecklist={setChecklist} />
       })()}
     </div>
   )

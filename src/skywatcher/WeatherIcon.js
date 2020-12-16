@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => {
       display: 'inline-block',
       width: '30px',
       height: '30px',
-      backgroundImage: 'url("./images/weather-icons.png")',
+      backgroundImage: 'url("/images/weather-icons.png")',
       backgroundSize: `${WEATHER_IDS.length * 100}% 100%`
     }
   }
@@ -69,4 +69,4 @@ WeatherIcon.propTypes = {
   showLabel: PropTypes.bool
 }
 
-export default React.memo(WeatherIcon)
+export default WeatherIcon
