@@ -5,7 +5,6 @@ import Link from '../src/Link'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import MuiLink from '@material-ui/core/Link'
-import Footer from '../src/Footer'
 import Lulu from '../public/images/lulu-icon.svg'
 
 const useStyles = makeStyles((theme) => ({

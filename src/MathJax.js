@@ -44,15 +44,15 @@ const MathJaxComponent = ({ math, displayMode }) => {
   useEffect(() => { isMounted && queueRenderMath() }, [isMounted, math, displayMode])
   useEffect(() => { setIsMounted(true) }, [])
 
-  return (
-    !isMounted || typeof MathJax === 'undefined'
-      ? displayMode
-        ? <Highlight language='latex' className={classes.noMathJaxBlock}>{`\\[${math}\\]`}</Highlight>
-        : <span className={classes.noMathJaxInline}>{`\\(${math}\\)`}</span>
-      : displayMode
-        ? <div className={classes.mathJaxBlock}>{`\\[${math}\\]`}</div>
-        : <span className={classes.mathJaxInline}>{`\\(${math}\\)`}</span>
-  )
+  if (!isMounted || typeof MathJax === 'undefined') {
+    return displayMode
+      ? <Highlight language='latex' className={classes.noMathJaxBlock}>{`\\[${math}\\]`}</Highlight>
+      : <span className={classes.noMathJaxInline}>{`\\(${math}\\)`}</span>
+  } else {
+    return displayMode
+      ? <div className={classes.mathJaxBlock}>{`\\[${math}\\]`}</div>
+      : <span className={classes.mathJaxInline}>{`\\(${math}\\)`}</span>
+  }
 }
 
 MathJaxComponent.propTypes = {

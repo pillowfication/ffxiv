@@ -16,11 +16,25 @@ import Tug from './Tug'
 import WeatherIcon from '../skywatcher/WeatherIcon'
 import FISH from './gists/fish.json'
 
+const FISH_CATEGORIES = {
+  octopus: 'Octopus Travelers',
+  shark: 'Certifiable Shark Hunters',
+  jellyfish: 'Jelled Together',
+  seadragon: 'Maritime Dragonslayers',
+  balloon: 'Balloon Catchers',
+  crab: 'Crab Boat Crew',
+  manta: 'Sticking it to the Manta'
+}
+
 const useStyles = makeStyles((theme) => ({
   table: {
     '& td': {
+      fontSize: '0.9em',
       padding: 0
     }
+  },
+  check: {
+    padding: 10
   },
   stars: {
     marginTop: '-0.3em',
@@ -46,6 +60,17 @@ const useStyles = makeStyles((theme) => ({
 
 const FishTable = ({ regions, time, checklist, setChecklist }) => {
   const classes = useStyles()
+  const toggleFish = (fish) => {
+    if (checklist.includes(fish.name)) {
+      const copy = checklist.slice()
+      copy.splice(copy.findIndex((x) => x === fish.name), 1)
+      setChecklist(copy)
+    } else {
+      const copy = checklist.slice()
+      copy.push(fish.name)
+      setChecklist(copy)
+    }
+  }
 
   return (
     <Table size='small' className={classes.table}>
@@ -73,18 +98,8 @@ const FishTable = ({ regions, time, checklist, setChecklist }) => {
               >
                 <TableCell align='center'>
                   <IconButton
-                    className={checklist.includes(fish.name) ? classes.checked : classes.unchecked}
-                    onClick={() => {
-                      if (checklist.includes(fish.name)) {
-                        const copy = checklist.slice()
-                        copy.splice(copy.findIndex((x) => x === fish.name), 1)
-                        setChecklist(copy)
-                      } else {
-                        const copy = checklist.slice()
-                        copy.push(fish.name)
-                        setChecklist(copy)
-                      }
-                    }}
+                    className={cn(classes.check, checklist.includes(fish.name) ? classes.checked : classes.unchecked)}
+                    onClick={toggleFish.bind(null, fish)}
                   >
                     <CheckIcon />
                   </IconButton>
@@ -142,15 +157,7 @@ const FishTable = ({ regions, time, checklist, setChecklist }) => {
                 <TableCell align='center'>
                   {fish.category &&
                     <OceanFishIcon
-                      name={({
-                        octopus: 'Octopus Travelers',
-                        shark: 'Certifiable Shark Hunters',
-                        jellyfish: 'Jelled Together',
-                        seadragon: 'Maritime Dragonslayers',
-                        balloon: 'Balloon Catchers',
-                        crab: 'Crab Boat Crew',
-                        manta: 'Sticking it to the Manta'
-                      })[fish.category]}
+                      name={FISH_CATEGORIES[fish.category]}
                       className={classes.category}
                     />}
                 </TableCell>
@@ -165,7 +172,9 @@ const FishTable = ({ regions, time, checklist, setChecklist }) => {
 
 FishTable.propTypes = {
   regions: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  time: PropTypes.string
+  time: PropTypes.string,
+  checkList: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  setChecklist: PropTypes.func.isRequired
 }
 
 export default FishTable

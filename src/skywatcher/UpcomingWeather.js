@@ -184,25 +184,27 @@ const UpcomingWeather = ({ now }) => {
                         const localTime = new Date(eorzeanTime.getTime() / (1440 / 70))
                         return (
                           <TableCell key={index} className={cn(classes.weatherTime, index === 1 && classes.current)}>
-                            {showLocalTime ? (
-                              index === 1 ? (
-                                <>
-                                  {formatTime(new Date(now.getTime() * (1440 / 70)))} ET
-                                  <br />
-                                  {formatTime(now)} LT
-                                </>
-                              ) : (
-                                <>
-                                  {formatTime(eorzeanTime)} ET
-                                  <br />
-                                  {formatTime(localTime)} LT
-                                </>
-                              )
-                            ) : (
-                              index === 1
-                                ? formatTime(new Date(now.getTime() * (1440 / 70)))
-                                : formatTime(eorzeanTime)
-                            )}
+                            {showLocalTime
+                              ? index === 1
+                                  ? (
+                                    <>
+                                      {formatTime(new Date(now.getTime() * (1440 / 70)))} ET
+                                      <br />
+                                      {formatTime(now)} LT
+                                    </>
+                                    )
+                                  : (
+                                    <>
+                                      {formatTime(eorzeanTime)} ET
+                                      <br />
+                                      {formatTime(localTime)} LT
+                                    </>
+                                    )
+                              : (
+                                  index === 1
+                                    ? formatTime(new Date(now.getTime() * (1440 / 70)))
+                                    : formatTime(eorzeanTime)
+                                )}
                             {showWeatherChance && (
                               <>
                                 <br />
