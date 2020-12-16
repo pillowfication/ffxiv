@@ -1754,7 +1754,7 @@
       "name": "Flaming Eel",
       "bait": "Krill",
       "points": 198,
-      "doubleHook": null,
+      "doubleHook": 2,
       "mooch": "",
       "tug": 2,
       "timer": 7.5,
@@ -1818,7 +1818,10 @@
       "doubleHook": 2,
       "mooch": "",
       "tug": 2,
-      "timer": 12,
+      "timer": [
+        8,
+        12
+      ],
       "time": "S",
       "weathers": null,
       "stars": 4,
@@ -1899,7 +1902,7 @@
       "name": "Blooded Wrasse",
       "bait": "Plump Worm",
       "points": 35,
-      "doubleHook": null,
+      "doubleHook": 2,
       "mooch": "",
       "tug": 2,
       "timer": [
@@ -2143,7 +2146,7 @@
     {
       "name": "Quartz Hammerhead",
       "bait": "Plump Worm",
-      "points": 490,
+      "points": 460,
       "doubleHook": 2,
       "mooch": "",
       "tug": 3,
@@ -2248,7 +2251,7 @@
     },
     {
       "name": "Godsbed",
-      "bait": "Plump Worm",
+      "bait": "Krill",
       "points": 29,
       "doubleHook": 2,
       "mooch": "",
@@ -2441,6 +2444,7 @@
     },
     {
       "name": "Panoptes",
+      "bait": "Plump Worm",
       "points": 125,
       "doubleHook": 4,
       "mooch": "Rothlyt Mussel",
