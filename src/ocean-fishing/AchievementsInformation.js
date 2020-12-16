@@ -530,7 +530,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
                 </Typography>
                 <Typography variant='overline'>Spectral</Typography>
                 <Typography paragraph>
-                  Anomalocaris Saron appears at 5s.
+                  Mistbeard's Cup appears at 4s.
                 </Typography>
               </CardContent>
             </RouteCard>
