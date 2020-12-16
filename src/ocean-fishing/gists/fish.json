@@ -15,7 +15,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 1
+      "stars": 1,
+      "category": null
     },
     {
       "name": "Galadion Chovy",
@@ -32,7 +33,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 1
+      "stars": 1,
+      "category": null
     },
     {
       "name": "Leopard Eel",
@@ -55,7 +57,8 @@
           "clearSkies"
         ]
       },
-      "stars": 1
+      "stars": 1,
+      "category": null
     },
     {
       "name": "Jasperhead",
@@ -78,7 +81,8 @@
           "clearSkies"
         ]
       },
-      "stars": 2
+      "stars": 2,
+      "category": null
     },
     {
       "name": "Tarnished Shark",
@@ -98,7 +102,8 @@
           "showers"
         ]
       },
-      "stars": 2
+      "stars": 2,
+      "category": "shark"
     },
     {
       "name": "Rosy Bream",
@@ -118,7 +123,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 2
+      "stars": 2,
+      "category": null
     },
     {
       "name": "Cyan Octopus",
@@ -135,7 +141,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 3
+      "stars": 3,
+      "category": "octopus"
     },
     {
       "name": "Heavenswimmer",
@@ -152,7 +159,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 3
+      "stars": 3,
+      "category": null
     },
     {
       "name": "Spectral Megalodon",
@@ -167,7 +175,8 @@
       ],
       "time": "DSN",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Drunkfish",
@@ -184,7 +193,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     }
   ],
   "Galadion Spectral Current": [
@@ -203,7 +213,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": "octopus"
     },
     {
       "name": "Heavenskey",
@@ -220,7 +231,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Ghost Shark",
@@ -237,7 +249,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": "shark"
     },
     {
       "name": "Fishmonger",
@@ -254,7 +267,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Navigator's Print",
@@ -271,7 +285,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Casket Oyster",
@@ -288,7 +303,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Quicksilver Blade",
@@ -305,7 +321,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": "shark"
     },
     {
       "name": "Funnel Shark",
@@ -322,7 +339,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": "shark"
     },
     {
       "name": "Nimble Dancer",
@@ -339,7 +357,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Sothis",
@@ -356,7 +375,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 5
+      "stars": 5,
+      "category": null
     }
   ],
   "The Southern Strait of Merlthor": [
@@ -381,7 +401,8 @@
           "clearSkies"
         ]
       },
-      "stars": 1
+      "stars": 1,
+      "category": null
     },
     {
       "name": "La Noscean Jelly",
@@ -401,7 +422,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 1
+      "stars": 1,
+      "category": "jellyfish"
     },
     {
       "name": "Sunfly",
@@ -418,7 +440,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 1
+      "stars": 1,
+      "category": null
     },
     {
       "name": "Marine Bomb",
@@ -435,7 +458,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 2
+      "stars": 2,
+      "category": "balloon"
     },
     {
       "name": "Shaggy Seadragon",
@@ -456,7 +480,8 @@
           "clearSkies"
         ]
       },
-      "stars": 2
+      "stars": 2,
+      "category": "seadragon"
     },
     {
       "name": "Momora Mora",
@@ -473,7 +498,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 2
+      "stars": 2,
+      "category": null
     },
     {
       "name": "Merlthor Butterfly",
@@ -490,7 +516,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 3
+      "stars": 3,
+      "category": null
     },
     {
       "name": "Gladius",
@@ -506,7 +533,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 3
+      "stars": 3,
+      "category": null
     },
     {
       "name": "Spectral Discus",
@@ -521,7 +549,8 @@
       ],
       "time": "DSN",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Little Leviathan",
@@ -538,7 +567,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     }
   ],
   "Southern Merlthor Spectral Current": [
@@ -557,7 +587,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": "jellyfish"
     },
     {
       "name": "Great Grandmarlin",
@@ -573,7 +604,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Shipwreck's Sail",
@@ -590,7 +622,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Charlatan Survivor",
@@ -607,7 +640,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Hi-aetherlouse",
@@ -624,7 +658,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Azeyma's Sleeve",
@@ -641,7 +676,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Aetheric Seadragon",
@@ -657,7 +693,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": "seadragon"
     },
     {
       "name": "Mythril Sovereign",
@@ -674,7 +711,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Roguesaurus",
@@ -690,7 +728,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Coral Manta",
@@ -707,7 +746,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 5
+      "stars": 5,
+      "category": null
     }
   ],
   "The Northern Strait of Merlthor": [
@@ -731,7 +771,8 @@
           "clearSkies"
         ]
       },
-      "stars": 1
+      "stars": 1,
+      "category": null
     },
     {
       "name": "Megasquid",
@@ -748,7 +789,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 1
+      "stars": 1,
+      "category": null
     },
     {
       "name": "Oschon's Stone",
@@ -765,7 +807,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 1
+      "stars": 1,
+      "category": null
     },
     {
       "name": "Tossed Dagger",
@@ -782,7 +825,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 2
+      "stars": 2,
+      "category": null
     },
     {
       "name": "Tripod Fish",
@@ -803,7 +847,8 @@
           "clearSkies"
         ]
       },
-      "stars": 2
+      "stars": 2,
+      "category": "balloon"
     },
     {
       "name": "Net Crawler",
@@ -820,7 +865,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 2
+      "stars": 2,
+      "category": "crab"
     },
     {
       "name": "Merlthor Lobster",
@@ -837,7 +883,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 3
+      "stars": 3,
+      "category": null
     },
     {
       "name": "Elder Dinichthys",
@@ -853,7 +900,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 3
+      "stars": 3,
+      "category": null
     },
     {
       "name": "Spectral Sea Bo",
@@ -868,7 +916,8 @@
       ],
       "time": "DSN",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Shooting Star",
@@ -885,7 +934,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     }
   ],
   "Northern Merlthor Spectral Current": [
@@ -904,7 +954,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Coccosteus",
@@ -921,7 +972,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Bartholomew the Chopper",
@@ -938,7 +990,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": "crab"
     },
     {
       "name": "Prowler",
@@ -955,7 +1008,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Mopbeard",
@@ -972,7 +1026,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": "octopus"
     },
     {
       "name": "Wild Urchin",
@@ -989,7 +1044,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Gugrusaurus",
@@ -1009,7 +1065,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Coral Seadragon",
@@ -1026,7 +1083,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": "seadragon"
     },
     {
       "name": "The Fallen One",
@@ -1043,7 +1101,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Elasmosaurus",
@@ -1060,7 +1119,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 5
+      "stars": 5,
+      "category": null
     }
   ],
   "Open Rhotano Sea": [
@@ -1082,7 +1142,8 @@
           "heatWaves"
         ]
       },
-      "stars": 1
+      "stars": 1,
+      "category": null
     },
     {
       "name": "Rhotano Sardine",
@@ -1099,7 +1160,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 1
+      "stars": 1,
+      "category": null
     },
     {
       "name": "Deep Plaice",
@@ -1122,7 +1184,8 @@
           "clearSkies"
         ]
       },
-      "stars": 1
+      "stars": 1,
+      "category": null
     },
     {
       "name": "Crimson Monkfish",
@@ -1139,7 +1202,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 2
+      "stars": 2,
+      "category": null
     },
     {
       "name": "Chrome Hammerhead",
@@ -1156,7 +1220,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 2
+      "stars": 2,
+      "category": "shark"
     },
     {
       "name": "Ogre Eel",
@@ -1179,7 +1244,8 @@
           "clearSkies"
         ]
       },
-      "stars": 2
+      "stars": 2,
+      "category": null
     },
     {
       "name": "Dark Nautilus",
@@ -1196,7 +1262,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 3
+      "stars": 3,
+      "category": null
     },
     {
       "name": "Lampfish",
@@ -1213,7 +1280,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 3
+      "stars": 3,
+      "category": "balloon"
     },
     {
       "name": "Spectral Bass",
@@ -1228,7 +1296,8 @@
       ],
       "time": "DSN",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Sabaton",
@@ -1245,7 +1314,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     }
   ],
   "Rhotano Spectral Current": [
@@ -1264,7 +1334,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Sweeper",
@@ -1281,7 +1352,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": "shark"
     },
     {
       "name": "Silencer",
@@ -1298,7 +1370,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": "balloon"
     },
     {
       "name": "Deep-sea Eel",
@@ -1315,7 +1388,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Executioner",
@@ -1332,7 +1406,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": "shark"
     },
     {
       "name": "Floating Saucer",
@@ -1349,7 +1424,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": "jellyfish"
     },
     {
       "name": "True Barramundi",
@@ -1366,7 +1442,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Prodigal Son",
@@ -1383,7 +1460,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Slipsnail",
@@ -1400,7 +1478,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Stonescale",
@@ -1417,7 +1496,8 @@
       "weathers": {
         "type": "ALL"
       },
-      "stars": 5
+      "stars": 5,
+      "category": null
     }
   ],
   "Cieldalaes Margin": [
@@ -1434,7 +1514,8 @@
       ],
       "time": "",
       "weathers": null,
-      "stars": 1
+      "stars": 1,
+      "category": "crab"
     },
     {
       "name": "Lady's Cameo",
@@ -1457,7 +1538,8 @@
           "clearSkies"
         ]
       },
-      "stars": 1
+      "stars": 1,
+      "category": null
     },
     {
       "name": "Metallic Boxfish",
@@ -1472,7 +1554,8 @@
       ],
       "time": "",
       "weathers": null,
-      "stars": 1
+      "stars": 1,
+      "category": "balloon"
     },
     {
       "name": "Goobbue Ray",
@@ -1487,7 +1570,8 @@
       ],
       "time": "",
       "weathers": null,
-      "stars": 2
+      "stars": 2,
+      "category": "manta"
     },
     {
       "name": "Watermoura",
@@ -1507,7 +1591,8 @@
           "thunderstorms"
         ]
       },
-      "stars": 2
+      "stars": 2,
+      "category": null
     },
     {
       "name": "King Cobrafish",
@@ -1530,7 +1615,8 @@
           "clearSkies"
         ]
       },
-      "stars": 2
+      "stars": 2,
+      "category": null
     },
     {
       "name": "Mamahi-mahi",
@@ -1542,7 +1628,8 @@
       "timer": 25,
       "time": "",
       "weathers": null,
-      "stars": 3
+      "stars": 3,
+      "category": null
     },
     {
       "name": "Lavandin Remora",
@@ -1557,7 +1644,8 @@
       ],
       "time": "",
       "weathers": null,
-      "stars": 3
+      "stars": 3,
+      "category": null
     },
     {
       "name": "Spectral Butterfly",
@@ -1577,7 +1665,8 @@
           "clearSkies"
         ]
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Cieldalaes Geode",
@@ -1592,7 +1681,8 @@
       ],
       "time": "",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": null
     }
   ],
   "Cieldalaes Spectral Current": [
@@ -1609,7 +1699,8 @@
       ],
       "time": "",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": "crab"
     },
     {
       "name": "Mythril Boxfish",
@@ -1624,7 +1715,8 @@
       ],
       "time": "",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": "balloon"
     },
     {
       "name": "Mistbeard's Cup",
@@ -1639,7 +1731,8 @@
       ],
       "time": "",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Anomalocaris Saron",
@@ -1654,7 +1747,8 @@
       ],
       "time": "",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Flaming Eel",
@@ -1666,7 +1760,8 @@
       "timer": 7.5,
       "time": "S",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Jetborne Manta",
@@ -1681,7 +1776,8 @@
       ],
       "time": "",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": "manta"
     },
     {
       "name": "Devil's Sting",
@@ -1696,7 +1792,8 @@
       ],
       "time": "D",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Callichthyid",
@@ -1711,7 +1808,8 @@
       ],
       "time": "D",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Meandering Mora",
@@ -1723,7 +1821,8 @@
       "timer": 12,
       "time": "S",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Hafgufa",
@@ -1735,7 +1834,8 @@
       "timer": 10,
       "time": "N",
       "weathers": null,
-      "stars": 5
+      "stars": 5,
+      "category": null
     }
   ],
   "Open Bloodbrine Sea": [
@@ -1752,7 +1852,8 @@
       ],
       "time": "",
       "weathers": null,
-      "stars": 1
+      "stars": 1,
+      "category": "crab"
     },
     {
       "name": "Star of the Destroyer",
@@ -1775,7 +1876,8 @@
           "clearSkies"
         ]
       },
-      "stars": 1
+      "stars": 1,
+      "category": null
     },
     {
       "name": "True Scad",
@@ -1790,7 +1892,8 @@
       ],
       "time": "",
       "weathers": null,
-      "stars": 1
+      "stars": 1,
+      "category": null
     },
     {
       "name": "Blooded Wrasse",
@@ -1810,7 +1913,8 @@
           "showers"
         ]
       },
-      "stars": 2
+      "stars": 2,
+      "category": null
     },
     {
       "name": "Bloodpolish Crab",
@@ -1825,7 +1929,8 @@
       ],
       "time": "",
       "weathers": null,
-      "stars": 2
+      "stars": 2,
+      "category": "crab"
     },
     {
       "name": "Blue Stitcher",
@@ -1848,7 +1953,8 @@
           "clearSkies"
         ]
       },
-      "stars": 2
+      "stars": 2,
+      "category": null
     },
     {
       "name": "Bloodfresh Tuna",
@@ -1863,7 +1969,8 @@
       ],
       "time": "",
       "weathers": null,
-      "stars": 3
+      "stars": 3,
+      "category": null
     },
     {
       "name": "Sunken Mask",
@@ -1878,7 +1985,8 @@
       ],
       "time": "",
       "weathers": null,
-      "stars": 3
+      "stars": 3,
+      "category": null
     },
     {
       "name": "Spectral Eel",
@@ -1898,7 +2006,8 @@
           "clearSkies"
         ]
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Bareface",
@@ -1913,7 +2022,8 @@
       ],
       "time": "",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": null
     }
   ],
   "Bloodbrine Spectral Current": [
@@ -1930,7 +2040,8 @@
       ],
       "time": "D",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": "crab"
     },
     {
       "name": "Dravanian Bream",
@@ -1942,7 +2053,8 @@
       "timer": 3,
       "time": "",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Skaldminni",
@@ -1954,7 +2066,8 @@
       "timer": 6,
       "time": "N",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": "manta"
     },
     {
       "name": "Serrated Clam",
@@ -1966,7 +2079,8 @@
       "timer": 3,
       "time": "",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Beatific Vision",
@@ -1978,7 +2092,8 @@
       "timer": null,
       "time": "",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Exterminator",
@@ -1990,7 +2105,8 @@
       "timer": 6,
       "time": "D",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": "crab"
     },
     {
       "name": "Gory Tuna",
@@ -2005,7 +2121,8 @@
       ],
       "time": "",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Ticinepomis",
@@ -2020,7 +2137,8 @@
       ],
       "time": "",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Quartz Hammerhead",
@@ -2035,7 +2153,8 @@
       ],
       "time": "",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": "shark"
     },
     {
       "name": "Seafaring Toad",
@@ -2047,7 +2166,8 @@
       "timer": null,
       "time": "D",
       "weathers": null,
-      "stars": 5
+      "stars": 5,
+      "category": null
     }
   ],
   "Outer Rothlyt Sound": [
@@ -2064,7 +2184,8 @@
       ],
       "time": "",
       "weathers": null,
-      "stars": 1
+      "stars": 1,
+      "category": "balloon"
     },
     {
       "name": "Rothlyt Kelp",
@@ -2082,7 +2203,8 @@
       ],
       "time": "",
       "weathers": null,
-      "stars": 1
+      "stars": 1,
+      "category": null
     },
     {
       "name": "Living Lantern",
@@ -2105,7 +2227,8 @@
           "clearSkies"
         ]
       },
-      "stars": 1
+      "stars": 1,
+      "category": "jellyfish"
     },
     {
       "name": "Honeycomb Fish",
@@ -2120,7 +2243,8 @@
       ],
       "time": "",
       "weathers": null,
-      "stars": 2
+      "stars": 2,
+      "category": "balloon"
     },
     {
       "name": "Godsbed",
@@ -2143,7 +2267,8 @@
           "clearSkies"
         ]
       },
-      "stars": 2
+      "stars": 2,
+      "category": null
     },
     {
       "name": "Lansquenet",
@@ -2163,7 +2288,8 @@
           "thunderstorms"
         ]
       },
-      "stars": 2
+      "stars": 2,
+      "category": null
     },
     {
       "name": "Thavnairian Shark",
@@ -2178,7 +2304,8 @@
       ],
       "time": "",
       "weathers": null,
-      "stars": 3
+      "stars": 3,
+      "category": "shark"
     },
     {
       "name": "Nephrite Eel",
@@ -2193,7 +2320,8 @@
       ],
       "time": "",
       "weathers": null,
-      "stars": 3
+      "stars": 3,
+      "category": null
     },
     {
       "name": "Spectresaur",
@@ -2213,7 +2341,8 @@
           "clearSkies"
         ]
       },
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Ginkgo Fin",
@@ -2228,7 +2357,8 @@
       ],
       "time": "",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": null
     }
   ],
   "Rothlyt Spectral Current": [
@@ -2242,7 +2372,8 @@
       "timer": 2,
       "time": "DN",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": "balloon"
     },
     {
       "name": "Smooth Jaguar",
@@ -2254,7 +2385,8 @@
       "timer": 2,
       "time": "",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Rothlyt Mussel",
@@ -2266,7 +2398,8 @@
       "timer": 2,
       "time": "",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Levi Elver",
@@ -2278,7 +2411,8 @@
       "timer": 2,
       "time": "",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Pearl Bombfish",
@@ -2290,7 +2424,8 @@
       "timer": 5,
       "time": "DN",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": "balloon"
     },
     {
       "name": "Trollfish",
@@ -2301,7 +2436,8 @@
       "timer": 3,
       "time": "",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Panoptes",
@@ -2315,7 +2451,8 @@
       ],
       "time": "D",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": "manta"
     },
     {
       "name": "Crepe Sole",
@@ -2330,7 +2467,8 @@
       ],
       "time": "",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Knifejaw",
@@ -2345,7 +2483,8 @@
       ],
       "time": "",
       "weathers": null,
-      "stars": 4
+      "stars": 4,
+      "category": null
     },
     {
       "name": "Placodus",
@@ -2356,7 +2495,8 @@
       "timer": null,
       "time": "S",
       "weathers": null,
-      "stars": 5
+      "stars": 5,
+      "category": null
     }
   ]
 }

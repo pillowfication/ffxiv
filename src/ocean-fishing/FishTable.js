@@ -29,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
   tug: {
     fontSize: '1.5em'
   },
+  category: {
+    fontSize: '0.75em'
+  },
   disabled: {
     backgroundColor: theme.palette.type === 'dark' ? '#333333' : '#DDDDDD',
     opacity: 0.5
@@ -58,6 +61,7 @@ const FishTable = ({ regions, time, checklist, setChecklist }) => {
               <TableCell align='center'>Line Time</TableCell>
               <TableCell align='center'>Time</TableCell>
               <TableCell align='center'>Weather</TableCell>
+              <TableCell align='center'>Category</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -134,6 +138,21 @@ const FishTable = ({ regions, time, checklist, setChecklist }) => {
                         )
                     }
                   })()}
+                </TableCell>
+                <TableCell align='center'>
+                  {fish.category &&
+                    <OceanFishIcon
+                      name={({
+                        octopus: 'What Did Octopodes Do to You?',
+                        shark: 'What Did Sharks Do to You?',
+                        jellyfish: 'What Did Jellyfish Do to You?',
+                        seadragon: 'What Did Seadragons Do to You?',
+                        balloon: 'What Did Balloons Do to You?',
+                        crab: 'What Did Crabs Do to You?',
+                        manta: 'What Did Mantas Do to You?'
+                      })[fish.category]}
+                      className={classes.category}
+                    />}
                 </TableCell>
               </TableRow>
             )}

@@ -61,8 +61,9 @@ for (const region of REGIONS) {
       time: parseTime(tr.find('td:nth-child(14)').text().trim()),
       weathers: parseWeathers(tr.find('td:nth-child(15)').text().trim()),
       // buff: tr.find('td:nth-child(16)').text().trim(),
-      stars: parseStars(tr.find('td:nth-child(17)').text().trim())
+      stars: parseStars(tr.find('td:nth-child(17)').text().trim()),
       // canvas: tr.find('td:nth-child(18)').text().trim(),
+      category: parseCategory(tr.find('td:nth-child(19)').text().trim())
       // notes: tr.find('td:nth-child(19)').text().trim()
     })
   }
@@ -212,6 +213,31 @@ function parseStars (str) {
     return Number(str)
   }
   console.log('UNKNOWN STARS:', str)
+  return null
+}
+
+function parseCategory (str) {
+  if (/octopus travelers/i.test(str)) {
+    return 'octopus'
+  }
+  if (/certifiable shark hunters/i.test(str)) {
+    return 'shark'
+  }
+  if (/jelled together/i.test(str)) {
+    return 'jellyfish'
+  }
+  if (/maritime dragonslayers/i.test(str)) {
+    return 'seadragon'
+  }
+  if (/balloon catchers/i.test(str)) {
+    return 'balloon'
+  }
+  if (/crab boat crew/i.test(str)) {
+    return 'crab'
+  }
+  if (/sticking it to the manta/i.test(str)) {
+    return 'manta'
+  }
   return null
 }
 
