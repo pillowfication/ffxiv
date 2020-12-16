@@ -22,7 +22,11 @@ const useStyles = makeStyles((theme) => ({
       padding: 0
     }
   },
-  tableTug: {
+  stars: {
+    marginTop: '-0.3em',
+    opacity: 0.8
+  },
+  tug: {
     fontSize: '1.5em'
   },
   disabled: {
@@ -85,7 +89,8 @@ const FishTable = ({ regions, time, checklist, setChecklist }) => {
                   <OceanFishIcon name={fish.name} />
                 </TableCell>
                 <TableCell>
-                  <Typography>{fish.name}</Typography>
+                  <div><Typography>{fish.name}</Typography></div>
+                  <div className={classes.stars}>{'★'.repeat(fish.stars)}</div>
                 </TableCell>
                 <TableCell align='center'>
                   {[fish.bait, fish.mooch]
@@ -93,7 +98,7 @@ const FishTable = ({ regions, time, checklist, setChecklist }) => {
                     .map((bait) => <OceanFishIcon key={bait} name={bait} />)}
                 </TableCell>
                 <TableCell align='center'>
-                  {fish.tug && <Tug strength={fish.tug} className={classes.tableTug} />}
+                  {fish.tug && <Tug strength={fish.tug} className={classes.tug} />}
                 </TableCell>
                 <TableCell align='center'>
                   <Typography>{fish.points}</Typography>
