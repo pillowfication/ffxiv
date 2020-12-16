@@ -24,6 +24,16 @@ const overrides = {
   Exterminator: '/i/029000/029347.png'
 }
 
+const weird = [
+  'Octopus Travelers',
+  'Certifiable Shark Hunters',
+  'Jelled Together',
+  'Maritime Dragonslayers',
+  'Balloon Catchers',
+  'Crab Boat Crew',
+  'Sticking it to the Manta'
+]
+
 const canvas = createCanvas(ICON_COLS * ICON_SIZE, ICON_ROWS * ICON_SIZE)
 const ctx = canvas.getContext('2d')
 
@@ -31,16 +41,29 @@ const ctx = canvas.getContext('2d')
   for (let row = 0; row < ICON_ROWS; ++row) {
     for (let col = 0; col < ICONS[row].length; ++col) {
       const query = ICONS[row][col].replace(/\?/g, '')
-      const url = overrides[query] ||
-        (await getJSON(`${XIVAPI}/search?string=${encodeURIComponent(query)}`))
-          .Results[0].Icon
-      const img = await loadImage(`${XIVAPI}${url}`)
+      let img, url
+      if (weird.includes(query)) {
+        img = await loadImage(path.resolve(__dirname, ({
+          'Octopus Travelers': './icons/octopodes.png',
+          'Certifiable Shark Hunters': './icons/sharks.png',
+          'Jelled Together': './icons/jellyfish.png',
+          'Maritime Dragonslayers': './icons/seadragons.png',
+          'Balloon Catchers': './icons/balloons.png',
+          'Crab Boat Crew': './icons/crabs.png',
+          'Sticking it to the Manta': './icons/mantas.png'
+        })[query]))
+      } else {
+        url = overrides[query] ||
+          (await getJSON(`${XIVAPI}/search?string=${encodeURIComponent(query)}`))
+            .Results[0].Icon
+        img = await loadImage(`${XIVAPI}${url}`)
+      }
       ctx.drawImage(img, col * ICON_SIZE, row * ICON_SIZE)
       console.log(query, url)
     }
   }
 
-  const out = fs.createWriteStream(path.resolve(__dirname, './sprites.png'))
+  const out = fs.createWriteStream(path.resolve(__dirname, '../../../public/images/ocean-fish.png'))
   canvas.createPNGStream().pipe(out)
   out.on('finish', () => {
     console.log('Done!')

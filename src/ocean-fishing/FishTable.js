@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     opacity: 0.8
   },
   tug: {
-    fontSize: '1.5em'
+    fontSize: '1.33em'
   },
   category: {
     fontSize: '0.75em'
@@ -143,13 +143,13 @@ const FishTable = ({ regions, time, checklist, setChecklist }) => {
                   {fish.category &&
                     <OceanFishIcon
                       name={({
-                        octopus: 'What Did Octopodes Do to You?',
-                        shark: 'What Did Sharks Do to You?',
-                        jellyfish: 'What Did Jellyfish Do to You?',
-                        seadragon: 'What Did Seadragons Do to You?',
-                        balloon: 'What Did Balloons Do to You?',
-                        crab: 'What Did Crabs Do to You?',
-                        manta: 'What Did Mantas Do to You?'
+                        octopus: 'Octopus Travelers',
+                        shark: 'Certifiable Shark Hunters',
+                        jellyfish: 'Jelled Together',
+                        seadragon: 'Maritime Dragonslayers',
+                        balloon: 'Balloon Catchers',
+                        crab: 'Crab Boat Crew',
+                        manta: 'Sticking it to the Manta'
                       })[fish.category]}
                       className={classes.category}
                     />}

@@ -171,4 +171,12 @@ module.exports = [[
   'What Did Balloons Do to You?',
   'What Did Crabs Do to You?',
   'What Did Mantas Do to You?'
+], [
+  'Octopus Travelers',
+  'Certifiable Shark Hunters',
+  'Jelled Together',
+  'Maritime Dragonslayers',
+  'Balloon Catchers',
+  'Crab Boat Crew',
+  'Sticking it to the Manta'
 ]]
