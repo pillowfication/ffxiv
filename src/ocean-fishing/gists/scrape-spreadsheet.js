@@ -242,9 +242,25 @@ function parseCategory (str) {
 }
 
 _.merge(data, {
+  'Outer Galadion Bay': {
+    8: {
+      weathers: {
+        type: 'NOT OK',
+        list: [WEATHERS.CLEAR_SKIES]
+      }
+    }
+  },
   'Galadion Spectral Current': {
     9: {
       bait: 'Glowworm'
+    }
+  },
+  'The Southern Strait of Merlthor': {
+    8: {
+      weathers: {
+        type: 'NOT OK',
+        list: [WEATHERS.CLEAR_SKIES]
+      }
     }
   },
   'Southern Merlthor Spectral Current': {
@@ -255,9 +271,25 @@ _.merge(data, {
       bait: 'Shrimp Cage Feeder'
     }
   },
+  'The Northern Strait of Merlthor': {
+    8: {
+      weathers: {
+        type: 'NOT OK',
+        list: [WEATHERS.CLEAR_SKIES]
+      }
+    }
+  },
   'Northern Merlthor Spectral Current': {
     9: {
       bait: 'Heavy Steel Jig'
+    }
+  },
+  'Open Rhotano Sea': {
+    8: {
+      weathers: {
+        type: 'NOT OK',
+        list: [WEATHERS.CLEAR_SKIES]
+      }
     }
   },
   'Rhotano Spectral Current': {

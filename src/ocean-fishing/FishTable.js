@@ -74,98 +74,102 @@ const FishTable = ({ regions, time, checklist, setChecklist }) => {
 
   return (
     <Table size='small' className={classes.table}>
-      {regions.map((region, index) =>
-        <React.Fragment key={index}>
-          <TableHead>
-            <TableRow>
-              <TableCell colSpan={3} align='center'>Fish</TableCell>
-              <TableCell align='center'>Bait</TableCell>
-              <TableCell align='center'>Tug</TableCell>
-              <TableCell align='center'>Points</TableCell>
-              <TableCell align='center'>Double Hook</TableCell>
-              <TableCell align='center'>Line Time</TableCell>
-              <TableCell align='center'>Time</TableCell>
-              <TableCell align='center'>Weather</TableCell>
-              <TableCell align='center'>Category</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {FISH[region].map((fish) =>
-              <TableRow
-                key={fish.name}
-                hover
-                className={cn(time && fish.time && fish.time.indexOf(time) === -1 && classes.disabled)}
-              >
-                <TableCell align='center'>
-                  <IconButton
-                    className={cn(classes.check, checklist.includes(fish.name) ? classes.checked : classes.unchecked)}
-                    onClick={toggleFish.bind(null, fish)}
-                  >
-                    <CheckIcon />
-                  </IconButton>
-                </TableCell>
-                <TableCell>
-                  <OceanFishIcon name={fish.name} />
-                </TableCell>
-                <TableCell>
-                  <div><Typography>{fish.name}</Typography></div>
-                  <div className={classes.stars}>{'★'.repeat(fish.stars)}</div>
-                </TableCell>
-                <TableCell align='center'>
-                  {[fish.bait, fish.mooch]
-                    .filter((x) => x)
-                    .map((bait) => <OceanFishIcon key={bait} name={bait} />)}
-                </TableCell>
-                <TableCell align='center'>
-                  {fish.tug && <Tug strength={fish.tug} className={classes.tug} />}
-                </TableCell>
-                <TableCell align='center'>
-                  <Typography>{fish.points}</Typography>
-                </TableCell>
-                <TableCell align='center'>
-                  <Typography>{Array.isArray(fish.doubleHook) ? fish.doubleHook.join(', ') : fish.doubleHook}</Typography>
-                </TableCell>
-                <TableCell align='center'>
-                  <Typography>{Array.isArray(fish.timer) ? fish.timer.join('-') : fish.timer}</Typography>
-                </TableCell>
-                <TableCell align='center'>
-                  {fish.time === 'DSN'
-                    ? <Typography>Any</Typography>
-                    : fish.time.split('').map((time) => TIME_MAP[time])}
-                </TableCell>
-                <TableCell align='center'>
-                  {fish.weathers && (() => {
-                    switch (fish.weathers.type) {
-                      case 'ALL':
-                        return <Typography>Any</Typography>
-                      case 'OK':
-                        return fish.weathers.list.map((weather) =>
-                          <WeatherIcon key={weather} weatherId={weather} showLabel={false} />
-                        )
-                      case 'NOT OK':
-                        return (
-                          <>
-                            <span style={{ verticalAlign: 'super' }}>Not&nbsp;</span>
-                            {fish.weathers.list.map((weather) =>
-                              <WeatherIcon key={weather} weatherId={weather} showLabel={false} />
-                            )}
-                          </>
-                        )
-                    }
-                  })()}
-                </TableCell>
-                <TableCell align='center'>
-                  {fish.category &&
-                    <OceanFishIcon
-                      name={FISH_CATEGORIES[fish.category]}
-                      className={classes.category}
-                    />}
-                </TableCell>
+      {regions.map((region, index) => {
+        const isSpectral = /spectral/i.test(region)
+        return (
+          <React.Fragment key={index}>
+            <TableHead>
+              <TableRow>
+                <TableCell colSpan={3} align='center'>Fish</TableCell>
+                <TableCell align='center'>Bait</TableCell>
+                <TableCell align='center'>Tug</TableCell>
+                <TableCell align='center'>Points</TableCell>
+                <TableCell align='center'>Double Hook</TableCell>
+                <TableCell align='center'>Line Time</TableCell>
+                <TableCell align='center'>{isSpectral ? 'Time' : 'Weather'}</TableCell>
+                <TableCell align='center'>Category</TableCell>
               </TableRow>
-            )}
-          </TableBody>
-        </React.Fragment>
-      )}
+            </TableHead>
+            <TableBody>
+              {FISH[region].map((fish) =>
+                <TableRow
+                  key={fish.name}
+                  hover
+                  className={cn(time && fish.time && fish.time.indexOf(time) === -1 && classes.disabled)}
+                >
+                  <TableCell align='center'>
+                    <IconButton
+                      className={cn(classes.check, checklist.includes(fish.name) ? classes.checked : classes.unchecked)}
+                      onClick={toggleFish.bind(null, fish)}
+                    >
+                      <CheckIcon />
+                    </IconButton>
+                  </TableCell>
+                  <TableCell>
+                    <OceanFishIcon name={fish.name} />
+                  </TableCell>
+                  <TableCell>
+                    <div><Typography>{fish.name}</Typography></div>
+                    <div className={classes.stars}>{'★'.repeat(fish.stars)}</div>
+                  </TableCell>
+                  <TableCell align='center'>
+                    {[fish.bait, fish.mooch]
+                      .filter((x) => x)
+                      .map((bait) => <OceanFishIcon key={bait} name={bait} />)}
+                  </TableCell>
+                  <TableCell align='center'>
+                    {fish.tug && <Tug strength={fish.tug} className={classes.tug} />}
+                  </TableCell>
+                  <TableCell align='center'>
+                    <Typography>{fish.points}</Typography>
+                  </TableCell>
+                  <TableCell align='center'>
+                    <Typography>{Array.isArray(fish.doubleHook) ? fish.doubleHook.join(', ') : fish.doubleHook}</Typography>
+                  </TableCell>
+                  <TableCell align='center'>
+                    <Typography>{Array.isArray(fish.timer) ? fish.timer.join('-') : fish.timer}</Typography>
+                  </TableCell>
+                  <TableCell align='center'>
+                    {(() => {
+                      if (isSpectral) {
+                        return fish.time === 'DSN'
+                          ? 'Any'
+                          : fish.time && fish.time.split('').map((time) => TIME_MAP[time])
+                      } else {
+                        if (!fish.weathers) return null
+                        switch (fish.weathers.type) {
+                          case 'ALL':
+                            return 'Any'
+                          case 'OK':
+                            return fish.weathers.list.map((weather) =>
+                              <WeatherIcon key={weather} weatherId={weather} showLabel={false} />
+                            )
+                          case 'NOT OK':
+                            return (
+                              <>
+                                <span style={{ verticalAlign: 'super' }}>Not&nbsp;</span>
+                                {fish.weathers.list.map((weather) =>
+                                  <WeatherIcon key={weather} weatherId={weather} showLabel={false} />
+                                )}
+                              </>
+                            )
+                        }
+                      }
+                    })()}
+                  </TableCell>
+                  <TableCell align='center'>
+                    {fish.category &&
+                      <OceanFishIcon
+                        name={FISH_CATEGORIES[fish.category]}
+                        className={classes.category}
+                      />}
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </React.Fragment>
+        )
+      })}
     </Table>
   )
 }
