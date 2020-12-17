@@ -174,7 +174,12 @@
         37
       ],
       "time": "DSN",
-      "weathers": null,
+      "weathers": {
+        "type": "NOT OK",
+        "list": [
+          "clearSkies"
+        ]
+      },
       "stars": 4,
       "category": null
     },
@@ -548,7 +553,12 @@
         36
       ],
       "time": "DSN",
-      "weathers": null,
+      "weathers": {
+        "type": "NOT OK",
+        "list": [
+          "clearSkies"
+        ]
+      },
       "stars": 4,
       "category": null
     },
@@ -915,7 +925,12 @@
         38
       ],
       "time": "DSN",
-      "weathers": null,
+      "weathers": {
+        "type": "NOT OK",
+        "list": [
+          "clearSkies"
+        ]
+      },
       "stars": 4,
       "category": null
     },
@@ -1295,7 +1310,12 @@
         36
       ],
       "time": "DSN",
-      "weathers": null,
+      "weathers": {
+        "type": "NOT OK",
+        "list": [
+          "clearSkies"
+        ]
+      },
       "stars": 4,
       "category": null
     },
