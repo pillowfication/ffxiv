@@ -186,16 +186,20 @@ function parseWeathers (str) {
 
 function parseWeatherNames (weathers) {
   const map = {
+    [WEATHERS.BLIZZARDS]: ['blizzard'],
     [WEATHERS.CLEAR_SKIES]: ['clear'],
     [WEATHERS.CLOUDS]: ['clouds'],
     [WEATHERS.DUST_STORMS]: ['dust'],
     [WEATHERS.FAIR_SKIES]: ['fair'],
     [WEATHERS.FOG]: ['fog'],
+    [WEATHERS.GALES]: ['gales'],
     [WEATHERS.HEAT_WAVES]: ['heat', 'heat waves'],
     [WEATHERS.RAIN]: ['rain'],
     [WEATHERS.SHOWERS]: ['showers'],
+    [WEATHERS.SNOW]: ['snow'],
     [WEATHERS.THUNDER]: ['thunder'],
-    [WEATHERS.THUNDERSTORMS]: ['thunderstorms', 'storms']
+    [WEATHERS.THUNDERSTORMS]: ['thunderstorms', 'storms'],
+    [WEATHERS.WIND]: ['wind']
   }
   return weathers.map((weather) => {
     for (const key in map) {

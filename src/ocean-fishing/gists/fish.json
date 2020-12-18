@@ -482,6 +482,8 @@
         "type": "OK",
         "list": [
           "fairSkies",
+          "wind",
+          "gales",
           "clearSkies"
         ]
       },
@@ -854,6 +856,8 @@
         "type": "OK",
         "list": [
           "fairSkies",
+          "snow",
+          "blizzards",
           "clearSkies"
         ]
       },
@@ -2512,10 +2516,10 @@
     },
     {
       "name": "Placodus",
-      "points": null,
+      "points": 500,
       "doubleHook": 1,
       "mooch": "Rothlyt Mussel",
-      "tug": null,
+      "tug": 3,
       "timer": null,
       "time": "S",
       "weathers": null,
