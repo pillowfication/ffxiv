@@ -642,6 +642,9 @@ const AchievementsInformation = ({ selectedRoute }) => {
                 <Typography paragraph>
                   No mantas here.
                 </Typography>
+                <Typography paragraph>
+                  You may opt for no spectral here for an extended one in the next zone.
+                </Typography>
               </CardContent>
             </RouteCard>
             <RouteCard>
@@ -660,7 +663,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <Typography variant='overline'>Spectral</Typography>
                 <Typography paragraph>
-                  Reel all <Tug.Medium />. Beatific Vision and Gory Tuna go away at 5s.
+                  Reel all <Tug.Medium />. Beatific Vision and Gory Tuna go away at 5s. Or play it safe with DH–IC–DH.
                 </Typography>
               </CardContent>
             </RouteCard>
