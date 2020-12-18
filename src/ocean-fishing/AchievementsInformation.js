@@ -453,7 +453,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
               </CardContent>
               <CardContent>
                 <Typography paragraph>
-                  Nothing to say about this.
+                  You may opt for no spectral here for an extended one in the next zone.
                 </Typography>
               </CardContent>
             </RouteCard>
@@ -518,7 +518,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
                     header: 'DH at <14s',
                     baitGroup: BAIT_GROUPS['Tortoiseshell Crab']
                   }, {
-                    header: 'IC–DH',
+                    header: 'DH–IC–DH at <4s',
                     baitGroup: BAIT_GROUPS['Titanshell Crab']
                   }]}
                 />
@@ -530,7 +530,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
                 </Typography>
                 <Typography variant='overline'>Spectral</Typography>
                 <Typography paragraph>
-                  Mistbeard's Cup appears at 4s.
+                  Hook all <Tug.Medium />, but only the instant <Tug.Medium /> is a blind DH. Mistbeard's Cup appears at 4s.
                 </Typography>
               </CardContent>
             </RouteCard>
@@ -552,7 +552,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
               </CardContent>
               <CardContent>
                 <Typography paragraph>
-                  Nothing to say about this.
+                  You may opt for no spectral here for an extended one in the next zone.
                 </Typography>
               </CardContent>
             </RouteCard>
