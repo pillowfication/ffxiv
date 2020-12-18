@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { DEST_MAP, TIME_MAP, ACHIEVEMENTS_MAP } from './maps'
-import BAIT_GROUPS from './bait-groups'
 import { makeStyles } from '@material-ui/core/styles'
 import Section from '../Section'
 import Typography from '@material-ui/core/Typography'
@@ -11,9 +10,10 @@ import Highlight from '../Highlight'
 import RouteCardContainer from './RouteCardContainer'
 import RouteCard from './RouteCard'
 import BaitList from './BaitList'
+import BaitGroup from './BaitGroup'
 import OceanFishIcon from './OceanFishIcon'
 import Tug from './Tug'
-import { getStops } from './utils'
+import { getStops, getBaitChain } from './utils'
 import jellyfishMacro from './macros/jellyfish.ffmacro'
 import seadragonsMacro from './macros/seadragons.ffmacro'
 import octopodesMacro from './macros/octopodes.ffmacro'
@@ -80,10 +80,10 @@ const AchievementsInformation = ({ selectedRoute }) => {
                 <BaitList
                   baitGroups={[{
                     header: 'IC–DH at 16-28s',
-                    baitGroup: BAIT_GROUPS['Cyan Octopus']
+                    baitGroup: <BaitGroup {...getBaitChain('Cyan Octopus')} showDH />
                   }, {
                     header: 'DH–IC–DH at <3s',
-                    baitGroup: BAIT_GROUPS['Merman\'s Mane']
+                    baitGroup: <BaitGroup {...getBaitChain('Merman\'s Mane')} showDH />
                   }]}
                 />
               </CardContent>
@@ -107,7 +107,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
                 <BaitList
                   baitGroups={[{
                     header: 'DH–IC–DH at 4s',
-                    baitGroup: BAIT_GROUPS.Mopbeard
+                    baitGroup: <BaitGroup {...getBaitChain('Mopbeard')} showDH />
                   }]}
                 />
               </CardContent>
@@ -150,16 +150,16 @@ const AchievementsInformation = ({ selectedRoute }) => {
                 <BaitList
                   baitGroups={[{
                     header: 'IC; DH–IC–DH post-spectral',
-                    baitGroup: BAIT_GROUPS['Tarnished Shark']
+                    baitGroup: <BaitGroup {...getBaitChain('Tarnished Shark')} showDH />
                   }, {
                     header: 'IC–DH',
-                    baitGroup: BAIT_GROUPS['Ghost Shark']
+                    baitGroup: <BaitGroup {...getBaitChain('Ghost Shark')} showDH />
                   }, {
                     header: 'No buffs',
-                    baitGroup: BAIT_GROUPS['Quicksilver Blade']
+                    baitGroup: <BaitGroup {...getBaitChain('Quicksilver Blade')} showDH />
                   }, {
                     header: 'DH–IC–DH',
-                    baitGroup: BAIT_GROUPS['Funnel Shark']
+                    baitGroup: <BaitGroup {...getBaitChain('Funnel Shark')} showDH />
                   }]}
                 />
               </CardContent>
@@ -201,13 +201,13 @@ const AchievementsInformation = ({ selectedRoute }) => {
                 <BaitList
                   baitGroups={[{
                     header: 'IC–DH; DH–IC–DH post-spectral',
-                    baitGroup: BAIT_GROUPS['Chrome Hammerhead']
+                    baitGroup: <BaitGroup {...getBaitChain('Chrome Hammerhead')} showDH />
                   }, {
                     header: 'No buffs',
-                    baitGroup: BAIT_GROUPS.Sweeper
+                    baitGroup: <BaitGroup {...getBaitChain('Sweeper')} showDH />
                   }, {
                     header: 'DH–IC–DH',
-                    baitGroup: BAIT_GROUPS.Executioner
+                    baitGroup: <BaitGroup {...getBaitChain('Executioner')} showDH />
                   }]}
                 />
               </CardContent>
@@ -263,10 +263,10 @@ const AchievementsInformation = ({ selectedRoute }) => {
                 <BaitList
                   baitGroups={[{
                     header: 'DH at <5s',
-                    baitGroup: BAIT_GROUPS['La Noscean Jelly']
+                    baitGroup: <BaitGroup {...getBaitChain('La Noscean Jelly')} showDH />
                   }, {
                     header: 'IC–DH',
-                    baitGroup: BAIT_GROUPS['Sea Nettle']
+                    baitGroup: <BaitGroup {...getBaitChain('Sea Nettle')} showDH />
                   }]}
                 />
               </CardContent>
@@ -290,7 +290,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
                 <BaitList
                   baitGroups={[{
                     header: 'IC–DH',
-                    baitGroup: BAIT_GROUPS['Floating Saucer']
+                    baitGroup: <BaitGroup {...getBaitChain('Floating Saucer')} showDH />
                   }]}
                 />
               </CardContent>
@@ -333,10 +333,10 @@ const AchievementsInformation = ({ selectedRoute }) => {
                 <BaitList
                   baitGroups={[{
                     header: 'IC–DH at 10-18s',
-                    baitGroup: BAIT_GROUPS['Shaggy Seadragon']
+                    baitGroup: <BaitGroup {...getBaitChain('Shaggy Seadragon')} showDH />
                   }, {
                     header: 'No buffs',
-                    baitGroup: BAIT_GROUPS['Aetheric Seadragon']
+                    baitGroup: <BaitGroup {...getBaitChain('Aetheric Seadragon')} showDH />
                   }]}
                 />
               </CardContent>
@@ -374,7 +374,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
                 <BaitList
                   baitGroups={[{
                     header: 'IC–DH',
-                    baitGroup: BAIT_GROUPS['Coral Seadragon']
+                    baitGroup: <BaitGroup {...getBaitChain('Coral Seadragon')} showDH />
                   }]}
                 />
               </CardContent>
@@ -417,10 +417,10 @@ const AchievementsInformation = ({ selectedRoute }) => {
                 <BaitList
                   baitGroups={[{
                     header: 'IC–DH',
-                    baitGroup: BAIT_GROUPS['Metallic Boxfish']
+                    baitGroup: <BaitGroup {...getBaitChain('Metallic Boxfish')} showDH />
                   }, {
                     header: 'DH at <5s',
-                    baitGroup: BAIT_GROUPS['Mythril Boxfish']
+                    baitGroup: <BaitGroup {...getBaitChain('Mythril Boxfish')} showDH />
                   }]}
                 />
               </CardContent>
@@ -444,10 +444,10 @@ const AchievementsInformation = ({ selectedRoute }) => {
                 <BaitList
                   baitGroups={[{
                     header: 'IC–DH',
-                    baitGroup: BAIT_GROUPS.Lampfish
+                    baitGroup: <BaitGroup {...getBaitChain('Lampfish')} showDH />
                   }, {
                     header: 'IC–DH',
-                    baitGroup: BAIT_GROUPS.Silencer
+                    baitGroup: <BaitGroup {...getBaitChain('Silencer')} showDH />
                   }]}
                 />
               </CardContent>
@@ -466,16 +466,16 @@ const AchievementsInformation = ({ selectedRoute }) => {
                 <BaitList
                   baitGroups={[{
                     header: 'No buffs',
-                    baitGroup: BAIT_GROUPS['Crow Puffer']
+                    baitGroup: <BaitGroup {...getBaitChain('Crow Puffer')} showDH />
                   }, {
                     header: 'DH at >12s',
-                    baitGroup: BAIT_GROUPS['Honeycomb Fish']
+                    baitGroup: <BaitGroup {...getBaitChain('Honeycomb Fish')} showDH />
                   }, {
                     header: 'IC–DH',
-                    baitGroup: BAIT_GROUPS['Garum Jug']
+                    baitGroup: <BaitGroup {...getBaitChain('Garum Jug')} showDH />
                   }, {
                     header: 'IC–DH',
-                    baitGroup: BAIT_GROUPS['Pearl Bombfish']
+                    baitGroup: <BaitGroup {...getBaitChain('Pearl Bombfish')} showDH />
                   }]}
                 />
               </CardContent>
@@ -516,10 +516,10 @@ const AchievementsInformation = ({ selectedRoute }) => {
                 <BaitList
                   baitGroups={[{
                     header: 'DH at <14s',
-                    baitGroup: BAIT_GROUPS['Tortoiseshell Crab']
+                    baitGroup: <BaitGroup {...getBaitChain('Tortoiseshell Crab')} showDH />
                   }, {
                     header: 'DH–IC–DH at <4s',
-                    baitGroup: BAIT_GROUPS['Titanshell Crab']
+                    baitGroup: <BaitGroup {...getBaitChain('Titanshell Crab')} showDH />
                   }]}
                 />
               </CardContent>
@@ -543,10 +543,10 @@ const AchievementsInformation = ({ selectedRoute }) => {
                 <BaitList
                   baitGroups={[{
                     header: 'IC–DH',
-                    baitGroup: BAIT_GROUPS['Net Crawler']
+                    baitGroup: <BaitGroup {...getBaitChain('Net Crawler')} showDH />
                   }, {
                     header: 'IC–DH',
-                    baitGroup: BAIT_GROUPS['Bartholomew the Chopper']
+                    baitGroup: <BaitGroup {...getBaitChain('Bartholomew the Chopper')} showDH />
                   }]}
                 />
               </CardContent>
@@ -565,16 +565,16 @@ const AchievementsInformation = ({ selectedRoute }) => {
                 <BaitList
                   baitGroups={[{
                     header: 'No buffs',
-                    baitGroup: BAIT_GROUPS['Thaliak Crab']
+                    baitGroup: <BaitGroup {...getBaitChain('Thaliak Crab')} showDH />
                   }, {
                     header: 'DH at >15s',
-                    baitGroup: BAIT_GROUPS['Bloodpolish Crab']
+                    baitGroup: <BaitGroup {...getBaitChain('Bloodpolish Crab')} showDH />
                   }, {
                     header: 'No Buffs',
-                    baitGroup: BAIT_GROUPS['Oracular Crab']
+                    baitGroup: <BaitGroup {...getBaitChain('Oracular Crab')} showDH />
                   }, {
                     header: 'DH at 6s',
-                    baitGroup: BAIT_GROUPS.Exterminator
+                    baitGroup: <BaitGroup {...getBaitChain('Exterminator')} showDH />
                   }]}
                 />
               </CardContent>
@@ -615,10 +615,10 @@ const AchievementsInformation = ({ selectedRoute }) => {
                 <BaitList
                   baitGroups={[{
                     header: 'IC; IC–DH post-spectral',
-                    baitGroup: BAIT_GROUPS['Goobbue Ray']
+                    baitGroup: <BaitGroup {...getBaitChain('Goobbue Ray')} showDH />
                   }, {
                     header: 'DH at <6s',
-                    baitGroup: BAIT_GROUPS['Jetborne Manta']
+                    baitGroup: <BaitGroup {...getBaitChain('Jetborne Manta')} showDH />
                   }]}
                 />
               </CardContent>
@@ -653,7 +653,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
                 <BaitList
                   baitGroups={[{
                     header: 'DH at >6s',
-                    baitGroup: BAIT_GROUPS.Skaldminni
+                    baitGroup: <BaitGroup {...getBaitChain('Skaldminni')} showDH />
                   }]}
                 />
               </CardContent>

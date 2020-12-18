@@ -14,12 +14,12 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const BaitGroup = ({ bait, intuitionFishes }) => {
+const BaitGroup = ({ bait, intuitionFishes, showDH }) => {
   const classes = useStyles()
 
   return (
     <>
-      <BaitChain bait={bait} />
+      <BaitChain bait={bait} showDH={showDH} />
       {intuitionFishes &&
         <ul className={classes.intuitionFishes}>
           {intuitionFishes.map(({ count, bait }, index) =>

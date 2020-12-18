@@ -28,17 +28,17 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const BaitChain = ({ bait }) => {
+const BaitChain = ({ bait, showDH }) => {
   const classes = useStyles()
 
   return (
     <div className={classes.baitGroup}>
-      {bait.map(({ name, tug, dh }, index) =>
+      {bait.map(({ name, tug, doubleHook }, index) =>
         <React.Fragment key={index}>
           <div className={classes.bait}>
             <OceanFishIcon name={name} />
             {tug ? <Tug sup strength={tug} /> : null}
-            {dh && <Typography className={classes.dh} display='inline'>DH: {dh}</Typography>}
+            {index === bait.length - 1 && showDH && <Typography className={classes.dh} display='inline'>DH: {doubleHook}</Typography>}
           </div>
           {index < bait.length - 1 && <ChevronRightIcon className={classes.chevron} />}
         </React.Fragment>

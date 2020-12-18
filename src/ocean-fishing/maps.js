@@ -19,7 +19,7 @@ export const TIME_MAP = {
 export const OBJECTIVES_MAP = {
   BD: ['What Did Crabs Do to You?', 'Seafaring Toad'],
   BN: ['What Did Mantas Do to You?'],
-  BS: ['Elasmosaurus', 'Hafgufa'],
+  BS: ['Hafgufa', 'Elasmosaurus'],
   ND: ['Sothis', 'Elasmosaurus'],
   NN: ['What Did Octopodes Do to You?'],
   NS: ['What Did Seadragons Do to You?', 'Coral Manta'],

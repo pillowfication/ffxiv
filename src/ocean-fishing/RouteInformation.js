@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import calculateVoyages from './calculate-voyages'
 import { DEST_MAP, TIME_MAP, ROUTE_MAP, FISH_MAP, BLUE_FISH_MAP } from './maps'
-import BAIT_GROUPS from './bait-groups'
-import { timeUntil } from './utils'
+import { timeUntil, getBaitChain } from './utils'
 import { makeStyles } from '@material-ui/core/styles'
 import Section from '../Section'
 import Grid from '@material-ui/core/Grid'
@@ -19,6 +18,7 @@ import RouteCardContainer from './RouteCardContainer'
 import RouteCard from './RouteCard'
 import FishPanel from './FishPanel'
 import BaitList from './BaitList'
+import BaitGroup from './BaitGroup'
 
 const TIMES = 'DSN'
 
@@ -109,13 +109,13 @@ const RouteInformation = ({ now, selectedRoute, checklist, setChecklist }) => {
                     {(() => {
                       const baitGroups = FISH_MAP[stop[0]].map((fish) => ({
                         header: fish,
-                        baitGroup: BAIT_GROUPS[fish]
+                        baitGroup: <BaitGroup {...getBaitChain(fish)} />
                       }))
                       const blueFish = BLUE_FISH_MAP[stop]
                       if (blueFish) {
                         baitGroups.push({
                           header: blueFish,
-                          baitGroup: BAIT_GROUPS[blueFish]
+                          baitGroup: <BaitGroup {...getBaitChain(blueFish)} />
                         })
                       }
                       return <BaitList baitGroups={baitGroups} />
