@@ -22,6 +22,8 @@ import TableCell from '@material-ui/core/TableCell'
 import Section from '../Section'
 import OceanFishIcon from './OceanFishIcon'
 
+const DATE_FORMAT = { month: '2-digit', day: '2-digit' }
+
 const useStyles = makeStyles((theme) => ({
   schedule: {
     '& td': {
@@ -210,7 +212,7 @@ const UpcomingVoyages = ({ now, onSelectRoute }) => {
                       let previousDate
 
                       return upcomingVoyages.map(({ time, destinationCode }) => {
-                        const dateString = time.toLocaleDateString(undefined, { month: '2-digit', day: '2-digit' })
+                        const dateString = time.toLocaleDateString(undefined, DATE_FORMAT)
                         const timeString = toTimeString(time, true)
 
                         return (

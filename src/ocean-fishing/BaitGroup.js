@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(1)
   },
   count: {
+    display: 'inline',
     marginRight: theme.spacing(1)
   }
 }))
@@ -24,7 +25,7 @@ const BaitGroup = ({ bait, intuitionFishes, showDH }) => {
         <ul className={classes.intuitionFishes}>
           {intuitionFishes.map(({ count, bait }, index) =>
             <li key={index}>
-              <Typography className={classes.count} display='inline'>{count}</Typography>
+              <Typography className={classes.count}>{count}×</Typography>
               <BaitChain bait={bait} />
             </li>
           )}
@@ -35,10 +36,13 @@ const BaitGroup = ({ bait, intuitionFishes, showDH }) => {
 
 BaitGroup.propTypes = {
   bait: BaitChain.propTypes.bait,
-  intuitionFishes: PropTypes.arrayOf(PropTypes.shape({
-    count: PropTypes.number.isRequired,
-    bait: BaitChain.propTypes.bait
-  }).isRequired)
+  intuitionFishes: PropTypes.arrayOf(
+    PropTypes.shape({
+      count: PropTypes.number.isRequired,
+      bait: BaitChain.propTypes.bait
+    }).isRequired
+  ),
+  showDH: PropTypes.bool
 }
 
 export default BaitGroup

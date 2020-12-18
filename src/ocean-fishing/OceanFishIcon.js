@@ -68,4 +68,4 @@ OceanFishIcon.propTypes = {
   }
 }
 
-export default React.memo(OceanFishIcon)
+export default OceanFishIcon

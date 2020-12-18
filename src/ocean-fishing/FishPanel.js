@@ -16,7 +16,12 @@ function FishPanel ({ children, tab, index, stop, checklist, setChecklist }) {
   return (
     <div hidden={tab !== index}>
       {tab === index &&
-        <FishTable regions={REGIONS[stop[0]]} time={stop[1]} checklist={checklist} setChecklist={setChecklist} />}
+        <FishTable
+          regions={REGIONS[stop[0]]}
+          time={stop[1]}
+          checklist={checklist}
+          setChecklist={setChecklist}
+        />}
     </div>
   )
 }

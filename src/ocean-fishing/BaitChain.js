@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '-0.15em'
   },
   dh: {
+    display: 'inline',
     position: 'relative',
     top: '-0.95em',
     marginLeft: theme.spacing(1)
@@ -38,7 +39,8 @@ const BaitChain = ({ bait, showDH }) => {
           <div className={classes.bait}>
             <OceanFishIcon name={name} />
             {tug ? <Tug sup strength={tug} /> : null}
-            {index === bait.length - 1 && showDH && <Typography className={classes.dh} display='inline'>DH: {doubleHook}</Typography>}
+            {(index === bait.length - 1 && showDH) &&
+              <Typography className={classes.dh}>DH: {doubleHook}</Typography>}
           </div>
           {index < bait.length - 1 && <ChevronRightIcon className={classes.chevron} />}
         </React.Fragment>
@@ -52,9 +54,10 @@ BaitChain.propTypes = {
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       tug: PropTypes.number,
-      dh: PropTypes.number
+      doubleHook: PropTypes.number
     })
-  )
+  ).isRequired,
+  showDH: PropTypes.bool
 }
 
 export default BaitChain
