@@ -199,7 +199,13 @@
         "type": "ALL"
       },
       "stars": 4,
-      "category": null
+      "category": null,
+      "intuition": [
+        {
+          "name": "Galadion Chovy",
+          "count": 3
+        }
+      ]
     }
   ],
   "Galadion Spectral Current": [
@@ -381,7 +387,17 @@
         "type": "ALL"
       },
       "stars": 5,
-      "category": null
+      "category": null,
+      "intuition": [
+        {
+          "name": "Heavenskey",
+          "count": 2
+        },
+        {
+          "name": "Navigator's Print",
+          "count": 1
+        }
+      ]
     }
   ],
   "The Southern Strait of Merlthor": [
@@ -580,7 +596,13 @@
         "type": "ALL"
       },
       "stars": 4,
-      "category": null
+      "category": null,
+      "intuition": [
+        {
+          "name": "Gladius",
+          "count": 1
+        }
+      ]
     }
   ],
   "Southern Merlthor Spectral Current": [
@@ -759,7 +781,13 @@
         "type": "ALL"
       },
       "stars": 5,
-      "category": null
+      "category": null,
+      "intuition": [
+        {
+          "name": "Great Grandmarlin",
+          "count": 2
+        }
+      ]
     }
   ],
   "The Northern Strait of Merlthor": [
@@ -954,7 +982,13 @@
         "type": "ALL"
       },
       "stars": 4,
-      "category": null
+      "category": null,
+      "intuition": [
+        {
+          "name": "Elder Dinichthys",
+          "count": 1
+        }
+      ]
     }
   ],
   "Northern Merlthor Spectral Current": [
@@ -1139,7 +1173,13 @@
         "type": "ALL"
       },
       "stars": 5,
-      "category": null
+      "category": null,
+      "intuition": [
+        {
+          "name": "Gugrusaurus",
+          "count": 3
+        }
+      ]
     }
   ],
   "Open Rhotano Sea": [
@@ -1339,7 +1379,13 @@
         "type": "ALL"
       },
       "stars": 4,
-      "category": null
+      "category": null,
+      "intuition": [
+        {
+          "name": "Crimson Monkfish",
+          "count": 2
+        }
+      ]
     }
   ],
   "Rhotano Spectral Current": [
@@ -1521,7 +1567,17 @@
         "type": "ALL"
       },
       "stars": 5,
-      "category": null
+      "category": null,
+      "intuition": [
+        {
+          "name": "Deep-sea Eel",
+          "count": 1
+        },
+        {
+          "name": "Silencer",
+          "count": 1
+        }
+      ]
     }
   ],
   "Cieldalaes Margin": [
@@ -1706,7 +1762,13 @@
       "time": "",
       "weathers": null,
       "stars": 4,
-      "category": null
+      "category": null,
+      "intuition": [
+        {
+          "name": "Metallic Boxfish",
+          "count": 3
+        }
+      ]
     }
   ],
   "Cieldalaes Spectral Current": [
@@ -1862,7 +1924,17 @@
       "time": "N",
       "weathers": null,
       "stars": 5,
-      "category": null
+      "category": null,
+      "intuition": [
+        {
+          "name": "Jetborne Manta",
+          "count": 2
+        },
+        {
+          "name": "Mistbeard's Cup",
+          "count": 1
+        }
+      ]
     }
   ],
   "Open Bloodbrine Sea": [
@@ -2050,7 +2122,13 @@
       "time": "",
       "weathers": null,
       "stars": 4,
-      "category": null
+      "category": null,
+      "intuition": [
+        {
+          "name": "Sunken Mask",
+          "count": 1
+        }
+      ]
     }
   ],
   "Bloodbrine Spectral Current": [
@@ -2194,7 +2272,13 @@
       "time": "D",
       "weathers": null,
       "stars": 5,
-      "category": null
+      "category": null,
+      "intuition": [
+        {
+          "name": "Beatific Vision",
+          "count": 3
+        }
+      ]
     }
   ],
   "Outer Rothlyt Sound": [
@@ -2385,7 +2469,13 @@
       "time": "",
       "weathers": null,
       "stars": 4,
-      "category": null
+      "category": null,
+      "intuition": [
+        {
+          "name": "Rothlyt Kelp",
+          "count": 3
+        }
+      ]
     }
   ],
   "Rothlyt Spectral Current": [
@@ -2524,7 +2614,13 @@
       "time": "S",
       "weathers": null,
       "stars": 5,
-      "category": null
+      "category": null,
+      "intuition": [
+        {
+          "name": "Trollfish",
+          "count": 1
+        }
+      ]
     }
   ]
 }

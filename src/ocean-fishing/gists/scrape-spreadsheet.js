@@ -252,11 +252,24 @@ _.merge(data, {
         type: 'NOT OK',
         list: [WEATHERS.CLEAR_SKIES]
       }
+    },
+    9: {
+      intuition: [{
+        name: 'Galadion Chovy',
+        count: 3
+      }]
     }
   },
   'Galadion Spectral Current': {
     9: {
-      bait: 'Glowworm'
+      bait: 'Glowworm',
+      intuition: [{
+        name: 'Heavenskey',
+        count: 2
+      }, {
+        name: 'Navigator\'s Print',
+        count: 1
+      }]
     }
   },
   'The Southern Strait of Merlthor': {
@@ -265,6 +278,12 @@ _.merge(data, {
         type: 'NOT OK',
         list: [WEATHERS.CLEAR_SKIES]
       }
+    },
+    9: {
+      intuition: [{
+        name: 'Gladius',
+        count: 1
+      }]
     }
   },
   'Southern Merlthor Spectral Current': {
@@ -272,7 +291,11 @@ _.merge(data, {
       name: 'Hi-aetherlouse'
     },
     9: {
-      bait: 'Shrimp Cage Feeder'
+      bait: 'Shrimp Cage Feeder',
+      intuition: [{
+        name: 'Great Grandmarlin',
+        count: 2
+      }]
     }
   },
   'The Northern Strait of Merlthor': {
@@ -281,11 +304,21 @@ _.merge(data, {
         type: 'NOT OK',
         list: [WEATHERS.CLEAR_SKIES]
       }
+    },
+    9: {
+      intuition: [{
+        name: 'Elder Dinichthys',
+        count: 1
+      }]
     }
   },
   'Northern Merlthor Spectral Current': {
     9: {
-      bait: 'Heavy Steel Jig'
+      bait: 'Heavy Steel Jig',
+      intuition: [{
+        name: 'Gugrusaurus',
+        count: 3
+      }]
     }
   },
   'Open Rhotano Sea': {
@@ -294,21 +327,69 @@ _.merge(data, {
         type: 'NOT OK',
         list: [WEATHERS.CLEAR_SKIES]
       }
+    },
+    9: {
+      intuition: [{
+        name: 'Crimson Monkfish',
+        count: 2
+      }]
     }
   },
   'Rhotano Spectral Current': {
     9: {
-      bait: 'Rat Tail'
+      bait: 'Rat Tail',
+      intuition: [{
+        name: 'Deep-sea Eel',
+        count: 1
+      }, {
+        name: 'Silencer',
+        count: 1
+      }]
+    }
+  },
+  'Cieldalaes Margin': {
+    9: {
+      intuition: [{
+        name: 'Metallic Boxfish',
+        count: 3
+      }]
     }
   },
   'Cieldalaes Spectral Current': {
     9: {
-      bait: 'Squid Strip'
+      bait: 'Squid Strip',
+      intuition: [{
+        name: 'Jetborne Manta',
+        count: 2
+      }, {
+        name: 'Mistbeard\'s Cup',
+        count: 1
+      }]
+    }
+  },
+  'Open Bloodbrine Sea': {
+    9: {
+      intuition: [{
+        name: 'Sunken Mask',
+        count: 1
+      }]
     }
   },
   'Bloodbrine Spectral Current': {
     9: {
-      bait: 'Pill Bug'
+      bait: 'Pill Bug',
+      intuition: [{
+        name: 'Beatific Vision',
+        count: 3
+      }]
+    }
+  },
+  'Outer Rothlyt Sound': {
+    9: {
+      intuition: [{
+        name: 'Rothlyt Kelp',
+        count: 3
+      }]
     }
   },
   'Rothlyt Spectral Current': {
@@ -325,7 +406,11 @@ _.merge(data, {
       mooch: 'Rothlyt Mussel'
     },
     9: {
-      mooch: 'Rothlyt Mussel'
+      mooch: 'Rothlyt Mussel',
+      intuition: [{
+        name: 'Trollfish',
+        count: 1
+      }]
     }
   }
 })

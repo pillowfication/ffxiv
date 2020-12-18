@@ -40,6 +40,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '-0.3em',
     opacity: 0.8
   },
+  intuition: {
+    position: 'relative',
+    verticalAlign: 'middle',
+    margin: '-2px 2px 0'
+  },
   tug: {
     fontSize: '1.33em'
   },
@@ -106,16 +111,26 @@ const FishTable = ({ regions, time, checklist, setChecklist }) => {
                     </IconButton>
                   </TableCell>
                   <TableCell>
-                    <OceanFishIcon name={fish.name} />
+                    <OceanFishIcon name={fish.name} inline />
                   </TableCell>
                   <TableCell>
                     <div><Typography>{fish.name}</Typography></div>
                     <div className={classes.stars}>{'★'.repeat(fish.stars)}</div>
                   </TableCell>
                   <TableCell align='center'>
+                    {fish.intuition && (
+                      <>
+                        {fish.intuition.map((fish, index) =>
+                          <React.Fragment key={fish.name}>
+                            <Typography display='inline'>{index === 0 ? `${fish.count}×` : `, ${fish.count}×`}</Typography>
+                            <OceanFishIcon name={fish.name} inline />
+                          </React.Fragment>)}
+                        <img src='/images/fishers-intuition.png' className={classes.intuition} />
+                      </>
+                    )}
                     {[fish.bait, fish.mooch]
                       .filter((x) => x)
-                      .map((bait) => <OceanFishIcon key={bait} name={bait} />)}
+                      .map((bait) => <OceanFishIcon key={bait} name={bait} inline />)}
                   </TableCell>
                   <TableCell align='center'>
                     {fish.tug && <Tug strength={fish.tug} className={classes.tug} />}
