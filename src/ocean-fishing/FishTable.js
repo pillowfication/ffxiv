@@ -93,9 +93,9 @@ const FishTable = ({ regions, time, checklist, setChecklist }) => {
                   <TableCell colSpan={3} align='center'>Fish</TableCell>
                   <TableCell align='center'>Bait</TableCell>
                   <TableCell align='center'>Tug</TableCell>
+                  <TableCell align='center'>Line Time</TableCell>
                   <TableCell align='center'>Points</TableCell>
                   <TableCell align='center'>Double Hook</TableCell>
-                  <TableCell align='center'>Line Time</TableCell>
                   <TableCell align='center'>{isSpectral ? 'Time' : 'Weather'}</TableCell>
                   <TableCell align='center'>Category</TableCell>
                 </TableRow>
@@ -143,13 +143,13 @@ const FishTable = ({ regions, time, checklist, setChecklist }) => {
                       {fish.tug && <Tug strength={fish.tug} className={classes.tug} />}
                     </TableCell>
                     <TableCell align='center'>
+                      <Typography>{Array.isArray(fish.timer) ? fish.timer.join('-') : fish.timer}</Typography>
+                    </TableCell>
+                    <TableCell align='center'>
                       <Typography>{fish.points}</Typography>
                     </TableCell>
                     <TableCell align='center'>
                       <Typography>{Array.isArray(fish.doubleHook) ? fish.doubleHook.join('-') : fish.doubleHook}</Typography>
-                    </TableCell>
-                    <TableCell align='center'>
-                      <Typography>{Array.isArray(fish.timer) ? fish.timer.join('-') : fish.timer}</Typography>
                     </TableCell>
                     <TableCell align='center'>
                       {(() => {
