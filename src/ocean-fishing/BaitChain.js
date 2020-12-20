@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
     verticalAlign: 'middle'
   },
   bait: {
-    position: 'relative',
     display: 'inline-block'
   },
   chevron: {
@@ -22,9 +21,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '-0.15em'
   },
   dh: {
-    display: 'inline',
-    position: 'relative',
-    top: '-0.95em',
+    verticalAlign: 'middle',
     marginLeft: theme.spacing(1)
   }
 }))
@@ -40,7 +37,7 @@ const BaitChain = ({ bait, showDH }) => {
             <OceanFishIcon name={name} />
             {tug ? <Tug sup strength={tug} /> : null}
             {(index === bait.length - 1 && showDH) &&
-              <Typography className={classes.dh}>DH: {doubleHook}</Typography>}
+              <Typography className={classes.dh} display='inline'>DH: {doubleHook}</Typography>}
           </div>
           {index < bait.length - 1 && <ChevronRightIcon className={classes.chevron} />}
         </React.Fragment>
