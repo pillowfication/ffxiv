@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
   chevron: {
     position: 'relative',
-    top: '-0.35em',
+    verticalAlign: 'middle',
     marginLeft: '-0.15em',
     marginRight: '-0.15em'
   },

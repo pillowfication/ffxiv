@@ -21,10 +21,7 @@ const useStyles = makeStyles((theme) => {
       height: '2.5em',
       margin: theme.spacing(0.5),
       backgroundImage: 'url("/images/ocean-fish.png")',
-      backgroundSize: `${ICON_COLS * 100}% ${ICON_ROWS * 100}%`
-    },
-    inline: {
-      display: 'inline-block',
+      backgroundSize: `${ICON_COLS * 100}% ${ICON_ROWS * 100}%`,
       verticalAlign: 'middle'
     }
   }
@@ -39,14 +36,15 @@ const useStyles = makeStyles((theme) => {
   return styles
 })
 
-const OceanFishIcon = ({ name, inline, className }) => {
+const OceanFishIcon = ({ name, className, ...props }) => {
   const classes = useStyles()
 
   return (
     <Tooltip arrow placement='top' title={name}>
-      {inline
-        ? <div className={classes.inline}><div className={cn(classes.oceanFishIcon, classes[camelCase(name)], className)} /></div>
-        : <div className={cn(classes.oceanFishIcon, classes[camelCase(name)], className)} />}
+      <div
+        className={cn(classes.oceanFishIcon, classes[camelCase(name)], className)}
+        {...props}
+      />
     </Tooltip>
   )
 }

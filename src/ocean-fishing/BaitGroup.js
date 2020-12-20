@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(1)
   },
   count: {
-    display: 'inline',
+    verticalAlign: 'middle',
     marginRight: theme.spacing(1)
   }
 }))
@@ -25,7 +25,7 @@ const BaitGroup = ({ bait, intuitionFishes, showDH }) => {
         <ul className={classes.intuitionFishes}>
           {intuitionFishes.map(({ count, bait }, index) =>
             <li key={index}>
-              <Typography className={classes.count}>{count}×</Typography>
+              <Typography className={classes.count} display='inline'>{count}×</Typography>
               <BaitChain bait={bait} />
             </li>
           )}
