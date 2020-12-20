@@ -69,6 +69,9 @@ const AchievementsInformation = ({ selectedRoute }) => {
                 <Typography paragraph>
                   No octopodes here.
                 </Typography>
+                <Typography paragraph>
+                  You may opt for no spectral here for an extended one in the next zone.
+                </Typography>
               </CardContent>
             </RouteCard>
             <RouteCard>
@@ -190,6 +193,9 @@ const AchievementsInformation = ({ selectedRoute }) => {
                 <Typography paragraph>
                   Try for Coral Manta?<br />(but save GP)
                 </Typography>
+                <Typography paragraph>
+                  You may opt for no spectral here for an extended one in the next zone.
+                </Typography>
               </CardContent>
             </RouteCard>
             <RouteCard>
@@ -251,6 +257,9 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <Typography paragraph>
                   No jellyfish here.
+                </Typography>
+                <Typography paragraph>
+                  You may opt for no spectral here for an extended one in the next zone.
                 </Typography>
               </CardContent>
             </RouteCard>
@@ -362,6 +371,9 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <Typography paragraph>
                   No seadragons here.
+                </Typography>
+                <Typography paragraph>
+                  You may opt for no spectral here for an extended one in the next zone.
                 </Typography>
               </CardContent>
             </RouteCard>
