@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
     verticalAlign: 'middle'
   },
   bait: {
+    position: 'relative',
     display: 'inline-block'
   },
   chevron: {
