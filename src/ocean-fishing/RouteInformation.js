@@ -107,18 +107,22 @@ const RouteInformation = ({ now, selectedRoute, checklist, setChecklist }) => {
                   />
                   <CardContent>
                     {(() => {
-                      const baitGroups = FISH_MAP[stop[0]].map((fish) => ({
-                        header: fish,
-                        baitGroup: <BaitGroup {...getBaitChain(fish)} />
-                      }))
-                      const blueFish = BLUE_FISH_MAP[stop]
-                      if (blueFish) {
-                        baitGroups.push({
-                          header: blueFish,
-                          baitGroup: <BaitGroup {...getBaitChain(blueFish)} />
-                        })
+                      const fishes = FISH_MAP[stop[0]].slice()
+                      if (BLUE_FISH_MAP[stop]) {
+                        fishes.push(BLUE_FISH_MAP[stop])
                       }
-                      return <BaitList baitGroups={baitGroups} />
+
+                      return (
+                        <BaitList baitGroups={fishes.map((fish) => {
+                          const baitChain = getBaitChain(fish)
+                          return {
+                            header: fish,
+                            hasIntuition: baitChain.intuitionFishes !== undefined,
+                            baitGroup: <BaitGroup {...baitChain} />
+                          }
+                        })}
+                        />
+                      )
                     })()}
                   </CardContent>
                 </RouteCard>
