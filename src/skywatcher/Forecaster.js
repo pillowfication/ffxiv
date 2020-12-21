@@ -1,12 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react'
-import moment from 'moment'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
-import EorzeaWeather, { chances } from '@pillowfication/eorzea-weather'
-import forecastWeather from './forecast-weather'
-import REGIONS from './regions'
-import { getEorzeanTime } from './get-eorzean-time'
-import Section from '../Section'
+import REGIONS from './weather/regions'
+import { getDate, translateId, getPossibleWeathers, forecastWeathers } from './weather'
+import { toTimeString, timeUntil } from '../utils'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import TableContainer from '@material-ui/core/TableContainer'
@@ -26,7 +23,10 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Autocomplete from '@material-ui/lab/Autocomplete'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
+import Section from '../Section'
 import WeatherIcon from './WeatherIcon'
+
+const DATE_FORMAT = { month: '2-digit', day: '2-digit' }
 
 const ZONES = []
 for (const { regionId, zones } of REGIONS) {
@@ -36,12 +36,6 @@ for (const { regionId, zones } of REGIONS) {
 }
 
 const WEATHER_CELL_WIDTH = 75
-const eorzeaWeather = new EorzeaWeather({ locale: 'en' })
-
-function displayBell (bell) {
-  return bell > 9 ? bell + ':00' : '0' + bell + ':00'
-}
-
 const useStyles = makeStyles((theme) => ({
   transitionWeather: {
     [theme.breakpoints.down('sm')]: {
@@ -57,8 +51,7 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   dateCell: {
-    width: '100px',
-    textAlign: 'right'
+    width: '150px'
   },
   forecastCell: {
     whiteSpace: 'nowrap'
@@ -66,14 +59,12 @@ const useStyles = makeStyles((theme) => ({
   bellCell: {
     width: 50,
     paddingLeft: theme.spacing(0.5),
-    paddingRight: theme.spacing(0.5),
-    textAlign: 'right'
+    paddingRight: theme.spacing(0.5)
   },
   weatherCell: {
     width: WEATHER_CELL_WIDTH + theme.spacing(1),
     paddingLeft: theme.spacing(0.5),
     paddingRight: theme.spacing(0.5),
-    textAlign: 'center',
     verticalAlign: 'top',
     lineHeight: 1,
     '& span': {
@@ -93,50 +84,48 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
+function displayBell (seed) {
+  switch (seed % 3) {
+    case 0: return '00:00'
+    case 1: return '08:00'
+    case 2: return '16:00'
+  }
+}
+
 const Forecaster = ({ now }) => {
   const [zone, setZone] = useState(null)
   const [transitionWeather, setTransitionWeather] = useState('none')
   const [targetWeather, setTargetWeather] = useState('none')
   const [times, setTimes] = useState({ 0: true, 8: true, 16: true })
-  const cachedForecast = useRef(null)
   const classes = useStyles()
 
-  useEffect(() => {
-    if (!now || getEorzeanTime(now).getUTCMinutes() === 0) {
-      cachedForecast.current = null
-    }
-  })
-
-  const possibleWeathers = zone && chances[zone.zoneId].map(({ w: weatherId }) => weatherId)
+  const possibleWeathers = zone && getPossibleWeathers(zone.zoneId)
   const hasTime = times[0] || times[8] || times[16]
-  const forecast = zone && hasTime &&
-    (cachedForecast.current || (cachedForecast.current = forecastWeather(
-      zone.zoneId,
-      now,
-      transitionWeather === 'none' ? null : transitionWeather,
-      targetWeather === 'none' ? null : targetWeather,
-      times
-    )))
+  const forecast = (zone && hasTime) &&
+    forecastWeathers(zone.zoneId, (previousWeather, currentWeather, seed) => {
+      if (transitionWeather !== 'none' && transitionWeather !== previousWeather) return false
+      if (targetWeather !== 'none' && targetWeather !== currentWeather) return false
+      if (!times[0] && seed % 3 === 0) return false
+      if (!times[8] && seed % 3 === 1) return false
+      if (!times[16] && seed % 3 === 2) return false
+      return true
+    })
 
   const handleSelectZone = (event, newZone) => {
-    cachedForecast.current = null
     setZone(newZone)
     setTransitionWeather('none')
     setTargetWeather('none')
   }
 
   const handleSelectTransitionWeather = (event) => {
-    cachedForecast.current = null
     setTransitionWeather(event.target.value)
   }
 
   const handleSelectTargetWeather = (event) => {
-    cachedForecast.current = null
     setTargetWeather(event.target.value)
   }
 
   const handleSelectTimes = (timeSlot) => {
-    cachedForecast.current = null
     setTimes({ ...times, [timeSlot]: !times[timeSlot] })
   }
 
@@ -146,8 +135,8 @@ const Forecaster = ({ now }) => {
         <Grid item xs={12} md={4}>
           <Autocomplete
             options={ZONES}
-            groupBy={(zone) => eorzeaWeather.translateRegion(zone.regionId)}
-            getOptionLabel={(option) => eorzeaWeather.translateZone(option.zoneId)}
+            groupBy={(zone) => translateId(zone.regionId)}
+            getOptionLabel={(option) => translateId(option.zoneId)}
             renderInput={(params) => <TextField {...params} label='Select a zone' />}
             value={zone}
             getOptionSelected={(opt1, opt2) => opt1.zoneId === opt2.zoneId}
@@ -164,7 +153,7 @@ const Forecaster = ({ now }) => {
             >
               <MenuItem value='none'>{possibleWeathers ? 'Any weather' : 'Select a zone first'}</MenuItem>
               {possibleWeathers && possibleWeathers.map((weather) =>
-                <MenuItem key={weather} value={weather}>{eorzeaWeather.translateWeather(weather)}</MenuItem>
+                <MenuItem key={weather} value={weather}>{translateId(weather)}</MenuItem>
               )}
             </Select>
           </FormControl>
@@ -178,7 +167,7 @@ const Forecaster = ({ now }) => {
             >
               <MenuItem value='none'>{possibleWeathers ? 'Any weather' : 'Select a zone first'}</MenuItem>
               {possibleWeathers && possibleWeathers.map((weather) =>
-                <MenuItem key={weather} value={weather}>{eorzeaWeather.translateWeather(weather)}</MenuItem>
+                <MenuItem key={weather} value={weather}>{translateId(weather)}</MenuItem>
               )}
             </Select>
           </FormControl>
@@ -213,34 +202,37 @@ const Forecaster = ({ now }) => {
               <Table size='small' className={classes.weatherTable}>
                 <TableBody>
                   {(() => {
-                    let previousDate = ''
-                    return forecast.map(({ date, timeChunk, previousWeather, currentWeather }, index) => {
-                      const momentDate = moment(date)
-                      const currentDate = momentDate.format('MM/DD')
+                    let previousDate
+
+                    return forecast.map(({ previousWeather, currentWeather, seed }, index) => {
+                      const time = getDate(seed)
+                      const dateString = time.toLocaleDateString(undefined, DATE_FORMAT)
+                      const timeString = toTimeString(time, true)
+
                       return (
                         <TableRow key={index} hover>
-                          <TableCell className={classes.dateCell}>
-                            <Typography>{previousDate !== (previousDate = currentDate) ? currentDate : null}</Typography>
+                          <TableCell className={classes.dateCell} align='right'>
+                            <Typography>{previousDate !== (previousDate = dateString) && dateString}</Typography>
                           </TableCell>
                           <TableCell className={classes.dateCell}>
-                            <Typography>{momentDate.format('HH:mm')}</Typography>
+                            <Typography>{timeString}</Typography>
                           </TableCell>
                           <TableCell className={classes.forecastCell}>
-                            <Typography>{moment.duration(momentDate.diff(now)).humanize(true)}</Typography>
+                            <Typography>{timeUntil(now, time)}</Typography>
                           </TableCell>
-                          <TableCell className={classes.bellCell}>
-                            <Typography>{displayBell((timeChunk + 16) % 24)}</Typography>
+                          <TableCell align='right' className={classes.bellCell}>
+                            <Typography>{displayBell(seed - 1)}</Typography>
                           </TableCell>
-                          <TableCell className={classes.weatherCell}>
+                          <TableCell align='center' className={classes.weatherCell}>
                             <WeatherIcon weatherId={previousWeather} />
                           </TableCell>
                           <TableCell className={classes.transitionCell}>
                             <ArrowForwardIcon />
                           </TableCell>
-                          <TableCell className={classes.bellCell}>
-                            <Typography>{displayBell(timeChunk)}</Typography>
+                          <TableCell align='right' className={classes.bellCell}>
+                            <Typography>{displayBell(seed)}</Typography>
                           </TableCell>
-                          <TableCell className={classes.weatherCell}>
+                          <TableCell align='center' className={classes.weatherCell}>
                             <WeatherIcon weatherId={currentWeather} />
                           </TableCell>
                         </TableRow>

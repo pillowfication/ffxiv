@@ -33,6 +33,26 @@ export function getPossibleWeathers (zone) {
   return chances.filter((_, index) => index % 2 === 1)
 }
 
+export function forecastWeathers (zone, filter, seed = getSeed(), count = 10) {
+  const results = []
+  let previousHash = hashSeed(seed - 1)
+
+  while (results.length < count) {
+    const currentHash = hashSeed(seed)
+    const previousWeather = getZoneWeather(zone, previousHash)
+    const currentWeather = getZoneWeather(zone, currentHash)
+
+    if (filter(previousWeather, currentWeather, seed)) {
+      results.push({ previousWeather, currentWeather, seed })
+    }
+
+    previousHash = currentHash
+    ++seed
+  }
+
+  return results
+}
+
 const cache = {}
 export function translateId (id) {
   return cache[id] || (cache[id] = (id[0].toUpperCase() + id.slice(1)).split(/(?=[A-Z])/).join(' '))

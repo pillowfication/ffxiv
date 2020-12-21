@@ -61,7 +61,7 @@ export const darkTheme = createMuiTheme({
   palette: {
     type: 'dark',
     primary: {
-      light: '#1966e3',
+      light: '#5d9bff',
       main: PRIMARY_COLOR,
       dark: '#082554'
     },
@@ -90,20 +90,20 @@ export const darkTheme = createMuiTheme({
   overrides: {
     MuiLink: {
       root: {
-        color: '#1966e3'
+        color: '#5d9bff'
       }
     },
     MuiFormLabel: {
       root: {
         '&$focused': {
-          color: '#1966e3'
+          color: '#5d9bff'
         }
       }
     },
     MuiInput: {
       underline: {
         '&::after': {
-          borderBottomColor: '#1966e3'
+          borderBottomColor: '#5d9bff'
         }
       }
     },
