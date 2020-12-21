@@ -11,10 +11,6 @@ const useStyles = makeStyles((theme) => ({
     '& > li:not(:last-child)': {
       paddingBottom: theme.spacing(1)
     }
-  },
-  intuition: {
-    verticalAlign: 'bottom',
-    margin: '0 0.33em'
   }
 }))
 
@@ -23,12 +19,9 @@ const BaitList = ({ baitGroups }) => {
 
   return (
     <ul className={classes.baitGroups}>
-      {baitGroups.map(({ header, hasIntuition, baitGroup }, index) =>
+      {baitGroups.map(({ header, baitGroup }, index) =>
         <li key={index}>
-          <Typography gutterBottom>
-            {header}
-            {hasIntuition && <img src='/images/fishers-intuition.png' className={classes.intuition} />}
-          </Typography>
+          <Typography gutterBottom>{header}</Typography>
           {baitGroup}
         </li>
       )}
@@ -40,7 +33,6 @@ BaitList.propTypes = {
   baitGroups: PropTypes.arrayOf(
     PropTypes.shape({
       header: PropTypes.node.isRequired,
-      hasIntuition: PropTypes.bool,
       baitGroup: PropTypes.element.isRequired
     }).isRequired
   ).isRequired
