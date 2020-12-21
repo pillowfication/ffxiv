@@ -12,6 +12,11 @@ const useStyles = makeStyles((theme) => ({
   count: {
     verticalAlign: 'middle',
     marginRight: theme.spacing(1)
+  },
+  intuition: {
+    position: 'relative',
+    verticalAlign: 'middle',
+    margin: '2px 2px 0'
   }
 }))
 
@@ -20,6 +25,7 @@ const BaitGroup = ({ bait, intuitionFishes, showDH }) => {
 
   return (
     <>
+      {intuitionFishes && <img src='/images/fishers-intuition.png' className={classes.intuition} />}
       <BaitChain bait={bait} showDH={showDH} />
       {intuitionFishes &&
         <ul className={classes.intuitionFishes}>
