@@ -137,7 +137,12 @@ const FishTable = ({ regions, time, checklist, setChecklist }) => {
                       )}
                       {[fish.bait, fish.mooch]
                         .filter((x) => x)
-                        .map((bait) => <OceanFishIcon key={bait} name={bait} />)}
+                        .map((bait, index) =>
+                          <React.Fragment key={bait}>
+                            {index > 0 && 'or'}
+                            <OceanFishIcon name={bait} />
+                          </React.Fragment>
+                        )}
                     </TableCell>
                     <TableCell align='center'>
                       {fish.tug && <Tug strength={fish.tug} className={classes.tug} />}

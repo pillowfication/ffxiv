@@ -352,9 +352,6 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <Typography variant='overline'>Non-spectral</Typography>
                 <Typography paragraph>
-                  There’s possibly a blind DH at 14-17s.
-                </Typography>
-                <Typography paragraph>
                   Clouds and Fog weather will remove Shaggy Seadragons.
                 </Typography>
                 <Typography variant='overline'>Spectral</Typography>
