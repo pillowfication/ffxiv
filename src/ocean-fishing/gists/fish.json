@@ -808,7 +808,8 @@
         "list": [
           "fairSkies",
           "fog",
-          "clearSkies"
+          "clearSkies",
+          "clouds"
         ]
       },
       "stars": 1,
@@ -1963,7 +1964,7 @@
       "tug": 1,
       "timer": [
         7,
-        15
+        13
       ],
       "time": "",
       "weathers": {
@@ -1986,8 +1987,8 @@
       "mooch": "",
       "tug": 2,
       "timer": [
-        7,
-        12
+        4,
+        10
       ],
       "time": "",
       "weathers": null,
@@ -2002,8 +2003,8 @@
       "mooch": "",
       "tug": 2,
       "timer": [
-        12,
-        14
+        11,
+        15
       ],
       "time": "",
       "weathers": {
@@ -2359,7 +2360,7 @@
     },
     {
       "name": "Godsbed",
-      "bait": "Krill",
+      "bait": "Plump Worm",
       "points": 29,
       "doubleHook": 2,
       "mooch": "",

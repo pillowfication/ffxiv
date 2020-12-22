@@ -299,6 +299,17 @@ _.merge(data, {
     }
   },
   'The Northern Strait of Merlthor': {
+    0: {
+      weathers: {
+        type: 'OK',
+        list: [
+          WEATHERS.FAIR_SKIES,
+          WEATHERS.FOG,
+          WEATHERS.CLEAR_SKIES,
+          WEATHERS.CLOUDS
+        ]
+      }
+    },
     8: {
       weathers: {
         type: 'NOT OK',
