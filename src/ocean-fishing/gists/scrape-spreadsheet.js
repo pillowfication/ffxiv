@@ -5,7 +5,7 @@ const cheerio = require('cheerio')
 const WEATHERS = require('../../skywatcher/weather/consts/weathers')
 
 // https://docs.google.com/spreadsheets/d/1brCfvmSdYl7RcY9lkgm_ds8uaFqq7qaxOOz-5BfHuuk/edit#gid=1833732342
-const SHEET = fs.readFileSync(path.resolve(__dirname, './ocean-fishing.html'))
+const SHEET = fs.readFileSync(path.resolve(__dirname, './data/ocean-fishing.html'))
 const $ = cheerio.load(SHEET.toString())
 
 const REGIONS = [
@@ -426,4 +426,4 @@ _.merge(data, {
   }
 })
 
-fs.writeFileSync(path.resolve(__dirname, './fish.json'), JSON.stringify(data, null, 2))
+fs.writeFileSync(path.resolve(__dirname, './data/fish.json'), JSON.stringify(data, null, 2))

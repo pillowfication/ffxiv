@@ -11,17 +11,17 @@ const ICON_SIZE = 40
 const XIVAPI = 'https://xivapi.com'
 
 const overrides = {
+  'Beatific Vision': '/i/029000/029098.png',
+  Executioner: '/i/029000/029092.png',
+  Exterminator: '/i/029000/029347.png',
   Fishmonger: '/i/029000/029070.png',
-  Sweeper: '/i/029000/029085.png',
   Gladius: '/i/029000/029022.png',
-  'Shooting Star': '/i/029000/029157.png',
+  'Prodigal Son': '/i/029000/029331.png',
   Prowler: '/i/029000/029066.png',
   Sabaton: '/i/029000/029077.png',
+  'Shooting Star': '/i/029000/029157.png',
   Silencer: '/i/029000/029156.png',
-  Executioner: '/i/029000/029092.png',
-  'Prodigal Son': '/i/029000/029331.png',
-  'Beatific Vision': '/i/029000/029098.png',
-  Exterminator: '/i/029000/029347.png'
+  Sweeper: '/i/029000/029085.png'
 }
 
 const weird = [
