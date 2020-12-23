@@ -15,7 +15,7 @@ import CheckIcon from '@material-ui/icons/Check'
 import OceanFishIcon from './OceanFishIcon'
 import Tug from './Tug'
 import WeatherIcon from '../skywatcher/WeatherIcon'
-import FISH from './gists/fish.json'
+import FISH from './gists/data/fish.json'
 
 const FISH_CATEGORIES = {
   octopus: 'Octopus Travelers',
@@ -148,7 +148,7 @@ const FishTable = ({ regions, time, checklist, setChecklist }) => {
                       {fish.tug && <Tug strength={fish.tug} className={classes.tug} />}
                     </TableCell>
                     <TableCell align='center'>
-                      <Typography>{Array.isArray(fish.timer) ? fish.timer.join('-') : fish.timer}</Typography>
+                      <Typography>{fish.timer ? fish.timer[0] === fish.timer[1] ? fish.timer[0] : fish.timer.join('-') : null}</Typography>
                     </TableCell>
                     <TableCell align='center'>
                       <Typography>{fish.points}</Typography>

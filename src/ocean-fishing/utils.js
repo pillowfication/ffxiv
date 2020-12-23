@@ -1,6 +1,6 @@
 import { timeUntil as genericTimeUntil } from '../utils'
 import { ROUTE_MAP } from './maps'
-import FISH from './gists/fish.json'
+import FISH from './gists/data/fish.json'
 
 const FISH_MAP = {}
 for (const key in FISH) {
