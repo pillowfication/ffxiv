@@ -82,7 +82,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <BaitList
                   baitGroups={[{
-                    header: 'IC–DH at 16-28s',
+                    header: 'IC–DH at 16-27s',
                     baitGroup: <BaitGroup {...getBaitChain('Cyan Octopus')} showDH />
                   }, {
                     header: 'DH–IC–DH at <3s',
@@ -109,7 +109,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <BaitList
                   baitGroups={[{
-                    header: 'DH–IC–DH at 4s',
+                    header: 'DH–IC–DH at ≥5s',
                     baitGroup: <BaitGroup {...getBaitChain('Mopbeard')} showDH />
                   }]}
                 />
@@ -173,7 +173,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
                 </Typography>
                 <Typography variant='overline'>Spectral</Typography>
                 <Typography paragraph>
-                  Hook any <Tug.Medium /> and <Tug.Heavy />. IC–DH if you catch a Ghost Shark; <Tug.Heavy /> is a blind DH–IC–DH.
+                  Hook <Tug.Medium /> and <Tug.Heavy />. IC–DH if you catch a Ghost Shark; <Tug.Heavy /> is a blind DH–IC–DH.
                 </Typography>
                 <Typography variant='overline'>Post-spectral</Typography>
                 <Typography paragraph>
@@ -274,7 +274,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
                     header: 'DH at <5s',
                     baitGroup: <BaitGroup {...getBaitChain('La Noscean Jelly')} showDH />
                   }, {
-                    header: 'IC–DH',
+                    header: 'IC–DH at 4-8s',
                     baitGroup: <BaitGroup {...getBaitChain('Sea Nettle')} showDH />
                   }]}
                 />
@@ -298,7 +298,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <BaitList
                   baitGroups={[{
-                    header: 'IC–DH',
+                    header: 'IC–DH at 6-10s',
                     baitGroup: <BaitGroup {...getBaitChain('Floating Saucer')} showDH />
                   }]}
                 />
@@ -306,7 +306,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <Typography variant='overline'>Spectral</Typography>
                 <Typography paragraph>
-                  Nothing to say about this.
+                  A blind DH is possible, but it can be risky and unnecessary.
                 </Typography>
               </CardContent>
             </RouteCard>
@@ -341,7 +341,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <BaitList
                   baitGroups={[{
-                    header: 'IC–DH at 10-18s',
+                    header: 'IC–DH at 9-21s',
                     baitGroup: <BaitGroup {...getBaitChain('Shaggy Seadragon')} showDH />
                   }, {
                     header: 'No buffs',
@@ -356,7 +356,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
                 </Typography>
                 <Typography variant='overline'>Spectral</Typography>
                 <Typography paragraph>
-                  Spectral is bad. Sit on IC if you have it going into spectral, instead of catching Aetheric Seadragons.
+                  Spectral is bad. Sit on IC if you have it going into spectral instead of catching Aetheric Seadragons.
                 </Typography>
               </CardContent>
             </RouteCard>
@@ -425,7 +425,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <BaitList
                   baitGroups={[{
-                    header: 'IC–DH',
+                    header: 'IC–DH at 5-10s',
                     baitGroup: <BaitGroup {...getBaitChain('Metallic Boxfish')} showDH />
                   }, {
                     header: 'DH at <5s',
@@ -452,10 +452,10 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <BaitList
                   baitGroups={[{
-                    header: 'IC–DH',
+                    header: 'IC–DH at 10-16s',
                     baitGroup: <BaitGroup {...getBaitChain('Lampfish')} showDH />
                   }, {
-                    header: 'IC–DH',
+                    header: 'IC–DH at 2-6s',
                     baitGroup: <BaitGroup {...getBaitChain('Silencer')} showDH />
                   }]}
                 />
@@ -463,6 +463,10 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <Typography paragraph>
                   You may opt for no spectral here for an extended one in the next zone.
+                </Typography>
+                <Typography variant='overline'>Non-spectral</Typography>
+                <Typography paragraph>
+                  Lampfish can probably be a blind DH.
                 </Typography>
               </CardContent>
             </RouteCard>
@@ -474,10 +478,10 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <BaitList
                   baitGroups={[{
-                    header: 'No buffs',
+                    header: 'No buffs at 2-5s',
                     baitGroup: <BaitGroup {...getBaitChain('Crow Puffer')} showDH />
                   }, {
-                    header: 'DH at >12s',
+                    header: 'DH at ≥11s',
                     baitGroup: <BaitGroup {...getBaitChain('Honeycomb Fish')} showDH />
                   }, {
                     header: 'IC–DH',
@@ -491,11 +495,11 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <Typography variant='overline'>Non-spectral</Typography>
                 <Typography paragraph>
-                  Save GP when possible to blind DH Honeycomb Fish after 12s.
+                  Save GP when possible to blind DH Honeycomb Fish.
                 </Typography>
                 <Typography variant='overline'>Spectral</Typography>
                 <Typography paragraph>
-                  Don’t blind DH.
+                  Switch to Krill to go for both Garum Jugs and Pearl Bombfish.
                 </Typography>
               </CardContent>
             </RouteCard>
@@ -524,7 +528,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <BaitList
                   baitGroups={[{
-                    header: 'DH at <14s',
+                    header: 'IC–DH at <12s',
                     baitGroup: <BaitGroup {...getBaitChain('Tortoiseshell Crab')} showDH />
                   }, {
                     header: 'DH–IC–DH at <4s',
@@ -535,11 +539,11 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <Typography variant='overline'>Non-spectral</Typography>
                 <Typography paragraph>
-                  In general, IC–DH when possible and don’t rely heavily on spectrals. Tortoiseshell Crab can be blind DH before 14s.
+                  In general, IC–DH when possible and don’t rely heavily on spectrals. Tortoiseshell Crab can be blind DH before 12s.
                 </Typography>
                 <Typography variant='overline'>Spectral</Typography>
                 <Typography paragraph>
-                  Hook all <Tug.Medium />, but only the instant <Tug.Medium /> is a blind DH. Mistbeard's Cup appears at 4s.
+                  Hook all <Tug.Medium />, but only the instant <Tug.Medium /> is a blind DH.
                 </Typography>
               </CardContent>
             </RouteCard>
@@ -551,10 +555,10 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <BaitList
                   baitGroups={[{
-                    header: 'IC–DH',
+                    header: 'IC–DH at 9-21s',
                     baitGroup: <BaitGroup {...getBaitChain('Net Crawler')} showDH />
                   }, {
-                    header: 'IC–DH',
+                    header: 'IC–DH at 4-8s',
                     baitGroup: <BaitGroup {...getBaitChain('Bartholomew the Chopper')} showDH />
                   }]}
                 />
@@ -573,16 +577,16 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <BaitList
                   baitGroups={[{
-                    header: 'No buffs',
+                    header: 'No buffs at 3-7s',
                     baitGroup: <BaitGroup {...getBaitChain('Thaliak Crab')} showDH />
                   }, {
-                    header: 'DH at >15s',
+                    header: 'DH at ≥14s',
                     baitGroup: <BaitGroup {...getBaitChain('Bloodpolish Crab')} showDH />
                   }, {
                     header: 'No Buffs',
                     baitGroup: <BaitGroup {...getBaitChain('Oracular Crab')} showDH />
                   }, {
-                    header: 'DH at 6s',
+                    header: 'DH at ≥5s',
                     baitGroup: <BaitGroup {...getBaitChain('Exterminator')} showDH />
                   }]}
                 />
@@ -590,11 +594,11 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <Typography variant='overline'>Non-spectral</Typography>
                 <Typography paragraph>
-                  Save GP when possible to blind DH Bloodpolish Crabs after 15s.
+                  Save GP when possible to blind DH Bloodpolish Crabs.
                 </Typography>
                 <Typography variant='overline'>Spectral</Typography>
                 <Typography paragraph>
-                  Can blind DH Exterminators at 6s.
+                  Can blind DH Exterminators at 5s.
                 </Typography>
               </CardContent>
             </RouteCard>
@@ -623,22 +627,26 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <BaitList
                   baitGroups={[{
-                    header: 'IC; IC–DH post-spectral',
+                    header: 'DH; DH-IC–DH post-spectral at 12-26s',
                     baitGroup: <BaitGroup {...getBaitChain('Goobbue Ray')} showDH />
                   }, {
-                    header: 'DH at <6s',
+                    header: 'DH at <3s',
                     baitGroup: <BaitGroup {...getBaitChain('Jetborne Manta')} showDH />
                   }]}
                 />
               </CardContent>
               <CardContent>
-                <Typography variant='overline'>Non-spectral</Typography>
+                <Typography variant='overline'>Pre-spectral</Typography>
                 <Typography paragraph>
-                  IC if capped, but save GP for spectral current. Possible blind DH at &gt;15s.
+                  IC or blind DH if capped, but save GP for spectral current.
                 </Typography>
                 <Typography variant='overline'>Spectral</Typography>
                 <Typography paragraph>
-                  Reel all <Tug.Heavy />. Callichthyid appears at 6s.
+                  Only the instant <Tug.Heavy /> is Jetborne Manta. Callichthyid appears at 5s.
+                </Typography>
+                <Typography variant='overline'>Post-spectral</Typography>
+                <Typography paragraph>
+                  Spend all remaining GP on mantas.
                 </Typography>
               </CardContent>
             </RouteCard>
@@ -664,7 +672,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <BaitList
                   baitGroups={[{
-                    header: 'DH at >6s',
+                    header: 'DH at ≥5s',
                     baitGroup: <BaitGroup {...getBaitChain('Skaldminni')} showDH />
                   }]}
                 />
@@ -672,7 +680,7 @@ const AchievementsInformation = ({ selectedRoute }) => {
               <CardContent>
                 <Typography variant='overline'>Spectral</Typography>
                 <Typography paragraph>
-                  Reel all <Tug.Medium />. Beatific Vision and Gory Tuna go away at 5s. Or play it safe with DH–IC–DH.
+                  Reel any <Tug.Medium />. Beatific Vision and Gory Tuna go away at 5s. Go for IC–DH if it’s all you need, instead of hoping for more blind DHs.
                 </Typography>
               </CardContent>
             </RouteCard>

@@ -38,7 +38,7 @@ const BaitChain = ({ bait, showDH }) => {
             <OceanFishIcon name={name} />
             {tug ? <Tug sup strength={tug} /> : null}
             {(index === bait.length - 1 && showDH) &&
-              <Typography className={classes.dh} display='inline'>DH: {doubleHook}</Typography>}
+              <Typography className={classes.dh} display='inline'>DH: {Array.isArray(doubleHook) ? doubleHook.join('-') : doubleHook}</Typography>}
           </div>
           {index < bait.length - 1 && <ChevronRightIcon className={classes.chevron} />}
         </React.Fragment>
@@ -52,7 +52,7 @@ BaitChain.propTypes = {
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       tug: PropTypes.number,
-      doubleHook: PropTypes.number
+      doubleHook: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number.isRequired)])
     })
   ).isRequired,
   showDH: PropTypes.bool
