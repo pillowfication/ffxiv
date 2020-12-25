@@ -8,8 +8,8 @@
       "mooch": "",
       "tug": 1,
       "timer": [
-        2,
-        10
+        3,
+        9
       ],
       "time": "DSN",
       "weathers": {
@@ -26,8 +26,8 @@
       "mooch": "",
       "tug": 1,
       "timer": [
-        2,
-        13
+        5,
+        11
       ],
       "time": "DSN",
       "weathers": {
@@ -44,8 +44,8 @@
       "mooch": "",
       "tug": 2,
       "timer": [
-        5,
-        19
+        8,
+        16
       ],
       "time": "DSN",
       "weathers": {
@@ -68,8 +68,8 @@
       "mooch": "",
       "tug": 2,
       "timer": [
-        7,
-        24
+        10,
+        23
       ],
       "time": "DSN",
       "weathers": {
@@ -92,8 +92,8 @@
       "mooch": "",
       "tug": 3,
       "timer": [
-        15,
-        36
+        16,
+        35
       ],
       "time": "DSN",
       "weathers": {
@@ -116,7 +116,7 @@
       "mooch": "",
       "tug": 1,
       "timer": [
-        6,
+        7,
         18
       ],
       "time": "DSN",
@@ -134,8 +134,8 @@
       "mooch": "",
       "tug": 2,
       "timer": [
-        15,
-        28
+        16,
+        27
       ],
       "time": "DSN",
       "weathers": {
@@ -152,8 +152,8 @@
       "mooch": "",
       "tug": 1,
       "timer": [
-        14,
-        25
+        15,
+        24
       ],
       "time": "DSN",
       "weathers": {
@@ -170,8 +170,8 @@
       "mooch": "",
       "tug": 3,
       "timer": [
-        18,
-        36
+        19,
+        35
       ],
       "time": "DSN",
       "weathers": {
@@ -192,7 +192,7 @@
       "tug": 3,
       "timer": [
         16,
-        28
+        27
       ],
       "time": "DSN",
       "weathers": {
@@ -218,7 +218,7 @@
       "tug": 2,
       "timer": [
         2,
-        6
+        5
       ],
       "time": "DSN",
       "weathers": {
@@ -254,7 +254,7 @@
       "tug": 2,
       "timer": [
         2,
-        7
+        6
       ],
       "time": "DSN",
       "weathers": {
@@ -271,8 +271,8 @@
       "mooch": "",
       "tug": 2,
       "timer": [
-        2,
-        10
+        3,
+        9
       ],
       "time": "DSN",
       "weathers": {
@@ -290,7 +290,7 @@
       "tug": 1,
       "timer": [
         2,
-        7
+        6
       ],
       "time": "DSN",
       "weathers": {
@@ -308,7 +308,7 @@
       "tug": 1,
       "timer": [
         6,
-        12
+        11
       ],
       "time": "D",
       "weathers": {
@@ -325,7 +325,7 @@
       "mooch": "",
       "tug": 2,
       "timer": [
-        3,
+        4,
         7
       ],
       "time": "S",
@@ -344,7 +344,7 @@
       "tug": 3,
       "timer": [
         6,
-        11
+        10
       ],
       "time": "S",
       "weathers": {
@@ -409,8 +409,8 @@
       "mooch": "",
       "tug": 2,
       "timer": [
-        2,
-        10
+        3,
+        9
       ],
       "time": "DSN",
       "weathers": {
@@ -437,7 +437,7 @@
       "tug": 1,
       "timer": [
         2,
-        7
+        6
       ],
       "time": "DSN",
       "weathers": {
@@ -454,8 +454,8 @@
       "mooch": "",
       "tug": 1,
       "timer": [
-        2,
-        11
+        4,
+        10
       ],
       "time": "DSN",
       "weathers": {
@@ -472,7 +472,7 @@
       "mooch": "",
       "tug": 1,
       "timer": [
-        2,
+        4,
         13
       ],
       "time": "DSN",
@@ -490,7 +490,7 @@
       "mooch": "",
       "tug": 1,
       "timer": [
-        8,
+        9,
         21
       ],
       "time": "DSN",
@@ -514,8 +514,8 @@
       "mooch": "Ghoul Barracuda",
       "tug": 3,
       "timer": [
-        7,
-        21
+        8,
+        20
       ],
       "time": "DSN",
       "weathers": {
@@ -532,8 +532,8 @@
       "mooch": "",
       "tug": 1,
       "timer": [
-        15,
-        28
+        17,
+        27
       ],
       "time": "DSN",
       "weathers": {
@@ -567,8 +567,8 @@
       "mooch": "",
       "tug": 3,
       "timer": [
-        19,
-        36
+        20,
+        35
       ],
       "time": "DSN",
       "weathers": {
@@ -615,7 +615,7 @@
       "tug": 1,
       "timer": [
         4,
-        9
+        8
       ],
       "time": "S",
       "weathers": {
@@ -632,7 +632,7 @@
       "tug": 2,
       "timer": [
         2,
-        3
+        2
       ],
       "time": "DSN",
       "weathers": {
@@ -668,7 +668,7 @@
       "tug": 1,
       "timer": [
         2,
-        7
+        6
       ],
       "time": "DSN",
       "weathers": {
@@ -686,7 +686,7 @@
       "tug": 1,
       "timer": [
         2,
-        7
+        6
       ],
       "time": "DSN",
       "weathers": {
@@ -704,7 +704,7 @@
       "tug": 1,
       "timer": [
         2,
-        8
+        7
       ],
       "time": "DSN",
       "weathers": {
@@ -738,7 +738,7 @@
       "mooch": "",
       "tug": 2,
       "timer": [
-        3,
+        4,
         8
       ],
       "time": "D",
@@ -799,8 +799,8 @@
       "mooch": "",
       "tug": 1,
       "timer": [
-        2,
-        10
+        3,
+        9
       ],
       "time": "DSN",
       "weathers": {
@@ -823,8 +823,8 @@
       "mooch": "",
       "tug": 2,
       "timer": [
-        3,
-        13
+        5,
+        11
       ],
       "time": "DSN",
       "weathers": {
@@ -841,8 +841,8 @@
       "mooch": "Tossed Dagger",
       "tug": 2,
       "timer": [
-        9,
-        25
+        11,
+        24
       ],
       "time": "DSN",
       "weathers": {
@@ -859,8 +859,8 @@
       "mooch": "",
       "tug": 1,
       "timer": [
-        3,
-        18
+        6,
+        17
       ],
       "time": "DSN",
       "weathers": {
@@ -877,8 +877,8 @@
       "mooch": "",
       "tug": 1,
       "timer": [
-        9,
-        24
+        10,
+        23
       ],
       "time": "DSN",
       "weathers": {
@@ -901,7 +901,7 @@
       "mooch": "",
       "tug": 2,
       "timer": [
-        8,
+        9,
         21
       ],
       "time": "DSN",
@@ -919,8 +919,8 @@
       "mooch": "",
       "tug": 1,
       "timer": [
-        16,
-        28
+        17,
+        27
       ],
       "time": "DSN",
       "weathers": {
@@ -954,8 +954,8 @@
       "mooch": "",
       "tug": 3,
       "timer": [
-        19,
-        38
+        20,
+        35
       ],
       "time": "DSN",
       "weathers": {
@@ -1056,7 +1056,7 @@
       "tug": 1,
       "timer": [
         2,
-        7
+        6
       ],
       "time": "DSN",
       "weathers": {
@@ -1074,7 +1074,7 @@
       "tug": 2,
       "timer": [
         5,
-        9
+        7
       ],
       "time": "N",
       "weathers": {
@@ -1112,8 +1112,8 @@
       "mooch": "",
       "tug": 3,
       "timer": [
-        2,
-        9
+        3,
+        8
       ],
       "time": "DSN",
       "weathers": {
@@ -1192,8 +1192,8 @@
       "mooch": "",
       "tug": 2,
       "timer": [
-        3,
-        13
+        5,
+        11
       ],
       "time": "DSN",
       "weathers": {
@@ -1213,8 +1213,8 @@
       "mooch": "",
       "tug": 1,
       "timer": [
-        3,
-        13
+        5,
+        11
       ],
       "time": "DSN",
       "weathers": {
@@ -1231,8 +1231,8 @@
       "mooch": "",
       "tug": 2,
       "timer": [
-        4,
-        14
+        5,
+        12
       ],
       "time": "DSN",
       "weathers": {
@@ -1256,7 +1256,7 @@
       "tug": 2,
       "timer": [
         6,
-        18
+        17
       ],
       "time": "DSN",
       "weathers": {
@@ -1273,8 +1273,8 @@
       "mooch": "",
       "tug": 3,
       "timer": [
-        13,
-        33
+        14,
+        31
       ],
       "time": "DSN",
       "weathers": {
@@ -1291,7 +1291,7 @@
       "mooch": "",
       "tug": 2,
       "timer": [
-        6,
+        7,
         19
       ],
       "time": "DSN",
@@ -1315,7 +1315,7 @@
       "mooch": "",
       "tug": 1,
       "timer": [
-        15,
+        16,
         26
       ],
       "time": "DSN",
@@ -1351,8 +1351,8 @@
       "mooch": "",
       "tug": 3,
       "timer": [
-        20,
-        36
+        21,
+        35
       ],
       "time": "DSN",
       "weathers": {
@@ -1435,7 +1435,7 @@
       "tug": 1,
       "timer": [
         2,
-        7
+        6
       ],
       "time": "DSN",
       "weathers": {
@@ -1452,8 +1452,8 @@
       "mooch": "",
       "tug": 2,
       "timer": [
-        3,
-        11
+        4,
+        9
       ],
       "time": "DSN",
       "weathers": {
@@ -1489,7 +1489,7 @@
       "tug": 1,
       "timer": [
         6,
-        11
+        10
       ],
       "time": "N",
       "weathers": {
@@ -1507,7 +1507,7 @@
       "tug": 1,
       "timer": [
         2,
-        8
+        7
       ],
       "time": "DSN",
       "weathers": {
@@ -1590,7 +1590,7 @@
       "mooch": "",
       "tug": 2,
       "timer": [
-        5,
+        6,
         11
       ],
       "time": "",
@@ -1630,8 +1630,8 @@
       "mooch": "",
       "tug": 1,
       "timer": [
-        4,
-        13
+        5,
+        10
       ],
       "time": "",
       "weathers": null,
@@ -1647,7 +1647,7 @@
       "tug": 2,
       "timer": [
         12,
-        27
+        26
       ],
       "time": "",
       "weathers": null,
@@ -1708,7 +1708,7 @@
       "tug": 3,
       "timer": [
         18,
-        28
+        29
       ],
       "time": "",
       "weathers": null,
@@ -1847,7 +1847,10 @@
       "doubleHook": 2,
       "mooch": "",
       "tug": 2,
-      "timer": 7.5,
+      "timer": [
+        7.5,
+        7.5
+      ],
       "time": "S",
       "weathers": null,
       "stars": 4,
@@ -1909,8 +1912,8 @@
       "mooch": "",
       "tug": 2,
       "timer": [
-        8,
-        8
+        7,
+        9
       ],
       "time": "S",
       "weathers": null,
@@ -1924,7 +1927,10 @@
       "doubleHook": 1,
       "mooch": "",
       "tug": 3,
-      "timer": 10,
+      "timer": [
+        10,
+        10
+      ],
       "time": "N",
       "weathers": null,
       "stars": 5,
@@ -1990,7 +1996,7 @@
       "mooch": "",
       "tug": 2,
       "timer": [
-        4,
+        5,
         10
       ],
       "time": "",
@@ -2006,7 +2012,7 @@
       "mooch": "",
       "tug": 2,
       "timer": [
-        11,
+        10,
         16
       ],
       "time": "",
@@ -2120,7 +2126,7 @@
       "mooch": "",
       "tug": 3,
       "timer": [
-        1,
+        10,
         10
       ],
       "time": "",
@@ -2225,7 +2231,7 @@
       "tug": 1,
       "timer": [
         5,
-        6
+        7
       ],
       "time": "D",
       "weathers": null,
@@ -2286,7 +2292,7 @@
       "points": 500,
       "doubleHook": 1,
       "mooch": "",
-      "tug": null,
+      "tug": 3,
       "timer": null,
       "time": "D",
       "weathers": null,
@@ -2368,7 +2374,7 @@
       "mooch": "",
       "tug": 1,
       "timer": [
-        12,
+        11,
         26
       ],
       "time": "",
@@ -2461,8 +2467,8 @@
       "mooch": "",
       "tug": 3,
       "timer": [
-        17,
-        22
+        16,
+        23
       ],
       "time": "",
       "weathers": {

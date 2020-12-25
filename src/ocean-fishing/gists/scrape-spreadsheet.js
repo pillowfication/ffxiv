@@ -446,7 +446,16 @@ const data = {}
 
   for (const key in data) {
     for (const fish of data[key]) {
-      fish.timer = biteTimesMap[fish.name] || fish.timer
+      // const original = fish.timer
+      // const teamcraftAll = biteTimesMap[fish.name] && biteTimesMap[fish.name].all
+      // const teamcraftRemoved = biteTimesMap[fish.name] && biteTimesMap[fish.name].removed
+      // console.log([
+      //   fish.name,
+      //   original && original.join('-'),
+      //   teamcraftRemoved && teamcraftRemoved.join('-'),
+      //   teamcraftAll && teamcraftAll.join('-')
+      // ].join(','))
+      fish.timer = biteTimesMap[fish.name] ? biteTimesMap[fish.name].removed : fish.timer
     }
   }
 

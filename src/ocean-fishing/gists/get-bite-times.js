@@ -65,13 +65,29 @@ module.exports = async function getBiteTimes (fishes) {
   const results = []
   for (const fish of fishes) {
     const id = await getId(fish)
-    const times = DATA
-      .filter((datum) => datum.itemId === id)
-      .map((datum) => datum.biteTime)
+    const times = DATA.filter((datum) => datum.itemId === id).sort((a, b) => a.biteTime - b.biteTime)
     if (times.length === 0) {
       results.push(null)
     } else {
-      results.push([Math.min(...times), Math.max(...times)])
+      const totalOccurrences = times.reduce((acc, curr) => acc + curr.occurences, 0)
+      const cutOff = Math.floor(totalOccurrences * 0.01)
+      let minTime, maxTime
+      for (let count = 0, index = 0; index < times.length; ++index) {
+        count += times[index].occurences
+        if (minTime === undefined && count >= cutOff) {
+          minTime = times[index].biteTime
+        }
+        if (maxTime === undefined && count >= totalOccurrences - cutOff) {
+          maxTime = times[index].biteTime
+        }
+      }
+      // if (minTime !== times[0].biteTime || maxTime !== times[times.length - 1].biteTime) {
+      //   console.log(`Changed ${fish}`, [times[0].biteTime, times[times.length - 1].biteTime], [minTime, maxTime])
+      // }
+      results.push({
+        all: [times[0].biteTime, times[times.length - 1].biteTime],
+        removed: [minTime, maxTime]
+      })
     }
   }
   if (!cacheIds) {
