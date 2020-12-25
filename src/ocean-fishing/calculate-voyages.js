@@ -1,4 +1,5 @@
 const _9HR = 32400000
+const _45MIN = 2700000
 
 // Cycle repeats every 12 days starting at this epoch
 const LULU_EPOCH = 1593270000000 + _9HR
@@ -10,21 +11,14 @@ function fromEpoch (day, hour) {
 }
 
 function calculateVoyages (date, count, filter) {
-  date = new Date(date.getTime() + _9HR)
-  let day = Math.floor((date.getTime() - LULU_EPOCH) / 86400000)
-  let hour = date.getUTCHours()
+  const adjustedDate = new Date(date.getTime() + _9HR - _45MIN) // Subtract 45 minutes to catch ongoing voyages
+  let day = Math.floor((adjustedDate.getTime() - LULU_EPOCH) / 86400000)
+  let hour = adjustedDate.getUTCHours()
 
-  // Adjust time to fall on the next voyage, including any ongoing
-  if (date.getUTCMinutes() < 45) {
-    hour -= 1
-  }
   hour += (hour & 1) ? 2 : 1
-  if (hour === 0) {
-    day -= 1
-    hour = 24
-  } else if (hour === 25) {
+  if (hour > 23) {
     day += 1
-    hour = 1
+    hour -= 24
   }
 
   // Find the current voyage
