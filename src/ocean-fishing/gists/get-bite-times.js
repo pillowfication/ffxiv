@@ -86,7 +86,8 @@ module.exports = async function getBiteTimes (fishes) {
       // }
       results.push({
         all: [times[0].biteTime, times[times.length - 1].biteTime],
-        removed: [minTime, maxTime]
+        removed: [minTime, maxTime],
+        samples: totalOccurrences
       })
     }
   }

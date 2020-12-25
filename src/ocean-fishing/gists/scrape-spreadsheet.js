@@ -449,11 +449,13 @@ const data = {}
       // const original = fish.timer
       // const teamcraftAll = biteTimesMap[fish.name] && biteTimesMap[fish.name].all
       // const teamcraftRemoved = biteTimesMap[fish.name] && biteTimesMap[fish.name].removed
+      // const samples = biteTimesMap[fish.name] && biteTimesMap[fish.name].samples
       // console.log([
       //   fish.name,
       //   original && original.join('-'),
       //   teamcraftRemoved && teamcraftRemoved.join('-'),
-      //   teamcraftAll && teamcraftAll.join('-')
+      //   teamcraftAll && teamcraftAll.join('-'),
+      //   samples
       // ].join(','))
       fish.timer = biteTimesMap[fish.name] ? biteTimesMap[fish.name].removed : fish.timer
     }
