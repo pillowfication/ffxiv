@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
 const AchievementsInformation = ({ selectedRoute }) => {
   if (!selectedRoute) return null
   const achievements = selectedRoute && ACHIEVEMENTS_MAP[selectedRoute]
+  if (!achievements) return null
   const stops = getStops(selectedRoute)
 
   return achievements.map((achievement) =>
