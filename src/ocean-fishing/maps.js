@@ -26,7 +26,7 @@ export const OBJECTIVES_MAP = {
   RD: ['What Did Sharks Do to You?', 'Coral Manta'],
   RN: ['What Did Jellyfish Do to You?'],
   RS: ['Sothis', 'Stonescale'],
-  TD: ['What Did Balloons Do to You?'],
+  TD: ['What Did Balloons Do to You?', 'What Did Mantas Do to You?'],
   TN: ['What Did Balloons Do to You?', 'Stonescale'],
   TS: ['Hafgufa', 'Placodus']
 }
@@ -59,14 +59,14 @@ export const BLUE_FISH_MAP = {
 }
 
 export const ACHIEVEMENTS_MAP = {
-  BD: 'What Did Crabs Do to You?',
-  BN: 'What Did Mantas Do to You?',
-  NN: 'What Did Octopodes Do to You?',
-  NS: 'What Did Seadragons Do to You?',
-  RD: 'What Did Sharks Do to You?',
-  RN: 'What Did Jellyfish Do to You?',
-  TD: 'What Did Balloons Do to You?',
-  TN: 'What Did Balloons Do to You?'
+  BD: ['What Did Crabs Do to You?'],
+  BN: ['What Did Mantas Do to You?'],
+  NN: ['What Did Octopodes Do to You?'],
+  NS: ['What Did Seadragons Do to You?'],
+  RD: ['What Did Sharks Do to You?'],
+  RN: ['What Did Jellyfish Do to You?'],
+  TD: ['What Did Balloons Do to You?', 'What Did Mantas Do to You?'],
+  TN: ['What Did Balloons Do to You?']
 }
 
 export const FILTER_MAP = {
@@ -99,5 +99,5 @@ export const FILTER_MAP = {
   seadragons: ['NS'],
   balloons: ['TD', 'TN'],
   crabs: ['BD'],
-  mantas: ['BN']
+  mantas: ['BN', 'TD']
 }

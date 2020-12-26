@@ -40,10 +40,20 @@ const useStyles = makeStyles((theme) => ({
 
 const AchievementsInformation = ({ selectedRoute }) => {
   if (!selectedRoute) return null
-
-  const classes = useStyles()
-  const achievement = selectedRoute && ACHIEVEMENTS_MAP[selectedRoute]
+  const achievements = selectedRoute && ACHIEVEMENTS_MAP[selectedRoute]
   const stops = getStops(selectedRoute)
+
+  return achievements.map((achievement) =>
+    <AchievementInformation
+      key={achievement}
+      achievement={achievement}
+      stops={stops}
+    />
+  )
+}
+
+const AchievementInformation = ({ achievement, stops }) => {
+  const classes = useStyles()
 
   switch (achievement) {
     case 'What Did Octopodes Do to You?':
@@ -669,20 +679,48 @@ const AchievementsInformation = ({ selectedRoute }) => {
                 title={<Typography variant='h6'>3. {DEST_MAP[stops[2][0]]} {TIME_MAP[stops[2][1]]}</Typography>}
                 disableTypography
               />
-              <CardContent>
-                <BaitList
-                  baitGroups={[{
-                    header: 'DH at ≥5s',
-                    baitGroup: <BaitGroup {...getBaitChain('Skaldminni')} showDH />
-                  }]}
-                />
-              </CardContent>
-              <CardContent>
-                <Typography variant='overline'>Spectral</Typography>
-                <Typography paragraph>
-                  Reel any <Tug.Medium />. Beatific Vision and Gory Tuna go away at 5s. Go for IC–DH if it’s all you need, instead of hoping for more blind DHs.
-                </Typography>
-              </CardContent>
+              {(() => {
+                switch (stops[2]) {
+                  case 'BN':
+                    return (
+                      <>
+                        <CardContent>
+                          <BaitList
+                            baitGroups={[{
+                              header: 'DH at ≥5s',
+                              baitGroup: <BaitGroup {...getBaitChain('Skaldminni')} showDH />
+                            }]}
+                          />
+                        </CardContent>
+                        <CardContent>
+                          <Typography variant='overline'>Spectral</Typography>
+                          <Typography paragraph>
+                            Reel any <Tug.Medium />. Beatific Vision and Gory Tuna go away at 5s. Go for IC–DH if it’s all you need, instead of hoping for more blind DHs.
+                          </Typography>
+                        </CardContent>
+                      </>
+                    )
+                  case 'TD':
+                    return (
+                      <>
+                        <CardContent>
+                          <BaitList
+                            baitGroups={[{
+                              header: 'IC–DH at 4-5s',
+                              baitGroup: <BaitGroup {...getBaitChain('Panoptes')} showDH />
+                            }]}
+                          />
+                        </CardContent>
+                        <CardContent>
+                          <Typography variant='overline'>Spectral</Typography>
+                          <Typography paragraph>
+                            Reel any <Tug.Medium />. Panoptes can possibly be a blind DH (needs confirmation). Don’t mooch Rothlyt Mussels for Panoptes; recast instead.
+                          </Typography>
+                        </CardContent>
+                      </>
+                    )
+                }
+              })()}
             </RouteCard>
           </RouteCardContainer>
         </Section>
