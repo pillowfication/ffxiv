@@ -30,7 +30,7 @@ const LINES = [
   [2, 4, 6]
 ]
 
-function getPermutations (digits) {
+function getPermutations (digits: number): number[][] {
   if (digits === 1) {
     return [[1]]
   } else {
@@ -47,12 +47,12 @@ function getPermutations (digits) {
   }
 }
 
-function rotatePermutation (permutation, count) {
+function rotatePermutation (permutation: number[], count: number): number[] {
   const rotation = [2, 5, 8, 1, 4, 7, 0, 3, 6].map(index => permutation[index])
   return count <= 1 ? rotation : rotatePermutation(rotation, count - 1)
 }
 
-function scoreLine (permutation, lineId) {
+function scoreLine (permutation: number[], lineId: number): number {
   const line = LINES[lineId]
   return PAYOUTS[permutation[line[0]] + permutation[line[1]] + permutation[line[2]]]
 }
@@ -168,3 +168,4 @@ for (const permutation of getPermutations(9)) {
 }
 
 console.log(EV / 362880 / 9)
+export {}

@@ -1,10 +1,11 @@
-const fs = require('fs')
-const path = require('path')
-const { getSuggestion } = require('./calculate-mini-cactpot')
+// Change `import CACHE` to `CACHE = []` in calculate-mini-cactpot before running this file
+import fs from 'fs'
+import path from 'path'
+import { getSuggestion } from '../calculate-mini-cactpot'
 
 const CACHE_LOCATION = path.resolve(__dirname, './cache.json')
 
-const cache = []
+const cache: {v: number, c: number | number[]}[] = []
 for (let i = 0; i < 9; ++i) {
   const grid = Array(9).fill(null)
   for (let digit = 1; digit <= 9; ++digit) {
