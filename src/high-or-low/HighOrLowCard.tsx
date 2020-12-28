@@ -1,7 +1,6 @@
 import React from 'react'
+import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
-import cn from 'classnames'
-import PropTypes from 'prop-types'
 import { fade } from '@material-ui/core/styles/colorManipulator'
 import TextField from '@material-ui/core/TextField'
 
@@ -31,11 +30,18 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const HighOrLowCard = ({ value, disabled, error, onInputDigit }) => {
+type Props = {
+  value?: number,
+  disabled?: boolean,
+  error?: boolean,
+  onInputDigit?: (digit: number) => void
+}
+
+const HighOrLowCard: React.FunctionComponent<Props> = ({ value, disabled, error, onInputDigit = () => {} }) => {
   const classes = useStyles()
 
-  const handleInputDigit = (event) => {
-    const { key } = event
+  const handleInputDigit = (event: React.KeyboardEvent) => {
+    const key = event.key
     if (key === 'Backspace' || key === 'Delete') {
       onInputDigit(null)
     } else {
@@ -51,19 +57,12 @@ const HighOrLowCard = ({ value, disabled, error, onInputDigit }) => {
       variant='outlined'
       disabled={disabled}
       error={error}
-      InputProps={{ className: cn(classes.card, disabled && classes.disabled) }}
+      InputProps={{ className: clsx(classes.card, disabled && classes.disabled) }}
       inputProps={{ className: classes.cardInput }}
       onKeyDown={handleInputDigit}
       value={disabled ? '?' : (value || '')}
     />
   )
-}
-
-HighOrLowCard.propTypes = {
-  value: PropTypes.number,
-  disabled: PropTypes.bool,
-  error: PropTypes.bool,
-  onInputDigit: PropTypes.func
 }
 
 export default HighOrLowCard
