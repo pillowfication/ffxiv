@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography'
 import Section from '../Section'
 import { $, $$ } from '../MathJax'
 
-const About: React.FunctionComponent = () => {
+const About = () => {
   return (
     <Section title='About'>
       <Typography paragraph>

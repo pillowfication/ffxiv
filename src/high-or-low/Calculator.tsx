@@ -24,7 +24,7 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const Calculator: React.FunctionComponent = () => {
+const Calculator = () => {
   const [tb1, setTb1] = useState<number>(null)
   const [tb2, setTb2] = useState<number>(null)
   const [me, setMe] = useState<number>(null)

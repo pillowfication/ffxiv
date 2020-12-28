@@ -1,7 +1,6 @@
 import React from 'react'
+import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
-import cn from 'classnames'
-import PropTypes from 'prop-types'
 import { fade } from '@material-ui/core/styles/colorManipulator'
 import TextField from '@material-ui/core/TextField'
 
@@ -31,11 +30,18 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const CalculatorCell = ({ value, suggested, error, onInputDigit }) => {
+type Props = {
+  value?: number,
+  suggested?: boolean,
+  error?: boolean,
+  onInputDigit?: (digit: number) => void
+}
+
+const CalculatorCell = ({ value, suggested, error, onInputDigit = () => {} }: Props) => {
   const classes = useStyles()
 
-  const handleInputDigit = (event) => {
-    const { key } = event
+  const handleInputDigit = (event: React.KeyboardEvent) => {
+    const key = event.key
     if (key === 'Backspace' || key === 'Delete') {
       onInputDigit(null)
     } else {
@@ -50,19 +56,12 @@ const CalculatorCell = ({ value, suggested, error, onInputDigit }) => {
     <TextField
       variant='outlined'
       error={error}
-      InputProps={{ className: cn(classes.cell, suggested && classes.suggested, error && classes.error) }}
+      InputProps={{ className: clsx(classes.cell, suggested && classes.suggested, error && classes.error) }}
       inputProps={{ className: classes.cellInput }}
       onKeyDown={handleInputDigit}
-      value={value || ''}
+      value={value}
     />
   )
-}
-
-CalculatorCell.propTypes = {
-  value: PropTypes.number,
-  suggested: PropTypes.bool,
-  error: PropTypes.bool,
-  onInputDigit: PropTypes.func.isRequired
 }
 
 export default CalculatorCell

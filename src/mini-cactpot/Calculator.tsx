@@ -32,21 +32,24 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Calculator = () => {
-  const [grid, setGrid] = useState(Array(9).fill(null))
+  const [grid, setGrid] = useState<number[]>(Array(9).fill(null))
   const classes = useStyles()
 
-  const handleInputDigit = (cellIndex, digit) => {
+  const handleInputDigit = (cellIndex: number, digit: number) => {
     const newGrid = grid.slice()
     newGrid[cellIndex] = digit
     setGrid(newGrid)
   }
 
-  const handleClickReset = (event) => {
+  const handleClickReset = () => {
     setGrid(Array(9).fill(null))
   }
 
-  const error = validateGrid(grid)
   const errorCells = {}
+  const suggestedCells = {}
+  const error = validateGrid(grid)
+  let suggestion: any
+
   if (error) {
     switch (error.type) {
       case 'TOO MANY':
@@ -56,11 +59,8 @@ const Calculator = () => {
         }
         break
     }
-  }
-
-  const suggestion = !error && getSuggestion(grid)
-  const suggestedCells = {}
-  if (suggestion) {
+  } else {
+    suggestion = getSuggestion(grid)
     switch (suggestion.type) {
       case 'CELL':
         for (const cellIndex of suggestion.maxCellLocations) {
@@ -76,7 +76,7 @@ const Calculator = () => {
     }
   }
 
-  function isLineSuggested (lineId) {
+  function isLineSuggested (lineId: number) {
     return suggestion && suggestion.type === 'LINE' && suggestion.maxLineIds.includes(lineId)
   }
 
@@ -97,19 +97,17 @@ const Calculator = () => {
                 <td><CalculatorLineIndicator rotate={0} suggested={isLineSuggested(2)} /></td>
                 <td rowSpan={3} colSpan={3}>
                   <div className={classes.cellsContainer}>
-                    {[0, 1, 2, null, 3, 4, 5, null, 6, 7, 8].map((cellIndex, index) =>
-                      cellIndex !== null
-                        ? (
-                          <CalculatorCell
-                            key={index}
-                            value={grid[cellIndex]}
-                            suggested={suggestedCells[cellIndex]}
-                            error={errorCells[cellIndex]}
-                            onInputDigit={handleInputDigit.bind(null, cellIndex)}
-                          />
-                        )
-                        : <br key={index} />
-                    )}
+                    <CalculatorCell value={grid[0]} suggested={suggestedCells[0]} error={errorCells[0]} onInputDigit={handleInputDigit.bind(null, 0)} />
+                    <CalculatorCell value={grid[1]} suggested={suggestedCells[1]} error={errorCells[1]} onInputDigit={handleInputDigit.bind(null, 1)} />
+                    <CalculatorCell value={grid[2]} suggested={suggestedCells[2]} error={errorCells[2]} onInputDigit={handleInputDigit.bind(null, 2)} />
+                    <br />
+                    <CalculatorCell value={grid[3]} suggested={suggestedCells[3]} error={errorCells[3]} onInputDigit={handleInputDigit.bind(null, 3)} />
+                    <CalculatorCell value={grid[4]} suggested={suggestedCells[4]} error={errorCells[4]} onInputDigit={handleInputDigit.bind(null, 4)} />
+                    <CalculatorCell value={grid[5]} suggested={suggestedCells[5]} error={errorCells[5]} onInputDigit={handleInputDigit.bind(null, 5)} />
+                    <br />
+                    <CalculatorCell value={grid[6]} suggested={suggestedCells[6]} error={errorCells[6]} onInputDigit={handleInputDigit.bind(null, 6)} />
+                    <CalculatorCell value={grid[7]} suggested={suggestedCells[7]} error={errorCells[7]} onInputDigit={handleInputDigit.bind(null, 7)} />
+                    <CalculatorCell value={grid[8]} suggested={suggestedCells[8]} error={errorCells[8]} onInputDigit={handleInputDigit.bind(null, 8)} />
                   </div>
                 </td>
               </tr>

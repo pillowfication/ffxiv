@@ -37,7 +37,7 @@ type Props = {
   onInputDigit?: (digit: number) => void
 }
 
-const HighOrLowCard: React.FunctionComponent<Props> = ({ value, disabled, error, onInputDigit = () => {} }) => {
+const HighOrLowCard = ({ value, disabled, error, onInputDigit = () => {} }: Props) => {
   const classes = useStyles()
 
   const handleInputDigit = (event: React.KeyboardEvent) => {
