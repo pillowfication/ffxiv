@@ -1,7 +1,6 @@
 import React from 'react'
+import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
-import cn from 'classnames'
-import PropTypes from 'prop-types'
 import { fade } from '@material-ui/core/styles/colorManipulator'
 
 const useStyles = makeStyles((theme) => ({
@@ -23,20 +22,21 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const CalculatorCell = ({ selected, onSelect }) => {
+type Props = {
+  selected?: boolean,
+  onSelect?: () => void
+}
+
+const CalculatorCell = ({ selected, onSelect = () => {} }: Props) => {
   const classes = useStyles()
 
   return (
     <div
-      className={cn(classes.cell, selected && classes.selected)}
+      className={clsx(classes.cell, selected && classes.selected)}
       onClick={onSelect}
     />
   )
 }
 
-CalculatorCell.propTypes = {
-  selected: PropTypes.bool,
-  onSelect: PropTypes.func.isRequired
-}
 
 export default CalculatorCell

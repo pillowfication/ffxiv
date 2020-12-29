@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import Section from '../Section'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import TableContainer from '@material-ui/core/TableContainer'
@@ -10,6 +9,7 @@ import TableBody from '@material-ui/core/TableBody'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import Button from '@material-ui/core/Button'
+import Section from '../Section'
 import CalculatorCell from './CalculatorCell'
 import calculateProbabilities from './calculate-probabilities'
 
@@ -57,11 +57,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-function toPercent (val) {
+function toPercent (val: number) {
   return <Typography>{(val * 100).toFixed(1) + '%'}</Typography>
 }
 
-function toDeviationPercent (val) {
+function toDeviationPercent (val: number) {
   const string = (val >= 0 ? '+' : '') + (val * 100).toFixed(1) + '%'
   const color = val > 0 ? 'green' : val < 0 ? 'red' : undefined
   return <Typography style={{ color }}>{string}</Typography>
@@ -73,13 +73,13 @@ const Calculator = () => {
   const { lines1, lines2, lines3, total } = calculateProbabilities(board)
   const filledCells = board.filter((x) => x).length
 
-  const toggleCell = (index) => {
+  const toggleCell = (index: number) => {
     const newBoard = board.slice()
     newBoard[index] = !board[index]
     setBoard(newBoard)
   }
 
-  const handleClickReset = (event) => {
+  const handleClickReset = () => {
     setBoard(Array(16).fill(false))
   }
 

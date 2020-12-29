@@ -34,9 +34,9 @@ export const LINES = [
   [2, 4, 6]
 ]
 
-function memoize<T extends Function> (func: T, createKey: (...args: any[]) => string): T {
+function memoize<A extends any[], R> (func: (...args: A) => R, createKey: (...args: A) => string): (...args: A) => R {
   const cache = {}
-  return <T><unknown>function (...args: any[]): any {
+  return function (...args: A): R {
     const key: string = createKey.apply(null, args)
     if (cache[key]) {
       return cache[key]

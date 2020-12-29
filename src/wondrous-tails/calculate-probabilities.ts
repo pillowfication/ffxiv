@@ -11,7 +11,7 @@ const LINES = [
   [3, 6, 9, 12]
 ]
 
-function countLines (board) {
+function countLines (board: boolean[]) {
   let count = 0
   for (const line of LINES) {
     if (board[line[0]] && board[line[1]] && board[line[2]] && board[line[3]]) {
@@ -21,7 +21,7 @@ function countLines (board) {
   return count
 }
 
-function choose (set, count) {
+function choose (set: number[], count: number): number[][] {
   if (count >= set.length) {
     return [set.slice()]
   } else if (count === 0) {
@@ -34,8 +34,8 @@ function choose (set, count) {
   }
 }
 
-function calculateProbabilities (board) {
-  const emptyIndices = Array(16).fill().map((_, index) => index).filter(index => !board[index])
+function calculateProbabilities (board: boolean[]) {
+  const emptyIndices = Array(16).fill(undefined).map((_, index) => index).filter(index => !board[index])
   const possibleBoards = choose(emptyIndices, Math.max(emptyIndices.length - 7, 0)).map(empties => {
     const newBoard = board.slice()
     for (const index of empties) {
@@ -57,4 +57,4 @@ function calculateProbabilities (board) {
   }
 }
 
-module.exports = calculateProbabilities
+export default calculateProbabilities
