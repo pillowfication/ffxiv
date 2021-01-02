@@ -98,7 +98,7 @@ const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute }: Props) =>
                 <TableRow
                   key={time.getTime()}
                   hover
-                  className={clsx(filter && hover === destinationCode && classes.hoverRow)}
+                  className={clsx(!filter && hover === destinationCode && classes.hoverRow)}
                   onMouseOver={setHover.bind(null, destinationCode)}
                   onClick={onSelectRoute.bind(null, destinationCode)}
                 >
@@ -112,7 +112,7 @@ const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute }: Props) =>
                     <Typography className={classes.timeUntil}>{timeUntil(now, time)}</Typography>
                   </TableCell>
                   <TableCell align='right'>
-                    <Typography>{translate(fishingSpots[maps.STOP_MAP[destinationCode[0]]], 'name', locale)}</Typography>
+                    <Typography>{translate(fishingSpots[maps.STOP_MAP[destinationCode[0]]], 'name_sub', locale)}</Typography>
                   </TableCell>
                   <TableCell className={classes.timeCell}>
                     {maps.TIME_MAP[destinationCode[1]]}

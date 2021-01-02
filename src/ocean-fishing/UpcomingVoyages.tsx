@@ -99,29 +99,29 @@ const UpcomingVoyages = ({ now, onSelectRoute }: Props) => {
                 <option value='crabs'>{translate(achievements[2755], 'name', locale)}</option>
                 <option value='mantas'>{translate(achievements[2756], 'name', locale)}</option>
               </optgroup>
-              <optgroup label={translate(fishingSpots[241], 'name', locale)}>
-                <option value='R'>{translate(fishingSpots[241], 'name', locale)}</option>
-                <option value='RD'>{translate(fishingSpots[241], 'name', locale)} - Day</option>
-                <option value='RS'>{translate(fishingSpots[241], 'name', locale)} - Sunset</option>
-                <option value='RN'>{translate(fishingSpots[241], 'name', locale)} - Night</option>
+              <optgroup label={translate(fishingSpots[241], 'name_sub', locale)}>
+                <option value='R'>{translate(fishingSpots[241], 'name_sub', locale)}</option>
+                <option value='RD'>{translate(fishingSpots[241], 'name_sub', locale)} - Day</option>
+                <option value='RS'>{translate(fishingSpots[241], 'name_sub', locale)} - Sunset</option>
+                <option value='RN'>{translate(fishingSpots[241], 'name_sub', locale)} - Night</option>
               </optgroup>
-              <optgroup label={translate(fishingSpots[243], 'name', locale)}>
-                <option value='N'>{translate(fishingSpots[243], 'name', locale)}</option>
-                <option value='ND'>{translate(fishingSpots[243], 'name', locale)} - Day</option>
-                <option value='NS'>{translate(fishingSpots[243], 'name', locale)} - Sunset</option>
-                <option value='NN'>{translate(fishingSpots[243], 'name', locale)} - Night</option>
+              <optgroup label={translate(fishingSpots[243], 'name_sub', locale)}>
+                <option value='N'>{translate(fishingSpots[243], 'name_sub', locale)}</option>
+                <option value='ND'>{translate(fishingSpots[243], 'name_sub', locale)} - Day</option>
+                <option value='NS'>{translate(fishingSpots[243], 'name_sub', locale)} - Sunset</option>
+                <option value='NN'>{translate(fishingSpots[243], 'name_sub', locale)} - Night</option>
               </optgroup>
-              <optgroup label={translate(fishingSpots[248], 'name', locale)}>
-                <option value='B'>{translate(fishingSpots[248], 'name', locale)}</option>
-                <option value='BD'>{translate(fishingSpots[248], 'name', locale)} - Day</option>
-                <option value='BS'>{translate(fishingSpots[248], 'name', locale)} - Sunset</option>
-                <option value='BN'>{translate(fishingSpots[248], 'name', locale)} - Night</option>
+              <optgroup label={translate(fishingSpots[248], 'name_sub', locale)}>
+                <option value='B'>{translate(fishingSpots[248], 'name_sub', locale)}</option>
+                <option value='BD'>{translate(fishingSpots[248], 'name_sub', locale)} - Day</option>
+                <option value='BS'>{translate(fishingSpots[248], 'name_sub', locale)} - Sunset</option>
+                <option value='BN'>{translate(fishingSpots[248], 'name_sub', locale)} - Night</option>
               </optgroup>
-              <optgroup label={translate(fishingSpots[250], 'name', locale)}>
-                <option value='T'>{translate(fishingSpots[250], 'name', locale)}</option>
-                <option value='TD'>{translate(fishingSpots[250], 'name', locale)} - Day</option>
-                <option value='TS'>{translate(fishingSpots[250], 'name', locale)} - Sunset</option>
-                <option value='TN'>{translate(fishingSpots[250], 'name', locale)} - Night</option>
+              <optgroup label={translate(fishingSpots[250], 'name_sub', locale)}>
+                <option value='T'>{translate(fishingSpots[250], 'name_sub', locale)}</option>
+                <option value='TD'>{translate(fishingSpots[250], 'name_sub', locale)} - Day</option>
+                <option value='TS'>{translate(fishingSpots[250], 'name_sub', locale)} - Sunset</option>
+                <option value='TN'>{translate(fishingSpots[250], 'name_sub', locale)} - Night</option>
               </optgroup>
             </Select>
           </FormControl>

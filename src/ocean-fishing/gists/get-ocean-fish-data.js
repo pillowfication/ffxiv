@@ -32,6 +32,10 @@ const results = {
         name_en: fishingSpot.PlaceName.Name_en,
         name_fr: fishingSpot.PlaceName.Name_fr,
         name_ja: fishingSpot.PlaceName.Name_ja,
+        name_sub_de: fishingSpot.PlaceNameSub.Name_de,
+        name_sub_en: fishingSpot.PlaceNameSub.Name_en,
+        name_sub_fr: fishingSpot.PlaceNameSub.Name_fr,
+        name_sub_ja: fishingSpot.PlaceNameSub.Name_ja,
         fishes: getFishIds(fishingSpot)
       }
     }

@@ -69,7 +69,7 @@ const RouteInformation = ({ now, selectedRoute, checklist, setChecklist }: Props
       title={
         <Grid container>
           <Grid item xs={12} lg={8}>
-            {translate(fishingSpots[maps.STOP_MAP[selectedRoute[0]]], 'name', locale)}
+            {translate(fishingSpots[maps.STOP_MAP[selectedRoute[0]]], 'name_sub', locale)}
             <span className={classes.headerTime}>{maps.TIME_MAP[selectedRoute[1]]}</span>
             <Typography display='inline' className={classes.headerSub}>{timeUntil(now, next, true)}</Typography>
           </Grid>

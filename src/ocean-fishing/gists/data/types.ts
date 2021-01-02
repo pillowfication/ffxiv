@@ -4,6 +4,10 @@ export type FishingSpot = {
   name_en: string,
   name_fr: string,
   name_ja: string,
+  name_sub_de: string,
+  name_sub_en: string,
+  name_sub_fr: string,
+  name_sub_ja: string,
   fishes: number[]
 }
 
