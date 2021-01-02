@@ -13,7 +13,12 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Button from '@material-ui/core/Button'
 import Switch from '@material-ui/core/Switch'
+import Tooltip from '@material-ui/core/Tooltip'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
 import HomeIcon from '@material-ui/icons/Home'
+import TranslateIcon from '@material-ui/icons/Translate'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Brightness2Icon from '@material-ui/icons/Brightness2'
 import Brightness5Icon from '@material-ui/icons/Brightness5'
 import { lightTheme, darkTheme } from '../src/themes'
@@ -25,10 +30,28 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(0.5)
   },
   homeIcon: {
-    marginRight: theme.spacing(1)
+    [theme.breakpoints.up('md')]: {
+      marginRight: theme.spacing(1)
+    },
   },
   titleButton: {
     textTransform: 'none'
+  },
+  languageButton: {
+    marginRight: theme.spacing(2)
+  },
+  language: {
+    margin: theme.spacing(0, 0.5, 0, 1),
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'block',
+    },
+  },
+  brightnessIcon: {
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'block',
+    }
   },
   main: {
     paddingTop: '4rem',
@@ -37,9 +60,10 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const App = ({ Component, pageProps }) => {
-  const [theme, setTheme] = useState('light')
   const classes = useStyles()
-  const { asPath } = useRouter()
+  const router = useRouter()
+  const [languageAnchorEl, setLanguageAnchorEl] = useState<Element>(null)
+  const [theme, setTheme] = useState('light')
 
   useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side')
@@ -53,6 +77,17 @@ const App = ({ Component, pageProps }) => {
     window.localStorage.setItem('theme', theme)
   }, [theme])
 
+  const handleClickLanguage = (event: React.MouseEvent) => {
+    setLanguageAnchorEl(event.currentTarget)
+  }
+
+  const handleSelectLanguage = (locale: string) => {
+    setLanguageAnchorEl(null)
+    if (locale && router.locales.includes(locale)) {
+      router.push(router.asPath, router.asPath, { locale })
+    }
+  }
+
   const handleChangeTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light')
   }
@@ -62,7 +97,8 @@ const App = ({ Component, pageProps }) => {
       <Head>
         <title>Lulu’s FFXIV Tools</title>
         <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width' />
-        <link rel='canonical' href={`https://ffxiv.pf-n.co${asPath}`} />
+        {/* Do the locale prefixes mess this up? */}
+        <link rel='canonical' href={`https://ffxiv.pf-n.co${router.asPath}`} />
         <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_HTML' />
       </Head>
       <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
@@ -83,12 +119,35 @@ const App = ({ Component, pageProps }) => {
               </Grid>
               <Grid item>
                 <Toolbar disableGutters className={classes.toolbar}>
-                  <Brightness5Icon />
+                  <Tooltip title='Choose Language' enterDelay={300}>
+                    <Button
+                      variant='contained'
+                      color='primary'
+                      disableElevation
+                      className={classes.languageButton}
+                      onClick={handleClickLanguage}
+                    >
+                      <TranslateIcon fontSize='small' />
+                      <span className={classes.language}>{router.locale}</span>
+                      <ExpandMoreIcon fontSize='small' />
+                    </Button>
+                  </Tooltip>
+                  <Menu
+                    anchorEl={languageAnchorEl}
+                    keepMounted
+                    open={Boolean(languageAnchorEl)}
+                    onClose={handleSelectLanguage.bind(null, null)}
+                  >
+                    {router.locales.map(locale =>
+                      <MenuItem key={locale} onClick={handleSelectLanguage.bind(null, locale)}>{locale.toUpperCase()}</MenuItem>
+                    )}
+                  </Menu>
+                  <Brightness5Icon className={classes.brightnessIcon} />
                   <Switch
                     checked={theme === 'dark'}
                     onChange={handleChangeTheme}
                   />
-                  <Brightness2Icon />
+                  <Brightness2Icon className={classes.brightnessIcon} />
                 </Toolbar>
               </Grid>
             </Grid>
