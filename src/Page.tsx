@@ -1,10 +1,14 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import Head from 'next/head'
 import Typography from '@material-ui/core/Typography'
 import Footer from '../src/Footer'
 
-const Page = ({ title, children }) => {
+type Props = {
+  title?: string,
+  children?: React.ReactNode
+}
+
+const Page = ({ title, children }: Props) => {
   return (
     <>
       <Head>
@@ -15,10 +19,6 @@ const Page = ({ title, children }) => {
       <Footer />
     </>
   )
-}
-
-Page.propTypes = {
-  title: PropTypes.string.isRequired
 }
 
 export default Page

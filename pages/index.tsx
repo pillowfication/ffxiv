@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { makeStyles, fade } from '@material-ui/core/styles'
 import Link from '../src/Link'
 import Typography from '@material-ui/core/Typography'
@@ -51,7 +50,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const IndexSection = ({ url, title, children }) => {
+type IndexSectionProps = {
+  url: string,
+  title: string,
+  children?: React.ReactNode
+}
+
+const IndexSection = ({ url, title, children }: IndexSectionProps) => {
   return (
     <>
       <Link href={url}>
@@ -60,11 +65,6 @@ const IndexSection = ({ url, title, children }) => {
       {children}
     </>
   )
-}
-
-IndexSection.propTypes = {
-  url: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired
 }
 
 const Index = () => {

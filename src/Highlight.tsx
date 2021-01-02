@@ -1,6 +1,5 @@
 import React from 'react'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
-import cn from 'classnames'
 import Head from 'next/head'
 import ReactHighlight from 'react-highlight.js'
 import Paper from '@material-ui/core/Paper'
@@ -17,13 +16,18 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const Highlight = ({ className, ...props }) => {
+type Props = {
+  language: string
+  children: React.ReactNode,
+}
+
+const Highlight = ({ language, children }: Props) => {
   const theme = useTheme()
   const classes = useStyles()
   const themeCss = theme.palette.type === 'dark' ? 'atom-one-dark' : 'github'
 
   return (
-    <Paper variant='outlined' className={cn(classes.highlight, className)}>
+    <Paper variant='outlined' className={classes.highlight}>
       <Head>
         <link
           key='hljs-css'
@@ -31,7 +35,9 @@ const Highlight = ({ className, ...props }) => {
           href={`https://highlightjs.org/static/demo/styles/${themeCss}.css`}
         />
       </Head>
-      <ReactHighlight {...props} />
+      <ReactHighlight language={language}>
+        {children}
+      </ReactHighlight>
     </Paper>
   )
 }

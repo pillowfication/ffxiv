@@ -53,7 +53,7 @@ const App = ({ Component, pageProps }) => {
     window.localStorage.setItem('theme', theme)
   }, [theme])
 
-  const handleChangeTheme = (event) => {
+  const handleChangeTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light')
   }
 

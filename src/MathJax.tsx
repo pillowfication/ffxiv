@@ -1,12 +1,12 @@
-/* global MathJax */
+declare var MathJax: any
+
 import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import PropTypes from 'prop-types'
 import Highlight from './Highlight'
 
 const setImmediatePolyfill = typeof setImmediate !== 'undefined'
   ? setImmediate
-  : (action) => setTimeout(action, 1)
+  : (action: Function) => setTimeout(action, 1)
 
 let calledRender = false
 function queueRenderMath () {
@@ -37,10 +37,16 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
+type Props = {
+  math: string,
+  displayMode?: boolean
+}
+
 // TODO: SSR still not happy
-const MathJaxComponent = ({ math, displayMode }) => {
-  const [isMounted, setIsMounted] = useState(false)
+const MathJaxComponent = ({ math, displayMode }: Props) => {
   const classes = useStyles()
+  const [isMounted, setIsMounted] = useState(false)
+
   useEffect(() => { isMounted && queueRenderMath() }, [isMounted, math, displayMode])
   useEffect(() => { setIsMounted(true) }, [])
 
@@ -55,10 +61,7 @@ const MathJaxComponent = ({ math, displayMode }) => {
   }
 }
 
-MathJaxComponent.propTypes = {
-  math: PropTypes.string.isRequired,
-  displayMode: PropTypes.bool
-}
+export default MathJaxComponent
 
-export const $ = (math) => <MathJaxComponent math={math} />
-export const $$ = (math) => <MathJaxComponent math={math} displayMode />
+export const $ = (math: string) => <MathJaxComponent math={math} />
+export const $$ = (math: string) => <MathJaxComponent math={math} displayMode />
