@@ -68,6 +68,7 @@ const RouteInformation = ({ now, selectedRoute, checklist, setChecklist }: Props
             <span className={classes.headerTime}>{maps.TIME_MAP[selectedRoute[1]]}</span>
             <Typography display='inline' className={classes.headerSub}>{timeUntil(now, next, true)}</Typography>
           </Grid>
+          {/* @ts-ignore */}
           <Grid item xs={12} lg={4} align='right'>
             <FormControlLabel
               control={

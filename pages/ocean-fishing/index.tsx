@@ -50,6 +50,7 @@ const OceanFishing = () => {
       </Section>
       <Section>
         <Typography paragraph>
+          {/* @ts-ignore */}
           For a static list of all the fish and more information, see the <Link href='/ocean-fishing/fish'>Fish page</Link>.
         </Typography>
       </Section>

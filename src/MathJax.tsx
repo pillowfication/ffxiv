@@ -52,6 +52,7 @@ const MathJaxComponent = ({ math, displayMode }: Props) => {
 
   if (!isMounted || typeof MathJax === 'undefined') {
     return displayMode
+      // @ts-ignore
       ? <Highlight language='latex' className={classes.noMathJaxBlock}>{`\\[${math}\\]`}</Highlight>
       : <span className={classes.noMathJaxInline}>{`\\(${math}\\)`}</span>
   } else {

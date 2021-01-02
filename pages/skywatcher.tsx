@@ -10,7 +10,7 @@ const Skywatcher = () => {
   const [now, setNow] = useState(null)
 
   useEffect(() => {
-    let interval
+    let interval: NodeJS.Timeout
     (function loop () {
       const now = new Date()
       setNow(now)

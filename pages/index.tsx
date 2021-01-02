@@ -59,6 +59,7 @@ type IndexSectionProps = {
 const IndexSection = ({ url, title, children }: IndexSectionProps) => {
   return (
     <>
+      {/* @ts-ignore */}
       <Link href={url}>
         <Typography variant='h5' display='inline'>{title}</Typography>
       </Link>
