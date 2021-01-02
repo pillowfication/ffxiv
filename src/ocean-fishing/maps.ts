@@ -51,7 +51,7 @@ export const GREEN_FISH_MAP: { [key in Stop]: number } = {
   C: 32064,
   G: 29744,
   N: 29747,
-  R: 29788,
+  R: 29746,
   S: 29745,
   T: 32104
 }
