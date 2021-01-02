@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles((theme) => ({
   '@global': {
     section: {
-      marginBottom: theme.spacing(4)
+      marginBottom: theme.spacing(5)
     },
     code: {
       fontFamily: 'Consolas, "Liberation Mono", Courier, monospace',

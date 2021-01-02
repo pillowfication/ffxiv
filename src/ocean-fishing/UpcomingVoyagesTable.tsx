@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
   timeCell: {
     '& svg': {
-      // top: 0,
+      top: 0,
       verticalAlign: 'middle'
     }
   },

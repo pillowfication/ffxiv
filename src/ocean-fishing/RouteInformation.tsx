@@ -22,14 +22,19 @@ import { timeUntil, getStops, getBlueFish, getBaitGroup, translate } from './uti
 const useStyles = makeStyles((theme) => ({
   headerSub: {
     marginLeft: theme.spacing(2),
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('md')]: {
       marginLeft: 0,
       display: 'block'
     }
   },
   headerTime: {
     position: 'relative',
-    top: '-0.2em'
+    top: '-0.2em',
+    marginLeft: '0.25em'
+  },
+  showAllFishCheckbox: {
+    padding: 0,
+    margin: theme.spacing(0, 1)
   }
 }))
 
@@ -73,6 +78,7 @@ const RouteInformation = ({ now, selectedRoute, checklist, setChecklist }: Props
             <FormControlLabel
               control={
                 <Checkbox
+                  className={classes.showAllFishCheckbox}
                   checked={showAllFish}
                   onChange={handleToggleShowAllFish}
                   color='primary'
@@ -112,7 +118,7 @@ const RouteInformation = ({ now, selectedRoute, checklist, setChecklist }: Props
                       ]
                         .filter(x => x)
                         .map(fishId => ({
-                          header: fishes[fishId].name_en,
+                          header: translate(fishes[fishId], 'name', locale),
                           baitGroupProps: getBaitGroup(fishId)
                         }))
                     } />
