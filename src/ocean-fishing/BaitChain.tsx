@@ -1,13 +1,12 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import PropTypes from 'prop-types'
 import Typography from '@material-ui/core/Typography'
+import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import OceanFishIcon from './OceanFishIcon'
 import Tug from './Tug'
-import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 
 const useStyles = makeStyles((theme) => ({
-  baitGroup: {
+  baitChain: {
     display: 'inline-block',
     verticalAlign: 'middle'
   },
@@ -23,21 +22,32 @@ const useStyles = makeStyles((theme) => ({
   },
   dh: {
     verticalAlign: 'middle',
-    marginLeft: theme.spacing(1)
+    marginLeft: theme.spacing(2)
   }
 }))
 
-const BaitChain = ({ bait, showDH }) => {
+export type Bait = {
+  id: number,
+  tug?: 1 | 2 | 3,
+  doubleHook?: number | number[]
+}
+
+type Props = {
+  bait: Bait[],
+  showDH?: boolean
+}
+
+const BaitChain = ({ bait, showDH }: Props) => {
   const classes = useStyles()
 
   return (
-    <div className={classes.baitGroup}>
-      {bait.map(({ name, tug, doubleHook }, index) =>
-        <React.Fragment key={index}>
+    <div className={classes.baitChain}>
+      {bait.map(({ id, tug, doubleHook }, index) =>
+        <React.Fragment key={id}>
           <div className={classes.bait}>
-            <OceanFishIcon name={name} />
-            {tug ? <Tug sup strength={tug} /> : null}
-            {(index === bait.length - 1 && showDH) &&
+            <OceanFishIcon type={index === 0 ? 'bait' : 'fish'} id={id} />
+            {tug && <Tug sup strength={tug} />}
+            {(showDH && index === bait.length - 1) &&
               <Typography className={classes.dh} display='inline'>DH: {Array.isArray(doubleHook) ? doubleHook.join('-') : doubleHook}</Typography>}
           </div>
           {index < bait.length - 1 && <ChevronRightIcon className={classes.chevron} />}
@@ -45,17 +55,6 @@ const BaitChain = ({ bait, showDH }) => {
       )}
     </div>
   )
-}
-
-BaitChain.propTypes = {
-  bait: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      tug: PropTypes.number,
-      doubleHook: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number.isRequired)])
-    })
-  ).isRequired,
-  showDH: PropTypes.bool
 }
 
 export default BaitChain

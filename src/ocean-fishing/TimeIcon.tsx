@@ -1,7 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import Tooltip from '@material-ui/core/Tooltip'
+import * as maps from './maps'
 
 const ICON_SIZE = 32
 
@@ -18,7 +18,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const TimeIcon = ({ time }) => {
+type Props = {
+  time: maps.Time
+}
+
+const TimeIcon = ({ time }: Props) => {
   const classes = useStyles()
 
   switch (time) {
@@ -31,21 +35,14 @@ const TimeIcon = ({ time }) => {
               const delta = 0.22
               const r = 11
               const R = 15
-              const round = (n) => Math.round(n * 100) / 100
-              const ct = (theta, rho) => round(ICON_SIZE / 2 + rho * Math.cos(theta)) + ' ' + round(ICON_SIZE / 2 + rho * Math.sin(theta))
+              const round = (n: number) => Math.round(n * 100) / 100
+              const ct = (theta: number, rho: number) => round(ICON_SIZE / 2 + rho * Math.cos(theta)) + ' ' + round(ICON_SIZE / 2 + rho * Math.sin(theta))
 
               const rays = []
               for (let i = 0; i < 8; ++i) {
                 const theta = i * Math.PI / 4 + Math.PI / 8
                 rays.push(
-                  <path
-                    key={i}
-                    d={
-                      `M ${ct(theta - delta, r, ICON_SIZE / 2, ICON_SIZE / 2)}` +
-                      ` L ${ct(theta, R, ICON_SIZE / 2, ICON_SIZE / 2)}` +
-                      ` L ${ct(theta + delta, r, ICON_SIZE / 2, ICON_SIZE / 2)} Z`
-                    }
-                  />
+                  <path key={i} d={`M ${ct(theta - delta, r)} L ${ct(theta, R)} L ${ct(theta + delta, r)} Z`} />
                 )
               }
               return rays
@@ -73,12 +70,4 @@ const TimeIcon = ({ time }) => {
   }
 }
 
-TimeIcon.propTypes = {
-  time: PropTypes.oneOf(['D', 'S', 'N']).isRequired
-}
-
-TimeIcon.Day = () => <TimeIcon time='D' />
-TimeIcon.Sunset = () => <TimeIcon time='S' />
-TimeIcon.Night = () => <TimeIcon time='N' />
-
-export default TimeIcon
+export default React.memo(TimeIcon)

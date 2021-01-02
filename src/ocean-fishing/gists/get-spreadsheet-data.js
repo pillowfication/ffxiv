@@ -2,11 +2,10 @@ const fs = require('fs')
 const path = require('path')
 const _ = require('lodash')
 const cheerio = require('cheerio')
-const getBiteTimes = require('./get-bite-times')
 const WEATHERS = require('../../skywatcher/weather/consts/weathers')
 
-// https://docs.google.com/spreadsheets/d/1brCfvmSdYl7RcY9lkgm_ds8uaFqq7qaxOOz-5BfHuuk/edit#gid=1833732342
-const SHEET = fs.readFileSync(path.resolve(__dirname, './data/ocean-fishing.html'))
+const SHEET = fs.readFileSync(path.resolve(__dirname, './data/Ocean Fishing Textual Style.html'))
+const OUTPUT = path.resolve(__dirname, './data/spreadsheet-data.json')
 const $ = cheerio.load(SHEET.toString())
 
 const REGIONS = [
@@ -59,7 +58,7 @@ const data = {}
         // versatileLureTimer: parseTimer(tr.find('td:nth-child(7)').text().trim()),
         points: parsePoints(tr.find('td:nth-child(8)').text().trim()),
         doubleHook: parseDoubleHook(tr.find('td:nth-child(9)').text().trim()),
-        mooch: tr.find('td:nth-child(10)').text().trim(),
+        mooch: tr.find('td:nth-child(10)').text().trim() || null,
         tug: parseTug(tr.find('td:nth-child(11)').text().trim()),
         // hookset: tr.find('td:nth-child(12)').text().trim(),
         timer: parseTimer(tr.find('td:nth-child(13)').text().trim()),
@@ -434,32 +433,5 @@ const data = {}
     }
   })
 
-  //
-  // Replace bite times with Teamcraft data
-  //
-  const fishes = Object.keys(data).flatMap((key) => data[key].map(fish => fish.name))
-  const biteTimes = await getBiteTimes(fishes)
-  const biteTimesMap = {}
-  for (let i = 0; i < fishes.length; ++i) {
-    biteTimesMap[fishes[i]] = biteTimes[i]
-  }
-
-  for (const key in data) {
-    for (const fish of data[key]) {
-      // const original = fish.timer
-      // const teamcraftAll = biteTimesMap[fish.name] && biteTimesMap[fish.name].all
-      // const teamcraftRemoved = biteTimesMap[fish.name] && biteTimesMap[fish.name].removed
-      // const samples = biteTimesMap[fish.name] && biteTimesMap[fish.name].samples
-      // console.log([
-      //   fish.name,
-      //   original && original.join('-'),
-      //   teamcraftRemoved && teamcraftRemoved.join('-'),
-      //   teamcraftAll && teamcraftAll.join('-'),
-      //   samples
-      // ].join(','))
-      fish.timer = biteTimesMap[fish.name] ? biteTimesMap[fish.name].removed : fish.timer
-    }
-  }
-
-  fs.writeFileSync(path.resolve(__dirname, './data/fish.json'), JSON.stringify(data, null, 2))
+  fs.writeFileSync(OUTPUT, JSON.stringify(data))
 })()

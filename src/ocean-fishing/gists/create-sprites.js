@@ -1,38 +1,53 @@
 const fs = require('fs')
 const path = require('path')
-const bent = require('bent')
 const { createCanvas, loadImage } = require('canvas')
-const ICONS = require('./icons')
+const { fishingSpots, fishes, baits, achievements } = require('./data/ocean-fish-data.json')
 
-const getJSON = bent('json')
+const OUTPUT = path.resolve(__dirname, './data/ocean-fishing-icons.png')
+const OUTPUT_MAP = path.resolve(__dirname, './data/ocean-fishing-icons-map.json')
+
+// Layout will be
+//   Fishing Spot #1 fishes...
+//   Fishing Spot #2 fishes...
+//   Baits...
+//   Achievements...
+//   Bonus Icons...
+const ICONS = []
+
+function getValuesSorted (obj) {
+  return Object.values(obj).sort((a, b) => a.id - b.id)
+}
+
+// Add fishes
+for (const fishingSpot of getValuesSorted(fishingSpots)) {
+  ICONS.push(fishingSpot.fishes.map(fishId => (
+    { id: fishId, icon: fishes[fishId].icon }
+  )))
+}
+
+// Add baits and achievements
+ICONS.push(getValuesSorted(baits).map(bait => (
+  { id: bait.id, icon: bait.icon }
+)))
+ICONS.push(getValuesSorted(achievements).map(achievement => (
+  { id: achievement.id, icon: achievement.icon }
+)))
+
+// Add bonus icons
+ICONS.push([
+  { id: 'Octopus Travelers', icon: './icons/octopodes.png', isLocal: true },
+  { id: 'Certifiable Shark Hunters', icon: './icons/sharks.png', isLocal: true },
+  { id: 'Jelled Together', icon: './icons/jellyfish.png', isLocal: true },
+  { id: 'Maritime Dragonslayers', icon: './icons/seadragons.png', isLocal: true },
+  { id: 'Balloon Catchers', icon: './icons/balloons.png', isLocal: true },
+  { id: 'Crab Boat Crew', icon: './icons/crabs.png', isLocal: true },
+  { id: 'Sticking it to the Manta', icon: './icons/mantas.png', isLocal: true }
+])
+
 const ICON_ROWS = ICONS.length
 const ICON_COLS = Math.max(...ICONS.map(row => row.length))
 const ICON_SIZE = 40
 const XIVAPI = 'https://xivapi.com'
-
-const overrides = {
-  'Beatific Vision': '/i/029000/029098.png',
-  Executioner: '/i/029000/029092.png',
-  Exterminator: '/i/029000/029347.png',
-  Fishmonger: '/i/029000/029070.png',
-  Gladius: '/i/029000/029022.png',
-  'Prodigal Son': '/i/029000/029331.png',
-  Prowler: '/i/029000/029066.png',
-  Sabaton: '/i/029000/029077.png',
-  'Shooting Star': '/i/029000/029157.png',
-  Silencer: '/i/029000/029156.png',
-  Sweeper: '/i/029000/029085.png'
-}
-
-const weird = [
-  'Octopus Travelers',
-  'Certifiable Shark Hunters',
-  'Jelled Together',
-  'Maritime Dragonslayers',
-  'Balloon Catchers',
-  'Crab Boat Crew',
-  'Sticking it to the Manta'
-]
 
 const canvas = createCanvas(ICON_COLS * ICON_SIZE, ICON_ROWS * ICON_SIZE)
 const ctx = canvas.getContext('2d')
@@ -40,32 +55,25 @@ const ctx = canvas.getContext('2d')
 ;(async () => {
   for (let row = 0; row < ICON_ROWS; ++row) {
     for (let col = 0; col < ICONS[row].length; ++col) {
-      const query = ICONS[row][col].replace(/\?/g, '')
-      let img, url
-      if (weird.includes(query)) {
-        img = await loadImage(path.resolve(__dirname, ({
-          'Octopus Travelers': './icons/octopodes.png',
-          'Certifiable Shark Hunters': './icons/sharks.png',
-          'Jelled Together': './icons/jellyfish.png',
-          'Maritime Dragonslayers': './icons/seadragons.png',
-          'Balloon Catchers': './icons/balloons.png',
-          'Crab Boat Crew': './icons/crabs.png',
-          'Sticking it to the Manta': './icons/mantas.png'
-        })[query]))
+      const cell = ICONS[row][col]
+      let img
+      if (cell.isLocal) {
+        console.log(`Fetching local image ${cell.icon}`)
+        img = await loadImage(path.resolve(__dirname, cell.icon))
       } else {
-        url = overrides[query] ||
-          (await getJSON(`${XIVAPI}/search?string=${encodeURIComponent(query)}`))
-            .Results[0].Icon
-        img = await loadImage(`${XIVAPI}${url}`)
+        console.log(`Fetching image ${cell.icon}`)
+        img = await loadImage(`${XIVAPI}${cell.icon}`)
       }
       ctx.drawImage(img, col * ICON_SIZE, row * ICON_SIZE)
-      console.log(query, url)
     }
   }
 
-  const out = fs.createWriteStream(path.resolve(__dirname, '../../../public/images/ocean-fish.png'))
+  const out = fs.createWriteStream(OUTPUT)
   canvas.createPNGStream().pipe(out)
   out.on('finish', () => {
+    fs.writeFileSync(OUTPUT_MAP, JSON.stringify(
+      ICONS.map(row => row.map(cell => cell.id))
+    ))
     console.log('Done!')
   })
 })()

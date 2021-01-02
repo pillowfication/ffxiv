@@ -1,10 +1,11 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
+import BaitGroup from './BaitGroup'
+import { Bait } from './BaitChain'
 
 const useStyles = makeStyles((theme) => ({
-  baitGroups: {
+  baitList: {
     listStyleType: 'none',
     margin: 0,
     paddingLeft: 0,
@@ -14,28 +15,30 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const BaitList = ({ baitGroups }) => {
+type Props = {
+  baitGroups: {
+    header: string,
+    baitGroupProps: {
+      bait: Bait[],
+      intuitionFishes?: { bait: Bait[], count: number }[],
+      showDH?: boolean
+    }
+  }[]
+}
+
+const BaitList = ({ baitGroups }: Props) => {
   const classes = useStyles()
 
   return (
-    <ul className={classes.baitGroups}>
-      {baitGroups.map(({ header, baitGroup }, index) =>
+    <ul className={classes.baitList}>
+      {baitGroups.map(({ header, baitGroupProps }, index) =>
         <li key={index}>
           <Typography gutterBottom>{header}</Typography>
-          {baitGroup}
+          <BaitGroup {...baitGroupProps} />
         </li>
       )}
     </ul>
   )
-}
-
-BaitList.propTypes = {
-  baitGroups: PropTypes.arrayOf(
-    PropTypes.shape({
-      header: PropTypes.node.isRequired,
-      baitGroup: PropTypes.element.isRequired
-    }).isRequired
-  ).isRequired
 }
 
 export default BaitList

@@ -1,4 +1,9 @@
 module.exports = {
+  i18n: {
+    locales: ['de', 'en', 'fr', 'ja'],
+    defaultLocale: 'en',
+    localeDetection: false
+  },
   webpack (config, { isServer }) {
     if (isServer) {
       require('./generate-sitemap')

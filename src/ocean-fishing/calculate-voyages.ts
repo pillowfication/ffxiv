@@ -1,16 +1,18 @@
+import { DestinationStop, Time, DestinationStopTime } from './maps'
+
 const _9HR = 32400000
 const _45MIN = 2700000
 
 // Cycle repeats every 12 days starting at this epoch
 const LULU_EPOCH = 1593270000000 + _9HR
-const DEST_CYCLE = 'BTNR'
-const TIME_CYCLE = 'SSSSNNNNDDDD'
+const DEST_CYCLE: DestinationStop[] = ['B', 'T', 'N', 'R']
+const TIME_CYCLE: Time[] = ['S', 'S', 'S', 'S', 'N', 'N', 'N', 'N', 'D', 'D', 'D', 'D']
 
-function fromEpoch (day, hour) {
+function fromEpoch (day: number, hour: number) {
   return new Date(LULU_EPOCH + day * 86400000 + hour * 3600000 - _9HR)
 }
 
-function calculateVoyages (date, count, filter) {
+function calculateVoyages (date: Date, count: number, filter?: string[]) {
   const adjustedDate = new Date(date.getTime() + _9HR - _45MIN) // Subtract 45 minutes to catch ongoing voyages
   let day = Math.floor((adjustedDate.getTime() - LULU_EPOCH) / 86400000)
   let hour = adjustedDate.getUTCHours()
@@ -27,9 +29,9 @@ function calculateVoyages (date, count, filter) {
   let timeIndex = (day + voyageNumber) % 12
 
   // Loop until however many voyages are found
-  const upcomingVoyages = []
+  const upcomingVoyages: Array<{time: Date, destinationCode: DestinationStopTime}> = []
   while (upcomingVoyages.length < count) {
-    const destinationCode = DEST_CYCLE[destIndex] + TIME_CYCLE[timeIndex]
+    const destinationCode = DEST_CYCLE[destIndex] + TIME_CYCLE[timeIndex] as DestinationStopTime
     if (!filter || filter.includes(destinationCode)) {
       upcomingVoyages.push({ time: fromEpoch(day, hour), destinationCode })
     }

@@ -1,19 +1,19 @@
-export function paddedZero (n) {
-  return n > 9 ? n : '0' + n
+export function paddedZero (n: number) {
+  return n > 9 ? String(n) : '0' + n
 }
 
-export function formatTime (date) {
+export function formatTime (date: Date) {
   return `${paddedZero(date.getUTCHours())}:${paddedZero(date.getUTCMinutes())}`
 }
 
-export function toTimeString (now, padded) {
+export function toTimeString (now: Date, padded?: boolean) {
   const hours = now.getHours()
   const minutes = now.getMinutes()
   const displayHours = hours % 12 === 0 ? 12 : hours % 12
   return `${padded && displayHours < 10 ? ' ' + displayHours : displayHours}:${paddedZero(minutes)} ${hours < 12 ? 'AM' : 'PM'}`
 }
 
-function getTimeUntil (now, then) {
+function getTimeUntil (now: Date, then: Date) {
   const diff = then.getTime() - now.getTime()
   let days = diff / 86400000
   if (days >= 1) {
@@ -31,7 +31,7 @@ function getTimeUntil (now, then) {
   return `${minutes} ${minutes > 1 ? 'minutes' : 'minute'}`
 }
 
-export function timeUntil (now, then, full) {
+export function timeUntil (now: Date, then: Date, full?: boolean) {
   const diff = then.getTime() - now.getTime()
   if (Math.abs(diff) < 60000) {
     return 'now'

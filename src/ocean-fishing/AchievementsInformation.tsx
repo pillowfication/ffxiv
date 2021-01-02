@@ -1,27 +1,21 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { DEST_MAP, TIME_MAP, ACHIEVEMENTS_MAP } from './maps'
 import { makeStyles } from '@material-ui/core/styles'
-import Section from '../Section'
 import Typography from '@material-ui/core/Typography'
-import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
+import Section from '../Section'
 import Highlight from '../Highlight'
 import RouteCardContainer from './RouteCardContainer'
 import RouteCard from './RouteCard'
 import BaitList from './BaitList'
-import BaitGroup from './BaitGroup'
 import OceanFishIcon from './OceanFishIcon'
 import Tug from './Tug'
-import { getStops, getBaitChain } from './utils'
+import { getStops, getBaitGroup } from './utils'
+import * as maps from './maps'
 import jellyfishMacro from './macros/jellyfish.ffmacro'
 import seadragonsMacro from './macros/seadragons.ffmacro'
 import octopodesMacro from './macros/octopodes.ffmacro'
 
 const useStyles = makeStyles((theme) => ({
-  achievementInfo: {
-    marginBottom: theme.spacing(2)
-  },
   achievementIcon: {
     marginTop: 0,
     marginBottom: 0,
@@ -38,44 +32,50 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const AchievementsInformation = ({ selectedRoute }) => {
-  if (!selectedRoute) return null
-  const achievements = selectedRoute && ACHIEVEMENTS_MAP[selectedRoute]
-  if (!achievements) return null
-  const stops = getStops(selectedRoute)
+type AchievementsInformationProps = {
+  selectedRoute?: maps.DestinationStopTime
+}
 
-  return achievements.map((achievement) =>
-    <AchievementInformation
-      key={achievement}
-      achievement={achievement}
-      stops={stops}
-    />
+const AchievementsInformation = ({ selectedRoute }: AchievementsInformationProps) => {
+  if (!selectedRoute) return null
+  return (
+    <>
+      {maps.ACHIEVEMENTS_MAP[selectedRoute].map(achievement =>
+        <AchievementInformation
+          key={achievement}
+          achievement={achievement}
+          selectedRoute={selectedRoute}
+        />
+      )}
+    </>
   )
 }
 
-const AchievementInformation = ({ achievement, stops }) => {
+type AchievementInformationProps = {
+  achievement: number,
+  selectedRoute: maps.DestinationStopTime
+}
+
+const AchievementInformation = ({ achievement, selectedRoute }: AchievementInformationProps) => {
   const classes = useStyles()
+  const stops = getStops(selectedRoute)
 
   switch (achievement) {
-    case 'What Did Octopodes Do to You?':
+    case 2563:
       return (
         <Section
           title={
             <>
               Octopodes Route
-              <OceanFishIcon name={achievement} className={classes.achievementIcon} />
+              <OceanFishIcon type='achievement' id={achievement} className={classes.achievementIcon} />
               <Typography display='inline' className={classes.headerSub}>
                 catch 150 octopodes (18.75 each)
               </Typography>
             </>
           }
         >
-          <RouteCardContainer className={classes.achievementInfo}>
-            <RouteCard>
-              <CardHeader
-                title={<Typography variant='h6'>1. {DEST_MAP[stops[0][0]]} {TIME_MAP[stops[0][1]]}</Typography>}
-                disableTypography
-              />
+          <RouteCardContainer>
+            <RouteCard index={0} stop={stops[0]}>
               <CardContent>
                 <Typography paragraph>
                   No octopodes here.
@@ -85,19 +85,15 @@ const AchievementInformation = ({ achievement, stops }) => {
                 </Typography>
               </CardContent>
             </RouteCard>
-            <RouteCard>
-              <CardHeader
-                title={<Typography variant='h6'>2. {DEST_MAP[stops[1][0]]} {TIME_MAP[stops[1][1]]}</Typography>}
-                disableTypography
-              />
+            <RouteCard index={1} stop={stops[1]}>
               <CardContent>
                 <BaitList
                   baitGroups={[{
                     header: 'IC–DH at 16-27s',
-                    baitGroup: <BaitGroup {...getBaitChain('Cyan Octopus')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(29734) }
                   }, {
                     header: 'DH–IC–DH at <3s',
-                    baitGroup: <BaitGroup {...getBaitChain('Merman\'s Mane')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(29766) }
                   }]}
                 />
               </CardContent>
@@ -108,27 +104,23 @@ const AchievementInformation = ({ achievement, stops }) => {
                 </Typography>
                 <Typography variant='overline'>Spectral</Typography>
                 <Typography paragraph>
-                  Only the instant <Tug.Medium /> is Merman’s Mane; any later is not.
+                  Only the instant <Tug strength={2} /> is Merman’s Mane; any later is not.
                 </Typography>
               </CardContent>
             </RouteCard>
-            <RouteCard>
-              <CardHeader
-                title={<Typography variant='h6'>3. {DEST_MAP[stops[2][0]]} {TIME_MAP[stops[2][1]]}</Typography>}
-                disableTypography
-              />
+            <RouteCard index={2} stop={stops[2]}>
               <CardContent>
                 <BaitList
                   baitGroups={[{
                     header: 'DH–IC–DH at ≥5s',
-                    baitGroup: <BaitGroup {...getBaitChain('Mopbeard')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(29773) }
                   }]}
                 />
               </CardContent>
               <CardContent>
                 <Typography variant='overline'>Spectral</Typography>
                 <Typography paragraph>
-                  The earlier <Tug.Medium /> is Coccosteus.
+                  The earlier <Tug strength={2} /> is Coccosteus.
                 </Typography>
               </CardContent>
             </RouteCard>
@@ -141,39 +133,35 @@ const AchievementInformation = ({ achievement, stops }) => {
           </Highlight>
         </Section>
       )
-    case 'What Did Sharks Do to You?':
+    case 2564:
       return (
         <Section
           title={
             <>
               Sharks Route
-              <OceanFishIcon name={achievement} className={classes.achievementIcon} />
+              <OceanFishIcon type='achievement' id={achievement} className={classes.achievementIcon} />
               <Typography display='inline' className={classes.headerSub}>
                 catch 200 sharks (25 each)
               </Typography>
             </>
           }
         >
-          <RouteCardContainer className={classes.achievementInfo}>
-            <RouteCard>
-              <CardHeader
-                title={<Typography variant='h6'>1. {DEST_MAP[stops[0][0]]} {TIME_MAP[stops[0][1]]}</Typography>}
-                disableTypography
-              />
+          <RouteCardContainer>
+            <RouteCard index={0} stop={stops[0]}>
               <CardContent>
                 <BaitList
                   baitGroups={[{
                     header: 'IC; DH–IC–DH post-spectral',
-                    baitGroup: <BaitGroup {...getBaitChain('Tarnished Shark')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(28942) }
                   }, {
                     header: 'IC–DH',
-                    baitGroup: <BaitGroup {...getBaitChain('Ghost Shark')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(29750) }
                   }, {
                     header: 'No buffs',
-                    baitGroup: <BaitGroup {...getBaitChain('Quicksilver Blade')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(29751) }
                   }, {
                     header: 'DH–IC–DH',
-                    baitGroup: <BaitGroup {...getBaitChain('Funnel Shark')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(29782) }
                   }]}
                 />
               </CardContent>
@@ -184,7 +172,7 @@ const AchievementInformation = ({ achievement, stops }) => {
                 </Typography>
                 <Typography variant='overline'>Spectral</Typography>
                 <Typography paragraph>
-                  Hook <Tug.Medium /> and <Tug.Heavy />. IC–DH if you catch a Ghost Shark; <Tug.Heavy /> is a blind DH–IC–DH.
+                  Hook <Tug strength={2} /> and <Tug strength={3} />. IC–DH if you catch a Ghost Shark; <Tug strength={3} /> is a blind DH–IC–DH.
                 </Typography>
                 <Typography variant='overline'>Post-spectral</Typography>
                 <Typography paragraph>
@@ -192,11 +180,7 @@ const AchievementInformation = ({ achievement, stops }) => {
                 </Typography>
               </CardContent>
             </RouteCard>
-            <RouteCard>
-              <CardHeader
-                title={<Typography variant='h6'>2. {DEST_MAP[stops[1][0]]} {TIME_MAP[stops[1][1]]}</Typography>}
-                disableTypography
-              />
+            <RouteCard index={1} stop={stops[1]}>
               <CardContent>
                 <Typography paragraph>
                   No sharks here.
@@ -209,22 +193,18 @@ const AchievementInformation = ({ achievement, stops }) => {
                 </Typography>
               </CardContent>
             </RouteCard>
-            <RouteCard>
-              <CardHeader
-                title={<Typography variant='h6'>3. {DEST_MAP[stops[2][0]]} {TIME_MAP[stops[2][1]]}</Typography>}
-                disableTypography
-              />
+            <RouteCard index={2} stop={stops[2]}>
               <CardContent>
                 <BaitList
                   baitGroups={[{
                     header: 'IC–DH; DH–IC–DH post-spectral',
-                    baitGroup: <BaitGroup {...getBaitChain('Chrome Hammerhead')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(29735) }
                   }, {
                     header: 'No buffs',
-                    baitGroup: <BaitGroup {...getBaitChain('Sweeper')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(29767) }
                   }, {
                     header: 'DH–IC–DH',
-                    baitGroup: <BaitGroup {...getBaitChain('Executioner')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(29770) }
                   }]}
                 />
               </CardContent>
@@ -235,7 +215,7 @@ const AchievementInformation = ({ achievement, stops }) => {
                 </Typography>
                 <Typography variant='overline'>Spectral</Typography>
                 <Typography paragraph>
-                  Hook <Tug.Medium /> and <Tug.Heavy />. If you catch a Sweeper, can use IC if high on GP. <Tug.Heavy /> is a blind DH.
+                  Hook <Tug strength={2} /> and <Tug strength={3} />. If you catch a Sweeper, can use IC if high on GP. <Tug strength={3} /> is a blind DH.
                 </Typography>
                 <Typography variant='overline'>Post-spectral</Typography>
                 <Typography paragraph>
@@ -246,25 +226,21 @@ const AchievementInformation = ({ achievement, stops }) => {
           </RouteCardContainer>
         </Section>
       )
-    case 'What Did Jellyfish Do to You?':
+    case 2565:
       return (
         <Section
           title={
             <>
               Jellyfish Route
-              <OceanFishIcon name={achievement} className={classes.achievementIcon} />
+              <OceanFishIcon type='achievement' id={achievement} className={classes.achievementIcon} />
               <Typography display='inline' className={classes.headerSub}>
                 catch 150 jellyfish (18.75 each)
               </Typography>
             </>
           }
         >
-          <RouteCardContainer className={classes.achievementInfo}>
-            <RouteCard>
-              <CardHeader
-                title={<Typography variant='h6'>1. {DEST_MAP[stops[0][0]]} {TIME_MAP[stops[0][1]]}</Typography>}
-                disableTypography
-              />
+          <RouteCardContainer>
+            <RouteCard index={0} stop={stops[0]}>
               <CardContent>
                 <Typography paragraph>
                   No jellyfish here.
@@ -274,26 +250,22 @@ const AchievementInformation = ({ achievement, stops }) => {
                 </Typography>
               </CardContent>
             </RouteCard>
-            <RouteCard>
-              <CardHeader
-                title={<Typography variant='h6'>2. {DEST_MAP[stops[1][0]]} {TIME_MAP[stops[1][1]]}</Typography>}
-                disableTypography
-              />
+            <RouteCard index={1} stop={stops[1]}>
               <CardContent>
                 <BaitList
                   baitGroups={[{
                     header: 'DH at <5s',
-                    baitGroup: <BaitGroup {...getBaitChain('La Noscean Jelly')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(29739) }
                   }, {
                     header: 'IC–DH at 4-8s',
-                    baitGroup: <BaitGroup {...getBaitChain('Sea Nettle')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(29757) }
                   }]}
                 />
               </CardContent>
               <CardContent>
                 <Typography variant='overline'>Non-spectral</Typography>
                 <Typography paragraph>
-                  Blind DH all <Tug.Light /> before 5s, and recast after 5s. IC is not necessary.
+                  Blind DH all <Tug strength={1} /> before 5s, and recast after 5s. IC is not necessary.
                 </Typography>
                 <Typography variant='overline'>Spectral</Typography>
                 <Typography paragraph>
@@ -301,16 +273,12 @@ const AchievementInformation = ({ achievement, stops }) => {
                 </Typography>
               </CardContent>
             </RouteCard>
-            <RouteCard>
-              <CardHeader
-                title={<Typography variant='h6'>3. {DEST_MAP[stops[2][0]]} {TIME_MAP[stops[2][1]]}</Typography>}
-                disableTypography
-              />
+            <RouteCard index={2} stop={stops[2]}>
               <CardContent>
                 <BaitList
                   baitGroups={[{
                     header: 'IC–DH at 6-10s',
-                    baitGroup: <BaitGroup {...getBaitChain('Floating Saucer')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(29762) }
                   }]}
                 />
               </CardContent>
@@ -330,33 +298,29 @@ const AchievementInformation = ({ achievement, stops }) => {
           </Highlight>
         </Section>
       )
-    case 'What Did Seadragons Do to You?':
+    case 2566:
       return (
         <Section
           title={
             <>
               Seadragons Route
-              <OceanFishIcon name={achievement} className={classes.achievementIcon} />
+              <OceanFishIcon type='achievement' id={achievement} className={classes.achievementIcon} />
               <Typography display='inline' className={classes.headerSub}>
                 catch 100 seadragons (12.5 each)
               </Typography>
             </>
           }
         >
-          <RouteCardContainer className={classes.achievementInfo}>
-            <RouteCard>
-              <CardHeader
-                title={<Typography variant='h6'>1. {DEST_MAP[stops[0][0]]} {TIME_MAP[stops[0][1]]}</Typography>}
-                disableTypography
-              />
+          <RouteCardContainer>
+            <RouteCard index={0} stop={stops[0]}>
               <CardContent>
                 <BaitList
                   baitGroups={[{
                     header: 'IC–DH at 9-21s',
-                    baitGroup: <BaitGroup {...getBaitChain('Shaggy Seadragon')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(29740) }
                   }, {
                     header: 'No buffs',
-                    baitGroup: <BaitGroup {...getBaitChain('Aetheric Seadragon')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(29763) }
                   }]}
                 />
               </CardContent>
@@ -371,11 +335,7 @@ const AchievementInformation = ({ achievement, stops }) => {
                 </Typography>
               </CardContent>
             </RouteCard>
-            <RouteCard>
-              <CardHeader
-                title={<Typography variant='h6'>2. {DEST_MAP[stops[1][0]]} {TIME_MAP[stops[1][1]]}</Typography>}
-                disableTypography
-              />
+            <RouteCard index={1} stop={stops[1]}>
               <CardContent>
                 <Typography paragraph>
                   No seadragons here.
@@ -385,16 +345,12 @@ const AchievementInformation = ({ achievement, stops }) => {
                 </Typography>
               </CardContent>
             </RouteCard>
-            <RouteCard>
-              <CardHeader
-                title={<Typography variant='h6'>3. {DEST_MAP[stops[2][0]]} {TIME_MAP[stops[2][1]]}</Typography>}
-                disableTypography
-              />
+            <RouteCard index={2} stop={stops[2]}>
               <CardContent>
                 <BaitList
                   baitGroups={[{
                     header: 'IC–DH',
-                    baitGroup: <BaitGroup {...getBaitChain('Coral Seadragon')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(29764) }
                   }]}
                 />
               </CardContent>
@@ -414,33 +370,29 @@ const AchievementInformation = ({ achievement, stops }) => {
           </Highlight>
         </Section>
       )
-    case 'What Did Balloons Do to You?':
+    case 2754:
       return (
         <Section
           title={
             <>
               Balloons Route
-              <OceanFishIcon name={achievement} className={classes.achievementIcon} />
+              <OceanFishIcon type='achievement' id={achievement} className={classes.achievementIcon} />
               <Typography display='inline' className={classes.headerSub}>
                 catch 250 balloons (31.25 each)
               </Typography>
             </>
           }
         >
-          <RouteCardContainer className={classes.achievementInfo}>
-            <RouteCard>
-              <CardHeader
-                title={<Typography variant='h6'>1. {DEST_MAP[stops[0][0]]} {TIME_MAP[stops[0][1]]}</Typography>}
-                disableTypography
-              />
+          <RouteCardContainer>
+            <RouteCard index={0} stop={stops[0]}>
               <CardContent>
                 <BaitList
                   baitGroups={[{
                     header: 'IC–DH at 5-10s',
-                    baitGroup: <BaitGroup {...getBaitChain('Metallic Boxfish')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(32057) }
                   }, {
                     header: 'DH at <5s',
-                    baitGroup: <BaitGroup {...getBaitChain('Mythril Boxfish')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(32066) }
                   }]}
                 />
               </CardContent>
@@ -455,19 +407,15 @@ const AchievementInformation = ({ achievement, stops }) => {
                 </Typography>
               </CardContent>
             </RouteCard>
-            <RouteCard>
-              <CardHeader
-                title={<Typography variant='h6'>2. {DEST_MAP[stops[1][0]]} {TIME_MAP[stops[1][1]]}</Typography>}
-                disableTypography
-              />
+            <RouteCard index={1} stop={stops[1]}>
               <CardContent>
                 <BaitList
                   baitGroups={[{
                     header: 'IC–DH at 10-16s',
-                    baitGroup: <BaitGroup {...getBaitChain('Lampfish')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(29732) }
                   }, {
                     header: 'IC–DH at 2-6s',
-                    baitGroup: <BaitGroup {...getBaitChain('Silencer')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(29768) }
                   }]}
                 />
               </CardContent>
@@ -481,25 +429,21 @@ const AchievementInformation = ({ achievement, stops }) => {
                 </Typography>
               </CardContent>
             </RouteCard>
-            <RouteCard>
-              <CardHeader
-                title={<Typography variant='h6'>3. {DEST_MAP[stops[2][0]]} {TIME_MAP[stops[2][1]]}</Typography>}
-                disableTypography
-              />
+            <RouteCard index={2} stop={stops[2]}>
               <CardContent>
                 <BaitList
                   baitGroups={[{
                     header: 'No buffs at 2-5s',
-                    baitGroup: <BaitGroup {...getBaitChain('Crow Puffer')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(32095) }
                   }, {
                     header: 'DH at ≥11s',
-                    baitGroup: <BaitGroup {...getBaitChain('Honeycomb Fish')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(32098) }
                   }, {
                     header: 'IC–DH',
-                    baitGroup: <BaitGroup {...getBaitChain('Garum Jug')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(32105) }
                   }, {
                     header: 'IC–DH',
-                    baitGroup: <BaitGroup {...getBaitChain('Pearl Bombfish')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(32109) }
                   }]}
                 />
               </CardContent>
@@ -517,33 +461,29 @@ const AchievementInformation = ({ achievement, stops }) => {
           </RouteCardContainer>
         </Section>
       )
-    case 'What Did Crabs Do to You?':
+    case 2755:
       return (
         <Section
           title={
             <>
               Crabs Route
-              <OceanFishIcon name={achievement} className={classes.achievementIcon} />
+              <OceanFishIcon type='achievement' id={achievement} className={classes.achievementIcon} />
               <Typography display='inline' className={classes.headerSub}>
                 catch 250 crabs (31.25 each)
               </Typography>
             </>
           }
         >
-          <RouteCardContainer className={classes.achievementInfo}>
-            <RouteCard>
-              <CardHeader
-                title={<Typography variant='h6'>1. {DEST_MAP[stops[0][0]]} {TIME_MAP[stops[0][1]]}</Typography>}
-                disableTypography
-              />
+          <RouteCardContainer>
+            <RouteCard index={0} stop={stops[0]}>
               <CardContent>
                 <BaitList
                   baitGroups={[{
                     header: 'IC–DH at <12s',
-                    baitGroup: <BaitGroup {...getBaitChain('Tortoiseshell Crab')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(32055) }
                   }, {
                     header: 'DH–IC–DH at <4s',
-                    baitGroup: <BaitGroup {...getBaitChain('Titanshell Crab')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(32065) }
                   }]}
                 />
               </CardContent>
@@ -554,23 +494,19 @@ const AchievementInformation = ({ achievement, stops }) => {
                 </Typography>
                 <Typography variant='overline'>Spectral</Typography>
                 <Typography paragraph>
-                  Hook all <Tug.Medium />, but only the instant <Tug.Medium /> is a blind DH.
+                  Hook all <Tug strength={2} />, but only the instant <Tug strength={2} /> is a blind DH.
                 </Typography>
               </CardContent>
             </RouteCard>
-            <RouteCard>
-              <CardHeader
-                title={<Typography variant='h6'>2. {DEST_MAP[stops[1][0]]} {TIME_MAP[stops[1][1]]}</Typography>}
-                disableTypography
-              />
+            <RouteCard index={1} stop={stops[1]}>
               <CardContent>
                 <BaitList
                   baitGroups={[{
                     header: 'IC–DH at 9-21s',
-                    baitGroup: <BaitGroup {...getBaitChain('Net Crawler')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(29741) }
                   }, {
                     header: 'IC–DH at 4-8s',
-                    baitGroup: <BaitGroup {...getBaitChain('Bartholomew the Chopper')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(29777) }
                   }]}
                 />
               </CardContent>
@@ -580,25 +516,21 @@ const AchievementInformation = ({ achievement, stops }) => {
                 </Typography>
               </CardContent>
             </RouteCard>
-            <RouteCard>
-              <CardHeader
-                title={<Typography variant='h6'>3. {DEST_MAP[stops[2][0]]} {TIME_MAP[stops[2][1]]}</Typography>}
-                disableTypography
-              />
+            <RouteCard index={2} stop={stops[2]}>
               <CardContent>
                 <BaitList
                   baitGroups={[{
                     header: 'No buffs at 3-7s',
-                    baitGroup: <BaitGroup {...getBaitChain('Thaliak Crab')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(32075) }
                   }, {
                     header: 'DH at ≥14s',
-                    baitGroup: <BaitGroup {...getBaitChain('Bloodpolish Crab')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(32079) }
                   }, {
                     header: 'No Buffs',
-                    baitGroup: <BaitGroup {...getBaitChain('Oracular Crab')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(32085) }
                   }, {
                     header: 'DH at ≥5s',
-                    baitGroup: <BaitGroup {...getBaitChain('Exterminator')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(32090) }
                   }]}
                 />
               </CardContent>
@@ -616,33 +548,29 @@ const AchievementInformation = ({ achievement, stops }) => {
           </RouteCardContainer>
         </Section>
       )
-    case 'What Did Mantas Do to You?':
+    case 2756:
       return (
         <Section
           title={
             <>
               Mantas Route
-              <OceanFishIcon name={achievement} className={classes.achievementIcon} />
+              <OceanFishIcon type='achievement' id={achievement} className={classes.achievementIcon} />
               <Typography display='inline' className={classes.headerSub}>
                 catch 25 mantas (solo)
               </Typography>
             </>
           }
         >
-          <RouteCardContainer className={classes.achievementInfo}>
-            <RouteCard>
-              <CardHeader
-                title={<Typography variant='h6'>1. {DEST_MAP[stops[0][0]]} {TIME_MAP[stops[0][1]]}</Typography>}
-                disableTypography
-              />
+          <RouteCardContainer>
+            <RouteCard index={0} stop={stops[0]}>
               <CardContent>
                 <BaitList
                   baitGroups={[{
                     header: 'DH; DH-IC–DH post-spectral at 12-26s',
-                    baitGroup: <BaitGroup {...getBaitChain('Goobbue Ray')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(32058) }
                   }, {
                     header: 'DH at <3s',
-                    baitGroup: <BaitGroup {...getBaitChain('Jetborne Manta')} showDH />
+                    baitGroupProps: { showDH: true, ...getBaitGroup(32070) }
                   }]}
                 />
               </CardContent>
@@ -653,7 +581,7 @@ const AchievementInformation = ({ achievement, stops }) => {
                 </Typography>
                 <Typography variant='overline'>Spectral</Typography>
                 <Typography paragraph>
-                  Only the instant <Tug.Heavy /> is Jetborne Manta. Callichthyid appears at 5s.
+                  Only the instant <Tug strength={3} /> is Jetborne Manta. Callichthyid appears at 5s.
                 </Typography>
                 <Typography variant='overline'>Post-spectral</Typography>
                 <Typography paragraph>
@@ -661,11 +589,7 @@ const AchievementInformation = ({ achievement, stops }) => {
                 </Typography>
               </CardContent>
             </RouteCard>
-            <RouteCard>
-              <CardHeader
-                title={<Typography variant='h6'>2. {DEST_MAP[stops[1][0]]} {TIME_MAP[stops[1][1]]}</Typography>}
-                disableTypography
-              />
+            <RouteCard index={1} stop={stops[1]}>
               <CardContent>
                 <Typography paragraph>
                   No mantas here.
@@ -675,11 +599,7 @@ const AchievementInformation = ({ achievement, stops }) => {
                 </Typography>
               </CardContent>
             </RouteCard>
-            <RouteCard>
-              <CardHeader
-                title={<Typography variant='h6'>3. {DEST_MAP[stops[2][0]]} {TIME_MAP[stops[2][1]]}</Typography>}
-                disableTypography
-              />
+            <RouteCard index={2} stop={stops[2]}>
               {(() => {
                 switch (stops[2]) {
                   case 'BN':
@@ -689,14 +609,14 @@ const AchievementInformation = ({ achievement, stops }) => {
                           <BaitList
                             baitGroups={[{
                               header: 'DH at ≥5s',
-                              baitGroup: <BaitGroup {...getBaitChain('Skaldminni')} showDH />
+                              baitGroupProps: { showDH: true, ...getBaitGroup(32087) }
                             }]}
                           />
                         </CardContent>
                         <CardContent>
                           <Typography variant='overline'>Spectral</Typography>
                           <Typography paragraph>
-                            Reel any <Tug.Medium />. Beatific Vision and Gory Tuna go away at 5s. Go for IC–DH if it’s all you need, instead of hoping for more blind DHs.
+                            Reel any <Tug strength={2} />. Beatific Vision and Gory Tuna go away at 5s. Go for IC–DH if it’s all you need, instead of hoping for more blind DHs.
                           </Typography>
                         </CardContent>
                       </>
@@ -708,14 +628,14 @@ const AchievementInformation = ({ achievement, stops }) => {
                           <BaitList
                             baitGroups={[{
                               header: 'IC–DH at 4-5s',
-                              baitGroup: <BaitGroup {...getBaitChain('Panoptes')} showDH />
+                              baitGroupProps: { showDH: true, ...getBaitGroup(32111) }
                             }]}
                           />
                         </CardContent>
                         <CardContent>
                           <Typography variant='overline'>Spectral</Typography>
                           <Typography paragraph>
-                            Reel any <Tug.Medium />. Panoptes can possibly be a blind DH (needs confirmation). Don’t mooch Rothlyt Mussels for Panoptes; recast instead.
+                            Reel any <Tug strength={2} />. Panoptes can possibly be a blind DH (needs confirmation). Don’t mooch Rothlyt Mussels for Panoptes; recast instead.
                           </Typography>
                         </CardContent>
                       </>
@@ -729,10 +649,6 @@ const AchievementInformation = ({ achievement, stops }) => {
     default:
       return null
   }
-}
-
-AchievementsInformation.propTypes = {
-  selectedRoute: PropTypes.oneOf(['BD', 'BN', 'BS', 'ND', 'NN', 'NS', 'RD', 'RN', 'RS', 'TD', 'TN', 'TS'])
 }
 
 export default AchievementsInformation

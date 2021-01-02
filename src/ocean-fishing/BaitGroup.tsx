@@ -1,8 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import PropTypes from 'prop-types'
 import Typography from '@material-ui/core/Typography'
-import BaitChain from './BaitChain'
+import BaitChain, { Bait } from './BaitChain'
 
 const useStyles = makeStyles((theme) => ({
   intuitionFishes: {
@@ -15,7 +14,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const BaitGroup = ({ bait, intuitionFishes, showDH }) => {
+type Props = {
+  bait: Bait[],
+  intuitionFishes?: { bait: Bait[], count: number }[],
+  showDH?: boolean
+}
+
+const BaitGroup = ({ bait, intuitionFishes, showDH }: Props) => {
   const classes = useStyles()
 
   return (
@@ -32,17 +37,6 @@ const BaitGroup = ({ bait, intuitionFishes, showDH }) => {
         </ul>}
     </>
   )
-}
-
-BaitGroup.propTypes = {
-  bait: BaitChain.propTypes.bait,
-  intuitionFishes: PropTypes.arrayOf(
-    PropTypes.shape({
-      count: PropTypes.number.isRequired,
-      bait: BaitChain.propTypes.bait
-    }).isRequired
-  ),
-  showDH: PropTypes.bool
 }
 
 export default BaitGroup

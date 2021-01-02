@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Typography from '@material-ui/core/Typography'
+import MuiLink from '@material-ui/core/Link'
 import Alert from '@material-ui/lab/Alert'
 import Link from '../../src/Link'
 import Page from '../../src/Page'
@@ -7,14 +8,15 @@ import Section from '../../src/Section'
 import UpcomingVoyages from '../../src/ocean-fishing/UpcomingVoyages'
 import RouteInformation from '../../src/ocean-fishing/RouteInformation'
 import AchievementsInformation from '../../src/ocean-fishing/AchievementsInformation'
+import * as maps from '../../src/ocean-fishing/maps'
 
 const OceanFishing = () => {
-  const [now, setNow] = useState(null)
-  const [selectedRoute, setSelectedRoute] = useState(null)
-  const [checklist, setChecklist] = useState([])
+  const [now, setNow] = useState<Date>(null)
+  const [selectedRoute, setSelectedRoute] = useState<maps.DestinationStopTime>(null)
+  const [checklist, setChecklist] = useState<number[]>([])
 
   useEffect(() => {
-    let interval
+    let interval: NodeJS.Timeout
     (function loop () {
       const now = new Date()
       setNow(now)
@@ -28,7 +30,7 @@ const OceanFishing = () => {
       if (!data) {
         setChecklist([])
       } else {
-        setChecklist(data.split(','))
+        setChecklist(data.split(',').map(Number).filter(x => x))
       }
     }
 
@@ -44,11 +46,11 @@ const OceanFishing = () => {
   return (
     <Page title='Ocean Fishing'>
       <Section>
-        <Alert severity='info'>Information on new routes may be missing or incorrect.</Alert>
+        <Alert severity='info'>The checklist has been reset to be compatible with <MuiLink href='https://ff14fish.carbuncleplushy.com/'>CarbunclePlushy</MuiLink> and i18n.</Alert>
       </Section>
       <Section>
         <Typography paragraph>
-          For a static list of all the fish, see the <Link href='/ocean-fishing/fish'>Fish page</Link>.
+          For a static list of all the fish and more information, see the <Link href='/ocean-fishing/fish'>Fish page</Link>.
         </Typography>
       </Section>
       <UpcomingVoyages now={now} onSelectRoute={setSelectedRoute} />

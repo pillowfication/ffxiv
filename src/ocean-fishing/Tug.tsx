@@ -1,6 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import cn from 'classnames'
+import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import Tooltip from '@material-ui/core/Tooltip'
 
@@ -16,9 +15,8 @@ const useStyles = makeStyles((theme) => ({
   },
   sup: {
     position: 'absolute',
-    left: '2.75em',
-    top: '-0.25em',
-    fontSize: '0.9em'
+    left: '2.4em',
+    top: 0
   },
   light: {
     backgroundColor: theme.palette.type === 'dark' ? '#078203' : '#aaffaa'
@@ -31,38 +29,35 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const Tug = ({ sup, strength, className, ...props }) => {
+type Props = {
+  strength: 1 | 2 | 3,
+  sup?: boolean,
+  className?: string
+}
+
+const Tug = ({ strength, sup, className }: Props) => {
   const classes = useStyles()
 
   switch (strength) {
     case 1:
       return (
         <Tooltip arrow placement='top' title='Light tug'>
-          <span className={cn(classes.tug, sup && classes.sup, classes.light, className)} {...props}>!</span>
+          <span className={clsx(classes.tug, sup && classes.sup, classes.light, className)}>!</span>
         </Tooltip>
       )
     case 2:
       return (
         <Tooltip arrow placement='top' title='Medium tug'>
-          <span className={cn(classes.tug, sup && classes.sup, classes.medium, className)} {...props}>!!</span>
+          <span className={clsx(classes.tug, sup && classes.sup, classes.medium, className)}>!!</span>
         </Tooltip>
       )
     case 3:
       return (
         <Tooltip arrow placement='top' title='Heavy tug'>
-          <span className={cn(classes.tug, sup && classes.sup, classes.heavy, className)} {...props}>!!!</span>
+          <span className={clsx(classes.tug, sup && classes.sup, classes.heavy, className)}>!!!</span>
         </Tooltip>
       )
   }
 }
 
-Tug.propTypes = {
-  sup: PropTypes.bool,
-  strength: PropTypes.oneOf([1, 2, 3]).isRequired
-}
-
-Tug.Light = () => <Tug strength={1} />
-Tug.Medium = () => <Tug strength={2} />
-Tug.Heavy = () => <Tug strength={3} />
-
-export default Tug
+export default React.memo(Tug)
