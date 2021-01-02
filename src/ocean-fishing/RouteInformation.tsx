@@ -45,7 +45,7 @@ const RouteInformation = ({ now, selectedRoute, checklist, setChecklist }: Props
 
   const classes = useStyles()
   const router = useRouter()
-  const [showAllFish, setShowAllFish] = useState(true)
+  const [showAllFish, setShowAllFish] = useState(false)
   const [tab, setTab] = useState(0)
   const locale = router.locale
   const stops = getStops(selectedRoute)

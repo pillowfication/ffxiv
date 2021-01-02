@@ -1,72 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react'
-import clsx from 'clsx'
 import { useRouter } from 'next/router'
-import { makeStyles } from '@material-ui/core/styles'
 import NoSsr from '@material-ui/core/NoSsr'
 import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
 import FormControl from '@material-ui/core/FormControl'
 import InputLabel from '@material-ui/core/InputLabel'
 import TextField from '@material-ui/core/TextField'
 import Select from '@material-ui/core/Select'
-import Paper from '@material-ui/core/Paper'
-import TableContainer from '@material-ui/core/TableContainer'
-import Table from '@material-ui/core/Table'
-import TableHead from '@material-ui/core/TableHead'
-import TableBody from '@material-ui/core/TableBody'
-import TableRow from '@material-ui/core/TableRow'
-import TableCell from '@material-ui/core/TableCell'
 import Section from '../Section'
-import OceanFishIcon from './OceanFishIcon'
+import UpcomingVoyagesTable from './UpcomingVoyagesTable'
 import { fishingSpots, fishes, achievements } from './gists/data/ocean-fish-data.json'
-import * as maps from './maps'
-import { toTimeString } from '../utils'
 import calculateVoyages from './calculate-voyages'
-import { timeUntil, getBlueFish, translate } from './utils'
-
-const DATE_FORMAT: Intl.DateTimeFormatOptions = { month: '2-digit', day: '2-digit' }
-
-const useStyles = makeStyles((theme) => ({
-  schedule: {
-    '& td': {
-      height: 53,
-      paddingTop: theme.spacing(0.25),
-      paddingBottom: theme.spacing(0.25),
-      paddingLeft: theme.spacing(1),
-      paddingRight: theme.spacing(1),
-      whiteSpace: 'nowrap'
-    },
-    '& td:first-child': {
-      paddingLeft: theme.spacing(2)
-    },
-    '& td:last-child': {
-      paddingRight: theme.spacing(2)
-    },
-    '& tbody tr:hover': {
-      cursor: 'pointer'
-    }
-  },
-  hoverRow: {
-    backgroundColor: theme.palette.action.hover
-  },
-  timeUntil: {
-    [theme.breakpoints.down('sm')]: {
-      display: 'none'
-    }
-  },
-  timeCell: {
-    '& svg': {
-      top: 0,
-      verticalAlign: 'middle'
-    }
-  },
-  objectivesCell: {
-    '& div': {
-      verticalAlign: 'middle',
-      fontSize: '1rem'
-    }
-  }
-}))
+import * as maps from './maps'
+import { translate } from './utils'
 
 type Props = {
   now?: Date,
@@ -74,28 +19,19 @@ type Props = {
 }
 
 const UpcomingVoyages = ({ now, onSelectRoute }: Props) => {
+  const router = useRouter()
   const [numRows, setNumRows] = useState(10)
   const [filter, setFilter] = useState('none')
-  const [hover, setHover] = useState<string>(null)
-  const classes = useStyles()
-  const router = useRouter()
   const firstRender = useRef(false)
 
   const locale = router.locale
-  const upcomingVoyages = now && calculateVoyages(
-    now,
-    Math.min(Math.max(Number(numRows) || 10, 1), 50),
-    maps.FILTER_MAP[filter] || null
-  )
 
   useEffect(() => {
     const queryFilter = maps.FILTER_MAP[String(router.query.filter)] ? String(router.query.filter) : 'none'
     if ((!firstRender.current && now) || filter !== queryFilter) {
       firstRender.current = true
       setFilter(queryFilter)
-      onSelectRoute(
-        calculateVoyages(now, 1, maps.FILTER_MAP[queryFilter] || null)[0].destinationCode
-      )
+      onSelectRoute(calculateVoyages(now, 1, maps.FILTER_MAP[queryFilter])[0].destinationCode)
     }
   })
 
@@ -193,61 +129,7 @@ const UpcomingVoyages = ({ now, onSelectRoute }: Props) => {
         <NoSsr>
           {now &&
             <Grid item xs={12}>
-              <TableContainer component={Paper}>
-                <Table size='small' className={classes.schedule}>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell colSpan={3} align='center'>Time</TableCell>
-                      <TableCell colSpan={2} align='center'>Route</TableCell>
-                      <TableCell align='center'>Objectives</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody onMouseOut={setHover.bind(null, null)}>
-                    {(() => {
-                      let previousDate: string
-
-                      return upcomingVoyages.map(({ time, destinationCode }) => {
-                        const dateString = time.toLocaleDateString(undefined, DATE_FORMAT)
-                        const timeString = toTimeString(time, true)
-
-                        return (
-                          <TableRow
-                            key={time.getTime()}
-                            hover
-                            className={clsx(filter === 'none' && hover === destinationCode && classes.hoverRow)}
-                            onMouseOver={setHover.bind(null, destinationCode)}
-                            onClick={onSelectRoute.bind(null, destinationCode)}
-                          >
-                            <TableCell align='right'>
-                              {previousDate !== (previousDate = dateString) && <Typography>{dateString}</Typography>}
-                            </TableCell>
-                            <TableCell>
-                              <Typography>{timeString}</Typography>
-                            </TableCell>
-                            <TableCell>
-                              <Typography className={classes.timeUntil}>{timeUntil(now, time)}</Typography>
-                            </TableCell>
-                            <TableCell align='right'>
-                              <Typography>{translate(fishingSpots[maps.STOP_MAP[destinationCode[0]]], 'name', locale)}</Typography>
-                            </TableCell>
-                            <TableCell className={classes.timeCell}>
-                              {maps.TIME_MAP[destinationCode[1]]}
-                            </TableCell>
-                            <TableCell className={classes.objectivesCell}>
-                              {maps.ACHIEVEMENTS_MAP[destinationCode].map((achievement: number) =>
-                                <OceanFishIcon key={achievement} type='achievement' id={achievement} />
-                              )}
-                              {getBlueFish(destinationCode).map((fishId?: number) =>
-                                fishId && <OceanFishIcon key={fishId} type='fish' id={fishId} />
-                              )}
-                            </TableCell>
-                          </TableRow>
-                        )
-                      })
-                    })()}
-                  </TableBody>
-                </Table>
-              </TableContainer>
+              <UpcomingVoyagesTable now={now} numRows={numRows} filter={maps.FILTER_MAP[filter]} onSelectRoute={onSelectRoute} />
             </Grid>}
         </NoSsr>
       </Grid>
