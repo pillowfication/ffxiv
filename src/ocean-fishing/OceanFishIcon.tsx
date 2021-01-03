@@ -26,12 +26,12 @@ const useStyles = makeStyles((theme) => {
       display: 'inline-block',
       width: ({ size }: { size: number }) => size * 1.2,
       height: ({ size }: { size: number }) => size * 1.1,
-      position: 'relative',
+      position: 'relative' as 'relative',
       margin: theme.spacing(0.5, 0.25),
       verticalAlign: 'middle'
     },
     oceanFishIcon: {
-      position: 'absolute',
+      position: 'absolute' as 'absolute',
       top: 0,
       left: 0,
       width: ({ size }: { size: number }) => size,
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => {
       backgroundSize: `${ICON_COLS * 100}% ${ICON_ROWS * 100}%`
     },
     iconOverlay: {
-      position: 'absolute',
+      position: 'absolute' as 'absolute',
       top: 0,
       left: 0,
       width: ({ size }: { size: number }) => size * 1.2
@@ -93,8 +93,6 @@ const OceanFishIcon = ({ type, id, size = 40, className }: Props) => {
     console.error(`Could not find info for ${id} (${type})`)
     info = { name_en: String(id) }
   }
-
-console.log(type, info, achievements)
 
   return (
     <Tooltip arrow placement='top' title={translate(locale, info, 'name')}>
