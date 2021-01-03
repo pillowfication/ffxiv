@@ -22,6 +22,13 @@ import Brightness2Icon from '@material-ui/icons/Brightness2'
 import Brightness5Icon from '@material-ui/icons/Brightness5'
 import { lightTheme, darkTheme } from '../src/themes'
 
+const LANGUAGES = {
+  en: 'English',
+  de: 'Deutsch',
+  fr: 'Français',
+  ja: '日本語'
+}
+
 const useStyles = makeStyles((theme) => ({
   toolbar: {
     minHeight: 0,
@@ -136,11 +143,12 @@ const App = ({ Component, pageProps }: Props) => {
                   </Tooltip>
                   <Menu
                     anchorEl={languageAnchorEl}
+                    marginThreshold={0}
                     open={Boolean(languageAnchorEl)}
                     onClose={handleSelectLanguage.bind(null, null)}
                   >
                     {router.locales.map(locale =>
-                      <MenuItem key={locale} onClick={handleSelectLanguage.bind(null, locale)}>{locale.toUpperCase()}</MenuItem>
+                      <MenuItem key={locale} onClick={handleSelectLanguage.bind(null, locale)}>{LANGUAGES[locale] || locale.toUpperCase()}</MenuItem>
                     )}
                   </Menu>
                   <Brightness5Icon className={classes.brightnessIcon} />
