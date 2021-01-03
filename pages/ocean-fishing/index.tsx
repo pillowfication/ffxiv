@@ -45,7 +45,7 @@ const OceanFishing = () => {
     <Page title='Ocean Fishing'>
       <Section>
         <Typography paragraph>
-          For a static list of all the fish and more information, see the <Link href='/ocean-fishing/fish'>Fish page</Link>.
+          For a static list of all the fish and more information, see the <Link href='/ocean-fishing/fish'>Fish page</Link>.<br />I’ve also made a Chrome Extension for adding ocean fishes to the <Link href='https://ff14fish.carbuncleplushy.com/'>Carbuncle Plushy FFX|V Fish Tracker App</Link> available on the <Link href='https://chrome.google.com/webstore/detail/add-ocean-fish-to-ff14-fi/oihefgmncbnicjmcdccjflagboaidenh'>Chrome Web Store</Link>.
         </Typography>
       </Section>
       <UpcomingVoyages now={now} onSelectRoute={setSelectedRoute} />
