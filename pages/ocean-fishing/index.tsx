@@ -45,7 +45,10 @@ const OceanFishing = () => {
     <Page title='Ocean Fishing'>
       <Section>
         <Typography paragraph>
-          For a static list of all the fish and more information, see the <Link href='/ocean-fishing/fish'>Fish page</Link>.<br />I’ve also made a Chrome Extension for adding ocean fishes to the <Link href='https://ff14fish.carbuncleplushy.com/'>Carbuncle Plushy FFX|V Fish Tracker App</Link> available on the <Link href='https://chrome.google.com/webstore/detail/add-ocean-fish-to-ff14-fi/oihefgmncbnicjmcdccjflagboaidenh'>Chrome Web Store</Link>.
+          Data are taken from the <Link href='https://docs.google.com/spreadsheets/d/1brCfvmSdYl7RcY9lkgm_ds8uaFqq7qaxOOz-5BfHuuk/edit?usp=sharing'>Ocean Fishing Spreadsheet</Link> managed by S’yahn Tia. Bite times are from <Link href='https://ffxivteamcraft.com/'>Teamcraft</Link> when available. For questions/comments/corrections, please visit the <Link href='https://discord.gg/AnFaDpN'>Fisherman’s Horizon Discord</Link> or message Lulu Pillow@Adamantoise or Pillowfication#0538.
+        </Typography>
+        <Typography paragraph>
+          For a static list of all the fish and more information, see the <Link href='/ocean-fishing/fish'>Fish page</Link>.
         </Typography>
       </Section>
       <UpcomingVoyages now={now} onSelectRoute={setSelectedRoute} />

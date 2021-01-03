@@ -35,10 +35,10 @@ const OceanFishingFish = () => {
     <Page title='Ocean Fishing Fish'>
       <Section>
         <Typography paragraph>
-          These data are taken from the <Link href='https://docs.google.com/spreadsheets/d/1brCfvmSdYl7RcY9lkgm_ds8uaFqq7qaxOOz-5BfHuuk/edit?usp=sharing'>Ocean Fishing Spreadsheet</Link> managed by S’yahn Tia. Bite times are from <Link href='https://ffxivteamcraft.com/'>Teamcraft</Link> when available.
+          Data are taken from the <Link href='https://docs.google.com/spreadsheets/d/1brCfvmSdYl7RcY9lkgm_ds8uaFqq7qaxOOz-5BfHuuk/edit?usp=sharing'>Ocean Fishing Spreadsheet</Link> managed by S’yahn Tia. Bite times are from <Link href='https://ffxivteamcraft.com/'>Teamcraft</Link> when available, with the top and bottom 1% removed.
         </Typography>
         <Typography paragraph>
-          For questions/comments/corrections, please visit the Fisherman’s Horizon Discord (<Link href='https://discord.gg/AnFaDpN'>https://discord.gg/AnFaDpN</Link>) or message Lulu Pillow@Adamantoise or Pillowfication#0538.
+          I’ve also made a Chrome Extension for adding ocean fishes to the <Link href='https://ff14fish.carbuncleplushy.com/'>Carbuncle Plushy FFX|V Fish Tracker App</Link> available on the <Link href='https://chrome.google.com/webstore/detail/add-ocean-fish-to-ff14-fi/oihefgmncbnicjmcdccjflagboaidenh'>Chrome Web Store</Link>.
         </Typography>
       </Section>
       {Object.values(fishingSpots)

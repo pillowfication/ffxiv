@@ -58,7 +58,7 @@ const data = {}
         // versatileLureTimer: parseTimer(tr.find('td:nth-child(7)').text().trim()),
         points: parsePoints(tr.find('td:nth-child(8)').text().trim()),
         doubleHook: parseDoubleHook(tr.find('td:nth-child(9)').text().trim()),
-        mooch: tr.find('td:nth-child(10)').text().trim() || null,
+        mooch: parseMooch(tr.find('td:nth-child(10)').text().trim()),
         tug: parseTug(tr.find('td:nth-child(11)').text().trim()),
         // hookset: tr.find('td:nth-child(12)').text().trim(),
         timer: parseTimer(tr.find('td:nth-child(13)').text().trim()),
@@ -74,7 +74,7 @@ const data = {}
   }
 
   function isBlue (elem) {
-    for (const className of ['s36', 's46', 's73']) {
+    for (const className of ['s36', 's45', 's46', 's73']) {
       if (elem.hasClass(className)) {
         return true
       }
@@ -125,6 +125,13 @@ const data = {}
       return Number(str.match(/\d+/)[0])
     }
     console.log('UNKNOWN DOUBLE HOOK:', str)
+    return null
+  }
+
+  function parseMooch (str) {
+    if (!/^mooch bait$/i.test(str)) {
+      return str || null
+    }
     return null
   }
 
@@ -411,20 +418,7 @@ const data = {}
       }
     },
     'Rothlyt Spectral Current': {
-      1: {
-        mooch: 'Rothlyt Mussel'
-      },
-      3: {
-        mooch: 'Rothlyt Mussel'
-      },
-      5: {
-        mooch: 'Rothlyt Mussel'
-      },
-      6: {
-        mooch: 'Rothlyt Mussel'
-      },
       9: {
-        mooch: 'Rothlyt Mussel',
         intuition: [{
           name: 'Trollfish',
           count: 1
@@ -433,5 +427,5 @@ const data = {}
     }
   })
 
-  fs.writeFileSync(OUTPUT, JSON.stringify(data))
+  fs.writeFileSync(OUTPUT, JSON.stringify(data, null, 2))
 })()
