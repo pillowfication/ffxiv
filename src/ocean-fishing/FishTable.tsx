@@ -55,9 +55,6 @@ const useStyles = makeStyles((theme) => ({
   tug: {
     fontSize: '1.33em'
   },
-  category: {
-    fontSize: '0.75em'
-  },
   disabled: {
     backgroundColor: theme.palette.type === 'dark' ? '#333333' : '#DDDDDD',
     opacity: 0.5
@@ -211,7 +208,7 @@ const FishTable = ({ spots, time, checklist, setChecklist}: Props) => {
                       </TableCell>
                       <TableCell align='center'>
                         {fishInfo.category &&
-                          <OceanFishIcon type='bonus-icon' id={FISH_CATEGORIES[fishInfo.category]} className={classes.category} />}
+                          <OceanFishIcon type='bonus-icon' id={FISH_CATEGORIES[fishInfo.category]} size={30} />}
                       </TableCell>
                     </TableRow>
                   )

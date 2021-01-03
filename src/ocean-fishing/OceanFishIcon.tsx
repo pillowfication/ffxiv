@@ -22,14 +22,29 @@ function camelCase (id: number | string): string {
 
 const useStyles = makeStyles((theme) => {
   const styles = {
-    oceanFishIcon: {
+    iconContainer: {
       display: 'inline-block',
-      width: '2.5em',
-      height: '2.5em',
-      margin: theme.spacing(0.5),
-      backgroundImage: `url("${'/images/ocean-fishing-icons.png'}")`,
-      backgroundSize: `${ICON_COLS * 100}% ${ICON_ROWS * 100}%`,
+      width: ({ size }: { size: number }) => size * 1.2,
+      height: ({ size }: { size: number }) => size * 1.1,
+      position: 'relative',
+      margin: theme.spacing(0.5, 0.25),
       verticalAlign: 'middle'
+    },
+    oceanFishIcon: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: ({ size }: { size: number }) => size,
+      height: ({ size }: { size: number }) => size,
+      margin: ({ size }: { size: number }) => `${size * 0.05}px ${size * 0.1}px`,
+      backgroundImage: `url("${'/images/ocean-fishing-icons.png'}")`,
+      backgroundSize: `${ICON_COLS * 100}% ${ICON_ROWS * 100}%`
+    },
+    iconOverlay: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: ({ size }: { size: number }) => size * 1.2
     }
   }
 
@@ -46,29 +61,48 @@ const useStyles = makeStyles((theme) => {
 type Props = {
   type: 'fish' | 'bait' | 'achievement' | 'bonus-icon',
   id: number | string,
+  size?: number,
   className?: string
 }
 
-const OceanFishIcon = ({ type, id, className }: Props) => {
-  const classes = useStyles()
+const OceanFishIcon = ({ type, id, size = 40, className }: Props) => {
+  const classes = useStyles({ size })
   const router = useRouter()
   const locale = router.locale
 
-  let info: { name_en: string }
+  let info: any
+  let overlayUrl: string
   switch (type) {
-    case 'fish': info = fishes[id]; break
-    case 'bait': info = baits[id]; break
-    case 'achievement': info = achievements[id]; break
-    case 'bonus-icon': info = { name_en: String(id) }; break
+    case 'fish':
+      info = fishes[id]
+      overlayUrl = '/images/item-overlay.png'
+      break
+    case 'bait':
+      info = baits[id]
+      overlayUrl = '/images/item-overlay.png'
+      break
+    case 'achievement':
+      info = achievements[id]
+      overlayUrl = '/images/achievement-overlay.png'
+      break
+    case 'bonus-icon':
+      info = { name_en: String(id) }
+      break
   }
   if (!info) {
     console.error(`Could not find info for ${id} (${type})`)
     info = { name_en: String(id) }
   }
 
+console.log(type, info, achievements)
+
   return (
     <Tooltip arrow placement='top' title={translate(locale, info, 'name')}>
-      <div className={clsx(classes.oceanFishIcon, classes[camelCase(id)], className)} />
+      <div className={clsx(classes.iconContainer, className)}>
+        <div className={clsx(classes.oceanFishIcon, classes[camelCase(id)])} />
+        {overlayUrl &&
+          <img src={overlayUrl} className={classes.iconOverlay} />}
+      </div>
     </Tooltip>
   )
 }

@@ -9,10 +9,7 @@ import { translate } from './utils'
 
 const useStyles = makeStyles((theme) => ({
   achievementIcon: {
-    marginTop: 0,
-    marginBottom: 0,
     marginLeft: theme.spacing(2),
-    fontSize: '0.625em',
     verticalAlign: 'sub'
   },
   subtitle: {
