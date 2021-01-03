@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
 import Section from '../Section'
@@ -32,6 +32,11 @@ const useStyles = makeStyles((theme) => ({
     top: '-0.2em',
     marginLeft: '0.25em'
   },
+  showAllFish: {
+    [theme.breakpoints.up('lg')]: {
+      textAlign: 'right'
+    }
+  },
   showAllFishCheckbox: {
     padding: 0,
     margin: theme.spacing(0, 1)
@@ -56,6 +61,10 @@ const RouteInformation = ({ now, selectedRoute, checklist, setChecklist }: Props
   const stops = getStops(selectedRoute)
   const next = calculateVoyages(now, 1, [selectedRoute])[0].time
 
+  useEffect(() => {
+    setTab(0)
+  }, [selectedRoute])
+
   const handleToggleShowAllFish = () => {
     setShowAllFish(!showAllFish)
   }
@@ -73,8 +82,7 @@ const RouteInformation = ({ now, selectedRoute, checklist, setChecklist }: Props
             <span className={classes.headerTime}>{maps.TIME_MAP[selectedRoute[1]]}</span>
             <Typography display='inline' className={classes.headerSub}>{timeUntil(now, next, true)}</Typography>
           </Grid>
-          {/* @ts-ignore */}
-          <Grid item xs={12} lg={4} align='right'>
+          <Grid item xs={12} lg={4}>
             <FormControlLabel
               control={
                 <Checkbox
@@ -85,6 +93,7 @@ const RouteInformation = ({ now, selectedRoute, checklist, setChecklist }: Props
                 />
               }
               label='Show all fish'
+              className={classes.showAllFish}
             />
           </Grid>
         </Grid>
