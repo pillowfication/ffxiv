@@ -33,7 +33,8 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '0.25em'
   },
   showAllFish: {
-    [theme.breakpoints.up('lg')]: {
+    display: 'block',
+    [theme.breakpoints.up('md')]: {
       textAlign: 'right'
     }
   },
@@ -76,13 +77,13 @@ const RouteInformation = ({ now, selectedRoute, checklist, setChecklist }: Props
   return (
     <Section
       title={
-        <Grid container>
-          <Grid item xs={12} lg={8}>
+        <Grid container alignItems='flex-end'>
+          <Grid item xs={12} md={8}>
             {upperFirst(translate(locale, fishingSpots[maps.STOP_MAP[selectedRoute[0]]], 'place_name_sub', 'no_article'))}
             <span className={classes.headerTime}>{maps.TIME_MAP[selectedRoute[1]]}</span>
             <Typography display='inline' className={classes.headerSub}>{timeUntil(now, next, true)}</Typography>
           </Grid>
-          <Grid item xs={12} lg={4}>
+          <Grid item xs={12} md={4}>
             <FormControlLabel
               control={
                 <Checkbox
