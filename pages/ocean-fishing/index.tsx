@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import Typography from '@material-ui/core/Typography'
-import MuiLink from '@material-ui/core/Link'
-import Alert from '@material-ui/lab/Alert'
 import Link from '../../src/Link'
 import Page from '../../src/Page'
 import Section from '../../src/Section'
@@ -11,8 +9,8 @@ import AchievementsInformation from '../../src/ocean-fishing/AchievementsInforma
 import * as maps from '../../src/ocean-fishing/maps'
 
 const OceanFishing = () => {
-  const [now, setNow] = useState<Date>(null)
-  const [selectedRoute, setSelectedRoute] = useState<maps.DestinationStopTime>(null)
+  const [now, setNow] = useState<Date | null>(null)
+  const [selectedRoute, setSelectedRoute] = useState<maps.DestinationStopTime | null>(null)
   const [checklist, setChecklist] = useState<number[]>([])
 
   useEffect(() => {
@@ -46,11 +44,7 @@ const OceanFishing = () => {
   return (
     <Page title='Ocean Fishing'>
       <Section>
-        <Alert severity='info'>The checklist has been reset to be compatible with <MuiLink href='https://ff14fish.carbuncleplushy.com/'>CarbunclePlushy</MuiLink> and i18n.</Alert>
-      </Section>
-      <Section>
         <Typography paragraph>
-          {/* @ts-ignore */}
           For a static list of all the fish and more information, see the <Link href='/ocean-fishing/fish'>Fish page</Link>.
         </Typography>
       </Section>

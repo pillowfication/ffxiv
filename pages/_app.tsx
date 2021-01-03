@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -59,10 +58,15 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const App = ({ Component, pageProps }) => {
+type Props = {
+  Component: React.ComponentClass,
+  pageProps: object
+}
+
+const App = ({ Component, pageProps }: Props) => {
   const classes = useStyles()
   const router = useRouter()
-  const [languageAnchorEl, setLanguageAnchorEl] = useState<Element>(null)
+  const [languageAnchorEl, setLanguageAnchorEl] = useState<HTMLElement>(null)
   const [theme, setTheme] = useState('light')
 
   useEffect(() => {
@@ -77,11 +81,11 @@ const App = ({ Component, pageProps }) => {
     window.localStorage.setItem('theme', theme)
   }, [theme])
 
-  const handleClickLanguage = (event: React.MouseEvent) => {
+  const handleClickLanguage = (event: React.MouseEvent<HTMLButtonElement>) => {
     setLanguageAnchorEl(event.currentTarget)
   }
 
-  const handleSelectLanguage = (locale: string) => {
+  const handleSelectLanguage = (locale?: string) => {
     setLanguageAnchorEl(null)
     if (locale && router.locales.includes(locale)) {
       router.push(router.asPath, router.asPath, { locale })
@@ -97,8 +101,6 @@ const App = ({ Component, pageProps }) => {
       <Head>
         <title>Lulu’s FFXIV Tools</title>
         <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width' />
-        {/* Do the locale prefixes mess this up? */}
-        <link rel='canonical' href={`https://ffxiv.pf-n.co${router.asPath}`} />
         <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_HTML' />
       </Head>
       <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
@@ -134,7 +136,6 @@ const App = ({ Component, pageProps }) => {
                   </Tooltip>
                   <Menu
                     anchorEl={languageAnchorEl}
-                    keepMounted
                     open={Boolean(languageAnchorEl)}
                     onClose={handleSelectLanguage.bind(null, null)}
                   >
@@ -159,11 +160,6 @@ const App = ({ Component, pageProps }) => {
       </ThemeProvider>
     </>
   )
-}
-
-App.propTypes = {
-  Component: PropTypes.elementType.isRequired,
-  pageProps: PropTypes.object.isRequired
 }
 
 export default App

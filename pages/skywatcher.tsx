@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import Typography from '@material-ui/core/Typography'
 import Page from '../src/Page'
-import { formatTime } from '../src/utils'
 import UpcomingWeather from '../src/skywatcher/UpcomingWeather'
 import Forecaster from '../src/skywatcher/Forecaster'
 import About from '../src/skywatcher/About'
+import { formatTime } from '../src/utils'
 
 const Skywatcher = () => {
-  const [now, setNow] = useState(null)
+  const [now, setNow] = useState<Date | null>(null)
 
   useEffect(() => {
     let interval: NodeJS.Timeout

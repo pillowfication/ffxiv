@@ -1,7 +1,6 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import CardContent from '@material-ui/core/CardContent'
-import Highlight from '../Highlight'
 import AchievementInformation from './AchievementInformation'
 import RouteCardContainer from './RouteCardContainer'
 import RouteCard from './RouteCard'

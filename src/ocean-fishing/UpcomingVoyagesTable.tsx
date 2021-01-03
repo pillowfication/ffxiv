@@ -71,7 +71,7 @@ type Props = {
 const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute }: Props) => {
   const classes = useStyles()
   const router = useRouter()
-  const [hover, setHover] = useState<maps.DestinationStopTime>(null)
+  const [hover, setHover] = useState<maps.DestinationStopTime | null>(null)
 
   const locale = router.locale
   const upcomingVoyages = calculateVoyages(now, numRows, filter)
