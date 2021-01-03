@@ -11,7 +11,7 @@ import UpcomingVoyagesTable from './UpcomingVoyagesTable'
 import { fishingSpots, fishes, achievements } from './gists/data/ocean-fish-data.json'
 import calculateVoyages from './calculate-voyages'
 import * as maps from './maps'
-import { translate } from './utils'
+import { translate, upperFirst } from './utils'
 
 type Props = {
   now?: Date,
@@ -82,46 +82,46 @@ const UpcomingVoyages = ({ now, onSelectRoute }: Props) => {
             >
               <option value='none'>No filter</option>
               <optgroup label='Blue Fish'>
-                <option value='sothis'>{translate(fishes[29788], 'name', locale)}</option>
-                <option value='coral_manta'>{translate(fishes[29789], 'name', locale)}</option>
-                <option value='stonescale'>{translate(fishes[29790], 'name', locale)}</option>
-                <option value='elasmosaurus'>{translate(fishes[29791], 'name', locale)}</option>
-                <option value='hafgufa'>{translate(fishes[32074], 'name', locale)}</option>
-                <option value='seafaring_toad'>{translate(fishes[32094], 'name', locale)}</option>
-                <option value='placodus'>{translate(fishes[32114], 'name', locale)}</option>
+                <option value='sothis'>{translate(locale, fishes[29788], 'name')}</option>
+                <option value='coral_manta'>{translate(locale, fishes[29789], 'name')}</option>
+                <option value='stonescale'>{translate(locale, fishes[29790], 'name')}</option>
+                <option value='elasmosaurus'>{translate(locale, fishes[29791], 'name')}</option>
+                <option value='hafgufa'>{translate(locale, fishes[32074], 'name')}</option>
+                <option value='seafaring_toad'>{translate(locale, fishes[32094], 'name')}</option>
+                <option value='placodus'>{translate(locale, fishes[32114], 'name')}</option>
               </optgroup>
               <optgroup label='Achievements'>
-                <option value='octopodes'>{translate(achievements[2563], 'name', locale)}</option>
-                <option value='sharks'>{translate(achievements[2564], 'name', locale)}</option>
-                <option value='jellyfish'>{translate(achievements[2565], 'name', locale)}</option>
-                <option value='seadragons'>{translate(achievements[2566], 'name', locale)}</option>
-                <option value='balloons'>{translate(achievements[2754], 'name', locale)}</option>
-                <option value='crabs'>{translate(achievements[2755], 'name', locale)}</option>
-                <option value='mantas'>{translate(achievements[2756], 'name', locale)}</option>
+                <option value='octopodes'>{translate(locale, achievements[2563], 'name')}</option>
+                <option value='sharks'>{translate(locale, achievements[2564], 'name')}</option>
+                <option value='jellyfish'>{translate(locale, achievements[2565], 'name')}</option>
+                <option value='seadragons'>{translate(locale, achievements[2566], 'name')}</option>
+                <option value='balloons'>{translate(locale, achievements[2754], 'name')}</option>
+                <option value='crabs'>{translate(locale, achievements[2755], 'name')}</option>
+                <option value='mantas'>{translate(locale, achievements[2756], 'name')}</option>
               </optgroup>
-              <optgroup label={translate(fishingSpots[241], 'name_sub', locale)}>
-                <option value='R'>{translate(fishingSpots[241], 'name_sub', locale)}</option>
-                <option value='RD'>{translate(fishingSpots[241], 'name_sub', locale)} - Day</option>
-                <option value='RS'>{translate(fishingSpots[241], 'name_sub', locale)} - Sunset</option>
-                <option value='RN'>{translate(fishingSpots[241], 'name_sub', locale)} - Night</option>
+              <optgroup label={upperFirst(translate(locale, fishingSpots[241], 'place_name_sub', 'no_article'))}>
+                <option value='R'>{upperFirst(translate(locale, fishingSpots[241], 'place_name_sub', 'no_article'))}</option>
+                <option value='RD'>{upperFirst(translate(locale, fishingSpots[241], 'place_name_sub', 'no_article'))} - Day</option>
+                <option value='RS'>{upperFirst(translate(locale, fishingSpots[241], 'place_name_sub', 'no_article'))} - Sunset</option>
+                <option value='RN'>{upperFirst(translate(locale, fishingSpots[241], 'place_name_sub', 'no_article'))} - Night</option>
               </optgroup>
-              <optgroup label={translate(fishingSpots[243], 'name_sub', locale)}>
-                <option value='N'>{translate(fishingSpots[243], 'name_sub', locale)}</option>
-                <option value='ND'>{translate(fishingSpots[243], 'name_sub', locale)} - Day</option>
-                <option value='NS'>{translate(fishingSpots[243], 'name_sub', locale)} - Sunset</option>
-                <option value='NN'>{translate(fishingSpots[243], 'name_sub', locale)} - Night</option>
+              <optgroup label={upperFirst(translate(locale, fishingSpots[243], 'place_name_sub', 'no_article'))}>
+                <option value='N'>{upperFirst(translate(locale, fishingSpots[243], 'place_name_sub', 'no_article'))}</option>
+                <option value='ND'>{upperFirst(translate(locale, fishingSpots[243], 'place_name_sub', 'no_article'))} - Day</option>
+                <option value='NS'>{upperFirst(translate(locale, fishingSpots[243], 'place_name_sub', 'no_article'))} - Sunset</option>
+                <option value='NN'>{upperFirst(translate(locale, fishingSpots[243], 'place_name_sub', 'no_article'))} - Night</option>
               </optgroup>
-              <optgroup label={translate(fishingSpots[248], 'name_sub', locale)}>
-                <option value='B'>{translate(fishingSpots[248], 'name_sub', locale)}</option>
-                <option value='BD'>{translate(fishingSpots[248], 'name_sub', locale)} - Day</option>
-                <option value='BS'>{translate(fishingSpots[248], 'name_sub', locale)} - Sunset</option>
-                <option value='BN'>{translate(fishingSpots[248], 'name_sub', locale)} - Night</option>
+              <optgroup label={upperFirst(translate(locale, fishingSpots[248], 'place_name_sub', 'no_article'))}>
+                <option value='B'>{upperFirst(translate(locale, fishingSpots[248], 'place_name_sub', 'no_article'))}</option>
+                <option value='BD'>{upperFirst(translate(locale, fishingSpots[248], 'place_name_sub', 'no_article'))} - Day</option>
+                <option value='BS'>{upperFirst(translate(locale, fishingSpots[248], 'place_name_sub', 'no_article'))} - Sunset</option>
+                <option value='BN'>{upperFirst(translate(locale, fishingSpots[248], 'place_name_sub', 'no_article'))} - Night</option>
               </optgroup>
-              <optgroup label={translate(fishingSpots[250], 'name_sub', locale)}>
-                <option value='T'>{translate(fishingSpots[250], 'name_sub', locale)}</option>
-                <option value='TD'>{translate(fishingSpots[250], 'name_sub', locale)} - Day</option>
-                <option value='TS'>{translate(fishingSpots[250], 'name_sub', locale)} - Sunset</option>
-                <option value='TN'>{translate(fishingSpots[250], 'name_sub', locale)} - Night</option>
+              <optgroup label={upperFirst(translate(locale, fishingSpots[250], 'place_name_sub', 'no_article'))}>
+                <option value='T'>{upperFirst(translate(locale, fishingSpots[250], 'place_name_sub', 'no_article'))}</option>
+                <option value='TD'>{upperFirst(translate(locale, fishingSpots[250], 'place_name_sub', 'no_article'))} - Day</option>
+                <option value='TS'>{upperFirst(translate(locale, fishingSpots[250], 'place_name_sub', 'no_article'))} - Sunset</option>
+                <option value='TN'>{upperFirst(translate(locale, fishingSpots[250], 'place_name_sub', 'no_article'))} - Night</option>
               </optgroup>
             </Select>
           </FormControl>

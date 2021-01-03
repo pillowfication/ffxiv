@@ -100,7 +100,7 @@ const FishTable = ({ spots, time, checklist, setChecklist}: Props) => {
       <Table size='small' className={classes.table}>
         {spots.map(spotId => {
           const fishingSpot: FishingSpot = fishingSpots[spotId]
-          const isSpectral = /spectral/i.test(fishingSpot.name_en)
+          const isSpectral = /spectral/i.test(fishingSpot.place_name_en)
           return (
             <React.Fragment key={spotId}>
               <TableHead>
@@ -137,7 +137,7 @@ const FishTable = ({ spots, time, checklist, setChecklist}: Props) => {
                         <OceanFishIcon type='fish' id={fish.id} />
                       </TableCell>
                       <TableCell>
-                        <div><Typography>{translate(fish, 'name', locale)}</Typography></div>
+                        <div><Typography>{translate(locale, fish, 'name')}</Typography></div>
                         {fishInfo.stars &&
                           <div className={classes.stars}>{'★'.repeat(fishInfo.stars)}</div>}
                       </TableCell>

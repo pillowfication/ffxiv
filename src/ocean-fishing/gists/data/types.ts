@@ -1,13 +1,17 @@
 export type FishingSpot = {
   id: number,
-  name_de: string,
-  name_en: string,
-  name_fr: string,
-  name_ja: string,
-  name_sub_de: string,
-  name_sub_en: string,
-  name_sub_fr: string,
-  name_sub_ja: string,
+  place_name_de: string,
+  place_name_en: string,
+  place_name_fr: string,
+  place_name_ja: string,
+  place_name_sub_de: string,
+  place_name_sub_en: string,
+  place_name_sub_fr: string,
+  place_name_sub_ja: string,
+  place_name_sub_no_article_de: string,
+  place_name_sub_no_article_en: string,
+  place_name_sub_no_article_fr: string,
+  place_name_sub_no_article_ja: string,
   fishes: number[]
 }
 

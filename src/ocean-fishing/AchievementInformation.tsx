@@ -33,14 +33,13 @@ type Props = {
 const AchievementJellyfish = ({ achievement, subtitle, children }: Props) => {
   const classes = useStyles()
   const router = useRouter()
-
   const locale = router.locale
 
   return (
     <Section
       title={
         <>
-          {translate(achievements[achievement], 'name', locale)}
+          {translate(locale, achievements[achievement], 'name')}
           <OceanFishIcon type='achievement' id={achievement} className={classes.achievementIcon} />
           {subtitle &&
             <Typography display='inline' className={classes.subtitle}>{subtitle}</Typography>}

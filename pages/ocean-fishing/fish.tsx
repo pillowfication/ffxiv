@@ -44,7 +44,7 @@ const OceanFishingFish = () => {
       {Object.values(fishingSpots)
         .sort((a, b) => a.id - b.id)
         .map((fishingSpot: FishingSpot) =>
-          <Section key={fishingSpot.id} title={translate(fishingSpot, 'name', locale)}>
+          <Section key={fishingSpot.id} title={translate(locale, fishingSpot, 'place_name')}>
             <FishTable spots={[fishingSpot.id]} checklist={checklist} setChecklist={setChecklist} />
           </Section>
       )}

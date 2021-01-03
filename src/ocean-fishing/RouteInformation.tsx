@@ -69,7 +69,7 @@ const RouteInformation = ({ now, selectedRoute, checklist, setChecklist }: Props
       title={
         <Grid container>
           <Grid item xs={12} lg={8}>
-            {translate(fishingSpots[maps.STOP_MAP[selectedRoute[0]]], 'name_sub', locale)}
+            {translate(locale, fishingSpots[maps.STOP_MAP[selectedRoute[0]]], 'place_name_sub', 'no_article')}
             <span className={classes.headerTime}>{maps.TIME_MAP[selectedRoute[1]]}</span>
             <Typography display='inline' className={classes.headerSub}>{timeUntil(now, next, true)}</Typography>
           </Grid>
@@ -96,7 +96,7 @@ const RouteInformation = ({ now, selectedRoute, checklist, setChecklist }: Props
             <Card variant='outlined'>
               <Tabs variant='fullWidth' value={tab} onChange={handleChangeTab}>
                 {stops.map((stop, index) =>
-                  <Tab key={stop} label={<>{index + 1}. {translate(fishingSpots[maps.STOP_MAP[stop[0]]], 'name', locale)} {maps.TIME_MAP[stop[1]]}</>} />
+                  <Tab key={stop} label={<>{index + 1}. {translate(locale, fishingSpots[maps.STOP_MAP[stop[0]]], 'place_name_sub')} {maps.TIME_MAP[stop[1]]}</>} />
                 )}
               </Tabs>
               {stops.map((stop, index) =>
@@ -118,7 +118,7 @@ const RouteInformation = ({ now, selectedRoute, checklist, setChecklist }: Props
                       ]
                         .filter(x => x)
                         .map(fishId => ({
-                          header: translate(fishes[fishId], 'name', locale),
+                          header: translate(locale, fishes[fishId], 'name'),
                           baitGroupProps: getBaitGroup(fishId)
                         }))
                     } />

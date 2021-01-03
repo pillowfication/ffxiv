@@ -15,7 +15,7 @@ import { fishingSpots } from './gists/data/ocean-fish-data.json'
 import * as maps from './maps'
 import { toTimeString } from '../utils'
 import calculateVoyages from './calculate-voyages'
-import { timeUntil, getBlueFish, translate } from './utils'
+import { timeUntil, getBlueFish, translate, upperFirst } from './utils'
 
 const DATE_FORMAT: Intl.DateTimeFormatOptions = { month: '2-digit', day: '2-digit' }
 
@@ -112,7 +112,7 @@ const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute }: Props) =>
                     <Typography className={classes.timeUntil}>{timeUntil(now, time)}</Typography>
                   </TableCell>
                   <TableCell align='right'>
-                    <Typography>{translate(fishingSpots[maps.STOP_MAP[destinationCode[0]]], 'name_sub', locale)}</Typography>
+                    <Typography>{upperFirst(translate(locale, fishingSpots[maps.STOP_MAP[destinationCode[0]]], 'place_name_sub', 'no_article'))}</Typography>
                   </TableCell>
                   <TableCell className={classes.timeCell}>
                     {maps.TIME_MAP[destinationCode[1]]}

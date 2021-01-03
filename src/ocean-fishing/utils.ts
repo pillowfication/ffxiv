@@ -43,10 +43,9 @@ export function getBlueFish (destinationCode: maps.DestinationStopTime): number[
 }
 
 export const getFishInfo = memoize((fishName: string): FishInfo => {
-  // @ts-ignore
-  const fishInfo: FishInfo = Object.values(spreadsheet).flat().find(fishInfo =>
-    fishInfo.name === fishName
-  )
+  const fishInfo: FishInfo = Object.values(<unknown>spreadsheet as FishInfo[][])
+    .flat()
+    .find(fishInfo => (fishInfo as FishInfo).name === fishName)
   if (!fishInfo) return null
 
   const biteTime: [number, number] = biteTimes[getFish(fishName).id]
@@ -84,6 +83,14 @@ export const getBaitGroup = memoize(
   }
 )
 
-export function translate (obj: any, attr: string, locale: string = 'en'): string {
-  return obj[`${attr}_${locale}`] || obj[attr] || `{${obj.name || obj.id}.${attr}}`
+export function translate (locale: string = 'en', obj: any, ...keys: string[]): string {
+  for (let i = keys.length; i > 0; --i) {
+    const key = `${keys.slice(0, i).join('_')}_${locale}`
+    if (obj[key]) return obj[key]
+  }
+  return `{${obj.name || obj.id}.${keys.join('_')}}`
+}
+
+export function upperFirst (str: string) {
+  return str[0].toUpperCase() + str.slice(1)
 }

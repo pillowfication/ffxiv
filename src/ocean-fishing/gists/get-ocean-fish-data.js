@@ -28,14 +28,18 @@ const results = {
     for (const fishingSpot of oceanFishingSpots) {
       data[fishingSpot.ID] = {
         id: fishingSpot.ID,
-        name_de: fishingSpot.PlaceName.Name_de,
-        name_en: fishingSpot.PlaceName.Name_en,
-        name_fr: fishingSpot.PlaceName.Name_fr,
-        name_ja: fishingSpot.PlaceName.Name_ja,
-        name_sub_de: fishingSpot.PlaceNameSub.Name_de,
-        name_sub_en: fishingSpot.PlaceNameSub.Name_en,
-        name_sub_fr: fishingSpot.PlaceNameSub.Name_fr,
-        name_sub_ja: fishingSpot.PlaceNameSub.Name_ja,
+        place_name_de: fishingSpot.PlaceName.Name_de,
+        place_name_en: fishingSpot.PlaceName.Name_en,
+        place_name_fr: fishingSpot.PlaceName.Name_fr,
+        place_name_ja: fishingSpot.PlaceName.Name_ja,
+        place_name_sub_de: fishingSpot.PlaceNameSub.Name_de,
+        place_name_sub_en: fishingSpot.PlaceNameSub.Name_en,
+        place_name_sub_fr: fishingSpot.PlaceNameSub.Name_fr,
+        place_name_sub_ja: fishingSpot.PlaceNameSub.Name_ja,
+        place_name_sub_no_article_de: fishingSpot.PlaceNameSub.NameNoArticle_de,
+        place_name_sub_no_article_en: fishingSpot.PlaceNameSub.NameNoArticle_en,
+        place_name_sub_no_article_fr: fishingSpot.PlaceNameSub.NameNoArticle_fr,
+        place_name_sub_no_article_ja: fishingSpot.PlaceNameSub.NameNoArticle_ja,
         fishes: getFishIds(fishingSpot)
       }
     }

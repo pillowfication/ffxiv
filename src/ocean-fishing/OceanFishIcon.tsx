@@ -67,7 +67,7 @@ const OceanFishIcon = ({ type, id, className }: Props) => {
   }
 
   return (
-    <Tooltip arrow placement='top' title={translate(info, 'name', locale)}>
+    <Tooltip arrow placement='top' title={translate(locale, info, 'name')}>
       <div className={clsx(classes.oceanFishIcon, classes[camelCase(id)], className)} />
     </Tooltip>
   )

@@ -31,7 +31,7 @@ const RouteCard = ({ index, stop, children }: Props) => {
     <Grid item xs={12} md={4}>
       <Card variant='outlined' className={classes.routeCard}>
         <CardHeader
-          title={<Typography variant='h6'>{index + 1}. {translate(fishingSpots[maps.STOP_MAP[stop[0]]], 'name', locale)} {maps.TIME_MAP[stop[1]]}</Typography>}
+          title={<Typography variant='h6'>{index + 1}. {translate(locale, fishingSpots[maps.STOP_MAP[stop[0]]], 'place_name_sub')} {maps.TIME_MAP[stop[1]]}</Typography>}
           disableTypography
         />
         {children}
