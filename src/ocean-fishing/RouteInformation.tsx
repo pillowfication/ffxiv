@@ -17,7 +17,7 @@ import BaitList from './BaitList'
 import calculateVoyages from './calculate-voyages'
 import { fishingSpots, fishes } from './gists/data/ocean-fish-data.json'
 import * as maps from './maps'
-import { timeUntil, getStops, getBlueFish, getBaitGroup, translate } from './utils'
+import { timeUntil, getStops, getBlueFish, getBaitGroup, translate, upperFirst } from './utils'
 
 const useStyles = makeStyles((theme) => ({
   headerSub: {
@@ -69,7 +69,7 @@ const RouteInformation = ({ now, selectedRoute, checklist, setChecklist }: Props
       title={
         <Grid container>
           <Grid item xs={12} lg={8}>
-            {translate(locale, fishingSpots[maps.STOP_MAP[selectedRoute[0]]], 'place_name_sub', 'no_article')}
+            {upperFirst(translate(locale, fishingSpots[maps.STOP_MAP[selectedRoute[0]]], 'place_name_sub', 'no_article'))}
             <span className={classes.headerTime}>{maps.TIME_MAP[selectedRoute[1]]}</span>
             <Typography display='inline' className={classes.headerSub}>{timeUntil(now, next, true)}</Typography>
           </Grid>
