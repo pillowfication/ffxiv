@@ -6,7 +6,7 @@ import RouteCardContainer from './RouteCardContainer'
 import RouteCard from './RouteCard'
 import BaitList from './BaitList'
 import Tug from './Tug'
-import { getStops, getBaitGroup } from './utils'
+import { getStops, getBaitGroup, subtextDH } from './utils'
 import * as maps from './maps'
 
 type Props = {
@@ -24,10 +24,10 @@ const AchievementJellyfish = ({ selectedRoute }: Props) => {
             <BaitList
               baitGroups={[{
                 header: 'DH; DH-IC–DH post-spectral at 12-26s',
-                baitGroupProps: { showDH: true, ...getBaitGroup(32058) }
+                baitGroupProps: { ...getBaitGroup(32058), subtext: subtextDH }
               }, {
                 header: 'DH at <3s',
-                baitGroupProps: { showDH: true, ...getBaitGroup(32070) }
+                baitGroupProps: { ...getBaitGroup(32070), subtext: subtextDH }
               }]}
             />
           </CardContent>
@@ -66,7 +66,7 @@ const AchievementJellyfish = ({ selectedRoute }: Props) => {
                       <BaitList
                         baitGroups={[{
                           header: 'DH at ≥5s',
-                          baitGroupProps: { showDH: true, ...getBaitGroup(32087) }
+                          baitGroupProps: { ...getBaitGroup(32087), subtext: subtextDH }
                         }]}
                       />
                     </CardContent>
@@ -85,7 +85,7 @@ const AchievementJellyfish = ({ selectedRoute }: Props) => {
                       <BaitList
                         baitGroups={[{
                           header: 'IC–DH at 4-5s',
-                          baitGroupProps: { showDH: true, ...getBaitGroup(32111) }
+                          baitGroupProps: { ...getBaitGroup(32111), subtext: subtextDH }
                         }]}
                       />
                     </CardContent>

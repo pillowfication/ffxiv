@@ -6,6 +6,7 @@ import BaitChain, { Bait } from './BaitChain'
 const useStyles = makeStyles((theme) => ({
   intuitionFishes: {
     listStyleType: 'none',
+    margin: 0,
     paddingLeft: theme.spacing(1)
   },
   count: {
@@ -15,23 +16,24 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 type Props = {
-  bait: Bait[],
-  intuitionFishes?: { bait: Bait[], count: number }[],
-  showDH?: boolean
+  baits: Bait[],
+  intuitionFishes?: { baits: Bait[], count: number }[],
+  subtext?: string | ((fishId: number) => string),
+  mainOnly?: boolean
 }
 
-const BaitGroup = ({ bait, intuitionFishes, showDH }: Props) => {
+const BaitGroup = ({ baits, intuitionFishes, subtext, mainOnly }: Props) => {
   const classes = useStyles()
 
   return (
     <>
-      <BaitChain bait={bait} showDH={showDH} />
+      <BaitChain baits={baits} subtext={subtext} />
       {intuitionFishes &&
         <ul className={classes.intuitionFishes}>
-          {intuitionFishes.map(({ count, bait }, index) =>
+          {intuitionFishes.map(({ count, baits }, index) =>
             <li key={index}>
               <Typography className={classes.count} display='inline'>{count}×</Typography>
-              <BaitChain bait={bait} />
+              <BaitChain baits={baits} subtext={!mainOnly && subtext} />
             </li>
           )}
         </ul>}

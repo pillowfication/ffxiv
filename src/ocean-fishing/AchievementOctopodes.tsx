@@ -7,7 +7,7 @@ import RouteCardContainer from './RouteCardContainer'
 import RouteCard from './RouteCard'
 import BaitList from './BaitList'
 import Tug from './Tug'
-import { getStops, getBaitGroup } from './utils'
+import { getStops, getBaitGroup, subtextDH } from './utils'
 import * as maps from './maps'
 import octopodesMacro from './macros/octopodes.ffmacro'
 
@@ -36,10 +36,10 @@ const AchievementOctopodes = ({ selectedRoute }: Props) => {
             <BaitList
               baitGroups={[{
                 header: 'IC–DH at 16-27s',
-                baitGroupProps: { showDH: true, ...getBaitGroup(29734) }
+                baitGroupProps: { ...getBaitGroup(29734), subtext: subtextDH }
               }, {
                 header: 'DH–IC–DH at <3s',
-                baitGroupProps: { showDH: true, ...getBaitGroup(29766) }
+                baitGroupProps: { ...getBaitGroup(29766), subtext: subtextDH }
               }]}
             />
           </CardContent>
@@ -59,7 +59,7 @@ const AchievementOctopodes = ({ selectedRoute }: Props) => {
             <BaitList
               baitGroups={[{
                 header: 'DH–IC–DH at ≥5s',
-                baitGroupProps: { showDH: true, ...getBaitGroup(29773) }
+                baitGroupProps: { ...getBaitGroup(29773), subtext: subtextDH }
               }]}
             />
           </CardContent>

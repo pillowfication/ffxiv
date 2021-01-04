@@ -66,22 +66,32 @@ export const getBait = memoize((baitName: string): Bait =>
 export const getBaitChain = memoize(function _getBaitChain (fishId: number): BaitChainProp[] {
   const fishInfo = getFishInfo(fishes[fishId].name_en)
   return fishInfo.bait
-    ? [getBait(fishInfo.bait), { id: fishId, tug: fishInfo.tug, doubleHook: fishInfo.doubleHook }]
-    : [..._getBaitChain(getFish(fishInfo.mooch).id), { id: fishId, tug: fishInfo.tug, doubleHook: fishInfo.doubleHook }]
+    ? [getBait(fishInfo.bait), { id: fishId, tug: fishInfo.tug }]
+    : [..._getBaitChain(getFish(fishInfo.mooch).id), { id: fishId, tug: fishInfo.tug }]
 })
 
 export const getBaitGroup = memoize(
-  (fishId: number): { bait: BaitChainProp[], intuitionFishes?: { bait: BaitChainProp[], count: number }[] } => {
+  (fishId: number): { baits: BaitChainProp[], intuitionFishes?: { baits: BaitChainProp[], count: number }[] } => {
     const fishInfo = getFishInfo(fishes[fishId].name_en)
     return {
-      bait: getBaitChain(fishId),
+      baits: getBaitChain(fishId),
       intuitionFishes: fishInfo.intuition && fishInfo.intuition.map(intuitionFish => ({
-        bait: getBaitChain(getFish(intuitionFish.name).id),
+        baits: getBaitChain(getFish(intuitionFish.name).id),
         count: intuitionFish.count
       }))
     }
   }
 )
+
+export function subtextDH (fishId: number) {
+  const dh = getFishInfo(fishes[fishId].name_en).doubleHook
+  return dh ? `DH: ${Array.isArray(dh) ? dh.join('-') : dh}` : 'DH: ?'
+}
+
+export function subtextBiteTime (fishId: number) {
+  const timer = getFishInfo(fishes[fishId].name_en).timer
+  return timer ? `${timer[0] === timer[1] ? timer[0] : timer.join('-')} s` : '? s'
+}
 
 export function translate (locale: string = 'en', obj: any, ...keys: string[]): string {
   for (let i = keys.length; i > 0; --i) {

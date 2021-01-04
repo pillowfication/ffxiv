@@ -5,7 +5,7 @@ import AchievementInformation from './AchievementInformation'
 import RouteCardContainer from './RouteCardContainer'
 import RouteCard from './RouteCard'
 import BaitList from './BaitList'
-import { getStops, getBaitGroup } from './utils'
+import { getStops, getBaitGroup, subtextDH } from './utils'
 import * as maps from './maps'
 
 type Props = {
@@ -23,10 +23,10 @@ const AchievementBalloons = ({ selectedRoute }: Props) => {
             <BaitList
               baitGroups={[{
                 header: 'IC–DH at 5-10s',
-                baitGroupProps: { showDH: true, ...getBaitGroup(32057) }
+                baitGroupProps: { ...getBaitGroup(32057), subtext: subtextDH }
               }, {
                 header: 'DH at <5s',
-                baitGroupProps: { showDH: true, ...getBaitGroup(32066) }
+                baitGroupProps: { ...getBaitGroup(32066), subtext: subtextDH }
               }]}
             />
           </CardContent>
@@ -46,10 +46,10 @@ const AchievementBalloons = ({ selectedRoute }: Props) => {
             <BaitList
               baitGroups={[{
                 header: 'IC–DH at 10-16s',
-                baitGroupProps: { showDH: true, ...getBaitGroup(29732) }
+                baitGroupProps: { ...getBaitGroup(29732), subtext: subtextDH }
               }, {
                 header: 'IC–DH at 2-6s',
-                baitGroupProps: { showDH: true, ...getBaitGroup(29768) }
+                baitGroupProps: { ...getBaitGroup(29768), subtext: subtextDH }
               }]}
             />
           </CardContent>
@@ -68,16 +68,16 @@ const AchievementBalloons = ({ selectedRoute }: Props) => {
             <BaitList
               baitGroups={[{
                 header: 'No buffs at 2-5s',
-                baitGroupProps: { showDH: true, ...getBaitGroup(32095) }
+                baitGroupProps: { ...getBaitGroup(32095), subtext: subtextDH }
               }, {
                 header: 'DH at ≥11s',
-                baitGroupProps: { showDH: true, ...getBaitGroup(32098) }
+                baitGroupProps: { ...getBaitGroup(32098), subtext: subtextDH }
               }, {
                 header: 'IC–DH',
-                baitGroupProps: { showDH: true, ...getBaitGroup(32105) }
+                baitGroupProps: { ...getBaitGroup(32105), subtext: subtextDH }
               }, {
                 header: 'IC–DH',
-                baitGroupProps: { showDH: true, ...getBaitGroup(32109) }
+                baitGroupProps: { ...getBaitGroup(32109), subtext: subtextDH }
               }]}
             />
           </CardContent>

@@ -58,6 +58,10 @@ const results = {
           name_en: fish.Name_en,
           name_fr: fish.Name_fr,
           name_ja: fish.Name_ja,
+          description_de: fish.Description_de,
+          description_en: fish.Description_en,
+          description_fr: fish.Description_fr,
+          description_ja: fish.Description_ja,
           icon: fish.Icon
         }
       }

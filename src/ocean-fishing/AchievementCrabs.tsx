@@ -6,7 +6,7 @@ import RouteCardContainer from './RouteCardContainer'
 import RouteCard from './RouteCard'
 import BaitList from './BaitList'
 import Tug from './Tug'
-import { getStops, getBaitGroup } from './utils'
+import { getStops, getBaitGroup, subtextDH } from './utils'
 import * as maps from './maps'
 
 type Props = {
@@ -24,10 +24,10 @@ const AchievementCrabs = ({ selectedRoute }: Props) => {
             <BaitList
               baitGroups={[{
                 header: 'IC–DH at <12s',
-                baitGroupProps: { showDH: true, ...getBaitGroup(32055) }
+                baitGroupProps: { ...getBaitGroup(32055), subtext: subtextDH }
               }, {
                 header: 'DH–IC–DH at <4s',
-                baitGroupProps: { showDH: true, ...getBaitGroup(32065) }
+                baitGroupProps: { ...getBaitGroup(32065), subtext: subtextDH }
               }]}
             />
           </CardContent>
@@ -47,10 +47,10 @@ const AchievementCrabs = ({ selectedRoute }: Props) => {
             <BaitList
               baitGroups={[{
                 header: 'IC–DH at 9-21s',
-                baitGroupProps: { showDH: true, ...getBaitGroup(29741) }
+                baitGroupProps: { ...getBaitGroup(29741), subtext: subtextDH }
               }, {
                 header: 'IC–DH at 4-8s',
-                baitGroupProps: { showDH: true, ...getBaitGroup(29777) }
+                baitGroupProps: { ...getBaitGroup(29777), subtext: subtextDH }
               }]}
             />
           </CardContent>
@@ -65,16 +65,16 @@ const AchievementCrabs = ({ selectedRoute }: Props) => {
             <BaitList
               baitGroups={[{
                 header: 'No buffs at 3-7s',
-                baitGroupProps: { showDH: true, ...getBaitGroup(32075) }
+                baitGroupProps: { ...getBaitGroup(32075), subtext: subtextDH }
               }, {
                 header: 'DH at ≥14s',
-                baitGroupProps: { showDH: true, ...getBaitGroup(32079) }
+                baitGroupProps: { ...getBaitGroup(32079), subtext: subtextDH }
               }, {
                 header: 'No Buffs',
-                baitGroupProps: { showDH: true, ...getBaitGroup(32085) }
+                baitGroupProps: { ...getBaitGroup(32085), subtext: subtextDH }
               }, {
                 header: 'DH at ≥5s',
-                baitGroupProps: { showDH: true, ...getBaitGroup(32090) }
+                baitGroupProps: { ...getBaitGroup(32090), subtext: subtextDH }
               }]}
             />
           </CardContent>

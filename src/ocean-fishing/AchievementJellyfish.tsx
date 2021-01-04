@@ -7,7 +7,7 @@ import RouteCardContainer from './RouteCardContainer'
 import RouteCard from './RouteCard'
 import BaitList from './BaitList'
 import Tug from './Tug'
-import { getStops, getBaitGroup } from './utils'
+import { getStops, getBaitGroup, subtextDH } from './utils'
 import * as maps from './maps'
 import jellyfishMacro from './macros/jellyfish.ffmacro'
 
@@ -36,10 +36,10 @@ const AchievementJellyfish = ({ selectedRoute }: Props) => {
             <BaitList
               baitGroups={[{
                 header: 'DH at <5s',
-                baitGroupProps: { showDH: true, ...getBaitGroup(29739) }
+                baitGroupProps: { ...getBaitGroup(29739), subtext: subtextDH }
               }, {
                 header: 'IC–DH at 4-8s',
-                baitGroupProps: { showDH: true, ...getBaitGroup(29757) }
+                baitGroupProps: { ...getBaitGroup(29757), subtext: subtextDH }
               }]}
             />
           </CardContent>
@@ -59,7 +59,7 @@ const AchievementJellyfish = ({ selectedRoute }: Props) => {
             <BaitList
               baitGroups={[{
                 header: 'IC–DH at 6-10s',
-                baitGroupProps: { showDH: true, ...getBaitGroup(29762) }
+                baitGroupProps: { ...getBaitGroup(29762), subtext: subtextDH }
               }]}
             />
           </CardContent>

@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '-0.15em',
     marginRight: '-0.15em'
   },
-  dh: {
+  subtext: {
     verticalAlign: 'middle',
     marginLeft: theme.spacing(2)
   }
@@ -28,29 +28,30 @@ const useStyles = makeStyles((theme) => ({
 
 export type Bait = {
   id: number,
-  tug?: 1 | 2 | 3,
-  doubleHook?: number | number[]
+  tug?: 1 | 2 | 3
 }
 
 type Props = {
-  bait: Bait[],
-  showDH?: boolean
+  baits: Bait[],
+  subtext?: string | ((fishId: number) => string),
 }
 
-const BaitChain = ({ bait, showDH }: Props) => {
+const BaitChain = ({ baits, subtext }: Props) => {
   const classes = useStyles()
 
   return (
     <div className={classes.baitChain}>
-      {bait.map(({ id, tug, doubleHook }, index) =>
+      {baits.map(({ id, tug }, index) =>
         <React.Fragment key={id}>
           <div className={classes.bait}>
             <OceanFishIcon type={index === 0 ? 'bait' : 'fish'} id={id} />
             {tug && <Tug sup strength={tug} />}
-            {(showDH && index === bait.length - 1) &&
-              <Typography className={classes.dh} display='inline'>DH: {Array.isArray(doubleHook) ? doubleHook.join('-') : doubleHook}</Typography>}
+            {(subtext && index === baits.length - 1) &&
+              <Typography className={classes.subtext} display='inline'>
+                {typeof subtext === 'string' ? subtext : subtext(id)}
+              </Typography>}
           </div>
-          {index < bait.length - 1 && <ChevronRightIcon className={classes.chevron} />}
+          {index < baits.length - 1 && <ChevronRightIcon className={classes.chevron} />}
         </React.Fragment>
       )}
     </div>

@@ -6,7 +6,7 @@ import AchievementInformation from './AchievementInformation'
 import RouteCardContainer from './RouteCardContainer'
 import RouteCard from './RouteCard'
 import BaitList from './BaitList'
-import { getStops, getBaitGroup } from './utils'
+import { getStops, getBaitGroup, subtextDH } from './utils'
 import * as maps from './maps'
 import seadragonsMacro from './macros/seadragons.ffmacro'
 
@@ -25,10 +25,10 @@ const AchievementSeadragons = ({ selectedRoute }: Props) => {
             <BaitList
               baitGroups={[{
                 header: 'IC–DH at 9-21s',
-                baitGroupProps: { showDH: true, ...getBaitGroup(29740) }
+                baitGroupProps: { ...getBaitGroup(29740), subtext: subtextDH }
               }, {
                 header: 'No buffs',
-                baitGroupProps: { showDH: true, ...getBaitGroup(29763) }
+                baitGroupProps: { ...getBaitGroup(29763), subtext: subtextDH }
               }]}
             />
           </CardContent>
@@ -58,7 +58,7 @@ const AchievementSeadragons = ({ selectedRoute }: Props) => {
             <BaitList
               baitGroups={[{
                 header: 'IC–DH',
-                baitGroupProps: { showDH: true, ...getBaitGroup(29764) }
+                baitGroupProps: { ...getBaitGroup(29764), subtext: subtextDH }
               }]}
             />
           </CardContent>

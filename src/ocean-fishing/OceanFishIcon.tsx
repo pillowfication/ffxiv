@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
 import Tooltip from '@material-ui/core/Tooltip'
+import Popper from '@material-ui/core/Popper'
+import ClickAwayListener from '@material-ui/core/ClickAwayListener'
+import OceanFishPopper from './OceanFishPopper'
 import { fishes, baits, achievements } from './gists/data/ocean-fish-data.json'
 // import ICONS_URL from './gists/data/ocean-fishing-icons.png'
 import ICONS_MAP from './gists/data/ocean-fishing-icons-map.json'
@@ -45,6 +48,9 @@ const useStyles = makeStyles((theme) => {
       top: 0,
       left: 0,
       width: ({ size }: { size: number }) => size * 1.2
+    },
+    hasPopper: {
+      cursor: 'pointer'
     }
   }
 
@@ -68,7 +74,18 @@ type Props = {
 const OceanFishIcon = ({ type, id, size = 40, className }: Props) => {
   const classes = useStyles({ size })
   const router = useRouter()
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const locale = router.locale
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    if (type === 'fish' && !anchorEl) {
+      setAnchorEl(event.currentTarget)
+    }
+  }
+
+  const handleClickAway = () => {
+    setAnchorEl(null)
+  }
 
   let info: any
   let overlayUrl: string
@@ -95,13 +112,26 @@ const OceanFishIcon = ({ type, id, size = 40, className }: Props) => {
   }
 
   return (
-    <Tooltip arrow placement='top' title={translate(locale, info, 'name')}>
-      <div className={clsx(classes.iconContainer, className)}>
-        <div className={clsx(classes.oceanFishIcon, classes[camelCase(id)])} />
-        {overlayUrl &&
-          <img src={overlayUrl} className={classes.iconOverlay} />}
-      </div>
-    </Tooltip>
+    <>
+      <Tooltip arrow placement='top' title={translate(locale, info, 'name')}>
+        <div
+          className={clsx(classes.iconContainer, type === 'fish' && classes.hasPopper, className)}
+          onClick={handleClick}
+        >
+          <div className={clsx(classes.oceanFishIcon, classes[camelCase(id)])} />
+          {overlayUrl &&
+            <img src={overlayUrl} className={classes.iconOverlay} />}
+        </div>
+      </Tooltip>
+      {type === 'fish' &&
+        <Popper anchorEl={anchorEl} open={Boolean(anchorEl)}>
+          <ClickAwayListener onClickAway={handleClickAway}>
+            <div>
+              <OceanFishPopper id={id as number} />
+            </div>
+          </ClickAwayListener>
+        </Popper>}
+    </>
   )
 }
 

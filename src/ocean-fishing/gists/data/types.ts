@@ -21,6 +21,10 @@ export type Fish = {
   name_en: string,
   name_fr: string,
   name_ja: string,
+  description_de: string,
+  description_en: string,
+  description_fr: string,
+  description_ja: string,
   icon: string
 }
 

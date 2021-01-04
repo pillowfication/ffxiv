@@ -19,9 +19,9 @@ type Props = {
   baitGroups: {
     header: string,
     baitGroupProps: {
-      bait: Bait[],
-      intuitionFishes?: { bait: Bait[], count: number }[],
-      showDH?: boolean
+      baits: Bait[],
+      intuitionFishes?: { baits: Bait[], count: number }[],
+      subtext?: string | ((fishId: number) => string),
     }
   }[]
 }
