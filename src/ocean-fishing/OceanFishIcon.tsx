@@ -124,7 +124,7 @@ const OceanFishIcon = ({ type, id, size = 40, className }: Props) => {
         </div>
       </Tooltip>
       {type === 'fish' &&
-        <Popper anchorEl={anchorEl} open={Boolean(anchorEl)}>
+        <Popper anchorEl={anchorEl} open={Boolean(anchorEl)} placement='bottom-start'>
           <ClickAwayListener onClickAway={handleClickAway}>
             <div>
               <OceanFishPopper id={id as number} />
