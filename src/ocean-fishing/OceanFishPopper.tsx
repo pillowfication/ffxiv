@@ -2,6 +2,7 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
+import Link from '@material-ui/core/Link'
 import Box from '@material-ui/core/Box'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
@@ -10,17 +11,24 @@ import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
-import OceanFishIcon from './OceanFishIcon'
+import OceanFishIconLarge from './OceanFishIconLarge'
 import TimeIcon from './TimeIcon'
 import BaitGroup from './BaitGroup'
 import WeatherIcon from '../skywatcher/WeatherIcon'
 import { fishes } from './gists/data/ocean-fish-data.json'
+import { Fish } from './gists/data/types'
 import * as maps from './maps'
 import { getFishInfo, getBaitGroup, subtextBiteTime, translate } from './utils'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   container: {
-    maxWidth: 400
+    maxWidth: 400,
+  },
+  header: {
+    padding: theme.spacing(1, 2, 0, 1)
+  },
+  content: {
+    padding: theme.spacing(2, 2, 0)
   },
   description: {
     whiteSpace: 'pre-line'
@@ -28,13 +36,13 @@ const useStyles = makeStyles(() => ({
 }))
 
 type Props = {
-  id: number
+  fishId: number
 }
 
-const OceanFishPopper = ({ id }: Props) => {
+const OceanFishPopper = ({ fishId }: Props) => {
   const classes = useStyles()
   const router = useRouter()
-  const fish = fishes[id]
+  const fish: Fish = fishes[fishId]
   const fishInfo = getFishInfo(fish.name_en)
   const locale = router.locale
 
@@ -42,14 +50,25 @@ const OceanFishPopper = ({ id }: Props) => {
     <Box boxShadow={8}>
       <Card variant='outlined' className={classes.container}>
         <CardHeader
-          avatar={<OceanFishIcon type='fish' id={id} />}
+          avatar={<OceanFishIconLarge fishId={fishId} size={100} />}
           title={translate(locale, fish, 'name')}
-          subheader={fishInfo.stars && '★'.repeat(fishInfo.stars)}
+          titleTypographyProps={{ variant: 'h6' }}
+          subheader={(
+            <div>
+              <Typography variant='subtitle2' paragraph>{fishInfo.stars && '★'.repeat(fishInfo.stars)}</Typography>
+              {fish.lodestone_data
+                ? <Link href={`https://na.finalfantasyxiv.com${fish.lodestone_data.url}`}>Lodestone</Link>
+                : 'Lodestone'}
+              <> | </>
+              <Link href={`https://ffxivteamcraft.com/db/${locale}/item/${fishId}`}>Teamcraft</Link>
+            </div>
+          )}
+          className={classes.header}
         />
-        <CardContent>
-          <BaitGroup {...getBaitGroup(id)} subtext={subtextBiteTime} />
+        <CardContent className={classes.content}>
+          <BaitGroup {...getBaitGroup(fishId)} subtext={subtextBiteTime} />
         </CardContent>
-        <CardContent>
+        <CardContent className={classes.content}>
           <Table size='small'>
             <TableBody>
               <TableRow>
@@ -99,7 +118,7 @@ const OceanFishPopper = ({ id }: Props) => {
             </TableBody>
           </Table>
         </CardContent>
-        <CardContent>
+        <CardContent className={classes.content}>
           <Typography variant='caption' className={classes.description}>
             {translate(locale, fish, 'description').replace(/\[[^\]]*\]/g, '').trim()}
           </Typography>

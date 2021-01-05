@@ -1,0 +1,71 @@
+import React from 'react'
+import clsx from 'clsx'
+import { useRouter } from 'next/router'
+import { makeStyles } from '@material-ui/core/styles'
+import Tooltip from '@material-ui/core/Tooltip'
+import { fishes } from './gists/data/ocean-fish-data.json'
+import { Fish } from './gists/data/types'
+// import ICONS_URL from './gists/data/ocean-fishing-icons.png'
+import { translate } from './utils'
+
+function getImgUrl (fish: Fish) {
+  if (!fish.lodestone_data) {
+    return `https://xivapi.com${fish.icon}`
+  } else {
+    const id = fish.lodestone_data.icon_lg
+    return `https://img.finalfantasyxiv.com/lds/pc/global/images/itemicon/${id.slice(0, 2)}/${id}.png`
+  }
+}
+
+const useStyles = makeStyles((theme) => ({
+  iconContainer: {
+    display: 'inline-block',
+    position: 'relative' as 'relative',
+    width: ({ size }: { size: number }) => size * 1.1875,
+    height: ({ size }: { size: number }) => size * 1.1875,
+    margin: theme.spacing(0.1),
+    verticalAlign: 'middle'
+  },
+  oceanFishIcon: {
+    position: 'absolute' as 'absolute',
+    top: ({ size }: { size: number }) => size * 0.046875,
+    left: ({ size }: { size: number }) => size * 0.09375,
+    width: ({ size }: { size: number }) => size,
+    height: ({ size }: { size: number }) => size
+  },
+  iconOverlay: {
+    position: 'absolute' as 'absolute',
+    top: 0,
+    left: 0,
+    width: ({ size }: { size: number }) => size * 1.2,
+    height: ({ size }: { size: number }) => size * 1.1,
+    backgroundImage: `url("${'/images/item-overlay-lg.png'}")`,
+    backgroundSize: '100% auto'
+  }
+}))
+
+type Props = {
+  fishId: number,
+  size?: number,
+  className?: string
+}
+
+const OceanFishIconLarge = ({ fishId, size = 128, className }: Props) => {
+  const classes = useStyles({ size })
+  const router = useRouter()
+  const fish = fishes[fishId]
+  const locale = router.locale
+
+  return (
+    <>
+      <Tooltip arrow placement='top' title={translate(locale, fish, 'name')}>
+        <div className={clsx(classes.iconContainer, className)}>
+          <img src={getImgUrl(fish)} className={classes.oceanFishIcon} />
+          <div className={classes.iconOverlay} />
+        </div>
+      </Tooltip>
+    </>
+  )
+}
+
+export default OceanFishIconLarge

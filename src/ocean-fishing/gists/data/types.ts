@@ -25,7 +25,12 @@ export type Fish = {
   description_en: string,
   description_fr: string,
   description_ja: string,
-  icon: string
+  icon: string,
+  lodestone_data?: {
+    url: string,
+    icon_sm: string,
+    icon_lg: string
+  }
 }
 
 export type FishInfo = {
