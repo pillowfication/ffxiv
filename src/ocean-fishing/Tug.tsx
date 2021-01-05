@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
   sup: {
     position: 'absolute',
-    left: '2.4em',
+    left: '2.25em',
     top: 0
   },
   light: {

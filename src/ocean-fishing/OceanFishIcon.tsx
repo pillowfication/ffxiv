@@ -27,27 +27,36 @@ const useStyles = makeStyles((theme) => {
   const styles = {
     iconContainer: {
       display: 'inline-block',
-      width: ({ size }: { size: number }) => size * 1.2,
-      height: ({ size }: { size: number }) => size * 1.1,
       position: 'relative' as 'relative',
-      margin: theme.spacing(0.5, 0.25),
+      width: ({ size }: { size: number }) => size * 1.2,
+      height: ({ size }: { size: number }) => size * 1.2,
+      margin: theme.spacing(0.1),
       verticalAlign: 'middle'
     },
     oceanFishIcon: {
       position: 'absolute' as 'absolute',
-      top: 0,
-      left: 0,
+      top: ({ size }: { size: number }) => size * 0.1,
+      left: ({ size }: { size: number }) => size * 0.1,
       width: ({ size }: { size: number }) => size,
       height: ({ size }: { size: number }) => size,
-      margin: ({ size }: { size: number }) => `${size * 0.05}px ${size * 0.1}px`,
       backgroundImage: `url("${'/images/ocean-fishing-icons.png'}")`,
       backgroundSize: `${ICON_COLS * 100}% ${ICON_ROWS * 100}%`
     },
     iconOverlay: {
       position: 'absolute' as 'absolute',
+      top: ({ size }: { size: number }) => size * 0.05,
+      left: 0,
+      width: ({ size }: { size: number }) => size * 1.2,
+      height: ({ size }: { size: number }) => size * 1.1,
+      backgroundImage: `url("${'/images/item-overlay.png'}")`,
+    },
+    achievementOverlay: {
+      position: 'absolute' as 'absolute',
       top: 0,
       left: 0,
-      width: ({ size }: { size: number }) => size * 1.2
+      width: ({ size }: { size: number }) => size * 1.2,
+      height: ({ size }: { size: number }) => size * 1.2,
+      backgroundImage: `url("${'/images/achievement-overlay.png'}")`
     },
     hasPopper: {
       cursor: 'pointer'
@@ -88,23 +97,11 @@ const OceanFishIcon = ({ type, id, size = 40, className }: Props) => {
   }
 
   let info: any
-  let overlayUrl: string
   switch (type) {
-    case 'fish':
-      info = fishes[id]
-      overlayUrl = '/images/item-overlay.png'
-      break
-    case 'bait':
-      info = baits[id]
-      overlayUrl = '/images/item-overlay.png'
-      break
-    case 'achievement':
-      info = achievements[id]
-      overlayUrl = '/images/achievement-overlay.png'
-      break
-    case 'bonus-icon':
-      info = { name_en: String(id) }
-      break
+    case 'fish': info = fishes[id]; break
+    case 'bait': info = baits[id]; break
+    case 'achievement': info = achievements[id]; break
+    case 'bonus-icon': info = { name_en: String(id) }; break
   }
   if (!info) {
     console.error(`Could not find info for ${id} (${type})`)
@@ -119,8 +116,8 @@ const OceanFishIcon = ({ type, id, size = 40, className }: Props) => {
           onClick={handleClick}
         >
           <div className={clsx(classes.oceanFishIcon, classes[camelCase(id)])} />
-          {overlayUrl &&
-            <img src={overlayUrl} className={classes.iconOverlay} />}
+          {type !== 'bonus-icon' &&
+            <div className={type === 'achievement' ? classes.achievementOverlay : classes.iconOverlay} />}
         </div>
       </Tooltip>
       {type === 'fish' &&
