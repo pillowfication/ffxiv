@@ -30,7 +30,7 @@ export const STOP_MAP: { [key in Stop]: number } = {
   T: 250
 }
 
-export const TIME_MAP: { [key in Time]: React.FunctionComponentElement<any> } = {
+export const TIME_MAP: { [key in Time]: React.ReactNode } = {
   D: React.createElement(TimeIcon, { time: 'D' }),
   N: React.createElement(TimeIcon, { time: 'N' }),
   S: React.createElement(TimeIcon, { time: 'S' })
