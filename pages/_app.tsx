@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ThemeProvider, makeStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import GlobalStyles from '../src/GlobalStyles'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
@@ -20,6 +19,8 @@ import TranslateIcon from '@material-ui/icons/Translate'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Brightness2Icon from '@material-ui/icons/Brightness2'
 import Brightness5Icon from '@material-ui/icons/Brightness5'
+import i18n from '../i18n'
+import GlobalStyles from '../src/GlobalStyles'
 import { lightTheme, darkTheme } from '../src/themes'
 
 const LANGUAGES = {
@@ -94,9 +95,7 @@ const App = ({ Component, pageProps }: Props) => {
 
   const handleSelectLanguage = (locale?: string) => {
     setLanguageAnchorEl(null)
-    if (locale && router.locales.includes(locale)) {
-      router.push(router.asPath, router.asPath, { locale })
-    }
+    locale && i18n.i18n.changeLanguage(locale)
   }
 
   const handleChangeTheme = () => {
@@ -147,7 +146,7 @@ const App = ({ Component, pageProps }: Props) => {
                     open={Boolean(languageAnchorEl)}
                     onClose={handleSelectLanguage.bind(null, null)}
                   >
-                    {router.locales.map(locale =>
+                    {[i18n.config.defaultLanguage, ...i18n.config.otherLanguages].map(locale =>
                       <MenuItem key={locale} onClick={handleSelectLanguage.bind(null, locale)}>{LANGUAGES[locale] || locale.toUpperCase()}</MenuItem>
                     )}
                   </Menu>
@@ -170,4 +169,4 @@ const App = ({ Component, pageProps }: Props) => {
   )
 }
 
-export default App
+export default i18n.appWithTranslation(App)

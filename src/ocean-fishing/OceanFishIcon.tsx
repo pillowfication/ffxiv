@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import clsx from 'clsx'
-import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
 import Tooltip from '@material-ui/core/Tooltip'
 import Popper from '@material-ui/core/Popper'
@@ -10,6 +9,8 @@ import { fishes, baits, achievements } from './gists/data/ocean-fish-data.json'
 // import ICONS_URL from './gists/data/ocean-fishing-icons.png'
 import ICONS_MAP from './gists/data/ocean-fishing-icons-map.json'
 import { translate } from './utils'
+import i18n from '../../i18n'
+import { I18n } from 'next-i18next'
 
 const ICON_ROWS = ICONS_MAP.length
 const ICON_COLS = Math.max(...ICONS_MAP.map(row => row.length))
@@ -77,14 +78,13 @@ type Props = {
   type: 'fish' | 'bait' | 'achievement' | 'bonus-icon',
   id: number | string,
   size?: number,
-  className?: string
+  className?: string,
+  i18n: I18n
 }
 
-const OceanFishIcon = ({ type, id, size = 40, className }: Props) => {
+const OceanFishIcon = ({ type, id, size = 40, className, i18n }: Props) => {
   const classes = useStyles({ size })
-  const router = useRouter()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
-  const locale = router.locale
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     if (type === 'fish' && !anchorEl) {
@@ -103,14 +103,10 @@ const OceanFishIcon = ({ type, id, size = 40, className }: Props) => {
     case 'achievement': info = achievements[id]; break
     case 'bonus-icon': info = { name_en: String(id) }; break
   }
-  if (!info) {
-    console.error(`Could not find info for ${id} (${type})`)
-    info = { name_en: String(id) }
-  }
 
   return (
     <>
-      <Tooltip arrow placement='top' title={translate(locale, info, 'name')}>
+      <Tooltip arrow placement='top' title={translate(i18n.language, info, 'name')}>
         <div
           className={clsx(classes.iconContainer, type === 'fish' && classes.hasPopper, className)}
           onClick={handleClick}
@@ -132,4 +128,4 @@ const OceanFishIcon = ({ type, id, size = 40, className }: Props) => {
   )
 }
 
-export default React.memo(OceanFishIcon)
+export default i18n.withTranslation('ocean-fishing')(OceanFishIcon)

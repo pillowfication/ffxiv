@@ -1,5 +1,4 @@
 import React from 'react'
-import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Link from '@material-ui/core/Link'
@@ -19,6 +18,8 @@ import { fishes } from './gists/data/ocean-fish-data.json'
 import { Fish } from './gists/data/types'
 import * as maps from './maps'
 import { getFishInfo, getBaitGroup, subtextBiteTime, translate } from './utils'
+import i18n from '../../i18n'
+import { I18n, TFunction } from 'next-i18next'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -36,22 +37,22 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 type Props = {
-  fishId: number
+  fishId: number,
+  t: TFunction,
+  i18n: I18n
 }
 
-const OceanFishPopper = ({ fishId }: Props) => {
+const OceanFishPopper = ({ fishId, t, i18n }: Props) => {
   const classes = useStyles()
-  const router = useRouter()
   const fish: Fish = fishes[fishId]
   const fishInfo = getFishInfo(fish.name_en)
-  const locale = router.locale
 
   return (
     <Box boxShadow={8}>
       <Card variant='outlined' className={classes.container}>
         <CardHeader
           avatar={<OceanFishIconLarge fishId={fishId} size={100} />}
-          title={translate(locale, fish, 'name')}
+          title={translate(i18n.language, fish, 'name')}
           titleTypographyProps={{ variant: 'h6' }}
           subheader={(
             <div>
@@ -60,7 +61,7 @@ const OceanFishPopper = ({ fishId }: Props) => {
                 ? <Link href={`https://na.finalfantasyxiv.com${fish.lodestone_data.url}`}>Lodestone</Link>
                 : 'Lodestone'}
               <> | </>
-              <Link href={`https://ffxivteamcraft.com/db/${locale}/item/${fishId}`}>Teamcraft</Link>
+              <Link href={`https://ffxivteamcraft.com/db/${i18n.language}/item/${fishId}`}>Teamcraft</Link>
             </div>
           )}
           className={classes.header}
@@ -72,15 +73,15 @@ const OceanFishPopper = ({ fishId }: Props) => {
           <Table size='small'>
             <TableBody>
               <TableRow>
-                <TableCell variant='head'><Typography>Points</Typography></TableCell>
+                <TableCell variant='head'><Typography>{t('points')}</Typography></TableCell>
                 <TableCell align='center'>{fishInfo.points}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell variant='head'><Typography>Double Hook</Typography></TableCell>
+                <TableCell variant='head'><Typography>{t('double-hook')}</Typography></TableCell>
                 <TableCell align='center'>{fishInfo.doubleHook}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell variant='head'><Typography>Weather</Typography></TableCell>
+                <TableCell variant='head'><Typography>{t('weather')}</Typography></TableCell>
                 <TableCell align='center'>
                   {fishInfo.weathers
                     ? (() => {
@@ -106,7 +107,7 @@ const OceanFishPopper = ({ fishId }: Props) => {
                 </TableCell>
               </TableRow>
               <TableRow>
-                <TableCell variant='head'><Typography>Time</Typography></TableCell>
+                <TableCell variant='head'><Typography>{t('time-of-day')}</Typography></TableCell>
                 <TableCell align='center'>
                   {fishInfo.time ?
                     fishInfo.time === 'DSN'
@@ -120,7 +121,7 @@ const OceanFishPopper = ({ fishId }: Props) => {
         </CardContent>
         <CardContent className={classes.content}>
           <Typography variant='caption' className={classes.description}>
-            {translate(locale, fish, 'description').replace(/\[[^\]]*\]/g, '').trim()}
+            {translate(i18n.language, fish, 'description').replace(/\[[^\]]*\]/g, '').trim()}
           </Typography>
         </CardContent>
       </Card>
@@ -128,4 +129,4 @@ const OceanFishPopper = ({ fishId }: Props) => {
   )
 }
 
-export default OceanFishPopper
+export default i18n.withTranslation('ocean-fishing')(OceanFishPopper)

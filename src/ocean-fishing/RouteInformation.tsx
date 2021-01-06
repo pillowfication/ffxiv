@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
 import Section from '../Section'
 import Grid from '@material-ui/core/Grid'
@@ -18,6 +17,8 @@ import calculateVoyages from './calculate-voyages'
 import { fishingSpots, fishes } from './gists/data/ocean-fish-data.json'
 import * as maps from './maps'
 import { timeUntil, getStops, getBlueFish, getBaitGroup, translate, upperFirst } from './utils'
+import i18n from '../../i18n'
+import { I18n, TFunction } from 'next-i18next'
 
 const useStyles = makeStyles((theme) => ({
   headerSub: {
@@ -48,17 +49,17 @@ type Props = {
   now?: Date,
   selectedRoute?: maps.DestinationStopTime,
   checklist: number[],
-  setChecklist: (checklist: number[]) => void
+  setChecklist: (checklist: number[]) => void,
+  t: TFunction,
+  i18n: I18n
 }
 
-const RouteInformation = ({ now, selectedRoute, checklist, setChecklist }: Props) => {
+const RouteInformation = ({ now, selectedRoute, checklist, setChecklist, t, i18n }: Props) => {
   if (!now || !selectedRoute) return null
 
   const classes = useStyles()
-  const router = useRouter()
   const [showAllFish, setShowAllFish] = useState(false)
   const [tab, setTab] = useState(0)
-  const locale = router.locale
   const stops = getStops(selectedRoute)
   const next = calculateVoyages(now, 1, [selectedRoute])[0].time
 
@@ -79,7 +80,7 @@ const RouteInformation = ({ now, selectedRoute, checklist, setChecklist }: Props
       title={
         <Grid container alignItems='flex-end'>
           <Grid item xs={12} md={8}>
-            {upperFirst(translate(locale, fishingSpots[maps.STOP_MAP[selectedRoute[0]]], 'place_name_sub', 'no_article'))}
+            {upperFirst(translate(i18n.language, fishingSpots[maps.STOP_MAP[selectedRoute[0]]], 'place_name_sub', 'no_article'))}
             <span className={classes.headerTime}>{maps.TIME_MAP[selectedRoute[1]]}</span>
             <Typography display='inline' className={classes.headerSub}>{timeUntil(now, next, true)}</Typography>
           </Grid>
@@ -93,7 +94,7 @@ const RouteInformation = ({ now, selectedRoute, checklist, setChecklist }: Props
                   color='primary'
                 />
               }
-              label='Show all fish'
+              label={t('show-all-fish')}
               className={classes.showAllFish}
             />
           </Grid>
@@ -106,7 +107,7 @@ const RouteInformation = ({ now, selectedRoute, checklist, setChecklist }: Props
             <Card variant='outlined'>
               <Tabs variant='fullWidth' value={tab} onChange={handleChangeTab}>
                 {stops.map((stop, index) =>
-                  <Tab key={stop} label={<>{index + 1}. {translate(locale, fishingSpots[maps.STOP_MAP[stop[0]]], 'place_name_sub')} {maps.TIME_MAP[stop[1]]}</>} />
+                  <Tab key={stop} label={<>{index + 1}. {translate(i18n.language, fishingSpots[maps.STOP_MAP[stop[0]]], 'place_name_sub')} {maps.TIME_MAP[stop[1]]}</>} />
                 )}
               </Tabs>
               {stops.map((stop, index) =>
@@ -128,7 +129,7 @@ const RouteInformation = ({ now, selectedRoute, checklist, setChecklist }: Props
                       ]
                         .filter(x => x)
                         .map(fishId => ({
-                          header: translate(locale, fishes[fishId], 'name'),
+                          header: translate(i18n.language, fishes[fishId], 'name'),
                           baitGroupProps: getBaitGroup(fishId)
                         }))
                     } />
@@ -143,4 +144,4 @@ const RouteInformation = ({ now, selectedRoute, checklist, setChecklist }: Props
   )
 }
 
-export default RouteInformation
+export default i18n.withTranslation('ocean-fishing')(RouteInformation)

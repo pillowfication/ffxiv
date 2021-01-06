@@ -1,9 +1,12 @@
+const { nextI18NextRewrites } = require('next-i18next/rewrites')
+
+const localeSubpaths = {
+  'de': 'de',
+  'fr': 'fr',
+  'ja': 'ja'
+}
+
 module.exports = {
-  i18n: {
-    locales: ['de', 'en', 'fr', 'ja'],
-    defaultLocale: 'en',
-    localeDetection: false
-  },
   webpack (config, { isServer }) {
     if (isServer) {
       require('./generate-sitemap')
@@ -35,5 +38,9 @@ module.exports = {
     })
 
     return config
+  },
+  rewrites: async () => nextI18NextRewrites(localeSubpaths),
+  publicRuntimeConfig: {
+    localeSubpaths
   }
 }

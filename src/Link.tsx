@@ -1,6 +1,7 @@
 import React, { forwardRef } from 'react'
-import Link, { LinkProps } from 'next/link'
 import { Link as MuiLink, LinkProps as MuiLinkProps } from '@material-ui/core'
+import { LinkProps } from 'next/link'
+import i18n from '../i18n'
 
 type LinkRef = any
 
@@ -9,9 +10,9 @@ export type NextLinkProps =
   | HTMLAnchorElement
 
 const NextLink = ({ href, as, prefetch, ...props }: LinkProps, ref: LinkRef) => (
-  <Link href={href} as={as} prefetch={prefetch} passHref>
+  <i18n.Link href={href} as={as} prefetch={prefetch} passHref>
     <MuiLink ref={ref} {...props} />
-  </Link>
+  </i18n.Link>
 )
 
 export default forwardRef<NextLinkProps, LinkRef>(NextLink)

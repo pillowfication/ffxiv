@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import clsx from 'clsx'
-import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
@@ -16,6 +15,8 @@ import * as maps from './maps'
 import { toTimeString } from '../utils'
 import calculateVoyages from './calculate-voyages'
 import { timeUntil, getBlueFish, translate, upperFirst } from './utils'
+import i18n from '../../i18n'
+import { I18n, TFunction } from 'next-i18next'
 
 const DATE_FORMAT: Intl.DateTimeFormatOptions = { month: '2-digit', day: '2-digit' }
 
@@ -65,15 +66,14 @@ type Props = {
   now: Date,
   numRows: number,
   filter?: maps.DestinationStopTime[],
-  onSelectRoute: (route: maps.DestinationStopTime) => void
+  onSelectRoute: (route: maps.DestinationStopTime) => void,
+  t: TFunction,
+  i18n: I18n
 }
 
-const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute }: Props) => {
+const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute, t, i18n }: Props) => {
   const classes = useStyles()
-  const router = useRouter()
   const [hover, setHover] = useState<maps.DestinationStopTime | null>(null)
-
-  const locale = router.locale
   const upcomingVoyages = calculateVoyages(now, numRows, filter)
 
   return (
@@ -81,9 +81,9 @@ const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute }: Props) =>
       <Table size='small' className={classes.schedule}>
         <TableHead>
           <TableRow>
-            <TableCell colSpan={3} align='center'>Time</TableCell>
-            <TableCell colSpan={2} align='center'>Route</TableCell>
-            <TableCell align='center'>Objectives</TableCell>
+            <TableCell colSpan={3} align='center'>{t('time')}</TableCell>
+            <TableCell colSpan={2} align='center'>{t('route')}</TableCell>
+            <TableCell align='center'>{t('objectives')}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody onMouseOut={setHover.bind(null, null)}>
@@ -112,7 +112,7 @@ const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute }: Props) =>
                     <Typography className={classes.timeUntil}>{timeUntil(now, time)}</Typography>
                   </TableCell>
                   <TableCell align='right'>
-                    <Typography>{upperFirst(translate(locale, fishingSpots[maps.STOP_MAP[destinationCode[0]]], 'place_name_sub', 'no_article'))}</Typography>
+                    <Typography>{upperFirst(translate(i18n.language, fishingSpots[maps.STOP_MAP[destinationCode[0]]], 'place_name_sub', 'no_article'))}</Typography>
                   </TableCell>
                   <TableCell className={classes.timeCell}>
                     {maps.TIME_MAP[destinationCode[1]]}
@@ -135,4 +135,4 @@ const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute }: Props) =>
   )
 }
 
-export default UpcomingVoyagesTable
+export default i18n.withTranslation('ocean-fishing')(UpcomingVoyagesTable)

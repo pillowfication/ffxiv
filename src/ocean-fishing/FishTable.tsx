@@ -1,6 +1,5 @@
 import React from 'react'
 import clsx from 'clsx'
-import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
@@ -19,6 +18,8 @@ import { fishingSpots, fishes } from './gists/data/ocean-fish-data.json'
 import { FishingSpot, Fish } from './gists/data/types'
 import * as maps from './maps'
 import { getFish, getFishInfo, getBait, translate } from './utils'
+import i18n from '../../i18n'
+import { I18n, TFunction } from 'next-i18next'
 
 const FISH_CATEGORIES = {
   octopus: 'Octopus Travelers',
@@ -71,13 +72,13 @@ type Props = {
   spots: number[],
   time?: 'D' | 'S' | 'N',
   checklist: number[],
-  setChecklist: (checklist: number[]) => void
+  setChecklist: (checklist: number[]) => void,
+  t: TFunction,
+  i18n: I18n
 }
 
-const FishTable = ({ spots, time, checklist, setChecklist}: Props) => {
+const FishTable = ({ spots, time, checklist, setChecklist, t, i18n }: Props) => {
   const classes = useStyles()
-  const router = useRouter()
-  const locale = router.locale
 
   const toggleFish = (fishId: number) => {
     if (checklist.includes(fishId)) {
@@ -103,13 +104,13 @@ const FishTable = ({ spots, time, checklist, setChecklist}: Props) => {
               <TableHead>
                 <TableRow>
                   <TableCell colSpan={3} align='center'>Fish</TableCell>
-                  <TableCell align='center'>Bait</TableCell>
-                  <TableCell align='center'>Tug</TableCell>
-                  <TableCell align='center'>Line Time</TableCell>
-                  <TableCell align='center'>Points</TableCell>
-                  <TableCell align='center'>Double Hook</TableCell>
-                  <TableCell align='center'>{isSpectral ? 'Time' : 'Weather'}</TableCell>
-                  <TableCell align='center'>Category</TableCell>
+                  <TableCell align='center'>{t('bait')}</TableCell>
+                  <TableCell align='center'>{t('tug')}</TableCell>
+                  <TableCell align='center'>{t('bite-time')}</TableCell>
+                  <TableCell align='center'>{t('points')}</TableCell>
+                  <TableCell align='center'>{t('double-hook')}</TableCell>
+                  <TableCell align='center'>{t(isSpectral ? 'time-of-day' : 'weather')}</TableCell>
+                  <TableCell align='center'>{t('category')}</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -134,7 +135,7 @@ const FishTable = ({ spots, time, checklist, setChecklist}: Props) => {
                         <OceanFishIcon type='fish' id={fish.id} />
                       </TableCell>
                       <TableCell>
-                        <div><Typography>{translate(locale, fish, 'name')}</Typography></div>
+                        <div><Typography>{translate(i18n.language, fish, 'name')}</Typography></div>
                         {fishInfo.stars &&
                           <div className={classes.stars}>{'★'.repeat(fishInfo.stars)}</div>}
                       </TableCell>
@@ -222,4 +223,4 @@ const FishTable = ({ spots, time, checklist, setChecklist}: Props) => {
   )
 }
 
-export default FishTable
+export default i18n.withTranslation('ocean-fishing')(FishTable)
