@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
 import Typography from '@material-ui/core/Typography'
 import Link from '@material-ui/core/Link'
 import Page from '../../src/Page'
@@ -8,11 +7,16 @@ import FishTable from '../../src/ocean-fishing/FishTable'
 import { fishingSpots } from '../../src/ocean-fishing/gists/data/ocean-fish-data.json'
 import { FishingSpot } from '../../src/ocean-fishing/gists/data/types'
 import { translate } from '../../src/ocean-fishing/utils'
+import i18n from '../../i18n'
+import { I18n, TFunction } from 'next-i18next'
 
-const OceanFishingFish = () => {
-  const router = useRouter()
+type Props = {
+  t: TFunction,
+  i18n: I18n
+}
+
+const OceanFishingFish = ({ t, i18n }: Props) => {
   const [checklist, setChecklist] = useState<number[]>([])
-  const locale = router.locale
 
   useEffect(() => {
     if (typeof window === 'undefined') {
@@ -32,7 +36,7 @@ const OceanFishingFish = () => {
   }, [checklist])
 
   return (
-    <Page title='Ocean Fishing Fish'>
+    <Page title={`${t('ocean-fishing')} - ${t('fish')}`}>
       <Section>
         <Typography paragraph>
           Data are taken from the <Link href='https://docs.google.com/spreadsheets/d/1brCfvmSdYl7RcY9lkgm_ds8uaFqq7qaxOOz-5BfHuuk/edit?usp=sharing'>Ocean Fishing Spreadsheet</Link> managed by S’yahn Tia. Bite times are from <Link href='https://ffxivteamcraft.com/'>Teamcraft</Link> when available, with the top and bottom 1% removed.
@@ -44,7 +48,7 @@ const OceanFishingFish = () => {
       {Object.values(fishingSpots)
         .sort((a, b) => a.id - b.id)
         .map((fishingSpot: FishingSpot) =>
-          <Section key={fishingSpot.id} title={translate(locale, fishingSpot, 'place_name')}>
+          <Section key={fishingSpot.id} title={translate(i18n.language, fishingSpot, 'place_name')}>
             <FishTable spots={[fishingSpot.id]} checklist={checklist} setChecklist={setChecklist} />
           </Section>
       )}
@@ -52,4 +56,8 @@ const OceanFishingFish = () => {
   )
 }
 
-export default OceanFishingFish
+OceanFishingFish.getInitialProps = async () => ({
+  namespacesRequired: ['common', 'ocean-fishing'],
+})
+
+export default i18n.withTranslation('ocean-fishing')(OceanFishingFish)

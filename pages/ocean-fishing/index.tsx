@@ -7,8 +7,14 @@ import UpcomingVoyages from '../../src/ocean-fishing/UpcomingVoyages'
 import RouteInformation from '../../src/ocean-fishing/RouteInformation'
 import AchievementsInformation from '../../src/ocean-fishing/AchievementsInformation'
 import * as maps from '../../src/ocean-fishing/maps'
+import i18n from '../../i18n'
+import { TFunction } from 'next-i18next'
 
-const OceanFishing = () => {
+type Props = {
+  t: TFunction
+}
+
+const OceanFishing = ({ t }: Props) => {
   const [now, setNow] = useState<Date | null>(null)
   const [selectedRoute, setSelectedRoute] = useState<maps.DestinationStopTime | null>(null)
   const [checklist, setChecklist] = useState<number[]>([])
@@ -42,7 +48,7 @@ const OceanFishing = () => {
   }, [checklist])
 
   return (
-    <Page title='Ocean Fishing'>
+    <Page title={t('ocean-fishing')}>
       <Section>
         <Typography paragraph>
           Data are taken from the <Link href='https://docs.google.com/spreadsheets/d/1brCfvmSdYl7RcY9lkgm_ds8uaFqq7qaxOOz-5BfHuuk/edit?usp=sharing'>Ocean Fishing Spreadsheet</Link> managed by S’yahn Tia. Bite times are from <Link href='https://ffxivteamcraft.com/'>Teamcraft</Link> when available. For questions/comments/corrections, please visit the <Link href='https://discord.gg/AnFaDpN'>Fisherman’s Horizon Discord</Link> or message Lulu Pillow@Adamantoise or Pillowfication#0538.
@@ -58,4 +64,8 @@ const OceanFishing = () => {
   )
 }
 
-export default OceanFishing
+OceanFishing.getInitialProps = async () => ({
+  namespacesRequired: ['common', 'ocean-fishing'],
+})
+
+export default i18n.withTranslation('ocean-fishing')(OceanFishing)

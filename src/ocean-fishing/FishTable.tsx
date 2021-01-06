@@ -103,7 +103,7 @@ const FishTable = ({ spots, time, checklist, setChecklist, t, i18n }: Props) => 
             <React.Fragment key={spotId}>
               <TableHead>
                 <TableRow>
-                  <TableCell colSpan={3} align='center'>Fish</TableCell>
+                  <TableCell colSpan={3} align='center'>{t('fish')}</TableCell>
                   <TableCell align='center'>{t('bait')}</TableCell>
                   <TableCell align='center'>{t('tug')}</TableCell>
                   <TableCell align='center'>{t('bite-time')}</TableCell>
