@@ -21,16 +21,6 @@ import { getFish, getFishInfo, getBait, translate } from './utils'
 import i18n from '../../i18n'
 import { I18n, TFunction } from 'next-i18next'
 
-const FISH_CATEGORIES = {
-  octopus: 'Octopus Travelers',
-  shark: 'Certifiable Shark Hunters',
-  jellyfish: 'Jelled Together',
-  seadragon: 'Maritime Dragonslayers',
-  balloon: 'Balloon Catchers',
-  crab: 'Crab Boat Crew',
-  manta: 'Sticking it to the Manta'
-}
-
 const useStyles = makeStyles((theme) => ({
   table: {
     '& td': {
@@ -209,7 +199,7 @@ const FishTable = ({ spots, time, checklist, setChecklist, t, i18n }: Props) => 
                       </TableCell>
                       <TableCell align='center'>
                         {fishInfo.category &&
-                          <OceanFishIcon type='bonus-icon' id={FISH_CATEGORIES[fishInfo.category]} size={30} />}
+                          <OceanFishIcon type='bonus-icon' id={fishInfo.category} size={30} />}
                       </TableCell>
                     </TableRow>
                   )

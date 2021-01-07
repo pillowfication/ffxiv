@@ -35,13 +35,13 @@ ICONS.push(getValuesSorted(achievements).map(achievement => (
 
 // Add bonus icons
 ICONS.push([
-  { id: 'Octopus Travelers', icon: './icons/octopodes.png', isLocal: true },
-  { id: 'Certifiable Shark Hunters', icon: './icons/sharks.png', isLocal: true },
-  { id: 'Jelled Together', icon: './icons/jellyfish.png', isLocal: true },
-  { id: 'Maritime Dragonslayers', icon: './icons/seadragons.png', isLocal: true },
-  { id: 'Balloon Catchers', icon: './icons/balloons.png', isLocal: true },
-  { id: 'Crab Boat Crew', icon: './icons/crabs.png', isLocal: true },
-  { id: 'Sticking it to the Manta', icon: './icons/mantas.png', isLocal: true }
+  { id: 'octopus', icon: './icons/octopodes.png', isLocal: true },
+  { id: 'shark', icon: './icons/sharks.png', isLocal: true },
+  { id: 'jellyfish', icon: './icons/jellyfish.png', isLocal: true },
+  { id: 'seadragon', icon: './icons/seadragons.png', isLocal: true },
+  { id: 'balloon', icon: './icons/balloons.png', isLocal: true },
+  { id: 'crab', icon: './icons/crabs.png', isLocal: true },
+  { id: 'manta', icon: './icons/mantas.png', isLocal: true }
 ])
 
 const ICON_ROWS = ICONS.length

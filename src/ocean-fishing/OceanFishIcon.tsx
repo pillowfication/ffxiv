@@ -15,6 +15,53 @@ import { I18n } from 'next-i18next'
 const ICON_ROWS = ICONS_MAP.length
 const ICON_COLS = Math.max(...ICONS_MAP.map(row => row.length))
 
+// TODO: This needs to be found on XIVAPI somehow
+// Can maybe be parsed from the achievement descriptions
+const BONUS_ICONS_INFO = {
+  octopus: {
+    name_en: 'Octopus Travelers',
+    name_de: 'Oktopussreiter',
+    name_fr: 'Octo-opus',
+    name_jp: 'オクトパストラベラー'
+  },
+  shark: {
+    name_en: 'Certifiable Shark Hunters',
+    name_de: 'Haijäger',
+    name_fr: 'Chasseurs de requins',
+    name_jp: 'シャークハンター'
+  },
+  jellyfish: {
+    name_en: 'Jelled Together',
+    name_de: 'Quallenfänger',
+    name_fr: 'Le bateau de la méduse',
+    name_jp: 'クラゲマニア'
+  },
+  seadragon: {
+    name_en: 'Maritime Dragonslayers',
+    name_de: 'Seepferdchenbändiger',
+    name_fr: 'Fièvre de cheval des mers',
+    name_jp: 'シードラゴンキラー'
+  },
+  balloon: {
+    name_en: 'Balloon Catchers',
+    name_de: 'Ballonfänger',
+    name_fr: 'Amateur du ballon rond',
+    name_jp: 'バルーンキャッチャー'
+  },
+  crab: {
+    name_en: 'Crab Boat Crew',
+    name_de: 'Krabbenschiffsbesatzung',
+    name_fr: 'Pince-sans-rire',
+    name_jp: '蟹工船'
+  },
+  manta: {
+    name_en: 'Sticking it to the Manta',
+    name_de: 'Manta! Manta!',
+    name_fr: 'Raies arraisonnées',
+    name_jp: 'エイエイオー'
+  }
+}
+
 function camelCase (id: number | string): string {
   if (typeof id === 'number') {
     return String(id)
@@ -101,7 +148,7 @@ const OceanFishIcon = ({ type, id, size = 40, className, i18n }: Props) => {
     case 'fish': info = fishes[id]; break
     case 'bait': info = baits[id]; break
     case 'achievement': info = achievements[id]; break
-    case 'bonus-icon': info = { name_en: String(id) }; break
+    case 'bonus-icon': info = BONUS_ICONS_INFO[id]; break
   }
 
   return (
