@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import Typography from '@material-ui/core/Typography'
 import Link from '@material-ui/core/Link'
+import Button from '@material-ui/core/Button'
 import Page from '../../src/Page'
 import Section from '../../src/Section'
+import ImportFishes from '../../src/ocean-fishing/ImportFishes'
 import FishTable from '../../src/ocean-fishing/FishTable'
 import { fishingSpots } from '../../src/ocean-fishing/gists/data/ocean-fish-data.json'
 import { FishingSpot } from '../../src/ocean-fishing/gists/data/types'
@@ -17,6 +19,7 @@ type Props = {
 
 const OceanFishingFish = ({ t, i18n }: Props) => {
   const [checklist, setChecklist] = useState<number[]>([])
+  const [showImport, setShowImport] = useState(false)
 
   useEffect(() => {
     if (typeof window === 'undefined') {
@@ -35,6 +38,10 @@ const OceanFishingFish = ({ t, i18n }: Props) => {
     window.localStorage.setItem('ocean-fishing/checklist', checklist.join(','))
   }, [checklist])
 
+  const toggleShowImport = () => {
+    setShowImport(!showImport)
+  }
+
   return (
     <Page title={`${t('ocean-fishing')} - ${t('fish')}`}>
       <Section>
@@ -44,14 +51,16 @@ const OceanFishingFish = ({ t, i18n }: Props) => {
         <Typography paragraph>
           I’ve also made a Chrome Extension for adding ocean fishes to the <Link href='https://ff14fish.carbuncleplushy.com/'>Carbuncle Plushy FFX|V Fish Tracker App</Link> available on the <Link href='https://chrome.google.com/webstore/detail/add-ocean-fish-to-ff14-fi/oihefgmncbnicjmcdccjflagboaidenh'>Chrome Web Store</Link>.
         </Typography>
+        <Button variant='contained' onClick={toggleShowImport}>Import Fishes</Button>
       </Section>
+      {showImport && <ImportFishes setChecklist={setChecklist} />}
       {Object.values(fishingSpots)
         .sort((a, b) => a.id - b.id)
         .map((fishingSpot: FishingSpot) =>
           <Section key={fishingSpot.id} title={translate(i18n.language, fishingSpot, 'place_name')}>
             <FishTable spots={[fishingSpot.id]} checklist={checklist} setChecklist={setChecklist} />
           </Section>
-      )}
+        )}
     </Page>
   )
 }
