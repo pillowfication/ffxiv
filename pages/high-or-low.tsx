@@ -12,4 +12,8 @@ const HighOrLow = () => {
   )
 }
 
+HighOrLow.getInitialProps = async () => ({
+  namespacesRequired: ['common'],
+})
+
 export default HighOrLow

@@ -10,4 +10,8 @@ const WondrousTails = () => {
   )
 }
 
+WondrousTails.getInitialProps = async () => ({
+  namespacesRequired: ['common'],
+})
+
 export default WondrousTails

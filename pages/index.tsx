@@ -122,4 +122,8 @@ const Index = () => {
   )
 }
 
+Index.getInitialProps = async () => ({
+  namespacesRequired: ['common'],
+})
+
 export default Index

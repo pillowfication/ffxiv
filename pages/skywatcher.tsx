@@ -34,4 +34,8 @@ const Skywatcher = () => {
   )
 }
 
+Skywatcher.getInitialProps = async () => ({
+  namespacesRequired: ['common'],
+})
+
 export default Skywatcher

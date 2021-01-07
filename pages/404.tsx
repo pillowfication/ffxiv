@@ -37,4 +37,8 @@ const _404 = () => {
   )
 }
 
+_404.getInitialProps = async () => ({
+  namespacesRequired: ['common'],
+})
+
 export default _404
