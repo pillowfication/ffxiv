@@ -59,7 +59,7 @@ const CalculatorCell = ({ value, suggested, error, onInputDigit = () => {} }: Pr
       InputProps={{ className: clsx(classes.cell, suggested && classes.suggested, error && classes.error) }}
       inputProps={{ className: classes.cellInput }}
       onKeyDown={handleInputDigit}
-      value={value}
+      value={value || ''}
     />
   )
 }
