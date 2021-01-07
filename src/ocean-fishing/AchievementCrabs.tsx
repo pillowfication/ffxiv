@@ -17,7 +17,7 @@ const AchievementCrabs = ({ selectedRoute }: Props) => {
   const stops = getStops(selectedRoute)
 
   return (
-    <AchievementInformation achievement={2755} subtitle='catch 250 crabs (31.25 each)'>
+    <AchievementInformation achievement={2755}>
       <RouteCardContainer>
         <RouteCard index={0} stop={stops[0]}>
           <CardContent>

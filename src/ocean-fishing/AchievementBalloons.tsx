@@ -16,7 +16,7 @@ const AchievementBalloons = ({ selectedRoute }: Props) => {
   const stops = getStops(selectedRoute)
 
   return (
-    <AchievementInformation achievement={2754} subtitle='catch 250 balloons (31.25 each)'>
+    <AchievementInformation achievement={2754}>
       <RouteCardContainer>
         <RouteCard index={0} stop={stops[0]}>
           <CardContent>

@@ -6,7 +6,17 @@ import OceanFishIcon from './OceanFishIcon'
 import { achievements } from './gists/data/ocean-fish-data.json'
 import { translate } from './utils'
 import i18n from '../../i18n'
-import { I18n } from 'next-i18next'
+import { I18n, TFunction } from 'next-i18next'
+
+const SUBTITLES = {
+  2563: 'catch-octopus',
+  2564: 'catch-shark',
+  2565: 'catch-jellyfish',
+  2566: 'catch-seadragon',
+  2754: 'catch-balloon',
+  2755: 'catch-crab',
+  2756: 'catch-manta'
+}
 
 const useStyles = makeStyles((theme) => ({
   achievementIcon: {
@@ -24,12 +34,12 @@ const useStyles = makeStyles((theme) => ({
 
 type Props = {
   achievement: number,
-  subtitle?: string,
   children?: React.ReactNode,
+  t: TFunction,
   i18n: I18n
 }
 
-const AchievementInformation = ({ achievement, subtitle, children, i18n }: Props) => {
+const AchievementInformation = ({ achievement, children, t, i18n }: Props) => {
   const classes = useStyles()
 
   return (
@@ -38,8 +48,7 @@ const AchievementInformation = ({ achievement, subtitle, children, i18n }: Props
         <>
           {translate(i18n.language, achievements[achievement], 'name')}
           <OceanFishIcon type='achievement' id={achievement} className={classes.achievementIcon} />
-          {subtitle &&
-            <Typography display='inline' className={classes.subtitle}>{subtitle}</Typography>}
+          <Typography display='inline' className={classes.subtitle}>{t(SUBTITLES[achievement])}</Typography>
         </>
       }
     >

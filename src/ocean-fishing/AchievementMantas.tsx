@@ -17,7 +17,7 @@ const AchievementJellyfish = ({ selectedRoute }: Props) => {
   const stops = getStops(selectedRoute)
 
   return (
-    <AchievementInformation achievement={2756} subtitle='catch 25 mantas (solo)'>
+    <AchievementInformation achievement={2756}>
       <RouteCardContainer>
         <RouteCard index={0} stop={stops[0]}>
           <CardContent>

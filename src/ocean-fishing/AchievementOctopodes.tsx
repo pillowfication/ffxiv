@@ -19,7 +19,7 @@ const AchievementOctopodes = ({ selectedRoute }: Props) => {
   const stops = getStops(selectedRoute)
 
   return (
-    <AchievementInformation achievement={2563} subtitle='catch 150 octopodes (18.75 each)'>
+    <AchievementInformation achievement={2563}>
       <RouteCardContainer>
         <RouteCard index={0} stop={stops[0]}>
           <CardContent>
