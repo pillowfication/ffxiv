@@ -7,7 +7,6 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
-import MuiLink from '@material-ui/core/Link'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Button from '@material-ui/core/Button'
@@ -15,7 +14,6 @@ import Switch from '@material-ui/core/Switch'
 import Tooltip from '@material-ui/core/Tooltip'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
-import IconButton from '@material-ui/core/IconButton'
 import HomeIcon from '@material-ui/icons/Home'
 import GitHubIcon from '@material-ui/icons/GitHub'
 import TranslateIcon from '@material-ui/icons/Translate'
@@ -137,11 +135,11 @@ const App = ({ Component, pageProps }: Props) => {
               </Grid>
               <Grid item>
                 <Toolbar disableGutters className={classes.toolbar}>
-                  <MuiLink href='https://github.com/pillowfication/ffxiv'>
-                    <IconButton size='small' className={classes.gitHubIcon}>
+                  <Link href='https://github.com/pillowfication/ffxiv'>
+                    <Button color='inherit'>
                       <GitHubIcon />
-                    </IconButton>
-                  </MuiLink>
+                    </Button>
+                  </Link>
                   <Tooltip title='Choose Language' enterDelay={300}>
                     <Button
                       variant='contained'
