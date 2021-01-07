@@ -50,7 +50,7 @@ export const getFishInfo = memoize((fishName: string): FishInfo => {
 
   const biteTime: [number, number] = biteTimes[getFish(fishName).id]
   if (biteTimes) {
-    fishInfo.timer = biteTime
+    fishInfo.biteTime = biteTime
   }
   return fishInfo
 })
@@ -89,8 +89,8 @@ export function subtextDH (fishId: number) {
 }
 
 export function subtextBiteTime (fishId: number) {
-  const timer = getFishInfo(fishes[fishId].name_en).timer
-  return timer ? `${timer[0] === timer[1] ? timer[0] : timer.join('-')} s` : '? s'
+  const biteTime = getFishInfo(fishes[fishId].name_en).biteTime
+  return biteTime ? `${biteTime[0] === biteTime[1] ? biteTime[0] : biteTime.join('-')} s` : '? s'
 }
 
 export function translate (locale: string = 'en', obj: any, ...keys: string[]): string {
