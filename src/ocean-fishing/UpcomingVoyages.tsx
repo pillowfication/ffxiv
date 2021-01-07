@@ -32,7 +32,7 @@ const UpcomingVoyages = ({ now, onSelectRoute, t, i18n }: Props) => {
 
   useEffect(() => {
     const queryFilter = maps.FILTER_MAP[String(router.query.filter)] ? String(router.query.filter) : 'none'
-    if ((!firstRender.current && now) || filter !== queryFilter) {
+    if (now && (!firstRender.current || filter !== queryFilter)) {
       firstRender.current = true
       setFilter(queryFilter)
       onSelectRoute(calculateVoyages(now, 1, maps.FILTER_MAP[queryFilter])[0].destinationCode)
