@@ -7,7 +7,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 11],
+      "timer": [
+        2,
+        11
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -22,7 +25,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 13],
+      "timer": [
+        2,
+        13
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -37,13 +43,18 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [3, 19],
+      "timer": [
+        3,
+        19
+      ],
       "time": "DSN",
       "weathers": {
-        "type": "NOT OK",
+        "type": "OK",
         "list": [
-          "rain",
-          "showers"
+          "fairSkies",
+          "clouds",
+          "fog",
+          "clearSkies"
         ]
       },
       "stars": 1,
@@ -56,13 +67,18 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [7, 24],
+      "timer": [
+        7,
+        24
+      ],
       "time": "DSN",
       "weathers": {
-        "type": "NOT OK",
+        "type": "OK",
         "list": [
-          "clouds",
-          "fog"
+          "fairSkies",
+          "rain",
+          "showers",
+          "clearSkies"
         ]
       },
       "stars": 2,
@@ -75,7 +91,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 3,
-      "biteTime": [12, 36],
+      "timer": [
+        12,
+        36
+      ],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -90,10 +109,16 @@
       "name": "Rosy Bream",
       "bait": "Krill",
       "points": 34,
-      "doubleHook": [3, 4],
+      "doubleHook": [
+        3,
+        4
+      ],
       "mooch": null,
       "tug": 1,
-      "biteTime": [5, 19],
+      "timer": [
+        5,
+        19
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -108,7 +133,10 @@
       "doubleHook": 4,
       "mooch": null,
       "tug": 2,
-      "biteTime": [15, 29],
+      "timer": [
+        15,
+        29
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -123,7 +151,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [13, 25],
+      "timer": [
+        13,
+        25
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -138,7 +169,10 @@
       "doubleHook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [18, 37],
+      "timer": [
+        18,
+        37
+      ],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -156,7 +190,10 @@
       "doubleHook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [15, 28],
+      "timer": [
+        15,
+        28
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -179,7 +216,10 @@
       "doubleHook": 4,
       "mooch": null,
       "tug": 2,
-      "biteTime": [2, 6],
+      "timer": [
+        2,
+        6
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -194,7 +234,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 6],
+      "timer": [
+        2,
+        6
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -209,7 +252,10 @@
       "doubleHook": 4,
       "mooch": null,
       "tug": 2,
-      "biteTime": [2, 7],
+      "timer": [
+        2,
+        7
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -224,7 +270,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [2, 10],
+      "timer": [
+        2,
+        10
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -239,7 +288,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 7],
+      "timer": [
+        2,
+        7
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -254,7 +306,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [6, 12],
+      "timer": [
+        6,
+        12
+      ],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -269,7 +324,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [3, 7],
+      "timer": [
+        3,
+        7
+      ],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -284,7 +342,10 @@
       "doubleHook": 4,
       "mooch": null,
       "tug": 3,
-      "biteTime": [3, 12],
+      "timer": [
+        3,
+        12
+      ],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -299,7 +360,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [10, 18],
+      "timer": [
+        10,
+        18
+      ],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -314,7 +378,10 @@
       "doubleHook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [9, 11],
+      "timer": [
+        9,
+        11
+      ],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -341,13 +408,18 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [2, 10],
+      "timer": [
+        2,
+        10
+      ],
       "time": "DSN",
       "weathers": {
-        "type": "NOT OK",
+        "type": "OK",
         "list": [
-          "wind",
-          "gales"
+          "fairSkies",
+          "fog",
+          "clouds",
+          "clearSkies"
         ]
       },
       "stars": 1,
@@ -357,10 +429,16 @@
       "name": "La Noscean Jelly",
       "bait": "Ragworm",
       "points": 10,
-      "doubleHook": [3, 4],
+      "doubleHook": [
+        3,
+        4
+      ],
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 7],
+      "timer": [
+        2,
+        7
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -375,7 +453,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 12],
+      "timer": [
+        2,
+        12
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -390,7 +471,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 13],
+      "timer": [
+        2,
+        13
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -405,13 +489,18 @@
       "doubleHook": 4,
       "mooch": null,
       "tug": 1,
-      "biteTime": [7, 22],
+      "timer": [
+        7,
+        22
+      ],
       "time": "DSN",
       "weathers": {
-        "type": "NOT OK",
+        "type": "OK",
         "list": [
-          "clouds",
-          "fog"
+          "fairSkies",
+          "wind",
+          "gales",
+          "clearSkies"
         ]
       },
       "stars": 2,
@@ -424,7 +513,10 @@
       "doubleHook": 2,
       "mooch": "Ghoul Barracuda",
       "tug": 3,
-      "biteTime": [6, 22],
+      "timer": [
+        6,
+        22
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -439,7 +531,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [13, 28],
+      "timer": [
+        13,
+        28
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -453,7 +548,10 @@
       "doubleHook": 2,
       "mooch": "Ghoul Barracuda",
       "tug": 2,
-      "biteTime": [6, 13],
+      "timer": [
+        6,
+        13
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -468,7 +566,10 @@
       "doubleHook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [18, 36],
+      "timer": [
+        18,
+        36
+      ],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -486,7 +587,10 @@
       "doubleHook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [15, 27],
+      "timer": [
+        15,
+        27
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -509,7 +613,10 @@
       "doubleHook": 4,
       "mooch": null,
       "tug": 1,
-      "biteTime": [4, 9],
+      "timer": [
+        4,
+        9
+      ],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -523,7 +630,10 @@
       "doubleHook": 2,
       "mooch": "Hi-aetherlouse",
       "tug": 2,
-      "biteTime": [2, 3],
+      "timer": [
+        2,
+        3
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -538,7 +648,10 @@
       "doubleHook": 2,
       "mooch": "Hi-aetherlouse",
       "tug": 2,
-      "biteTime": [2, 5],
+      "timer": [
+        2,
+        5
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -553,7 +666,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 7],
+      "timer": [
+        2,
+        7
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -568,7 +684,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 8],
+      "timer": [
+        2,
+        8
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -583,7 +702,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 8],
+      "timer": [
+        2,
+        8
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -597,7 +719,10 @@
       "doubleHook": 2,
       "mooch": "Hi-aetherlouse",
       "tug": 2,
-      "biteTime": [2, 6],
+      "timer": [
+        2,
+        6
+      ],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -612,7 +737,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [2, 8],
+      "timer": [
+        2,
+        8
+      ],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -626,7 +754,10 @@
       "doubleHook": 2,
       "mooch": "Hi-aetherlouse",
       "tug": 3,
-      "biteTime": [2, 4],
+      "timer": [
+        2,
+        4
+      ],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -641,7 +772,10 @@
       "doubleHook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [9, 11],
+      "timer": [
+        9,
+        11
+      ],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -664,13 +798,18 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 10],
+      "timer": [
+        2,
+        10
+      ],
       "time": "DSN",
       "weathers": {
-        "type": "NOT OK",
+        "type": "OK",
         "list": [
-          "blizzards",
-          "snow"
+          "fairSkies",
+          "fog",
+          "clearSkies",
+          "clouds"
         ]
       },
       "stars": 1,
@@ -683,7 +822,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [2, 13],
+      "timer": [
+        2,
+        13
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -698,7 +840,10 @@
       "doubleHook": 2,
       "mooch": "Tossed Dagger",
       "tug": 2,
-      "biteTime": [6, 25],
+      "timer": [
+        6,
+        25
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -713,7 +858,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [3, 18],
+      "timer": [
+        3,
+        18
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -728,13 +876,18 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [9, 25],
+      "timer": [
+        9,
+        25
+      ],
       "time": "DSN",
       "weathers": {
-        "type": "NOT OK",
+        "type": "OK",
         "list": [
-          "clouds",
-          "fog"
+          "fairSkies",
+          "snow",
+          "blizzards",
+          "clearSkies"
         ]
       },
       "stars": 2,
@@ -747,7 +900,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [8, 22],
+      "timer": [
+        8,
+        22
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -762,7 +918,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [16, 28],
+      "timer": [
+        16,
+        28
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -776,7 +935,10 @@
       "doubleHook": 2,
       "mooch": "Tossed Dagger",
       "tug": 2,
-      "biteTime": [9, 16],
+      "timer": [
+        9,
+        16
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -791,7 +953,10 @@
       "doubleHook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [18, 38],
+      "timer": [
+        18,
+        38
+      ],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -809,7 +974,10 @@
       "doubleHook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [16, 27],
+      "timer": [
+        16,
+        27
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -832,7 +1000,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 5],
+      "timer": [
+        2,
+        5
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -847,7 +1018,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [2, 5],
+      "timer": [
+        2,
+        5
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -862,7 +1036,10 @@
       "doubleHook": 4,
       "mooch": null,
       "tug": 1,
-      "biteTime": [3, 8],
+      "timer": [
+        3,
+        8
+      ],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -877,7 +1054,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 7],
+      "timer": [
+        2,
+        7
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -892,7 +1072,10 @@
       "doubleHook": 4,
       "mooch": null,
       "tug": 2,
-      "biteTime": [4, 9],
+      "timer": [
+        4,
+        9
+      ],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -907,7 +1090,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 8],
+      "timer": [
+        2,
+        8
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -919,10 +1105,16 @@
       "name": "Gugrusaurus",
       "bait": "Plump Worm",
       "points": 79,
-      "doubleHook": [3, 4],
+      "doubleHook": [
+        3,
+        4
+      ],
       "mooch": null,
       "tug": 3,
-      "biteTime": [2, 10],
+      "timer": [
+        2,
+        10
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -937,7 +1129,10 @@
       "doubleHook": 4,
       "mooch": null,
       "tug": 1,
-      "biteTime": [6, 12],
+      "timer": [
+        6,
+        12
+      ],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -952,7 +1147,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [7, 10],
+      "timer": [
+        7,
+        10
+      ],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -967,7 +1165,10 @@
       "doubleHook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [9, 10],
+      "timer": [
+        9,
+        10
+      ],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -990,7 +1191,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [2, 13],
+      "timer": [
+        2,
+        13
+      ],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -1008,7 +1212,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 13],
+      "timer": [
+        2,
+        13
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1023,13 +1230,18 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [2, 14],
+      "timer": [
+        2,
+        14
+      ],
       "time": "DSN",
       "weathers": {
-        "type": "NOT OK",
+        "type": "OK",
         "list": [
-          "dustStorms",
-          "heatWaves"
+          "fairSkies",
+          "clouds",
+          "fog",
+          "clearSkies"
         ]
       },
       "stars": 1,
@@ -1042,7 +1254,10 @@
       "doubleHook": 4,
       "mooch": null,
       "tug": 2,
-      "biteTime": [3, 18],
+      "timer": [
+        3,
+        18
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1057,7 +1272,10 @@
       "doubleHook": 4,
       "mooch": null,
       "tug": 3,
-      "biteTime": [14, 33],
+      "timer": [
+        14,
+        33
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1072,13 +1290,18 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [4, 19],
+      "timer": [
+        4,
+        19
+      ],
       "time": "DSN",
       "weathers": {
-        "type": "NOT OK",
+        "type": "OK",
         "list": [
-          "clouds",
-          "fog"
+          "fairSkies",
+          "dustStorms",
+          "heatWaves",
+          "clearSkies"
         ]
       },
       "stars": 2,
@@ -1091,7 +1314,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [14, 26],
+      "timer": [
+        14,
+        26
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1106,7 +1332,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [9, 16],
+      "timer": [
+        9,
+        16
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1121,7 +1350,10 @@
       "doubleHook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [20, 36],
+      "timer": [
+        20,
+        36
+      ],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -1139,7 +1371,10 @@
       "doubleHook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [11, 19],
+      "timer": [
+        11,
+        19
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1162,7 +1397,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 5],
+      "timer": [
+        2,
+        5
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1177,7 +1415,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [3, 7],
+      "timer": [
+        3,
+        7
+      ],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -1192,7 +1433,10 @@
       "doubleHook": 4,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 7],
+      "timer": [
+        2,
+        7
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1207,7 +1451,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [2, 11],
+      "timer": [
+        2,
+        11
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1222,7 +1469,10 @@
       "doubleHook": 4,
       "mooch": null,
       "tug": 3,
-      "biteTime": [4, 10],
+      "timer": [
+        4,
+        10
+      ],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -1237,7 +1487,10 @@
       "doubleHook": 4,
       "mooch": null,
       "tug": 1,
-      "biteTime": [6, 11],
+      "timer": [
+        6,
+        11
+      ],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -1252,7 +1505,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [2, 9],
+      "timer": [
+        2,
+        9
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1267,7 +1523,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [2, 8],
+      "timer": [
+        2,
+        8
+      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1282,7 +1541,10 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [4, 8],
+      "timer": [
+        4,
+        8
+      ],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -1297,7 +1559,10 @@
       "doubleHook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [10, 12],
+      "timer": [
+        10,
+        12
+      ],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -1324,11 +1589,12 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [5, 15],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        5,
+        15
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 1,
       "category": "crab"
     },
@@ -1339,13 +1605,18 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [12, 22],
-      "time": "DSN",
+      "timer": [
+        12,
+        22
+      ],
+      "time": "",
       "weathers": {
-        "type": "NOT OK",
+        "type": "OK",
         "list": [
-          "thunder",
-          "thunderstorms"
+          "fairSkies",
+          "clouds",
+          "fog",
+          "clearSkies"
         ]
       },
       "stars": 1,
@@ -1358,11 +1629,12 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [5, 12],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        5,
+        12
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 1,
       "category": "balloon"
     },
@@ -1373,11 +1645,12 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [14, 23],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        14,
+        23
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 2,
       "category": "manta"
     },
@@ -1388,8 +1661,11 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [8, 23],
-      "time": "DSN",
+      "timer": [
+        8,
+        23
+      ],
+      "time": "",
       "weathers": {
         "type": "NOT OK",
         "list": [
@@ -1406,13 +1682,18 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 3,
-      "biteTime": [6, 10],
-      "time": "DSN",
+      "timer": [
+        6,
+        10
+      ],
+      "time": "",
       "weathers": {
-        "type": "NOT OK",
+        "type": "OK",
         "list": [
-          "clouds",
-          "fog"
+          "fairSkies",
+          "thunder",
+          "thunderstorms",
+          "clearSkies"
         ]
       },
       "stars": 2,
@@ -1425,11 +1706,12 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 3,
-      "biteTime": [25, 25],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        25,
+        25
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 3,
       "category": null
     },
@@ -1440,11 +1722,12 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [15, 25],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        15,
+        25
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 3,
       "category": null
     },
@@ -1455,8 +1738,11 @@
       "doubleHook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [13, 18],
-      "time": "DSN",
+      "timer": [
+        13,
+        18
+      ],
+      "time": "",
       "weathers": {
         "type": "NOT OK",
         "list": [
@@ -1473,11 +1759,12 @@
       "doubleHook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [21, 27],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        21,
+        27
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 4,
       "category": null,
       "intuition": [
@@ -1496,11 +1783,12 @@
       "doubleHook": 4,
       "mooch": null,
       "tug": 2,
-      "biteTime": [1, 5],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        1,
+        5
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 4,
       "category": "crab"
     },
@@ -1511,11 +1799,12 @@
       "doubleHook": 4,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 5],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        2,
+        5
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 4,
       "category": "balloon"
     },
@@ -1526,11 +1815,12 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [4, 5],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        4,
+        5
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 4,
       "category": null
     },
@@ -1541,11 +1831,12 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [5, 6],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        5,
+        6
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 4,
       "category": null
     },
@@ -1556,11 +1847,12 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [7.5, 7.5],
+      "timer": [
+        7.5,
+        7.5
+      ],
       "time": "S",
-      "weathers": {
-        "type": "ALL"
-      },
+      "weathers": null,
       "stars": 4,
       "category": null
     },
@@ -1571,11 +1863,12 @@
       "doubleHook": 4,
       "mooch": null,
       "tug": 3,
-      "biteTime": [1, 2],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        1,
+        2
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 4,
       "category": "manta"
     },
@@ -1586,11 +1879,12 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [5, 10],
+      "timer": [
+        5,
+        10
+      ],
       "time": "D",
-      "weathers": {
-        "type": "ALL"
-      },
+      "weathers": null,
       "stars": 4,
       "category": null
     },
@@ -1601,11 +1895,12 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 3,
-      "biteTime": [5, 7],
+      "timer": [
+        5,
+        7
+      ],
       "time": "D",
-      "weathers": {
-        "type": "ALL"
-      },
+      "weathers": null,
       "stars": 4,
       "category": null
     },
@@ -1616,11 +1911,12 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [8, 12],
+      "timer": [
+        8,
+        12
+      ],
       "time": "S",
-      "weathers": {
-        "type": "ALL"
-      },
+      "weathers": null,
       "stars": 4,
       "category": null
     },
@@ -1631,11 +1927,12 @@
       "doubleHook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [10, 10],
+      "timer": [
+        10,
+        10
+      ],
       "time": "N",
-      "weathers": {
-        "type": "ALL"
-      },
+      "weathers": null,
       "stars": 5,
       "category": null,
       "intuition": [
@@ -1658,11 +1955,12 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [3, 8],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        3,
+        8
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 1,
       "category": "crab"
     },
@@ -1673,13 +1971,18 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [7, 13],
-      "time": "DSN",
+      "timer": [
+        7,
+        13
+      ],
+      "time": "",
       "weathers": {
-        "type": "NOT OK",
+        "type": "OK",
         "list": [
-          "rain",
-          "showers"
+          "fairSkies",
+          "clouds",
+          "fog",
+          "clearSkies"
         ]
       },
       "stars": 1,
@@ -1692,11 +1995,12 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [4, 10],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        4,
+        10
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 1,
       "category": null
     },
@@ -1707,8 +2011,11 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [11, 15],
-      "time": "DSN",
+      "timer": [
+        11,
+        15
+      ],
+      "time": "",
       "weathers": {
         "type": "NOT OK",
         "list": [
@@ -1725,11 +2032,12 @@
       "doubleHook": 4,
       "mooch": null,
       "tug": 1,
-      "biteTime": [14, 28],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        14,
+        28
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 2,
       "category": "crab"
     },
@@ -1740,13 +2048,18 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [5, 10],
-      "time": "DSN",
+      "timer": [
+        5,
+        10
+      ],
+      "time": "",
       "weathers": {
-        "type": "NOT OK",
+        "type": "OK",
         "list": [
-          "clouds",
-          "fog"
+          "fairSkies",
+          "rain",
+          "showers",
+          "clearSkies"
         ]
       },
       "stars": 2,
@@ -1759,11 +2072,12 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [15, 20],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        15,
+        20
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 3,
       "category": null
     },
@@ -1774,11 +2088,12 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 3,
-      "biteTime": [16, 20],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        16,
+        20
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 3,
       "category": null
     },
@@ -1789,8 +2104,11 @@
       "doubleHook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [15, 16],
-      "time": "DSN",
+      "timer": [
+        15,
+        16
+      ],
+      "time": "",
       "weathers": {
         "type": "NOT OK",
         "list": [
@@ -1807,11 +2125,12 @@
       "doubleHook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [1, 10],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        1,
+        10
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 4,
       "category": null,
       "intuition": [
@@ -1830,11 +2149,12 @@
       "doubleHook": 4,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 3],
+      "timer": [
+        2,
+        3
+      ],
       "time": "D",
-      "weathers": {
-        "type": "ALL"
-      },
+      "weathers": null,
       "stars": 4,
       "category": "crab"
     },
@@ -1845,11 +2165,12 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [3, 3],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        3,
+        3
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 4,
       "category": null
     },
@@ -1860,11 +2181,12 @@
       "doubleHook": 4,
       "mooch": null,
       "tug": 2,
-      "biteTime": [6, 6],
+      "timer": [
+        6,
+        6
+      ],
       "time": "N",
-      "weathers": {
-        "type": "ALL"
-      },
+      "weathers": null,
       "stars": 4,
       "category": "manta"
     },
@@ -1875,11 +2197,12 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [3, 3],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        3,
+        3
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 4,
       "category": null
     },
@@ -1890,11 +2213,9 @@
       "doubleHook": 4,
       "mooch": null,
       "tug": 2,
-      "biteTime": null,
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": null,
+      "time": "",
+      "weathers": null,
       "stars": 4,
       "category": null
     },
@@ -1905,11 +2226,12 @@
       "doubleHook": 4,
       "mooch": null,
       "tug": 1,
-      "biteTime": [6, 6],
+      "timer": [
+        6,
+        6
+      ],
       "time": "D",
-      "weathers": {
-        "type": "ALL"
-      },
+      "weathers": null,
       "stars": 4,
       "category": "crab"
     },
@@ -1920,11 +2242,12 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [3, 5],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        3,
+        5
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 4,
       "category": null
     },
@@ -1935,11 +2258,12 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 3,
-      "biteTime": [3, 4],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        3,
+        4
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 4,
       "category": null
     },
@@ -1950,11 +2274,12 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 3,
-      "biteTime": [7, 8],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        7,
+        8
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 4,
       "category": "shark"
     },
@@ -1965,11 +2290,9 @@
       "doubleHook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": null,
+      "timer": null,
       "time": "D",
-      "weathers": {
-        "type": "ALL"
-      },
+      "weathers": null,
       "stars": 5,
       "category": null,
       "intuition": [
@@ -1988,11 +2311,12 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [3, 7],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        3,
+        7
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 1,
       "category": "balloon"
     },
@@ -2000,14 +2324,18 @@
       "name": "Rothlyt Kelp",
       "bait": "Ragworm",
       "points": 10,
-      "doubleHook": [3, 4],
+      "doubleHook": [
+        3,
+        4
+      ],
       "mooch": null,
       "tug": 1,
-      "biteTime": [5, 11],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        5,
+        11
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 1,
       "category": null
     },
@@ -2018,13 +2346,18 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [5, 10],
-      "time": "DSN",
+      "timer": [
+        5,
+        10
+      ],
+      "time": "",
       "weathers": {
-        "type": "NOT OK",
+        "type": "OK",
         "list": [
-          "thunder",
-          "thunderstorms"
+          "fairSkies",
+          "clouds",
+          "fog",
+          "clearSkies"
         ]
       },
       "stars": 1,
@@ -2037,11 +2370,12 @@
       "doubleHook": 4,
       "mooch": null,
       "tug": 1,
-      "biteTime": [12, 23],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        12,
+        23
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 2,
       "category": "balloon"
     },
@@ -2052,13 +2386,18 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [12, 26],
-      "time": "DSN",
+      "timer": [
+        12,
+        26
+      ],
+      "time": "",
       "weathers": {
-        "type": "NOT OK",
+        "type": "OK",
         "list": [
-          "clouds",
-          "fog"
+          "fairSkies",
+          "thunder",
+          "thunderstorms",
+          "clearSkies"
         ]
       },
       "stars": 2,
@@ -2071,8 +2410,11 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [16, 23],
-      "time": "DSN",
+      "timer": [
+        16,
+        23
+      ],
+      "time": "",
       "weathers": {
         "type": "NOT OK",
         "list": [
@@ -2089,11 +2431,12 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 3,
-      "biteTime": [12, 16],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        12,
+        16
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 3,
       "category": "shark"
     },
@@ -2104,11 +2447,12 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [15, 25],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        15,
+        25
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 3,
       "category": null
     },
@@ -2119,8 +2463,11 @@
       "doubleHook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [16, 21],
-      "time": "DSN",
+      "timer": [
+        16,
+        21
+      ],
+      "time": "",
       "weathers": {
         "type": "NOT OK",
         "list": [
@@ -2137,11 +2484,12 @@
       "doubleHook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [12, 18],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        12,
+        18
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 4,
       "category": null,
       "intuition": [
@@ -2160,11 +2508,12 @@
       "doubleHook": 4,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 2],
+      "timer": [
+        2,
+        2
+      ],
       "time": "DN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "weathers": null,
       "stars": 4,
       "category": "balloon"
     },
@@ -2175,11 +2524,12 @@
       "doubleHook": 2,
       "mooch": "Rothlyt Mussel",
       "tug": 2,
-      "biteTime": [2, 2],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        2,
+        2
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 4,
       "category": null
     },
@@ -2190,11 +2540,12 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 2],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        2,
+        2
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 4,
       "category": null
     },
@@ -2205,11 +2556,12 @@
       "doubleHook": 2,
       "mooch": "Rothlyt Mussel",
       "tug": 2,
-      "biteTime": [2, 2],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        2,
+        2
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 4,
       "category": null
     },
@@ -2220,11 +2572,12 @@
       "doubleHook": 4,
       "mooch": null,
       "tug": 2,
-      "biteTime": [5, 5],
+      "timer": [
+        5,
+        5
+      ],
       "time": "DN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "weathers": null,
       "stars": 4,
       "category": "balloon"
     },
@@ -2234,11 +2587,12 @@
       "doubleHook": 2,
       "mooch": "Rothlyt Mussel",
       "tug": 1,
-      "biteTime": [3, 3],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        3,
+        3
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 4,
       "category": null
     },
@@ -2249,11 +2603,12 @@
       "doubleHook": 4,
       "mooch": "Rothlyt Mussel",
       "tug": 2,
-      "biteTime": [6, 7],
+      "timer": [
+        6,
+        7
+      ],
       "time": "D",
-      "weathers": {
-        "type": "ALL"
-      },
+      "weathers": null,
       "stars": 4,
       "category": "manta"
     },
@@ -2264,11 +2619,12 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [4, 7],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        4,
+        7
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 4,
       "category": null
     },
@@ -2279,11 +2635,12 @@
       "doubleHook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [7, 9],
-      "time": "DSN",
-      "weathers": {
-        "type": "ALL"
-      },
+      "timer": [
+        7,
+        9
+      ],
+      "time": "",
+      "weathers": null,
       "stars": 4,
       "category": null
     },
@@ -2293,11 +2650,9 @@
       "doubleHook": 1,
       "mooch": "Rothlyt Mussel",
       "tug": 3,
-      "biteTime": null,
+      "timer": null,
       "time": "S",
-      "weathers": {
-        "type": "ALL"
-      },
+      "weathers": null,
       "stars": 5,
       "category": null,
       "intuition": [

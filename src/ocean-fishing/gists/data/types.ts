@@ -40,12 +40,12 @@ export type FishInfo = {
   doubleHook?: number | [number, number],
   mooch?: string,
   tug?: 1 | 2 | 3,
-  timer?: [number, number],
+  biteTime?: [number, number],
   time?: string,
-  weathers?: {
-    type: 'ALL' | 'OK' | 'NOT OK',
-    list?: string[]
-  },
+  weathers?:
+    { type: 'ALL' } |
+    { type: 'OK', list: string[] } |
+    { type: 'NOT OK', list: string[] },
   stars?: number,
   category?: 'octopus' | 'shark' | 'jellyfish' | 'seadragon' | 'balloon' | 'crab' | 'manta',
   intuition?: Array<{name: string, count: number}>

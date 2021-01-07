@@ -18,7 +18,7 @@ All the images needed are spliced together into a single image at `data/ocean-fi
 
 5. `node get-spreadsheet-data.js`
 
-This scrapes information from `data/Ocean Fishing Textual Style.html` and puts it into `data/spreadsheet-data.json`
+This scrapes information from `data/Ocean Fishing Textual Style.html` and puts it into `data/spreadsheet-data-raw.json`. Check for any changes and reflect those changes in `data/spreadsheet-data.json`. Scraping is a little inconsistent, and the sheet's data isn't the cleanest, so this extra step keeps the website's data clean.
 
 6. `node get-bite-times.js`
 
