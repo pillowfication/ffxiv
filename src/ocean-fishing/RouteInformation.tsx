@@ -169,7 +169,8 @@ const RouteInformation = ({ now, selectedRoute, checklist, setChecklist, t, i18n
                         [
                           maps.SPECTRAL_FISH_MAP[stop[0]],
                           maps.GREEN_FISH_MAP[stop[0]],
-                          ...getPointsFish(selectedRoute)[index]
+                          ...getPointsFish(selectedRoute)[index],
+                          getBlueFish(selectedRoute)[index]
                         ]
                           .filter(x => x)
                           .map((fishId, index) => {

@@ -59,6 +59,8 @@ export function getPointsFish (destinationCode: maps.DestinationStopTime): numbe
           const fishInfo = getFishInfo(fishes[fishId].name_en)
           if (fishInfo.time && fishInfo.time.indexOf(time) === -1) {
             return false
+          } else if (fishInfo.intuition) {
+            return false
           } else if (!fishInfo.points || !fishInfo.doubleHook) {
             return false
           } else {
