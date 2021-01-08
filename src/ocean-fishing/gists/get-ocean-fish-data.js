@@ -33,7 +33,7 @@ function findId (url) {
 }
 
 async function getLodestoneInfo (query) {
-  let $ = cheerio.load(await getFFXIV(`/lodestone/playguide/db/item/?db_search_category=item&q=${query}`))
+  let $ = cheerio.load(await getFFXIV(`/lodestone/playguide/db/item/?db_search_category=item&category2=6&category3=47&q=${query}`))
   const info = {}
 
   $('table.db-table > tbody > tr > td:first-child').each((_, elem) => {
