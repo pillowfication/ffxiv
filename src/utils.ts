@@ -18,7 +18,7 @@ export function formatTime (date: Date) {
 export function toTimeString (now: Date, options: { padded?: boolean, locale?: string } = {}) {
   const { padded, locale = 'en' } = options
   const timeString = format(now, locale === 'en' ? 'hh:mm a' : 'HH:mm', { locale: DATE_LOCALES[locale] })
-  return timeString.replace(/^0+/, match => padded ? ' '.repeat(match.length) : '')
+  return timeString.replace(/^0/, padded ? ' ' : '')
 }
 
 export function timeUntil (now: Date, then: Date, options: { full?: boolean, locale?: string } = {}) {
