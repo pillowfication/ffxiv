@@ -15,12 +15,14 @@ export function formatTime (date: Date) {
   return `${paddedZero(date.getUTCHours())}:${paddedZero(date.getUTCMinutes())}`
 }
 
-export function toTimeString (now: Date, { padded, locale = 'en' }: { padded?: boolean, locale?: string }) {
+export function toTimeString (now: Date, options: { padded?: boolean, locale?: string } = {}) {
+  const { padded, locale = 'en' } = options
   const timeString = format(now, locale === 'en' ? 'hh:mm a' : 'HH:mm', { locale: DATE_LOCALES[locale] })
   return timeString.replace(/^0+/, match => padded ? ' '.repeat(match.length) : '')
 }
 
-export function timeUntil (now: Date, then: Date, { full, locale = 'en' }: { full?: boolean, locale?: string }) {
+export function timeUntil (now: Date, then: Date, options: { full?: boolean, locale?: string } = {}) {
+  const { full, locale = 'en' } = options
   const diffString = formatDistanceStrict(then, now, { addSuffix: true, locale: DATE_LOCALES[locale] })
   if (!full) {
     return diffString
