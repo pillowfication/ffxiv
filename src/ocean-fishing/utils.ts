@@ -72,7 +72,7 @@ export function getPointsFish (destinationCode: maps.DestinationStopTime): numbe
             } else if (points > highestPointsFish[0].points) {
               highestPointsFish = [{ fishId, points }]
             }
-            return points >= 500
+            return points >= 400
           }
         })
 
