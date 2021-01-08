@@ -1,8 +1,8 @@
 import { timeUntil as genericTimeUntil } from '../utils'
-import { fishes, baits } from './gists/data/ocean-fish-data.json'
+import { fishingSpots, fishes, baits } from './gists/data/ocean-fish-data.json'
 import spreadsheet from './gists/data/spreadsheet-data.json'
 import biteTimes from './gists/data/ocean-fish-bite-times.json'
-import { Fish, FishInfo, Bait } from './gists/data/types'
+import { FishingSpot, Fish, FishInfo, Bait } from './gists/data/types'
 import { Bait as BaitChainProp } from './BaitChain'
 import * as maps from './maps'
 
@@ -29,6 +29,52 @@ export function getStops (destinationCode: maps.DestinationStopTime) {
   const stops: maps.Stop[] = maps.STOPS_SEQUENCE[destinationCode[0]]
   const times: maps.Time[] = maps.TIMES_SEQUENCE[destinationCode[1]]
   return [stops[0] + times[0], stops[1] + times[1], stops[2] + times[2]] as [maps.StopTime, maps.StopTime, maps.StopTime]
+}
+
+export function getTimeSensitiveFish (destinationCode: maps.DestinationStopTime): number[][] {
+  const stopTimes = getStops(destinationCode)
+  return stopTimes
+    .map((destinationStopTime, index) => {
+      const fishingSpotId = maps.STOP_MAP[destinationStopTime[0]]
+      const time = stopTimes[index][1]
+      return (fishingSpots[fishingSpotId + 1].fishes as FishingSpot['fishes'])
+        .filter(fishId => {
+          const fishInfo = getFishInfo(fishes[fishId].name_en)
+          return fishInfo.time && fishInfo.time !== 'DSN' && fishInfo.time.indexOf(time) > -1
+        })
+    })
+}
+
+export function getPointsFish (destinationCode: maps.DestinationStopTime): number[][] {
+  const stopTimes = getStops(destinationCode)
+  return stopTimes
+    .map((destinationStopTime, index) => {
+      const fishingSpotId = maps.STOP_MAP[destinationStopTime[0]]
+      const time = stopTimes[index][1]
+
+      let highestPointsFish: { fishId: number, points: number }[] = []
+      const pointsFish = (fishingSpots[fishingSpotId + 1].fishes as FishingSpot['fishes'])
+        .filter(fishId => {
+          const fishInfo = getFishInfo(fishes[fishId].name_en)
+          if (fishInfo.time && fishInfo.time.indexOf(time) === -1) {
+            return false
+          } else if (!fishInfo.points || !fishInfo.doubleHook) {
+            return false
+          } else {
+            const points = (Array.isArray(fishInfo.doubleHook) ? fishInfo.doubleHook[1] : fishInfo.doubleHook) * fishInfo.points
+            if (highestPointsFish.length === 0) {
+              highestPointsFish.push({ fishId, points })
+            } else if (points === highestPointsFish[0].points) {
+              highestPointsFish.push({ fishId, points })
+            } else if (points > highestPointsFish[0].points) {
+              highestPointsFish = [{ fishId, points }]
+            }
+            return points >= 500
+          }
+        })
+
+      return pointsFish.length > 0 ? pointsFish : highestPointsFish.map(({ fishId }) => fishId)
+    })
 }
 
 export function getBlueFish (destinationCode: maps.DestinationStopTime): number[] {

@@ -4,8 +4,8 @@ import Section from '../Section'
 import Grid from '@material-ui/core/Grid'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Checkbox from '@material-ui/core/Checkbox'
+import Select from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem'
 import Typography from '@material-ui/core/Typography'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
@@ -16,7 +16,17 @@ import BaitList from './BaitList'
 import calculateVoyages from './calculate-voyages'
 import { fishingSpots, fishes } from './gists/data/ocean-fish-data.json'
 import * as maps from './maps'
-import { timeUntil, getStops, getBlueFish, getBaitGroup, translate, upperFirst } from './utils'
+import {
+  timeUntil,
+  getStops,
+  getFishInfo,
+  getTimeSensitiveFish,
+  getPointsFish,
+  getBlueFish,
+  getBaitGroup,
+  translate,
+  upperFirst
+} from './utils'
 import i18n from '../../i18n'
 import { I18n, TFunction } from 'next-i18next'
 
@@ -33,17 +43,20 @@ const useStyles = makeStyles((theme) => ({
     top: '-0.2em',
     marginLeft: '0.25em'
   },
-  showAllFish: {
+  fishViewSelect: {
     display: 'block',
     [theme.breakpoints.up('md')]: {
       textAlign: 'right'
     }
-  },
-  showAllFishCheckbox: {
-    padding: 0,
-    margin: theme.spacing(0, 1)
   }
 }))
+
+enum FishView {
+  Intuition,
+  TimeSensitive,
+  Points,
+  All
+}
 
 type Props = {
   now?: Date,
@@ -58,7 +71,7 @@ const RouteInformation = ({ now, selectedRoute, checklist, setChecklist, t, i18n
   if (!now || !selectedRoute) return null
 
   const classes = useStyles()
-  const [showAllFish, setShowAllFish] = useState(false)
+  const [fishView, setFishView] = useState<FishView>(FishView.Intuition)
   const [tab, setTab] = useState(0)
   const stops = getStops(selectedRoute)
   const next = calculateVoyages(now, 1, [selectedRoute])[0].time
@@ -67,8 +80,8 @@ const RouteInformation = ({ now, selectedRoute, checklist, setChecklist, t, i18n
     setTab(0)
   }, [selectedRoute])
 
-  const handleToggleShowAllFish = () => {
-    setShowAllFish(!showAllFish)
+  const handleSelectFishView = (event: React.ChangeEvent<{ value: FishView }>) => {
+    setFishView(event.target.value)
   }
 
   const handleChangeTab = (_: any, value: number) => {
@@ -85,59 +98,111 @@ const RouteInformation = ({ now, selectedRoute, checklist, setChecklist, t, i18n
             <Typography display='inline' className={classes.headerSub}>{timeUntil(now, next, true)}</Typography>
           </Grid>
           <Grid item xs={12} md={4}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  className={classes.showAllFishCheckbox}
-                  checked={showAllFish}
-                  onChange={handleToggleShowAllFish}
-                  color='primary'
-                />
-              }
-              label={t('show-all-fish')}
-              className={classes.showAllFish}
-            />
+            <div className={classes.fishViewSelect}>
+              <Select value={fishView} onChange={handleSelectFishView}>
+                <MenuItem value={FishView.Intuition}>{t('show-intuition-fish')}</MenuItem>
+                <MenuItem value={FishView.TimeSensitive}>{t('show-time-fish')}</MenuItem>
+                <MenuItem value={FishView.Points}>{t('show-points-fish')}</MenuItem>
+                <MenuItem value={FishView.All}>{t('show-all-fish')}</MenuItem>
+              </Select>
+            </div>
           </Grid>
         </Grid>
       }
     >
       {(() => {
-        if (showAllFish) {
-          return (
-            <Card variant='outlined'>
-              <Tabs variant='fullWidth' value={tab} onChange={handleChangeTab}>
+        switch (fishView) {
+          case FishView.Intuition:
+            return (
+              <RouteCardContainer>
                 {stops.map((stop, index) =>
-                  <Tab key={stop} label={<>{index + 1}. {translate(i18n.language, fishingSpots[maps.STOP_MAP[stop[0]]], 'place_name_sub')} {maps.TIME_MAP[stop[1]]}</>} />
+                  <RouteCard key={stop} index={index} stop={stop}>
+                    <CardContent>
+                      <BaitList baitGroups={
+                        [
+                          maps.SPECTRAL_FISH_MAP[stop[0]],
+                          maps.GREEN_FISH_MAP[stop[0]],
+                          getBlueFish(selectedRoute)[index]
+                        ]
+                          .filter(x => x)
+                          .map(fishId => ({
+                            header: translate(i18n.language, fishes[fishId], 'name'),
+                            baitGroupProps: getBaitGroup(fishId)
+                          }))
+                      } />
+                    </CardContent>
+                  </RouteCard>
                 )}
-              </Tabs>
-              {stops.map((stop, index) =>
-                <FishPanel key={stop} tab={tab} index={index} stop={stop} checklist={checklist} setChecklist={setChecklist} />
-              )}
-            </Card>
-          )
-        } else {
-          return (
-            <RouteCardContainer>
-              {stops.map((stop, index) =>
-                <RouteCard key={stop} index={index} stop={stop}>
-                  <CardContent>
-                    <BaitList baitGroups={
-                      [
-                        maps.SPECTRAL_FISH_MAP[stop[0]],
-                        maps.GREEN_FISH_MAP[stop[0]],
-                        getBlueFish(selectedRoute)[index]
-                      ]
-                        .filter(x => x)
-                        .map(fishId => ({
-                          header: translate(i18n.language, fishes[fishId], 'name'),
-                          baitGroupProps: getBaitGroup(fishId)
-                        }))
-                    } />
-                  </CardContent>
-                </RouteCard>
-              )}
-            </RouteCardContainer>
-          )
+              </RouteCardContainer>
+            )
+          case FishView.TimeSensitive:
+            return (
+              <RouteCardContainer>
+                {stops.map((stop, index) =>
+                  <RouteCard key={stop} index={index} stop={stop}>
+                    <CardContent>
+                      <BaitList baitGroups={
+                        [
+                          maps.SPECTRAL_FISH_MAP[stop[0]],
+                          ...getTimeSensitiveFish(selectedRoute)[index]
+                        ]
+                          .filter(x => x)
+                          .map(fishId => ({
+                            header: translate(i18n.language, fishes[fishId], 'name'),
+                            baitGroupProps: getBaitGroup(fishId)
+                          }))
+                      } />
+                    </CardContent>
+                  </RouteCard>
+                )}
+              </RouteCardContainer>
+            )
+          case FishView.Points:
+            return (
+              <RouteCardContainer>
+                {stops.map((stop, index) =>
+                  <RouteCard key={stop} index={index} stop={stop}>
+                    <CardContent>
+                      <BaitList baitGroups={
+                        [
+                          maps.SPECTRAL_FISH_MAP[stop[0]],
+                          maps.GREEN_FISH_MAP[stop[0]],
+                          ...getPointsFish(selectedRoute)[index]
+                        ]
+                          .filter(x => x)
+                          .map((fishId, index) => {
+                            const fishInfo = getFishInfo(fishes[fishId].name_en)
+                            return {
+                            header: translate(i18n.language, fishes[fishId], 'name'),
+                            baitGroupProps: {
+                              ...getBaitGroup(fishId),
+                              subtext: index === 0 ? '' : (
+                                `DH: ×${Array.isArray(fishInfo.doubleHook) ? fishInfo.doubleHook.join('-') : fishInfo.doubleHook}` +
+                                ` = ${(Array.isArray(fishInfo.doubleHook) ? fishInfo.doubleHook[1] : fishInfo.doubleHook) * fishInfo.points}`
+                              ),
+                              mainOnly: true
+                            }
+                          }
+                        })
+                      } />
+                    </CardContent>
+                  </RouteCard>
+                )}
+              </RouteCardContainer>
+            )
+          case FishView.All:
+            return (
+              <Card variant='outlined'>
+                <Tabs variant='fullWidth' value={tab} onChange={handleChangeTab}>
+                  {stops.map((stop, index) =>
+                    <Tab key={stop} label={<>{index + 1}. {translate(i18n.language, fishingSpots[maps.STOP_MAP[stop[0]]], 'place_name_sub')} {maps.TIME_MAP[stop[1]]}</>} />
+                  )}
+                </Tabs>
+                {stops.map((stop, index) =>
+                  <FishPanel key={stop} tab={tab} index={index} stop={stop} checklist={checklist} setChecklist={setChecklist} />
+                )}
+              </Card>
+            )
         }
       })()}
     </Section>

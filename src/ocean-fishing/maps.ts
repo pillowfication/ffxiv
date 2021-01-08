@@ -66,7 +66,7 @@ export const BLUE_FISH_MAP: { [key in Stop]: number } = {
   T: 32114
 }
 
-export const ACHIEVEMENTS_MAP: { [key in `${DestinationStop}${Time}`]: number[] } = {
+export const ACHIEVEMENTS_MAP: { [key in DestinationStopTime]: number[] } = {
   BD: [2755],
   BN: [2756],
   BS: [],

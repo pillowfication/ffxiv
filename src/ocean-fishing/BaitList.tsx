@@ -22,6 +22,7 @@ type Props = {
       baits: Bait[],
       intuitionFishes?: { baits: Bait[], count: number }[],
       subtext?: string | ((fishId: number) => string),
+      mainOnly?: boolean
     }
   }[]
 }

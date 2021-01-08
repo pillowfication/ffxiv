@@ -52,7 +52,7 @@ const OceanFishPopper = ({ fishId, t, i18n }: Props) => {
       <Card variant='outlined' className={classes.container}>
         <CardHeader
           avatar={<OceanFishIconLarge fishId={fishId} size={100} />}
-          title={translate(i18n.language, fish, 'name')}
+          title={translate(i18n.language, fish, 'name') + ' ' + fishId}
           titleTypographyProps={{ variant: 'h6' }}
           subheader={(
             <div>
