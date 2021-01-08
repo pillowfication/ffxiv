@@ -4,7 +4,7 @@ import Page from '../src/Page'
 import UpcomingWeather from '../src/skywatcher/UpcomingWeather'
 import Forecaster from '../src/skywatcher/Forecaster'
 import About from '../src/skywatcher/About'
-import { formatTime } from '../src/utils'
+import { toTimeString } from '../src/utils'
 
 const Skywatcher = () => {
   const [now, setNow] = useState<Date | null>(null)
@@ -25,7 +25,7 @@ const Skywatcher = () => {
   return (
     <Page title='Skywatcher'>
       <Typography paragraph>
-        The time in Eorzea is <b>{now ? formatTime(new Date(now.getTime() * 1440 / 70)) : '…'}</b>.
+        The time in Eorzea is <b>{now ? toTimeString(new Date(now.getTime() * 1440 / 70)) : '…'}</b>.
       </Typography>
       <Forecaster now={now} />
       <UpcomingWeather now={now} />

@@ -10,6 +10,8 @@
   "time-of-day": "Time",
   "route": "Route",
   "objectives": "Objectives",
+  "boarding-now": "boarding now",
+  "en-route": "en route",
   "show-intuition-fish": "Show intuition fish",
   "show-time-fish": "Show time-sensitive fish",
   "show-points-fish": "Show high-value fish",

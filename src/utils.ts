@@ -1,3 +1,12 @@
+import { format, formatDistanceStrict } from 'date-fns'
+import { de, fr, ja } from 'date-fns/locale'
+
+const DATE_LOCALES = {
+  de,
+  fr,
+  ja
+}
+
 export function paddedZero (n: number) {
   return n > 9 ? String(n) : '0' + n
 }
@@ -6,46 +15,17 @@ export function formatTime (date: Date) {
   return `${paddedZero(date.getUTCHours())}:${paddedZero(date.getUTCMinutes())}`
 }
 
-export function toTimeString (now: Date, padded?: boolean) {
-  const hours = now.getHours()
-  const minutes = now.getMinutes()
-  const displayHours = hours % 12 === 0 ? 12 : hours % 12
-  return `${padded && displayHours < 10 ? ' ' + displayHours : displayHours}:${paddedZero(minutes)} ${hours < 12 ? 'AM' : 'PM'}`
+export function toTimeString (now: Date, { padded, locale = 'en' }: { padded?: boolean, locale?: string }) {
+  const timeString = format(now, locale === 'en' ? 'hh:mm a' : 'HH:mm', { locale: DATE_LOCALES[locale] })
+  return timeString.replace(/^0+/, match => padded ? ' '.repeat(match.length) : '')
 }
 
-function getTimeUntil (now: Date, then: Date) {
-  const diff = then.getTime() - now.getTime()
-  let days = diff / 86400000
-  if (days >= 1) {
-    days = Math.round(days)
-    return `${days} ${days > 1 ? 'days' : 'day'}`
-  }
-
-  let hours = diff / 3600000
-  if (hours >= 1) {
-    hours = Math.round(hours)
-    return `${hours} ${hours > 1 ? 'hours' : 'hour'}`
-  }
-
-  const minutes = Math.round(diff / 60000)
-  return `${minutes} ${minutes > 1 ? 'minutes' : 'minute'}`
-}
-
-export function timeUntil (now: Date, then: Date, full?: boolean) {
-  const diff = then.getTime() - now.getTime()
-  if (Math.abs(diff) < 60000) {
-    return 'now'
-  }
-
-  if (diff < 0) {
-    const timeString = getTimeUntil(then, now)
-    return full
-      ? `last was ${timeString} ago at ${toTimeString(then)}`
-      : `${timeString} ago`
+export function timeUntil (now: Date, then: Date, { full, locale = 'en' }: { full?: boolean, locale?: string }) {
+  const diffString = formatDistanceStrict(then, now, { addSuffix: true, locale: DATE_LOCALES[locale] })
+  if (!full) {
+    return diffString
   } else {
-    const timeString = getTimeUntil(now, then)
-    return full
-      ? `next is in ${timeString} at ${toTimeString(then)}`
-      : `in ${timeString}`
+    // TODO: Figure out how to translate this thing fully
+    return `${diffString} at ${format(then, 'h:mm aaaa', { locale: DATE_LOCALES[locale] })}`
   }
 }

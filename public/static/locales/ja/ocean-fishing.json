@@ -10,6 +10,8 @@
   "time-of-day": "時間帯",
   "route": "行き先",
   "objectives": "狙い目",
+  "boarding-now": "乗船受付中",
+  "en-route": "出航中",
   "show-intuition-fish": "表示：直感魚",
   "show-time-fish": "表示：時間帯限定魚",
   "show-points-fish": "表示：高得点の魚",

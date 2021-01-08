@@ -95,7 +95,9 @@ const RouteInformation = ({ now, selectedRoute, checklist, setChecklist, t, i18n
           <Grid item xs={12} md={8}>
             {upperFirst(translate(i18n.language, fishingSpots[maps.STOP_MAP[selectedRoute[0]]], 'place_name_sub', 'no_article'))}
             <span className={classes.headerTime}>{maps.TIME_MAP[selectedRoute[1]]}</span>
-            <Typography display='inline' className={classes.headerSub}>{timeUntil(now, next, true)}</Typography>
+            <Typography display='inline' className={classes.headerSub}>
+              {timeUntil(now, next, { t, full: true, locale: i18n.language })}
+            </Typography>
           </Grid>
           <Grid item xs={12} md={4}>
             <div className={classes.fishViewSelect}>

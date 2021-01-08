@@ -5,6 +5,7 @@ import biteTimes from './gists/data/ocean-fish-bite-times.json'
 import { FishingSpot, Fish, FishInfo, Bait } from './gists/data/types'
 import { Bait as BaitChainProp } from './BaitChain'
 import * as maps from './maps'
+import { TFunction } from 'next-i18next'
 
 function memoize<T, R> (func: (arg: T) => R): (arg: T) => R {
   const cache: { [key: string]: R } = {}
@@ -14,14 +15,14 @@ function memoize<T, R> (func: (arg: T) => R): (arg: T) => R {
   }
 }
 
-export function timeUntil (now: Date, then: Date, full?: boolean) {
+export function timeUntil (now: Date, then: Date, options: { t: TFunction, full?: boolean, locale?: string }) {
   const diff = then.getTime() - now.getTime()
   if (diff < -900000) {
-    return 'en route'
+    return options.t('en-route')
   } else if (diff < 0) {
-    return 'boarding now'
+    return options.t('boarding-now')
   } else {
-    return genericTimeUntil(now, then, full)
+    return genericTimeUntil(now, then, { full: options.full, locale: options.locale })
   }
 }
 

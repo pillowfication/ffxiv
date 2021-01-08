@@ -14,7 +14,7 @@ import { fishingSpots } from './gists/data/ocean-fish-data.json'
 import * as maps from './maps'
 import { toTimeString } from '../utils'
 import calculateVoyages from './calculate-voyages'
-import { timeUntil, getBlueFish, translate, upperFirst } from './utils'
+import { getBlueFish, timeUntil, translate, upperFirst } from './utils'
 import i18n from '../../i18n'
 import { I18n, TFunction } from 'next-i18next'
 
@@ -91,8 +91,8 @@ const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute, t, i18n }: 
             let previousDate: string
 
             return upcomingVoyages.map(({ time, destinationCode }) => {
-              const dateString = time.toLocaleDateString(undefined, DATE_FORMAT)
-              const timeString = toTimeString(time, true)
+              const dateString = time.toLocaleDateString(i18n.language, DATE_FORMAT)
+              const timeString = toTimeString(time, { padded: true, locale: i18n.language })
 
               return (
                 <TableRow
@@ -109,7 +109,7 @@ const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute, t, i18n }: 
                     <Typography>{timeString}</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography className={classes.timeUntil}>{timeUntil(now, time)}</Typography>
+                    <Typography className={classes.timeUntil}>{timeUntil(now, time, { t, locale: i18n.language })}</Typography>
                   </TableCell>
                   <TableCell align='right'>
                     <Typography>{upperFirst(translate(i18n.language, fishingSpots[maps.STOP_MAP[destinationCode[0]]], 'place_name_sub', 'no_article'))}</Typography>
