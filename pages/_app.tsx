@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import NextApp from 'next/app'
 import Head from 'next/head'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { ThemeProvider, makeStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Typography from '@material-ui/core/Typography'
+import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import AppBar from '@material-ui/core/AppBar'
@@ -20,9 +20,10 @@ import TranslateIcon from '@material-ui/icons/Translate'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Brightness2Icon from '@material-ui/icons/Brightness2'
 import Brightness5Icon from '@material-ui/icons/Brightness5'
-import i18n from '../i18n'
+import Link from '../src/Link'
 import GlobalStyles from '../src/GlobalStyles'
 import { lightTheme, darkTheme } from '../src/themes'
+import i18n from '../i18n'
 
 const LANGUAGES = {
   en: 'English',
@@ -31,42 +32,28 @@ const LANGUAGES = {
   ja: '日本語'
 }
 
+function getLanguage (locale: string): string {
+  return LANGUAGES[locale] || (locale || '').toUpperCase()
+}
+
 const useStyles = makeStyles((theme) => ({
   toolbar: {
     minHeight: 0,
     paddingTop: theme.spacing(0.5),
-    paddingBottom: theme.spacing(0.5)
-  },
-  homeIcon: {
-    [theme.breakpoints.up('md')]: {
-      marginRight: theme.spacing(1)
-    },
-  },
-  gitHubIcon: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'block',
-      margin: theme.spacing(0, 2)
+    paddingBottom: theme.spacing(0.5),
+    '& a': {
+      color: '#ffffff',
+      textTransform: 'none'
     }
   },
-  titleButton: {
-    textTransform: 'none'
+  homeIcon: {
+    marginRight: theme.spacing(1)
   },
   languageButton: {
     marginRight: theme.spacing(2)
   },
-  language: {
-    margin: theme.spacing(0, 0.5, 0, 1),
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'block',
-    },
-  },
   brightnessIcon: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'block',
-    }
+    verticalAlign: 'middle'
   },
   main: {
     paddingTop: '4rem',
@@ -76,21 +63,23 @@ const useStyles = makeStyles((theme) => ({
 
 type Props = {
   Component: React.ComponentClass,
-  pageProps: object
+  pageProps?: object
 }
 
 const App = ({ Component, pageProps }: Props) => {
   const classes = useStyles()
-  const router = useRouter()
-  const [languageAnchorEl, setLanguageAnchorEl] = useState<HTMLElement>(null)
-  const [theme, setTheme] = useState('light')
+  const [languageAnchorEl, setLanguageAnchorEl] = useState<null | HTMLElement>(null)
+  const [theme, setTheme] = useState<'light' | 'dark'>('light')
 
   useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side')
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles)
     }
-    setTheme((typeof window !== 'undefined' && window.localStorage.getItem('theme')) || 'light')
+
+    if (typeof window !== 'undefined') {
+      setTheme(window.localStorage.getItem('theme') === 'dark' ? 'dark' : 'light')
+    }
   }, [])
 
   useEffect(() => {
@@ -125,21 +114,33 @@ const App = ({ Component, pageProps }: Props) => {
             <Grid container justify='space-between' alignItems='center'>
               <Grid item>
                 <Toolbar disableGutters className={classes.toolbar}>
-                  <Link href='/'>
-                    <Button className={classes.titleButton} color='inherit'>
-                      <HomeIcon className={classes.homeIcon} />
-                      <Typography>Lulu’s Tools</Typography>
-                    </Button>
-                  </Link>
+                  <Button
+                    component={Link}
+                    variant='contained'
+                    color='primary'
+                    disableElevation
+                    underline='none'
+                    href='/'
+                  >
+                    <HomeIcon className={classes.homeIcon} />
+                    <Typography>Lulu’s Tools</Typography>
+                  </Button>
                 </Toolbar>
               </Grid>
               <Grid item>
                 <Toolbar disableGutters className={classes.toolbar}>
-                  <Link href='https://github.com/pillowfication/ffxiv'>
-                    <Button color='inherit'>
+                  <Box display={{ xs: 'none', md: 'inline-block' }}>
+                    <Button
+                      component={Link}
+                      variant='contained'
+                      color='primary'
+                      disableElevation
+                      underline='none'
+                      href='https://github.com/pillowfication/ffxiv'
+                    >
                       <GitHubIcon />
                     </Button>
-                  </Link>
+                  </Box>
                   <Tooltip title='Choose Language' enterDelay={300}>
                     <Button
                       variant='contained'
@@ -149,7 +150,9 @@ const App = ({ Component, pageProps }: Props) => {
                       onClick={handleClickLanguage}
                     >
                       <TranslateIcon fontSize='small' />
-                      <span className={classes.language}>{router.locale}</span>
+                      <Box display={{ xs: 'none', md: 'inline-block' }} px={1} >
+                        {getLanguage(i18n.i18n.language)}
+                      </Box>
                       <ExpandMoreIcon fontSize='small' />
                     </Button>
                   </Tooltip>
@@ -160,15 +163,19 @@ const App = ({ Component, pageProps }: Props) => {
                     onClose={handleSelectLanguage.bind(null, null)}
                   >
                     {[i18n.config.defaultLanguage, ...i18n.config.otherLanguages].map(locale =>
-                      <MenuItem key={locale} onClick={handleSelectLanguage.bind(null, locale)}>{LANGUAGES[locale] || locale.toUpperCase()}</MenuItem>
+                      <MenuItem key={locale} onClick={handleSelectLanguage.bind(null, locale)}>{getLanguage(locale)}</MenuItem>
                     )}
                   </Menu>
-                  <Brightness5Icon className={classes.brightnessIcon} />
+                  <Box display={{ xs: 'none', md: 'inline-block' }}>
+                    <Brightness5Icon className={classes.brightnessIcon} />
+                  </Box>
                   <Switch
                     checked={theme === 'dark'}
                     onChange={handleChangeTheme}
                   />
-                  <Brightness2Icon className={classes.brightnessIcon} />
+                  <Box display={{ xs: 'none', md: 'inline-block' }}>
+                    <Brightness2Icon className={classes.brightnessIcon} />
+                  </Box>
                 </Toolbar>
               </Grid>
             </Grid>
@@ -181,5 +188,9 @@ const App = ({ Component, pageProps }: Props) => {
     </>
   )
 }
+
+App.getInitialProps = async (appContext: any) => ({
+  ...await NextApp.getInitialProps(appContext)
+})
 
 export default i18n.appWithTranslation(App)

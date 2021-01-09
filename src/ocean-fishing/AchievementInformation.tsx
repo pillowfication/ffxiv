@@ -20,12 +20,12 @@ const SUBTITLES = {
 
 const useStyles = makeStyles((theme) => ({
   achievementIcon: {
-    marginLeft: theme.spacing(2),
+    marginLeft: theme.spacing(1.5),
     verticalAlign: 'sub'
   },
   subtitle: {
     marginLeft: theme.spacing(2),
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('md')]: {
       marginLeft: 0,
       display: 'block'
     }

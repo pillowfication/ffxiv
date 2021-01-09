@@ -1,10 +1,13 @@
 import React from 'react'
-import Link from 'next/link'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
+import Link from '../src/Link'
 
 const useStyles = makeStyles((theme) => ({
+  goHome: {
+    color: '#ffffff'
+  },
   lulu: {
     textAlign: 'center',
     padding: theme.spacing(2),
@@ -25,9 +28,16 @@ const _404 = () => {
     <>
       <Typography variant='h1' gutterBottom>404</Typography>
       <Typography paragraph>This page does not exist.</Typography>
-      <Link href='/'>
-        <Button color='primary' variant='contained'>Go home</Button>
-      </Link>
+      <Button
+        component={Link}
+        variant='contained'
+        color='primary'
+        underline='none'
+        href='/'
+        className={classes.goHome}
+      >
+        Go home
+      </Button>
 
       <div className={classes.lulu}>
         <img src='/images/lulu-judging.png' />

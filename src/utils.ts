@@ -1,11 +1,7 @@
 import { format, formatDistanceStrict } from 'date-fns'
 import { de, fr, ja } from 'date-fns/locale'
 
-const DATE_LOCALES = {
-  de,
-  fr,
-  ja
-}
+const DATE_LOCALES = { en: undefined, de, fr, ja }
 
 export function paddedZero (n: number) {
   return n > 9 ? String(n) : '0' + n
@@ -24,10 +20,13 @@ export function toTimeString (now: Date, options: { padded?: boolean, locale?: s
 export function timeUntil (now: Date, then: Date, options: { full?: boolean, locale?: string } = {}) {
   const { full, locale = 'en' } = options
   const diffString = formatDistanceStrict(then, now, { addSuffix: true, locale: DATE_LOCALES[locale] })
-  if (!full) {
-    return diffString
+  if (full) {
+    switch (locale) {
+      case 'de': return `${diffString} um ${format(then, 'H:mm', { locale: DATE_LOCALES[locale] })}`
+      case 'fr': return `${diffString} à ${format(then, 'H:mm', { locale: DATE_LOCALES[locale] })}`
+      default: return `${diffString} at ${format(then, 'h:mm a', { locale: DATE_LOCALES[locale] })}`
+    }
   } else {
-    // TODO: Figure out how to translate this thing fully
-    return `${diffString} at ${format(then, 'h:mm aaaa', { locale: DATE_LOCALES[locale] })}`
+    return diffString
   }
 }
