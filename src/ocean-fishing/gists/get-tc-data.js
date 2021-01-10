@@ -1,24 +1,17 @@
 const fs = require('fs')
 const path = require('path')
 const fetch = require('node-fetch')
-
-const BEARER_TOKEN = require('./tc-bearer-token.json')
-
-const FISHING_SPOTS = [
-  237, 238,
-  239, 240,
-  241, 242,
-  243, 244,
-  246, 247,
-  248, 249,
-  250, 251
-]
+const { fishingSpots, baits } = require('./data/ocean-fish-data.json')
 
 const BAITS = [
-  29714,
-  29715,
-  29716
+  ...Object.keys(baits),
+  29722, // Ghoul Barracuda
+  29761, // Hi-aetherlouse
+  29718, // Tossed Dagger
+  32107 // Rothlyt Mussel
 ]
+
+const BEARER_TOKEN = require('./tc-bearer-token.json')
 
 async function getTCData (spotId, baitId) {
   const res = await fetch(
@@ -51,10 +44,12 @@ async function getTCData (spotId, baitId) {
 }
 
 ;(async () => {
-  for (const fishingSpot of FISHING_SPOTS) {
+  for (const fishingSpot of Object.keys(fishingSpots)) {
+    const allData = { data: { biteTimes: [] } }
     for (const bait of BAITS) {
-      console.log(`Fetching: { spot: ${fishingSpot}, bait: ${bait} }`)
-      fs.writeFileSync(path.resolve(__dirname, `./data/tc/s${fishingSpot}-b${bait}.json`), JSON.stringify(await getTCData(fishingSpot, bait)))
+      console.log('Fetching:', { spot: fishingSpot, bait })
+      allData.data.biteTimes.push(...(await getTCData(fishingSpot, bait)).data.biteTimes)
     }
+    fs.writeFileSync(path.resolve(__dirname, `./data/tc/spot-${fishingSpot}.json`), JSON.stringify(allData))
   }
 })()

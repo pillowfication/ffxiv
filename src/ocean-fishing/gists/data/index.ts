@@ -45,7 +45,10 @@ export type FishInfo = {
   double_hook?: number | [number, number],
   mooch?: number,
   tug?: 1 | 2 | 3,
-  bite_time?: [number, number],
+  bite_time: {
+    all?: [number, number],
+    [key: number]: [number, number]
+  },
   time?: string,
   weathers?:
     { type: 'ALL' } |
@@ -103,8 +106,8 @@ for (const fishId in fishData.fishes) {
     if (spreadsheetData.bait) spreadsheetData.bait = findBaitId(spreadsheetData.bait)
     if (spreadsheetData.mooch) spreadsheetData.mooch = findFishId(spreadsheetData.mooch)
     if (spreadsheetData.intuition) spreadsheetData.intuition = spreadsheetData.intuition.map(({ name, count }) => ({ id: findFishId(name), count }))
-    // Replace biteTime with TC data if available
-    if (biteTimes[fishId]) spreadsheetData.bite_time = biteTimes[fishId]
+    // Replace biteTime with TC data
+    spreadsheetData.bite_time = biteTimes[fishId]
   } else {
     console.error('Could find spreadsheet data for fish:', fish)
   }

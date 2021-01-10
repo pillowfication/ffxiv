@@ -1,34 +1,29 @@
 const fs = require('fs')
 const path = require('path')
-const { fishes } = require('./data/ocean-fish-data.json')
+const { fishingSpots, fishes, baits } = require('./data/ocean-fish-data.json')
 
-const DATA = [
-  'outer-galadion-bay',
-  'galadion-spectral-current',
-  'the-southern-strait-of-merlthor',
-  'southern-merlthor-spectral-current',
-  'the-northern-strait-of-merlthor',
-  'northern-merlthor-spectral-current',
-  'open-rhotano-sea',
-  'rhotano-spectral-current',
-  'cieldalaes-margin',
-  'cieldalaes-spectral-current',
-  'open-bloodbrine-sea',
-  'bloodbrine-spectral-current',
-  'outer-rothlyt-sound',
-  'rothlyt-spectral-current'
-].flatMap((region) =>
-  require(`./tc-data/${region}.json`).data.biteTimes
-)
-const CUTOFF = 0.1
+const BAITS = [
+  ...Object.keys(baits),
+  29722, // Ghoul Barracuda
+  29761, // Hi-aetherlouse
+  29718, // Tossed Dagger
+  32107 // Rothlyt Mussel
+]
+
+const DATA = []
+for (const fishingSpot of Object.keys(fishingSpots)) {
+  DATA.push(...require(`./data/tc/spot-${fishingSpot}.json`).data.biteTimes)
+}
+
+const CUTOFF = 0.2
 const OUTPUT = path.resolve(__dirname, './data/ocean-fish-bite-times.json')
 
-function getBiteTime (fishId) {
+function getBiteTime (fishId, baitId) {
   const times = DATA
-    .filter((datum) => datum.itemId === fishId)
+    .filter(datum => datum.itemId === fishId && (!baitId || datum.baitId === baitId))
     .sort((a, b) => a.biteTime - b.biteTime)
 
-  if (times.length === 0) {
+  if (times.length < 10) {
     return null
   } else {
     const totalOccurrences = times.reduce((acc, curr) => acc + curr.occurences, 0)
@@ -49,7 +44,20 @@ function getBiteTime (fishId) {
 
 const biteTimes = {}
 for (const fish of Object.values(fishes)) {
-  biteTimes[fish.id] = getBiteTime(fish.id)
+  const biteTimesByBait = {}
+  let minBiteTime, maxBiteTime
+  BAITS.forEach(baitId => {
+    const biteTime = getBiteTime(fish.id, +baitId)
+    if (biteTime) {
+      minBiteTime = minBiteTime ? Math.min(minBiteTime, biteTime[0]) : biteTime[0]
+      maxBiteTime = maxBiteTime ? Math.max(maxBiteTime, biteTime[1]) : biteTime[1]
+      biteTimesByBait[baitId] = biteTime
+    }
+  })
+  biteTimes[fish.id] = {
+    all: (minBiteTime && maxBiteTime && [minBiteTime, maxBiteTime]) || null,
+    ...biteTimesByBait
+  }
 }
 
 fs.writeFileSync(OUTPUT, JSON.stringify(biteTimes))

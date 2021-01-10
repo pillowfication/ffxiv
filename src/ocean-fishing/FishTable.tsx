@@ -151,8 +151,8 @@ const FishTable = ({ spots, time, checklist, setChecklist, t, i18n }: Props) => 
                           <Tug strength={fishInfo.tug} className={classes.tug} />}
                       </TableCell>
                       <TableCell align='center'>
-                        {fishInfo.bite_time &&
-                          <Typography>{fishInfo.bite_time[0] === fishInfo.bite_time[1] ? fishInfo.bite_time[0] : fishInfo.bite_time.join('-')}</Typography>}
+                        {fishInfo.bite_time.all &&
+                          <Typography>{fishInfo.bite_time.all[0] === fishInfo.bite_time.all[1] ? fishInfo.bite_time.all[0] : fishInfo.bite_time.all.join('-')}</Typography>}
                       </TableCell>
                       <TableCell align='center'>
                         {fishInfo.points &&

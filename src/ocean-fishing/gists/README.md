@@ -20,6 +20,10 @@ All the images needed are spliced together into a single image at `data/ocean-fi
 
 This scrapes information from `data/Ocean Fishing Textual Style.html` and puts it into `data/spreadsheet-data-raw.json`. Check for any changes and reflect those changes in `data/spreadsheet-data.json`. Scraping is a little inconsistent, and the sheet's data isn't the cleanest, so this extra step keeps the website's data clean.
 
-6. `node get-bite-times.js`
+6. `node get-tc-data.js`
 
-This reads the data in the `tc-data` folder to determine (possibly) more accurate bite times for the fish, creating `data/ocean-fish-bite-times.json`.
+This scrapes Teamcraft for bite time data, putting everything in `/data/tc`. This requires you to first create the file `/tc-bearer-token.json` that contains your bearer token.
+
+7. `node get-bite-times.js`
+
+This reads the data in the `/data/tc` folder to determine (possibly) more accurate bite times for the fish, creating `data/ocean-fish-bite-times.json`.
