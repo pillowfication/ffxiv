@@ -2,35 +2,36 @@ const fs = require('fs')
 const path = require('path')
 const { fishingSpots, fishes, baits } = require('./data/ocean-fish-data.json')
 
+const CUTOFF = 0.1
+const OUTPUT = path.resolve(__dirname, './data/ocean-fish-bite-times.json')
+
 const BAITS = [
-  ...Object.keys(baits),
+  ...Object.keys(baits).map(Number),
   29722, // Ghoul Barracuda
   29761, // Hi-aetherlouse
   29718, // Tossed Dagger
   32107 // Rothlyt Mussel
 ]
 
-const DATA = []
+let DATA = []
 for (const fishingSpot of Object.keys(fishingSpots)) {
-  DATA.push(...require(`./data/tc/spot-${fishingSpot}.json`).data.biteTimes)
+  DATA.push(...require(`./data/tc/spot-${fishingSpot}.json`))
 }
-
-const CUTOFF = 0.2
-const OUTPUT = path.resolve(__dirname, './data/ocean-fish-bite-times.json')
+DATA = DATA.filter(datum => datum.occurrences >= CUTOFF)
 
 function getBiteTime (fishId, baitId) {
   const times = DATA
     .filter(datum => datum.itemId === fishId && (!baitId || datum.baitId === baitId))
     .sort((a, b) => a.biteTime - b.biteTime)
+  const totalOccurrences = times.reduce((acc, curr) => acc + curr.occurrences, 0)
 
-  if (times.length < 10) {
+  if (totalOccurrences < 10) {
     return null
   } else {
-    const totalOccurrences = times.reduce((acc, curr) => acc + curr.occurences, 0)
     const cutOff = Math.floor(totalOccurrences * CUTOFF)
     let minTime, maxTime
     for (let count = 0, index = 0; index < times.length; ++index) {
-      count += times[index].occurences
+      count += times[index].occurrences
       if (minTime === undefined && count >= cutOff) {
         minTime = times[index].biteTime
       }

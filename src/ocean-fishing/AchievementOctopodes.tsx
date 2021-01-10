@@ -35,7 +35,7 @@ const AchievementOctopodes = ({ selectedRoute }: Props) => {
           <CardContent>
             <BaitList
               baitGroups={[{
-                header: 'IC–DH at 16-27s',
+                header: 'IC–DH at 17-27s',
                 baitGroupProps: { ...getBaitGroup(29734), subtext: subtextDH }
               }, {
                 header: 'DH–IC–DH at <3s',
@@ -46,11 +46,11 @@ const AchievementOctopodes = ({ selectedRoute }: Props) => {
           <CardContent>
             <Typography variant='overline'>Non-spectral</Typography>
             <Typography paragraph>
-              Can blind DH the Cyan Octopodes at 25s, or at 19s with a SS’d Jasperhead.
+              Can blind DH the Cyan Octopodes at 24s, or at 19s with a SS’d Jasperhead. Clouds/Fog weather will also remove Jasperheads.
             </Typography>
             <Typography variant='overline'>Spectral</Typography>
             <Typography paragraph>
-              Only the instant <Tug strength={2} /> is Merman’s Mane; any later is not.
+              Only the instant <Tug strength={2} /> is Merman’s Mane.
             </Typography>
           </CardContent>
         </RouteCard>

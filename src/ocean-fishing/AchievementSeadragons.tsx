@@ -24,7 +24,7 @@ const AchievementSeadragons = ({ selectedRoute }: Props) => {
           <CardContent>
             <BaitList
               baitGroups={[{
-                header: 'IC–DH at 9-21s',
+                header: 'IC–DH at 9-20s',
                 baitGroupProps: { ...getBaitGroup(29740), subtext: subtextDH }
               }, {
                 header: 'No buffs',
@@ -35,7 +35,7 @@ const AchievementSeadragons = ({ selectedRoute }: Props) => {
           <CardContent>
             <Typography variant='overline'>Non-spectral</Typography>
             <Typography paragraph>
-              Clouds and Fog weather will remove Shaggy Seadragons.
+              Clouds and Fog weather will remove Shaggy Seadragons. There is possibly a blind DH at 14-16s.
             </Typography>
             <Typography variant='overline'>Spectral</Typography>
             <Typography paragraph>
@@ -57,7 +57,7 @@ const AchievementSeadragons = ({ selectedRoute }: Props) => {
           <CardContent>
             <BaitList
               baitGroups={[{
-                header: 'IC–DH',
+                header: 'IC–DH at 7-12s',
                 baitGroupProps: { ...getBaitGroup(29764), subtext: subtextDH }
               }]}
             />
@@ -65,7 +65,7 @@ const AchievementSeadragons = ({ selectedRoute }: Props) => {
           <CardContent>
             <Typography variant='overline'>Spectral</Typography>
             <Typography paragraph>
-              Nothing to say about this.
+              It’s possible to blind DH at ≥9s.
             </Typography>
           </CardContent>
         </RouteCard>

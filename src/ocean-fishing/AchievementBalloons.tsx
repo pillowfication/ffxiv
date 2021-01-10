@@ -22,7 +22,7 @@ const AchievementBalloons = ({ selectedRoute }: Props) => {
           <CardContent>
             <BaitList
               baitGroups={[{
-                header: 'IC–DH at 5-10s',
+                header: 'IC–DH at 5-13s',
                 baitGroupProps: { ...getBaitGroup(32057), subtext: subtextDH }
               }, {
                 header: 'DH at <5s',
@@ -45,7 +45,7 @@ const AchievementBalloons = ({ selectedRoute }: Props) => {
           <CardContent>
             <BaitList
               baitGroups={[{
-                header: 'IC–DH at 10-16s',
+                header: 'IC–DH at 10-15s',
                 baitGroupProps: { ...getBaitGroup(29732), subtext: subtextDH }
               }, {
                 header: 'IC–DH at 2-6s',
@@ -59,7 +59,11 @@ const AchievementBalloons = ({ selectedRoute }: Props) => {
             </Typography>
             <Typography variant='overline'>Non-spectral</Typography>
             <Typography paragraph>
-              Lampfish can probably be a blind DH.
+              Lampfish is possibly a blind DH at 13-15s.
+            </Typography>
+            <Typography variant='overline'>Spectral</Typography>
+            <Typography paragraph>
+              Can blind DH Silencers with a SS’d Aronnax.
             </Typography>
           </CardContent>
         </RouteCard>
@@ -67,16 +71,16 @@ const AchievementBalloons = ({ selectedRoute }: Props) => {
           <CardContent>
             <BaitList
               baitGroups={[{
-                header: 'No buffs at 2-5s',
+                header: 'No buffs at 3-8s',
                 baitGroupProps: { ...getBaitGroup(32095), subtext: subtextDH }
               }, {
-                header: 'DH at ≥11s',
+                header: 'DH at ≥14s',
                 baitGroupProps: { ...getBaitGroup(32098), subtext: subtextDH }
               }, {
-                header: 'IC–DH',
+                header: 'IC–DH at 2s',
                 baitGroupProps: { ...getBaitGroup(32105), subtext: subtextDH }
               }, {
-                header: 'IC–DH',
+                header: 'IC–DH at 4-5s',
                 baitGroupProps: { ...getBaitGroup(32109), subtext: subtextDH }
               }]}
             />

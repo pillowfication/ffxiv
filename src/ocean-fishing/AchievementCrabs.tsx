@@ -23,10 +23,10 @@ const AchievementCrabs = ({ selectedRoute }: Props) => {
           <CardContent>
             <BaitList
               baitGroups={[{
-                header: 'IC–DH at <12s',
+                header: 'IC–DH at 6-14s',
                 baitGroupProps: { ...getBaitGroup(32055), subtext: subtextDH }
               }, {
-                header: 'DH–IC–DH at <4s',
+                header: 'DH–IC–DH at 2-5s',
                 baitGroupProps: { ...getBaitGroup(32065), subtext: subtextDH }
               }]}
             />
@@ -34,7 +34,7 @@ const AchievementCrabs = ({ selectedRoute }: Props) => {
           <CardContent>
             <Typography variant='overline'>Non-spectral</Typography>
             <Typography paragraph>
-              In general, IC–DH when possible and don’t rely heavily on spectrals. Tortoiseshell Crab can be blind DH before 12s.
+              In general, IC–DH when possible and don’t rely heavily on spectrals. Can be blind DH Tortoiseshell Crab before 12s.
             </Typography>
             <Typography variant='overline'>Spectral</Typography>
             <Typography paragraph>
@@ -46,7 +46,7 @@ const AchievementCrabs = ({ selectedRoute }: Props) => {
           <CardContent>
             <BaitList
               baitGroups={[{
-                header: 'IC–DH at 9-21s',
+                header: 'IC–DH at 9-20s',
                 baitGroupProps: { ...getBaitGroup(29741), subtext: subtextDH }
               }, {
                 header: 'IC–DH at 4-8s',
@@ -64,16 +64,16 @@ const AchievementCrabs = ({ selectedRoute }: Props) => {
           <CardContent>
             <BaitList
               baitGroups={[{
-                header: 'No buffs at 3-7s',
+                header: 'No buffs at 4-9s',
                 baitGroupProps: { ...getBaitGroup(32075), subtext: subtextDH }
               }, {
-                header: 'DH at ≥14s',
+                header: 'DH at ≥16s',
                 baitGroupProps: { ...getBaitGroup(32079), subtext: subtextDH }
               }, {
                 header: 'No Buffs',
                 baitGroupProps: { ...getBaitGroup(32085), subtext: subtextDH }
               }, {
-                header: 'DH at ≥5s',
+                header: 'IC-DH at 5-6s',
                 baitGroupProps: { ...getBaitGroup(32090), subtext: subtextDH }
               }]}
             />
@@ -85,7 +85,7 @@ const AchievementCrabs = ({ selectedRoute }: Props) => {
             </Typography>
             <Typography variant='overline'>Spectral</Typography>
             <Typography paragraph>
-              Can blind DH Exterminators at 5s.
+              Exterminators are possibly a blind DH.
             </Typography>
           </CardContent>
         </RouteCard>

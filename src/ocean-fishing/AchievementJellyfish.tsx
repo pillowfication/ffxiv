@@ -26,9 +26,6 @@ const AchievementJellyfish = ({ selectedRoute }: Props) => {
             <Typography paragraph>
               No jellyfish here.
             </Typography>
-            <Typography paragraph>
-              You may opt for no spectral here for an extended one in the next zone.
-            </Typography>
           </CardContent>
         </RouteCard>
         <RouteCard index={1} stop={stops[1]}>
@@ -38,19 +35,18 @@ const AchievementJellyfish = ({ selectedRoute }: Props) => {
                 header: 'DH at <5s',
                 baitGroupProps: { ...getBaitGroup(29739), subtext: subtextDH }
               }, {
-                header: 'IC–DH at 4-8s',
+                header: 'IC–DH at 5-9s',
                 baitGroupProps: { ...getBaitGroup(29757), subtext: subtextDH }
               }]}
             />
           </CardContent>
           <CardContent>
+            <Typography paragraph>
+              You may opt for no spectral here for an extended one in the next zone.
+            </Typography>
             <Typography variant='overline'>Non-spectral</Typography>
             <Typography paragraph>
               Blind DH all <Tug strength={1} /> before 5s, and recast after 5s. IC is not necessary.
-            </Typography>
-            <Typography variant='overline'>Spectral</Typography>
-            <Typography paragraph>
-              While spectral is not recommended, it won’t kill your run.
             </Typography>
           </CardContent>
         </RouteCard>
@@ -58,7 +54,7 @@ const AchievementJellyfish = ({ selectedRoute }: Props) => {
           <CardContent>
             <BaitList
               baitGroups={[{
-                header: 'IC–DH at 6-10s',
+                header: 'DH-IC–DH at 7-11s',
                 baitGroupProps: { ...getBaitGroup(29762), subtext: subtextDH }
               }]}
             />
@@ -66,7 +62,7 @@ const AchievementJellyfish = ({ selectedRoute }: Props) => {
           <CardContent>
             <Typography variant='overline'>Spectral</Typography>
             <Typography paragraph>
-              A blind DH is possible, but it can be risky and unnecessary.
+              Nothing to say here.
             </Typography>
           </CardContent>
         </RouteCard>

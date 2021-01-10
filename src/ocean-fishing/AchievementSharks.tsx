@@ -83,7 +83,7 @@ const AchievementSharks = ({ selectedRoute }: Props) => {
           <CardContent>
             <Typography variant='overline'>Pre-spectral</Typography>
             <Typography paragraph>
-              Can’t blind DH Chrome Hammerheads.
+              Can blind DH Chrome Hammerheads at &lt;22s.
             </Typography>
             <Typography variant='overline'>Spectral</Typography>
             <Typography paragraph>

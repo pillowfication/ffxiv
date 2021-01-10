@@ -9,6 +9,6 @@
 <wait.3>
 /echo 19 - Not Eel! <se.3>
 <wait.6>
-/echo 25 - Not Jasperhead! <se.3>
+/echo 24 - Not Jasperhead! <se.3>
 <wait.4>
 /echo 29 - Recast! <se.4>

@@ -26,7 +26,7 @@ const AchievementJellyfish = ({ selectedRoute }: Props) => {
                 header: 'DH; DH-IC–DH post-spectral at 12-26s',
                 baitGroupProps: { ...getBaitGroup(32058), subtext: subtextDH }
               }, {
-                header: 'DH at <3s',
+                header: 'DH at <4s',
                 baitGroupProps: { ...getBaitGroup(32070), subtext: subtextDH }
               }]}
             />
@@ -73,7 +73,7 @@ const AchievementJellyfish = ({ selectedRoute }: Props) => {
                     <CardContent>
                       <Typography variant='overline'>Spectral</Typography>
                       <Typography paragraph>
-                        Reel any <Tug strength={2} />. Beatific Vision and Gory Tuna go away at 5s. Go for IC–DH if it’s all you need, instead of hoping for more blind DHs.
+                        Reel any <Tug strength={2} />. Beatific Vision and Gory Tuna go away at 5s. Use IC–DH if it’s all you need, instead of hoping for more blind DHs.
                       </Typography>
                     </CardContent>
                   </>
@@ -84,7 +84,7 @@ const AchievementJellyfish = ({ selectedRoute }: Props) => {
                     <CardContent>
                       <BaitList
                         baitGroups={[{
-                          header: 'IC–DH at 4-5s',
+                          header: 'IC–DH at 4-6s',
                           baitGroupProps: { ...getBaitGroup(32111), subtext: subtextDH }
                         }]}
                       />
@@ -92,7 +92,7 @@ const AchievementJellyfish = ({ selectedRoute }: Props) => {
                     <CardContent>
                       <Typography variant='overline'>Spectral</Typography>
                       <Typography paragraph>
-                        Reel any <Tug strength={2} />. Panoptes can possibly be a blind DH (needs confirmation). Don’t mooch Rothlyt Mussels for Panoptes; recast instead.
+                        Reel any <Tug strength={2} />. Panoptes can possibly be a blind DH (needs confirmation). Use IC–DH if it’s all you need, instead of hoping for more blind DHs.
                       </Typography>
                     </CardContent>
                   </>
