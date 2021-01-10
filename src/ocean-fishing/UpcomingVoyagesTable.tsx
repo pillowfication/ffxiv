@@ -74,7 +74,7 @@ type Props = {
 const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute, t, i18n }: Props) => {
   const classes = useStyles()
   const [hover, setHover] = useState<maps.DestinationStopTime | null>(null)
-  const upcomingVoyages = calculateVoyages(now, numRows, filter)
+  const upcomingVoyages = calculateVoyages(now, Math.min(Math.max(numRows, 1), 50), filter)
 
   return (
     <TableContainer component={Paper}>
