@@ -30,10 +30,16 @@ async function getTCData (spotId, baitId) {
       },
       referrer: 'https://ffxivteamcraft.com/',
       referrerPolicy: 'strict-origin-when-cross-origin',
-      body: `{"operationName":"BiteTimesPerFishPerSpotPerBaitQuery","variables":{"spotId":${spotId},"baitId":${baitId}},"query":"query BiteTimesPerFishPerSpotPerBaitQuery($fishId: Int, $spotId: Int, $baitId: Int) {\\n  biteTimes: bite_time_per_fish_per_spot_per_bait(where: {spot: {_eq: $spotId}, itemId: {_eq: $fishId}, baitId: {_eq: $baitId}, biteTime: {_gt: 1}, occurences: {_gte: 1}}) {\\n    itemId\\n    spot\\n    baitId\\n    biteTime\\n    occurences\\n    __typename\\n  }\\n}\\n"}`,
+      body: JSON.stringify({
+        operationName: 'BiteTimesPerFishPerSpotPerBaitQuery',
+        variables: { spotId, baitId },
+        query: "query BiteTimesPerFishPerSpotPerBaitQuery($fishId: Int, $spotId: Int, $baitId: Int) {\\n  biteTimes: bite_time_per_fish_per_spot_per_bait(where: {spot: {_eq: $spotId}, itemId: {_eq: $fishId}, baitId: {_eq: $baitId}, biteTime: {_gt: 1}, occurences: {_gte: 1}}) {\\n    itemId\\n    spot\\n    baitId\\n    biteTime\\n    occurences\\n    __typename\\n  }\\n}\\n"
+      }),
       method: 'POST',
       mode: 'cors'
-  })
+    }
+  )
+
   const json = await res.json()
   for (const datum of json.data.biteTimes) {
     if (datum.__typename) {

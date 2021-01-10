@@ -52,16 +52,11 @@ const data = {}
           }
           console.log('UNKNOWN BAIT FOR:', tr.find('td:nth-child(3)').text().trim())
         })(),
-        // ragwormTimer: parseTimer(tr.find('td:nth-child(4)').text().trim()),
-        // krillTimer: parseTimer(tr.find('td:nth-child(5)').text().trim()),
-        // plumpWormTimer: parseTimer(tr.find('td:nth-child(6)').text().trim()),
-        // versatileLureTimer: parseTimer(tr.find('td:nth-child(7)').text().trim()),
         points: parsePoints(tr.find('td:nth-child(8)').text().trim()),
         double_hook: parseDoubleHook(tr.find('td:nth-child(9)').text().trim()),
         mooch: parseMooch(tr.find('td:nth-child(10)').text().trim()),
         tug: parseTug(tr.find('td:nth-child(11)').text().trim()),
         // hookset: tr.find('td:nth-child(12)').text().trim(),
-        bite_time: parseTimer(tr.find('td:nth-child(13)').text().trim()),
         time: parseTime(tr.find('td:nth-child(14)').text().trim()),
         weathers: parseWeathers(tr.find('td:nth-child(15)').text().trim()),
         // buff: tr.find('td:nth-child(16)').text().trim(),
@@ -80,30 +75,6 @@ const data = {}
       }
     }
     return false
-  }
-
-  function parseTimer (str) {
-    str = _.trim(str, '~s')
-    if (/^\d+-\d+$/.test(str)) {
-      return str.split('-').map(Number)
-    }
-    if (/^\d+(\.\d+)?$/.test(str)) {
-      return [Number(str), Number(str)]
-    }
-    if (/^.*@.*$/.test(str)) {
-      return parseTimer(str.split('@')[1])
-    }
-    if (/^.*\/.*$/.test(str)) {
-      return parseTimer(str.split('/')[1])
-    }
-    if (/^0 caught$/.test(str)) {
-      return -1
-    }
-    if (str === '') {
-      return null
-    }
-    console.log('UNKNOWN TIMER:', str)
-    return null
   }
 
   function parsePoints (str) {
@@ -153,10 +124,10 @@ const data = {}
         time += val.charAt(0)
       }
     }
-    if (time.length >= 0) {
+    if (time.length > 0) {
       return time
     }
-    console.log('UNKNOWN TIME:', str)
+
     return null
   }
 

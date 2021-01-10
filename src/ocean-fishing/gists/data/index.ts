@@ -77,25 +77,13 @@ export type Achievement = {
   icon: string
 }
 
-function findFishId (fishName: string) {
-  const fish = Object.values(fishData.fishes).find(fish => fish.name_en === fishName)
-  if (fish) {
-    return fish.id
-  } else {
-    console.error('Could not find ID for fishName:', fishName)
-  }
-}
+const fishesByName = {}
+Object.values(fishData.fishes).forEach(fish => { fishesByName[fish.name_en] = fish })
 
-function findBaitId (baitName: string) {
-  const bait = Object.values(fishData.baits).find(bait => bait.name_en === baitName)
-  if (bait) {
-    return bait.id
-  } else {
-    console.error('Could not find ID for baitName:', baitName)
-  }
-}
+const baitsByName = {}
+Object.values(fishData.baits).forEach(bait => { baitsByName[bait.name_en] = bait })
 
-const spreadsheetFishes = Object.values(spreadsheetData).flatMap((x: any) => x)
+const spreadsheetFishes = Object.values(spreadsheetData).flatMap((x: Array<any>) => x)
 
 // Attach spreadsheet data to fishes
 for (const fishId in fishData.fishes) {
@@ -103,9 +91,9 @@ for (const fishId in fishData.fishes) {
   const spreadsheetData = spreadsheetFishes.find(fishInfo => fishInfo.name === fish.name_en)
   if (spreadsheetData) {
     // Replace baits/mooches/intuitions with their corresponding IDs
-    if (spreadsheetData.bait) spreadsheetData.bait = findBaitId(spreadsheetData.bait)
-    if (spreadsheetData.mooch) spreadsheetData.mooch = findFishId(spreadsheetData.mooch)
-    if (spreadsheetData.intuition) spreadsheetData.intuition = spreadsheetData.intuition.map(({ name, count }) => ({ id: findFishId(name), count }))
+    if (spreadsheetData.bait) spreadsheetData.bait = baitsByName[spreadsheetData.bait].id
+    if (spreadsheetData.mooch) spreadsheetData.mooch = fishesByName[spreadsheetData.mooch].id
+    if (spreadsheetData.intuition) spreadsheetData.intuition = spreadsheetData.intuition.map(({ name, count }) => ({ id: fishesByName[name].id, count }))
     // Replace biteTime with TC data
     spreadsheetData.bite_time = biteTimes[fishId]
   } else {

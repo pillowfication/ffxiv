@@ -7,10 +7,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        2,
-        11
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -25,10 +21,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        2,
-        13
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -43,10 +35,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        3,
-        19
-      ],
       "time": "DSN",
       "weathers": {
         "type": "OK",
@@ -67,10 +55,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        7,
-        24
-      ],
       "time": "DSN",
       "weathers": {
         "type": "OK",
@@ -91,10 +75,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        12,
-        36
-      ],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -115,10 +95,6 @@
       ],
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        5,
-        19
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -133,10 +109,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        15,
-        29
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -151,10 +123,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        13,
-        25
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -169,10 +137,6 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        18,
-        37
-      ],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -190,22 +154,12 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        15,
-        28
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
       },
       "stars": 4,
-      "category": null,
-      "intuition": [
-        {
-          "name": "Galadion Chovy",
-          "count": 3
-        }
-      ]
+      "category": null
     }
   ],
   "Galadion Spectral Current": [
@@ -216,10 +170,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        2,
-        6
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -234,10 +184,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        2,
-        6
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -252,10 +198,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        2,
-        7
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -270,10 +212,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        2,
-        10
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -288,10 +226,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        2,
-        7
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -306,10 +240,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        6,
-        12
-      ],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -324,10 +254,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        3,
-        7
-      ],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -342,10 +268,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        3,
-        12
-      ],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -360,10 +282,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        10,
-        18
-      ],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -373,31 +291,16 @@
     },
     {
       "name": "Sothis",
-      "bait": "Glowworm",
       "points": 500,
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        9,
-        11
-      ],
       "time": "N",
       "weathers": {
         "type": "ALL"
       },
       "stars": 5,
-      "category": null,
-      "intuition": [
-        {
-          "name": "Heavenskey",
-          "count": 2
-        },
-        {
-          "name": "Navigator's Print",
-          "count": 1
-        }
-      ]
+      "category": null
     }
   ],
   "The Southern Strait of Merlthor": [
@@ -408,10 +311,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        2,
-        10
-      ],
       "time": "DSN",
       "weathers": {
         "type": "OK",
@@ -435,10 +334,6 @@
       ],
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        2,
-        7
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -453,10 +348,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        2,
-        12
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -471,10 +362,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        2,
-        13
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -489,10 +376,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        7,
-        22
-      ],
       "time": "DSN",
       "weathers": {
         "type": "OK",
@@ -513,10 +396,6 @@
       "double_hook": 2,
       "mooch": "Ghoul Barracuda",
       "tug": 3,
-      "bite_time": [
-        6,
-        22
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -531,10 +410,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        13,
-        28
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -548,10 +423,6 @@
       "double_hook": 2,
       "mooch": "Ghoul Barracuda",
       "tug": 2,
-      "bite_time": [
-        6,
-        13
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -566,10 +437,6 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        18,
-        36
-      ],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -587,22 +454,12 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        15,
-        27
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
       },
       "stars": 4,
-      "category": null,
-      "intuition": [
-        {
-          "name": "Gladius",
-          "count": 1
-        }
-      ]
+      "category": null
     }
   ],
   "Southern Merlthor Spectral Current": [
@@ -613,10 +470,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        4,
-        9
-      ],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -630,10 +483,6 @@
       "double_hook": 2,
       "mooch": "Hi-aetherlouse",
       "tug": 2,
-      "bite_time": [
-        2,
-        3
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -648,10 +497,6 @@
       "double_hook": 2,
       "mooch": "Hi-aetherlouse",
       "tug": 2,
-      "bite_time": [
-        2,
-        5
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -666,10 +511,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        2,
-        7
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -678,16 +519,12 @@
       "category": null
     },
     {
-      "name": "Hi-aetherlouse",
+      "name": "Hi-Aetherlouse",
       "bait": "Plump Worm",
       "points": 65,
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        2,
-        8
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -702,10 +539,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        2,
-        8
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -719,10 +552,6 @@
       "double_hook": 2,
       "mooch": "Hi-aetherlouse",
       "tug": 2,
-      "bite_time": [
-        2,
-        6
-      ],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -737,10 +566,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        2,
-        8
-      ],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -754,10 +579,6 @@
       "double_hook": 2,
       "mooch": "Hi-aetherlouse",
       "tug": 3,
-      "bite_time": [
-        2,
-        4
-      ],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -767,27 +588,16 @@
     },
     {
       "name": "Coral Manta",
-      "bait": "Shrimp Cage Feeder",
       "points": 500,
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        9,
-        11
-      ],
       "time": "N",
       "weathers": {
         "type": "ALL"
       },
       "stars": 5,
-      "category": null,
-      "intuition": [
-        {
-          "name": "Great Grandmarlin",
-          "count": 2
-        }
-      ]
+      "category": null
     }
   ],
   "The Northern Strait of Merlthor": [
@@ -798,18 +608,13 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        2,
-        10
-      ],
       "time": "DSN",
       "weathers": {
         "type": "OK",
         "list": [
           "fairSkies",
           "fog",
-          "clearSkies",
-          "clouds"
+          "clearSkies"
         ]
       },
       "stars": 1,
@@ -822,10 +627,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        2,
-        13
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -840,10 +641,6 @@
       "double_hook": 2,
       "mooch": "Tossed Dagger",
       "tug": 2,
-      "bite_time": [
-        6,
-        25
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -858,10 +655,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        3,
-        18
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -876,10 +669,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        9,
-        25
-      ],
       "time": "DSN",
       "weathers": {
         "type": "OK",
@@ -900,10 +689,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        8,
-        22
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -918,10 +703,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        16,
-        28
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -935,10 +716,6 @@
       "double_hook": 2,
       "mooch": "Tossed Dagger",
       "tug": 2,
-      "bite_time": [
-        9,
-        16
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -953,17 +730,8 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        18,
-        38
-      ],
       "time": "DSN",
-      "weathers": {
-        "type": "NOT OK",
-        "list": [
-          "clearSkies"
-        ]
-      },
+      "weathers": null,
       "stars": 4,
       "category": null
     },
@@ -974,22 +742,12 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        16,
-        27
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
       },
       "stars": 4,
-      "category": null,
-      "intuition": [
-        {
-          "name": "Elder Dinichthys",
-          "count": 1
-        }
-      ]
+      "category": null
     }
   ],
   "Northern Merlthor Spectral Current": [
@@ -1000,10 +758,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        2,
-        5
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1018,10 +772,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        2,
-        5
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1036,10 +786,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        3,
-        8
-      ],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -1054,10 +800,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        2,
-        7
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1072,10 +814,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        4,
-        9
-      ],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -1090,10 +828,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        2,
-        8
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1111,10 +845,6 @@
       ],
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        2,
-        10
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1129,10 +859,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        6,
-        12
-      ],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -1147,10 +873,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        7,
-        10
-      ],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -1160,27 +882,16 @@
     },
     {
       "name": "Elasmosaurus",
-      "bait": "Heavy Steel Jig",
       "points": 500,
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        9,
-        10
-      ],
       "time": "D",
       "weathers": {
         "type": "ALL"
       },
       "stars": 5,
-      "category": null,
-      "intuition": [
-        {
-          "name": "Gugrusaurus",
-          "count": 3
-        }
-      ]
+      "category": null
     }
   ],
   "Open Rhotano Sea": [
@@ -1191,10 +902,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        2,
-        13
-      ],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -1212,10 +919,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        2,
-        13
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1230,10 +933,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        2,
-        14
-      ],
       "time": "DSN",
       "weathers": {
         "type": "OK",
@@ -1254,10 +953,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        3,
-        18
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1272,10 +967,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        14,
-        33
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1290,10 +981,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        4,
-        19
-      ],
       "time": "DSN",
       "weathers": {
         "type": "OK",
@@ -1314,10 +1001,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        14,
-        26
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1332,10 +1015,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        9,
-        16
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1350,17 +1029,8 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        20,
-        36
-      ],
       "time": "DSN",
-      "weathers": {
-        "type": "NOT OK",
-        "list": [
-          "clearSkies"
-        ]
-      },
+      "weathers": null,
       "stars": 4,
       "category": null
     },
@@ -1371,22 +1041,12 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        11,
-        19
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
       },
       "stars": 4,
-      "category": null,
-      "intuition": [
-        {
-          "name": "Crimson Monkfish",
-          "count": 2
-        }
-      ]
+      "category": null
     }
   ],
   "Rhotano Spectral Current": [
@@ -1397,10 +1057,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        2,
-        5
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1415,10 +1071,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        3,
-        7
-      ],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -1433,10 +1085,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        2,
-        7
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1451,10 +1099,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        2,
-        11
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1469,10 +1113,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        4,
-        10
-      ],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -1487,10 +1127,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        6,
-        11
-      ],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -1505,10 +1141,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        2,
-        9
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1523,10 +1155,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        2,
-        8
-      ],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1541,10 +1169,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        4,
-        8
-      ],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -1554,31 +1178,16 @@
     },
     {
       "name": "Stonescale",
-      "bait": "Rat Tail",
       "points": 500,
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        10,
-        12
-      ],
       "time": "S",
       "weathers": {
         "type": "ALL"
       },
       "stars": 5,
-      "category": null,
-      "intuition": [
-        {
-          "name": "Deep-sea Eel",
-          "count": 1
-        },
-        {
-          "name": "Silencer",
-          "count": 1
-        }
-      ]
+      "category": null
     }
   ],
   "Cieldalaes Margin": [
@@ -1589,11 +1198,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        5,
-        15
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 1,
       "category": "crab"
@@ -1605,11 +1210,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        12,
-        22
-      ],
-      "time": "",
+      "time": null,
       "weathers": {
         "type": "OK",
         "list": [
@@ -1629,11 +1230,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        5,
-        12
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 1,
       "category": "balloon"
@@ -1645,11 +1242,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        14,
-        23
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 2,
       "category": "manta"
@@ -1661,11 +1254,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        8,
-        23
-      ],
-      "time": "",
+      "time": null,
       "weathers": {
         "type": "NOT OK",
         "list": [
@@ -1682,11 +1271,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        6,
-        10
-      ],
-      "time": "",
+      "time": null,
       "weathers": {
         "type": "OK",
         "list": [
@@ -1706,11 +1291,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        25,
-        25
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 3,
       "category": null
@@ -1722,11 +1303,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        15,
-        25
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 3,
       "category": null
@@ -1738,11 +1315,7 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        13,
-        18
-      ],
-      "time": "",
+      "time": null,
       "weathers": {
         "type": "NOT OK",
         "list": [
@@ -1759,20 +1332,10 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        21,
-        27
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 4,
-      "category": null,
-      "intuition": [
-        {
-          "name": "Metallic Boxfish",
-          "count": 3
-        }
-      ]
+      "category": null
     }
   ],
   "Cieldalaes Spectral Current": [
@@ -1783,11 +1346,7 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        1,
-        5
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 4,
       "category": "crab"
@@ -1799,11 +1358,7 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        2,
-        5
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 4,
       "category": "balloon"
@@ -1815,11 +1370,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        4,
-        5
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 4,
       "category": null
@@ -1831,11 +1382,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        5,
-        6
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 4,
       "category": null
@@ -1847,10 +1394,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        7.5,
-        7.5
-      ],
       "time": "S",
       "weathers": null,
       "stars": 4,
@@ -1863,11 +1406,7 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        1,
-        2
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 4,
       "category": "manta"
@@ -1879,10 +1418,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        5,
-        10
-      ],
       "time": "D",
       "weathers": null,
       "stars": 4,
@@ -1895,10 +1430,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        5,
-        7
-      ],
       "time": "D",
       "weathers": null,
       "stars": 4,
@@ -1911,10 +1442,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        8,
-        12
-      ],
       "time": "S",
       "weathers": null,
       "stars": 4,
@@ -1922,29 +1449,14 @@
     },
     {
       "name": "Hafgufa",
-      "bait": "Squid Strip",
       "points": 500,
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        10,
-        10
-      ],
       "time": "N",
       "weathers": null,
       "stars": 5,
-      "category": null,
-      "intuition": [
-        {
-          "name": "Jetborne Manta",
-          "count": 2
-        },
-        {
-          "name": "Mistbeard's Cup",
-          "count": 1
-        }
-      ]
+      "category": null
     }
   ],
   "Open Bloodbrine Sea": [
@@ -1955,11 +1467,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        3,
-        8
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 1,
       "category": "crab"
@@ -1971,11 +1479,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        7,
-        13
-      ],
-      "time": "",
+      "time": null,
       "weathers": {
         "type": "OK",
         "list": [
@@ -1995,11 +1499,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        4,
-        10
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 1,
       "category": null
@@ -2011,11 +1511,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        11,
-        15
-      ],
-      "time": "",
+      "time": null,
       "weathers": {
         "type": "NOT OK",
         "list": [
@@ -2032,11 +1528,7 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        14,
-        28
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 2,
       "category": "crab"
@@ -2048,11 +1540,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        5,
-        10
-      ],
-      "time": "",
+      "time": null,
       "weathers": {
         "type": "OK",
         "list": [
@@ -2072,11 +1560,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        15,
-        20
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 3,
       "category": null
@@ -2088,11 +1572,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        16,
-        20
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 3,
       "category": null
@@ -2104,11 +1584,7 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        15,
-        16
-      ],
-      "time": "",
+      "time": null,
       "weathers": {
         "type": "NOT OK",
         "list": [
@@ -2125,20 +1601,10 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        1,
-        10
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 4,
-      "category": null,
-      "intuition": [
-        {
-          "name": "Sunken Mask",
-          "count": 1
-        }
-      ]
+      "category": null
     }
   ],
   "Bloodbrine Spectral Current": [
@@ -2149,10 +1615,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        2,
-        3
-      ],
       "time": "D",
       "weathers": null,
       "stars": 4,
@@ -2165,11 +1627,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        3,
-        3
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 4,
       "category": null
@@ -2181,10 +1639,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        6,
-        6
-      ],
       "time": "N",
       "weathers": null,
       "stars": 4,
@@ -2197,11 +1651,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        3,
-        3
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 4,
       "category": null
@@ -2213,8 +1663,7 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 2,
-      "bite_time": null,
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 4,
       "category": null
@@ -2226,10 +1675,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        6,
-        6
-      ],
       "time": "D",
       "weathers": null,
       "stars": 4,
@@ -2242,11 +1687,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        3,
-        5
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 4,
       "category": null
@@ -2258,11 +1699,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        3,
-        4
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 4,
       "category": null
@@ -2274,33 +1711,21 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        7,
-        8
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 4,
       "category": "shark"
     },
     {
       "name": "Seafaring Toad",
-      "bait": "Pill Bug",
       "points": 500,
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": null,
       "time": "D",
       "weathers": null,
       "stars": 5,
-      "category": null,
-      "intuition": [
-        {
-          "name": "Beatific Vision",
-          "count": 3
-        }
-      ]
+      "category": null
     }
   ],
   "Outer Rothlyt Sound": [
@@ -2311,11 +1736,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        3,
-        7
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 1,
       "category": "balloon"
@@ -2330,11 +1751,7 @@
       ],
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        5,
-        11
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 1,
       "category": null
@@ -2346,11 +1763,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        5,
-        10
-      ],
-      "time": "",
+      "time": null,
       "weathers": {
         "type": "OK",
         "list": [
@@ -2370,11 +1783,7 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        12,
-        23
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 2,
       "category": "balloon"
@@ -2386,11 +1795,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        12,
-        26
-      ],
-      "time": "",
+      "time": null,
       "weathers": {
         "type": "OK",
         "list": [
@@ -2410,11 +1815,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        16,
-        23
-      ],
-      "time": "",
+      "time": null,
       "weathers": {
         "type": "NOT OK",
         "list": [
@@ -2431,11 +1832,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        12,
-        16
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 3,
       "category": "shark"
@@ -2447,11 +1844,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        15,
-        25
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 3,
       "category": null
@@ -2463,11 +1856,7 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        16,
-        21
-      ],
-      "time": "",
+      "time": null,
       "weathers": {
         "type": "NOT OK",
         "list": [
@@ -2484,20 +1873,10 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [
-        12,
-        18
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 4,
-      "category": null,
-      "intuition": [
-        {
-          "name": "Rothlyt Kelp",
-          "count": 3
-        }
-      ]
+      "category": null
     }
   ],
   "Rothlyt Spectral Current": [
@@ -2508,10 +1887,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        2,
-        2
-      ],
       "time": "DN",
       "weathers": null,
       "stars": 4,
@@ -2524,11 +1899,7 @@
       "double_hook": 2,
       "mooch": "Rothlyt Mussel",
       "tug": 2,
-      "bite_time": [
-        2,
-        2
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 4,
       "category": null
@@ -2540,11 +1911,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        2,
-        2
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 4,
       "category": null
@@ -2556,11 +1923,7 @@
       "double_hook": 2,
       "mooch": "Rothlyt Mussel",
       "tug": 2,
-      "bite_time": [
-        2,
-        2
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 4,
       "category": null
@@ -2572,10 +1935,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        5,
-        5
-      ],
       "time": "DN",
       "weathers": null,
       "stars": 4,
@@ -2587,11 +1946,7 @@
       "double_hook": 2,
       "mooch": "Rothlyt Mussel",
       "tug": 1,
-      "bite_time": [
-        3,
-        3
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 4,
       "category": null
@@ -2603,10 +1958,6 @@
       "double_hook": 4,
       "mooch": "Rothlyt Mussel",
       "tug": 2,
-      "bite_time": [
-        6,
-        7
-      ],
       "time": "D",
       "weathers": null,
       "stars": 4,
@@ -2619,11 +1970,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [
-        4,
-        7
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 4,
       "category": null
@@ -2635,11 +1982,7 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [
-        7,
-        9
-      ],
-      "time": "",
+      "time": null,
       "weathers": null,
       "stars": 4,
       "category": null
@@ -2650,17 +1993,10 @@
       "double_hook": 1,
       "mooch": "Rothlyt Mussel",
       "tug": 3,
-      "bite_time": null,
       "time": "S",
       "weathers": null,
       "stars": 5,
-      "category": null,
-      "intuition": [
-        {
-          "name": "Trollfish",
-          "count": 1
-        }
-      ]
+      "category": null
     }
   ]
 }
