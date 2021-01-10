@@ -50,8 +50,10 @@ for (const fish of Object.values(fishes)) {
   BAITS.forEach(baitId => {
     const biteTime = getBiteTime(fish.id, +baitId)
     if (biteTime) {
-      minBiteTime = minBiteTime ? Math.min(minBiteTime, biteTime[0]) : biteTime[0]
-      maxBiteTime = maxBiteTime ? Math.max(maxBiteTime, biteTime[1]) : biteTime[1]
+      if (+baitId !== 29717) { // Ignore Versatile Lure
+        minBiteTime = minBiteTime ? Math.min(minBiteTime, biteTime[0]) : biteTime[0]
+        maxBiteTime = maxBiteTime ? Math.max(maxBiteTime, biteTime[1]) : biteTime[1]
+      }
       biteTimesByBait[baitId] = biteTime
     }
   })
