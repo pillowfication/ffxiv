@@ -6,8 +6,7 @@ import Page from '../../src/Page'
 import Section from '../../src/Section'
 import ImportFishes from '../../src/ocean-fishing/ImportFishes'
 import FishTable from '../../src/ocean-fishing/FishTable'
-import { fishingSpots } from '../../src/ocean-fishing/gists/data/ocean-fish-data.json'
-import { FishingSpot } from '../../src/ocean-fishing/gists/data/types'
+import { fishingSpots } from '../../src/ocean-fishing/gists/data'
 import { translate } from '../../src/ocean-fishing/utils'
 import i18n from '../../i18n'
 import { I18n, TFunction } from 'next-i18next'
@@ -56,7 +55,7 @@ const OceanFishingFish = ({ t, i18n }: Props) => {
       {showImport && <ImportFishes setChecklist={setChecklist} />}
       {Object.values(fishingSpots)
         .sort((a, b) => a.id - b.id)
-        .map((fishingSpot: FishingSpot) =>
+        .map(fishingSpot =>
           <Section key={fishingSpot.id} title={translate(i18n.language, fishingSpot, 'place_name')}>
             <FishTable spots={[fishingSpot.id]} checklist={checklist} setChecklist={setChecklist} />
           </Section>
