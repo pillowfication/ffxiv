@@ -14,10 +14,9 @@ import OceanFishIconLarge from './OceanFishIconLarge'
 import TimeIcon from './TimeIcon'
 import BaitGroup from './BaitGroup'
 import WeatherIcon from '../skywatcher/WeatherIcon'
-import { fishes } from './gists/data/ocean-fish-data.json'
-import { Fish } from './gists/data/types'
+import { fishes } from './gists/data'
 import * as maps from './maps'
-import { getFishInfo, getBaitGroup, subtextBiteTime, translate } from './utils'
+import { getBaitGroup, subtextBiteTime, translate } from './utils'
 import i18n from '../../i18n'
 import { I18n, TFunction } from 'next-i18next'
 
@@ -44,8 +43,8 @@ type Props = {
 
 const OceanFishPopper = ({ fishId, t, i18n }: Props) => {
   const classes = useStyles()
-  const fish: Fish = fishes[fishId]
-  const fishInfo = getFishInfo(fish.name_en)
+  const fish = fishes[fishId]
+  const fishInfo = fish.spreadsheet_data
 
   return (
     <Box boxShadow={8}>
@@ -78,7 +77,7 @@ const OceanFishPopper = ({ fishId, t, i18n }: Props) => {
               </TableRow>
               <TableRow>
                 <TableCell variant='head'><Typography>{t('double-hook')}</Typography></TableCell>
-                <TableCell align='center'>{fishInfo.doubleHook}</TableCell>
+                <TableCell align='center'>{fishInfo.double_hook}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell variant='head'><Typography>{t('weather')}</Typography></TableCell>

@@ -14,10 +14,9 @@ import OceanFishIcon from './OceanFishIcon'
 import TimeIcon from './TimeIcon'
 import Tug from './Tug'
 import WeatherIcon from '../skywatcher/WeatherIcon'
-import { fishingSpots, fishes } from './gists/data/ocean-fish-data.json'
-import { FishingSpot, Fish } from './gists/data/types'
+import { fishingSpots, fishes } from './gists/data'
 import * as maps from './maps'
-import { getFish, getFishInfo, getBait, translate } from './utils'
+import { translate } from './utils'
 import i18n from '../../i18n'
 import { I18n, TFunction } from 'next-i18next'
 
@@ -87,7 +86,7 @@ const FishTable = ({ spots, time, checklist, setChecklist, t, i18n }: Props) => 
     <TableContainer>
       <Table size='small' className={classes.table}>
         {spots.map(spotId => {
-          const fishingSpot: FishingSpot = fishingSpots[spotId]
+          const fishingSpot = fishingSpots[spotId]
           const isSpectral = /spectral/i.test(fishingSpot.place_name_en)
           return (
             <React.Fragment key={spotId}>
@@ -105,8 +104,8 @@ const FishTable = ({ spots, time, checklist, setChecklist, t, i18n }: Props) => 
               </TableHead>
               <TableBody>
                 {fishingSpot.fishes.map(fishId => {
-                  const fish: Fish = fishes[fishId]
-                  const fishInfo = getFishInfo(fish.name_en)
+                  const fish = fishes[fishId]
+                  const fishInfo = fish.spreadsheet_data
                   return (
                     <TableRow
                       key={fishId}
@@ -137,37 +136,31 @@ const FishTable = ({ spots, time, checklist, setChecklist, t, i18n }: Props) => 
                                 <Typography className={classes.count} display='inline'>
                                   {index === 0 ? `${intuitionFish.count}×` : `, ${intuitionFish.count}×`}
                                 </Typography>
-                                <OceanFishIcon type='fish' id={getFish(intuitionFish.name).id} />
+                                <OceanFishIcon type='fish' id={intuitionFish.id} />
                               </React.Fragment>
                             )}
                             <img src='/images/fishers-intuition.png' className={classes.intuition} />
                           </>
                         )}
-                        {[fishInfo.bait, fishInfo.mooch]
-                          .filter(x => x)
-                          .map((bait, index) =>
-                            <React.Fragment key={bait}>
-                              {index > 0 && 'or'}
-                              {getBait(bait) && <OceanFishIcon type='bait' id={getBait(bait).id} />}
-                              {getFish(bait) && <OceanFishIcon type='fish' id={getFish(bait).id} />}
-                            </React.Fragment>
-                          )}
+                        {fishInfo.bait && <OceanFishIcon type='bait' id={fishInfo.bait} />}
+                        {fishInfo.bait && fishInfo.mooch && 'or'}
+                        {fishInfo.mooch && <OceanFishIcon type='fish' id={fishInfo.mooch} />}
                       </TableCell>
                       <TableCell align='center'>
                         {fishInfo.tug &&
                           <Tug strength={fishInfo.tug} className={classes.tug} />}
                       </TableCell>
                       <TableCell align='center'>
-                        {fishInfo.biteTime &&
-                          <Typography>{fishInfo.biteTime[0] === fishInfo.biteTime[1] ? fishInfo.biteTime[0] : fishInfo.biteTime.join('-')}</Typography>}
+                        {fishInfo.bite_time &&
+                          <Typography>{fishInfo.bite_time[0] === fishInfo.bite_time[1] ? fishInfo.bite_time[0] : fishInfo.bite_time.join('-')}</Typography>}
                       </TableCell>
                       <TableCell align='center'>
                         {fishInfo.points &&
                           <Typography>{fishInfo.points}</Typography>}
                       </TableCell>
                       <TableCell align='center'>
-                        {fishInfo.doubleHook &&
-                          <Typography>{Array.isArray(fishInfo.doubleHook) ? fishInfo.doubleHook.join('-') : fishInfo.doubleHook}</Typography>}
+                        {fishInfo.double_hook &&
+                          <Typography>{Array.isArray(fishInfo.double_hook) ? fishInfo.double_hook.join('-') : fishInfo.double_hook}</Typography>}
                       </TableCell>
                       <TableCell align='center'>
                         {(() => {

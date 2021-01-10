@@ -14,12 +14,11 @@ import RouteCard from './RouteCard'
 import FishPanel from './FishPanel'
 import BaitList from './BaitList'
 import calculateVoyages from './calculate-voyages'
-import { fishingSpots, fishes } from './gists/data/ocean-fish-data.json'
+import { fishingSpots, fishes } from './gists/data'
 import * as maps from './maps'
 import {
   timeUntil,
   getStops,
-  getFishInfo,
   getTimeSensitiveFish,
   getPointsFish,
   getBlueFish,
@@ -174,14 +173,14 @@ const RouteInformation = ({ now, selectedRoute, checklist, setChecklist, t, i18n
                         ]
                           .filter(x => x)
                           .map((fishId, index) => {
-                            const fishInfo = getFishInfo(fishes[fishId].name_en)
+                            const fishInfo = fishes[fishId].spreadsheet_data
                             return {
                             header: translate(i18n.language, fishes[fishId], 'name'),
                             baitGroupProps: {
                               ...getBaitGroup(fishId),
                               subtext: index === 0 ? '' : (
-                                `DH: ×${Array.isArray(fishInfo.doubleHook) ? fishInfo.doubleHook.join('-') : fishInfo.doubleHook}` +
-                                ` = ${(Array.isArray(fishInfo.doubleHook) ? fishInfo.doubleHook[1] : fishInfo.doubleHook) * fishInfo.points}`
+                                `DH: ×${Array.isArray(fishInfo.double_hook) ? fishInfo.double_hook.join('-') : fishInfo.double_hook}` +
+                                ` = ${(Array.isArray(fishInfo.double_hook) ? fishInfo.double_hook[1] : fishInfo.double_hook) * fishInfo.points}`
                               ),
                               mainOnly: true
                             }

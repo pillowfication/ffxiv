@@ -4,10 +4,10 @@
       "name": "Galadion Goby",
       "bait": "Ragworm",
       "points": 10,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 11],
+      "bite_time": [2, 11],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -19,10 +19,10 @@
       "name": "Galadion Chovy",
       "bait": "Krill",
       "points": 11,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 13],
+      "bite_time": [2, 13],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -34,10 +34,10 @@
       "name": "Leopard Eel",
       "bait": "Plump Worm",
       "points": 14,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [3, 19],
+      "bite_time": [3, 19],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -53,10 +53,10 @@
       "name": "Jasperhead",
       "bait": "Krill",
       "points": 40,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [7, 24],
+      "bite_time": [7, 24],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -72,10 +72,10 @@
       "name": "Tarnished Shark",
       "bait": "Plump Worm",
       "points": 34,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 3,
-      "biteTime": [12, 36],
+      "bite_time": [12, 36],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -90,10 +90,10 @@
       "name": "Rosy Bream",
       "bait": "Krill",
       "points": 34,
-      "doubleHook": [3, 4],
+      "double_hook": [3, 4],
       "mooch": null,
       "tug": 1,
-      "biteTime": [5, 19],
+      "bite_time": [5, 19],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -105,10 +105,10 @@
       "name": "Cyan Octopus",
       "bait": "Krill",
       "points": 59,
-      "doubleHook": 4,
+      "double_hook": 4,
       "mooch": null,
       "tug": 2,
-      "biteTime": [15, 29],
+      "bite_time": [15, 29],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -120,10 +120,10 @@
       "name": "Heavenswimmer",
       "bait": "Ragworm",
       "points": 50,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [13, 25],
+      "bite_time": [13, 25],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -135,10 +135,10 @@
       "name": "Spectral Megalodon",
       "bait": "Plump Worm",
       "points": 100,
-      "doubleHook": 1,
+      "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [18, 37],
+      "bite_time": [18, 37],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -153,10 +153,10 @@
       "name": "Drunkfish",
       "bait": "Krill",
       "points": 253,
-      "doubleHook": 1,
+      "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [15, 28],
+      "bite_time": [15, 28],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -176,10 +176,10 @@
       "name": "Merman's Mane",
       "bait": "Krill",
       "points": 94,
-      "doubleHook": 4,
+      "double_hook": 4,
       "mooch": null,
       "tug": 2,
-      "biteTime": [2, 6],
+      "bite_time": [2, 6],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -191,10 +191,10 @@
       "name": "Heavenskey",
       "bait": "Ragworm",
       "points": 67,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 6],
+      "bite_time": [2, 6],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -206,10 +206,10 @@
       "name": "Ghost Shark",
       "bait": "Plump Worm",
       "points": 78,
-      "doubleHook": 4,
+      "double_hook": 4,
       "mooch": null,
       "tug": 2,
-      "biteTime": [2, 7],
+      "bite_time": [2, 7],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -221,10 +221,10 @@
       "name": "Fishmonger",
       "bait": "Plump Worm",
       "points": 78,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [2, 10],
+      "bite_time": [2, 10],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -236,10 +236,10 @@
       "name": "Navigator's Print",
       "bait": "Krill",
       "points": 71,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 7],
+      "bite_time": [2, 7],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -251,10 +251,10 @@
       "name": "Casket Oyster",
       "bait": "Ragworm",
       "points": 222,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [6, 12],
+      "bite_time": [6, 12],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -266,10 +266,10 @@
       "name": "Quicksilver Blade",
       "bait": "Plump Worm",
       "points": 213,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [3, 7],
+      "bite_time": [3, 7],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -281,10 +281,10 @@
       "name": "Funnel Shark",
       "bait": "Plump Worm",
       "points": 213,
-      "doubleHook": 4,
+      "double_hook": 4,
       "mooch": null,
       "tug": 3,
-      "biteTime": [3, 12],
+      "bite_time": [3, 12],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -296,10 +296,10 @@
       "name": "Nimble Dancer",
       "bait": "Ragworm",
       "points": 444,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [10, 18],
+      "bite_time": [10, 18],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -311,10 +311,10 @@
       "name": "Sothis",
       "bait": "Glowworm",
       "points": 500,
-      "doubleHook": 1,
+      "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [9, 11],
+      "bite_time": [9, 11],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -338,10 +338,10 @@
       "name": "Ghoul Barracuda",
       "bait": "Krill",
       "points": 10,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [2, 10],
+      "bite_time": [2, 10],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -357,10 +357,10 @@
       "name": "La Noscean Jelly",
       "bait": "Ragworm",
       "points": 10,
-      "doubleHook": [3, 4],
+      "double_hook": [3, 4],
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 7],
+      "bite_time": [2, 7],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -372,10 +372,10 @@
       "name": "Sunfly",
       "bait": "Ragworm",
       "points": 10,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 12],
+      "bite_time": [2, 12],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -387,10 +387,10 @@
       "name": "Marine Bomb",
       "bait": "Krill",
       "points": 27,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 13],
+      "bite_time": [2, 13],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -402,10 +402,10 @@
       "name": "Shaggy Seadragon",
       "bait": "Ragworm",
       "points": 35,
-      "doubleHook": 4,
+      "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "biteTime": [7, 22],
+      "bite_time": [7, 22],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -421,10 +421,10 @@
       "name": "Momora Mora",
       "bait": "Plump Worm",
       "points": 22,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": "Ghoul Barracuda",
       "tug": 3,
-      "biteTime": [6, 22],
+      "bite_time": [6, 22],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -436,10 +436,10 @@
       "name": "Merlthor Butterfly",
       "bait": "Ragworm",
       "points": 51,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [13, 28],
+      "bite_time": [13, 28],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -450,10 +450,10 @@
     {
       "name": "Gladius",
       "points": 49,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": "Ghoul Barracuda",
       "tug": 2,
-      "biteTime": [6, 13],
+      "bite_time": [6, 13],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -465,10 +465,10 @@
       "name": "Spectral Discus",
       "bait": "Krill",
       "points": 100,
-      "doubleHook": 1,
+      "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [18, 36],
+      "bite_time": [18, 36],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -483,10 +483,10 @@
       "name": "Little Leviathan",
       "bait": "Plump Worm",
       "points": 204,
-      "doubleHook": 1,
+      "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [15, 27],
+      "bite_time": [15, 27],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -506,10 +506,10 @@
       "name": "Sea Nettle",
       "bait": "Ragworm",
       "points": 156,
-      "doubleHook": 4,
+      "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "biteTime": [4, 9],
+      "bite_time": [4, 9],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -520,10 +520,10 @@
     {
       "name": "Great Grandmarlin",
       "points": 127,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": "Hi-aetherlouse",
       "tug": 2,
-      "biteTime": [2, 3],
+      "bite_time": [2, 3],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -535,10 +535,10 @@
       "name": "Shipwreck's Sail",
       "bait": "Plump Worm",
       "points": 59,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": "Hi-aetherlouse",
       "tug": 2,
-      "biteTime": [2, 5],
+      "bite_time": [2, 5],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -550,10 +550,10 @@
       "name": "Charlatan Survivor",
       "bait": "Krill",
       "points": 69,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 7],
+      "bite_time": [2, 7],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -565,10 +565,10 @@
       "name": "Hi-aetherlouse",
       "bait": "Plump Worm",
       "points": 65,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 8],
+      "bite_time": [2, 8],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -580,10 +580,10 @@
       "name": "Azeyma's Sleeve",
       "bait": "Krill",
       "points": 69,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 8],
+      "bite_time": [2, 8],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -594,10 +594,10 @@
     {
       "name": "Aetheric Seadragon",
       "points": 245,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": "Hi-aetherlouse",
       "tug": 2,
-      "biteTime": [2, 6],
+      "bite_time": [2, 6],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -609,10 +609,10 @@
       "name": "Mythril Sovereign",
       "bait": "Krill",
       "points": 196,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [2, 8],
+      "bite_time": [2, 8],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -623,10 +623,10 @@
     {
       "name": "Roguesaurus",
       "points": 345,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": "Hi-aetherlouse",
       "tug": 3,
-      "biteTime": [2, 4],
+      "bite_time": [2, 4],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -638,10 +638,10 @@
       "name": "Coral Manta",
       "bait": "Shrimp Cage Feeder",
       "points": 500,
-      "doubleHook": 1,
+      "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [9, 11],
+      "bite_time": [9, 11],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -661,10 +661,10 @@
       "name": "Floefish",
       "bait": "Ragworm",
       "points": 13,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 10],
+      "bite_time": [2, 10],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -680,10 +680,10 @@
       "name": "Megasquid",
       "bait": "Plump Worm",
       "points": 11,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [2, 13],
+      "bite_time": [2, 13],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -695,10 +695,10 @@
       "name": "Oschon's Stone",
       "bait": "Plump Worm",
       "points": 11,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": "Tossed Dagger",
       "tug": 2,
-      "biteTime": [6, 25],
+      "bite_time": [6, 25],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -710,10 +710,10 @@
       "name": "Tossed Dagger",
       "bait": "Ragworm",
       "points": 27,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [3, 18],
+      "bite_time": [3, 18],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -725,10 +725,10 @@
       "name": "Tripod Fish",
       "bait": "Krill",
       "points": 43,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [9, 25],
+      "bite_time": [9, 25],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -744,10 +744,10 @@
       "name": "Net Crawler",
       "bait": "Krill",
       "points": 36,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [8, 22],
+      "bite_time": [8, 22],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -759,10 +759,10 @@
       "name": "Merlthor Lobster",
       "bait": "Krill",
       "points": 45,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [16, 28],
+      "bite_time": [16, 28],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -773,10 +773,10 @@
     {
       "name": "Elder Dinichthys",
       "points": 52,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": "Tossed Dagger",
       "tug": 2,
-      "biteTime": [9, 16],
+      "bite_time": [9, 16],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -788,10 +788,10 @@
       "name": "Spectral Sea Bo",
       "bait": "Ragworm",
       "points": 100,
-      "doubleHook": 1,
+      "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [18, 38],
+      "bite_time": [18, 38],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -806,10 +806,10 @@
       "name": "Shooting Star",
       "bait": "Ragworm",
       "points": 226,
-      "doubleHook": 1,
+      "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [16, 27],
+      "bite_time": [16, 27],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -829,10 +829,10 @@
       "name": "Hammerclaw",
       "bait": "Krill",
       "points": 69,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 5],
+      "bite_time": [2, 5],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -844,10 +844,10 @@
       "name": "Coccosteus",
       "bait": "Plump Worm",
       "points": 79,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [2, 5],
+      "bite_time": [2, 5],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -859,10 +859,10 @@
       "name": "Bartholomew the Chopper",
       "bait": "Ragworm",
       "points": 221,
-      "doubleHook": 4,
+      "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "biteTime": [3, 8],
+      "bite_time": [3, 8],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -874,10 +874,10 @@
       "name": "Prowler",
       "bait": "Ragworm",
       "points": 79,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 7],
+      "bite_time": [2, 7],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -889,10 +889,10 @@
       "name": "Mopbeard",
       "bait": "Krill",
       "points": 198,
-      "doubleHook": 4,
+      "double_hook": 4,
       "mooch": null,
       "tug": 2,
-      "biteTime": [4, 9],
+      "bite_time": [4, 9],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -904,10 +904,10 @@
       "name": "Wild Urchin",
       "bait": "Ragworm",
       "points": 79,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 8],
+      "bite_time": [2, 8],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -919,10 +919,10 @@
       "name": "Gugrusaurus",
       "bait": "Plump Worm",
       "points": 79,
-      "doubleHook": [3, 4],
+      "double_hook": [3, 4],
       "mooch": null,
       "tug": 3,
-      "biteTime": [2, 10],
+      "bite_time": [2, 10],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -934,10 +934,10 @@
       "name": "Coral Seadragon",
       "bait": "Ragworm",
       "points": 189,
-      "doubleHook": 4,
+      "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "biteTime": [6, 12],
+      "bite_time": [6, 12],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -949,10 +949,10 @@
       "name": "The Fallen One",
       "bait": "Krill",
       "points": 374,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [7, 10],
+      "bite_time": [7, 10],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -964,10 +964,10 @@
       "name": "Elasmosaurus",
       "bait": "Heavy Steel Jig",
       "points": 500,
-      "doubleHook": 1,
+      "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [9, 10],
+      "bite_time": [9, 10],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -987,10 +987,10 @@
       "name": "Rhotano Wahoo",
       "bait": "Krill",
       "points": 13,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [2, 13],
+      "bite_time": [2, 13],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -1005,10 +1005,10 @@
       "name": "Rhotano Sardine",
       "bait": "Ragworm",
       "points": 10,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 13],
+      "bite_time": [2, 13],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1020,10 +1020,10 @@
       "name": "Deep Plaice",
       "bait": "Krill",
       "points": 15,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [2, 14],
+      "bite_time": [2, 14],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -1039,10 +1039,10 @@
       "name": "Crimson Monkfish",
       "bait": "Plump Worm",
       "points": 32,
-      "doubleHook": 4,
+      "double_hook": 4,
       "mooch": null,
       "tug": 2,
-      "biteTime": [3, 18],
+      "bite_time": [3, 18],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1054,10 +1054,10 @@
       "name": "Chrome Hammerhead",
       "bait": "Plump Worm",
       "points": 32,
-      "doubleHook": 4,
+      "double_hook": 4,
       "mooch": null,
       "tug": 3,
-      "biteTime": [14, 33],
+      "bite_time": [14, 33],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1069,10 +1069,10 @@
       "name": "Ogre Eel",
       "bait": "Plump Worm",
       "points": 38,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [4, 19],
+      "bite_time": [4, 19],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -1088,10 +1088,10 @@
       "name": "Dark Nautilus",
       "bait": "Krill",
       "points": 46,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [14, 26],
+      "bite_time": [14, 26],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1103,10 +1103,10 @@
       "name": "Lampfish",
       "bait": "Ragworm",
       "points": 47,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [9, 16],
+      "bite_time": [9, 16],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1118,10 +1118,10 @@
       "name": "Spectral Bass",
       "bait": "Plump Worm",
       "points": 100,
-      "doubleHook": 1,
+      "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [20, 36],
+      "bite_time": [20, 36],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -1136,10 +1136,10 @@
       "name": "Sabaton",
       "bait": "Krill",
       "points": 204,
-      "doubleHook": 1,
+      "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [11, 19],
+      "bite_time": [11, 19],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1159,10 +1159,10 @@
       "name": "Aronnax",
       "bait": "Krill",
       "points": 95,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 5],
+      "bite_time": [2, 5],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1174,10 +1174,10 @@
       "name": "Sweeper",
       "bait": "Plump Worm",
       "points": 216,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [3, 7],
+      "bite_time": [3, 7],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -1189,10 +1189,10 @@
       "name": "Silencer",
       "bait": "Ragworm",
       "points": 89,
-      "doubleHook": 4,
+      "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 7],
+      "bite_time": [2, 7],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1204,10 +1204,10 @@
       "name": "Deep-sea Eel",
       "bait": "Plump Worm",
       "points": 81,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [2, 11],
+      "bite_time": [2, 11],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1219,10 +1219,10 @@
       "name": "Executioner",
       "bait": "Plump Worm",
       "points": 216,
-      "doubleHook": 4,
+      "double_hook": 4,
       "mooch": null,
       "tug": 3,
-      "biteTime": [4, 10],
+      "bite_time": [4, 10],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -1234,10 +1234,10 @@
       "name": "Floating Saucer",
       "bait": "Krill",
       "points": 222,
-      "doubleHook": 4,
+      "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "biteTime": [6, 11],
+      "bite_time": [6, 11],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -1249,10 +1249,10 @@
       "name": "True Barramundi",
       "bait": "Krill",
       "points": 95,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [2, 9],
+      "bite_time": [2, 9],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1264,10 +1264,10 @@
       "name": "Prodigal Son",
       "bait": "Krill",
       "points": 95,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [2, 8],
+      "bite_time": [2, 8],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1279,10 +1279,10 @@
       "name": "Slipsnail",
       "bait": "Ragworm",
       "points": 246,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [4, 8],
+      "bite_time": [4, 8],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -1294,10 +1294,10 @@
       "name": "Stonescale",
       "bait": "Rat Tail",
       "points": 500,
-      "doubleHook": 1,
+      "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [10, 12],
+      "bite_time": [10, 12],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -1321,10 +1321,10 @@
       "name": "Tortoiseshell Crab",
       "bait": "Krill",
       "points": 10,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [5, 15],
+      "bite_time": [5, 15],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1336,10 +1336,10 @@
       "name": "Lady's Cameo",
       "bait": "Ragworm",
       "points": 15,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [12, 22],
+      "bite_time": [12, 22],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -1355,10 +1355,10 @@
       "name": "Metallic Boxfish",
       "bait": "Ragworm",
       "points": 9,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [5, 12],
+      "bite_time": [5, 12],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1370,10 +1370,10 @@
       "name": "Goobbue Ray",
       "bait": "Plump Worm",
       "points": 33,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [14, 23],
+      "bite_time": [14, 23],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1385,10 +1385,10 @@
       "name": "Watermoura",
       "bait": "Krill",
       "points": 41,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [8, 23],
+      "bite_time": [8, 23],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -1403,10 +1403,10 @@
       "name": "King Cobrafish",
       "bait": "Plump Worm",
       "points": 39,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 3,
-      "biteTime": [6, 10],
+      "bite_time": [6, 10],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -1422,10 +1422,10 @@
       "name": "Mamahi-mahi",
       "bait": "Plump Worm",
       "points": 58,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 3,
-      "biteTime": [25, 25],
+      "bite_time": [25, 25],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1437,10 +1437,10 @@
       "name": "Lavandin Remora",
       "bait": "Krill",
       "points": 52,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [15, 25],
+      "bite_time": [15, 25],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1452,10 +1452,10 @@
       "name": "Spectral Butterfly",
       "bait": "Ragworm",
       "points": 100,
-      "doubleHook": 1,
+      "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [13, 18],
+      "bite_time": [13, 18],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -1470,10 +1470,10 @@
       "name": "Cieldalaes Geode",
       "bait": "Krill",
       "points": 246,
-      "doubleHook": 1,
+      "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [21, 27],
+      "bite_time": [21, 27],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1493,10 +1493,10 @@
       "name": "Titanshell Crab",
       "bait": "Krill",
       "points": 84,
-      "doubleHook": 4,
+      "double_hook": 4,
       "mooch": null,
       "tug": 2,
-      "biteTime": [1, 5],
+      "bite_time": [1, 5],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1508,10 +1508,10 @@
       "name": "Mythril Boxfish",
       "bait": "Ragworm",
       "points": 64,
-      "doubleHook": 4,
+      "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 5],
+      "bite_time": [2, 5],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1523,10 +1523,10 @@
       "name": "Mistbeard's Cup",
       "bait": "Krill",
       "points": 84,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [4, 5],
+      "bite_time": [4, 5],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1538,10 +1538,10 @@
       "name": "Anomalocaris Saron",
       "bait": "Krill",
       "points": 84,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [5, 6],
+      "bite_time": [5, 6],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1553,10 +1553,10 @@
       "name": "Flaming Eel",
       "bait": "Krill",
       "points": 198,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [7.5, 7.5],
+      "bite_time": [7.5, 7.5],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -1568,10 +1568,10 @@
       "name": "Jetborne Manta",
       "bait": "Plump Worm",
       "points": 75,
-      "doubleHook": 4,
+      "double_hook": 4,
       "mooch": null,
       "tug": 3,
-      "biteTime": [1, 2],
+      "bite_time": [1, 2],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1583,10 +1583,10 @@
       "name": "Devil's Sting",
       "bait": "Krill",
       "points": 201,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [5, 10],
+      "bite_time": [5, 10],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -1598,10 +1598,10 @@
       "name": "Callichthyid",
       "bait": "Plump Worm",
       "points": 178,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 3,
-      "biteTime": [5, 7],
+      "bite_time": [5, 7],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -1613,10 +1613,10 @@
       "name": "Meandering Mora",
       "bait": "Plump Worm",
       "points": 283,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [8, 12],
+      "bite_time": [8, 12],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -1628,10 +1628,10 @@
       "name": "Hafgufa",
       "bait": "Squid Strip",
       "points": 500,
-      "doubleHook": 1,
+      "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [10, 10],
+      "bite_time": [10, 10],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -1655,10 +1655,10 @@
       "name": "Thaliak Crab",
       "bait": "Ragworm",
       "points": 9,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [3, 8],
+      "bite_time": [3, 8],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1670,10 +1670,10 @@
       "name": "Star of the Destroyer",
       "bait": "Ragworm",
       "points": 14,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [7, 13],
+      "bite_time": [7, 13],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -1689,10 +1689,10 @@
       "name": "True Scad",
       "bait": "Krill",
       "points": 8,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [4, 10],
+      "bite_time": [4, 10],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1704,10 +1704,10 @@
       "name": "Blooded Wrasse",
       "bait": "Plump Worm",
       "points": 35,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [11, 15],
+      "bite_time": [11, 15],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -1722,10 +1722,10 @@
       "name": "Bloodpolish Crab",
       "bait": "Ragworm",
       "points": 28,
-      "doubleHook": 4,
+      "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "biteTime": [14, 28],
+      "bite_time": [14, 28],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1737,10 +1737,10 @@
       "name": "Blue Stitcher",
       "bait": "Krill",
       "points": 30,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [5, 10],
+      "bite_time": [5, 10],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -1756,10 +1756,10 @@
       "name": "Bloodfresh Tuna",
       "bait": "Plump Worm",
       "points": 43,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [15, 20],
+      "bite_time": [15, 20],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1771,10 +1771,10 @@
       "name": "Sunken Mask",
       "bait": "Ragworm",
       "points": 49,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 3,
-      "biteTime": [16, 20],
+      "bite_time": [16, 20],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1786,10 +1786,10 @@
       "name": "Spectral Eel",
       "bait": "Krill",
       "points": 100,
-      "doubleHook": 1,
+      "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [15, 16],
+      "bite_time": [15, 16],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -1804,10 +1804,10 @@
       "name": "Bareface",
       "bait": "Krill",
       "points": 326,
-      "doubleHook": 1,
+      "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [1, 10],
+      "bite_time": [1, 10],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1827,10 +1827,10 @@
       "name": "Oracular Crab",
       "bait": "Ragworm",
       "points": 102,
-      "doubleHook": 4,
+      "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 3],
+      "bite_time": [2, 3],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -1842,10 +1842,10 @@
       "name": "Dravanian Bream",
       "bait": "Krill",
       "points": 77,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [3, 3],
+      "bite_time": [3, 3],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1857,10 +1857,10 @@
       "name": "Skaldminni",
       "bait": "Krill",
       "points": 102,
-      "doubleHook": 4,
+      "double_hook": 4,
       "mooch": null,
       "tug": 2,
-      "biteTime": [6, 6],
+      "bite_time": [6, 6],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -1872,10 +1872,10 @@
       "name": "Serrated Clam",
       "bait": "Ragworm",
       "points": 74,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [3, 3],
+      "bite_time": [3, 3],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1887,10 +1887,10 @@
       "name": "Beatific Vision",
       "bait": "Krill",
       "points": 77,
-      "doubleHook": 4,
+      "double_hook": 4,
       "mooch": null,
       "tug": 2,
-      "biteTime": null,
+      "bite_time": null,
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1902,10 +1902,10 @@
       "name": "Exterminator",
       "bait": "Ragworm",
       "points": 255,
-      "doubleHook": 4,
+      "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "biteTime": [6, 6],
+      "bite_time": [6, 6],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -1917,10 +1917,10 @@
       "name": "Gory Tuna",
       "bait": "Plump Worm",
       "points": 92,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [3, 5],
+      "bite_time": [3, 5],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1932,10 +1932,10 @@
       "name": "Ticinepomis",
       "bait": "Plump Worm",
       "points": 92,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 3,
-      "biteTime": [3, 4],
+      "bite_time": [3, 4],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1947,10 +1947,10 @@
       "name": "Quartz Hammerhead",
       "bait": "Plump Worm",
       "points": 460,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 3,
-      "biteTime": [7, 8],
+      "bite_time": [7, 8],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1962,10 +1962,10 @@
       "name": "Seafaring Toad",
       "bait": "Pill Bug",
       "points": 500,
-      "doubleHook": 1,
+      "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": null,
+      "bite_time": null,
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -1985,10 +1985,10 @@
       "name": "Crow Puffer",
       "bait": "Ragworm",
       "points": 10,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [3, 7],
+      "bite_time": [3, 7],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -2000,10 +2000,10 @@
       "name": "Rothlyt Kelp",
       "bait": "Ragworm",
       "points": 10,
-      "doubleHook": [3, 4],
+      "double_hook": [3, 4],
       "mooch": null,
       "tug": 1,
-      "biteTime": [5, 11],
+      "bite_time": [5, 11],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -2015,10 +2015,10 @@
       "name": "Living Lantern",
       "bait": "Krill",
       "points": 13,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [5, 10],
+      "bite_time": [5, 10],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -2034,10 +2034,10 @@
       "name": "Honeycomb Fish",
       "bait": "Ragworm",
       "points": 29,
-      "doubleHook": 4,
+      "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "biteTime": [12, 23],
+      "bite_time": [12, 23],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -2049,10 +2049,10 @@
       "name": "Godsbed",
       "bait": "Plump Worm",
       "points": 29,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [12, 26],
+      "bite_time": [12, 26],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -2068,10 +2068,10 @@
       "name": "Lansquenet",
       "bait": "Plump Worm",
       "points": 36,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [16, 23],
+      "bite_time": [16, 23],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -2086,10 +2086,10 @@
       "name": "Thavnairian Shark",
       "bait": "Krill",
       "points": 44,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 3,
-      "biteTime": [12, 16],
+      "bite_time": [12, 16],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -2101,10 +2101,10 @@
       "name": "Nephrite Eel",
       "bait": "Krill",
       "points": 44,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [15, 25],
+      "bite_time": [15, 25],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -2116,10 +2116,10 @@
       "name": "Spectresaur",
       "bait": "Plump Worm",
       "points": 100,
-      "doubleHook": 1,
+      "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [16, 21],
+      "bite_time": [16, 21],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
@@ -2134,10 +2134,10 @@
       "name": "Ginkgo Fin",
       "bait": "Ragworm",
       "points": 238,
-      "doubleHook": 1,
+      "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "biteTime": [12, 18],
+      "bite_time": [12, 18],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -2157,10 +2157,10 @@
       "name": "Garum Jug",
       "bait": "Ragworm",
       "points": 107,
-      "doubleHook": 4,
+      "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 2],
+      "bite_time": [2, 2],
       "time": "DN",
       "weathers": {
         "type": "ALL"
@@ -2172,10 +2172,10 @@
       "name": "Smooth Jaguar",
       "bait": "Plump Worm",
       "points": 70,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": "Rothlyt Mussel",
       "tug": 2,
-      "biteTime": [2, 2],
+      "bite_time": [2, 2],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -2187,10 +2187,10 @@
       "name": "Rothlyt Mussel",
       "bait": "Ragworm",
       "points": 72,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [2, 2],
+      "bite_time": [2, 2],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -2202,10 +2202,10 @@
       "name": "Levi Elver",
       "bait": "Krill",
       "points": 75,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": "Rothlyt Mussel",
       "tug": 2,
-      "biteTime": [2, 2],
+      "bite_time": [2, 2],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -2217,10 +2217,10 @@
       "name": "Pearl Bombfish",
       "bait": "Krill",
       "points": 237,
-      "doubleHook": 4,
+      "double_hook": 4,
       "mooch": null,
       "tug": 2,
-      "biteTime": [5, 5],
+      "bite_time": [5, 5],
       "time": "DN",
       "weathers": {
         "type": "ALL"
@@ -2231,10 +2231,10 @@
     {
       "name": "Trollfish",
       "points": 202,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": "Rothlyt Mussel",
       "tug": 1,
-      "biteTime": [3, 3],
+      "bite_time": [3, 3],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -2246,10 +2246,10 @@
       "name": "Panoptes",
       "bait": "Plump Worm",
       "points": 125,
-      "doubleHook": 4,
+      "double_hook": 4,
       "mooch": "Rothlyt Mussel",
       "tug": 2,
-      "biteTime": [6, 7],
+      "bite_time": [6, 7],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -2261,10 +2261,10 @@
       "name": "Crepe Sole",
       "bait": "Ragworm",
       "points": 72,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "biteTime": [4, 7],
+      "bite_time": [4, 7],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -2276,10 +2276,10 @@
       "name": "Knifejaw",
       "bait": "Krill",
       "points": 465,
-      "doubleHook": 2,
+      "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "biteTime": [7, 9],
+      "bite_time": [7, 9],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -2290,10 +2290,10 @@
     {
       "name": "Placodus",
       "points": 500,
-      "doubleHook": 1,
+      "double_hook": 1,
       "mooch": "Rothlyt Mussel",
       "tug": 3,
-      "biteTime": null,
+      "bite_time": null,
       "time": "S",
       "weathers": {
         "type": "ALL"

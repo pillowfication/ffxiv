@@ -1,8 +1,5 @@
 import { timeUntil as genericTimeUntil } from '../utils'
-import { fishingSpots, fishes, baits } from './gists/data/ocean-fish-data.json'
-import spreadsheet from './gists/data/spreadsheet-data.json'
-import biteTimes from './gists/data/ocean-fish-bite-times.json'
-import { FishingSpot, Fish, FishInfo, Bait } from './gists/data/types'
+import { fishingSpots, fishes } from './gists/data'
 import { Bait as BaitChainProp } from './BaitChain'
 import * as maps from './maps'
 import { TFunction } from 'next-i18next'
@@ -38,9 +35,9 @@ export function getTimeSensitiveFish (destinationCode: maps.DestinationStopTime)
     .map((destinationStopTime, index) => {
       const fishingSpotId = maps.STOP_MAP[destinationStopTime[0]]
       const time = stopTimes[index][1]
-      return (fishingSpots[fishingSpotId + 1].fishes as FishingSpot['fishes'])
+      return (fishingSpots[fishingSpotId + 1].fishes)
         .filter(fishId => {
-          const fishInfo = getFishInfo(fishes[fishId].name_en)
+          const fishInfo = fishes[fishId].spreadsheet_data
           return fishInfo.time && fishInfo.time !== 'DSN' && fishInfo.time.indexOf(time) > -1
         })
     })
@@ -54,17 +51,17 @@ export function getPointsFish (destinationCode: maps.DestinationStopTime): numbe
       const time = stopTimes[index][1]
 
       let highestPointsFish: { fishId: number, points: number }[] = []
-      const pointsFish = (fishingSpots[fishingSpotId + 1].fishes as FishingSpot['fishes'])
+      const pointsFish = (fishingSpots[fishingSpotId + 1].fishes)
         .filter(fishId => {
-          const fishInfo = getFishInfo(fishes[fishId].name_en)
+          const fishInfo = fishes[fishId].spreadsheet_data
           if (fishInfo.time && fishInfo.time.indexOf(time) === -1) {
             return false
           } else if (fishInfo.intuition) {
             return false
-          } else if (!fishInfo.points || !fishInfo.doubleHook) {
+          } else if (!fishInfo.points || !fishInfo.double_hook) {
             return false
           } else {
-            const points = (Array.isArray(fishInfo.doubleHook) ? fishInfo.doubleHook[1] : fishInfo.doubleHook) * fishInfo.points
+            const points = (Array.isArray(fishInfo.double_hook) ? fishInfo.double_hook[1] : fishInfo.double_hook) * fishInfo.points
             if (highestPointsFish.length === 0) {
               highestPointsFish.push({ fishId, points })
             } else if (points === highestPointsFish[0].points) {
@@ -86,59 +83,36 @@ export function getBlueFish (destinationCode: maps.DestinationStopTime): number[
     .map(destinationStopTime => maps.BLUE_FISH_MAP[destinationStopTime[0]])
     .map((fishId, index) => {
       const time = stopTimes[index][1]
-      const fishInfo = getFishInfo(fishes[fishId].name_en)
+      const fishInfo = fishes[fishId].spreadsheet_data
       return fishInfo.time && fishInfo.time.indexOf(time) > -1 ? fishId : null
     })
 }
 
-export const getFishInfo = memoize((fishName: string): FishInfo => {
-  const fishInfo: FishInfo = Object.values(<unknown>spreadsheet as FishInfo[][])
-    .flat()
-    .find(fishInfo => (fishInfo as FishInfo).name === fishName)
-  if (!fishInfo) return null
-
-  const biteTime: [number, number] = biteTimes[getFish(fishName).id]
-  if (biteTimes) {
-    fishInfo.biteTime = biteTime
-  }
-  return fishInfo
-})
-
-export const getFish = memoize((fishName: string): Fish =>
-  Object.values(fishes).find(fish => fish.name_en === fishName) || null
-)
-
-export const getBait = memoize((baitName: string): Bait =>
-  Object.values(baits).find(bait => bait.name_en === baitName) || null
-)
-
 export const getBaitChain = memoize(function _getBaitChain (fishId: number): BaitChainProp[] {
-  const fishInfo = getFishInfo(fishes[fishId].name_en)
+  const fishInfo = fishes[fishId].spreadsheet_data
+  console.log(fishInfo)
   return fishInfo.bait
-    ? [getBait(fishInfo.bait), { id: fishId, tug: fishInfo.tug }]
-    : [..._getBaitChain(getFish(fishInfo.mooch).id), { id: fishId, tug: fishInfo.tug }]
+    ? [{ id: fishInfo.bait }, { id: fishId, tug: fishInfo.tug }]
+    : [..._getBaitChain(fishInfo.mooch), { id: fishId, tug: fishInfo.tug }]
 })
 
 export const getBaitGroup = memoize(
   (fishId: number): { baits: BaitChainProp[], intuitionFishes?: { baits: BaitChainProp[], count: number }[] } => {
-    const fishInfo = getFishInfo(fishes[fishId].name_en)
+    const fishInfo = fishes[fishId].spreadsheet_data
     return {
       baits: getBaitChain(fishId),
-      intuitionFishes: fishInfo.intuition && fishInfo.intuition.map(intuitionFish => ({
-        baits: getBaitChain(getFish(intuitionFish.name).id),
-        count: intuitionFish.count
-      }))
+      intuitionFishes: fishInfo.intuition && fishInfo.intuition.map(({ id, count }) => ({ baits: getBaitChain(id), count }))
     }
   }
 )
 
 export function subtextDH (fishId: number) {
-  const dh = getFishInfo(fishes[fishId].name_en).doubleHook
-  return dh ? `DH: ${Array.isArray(dh) ? dh.join('-') : dh}` : 'DH: ?'
+  const doubleHook = fishes[fishId].spreadsheet_data.double_hook
+  return doubleHook ? `DH: ${Array.isArray(doubleHook) ? doubleHook.join('-') : doubleHook}` : 'DH: ?'
 }
 
 export function subtextBiteTime (fishId: number) {
-  const biteTime = getFishInfo(fishes[fishId].name_en).biteTime
+  const biteTime = fishes[fishId].spreadsheet_data.bite_time
   return biteTime ? `${biteTime[0] === biteTime[1] ? biteTime[0] : biteTime.join('-')} s` : '? s'
 }
 
