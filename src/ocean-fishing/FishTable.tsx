@@ -2,17 +2,16 @@ import React from 'react'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
-import IconButton from '@material-ui/core/IconButton'
 import TableContainer from '@material-ui/core/TableContainer'
 import Table from '@material-ui/core/Table'
 import TableHead from '@material-ui/core/TableHead'
 import TableBody from '@material-ui/core/TableBody'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
-import CheckIcon from '@material-ui/icons/Check'
 import OceanFishIcon from './OceanFishIcon'
 import TimeIcon from './TimeIcon'
 import Tug from './Tug'
+import ChecklistCheckmark from './ChecklistCheckmark'
 import WeatherIcon from '../skywatcher/WeatherIcon'
 import { fishingSpots, fishes } from './gists/data'
 import * as maps from './maps'
@@ -26,9 +25,6 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '0.9em',
       padding: 0
     }
-  },
-  check: {
-    padding: 10
   },
   stars: {
     marginTop: '-0.3em',
@@ -48,39 +44,18 @@ const useStyles = makeStyles((theme) => ({
   disabled: {
     backgroundColor: theme.palette.type === 'dark' ? '#333333' : '#DDDDDD',
     opacity: 0.5
-  },
-  unchecked: {
-    opacity: 0.33
-  },
-  checked: {
-    color: 'green'
   }
 }))
 
 type Props = {
   spots: number[],
   time?: 'D' | 'S' | 'N',
-  checklist: number[],
-  setChecklist: (checklist: number[]) => void,
   t: TFunction,
   i18n: I18n
 }
 
-const FishTable = ({ spots, time, checklist, setChecklist, t, i18n }: Props) => {
+const FishTable = ({ spots, time, t, i18n }: Props) => {
   const classes = useStyles()
-
-  const toggleFish = (fishId: number) => {
-    if (checklist.includes(fishId)) {
-      const copy = checklist.slice()
-      copy.splice(copy.findIndex(id => id === fishId), 1)
-      setChecklist(copy)
-    } else {
-      const copy = checklist.slice()
-      copy.push(fishId)
-      copy.sort((a, b) => a - b)
-      setChecklist(copy)
-    }
-  }
 
   return (
     <TableContainer>
@@ -113,12 +88,7 @@ const FishTable = ({ spots, time, checklist, setChecklist, t, i18n }: Props) => 
                       className={clsx(time && fishInfo.time && fishInfo.time.indexOf(time) === -1 && classes.disabled)}
                     >
                       <TableCell align='center'>
-                        <IconButton
-                          className={clsx(classes.check, checklist.includes(fish.id) ? classes.checked : classes.unchecked)}
-                          onClick={toggleFish.bind(null, fish.id)}
-                        >
-                          <CheckIcon />
-                        </IconButton>
+                        <ChecklistCheckmark fishId={fish.id} />
                       </TableCell>
                       <TableCell>
                         <OceanFishIcon type='fish' id={fish.id} />

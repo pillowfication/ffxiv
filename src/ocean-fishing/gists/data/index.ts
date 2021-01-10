@@ -31,9 +31,9 @@ export type Fish = {
   description_ja: string,
   icon: string,
   lodestone_data?: {
-    url: string,
-    icon_sm: string,
-    icon_lg: string
+    url?: string,
+    icon_sm?: string,
+    icon_lg?: string
   },
   spreadsheet_data: FishInfo
 }

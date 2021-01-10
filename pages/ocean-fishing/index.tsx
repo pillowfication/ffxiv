@@ -10,6 +10,10 @@ import * as maps from '../../src/ocean-fishing/maps'
 import i18n from '../../i18n'
 import { TFunction } from 'next-i18next'
 
+export const ChecklistContext = React.createContext<{ checklist: number[], setChecklist: (checklist: number[]) => void }>(
+  { checklist: [], setChecklist: () => {} }
+)
+
 type Props = {
   t: TFunction
 }
@@ -27,14 +31,10 @@ const OceanFishing = ({ t }: Props) => {
       interval = setTimeout(loop, 60000 - now.getTime() % 60000)
     })()
 
-    if (typeof window === 'undefined') {
-      setChecklist([])
-    } else {
+    if (typeof window !== 'undefined') {
       const data = window.localStorage.getItem('ocean-fishing/checklist')
-      if (!data) {
-        setChecklist([])
-      } else {
-        setChecklist(data.split(',').map(Number).filter(x => x))
+      if (data) {
+        setChecklist(data.split(',').map(x => Number(x) | 0).filter(x => x))
       }
     }
 
@@ -49,17 +49,19 @@ const OceanFishing = ({ t }: Props) => {
 
   return (
     <Page title={t('ocean-fishing')}>
-      <Section>
-        <Typography paragraph>
-          Data are taken from the <Link href='https://docs.google.com/spreadsheets/d/1brCfvmSdYl7RcY9lkgm_ds8uaFqq7qaxOOz-5BfHuuk/edit?usp=sharing'>Ocean Fishing Spreadsheet</Link> managed by S’yahn Tia. Bite times are from <Link href='https://ffxivteamcraft.com/'>Teamcraft</Link> when available. For questions/comments/corrections, please visit the <Link href='https://discord.gg/AnFaDpN'>Fisherman’s Horizon Discord</Link> or message Lulu Pillow@Adamantoise or Pillowfication#0538.
-        </Typography>
-        <Typography paragraph>
-          For a static list of all the fish and more information, see the <Link href='/ocean-fishing/fish'>Fish page</Link>.
-        </Typography>
-      </Section>
-      <UpcomingVoyages now={now} onSelectRoute={setSelectedRoute} />
-      <RouteInformation now={now} selectedRoute={selectedRoute} checklist={checklist} setChecklist={setChecklist} />
-      <AchievementsInformation selectedRoute={selectedRoute} />
+      <ChecklistContext.Provider value={{ checklist, setChecklist }}>
+        <Section>
+          <Typography paragraph>
+            Data are taken from the <Link href='https://docs.google.com/spreadsheets/d/1brCfvmSdYl7RcY9lkgm_ds8uaFqq7qaxOOz-5BfHuuk/edit?usp=sharing'>Ocean Fishing Spreadsheet</Link> managed by S’yahn Tia. Bite times are from <Link href='https://ffxivteamcraft.com/'>Teamcraft</Link> when available. For questions/comments/corrections, please visit the <Link href='https://discord.gg/AnFaDpN'>Fisherman’s Horizon Discord</Link> or message Lulu Pillow@Adamantoise or Pillowfication#0538.
+          </Typography>
+          <Typography paragraph>
+            For a static list of all the fish and more information, see the <Link href='/ocean-fishing/fish'>Fish page</Link>.
+          </Typography>
+        </Section>
+        <UpcomingVoyages now={now} onSelectRoute={setSelectedRoute} />
+        <RouteInformation now={now} selectedRoute={selectedRoute} />
+        <AchievementsInformation selectedRoute={selectedRoute} />
+      </ChecklistContext.Provider>
     </Page>
   )
 }

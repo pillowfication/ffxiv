@@ -1,18 +1,24 @@
 import React from 'react'
+import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Link from '@material-ui/core/Link'
 import Box from '@material-ui/core/Box'
+import Collapse from '@material-ui/core/Collapse'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
+import CardActions from '@material-ui/core/CardActions'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
+import IconButton from '@material-ui/core/IconButton'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import OceanFishIconLarge from './OceanFishIconLarge'
 import TimeIcon from './TimeIcon'
 import BaitGroup from './BaitGroup'
+import ChecklistCheckmark from './ChecklistCheckmark'
 import WeatherIcon from '../skywatcher/WeatherIcon'
 import { fishes } from './gists/data'
 import * as maps from './maps'
@@ -22,16 +28,30 @@ import { I18n, TFunction } from 'next-i18next'
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    maxWidth: 400,
+    width: 400,
   },
   header: {
-    padding: theme.spacing(1, 2, 0, 1)
+    padding: theme.spacing(2),
+    alignItems: 'start'
+  },
+  title: {
+    paddingTop: theme.spacing(1)
   },
   content: {
-    padding: theme.spacing(2, 2, 0)
+    padding: theme.spacing(0, 2, 2)
   },
   description: {
     whiteSpace: 'pre-line'
+  },
+  expand: {
+    transform: 'rotate(0deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  expandOpen: {
+    transform: 'rotate(180deg)',
   }
 }))
 
@@ -43,8 +63,11 @@ type Props = {
 
 const OceanFishPopper = ({ fishId, t, i18n }: Props) => {
   const classes = useStyles()
+  const [expanded, setExpanded] = React.useState(false)
   const fish = fishes[fishId]
   const fishInfo = fish.spreadsheet_data
+
+  const handleClickExpand = () => { setExpanded(!expanded) }
 
   return (
     <Box boxShadow={8}>
@@ -52,17 +75,17 @@ const OceanFishPopper = ({ fishId, t, i18n }: Props) => {
         <CardHeader
           avatar={<OceanFishIconLarge fishId={fishId} size={100} />}
           title={translate(i18n.language, fish, 'name')}
-          titleTypographyProps={{ variant: 'h6' }}
+          titleTypographyProps={{ variant: 'h6', paragraph: true, className: classes.title }}
           subheader={(
             <div>
-              <Typography variant='subtitle2' paragraph>{fishInfo.stars && '★'.repeat(fishInfo.stars)}</Typography>
-              {fish.lodestone_data
+              {(fish.lodestone_data && fish.lodestone_data.url)
                 ? <Link href={`https://na.finalfantasyxiv.com${fish.lodestone_data.url}`}>Lodestone</Link>
                 : 'Lodestone'}
               <> | </>
               <Link href={`https://ffxivteamcraft.com/db/${i18n.language}/item/${fishId}`}>Teamcraft</Link>
             </div>
           )}
+          action={<ChecklistCheckmark fishId={fishId} />}
           className={classes.header}
         />
         <CardContent className={classes.content}>
@@ -72,15 +95,33 @@ const OceanFishPopper = ({ fishId, t, i18n }: Props) => {
           <Table size='small'>
             <TableBody>
               <TableRow>
-                <TableCell variant='head'><Typography>{t('points')}</Typography></TableCell>
-                <TableCell align='center'>{fishInfo.points}</TableCell>
+                <TableCell variant='head'>
+                  {t('rating')}
+                </TableCell>
+                <TableCell align='center'>
+                  {fishInfo.stars ? '★'.repeat(fishInfo.stars) : '?'}
+                </TableCell>
               </TableRow>
               <TableRow>
-                <TableCell variant='head'><Typography>{t('double-hook')}</Typography></TableCell>
-                <TableCell align='center'>{fishInfo.double_hook}</TableCell>
+                <TableCell variant='head'>
+                  {t('points')}
+                </TableCell>
+                <TableCell align='center'>
+                  {fishInfo.points ? fishInfo.points : '?'}
+                </TableCell>
               </TableRow>
               <TableRow>
-                <TableCell variant='head'><Typography>{t('weather')}</Typography></TableCell>
+                <TableCell variant='head'>
+                  {t('double-hook')}
+                </TableCell>
+                <TableCell align='center'>
+                  {fishInfo.double_hook ? (Array.isArray(fishInfo.double_hook) ? fishInfo.double_hook.join('-') : fishInfo.double_hook) : '?'}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell variant='head'>
+                  {t('weather')}
+                </TableCell>
                 <TableCell align='center'>
                   {fishInfo.weathers
                     ? (() => {
@@ -106,7 +147,9 @@ const OceanFishPopper = ({ fishId, t, i18n }: Props) => {
                 </TableCell>
               </TableRow>
               <TableRow>
-                <TableCell variant='head'><Typography>{t('time-of-day')}</Typography></TableCell>
+                <TableCell variant='head'>
+                  {t('time-of-day')}
+                </TableCell>
                 <TableCell align='center'>
                   {fishInfo.time ?
                     fishInfo.time === 'DSN'
@@ -118,11 +161,18 @@ const OceanFishPopper = ({ fishId, t, i18n }: Props) => {
             </TableBody>
           </Table>
         </CardContent>
-        <CardContent className={classes.content}>
-          <Typography variant='caption' className={classes.description}>
-            {translate(i18n.language, fish, 'description').replace(/\[[^\]]*\]/g, '').trim()}
-          </Typography>
-        </CardContent>
+        <Collapse in={expanded} timeout='auto' unmountOnExit>
+          <CardContent className={classes.content}>
+            <Typography variant='body2' className={classes.description}>
+              {translate(i18n.language, fish, 'description').replace(/\n\n+/g, '\n\n')}
+            </Typography>
+          </CardContent>
+        </Collapse>
+        <CardActions disableSpacing>
+          <IconButton onClick={handleClickExpand} className={clsx(classes.expand, expanded && classes.expandOpen)}>
+            <ExpandMoreIcon />
+          </IconButton>
+        </CardActions>
       </Card>
     </Box>
   )

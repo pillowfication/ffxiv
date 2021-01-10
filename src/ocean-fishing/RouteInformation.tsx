@@ -60,13 +60,11 @@ enum FishView {
 type Props = {
   now?: Date,
   selectedRoute?: maps.DestinationStopTime,
-  checklist: number[],
-  setChecklist: (checklist: number[]) => void,
   t: TFunction,
   i18n: I18n
 }
 
-const RouteInformation = ({ now, selectedRoute, checklist, setChecklist, t, i18n }: Props) => {
+const RouteInformation = ({ now, selectedRoute, t, i18n }: Props) => {
   if (!now || !selectedRoute) return null
 
   const classes = useStyles()
@@ -201,7 +199,7 @@ const RouteInformation = ({ now, selectedRoute, checklist, setChecklist, t, i18n
                   )}
                 </Tabs>
                 {stops.map((stop, index) =>
-                  <FishPanel key={stop} tab={tab} index={index} stop={stop} checklist={checklist} setChecklist={setChecklist} />
+                  <FishPanel key={stop} tab={tab} index={index} stop={stop} />
                 )}
               </Card>
             )
