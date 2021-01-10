@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
+import { makeStyles } from '@material-ui/core/styles'
 import NoSsr from '@material-ui/core/NoSsr'
 import Grid from '@material-ui/core/Grid'
 import FormControl from '@material-ui/core/FormControl'
 import InputLabel from '@material-ui/core/InputLabel'
 import TextField from '@material-ui/core/TextField'
 import Select from '@material-ui/core/Select'
+import ListSubheader from '@material-ui/core/ListSubheader'
+import MenuItem from '@material-ui/core/MenuItem'
 import Section from '../Section'
 import UpcomingVoyagesTable from './UpcomingVoyagesTable'
 import { fishingSpots, fishes, achievements } from './gists/data'
@@ -15,6 +18,12 @@ import { translate, upperFirst } from './utils'
 import i18n from '../../i18n'
 import { I18n, TFunction } from 'next-i18next'
 
+const useStyles = makeStyles(theme => ({
+  listSubheader: {
+    paddingTop: theme.spacing(2)
+  }
+}))
+
 type Props = {
   now?: Date,
   onSelectRoute: (route: maps.DestinationStopTime) => void,
@@ -23,6 +32,7 @@ type Props = {
 }
 
 const UpcomingVoyages = ({ now, onSelectRoute, t, i18n }: Props) => {
+  const classes = useStyles()
   const router = useRouter()
   const [numRows, setNumRows] = useState(10)
   const [filter, setFilter] = useState('none')
@@ -77,56 +87,48 @@ const UpcomingVoyages = ({ now, onSelectRoute, t, i18n }: Props) => {
         </Grid>
         <Grid item xs={12} sm={6}>
           <FormControl fullWidth variant='filled'>
-            {/* Change to MUI Select when <optgroup> is possible */}
             <InputLabel>{t('filter-route')}</InputLabel>
             <Select
-              native
               value={filter}
               onChange={handleSelectFilter}
             >
-              <option value='none'>{t('no-filter')}</option>
-              <optgroup label={t('blue-fish')}>
-                <option value='sothis'>{translate(locale, fishes[29788], 'name')}</option>
-                <option value='coral_manta'>{translate(locale, fishes[29789], 'name')}</option>
-                <option value='stonescale'>{translate(locale, fishes[29790], 'name')}</option>
-                <option value='elasmosaurus'>{translate(locale, fishes[29791], 'name')}</option>
-                <option value='hafgufa'>{translate(locale, fishes[32074], 'name')}</option>
-                <option value='seafaring_toad'>{translate(locale, fishes[32094], 'name')}</option>
-                <option value='placodus'>{translate(locale, fishes[32114], 'name')}</option>
-              </optgroup>
-              <optgroup label={t('achievements')}>
-                <option value='octopodes'>{translate(locale, achievements[2563], 'name')}</option>
-                <option value='sharks'>{translate(locale, achievements[2564], 'name')}</option>
-                <option value='jellyfish'>{translate(locale, achievements[2565], 'name')}</option>
-                <option value='seadragons'>{translate(locale, achievements[2566], 'name')}</option>
-                <option value='balloons'>{translate(locale, achievements[2754], 'name')}</option>
-                <option value='crabs'>{translate(locale, achievements[2755], 'name')}</option>
-                <option value='mantas'>{translate(locale, achievements[2756], 'name')}</option>
-              </optgroup>
-              <optgroup label={upperFirst(translate(locale, fishingSpots[241], 'place_name_sub', 'no_article'))}>
-                <option value='R'>{upperFirst(translate(locale, fishingSpots[241], 'place_name_sub', 'no_article'))}</option>
-                <option value='RD'>{upperFirst(translate(locale, fishingSpots[241], 'place_name_sub', 'no_article'))} - {t('time-day')}</option>
-                <option value='RS'>{upperFirst(translate(locale, fishingSpots[241], 'place_name_sub', 'no_article'))} - {t('time-sunset')}</option>
-                <option value='RN'>{upperFirst(translate(locale, fishingSpots[241], 'place_name_sub', 'no_article'))} - {t('time-night')}</option>
-              </optgroup>
-              <optgroup label={upperFirst(translate(locale, fishingSpots[243], 'place_name_sub', 'no_article'))}>
-                <option value='N'>{upperFirst(translate(locale, fishingSpots[243], 'place_name_sub', 'no_article'))}</option>
-                <option value='ND'>{upperFirst(translate(locale, fishingSpots[243], 'place_name_sub', 'no_article'))} - {t('time-day')}</option>
-                <option value='NS'>{upperFirst(translate(locale, fishingSpots[243], 'place_name_sub', 'no_article'))} - {t('time-sunset')}</option>
-                <option value='NN'>{upperFirst(translate(locale, fishingSpots[243], 'place_name_sub', 'no_article'))} - {t('time-night')}</option>
-              </optgroup>
-              <optgroup label={upperFirst(translate(locale, fishingSpots[248], 'place_name_sub', 'no_article'))}>
-                <option value='B'>{upperFirst(translate(locale, fishingSpots[248], 'place_name_sub', 'no_article'))}</option>
-                <option value='BD'>{upperFirst(translate(locale, fishingSpots[248], 'place_name_sub', 'no_article'))} - {t('time-day')}</option>
-                <option value='BS'>{upperFirst(translate(locale, fishingSpots[248], 'place_name_sub', 'no_article'))} - {t('time-sunset')}</option>
-                <option value='BN'>{upperFirst(translate(locale, fishingSpots[248], 'place_name_sub', 'no_article'))} - {t('time-night')}</option>
-              </optgroup>
-              <optgroup label={upperFirst(translate(locale, fishingSpots[250], 'place_name_sub', 'no_article'))}>
-                <option value='T'>{upperFirst(translate(locale, fishingSpots[250], 'place_name_sub', 'no_article'))}</option>
-                <option value='TD'>{upperFirst(translate(locale, fishingSpots[250], 'place_name_sub', 'no_article'))} - {t('time-day')}</option>
-                <option value='TS'>{upperFirst(translate(locale, fishingSpots[250], 'place_name_sub', 'no_article'))} - {t('time-sunset')}</option>
-                <option value='TN'>{upperFirst(translate(locale, fishingSpots[250], 'place_name_sub', 'no_article'))} - {t('time-night')}</option>
-              </optgroup>
+              <MenuItem value='none'>{t('no-filter')}</MenuItem>
+              <ListSubheader className={classes.listSubheader}>{t('blue-fish')}</ListSubheader>
+              <MenuItem value='sothis'>{translate(locale, fishes[29788], 'name')}</MenuItem>
+              <MenuItem value='coral_manta'>{translate(locale, fishes[29789], 'name')}</MenuItem>
+              <MenuItem value='stonescale'>{translate(locale, fishes[29790], 'name')}</MenuItem>
+              <MenuItem value='elasmosaurus'>{translate(locale, fishes[29791], 'name')}</MenuItem>
+              <MenuItem value='hafgufa'>{translate(locale, fishes[32074], 'name')}</MenuItem>
+              <MenuItem value='seafaring_toad'>{translate(locale, fishes[32094], 'name')}</MenuItem>
+              <MenuItem value='placodus'>{translate(locale, fishes[32114], 'name')}</MenuItem>
+              <ListSubheader className={classes.listSubheader}>{t('achievements')}</ListSubheader>
+              <MenuItem value='octopodes'>{translate(locale, achievements[2563], 'name')}</MenuItem>
+              <MenuItem value='sharks'>{translate(locale, achievements[2564], 'name')}</MenuItem>
+              <MenuItem value='jellyfish'>{translate(locale, achievements[2565], 'name')}</MenuItem>
+              <MenuItem value='seadragons'>{translate(locale, achievements[2566], 'name')}</MenuItem>
+              <MenuItem value='balloons'>{translate(locale, achievements[2754], 'name')}</MenuItem>
+              <MenuItem value='crabs'>{translate(locale, achievements[2755], 'name')}</MenuItem>
+              <MenuItem value='mantas'>{translate(locale, achievements[2756], 'name')}</MenuItem>
+              <ListSubheader className={classes.listSubheader}>{upperFirst(translate(locale, fishingSpots[241], 'place_name_sub', 'no_article'))}</ListSubheader>
+              <MenuItem value='R'>{upperFirst(translate(locale, fishingSpots[241], 'place_name_sub', 'no_article'))}</MenuItem>
+              <MenuItem value='RD'>{upperFirst(translate(locale, fishingSpots[241], 'place_name_sub', 'no_article'))} - {t('time-day')}</MenuItem>
+              <MenuItem value='RS'>{upperFirst(translate(locale, fishingSpots[241], 'place_name_sub', 'no_article'))} - {t('time-sunset')}</MenuItem>
+              <MenuItem value='RN'>{upperFirst(translate(locale, fishingSpots[241], 'place_name_sub', 'no_article'))} - {t('time-night')}</MenuItem>
+              <ListSubheader className={classes.listSubheader}>{upperFirst(translate(locale, fishingSpots[243], 'place_name_sub', 'no_article'))}</ListSubheader>
+              <MenuItem value='N'>{upperFirst(translate(locale, fishingSpots[243], 'place_name_sub', 'no_article'))}</MenuItem>
+              <MenuItem value='ND'>{upperFirst(translate(locale, fishingSpots[243], 'place_name_sub', 'no_article'))} - {t('time-day')}</MenuItem>
+              <MenuItem value='NS'>{upperFirst(translate(locale, fishingSpots[243], 'place_name_sub', 'no_article'))} - {t('time-sunset')}</MenuItem>
+              <MenuItem value='NN'>{upperFirst(translate(locale, fishingSpots[243], 'place_name_sub', 'no_article'))} - {t('time-night')}</MenuItem>
+              <ListSubheader className={classes.listSubheader}>{upperFirst(translate(locale, fishingSpots[248], 'place_name_sub', 'no_article'))}</ListSubheader>
+              <MenuItem value='B'>{upperFirst(translate(locale, fishingSpots[248], 'place_name_sub', 'no_article'))}</MenuItem>
+              <MenuItem value='BD'>{upperFirst(translate(locale, fishingSpots[248], 'place_name_sub', 'no_article'))} - {t('time-day')}</MenuItem>
+              <MenuItem value='BS'>{upperFirst(translate(locale, fishingSpots[248], 'place_name_sub', 'no_article'))} - {t('time-sunset')}</MenuItem>
+              <MenuItem value='BN'>{upperFirst(translate(locale, fishingSpots[248], 'place_name_sub', 'no_article'))} - {t('time-night')}</MenuItem>
+              <ListSubheader className={classes.listSubheader}>{upperFirst(translate(locale, fishingSpots[250], 'place_name_sub', 'no_article'))}</ListSubheader>
+              <MenuItem value='T'>{upperFirst(translate(locale, fishingSpots[250], 'place_name_sub', 'no_article'))}</MenuItem>
+              <MenuItem value='TD'>{upperFirst(translate(locale, fishingSpots[250], 'place_name_sub', 'no_article'))} - {t('time-day')}</MenuItem>
+              <MenuItem value='TS'>{upperFirst(translate(locale, fishingSpots[250], 'place_name_sub', 'no_article'))} - {t('time-sunset')}</MenuItem>
+              <MenuItem value='TN'>{upperFirst(translate(locale, fishingSpots[250], 'place_name_sub', 'no_article'))} - {t('time-night')}</MenuItem>
             </Select>
           </FormControl>
         </Grid>
