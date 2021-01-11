@@ -4,6 +4,7 @@ import en from './locales/en.json'
 import de from './locales/de.json'
 import fr from './locales/fr.json'
 import ja from './locales/ja.json'
+import softHyphens from './locales/soft-hyphens'
 
 const LOCALES = { en, de, fr, ja }
 
@@ -69,6 +70,6 @@ export function forecastWeathers (
 }
 
 export function translate (type: 'weather' | 'region' | 'zone', id: string, locale: string = 'en') {
-  const translations = LOCALES[locale]
-  return (translations && translations[type][id]) || id
+  const translation = (LOCALES[locale] && LOCALES[locale][type][id]) || id
+  return softHyphens[translation] || translation
 }
