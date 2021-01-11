@@ -1,0 +1,27 @@
+{
+  "plainsfolk": {
+    "phoneme_a": [
+      "A", "Aby", "Apa", "Ba", "Cha", "Du", "E", "Fe", "Fu", "Ga", "Gol", "Ha", "Ho", "Ka", "Kam", "Ke", "Ko", "Lif", "Mo", "Na", "No", "O", "Pe", "Pu", "Ra", "Ro", "Sha", "Sho", "Su", "Te", "Wa", "Ya", "Yu", "Ja", "Va", "Za", "Zo"
+    ],
+    "phoneme_b": [
+      "Aka", "Bas", "Cho", "Gin", "Guda", "Hoy", "Ipo", "Jika", "Jin", "Lado", "Lbi", "Lgo", "Lin", "Lito", "Lka", "Lno", "Lto", "Lugi", "Lyo", "Lza", "Maga", "Mani", "Micha", "Mono", "Nan", "Nco", "Neko", "Neli", "Nga", "Ngi", "Ngo", "On", "Pas", "Ppo", "Ral", "Rimu", "Rok", "Tan", "Toni", "Topa", "Wazi", "Zai", "Zak", "Zon", "Zyl", "Zyn"
+    ],
+    "phoneme_c": [
+      "An", "Aro", "Ato", "Bu", "Buli", "Buoy", "Dala", "Du", "E", "Gami", "Gu", "Ha", "Hamy", "Hon", "Ke", "Kelu", "Kesu", "Kog", "Loh", "Ma", "Maba", "Mada", "Magu", "Mena", "Mesha", "Mol", "Na", "Po", "Poto", "Ra", "Rala", "Rom", "Tam", "Taya", "Tha", "Tun", "Vu", "Yara", "Yu", "Za", "Zo", "Zu", "Zuka"
+    ]
+  },
+  "dunesfolk": {
+    "male_phoneme_ac": [
+      "Bi", "Bu", "Cha", "Che", "Co", "Da", "Di", "Fa", "Fo", "Fu", "Ga", "Gi", "Go", "Gu", "Ha", "Hi", "Ja", "Ji", "Jo", "Ko", "Ku", "La", "Li", "Lo", "Ma", "Me", "Mi", "Na", "No", "Pa", "Pe", "Po", "Qu", "Ra", "Re", "Ri", "Ro", "Ru", "Sa", "He", "Se", "Ta", "Tu", "Wa", "Ya", "Yo", "Yu", "Za", "Ze", "Zu"
+    ],
+    "male_phoneme_b": [
+      "An", "Beta", "Doa", "Doga", "Fono", "Issa", "Joni", "Lai", "Lan", "Lao", "Lata", "Mai", "Maya", "Muko", "Mun", "Nasu", "Neja", "Nen", "Nima", "Nji", "Nori", "Npa", "Nzo", "Poki", "Raji", "Raka", "Rya", "Samu", "Shan", "Tuni", "Ulu", "Vachi", "Wai", "Wazu", "Yadi", "Yako", "Yon", "Zan", "Zigo"
+    ],
+    "female_phoneme_a": [
+        "Ba", "Bi", "Bu", "Cha", "Chu", "Da", "De", "Di", "Fa", "Fi", "Fu", "Ga", "Go", "Ha", "Hi", "Ja", "Ji", "Ke", "Ki", "Ko", "Ku", "La", "Le", "Li", "Lo", "Lu", "Ma", "Mi", "Mo", "Na", "Ni", "No", "Nu", "Pa", "Pe", "Po", "Pu", "Qu", "Ru", "Sa", "Se", "Sho", "So", "Ta", "Te", "To", "Tu", "Va", "Wa", "Wo", "Ya", "Yo", "Yu", "Ze", "Zo", "Zu"
+      ],
+    "female_phoneme_b": [
+      "Ba", "Cha", "Da", "Fu", "I", "Ka", "Ke", "Ki", "Ku", "La", "Le", "Lo", "Lu", "Mo", "Mu", "Na", "Ne", "Ni", "No", "Po", "Pu", "Re", "Ro", "Sa", "Sha", "Shu", "Si", "Su", "Ta", "To", "Tsu", "Wa", "Wo", "Ya", "Yo", "Za", "Ze"
+    ]
+  }
+}

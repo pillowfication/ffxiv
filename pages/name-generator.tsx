@@ -1,14 +1,14 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import Page from '../src/Page'
-import generateMiqote from '../src/name-generator/generate-miqote'
+import generateLalafell from '../src/name-generator/generate-lalafell'
 import { Clan, Gender } from '../src/name-generator/types'
 
 const NameGenerator = () => {
   return (
     <Page title='Name Generator'>
       <Typography paragraph>
-        {Array(10).fill(null).map(() => generateMiqote(Clan.SeekersOfTheSun, Gender.Male)).join(', ')}
+        {Array(10).fill(null).map(() => generateLalafell(Clan.Dunesfolk, Gender.Male)).join(', ')}
       </Typography>
     </Page>
   )
