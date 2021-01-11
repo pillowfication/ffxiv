@@ -1,34 +1,34 @@
 export enum Race {
-  Hyur,
-  Elezen,
-  Lalafell,
-  Miqote,
-  Roegadyn,
-  AuRa,
-  Hrothgar,
-  Viera
+  Hyur = 'hyur',
+  Elezen = 'elezen',
+  Lalafell = 'lalafell',
+  Miqote = 'miqote',
+  Roegadyn = 'roegadyn',
+  AuRa = 'auRa',
+  Hrothgar = 'hrothgar',
+  Viera = 'viera'
 }
 
 export enum Clan {
-  Midlander,
-  Highlander,
-  Wildwood,
-  Duskwight,
-  Plainsfolk,
-  Dunesfolk,
-  SeekersOfTheSun,
-  KeepersOfTheMoon,
-  SeaWolves,
-  Hellsguard,
-  Raen,
-  Xaela,
-  Helions,
-  TheLost,
-  Rava,
-  Veena
+  Midlander = 'midlander',
+  Highlander = 'highlander',
+  Wildwood = 'wildwood',
+  Duskwight = 'duskwight',
+  Plainsfolk = 'plainsfolk',
+  Dunesfolk = 'dunesfolk',
+  SeekersOfTheSun = 'seekersOfTheSun',
+  KeepersOfTheMoon = 'keepersOfTheMoon',
+  SeaWolves = 'seaWolves',
+  Hellsguard = 'hellsguard',
+  Raen = 'raen',
+  Xaela = 'xaela',
+  Helions = 'helions',
+  TheLost = 'theLost',
+  Rava = 'rava',
+  Veena = 'veena'
 }
 
 export enum Gender {
-  Male,
-  Female
+  Male = 'male',
+  Female = 'female'
 }

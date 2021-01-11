@@ -1,3 +1,10 @@
+import en from './locales/en.json'
+import de from './locales/de.json'
+import fr from './locales/fr.json'
+import ja from './locales/ja.json'
+
+const LOCALES = { en, de, fr, ja }
+
 export function randomElement<T> (...arrays: T[][]) {
   if (arrays.length === 0) {
     return undefined
@@ -19,4 +26,8 @@ export function randomElement<T> (...arrays: T[][]) {
 
 export function upperFirst (string: string) {
   return string[0].toUpperCase() + string.slice(1).toLowerCase()
+}
+
+export function translate (type: 'race' | 'clan' | 'gender', id: string, locale: string = 'en') {
+  return (LOCALES[locale] && LOCALES[locale][type][id]) || id
 }

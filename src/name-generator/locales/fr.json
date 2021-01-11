@@ -1,0 +1,34 @@
+{
+  "race": {
+    "hyur": "Hyur",
+    "elezen": "Elezen",
+    "lalafell": "Lalafell",
+    "miqote": "Miqo’te",
+    "roegadyn": "Roegadyn",
+    "auRa": "Au Ra",
+    "hrothgar": "Hrothgar",
+    "viera": "Viera"
+  },
+  "clan": {
+    "midlander": "Midlander",
+    "highlander": "Highlander",
+    "wildwood": "Wildwood",
+    "duskwight": "Duskwight",
+    "plainsfolk": "Plainsfolk",
+    "dunesfolk": "Dunesfolk",
+    "seekersOfTheSun": "Seekers of the Sun",
+    "keepersOfTheMoon": "Keepers of the Moon",
+    "seaWolves": "Sea Wolves",
+    "hellsguard": "Hellsguard",
+    "raen": "Raen",
+    "xaela": "Xaela",
+    "helions": "Helions",
+    "theLost": "The Lost",
+    "rava": "Rava",
+    "veena": "Veena"
+  },
+  "gender": {
+    "male": "Male",
+    "female": "Female"
+  }
+}
