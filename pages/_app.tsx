@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import NextApp from 'next/app'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { ThemeProvider, makeStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Typography from '@material-ui/core/Typography'
@@ -24,6 +25,7 @@ import Link from '../src/Link'
 import GlobalStyles from '../src/GlobalStyles'
 import { lightTheme, darkTheme } from '../src/themes'
 import i18n from '../i18n'
+import * as gtag from '../src/gtag'
 
 const LANGUAGES = {
   en: 'English',
@@ -68,8 +70,19 @@ type Props = {
 
 const App = ({ Component, pageProps }: Props) => {
   const classes = useStyles()
+  const router = useRouter()
   const [languageAnchorEl, setLanguageAnchorEl] = useState<null | HTMLElement>(null)
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
+
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      gtag.pageview(url)
+    }
+    router.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
 
   useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side')
