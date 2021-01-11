@@ -109,7 +109,7 @@ const Index = () => {
             Calculator for the Mini Cactpot lottery.
           </IndexSection>
           <IndexSection url='/name-generator' title='Name Generator'>
-            FFXIV random name generator.
+            FFXIV random name generator for all the races.
           </IndexSection>
           <IndexSection url='/ocean-fishing' title='Ocean Fishing'>
             Schedule for upcoming ocean fishing voyages with information on blue fish, achievements, and more.

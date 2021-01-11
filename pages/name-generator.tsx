@@ -8,13 +8,8 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Button from '@material-ui/core/Button'
 import Page from '../src/Page'
 import Section from '../src/Section'
-import generateHyur from '../src/name-generator/generate-hyur'
-import generateElezen from '../src/name-generator/generate-elezen'
-import generateLalafell from '../src/name-generator/generate-lalafell'
-import generateMiqote from '../src/name-generator/generate-miqote'
-import generateRoegadyn from '../src/name-generator/generate-roegadyn'
-import { randomElement, translate } from '../src/name-generator/utils'
-import { Race, Clan, Gender } from '../src/name-generator/types'
+import generate, { translate } from '../src/name-generator/names'
+import { Race, Clan, Gender } from '../src/name-generator/names/types'
 import i18n from '../src/i18n'
 import { I18n, TFunction } from 'next-i18next'
 
@@ -36,12 +31,9 @@ const GENDERS = [
   Gender.Male,
   Gender.Female
 ]
-const GENERATORS = {
-  [Race.Hyur]: generateHyur,
-  [Race.Elezen]: generateElezen,
-  [Race.Lalafell]: generateLalafell,
-  [Race.Miqote]: generateMiqote,
-  [Race.Roegadyn]: generateRoegadyn
+
+function randomElement<T> (array: T[]) {
+  return array[Math.floor(Math.random() * array.length)]
 }
 
 const useStyles = makeStyles(theme => ({
@@ -90,7 +82,7 @@ const NameGenerator = ({ t, i18n }: Props) => {
       const genRace = race || randomElement(RACES)
       const genClan = clan || randomElement(CLANS[genRace])
       const genGender = gender || randomElement(GENDERS)
-      newResults.push(GENERATORS[genRace](genClan, genGender))
+      newResults.push(generate(genRace, genClan, genGender))
     }
     setResults(newResults)
   }
