@@ -12,7 +12,7 @@ const SURNAMES = {
   [Clan.Duskwight]: data.duskwight_surnames
 }
 
-export default function generateHyur (clan: Clan.Wildwood | Clan.Duskwight, gender: Gender) {
+export default function generateElezen (clan: Clan.Wildwood | Clan.Duskwight, gender: Gender) {
   const forename = gender === Gender.Male
     ? randomElement(FORENAMES[gender], SURNAMES[Clan.Wildwood], SURNAMES[Clan.Duskwight])
     : randomElement(FORENAMES[gender])
