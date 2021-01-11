@@ -1,5 +1,11 @@
 import { Weather, Zone } from './consts'
 import CHANCES from './chances'
+import en from './locales/en.json'
+import de from './locales/de.json'
+import fr from './locales/fr.json'
+import ja from './locales/ja.json'
+
+const LOCALES = { en, de, fr, ja }
 
 export function getSeed (date = new Date()) {
   return Math.floor(date.getTime() / 1400000)
@@ -62,6 +68,7 @@ export function forecastWeathers (
   return results
 }
 
-export function translateId (id: any) {
-  return id
+export function translate (type: 'weather' | 'region' | 'zone', id: string, locale: string = 'en') {
+  const translations = LOCALES[locale]
+  return (translations && translations[type][id]) || id
 }

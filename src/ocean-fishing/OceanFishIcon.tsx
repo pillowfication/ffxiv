@@ -22,43 +22,43 @@ const BONUS_ICONS_INFO = {
     name_en: 'Octopus Travelers',
     name_de: 'Oktopussreiter',
     name_fr: 'Octo-opus',
-    name_jp: 'オクトパストラベラー'
+    name_ja: 'オクトパストラベラー'
   },
   shark: {
     name_en: 'Certifiable Shark Hunters',
     name_de: 'Haijäger',
     name_fr: 'Chasseurs de requins',
-    name_jp: 'シャークハンター'
+    name_ja: 'シャークハンター'
   },
   jellyfish: {
     name_en: 'Jelled Together',
     name_de: 'Quallenfänger',
     name_fr: 'Le bateau de la méduse',
-    name_jp: 'クラゲマニア'
+    name_ja: 'クラゲマニア'
   },
   seadragon: {
     name_en: 'Maritime Dragonslayers',
     name_de: 'Seepferdchenbändiger',
     name_fr: 'Fièvre de cheval des mers',
-    name_jp: 'シードラゴンキラー'
+    name_ja: 'シードラゴンキラー'
   },
   balloon: {
     name_en: 'Balloon Catchers',
     name_de: 'Ballonfänger',
     name_fr: 'Amateur du ballon rond',
-    name_jp: 'バルーンキャッチャー'
+    name_ja: 'バルーンキャッチャー'
   },
   crab: {
     name_en: 'Crab Boat Crew',
     name_de: 'Krabbenschiffsbesatzung',
     name_fr: 'Pince-sans-rire',
-    name_jp: '蟹工船'
+    name_ja: '蟹工船'
   },
   manta: {
     name_en: 'Sticking it to the Manta',
     name_de: 'Manta! Manta!',
     name_fr: 'Raies arraisonnées',
-    name_jp: 'エイエイオー'
+    name_ja: 'エイエイオー'
   }
 }
 

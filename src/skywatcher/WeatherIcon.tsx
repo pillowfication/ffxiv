@@ -4,7 +4,9 @@ import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Tooltip from '@material-ui/core/Tooltip'
 import { Weather } from './weather/consts'
-import { translateId } from './weather'
+import { translate } from './weather'
+import i18n from '../../i18n'
+import { I18n } from 'next-i18next'
 
 const WEATHERS = [
   Weather.CLEAR_SKIES,
@@ -34,6 +36,7 @@ const useStyles = makeStyles(() => {
       display: 'inline-block',
       width: '30px',
       height: '30px',
+      verticalAlign: 'middle',
       backgroundImage: 'url("/images/weather-icons.png")',
       backgroundSize: `${WEATHERS.length * 100}% 100%`
     }
@@ -46,12 +49,13 @@ const useStyles = makeStyles(() => {
 
 type Props = {
   weather: Weather,
-  showLabel?: boolean
+  showLabel?: boolean,
+  i18n: I18n
 }
 
-const WeatherIcon = ({ weather, showLabel = false }: Props) => {
+const WeatherIcon = ({ weather, showLabel = false, i18n }: Props) => {
   const classes = useStyles()
-  const weatherString = translateId(weather)
+  const weatherString = translate('weather', weather, i18n.language)
 
   return (
     <>
@@ -68,4 +72,4 @@ const WeatherIcon = ({ weather, showLabel = false }: Props) => {
   )
 }
 
-export default WeatherIcon
+export default i18n.withTranslation()(WeatherIcon)

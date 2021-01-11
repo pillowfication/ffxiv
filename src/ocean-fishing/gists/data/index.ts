@@ -1,6 +1,7 @@
 import fishData from './ocean-fish-data.json'
 import spreadsheetData from './spreadsheet-data.json'
 import biteTimes from './ocean-fish-bite-times.json'
+import { Weather } from '../../../skywatcher/weather/consts'
 
 export type FishingSpot = {
   id: number,
@@ -53,8 +54,8 @@ export type FishInfo = {
   time?: string,
   weathers?:
     { type: 'ALL' } |
-    { type: 'OK', list: string[] } |
-    { type: 'NOT OK', list: string[] },
+    { type: 'OK', list: Weather[] } |
+    { type: 'NOT OK', list: Weather[] },
   stars?: number,
   category?: 'octopus' | 'shark' | 'jellyfish' | 'seadragon' | 'balloon' | 'crab' | 'manta',
   intuition?: Array<{id: number, count: number}>

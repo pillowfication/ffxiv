@@ -145,14 +145,14 @@ const FishTable = ({ spots, time, t, i18n }: Props) => {
                                 return 'Any'
                               case 'OK':
                                 return fishInfo.weathers.list.map(weather =>
-                                  <WeatherIcon key={weather} weatherId={weather} showLabel={false} />
+                                  <WeatherIcon key={weather} weather={weather} showLabel={false} />
                                 )
                               case 'NOT OK':
                                 return (
                                   <>
-                                    <span style={{ verticalAlign: 'super' }}>Not&nbsp;</span>
+                                    <span style={{ verticalAlign: 'middle' }}>Not </span>
                                     {fishInfo.weathers.list.map(weather =>
-                                      <WeatherIcon key={weather} weatherId={weather} showLabel={false} />
+                                      <WeatherIcon key={weather} weather={weather} showLabel={false} />
                                     )}
                                   </>
                                 )

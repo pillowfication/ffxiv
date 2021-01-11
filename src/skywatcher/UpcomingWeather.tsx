@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
-import { getSeed, getNextWeathers, getZoneWeather, translateId } from './weather'
+import { getSeed, getNextWeathers, getZoneWeather, translate } from './weather'
 import { paddedZero, formatTime } from '../utils'
 import Section from '../Section'
 import Typography from '@material-ui/core/Typography'
@@ -23,6 +23,8 @@ import TableCell from '@material-ui/core/TableCell'
 import WeatherIcon from './WeatherIcon'
 import { Region, Zone } from './weather/consts'
 import PARTITION from './weather/regions-partition'
+import i18n from '../../i18n'
+import { I18n } from 'next-i18next'
 
 const WEATHER_CELL_WIDTH = 75
 
@@ -78,16 +80,18 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 type Props = {
-  now?: Date
+  now?: Date,
+  i18n: I18n
 }
 
-const UpcomingWeather = ({ now }: Props) => {
+const UpcomingWeather = ({ now, i18n }: Props) => {
   const classes = useStyles()
   const router = useRouter()
   const [filter, setFilter] = useState<Region | null>(null)
   const [showLabels, setShowLabels] = useState(true)
   const [showLocalTime, setShowLocalTime] = useState(false)
   const [showWeatherChance, setShowWeatherChance] = useState(false)
+  const locale = i18n.language
 
   useEffect(() => {
     const queryFilter = String(router.query.filter)
@@ -123,7 +127,7 @@ const UpcomingWeather = ({ now }: Props) => {
             <Select onChange={handleSelectFilter} value={filter || 'none'}>
               <MenuItem value='none'>Show all regions</MenuItem>
               {Object.values(Region).map(region =>
-                <MenuItem key={region} value={region}>{translateId(region)}</MenuItem>
+                <MenuItem key={region} value={region}>{translate('region', region, locale)}</MenuItem>
               )}
             </Select>
           </FormControl>
@@ -175,7 +179,7 @@ const UpcomingWeather = ({ now }: Props) => {
 
           return sections.map(([region, zones]) =>
             <Section key={region}>
-              <Typography variant='h6' gutterBottom>{translateId(region)}</Typography>
+              <Typography variant='h6' gutterBottom>{translate('region', region, locale)}</Typography>
               <TableContainer>
                 <Table size='small' className={classes.weatherTable}>
                   <TableHead>
@@ -222,7 +226,7 @@ const UpcomingWeather = ({ now }: Props) => {
                     {zones.map((zone) =>
                       <TableRow key={zone} hover>
                         <TableCell component='th' scope='row' className={classes.regionCell}>
-                          <Typography>{translateId(zone)}</Typography>
+                          <Typography>{translate('zone', zone, locale)}</Typography>
                         </TableCell>
                         {hashes.map((hash, index) =>
                           <TableCell
@@ -245,4 +249,4 @@ const UpcomingWeather = ({ now }: Props) => {
   )
 }
 
-export default UpcomingWeather
+export default i18n.withTranslation('skywatcher')(UpcomingWeather)

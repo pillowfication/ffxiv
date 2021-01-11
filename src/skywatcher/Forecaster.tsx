@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { getPossibleWeathers, forecastWeathers, translateId } from './weather'
+import { getPossibleWeathers, forecastWeathers, translate } from './weather'
 import { toTimeString, timeUntil } from '../utils'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
@@ -25,6 +25,8 @@ import Section from '../Section'
 import WeatherIcon from './WeatherIcon'
 import { Weather, Region, Zone } from './weather/consts'
 import PARTITION from './weather/regions-partition'
+import i18n from '../../i18n'
+import { I18n } from 'next-i18next'
 
 const DATE_FORMAT = { month: '2-digit', day: '2-digit' }
 const WEATHER_CELL_WIDTH = 75
@@ -97,10 +99,11 @@ function displayBell (seed: number) {
 }
 
 type Props = {
-  now?: Date
+  now?: Date,
+  i18n: I18n
 }
 
-const Forecaster = ({ now }: Props) => {
+const Forecaster = ({ now, i18n }: Props) => {
   const classes = useStyles()
   const [zoneOption, setZoneOption] = useState<ZoneOption | null>(null)
   const [transitionWeather, setTransitionWeather] = useState<Weather | null>(null)
@@ -117,6 +120,7 @@ const Forecaster = ({ now }: Props) => {
       if (!times[16] && seed % 3 === 2) return false
       return true
     })
+  const locale = i18n.language
 
   const handleSelectZone = (_: any, zoneOption: ZoneOption) => {
     setZoneOption(zoneOption)
@@ -142,8 +146,8 @@ const Forecaster = ({ now }: Props) => {
         <Grid item xs={12} md={4}>
           <Autocomplete
             options={ZONES_OPTIONS}
-            groupBy={({ region }) => translateId(region)}
-            getOptionLabel={({ zone }) => translateId(zone)}
+            groupBy={({ region }) => translate('region', region, locale)}
+            getOptionLabel={({ zone }) => translate('zone', zone, locale)}
             renderInput={params => <TextField {...params} label='Select a zone' />}
             value={zoneOption}
             getOptionSelected={(option, value) => option.zone === value.zone}
@@ -161,7 +165,7 @@ const Forecaster = ({ now }: Props) => {
               <MenuItem value='none'>{possibleWeathers ? 'Any weather' : 'Select a zone first'}</MenuItem>
               {possibleWeathers && (
                 possibleWeathers.map(weather =>
-                  <MenuItem key={weather} value={weather}>{translateId(weather)}</MenuItem>
+                  <MenuItem key={weather} value={weather}>{translate('weather', weather, locale)}</MenuItem>
                 )
               )}
             </Select>
@@ -177,7 +181,7 @@ const Forecaster = ({ now }: Props) => {
               <MenuItem value='none'>{possibleWeathers ? 'Any weather' : 'Select a zone first'}</MenuItem>
               {possibleWeathers && (
                 possibleWeathers.map(weather =>
-                  <MenuItem key={weather} value={weather}>{translateId(weather)}</MenuItem>
+                  <MenuItem key={weather} value={weather}>{translate('weather', weather, locale)}</MenuItem>
                 )
               )}
             </Select>
@@ -260,4 +264,4 @@ const Forecaster = ({ now }: Props) => {
   )
 }
 
-export default Forecaster
+export default i18n.withTranslation('skywatcher')(Forecaster)
