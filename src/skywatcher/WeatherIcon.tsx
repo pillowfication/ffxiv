@@ -39,6 +39,11 @@ const useStyles = makeStyles(() => {
       verticalAlign: 'middle',
       backgroundImage: 'url("/images/weather-icons.png")',
       backgroundSize: `${WEATHERS.length * 100}% 100%`
+    },
+    label: {
+      '-webkit-hyphens': 'auto' as 'auto',
+      '-ms-hyphens': 'auto' as 'auto',
+      hyphens: 'auto' as 'auto'
     }
   }
   WEATHERS.forEach((weatherId, index) => {
@@ -65,7 +70,7 @@ const WeatherIcon = ({ weather, showLabel = false, i18n }: Props) => {
       {showLabel && (
         <>
           <br />
-          <Typography variant='caption'>{weatherString}</Typography>
+          <Typography variant='caption' className={classes.label}>{weatherString}</Typography>
         </>
       )}
     </>
