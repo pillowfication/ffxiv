@@ -19,7 +19,7 @@ const SURNAMES = {
 }
 
 export default function generateHyur (clan: Clan.Midlander | Clan.Highlander, gender: Gender) {
-  const forenames = FORENAMES[clan][gender]
-  const surnames = SURNAMES[clan]
-  return `${randomElement(forenames)} ${randomElement(surnames)}`
+  const forename = randomElement(FORENAMES[clan][gender])
+  const surname = randomElement(SURNAMES[clan])
+  return `${forename} ${surname}`
 }
