@@ -21,11 +21,21 @@ import TableBody from '@material-ui/core/TableBody'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import WeatherIcon from './WeatherIcon'
-import { Region, Zone } from './weather/consts'
+import { Region } from './weather/consts'
 import PARTITION from './weather/regions-partition'
 import i18n from '../../i18n'
 import { I18n } from 'next-i18next'
 
+const REGIONS = [
+  Region.LA_NOSCEA,
+  Region.THE_BLACK_SHROUD,
+  Region.THANALAN,
+  Region.ISHGARD_AND_SURROUNDING_AREAS,
+  Region.GYR_ABANIA,
+  Region.THE_FAR_EAST,
+  Region.NORVRANDT,
+  Region.OTHERS
+]
 const WEATHER_CELL_WIDTH = 75
 
 const useStyles = makeStyles((theme) => ({
@@ -106,17 +116,9 @@ const UpcomingWeather = ({ now, i18n }: Props) => {
     })
   }
 
-  const handleToggleLabels = () => {
-    setShowLabels(!showLabels)
-  }
-
-  const handleToggleLocalTime = () => {
-    setShowLocalTime(!showLocalTime)
-  }
-
-  const handleToggleWeatherChance = () => {
-    setShowWeatherChance(!showWeatherChance)
-  }
+  const handleToggleLabels = () => { setShowLabels(!showLabels) }
+  const handleToggleLocalTime = () => { setShowLocalTime(!showLocalTime) }
+  const handleToggleWeatherChance = () => { setShowWeatherChance(!showWeatherChance) }
 
   return (
     <Section title='Upcoming Weather'>
@@ -175,9 +177,9 @@ const UpcomingWeather = ({ now, i18n }: Props) => {
 
           const currentSeed = getSeed()
           const hashes = getNextWeathers(currentSeed - 1, 10)
-          const sections = (filter ? [[filter, PARTITION[filter]]] : Object.entries(PARTITION)) as [Region, Zone[]][]
+          const sections = (filter ? [filter] : REGIONS).map(region => ({ region, zones: PARTITION[region] }))
 
-          return sections.map(([region, zones]) =>
+          return sections.map(({ region, zones }) =>
             <Section key={region}>
               <Typography variant='h6' gutterBottom>{translate('region', region, locale)}</Typography>
               <TableContainer>

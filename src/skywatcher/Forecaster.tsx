@@ -28,6 +28,16 @@ import PARTITION from './weather/regions-partition'
 import i18n from '../../i18n'
 import { I18n } from 'next-i18next'
 
+const REGIONS = [
+  Region.LA_NOSCEA,
+  Region.THE_BLACK_SHROUD,
+  Region.THANALAN,
+  Region.ISHGARD_AND_SURROUNDING_AREAS,
+  Region.GYR_ABANIA,
+  Region.THE_FAR_EAST,
+  Region.NORVRANDT,
+  Region.OTHERS
+]
 const DATE_FORMAT = { month: '2-digit', day: '2-digit' }
 const WEATHER_CELL_WIDTH = 75
 
@@ -36,7 +46,7 @@ type ZoneOption = {
   zone: Zone
 }
 const ZONES_OPTIONS: ZoneOption[] = []
-for (const region of Object.values(Region)) {
+for (const region of REGIONS) {
   for (const zone of PARTITION[region]) {
     ZONES_OPTIONS.push({ region, zone })
   }
