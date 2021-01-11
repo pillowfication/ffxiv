@@ -8,20 +8,6 @@
     <xhtml:link href="https://ffxiv.pf-n.co/ja/" hreflang="ja" rel="alternate" />
   </url>
   <url>
-    <loc>https://ffxiv.pf-n.co/ocean-fishing/</loc>
-    <xhtml:link href="https://ffxiv.pf-n.co/ocean-fishing/" hreflang="x-default" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/de/ocean-fishing/" hreflang="de" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/fr/ocean-fishing/" hreflang="fr" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/ja/ocean-fishing/" hreflang="ja" rel="alternate" />
-  </url>
-  <url>
-    <loc>https://ffxiv.pf-n.co/ocean-fishing/fish/</loc>
-    <xhtml:link href="https://ffxiv.pf-n.co/ocean-fishing/fish/" hreflang="x-default" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/de/ocean-fishing/fish/" hreflang="de" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/fr/ocean-fishing/fish/" hreflang="fr" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/ja/ocean-fishing/fish/" hreflang="ja" rel="alternate" />
-  </url>
-  <url>
     <loc>https://ffxiv.pf-n.co/high-or-low/</loc>
     <xhtml:link href="https://ffxiv.pf-n.co/high-or-low/" hreflang="x-default" rel="alternate" />
     <xhtml:link href="https://ffxiv.pf-n.co/de/high-or-low/" hreflang="de" rel="alternate" />
@@ -34,6 +20,27 @@
     <xhtml:link href="https://ffxiv.pf-n.co/de/mini-cactpot/" hreflang="de" rel="alternate" />
     <xhtml:link href="https://ffxiv.pf-n.co/fr/mini-cactpot/" hreflang="fr" rel="alternate" />
     <xhtml:link href="https://ffxiv.pf-n.co/ja/mini-cactpot/" hreflang="ja" rel="alternate" />
+  </url>
+  <url>
+    <loc>https://ffxiv.pf-n.co/name-generator/</loc>
+    <xhtml:link href="https://ffxiv.pf-n.co/name-generator/" hreflang="x-default" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/de/name-generator/" hreflang="de" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/fr/name-generator/" hreflang="fr" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/ja/name-generator/" hreflang="ja" rel="alternate" />
+  </url>
+  <url>
+    <loc>https://ffxiv.pf-n.co/ocean-fishing/</loc>
+    <xhtml:link href="https://ffxiv.pf-n.co/ocean-fishing/" hreflang="x-default" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/de/ocean-fishing/" hreflang="de" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/fr/ocean-fishing/" hreflang="fr" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/ja/ocean-fishing/" hreflang="ja" rel="alternate" />
+  </url>
+  <url>
+    <loc>https://ffxiv.pf-n.co/ocean-fishing/fish/</loc>
+    <xhtml:link href="https://ffxiv.pf-n.co/ocean-fishing/fish/" hreflang="x-default" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/de/ocean-fishing/fish/" hreflang="de" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/fr/ocean-fishing/fish/" hreflang="fr" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/ja/ocean-fishing/fish/" hreflang="ja" rel="alternate" />
   </url>
   <url>
     <loc>https://ffxiv.pf-n.co/skywatcher/</loc>

@@ -3,6 +3,8 @@ import { makeStyles, fade } from '@material-ui/core/styles'
 import Link from '../src/Link'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
+import Section from '../src/Section'
+import Footer from '../src/Footer'
 import Lulu from '../public/images/lulu-icon.svg'
 
 const useStyles = makeStyles((theme) => ({
@@ -46,6 +48,11 @@ const useStyles = makeStyles((theme) => ({
   luluPillow: {
     marginBottom: theme.spacing(4),
     fontWeight: 'bold'
+  },
+  links: {
+    '& dd': {
+      margin: theme.spacing(0, 0, 2)
+    }
   }
 }))
 
@@ -58,10 +65,16 @@ type IndexSectionProps = {
 const IndexSection = ({ url, title, children }: IndexSectionProps) => {
   return (
     <>
-      <Link href={url}>
-        <Typography variant='h5' display='inline'>{title}</Typography>
-      </Link>
-      {children}
+      <dt>
+        <Link href={url}>
+          <Typography variant='h5' display='inline'>{title}</Typography>
+        </Link>
+      </dt>
+      <dd>
+        <Typography paragraph>
+          {children}
+        </Typography>
+      </dd>
     </>
   )
 }
@@ -87,36 +100,29 @@ const Index = () => {
           </Typography>
         </Grid>
       </Grid>
-
-      <IndexSection url='/high-or-low' title='High or Low'>
-        <Typography paragraph>
-          Calculator for the guessing game “High or Low” played against Tista-Bie in Eulmore.
-        </Typography>
-      </IndexSection>
-
-      <IndexSection url='/mini-cactpot' title='Mini Cactpot'>
-        <Typography paragraph>
-          Calculator for the Mini Cactpot lottery.
-        </Typography>
-      </IndexSection>
-
-      <IndexSection url='/ocean-fishing' title='Ocean Fishing'>
-        <Typography paragraph>
-          Schedule for upcoming ocean fishing voyages with information on blue fish, achievements, and more.
-        </Typography>
-      </IndexSection>
-
-      <IndexSection url='/skywatcher' title='Skywatcher'>
-        <Typography paragraph>
-          Schedule for weather in Eorzea and forecaster for upcoming weather patterns.
-        </Typography>
-      </IndexSection>
-
-      <IndexSection url='/wondrous-tails' title='Wondrous Tails'>
-        <Typography paragraph>
-          Calculator for the Wondrous Tails mini-game.
-        </Typography>
-      </IndexSection>
+      <Section>
+        <dl className={classes.links}>
+          <IndexSection url='/high-or-low' title='High or Low'>
+            Calculator for the guessing game “High or Low” played against Tista-Bie in Eulmore.
+          </IndexSection>
+          <IndexSection url='/mini-cactpot' title='Mini Cactpot'>
+            Calculator for the Mini Cactpot lottery.
+          </IndexSection>
+          <IndexSection url='/name-generator' title='Name Generator'>
+            FFXIV random name generator.
+          </IndexSection>
+          <IndexSection url='/ocean-fishing' title='Ocean Fishing'>
+            Schedule for upcoming ocean fishing voyages with information on blue fish, achievements, and more.
+          </IndexSection>
+          <IndexSection url='/skywatcher' title='Skywatcher'>
+            Schedule for weather in Eorzea and forecaster for upcoming weather patterns.
+          </IndexSection>
+          <IndexSection url='/wondrous-tails' title='Wondrous Tails'>
+            Calculator for the Wondrous Tails mini-game.
+          </IndexSection>
+        </dl>
+      </Section>
+      <Footer />
     </>
   )
 }
