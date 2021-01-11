@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const { fishingSpots, fishes, baits } = require('./data/ocean-fish-data.json')
 
-const CUTOFF = 0.1
+const CUTOFF = 0.02
 const OUTPUT = path.resolve(__dirname, './data/ocean-fish-bite-times.json')
 
 const BAITS = [

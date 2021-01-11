@@ -35,7 +35,7 @@ const AchievementJellyfish = ({ selectedRoute }: Props) => {
                 header: 'DH at <5s',
                 baitGroupProps: { ...getBaitGroup(29739), subtext: subtextDH }
               }, {
-                header: 'IC–DH at 5-9s',
+                header: 'IC–DH at 4-7s',
                 baitGroupProps: { ...getBaitGroup(29757), subtext: subtextDH }
               }]}
             />
@@ -48,13 +48,17 @@ const AchievementJellyfish = ({ selectedRoute }: Props) => {
             <Typography paragraph>
               Blind DH all <Tug strength={1} /> before 5s, and recast after 5s. IC is not necessary.
             </Typography>
+            <Typography variant='overline'>Spectral</Typography>
+            <Typography paragraph>
+              It is possible to blind DH Sea Nettles at ≥6s.
+            </Typography>
           </CardContent>
         </RouteCard>
         <RouteCard index={2} stop={stops[2]}>
           <CardContent>
             <BaitList
               baitGroups={[{
-                header: 'DH-IC–DH at 7-11s',
+                header: 'DH–IC–DH at 6-10s',
                 baitGroupProps: { ...getBaitGroup(29762), subtext: subtextDH }
               }]}
             />

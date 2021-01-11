@@ -5,6 +5,7 @@ import AchievementInformation from './AchievementInformation'
 import RouteCardContainer from './RouteCardContainer'
 import RouteCard from './RouteCard'
 import BaitList from './BaitList'
+import Tug from './Tug'
 import { getStops, getBaitGroup, subtextDH } from './utils'
 import * as maps from './maps'
 
@@ -22,7 +23,7 @@ const AchievementBalloons = ({ selectedRoute }: Props) => {
           <CardContent>
             <BaitList
               baitGroups={[{
-                header: 'IC–DH at 5-13s',
+                header: 'IC–DH at 5-10s',
                 baitGroupProps: { ...getBaitGroup(32057), subtext: subtextDH }
               }, {
                 header: 'DH at <5s',
@@ -45,10 +46,10 @@ const AchievementBalloons = ({ selectedRoute }: Props) => {
           <CardContent>
             <BaitList
               baitGroups={[{
-                header: 'IC–DH at 10-15s',
+                header: 'IC–DH at 10-16s',
                 baitGroupProps: { ...getBaitGroup(29732), subtext: subtextDH }
               }, {
-                header: 'IC–DH at 2-6s',
+                header: 'IC–DH at 2-7s',
                 baitGroupProps: { ...getBaitGroup(29768), subtext: subtextDH }
               }]}
             />
@@ -59,11 +60,11 @@ const AchievementBalloons = ({ selectedRoute }: Props) => {
             </Typography>
             <Typography variant='overline'>Non-spectral</Typography>
             <Typography paragraph>
-              Lampfish is possibly a blind DH at 13-15s.
+              Lampfish is possibly a blind DH at 10-14s.
             </Typography>
             <Typography variant='overline'>Spectral</Typography>
             <Typography paragraph>
-              Can blind DH Silencers with a SS’d Aronnax.
+              Can blind DH Silencers at &gt;3s. The instant <Tug strength={1} /> are Aronnaxes.
             </Typography>
           </CardContent>
         </RouteCard>
@@ -71,16 +72,16 @@ const AchievementBalloons = ({ selectedRoute }: Props) => {
           <CardContent>
             <BaitList
               baitGroups={[{
-                header: 'No buffs at 3-8s',
+                header: 'No buffs at 2-5s',
                 baitGroupProps: { ...getBaitGroup(32095), subtext: subtextDH }
               }, {
-                header: 'DH at ≥14s',
+                header: 'DH at ≥11s',
                 baitGroupProps: { ...getBaitGroup(32098), subtext: subtextDH }
               }, {
-                header: 'IC–DH at 2s',
+                header: 'IC–DH at <3s',
                 baitGroupProps: { ...getBaitGroup(32105), subtext: subtextDH }
               }, {
-                header: 'IC–DH at 4-5s',
+                header: 'IC–DH at 3-5s',
                 baitGroupProps: { ...getBaitGroup(32109), subtext: subtextDH }
               }]}
             />

@@ -35,7 +35,7 @@ const AchievementOctopodes = ({ selectedRoute }: Props) => {
           <CardContent>
             <BaitList
               baitGroups={[{
-                header: 'IC–DH at 17-27s',
+                header: 'IC–DH at 16-26s',
                 baitGroupProps: { ...getBaitGroup(29734), subtext: subtextDH }
               }, {
                 header: 'DH–IC–DH at <3s',
@@ -46,7 +46,10 @@ const AchievementOctopodes = ({ selectedRoute }: Props) => {
           <CardContent>
             <Typography variant='overline'>Non-spectral</Typography>
             <Typography paragraph>
-              Can blind DH the Cyan Octopodes at 24s, or at 19s with a SS’d Jasperhead. Clouds/Fog weather will also remove Jasperheads.
+              Can blind DH the Cyan Octopodes at 24s, or at 16s with a SS’d Jasperhead. Clouds/Fog weather will also remove Jasperheads.
+            </Typography>
+            <Typography variant='body2' paragraph>
+              Note: with Krill, blind DH at 19-26s might be possible
             </Typography>
             <Typography variant='overline'>Spectral</Typography>
             <Typography paragraph>

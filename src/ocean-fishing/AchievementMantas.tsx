@@ -23,10 +23,10 @@ const AchievementJellyfish = ({ selectedRoute }: Props) => {
           <CardContent>
             <BaitList
               baitGroups={[{
-                header: 'DH; DH-IC–DH post-spectral at 12-26s',
+                header: 'DH; DH–IC–DH post-spectral at 11-21s',
                 baitGroupProps: { ...getBaitGroup(32058), subtext: subtextDH }
               }, {
-                header: 'DH at <4s',
+                header: 'DH at <3s',
                 baitGroupProps: { ...getBaitGroup(32070), subtext: subtextDH }
               }]}
             />
@@ -38,7 +38,7 @@ const AchievementJellyfish = ({ selectedRoute }: Props) => {
             </Typography>
             <Typography variant='overline'>Spectral</Typography>
             <Typography paragraph>
-              Only the instant <Tug strength={3} /> is Jetborne Manta. Callichthyid appears at 5s.
+              Only the instant <Tug strength={3} /> is Jetborne Manta. Callichthyid appears at 4s.
             </Typography>
             <Typography variant='overline'>Post-spectral</Typography>
             <Typography paragraph>
@@ -73,7 +73,7 @@ const AchievementJellyfish = ({ selectedRoute }: Props) => {
                     <CardContent>
                       <Typography variant='overline'>Spectral</Typography>
                       <Typography paragraph>
-                        Reel any <Tug strength={2} />. Beatific Vision and Gory Tuna go away at 5s. Use IC–DH if it’s all you need, instead of hoping for more blind DHs.
+                        Reel any <Tug strength={2} />. Beatific Visions and Gory Tuna go away at 5s. Use IC–DH if it’s all you need, instead of hoping for more blind DHs.
                       </Typography>
                     </CardContent>
                   </>
@@ -84,7 +84,7 @@ const AchievementJellyfish = ({ selectedRoute }: Props) => {
                     <CardContent>
                       <BaitList
                         baitGroups={[{
-                          header: 'IC–DH at 4-6s',
+                          header: 'DH at ≥5s',
                           baitGroupProps: { ...getBaitGroup(32111), subtext: subtextDH }
                         }]}
                       />
@@ -92,7 +92,10 @@ const AchievementJellyfish = ({ selectedRoute }: Props) => {
                     <CardContent>
                       <Typography variant='overline'>Spectral</Typography>
                       <Typography paragraph>
-                        Reel any <Tug strength={2} />. Panoptes can possibly be a blind DH (needs confirmation). Use IC–DH if it’s all you need, instead of hoping for more blind DHs.
+                        Reel any <Tug strength={2} />. Smooth Jaguars go away at 5s. Use IC–DH if it’s all you need, instead of hoping for more blind DHs.
+                      </Typography>
+                      <Typography variant='body2' paragraph>
+                        Note: It is not worth mooching Rothlyt Mussels for Panoptes if you happen to catch one. Recast instead.
                       </Typography>
                     </CardContent>
                   </>
