@@ -3,7 +3,6 @@ import { makeStyles, fade } from '@material-ui/core/styles'
 import Link from '../src/Link'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
-import MuiLink from '@material-ui/core/Link'
 import Lulu from '../public/images/lulu-icon.svg'
 
 const useStyles = makeStyles((theme) => ({
@@ -97,19 +96,19 @@ const Index = () => {
 
       <IndexSection url='/mini-cactpot' title='Mini Cactpot'>
         <Typography paragraph>
-          Calculator for the <MuiLink href='https://na.finalfantasyxiv.com/lodestone/playguide/contentsguide/goldsaucer/cactpot/'>Mini Cactpot</MuiLink> lottery.
+          Calculator for the Mini Cactpot lottery.
         </Typography>
       </IndexSection>
 
       <IndexSection url='/ocean-fishing' title='Ocean Fishing'>
         <Typography paragraph>
-          Schedule for upcoming ocean fishing voyages, with information on blue fish and achievements.
+          Schedule for upcoming ocean fishing voyages with information on blue fish, achievements, and more.
         </Typography>
       </IndexSection>
 
       <IndexSection url='/skywatcher' title='Skywatcher'>
         <Typography paragraph>
-          Schedule for weather in Eorzea, and calculator for upcoming weather patterns.
+          Schedule for weather in Eorzea and forecaster for upcoming weather patterns.
         </Typography>
       </IndexSection>
 
