@@ -111,8 +111,8 @@ export function subtextDH (fishId: number) {
 }
 
 export function subtextBiteTime (fishId: number) {
-  const biteTime = fishes[fishId].spreadsheet_data.bite_time
-  return biteTime ? `${biteTime.all[0] === biteTime.all[1] ? biteTime.all[0] : biteTime.all.join('-')} s` : '? s'
+  const biteTime = fishes[fishId].spreadsheet_data.bite_time.all
+  return biteTime ? `${biteTime[0] === biteTime[1] ? biteTime[0] : biteTime.join('-')}s` : '?s'
 }
 
 export function translate (locale: string = 'en', obj: any, ...keys: string[]): string {
