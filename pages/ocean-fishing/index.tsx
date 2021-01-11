@@ -68,7 +68,7 @@ const OceanFishing = ({ t }: Props) => {
 }
 
 OceanFishing.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'ocean-fishing'],
+  namespacesRequired: ['common', 'ocean-fishing']
 })
 
 export default i18n.withTranslation('ocean-fishing')(OceanFishing)

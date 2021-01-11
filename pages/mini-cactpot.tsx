@@ -13,7 +13,7 @@ const MiniCactpot = () => {
 }
 
 MiniCactpot.getInitialProps = async () => ({
-  namespacesRequired: ['common'],
+  namespacesRequired: ['common', 'mini-cactpot']
 })
 
 export default MiniCactpot
