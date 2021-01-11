@@ -197,9 +197,9 @@ const OceanFishPopper = ({ fishId, t, i18n }: Props) => {
                       )}
                     </select>
                     <select value={blindDHTime} onChange={handleSelectBlindDHTime}>
-                      <option value='D'>Day</option>
-                      <option value='S'>Sunset</option>
-                      <option value='N'>Night</option>
+                      <option value='D'>{t('time-day')}</option>
+                      <option value='S'>{t('time-sunset')}</option>
+                      <option value='N'>{t('time-night')}</option>
                     </select>
                   </TableCell>
                   <TableCell align='center'>

@@ -156,10 +156,10 @@ export function getBlindDHRanges (fishId: number, baitId: number, time: maps.Tim
         i += 2
       } else {
         // Partial overlap
-        if (otherRange[0] <= currentRange[0]) {
-          blindDHRanges.splice(i++, 1, [otherRange[0] + 1, currentRange[1]])
-        } else if (otherRange[1] >= currentRange[1]) {
-          blindDHRanges.splice(i++, 1, [currentRange[0], otherRange[1] - 1])
+        if (currentRange[0] < otherRange[0] && otherRange[0] < currentRange[1]) {
+          blindDHRanges.splice(i++, 1, [currentRange[0], otherRange[0] - 1])
+        } else if (currentRange[0] < otherRange[1] && otherRange[1] < currentRange[1]) {
+          blindDHRanges.splice(i++, 1, [otherRange[1] + 1, currentRange[1]])
         } else {
           console.error('This should never happen')
           i++
