@@ -15,7 +15,7 @@ import { fishingSpots, fishes, achievements } from './gists/data'
 import calculateVoyages from './calculate-voyages'
 import * as maps from './maps'
 import { translate, upperFirst } from './utils'
-import i18n from '../../i18n'
+import i18n from '../i18n'
 import { I18n, TFunction } from 'next-i18next'
 
 const useStyles = makeStyles(theme => ({

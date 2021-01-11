@@ -8,7 +8,7 @@ import UpcomingVoyages from '../../src/ocean-fishing/UpcomingVoyages'
 import RouteInformation from '../../src/ocean-fishing/RouteInformation'
 import AchievementsInformation from '../../src/ocean-fishing/AchievementsInformation'
 import * as maps from '../../src/ocean-fishing/maps'
-import i18n from '../../i18n'
+import i18n from '../../src/i18n'
 import { TFunction } from 'next-i18next'
 
 export const ChecklistContext = React.createContext<{ checklist: number[], setChecklist: (checklist: number[]) => void }>(

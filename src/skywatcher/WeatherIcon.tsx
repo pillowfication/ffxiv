@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography'
 import Tooltip from '@material-ui/core/Tooltip'
 import { Weather } from './weather/consts'
 import { translate } from './weather'
-import i18n from '../../i18n'
+import i18n from '../i18n'
 import { I18n } from 'next-i18next'
 
 const WEATHERS = [

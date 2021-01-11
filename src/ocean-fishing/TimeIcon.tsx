@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Tooltip from '@material-ui/core/Tooltip'
 import * as maps from './maps'
-import i18n from '../../i18n'
+import i18n from '../i18n'
 import { TFunction } from 'next-i18next'
 
 const ICON_SIZE = 32

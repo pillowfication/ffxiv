@@ -9,7 +9,7 @@ import { fishes, baits, achievements } from './gists/data'
 // import ICONS_URL from './gists/data/ocean-fishing-icons.png'
 import ICONS_MAP from './gists/data/ocean-fishing-icons-map.json'
 import { translate } from './utils'
-import i18n from '../../i18n'
+import i18n from '../i18n'
 import { I18n } from 'next-i18next'
 
 const ICON_ROWS = ICONS_MAP.length

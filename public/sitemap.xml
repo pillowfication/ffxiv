@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://ffxiv.pf-n.co/</loc>
+    <xhtml:link href="https://ffxiv.pf-n.co/" hreflang="x-default" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/de/" hreflang="de" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/fr/" hreflang="fr" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/ja/" hreflang="ja" rel="alternate" />
+  </url>
+  <url>
+    <loc>https://ffxiv.pf-n.co/ocean-fishing/</loc>
+    <xhtml:link href="https://ffxiv.pf-n.co/ocean-fishing/" hreflang="x-default" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/de/ocean-fishing/" hreflang="de" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/fr/ocean-fishing/" hreflang="fr" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/ja/ocean-fishing/" hreflang="ja" rel="alternate" />
+  </url>
+  <url>
+    <loc>https://ffxiv.pf-n.co/ocean-fishing/fish/</loc>
+    <xhtml:link href="https://ffxiv.pf-n.co/ocean-fishing/fish/" hreflang="x-default" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/de/ocean-fishing/fish/" hreflang="de" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/fr/ocean-fishing/fish/" hreflang="fr" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/ja/ocean-fishing/fish/" hreflang="ja" rel="alternate" />
+  </url>
+  <url>
+    <loc>https://ffxiv.pf-n.co/high-or-low/</loc>
+    <xhtml:link href="https://ffxiv.pf-n.co/high-or-low/" hreflang="x-default" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/de/high-or-low/" hreflang="de" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/fr/high-or-low/" hreflang="fr" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/ja/high-or-low/" hreflang="ja" rel="alternate" />
+  </url>
+  <url>
+    <loc>https://ffxiv.pf-n.co/mini-cactpot/</loc>
+    <xhtml:link href="https://ffxiv.pf-n.co/mini-cactpot/" hreflang="x-default" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/de/mini-cactpot/" hreflang="de" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/fr/mini-cactpot/" hreflang="fr" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/ja/mini-cactpot/" hreflang="ja" rel="alternate" />
+  </url>
+  <url>
+    <loc>https://ffxiv.pf-n.co/skywatcher/</loc>
+    <xhtml:link href="https://ffxiv.pf-n.co/skywatcher/" hreflang="x-default" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/de/skywatcher/" hreflang="de" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/fr/skywatcher/" hreflang="fr" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/ja/skywatcher/" hreflang="ja" rel="alternate" />
+  </url>
+  <url>
+    <loc>https://ffxiv.pf-n.co/wondrous-tails/</loc>
+    <xhtml:link href="https://ffxiv.pf-n.co/wondrous-tails/" hreflang="x-default" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/de/wondrous-tails/" hreflang="de" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/fr/wondrous-tails/" hreflang="fr" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/ja/wondrous-tails/" hreflang="ja" rel="alternate" />
+  </url>
+</urlset>

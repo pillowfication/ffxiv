@@ -15,7 +15,7 @@ import * as maps from './maps'
 import { toTimeString } from '../utils'
 import calculateVoyages from './calculate-voyages'
 import { getBlueFish, timeUntil, translate, upperFirst } from './utils'
-import i18n from '../../i18n'
+import i18n from '../i18n'
 import { I18n, TFunction } from 'next-i18next'
 
 const DATE_FORMAT: Intl.DateTimeFormatOptions = { month: '2-digit', day: '2-digit' }

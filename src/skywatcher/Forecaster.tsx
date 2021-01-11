@@ -25,7 +25,7 @@ import Section from '../Section'
 import WeatherIcon from './WeatherIcon'
 import { Weather, Region, Zone } from './weather/consts'
 import PARTITION from './weather/regions-partition'
-import i18n from '../../i18n'
+import i18n from '../i18n'
 import { I18n } from 'next-i18next'
 
 const REGIONS = [

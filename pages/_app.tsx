@@ -24,8 +24,8 @@ import Brightness5Icon from '@material-ui/icons/Brightness5'
 import Link from '../src/Link'
 import GlobalStyles from '../src/GlobalStyles'
 import { lightTheme, darkTheme } from '../src/themes'
-import i18n from '../i18n'
 import * as gtag from '../src/gtag'
+import i18n from '../src/i18n'
 
 const LANGUAGES = {
   en: 'English',

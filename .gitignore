@@ -12,7 +12,6 @@
 
 # production
 /build
-/public/sitemap.xml
 
 # debug
 npm-debug.log*

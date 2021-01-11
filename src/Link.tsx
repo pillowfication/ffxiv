@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import { Link as MuiLink, LinkProps as MuiLinkProps } from '@material-ui/core'
 import { LinkProps } from 'next/link'
-import i18n from '../i18n'
+import i18n from './i18n'
 
 type LinkRef = any
 

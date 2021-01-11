@@ -5,7 +5,7 @@ import Section from '../Section'
 import OceanFishIcon from './OceanFishIcon'
 import { achievements } from './gists/data/ocean-fish-data.json'
 import { translate } from './utils'
-import i18n from '../../i18n'
+import i18n from '../i18n'
 import { I18n, TFunction } from 'next-i18next'
 
 const SUBTITLES = {

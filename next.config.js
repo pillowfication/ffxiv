@@ -8,10 +8,6 @@ const localeSubpaths = {
 
 module.exports = {
   webpack (config, { isServer }) {
-    if (isServer) {
-      require('./generate-sitemap')
-    }
-
     config.module.rules.push({
       test: /\.svg$/,
       use: [{

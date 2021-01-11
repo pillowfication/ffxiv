@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Tooltip from '@material-ui/core/Tooltip'
 import { fishes, Fish } from './gists/data'
 import { translate } from './utils'
-import i18n from '../../i18n'
+import i18n from '../i18n'
 import { I18n } from 'next-i18next'
 
 function getImgUrl (fish: Fish) {

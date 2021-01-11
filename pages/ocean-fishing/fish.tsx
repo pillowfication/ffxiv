@@ -15,7 +15,7 @@ import Section from '../../src/Section'
 import FishTable from '../../src/ocean-fishing/FishTable'
 import { fishingSpots } from '../../src/ocean-fishing/gists/data'
 import { translate } from '../../src/ocean-fishing/utils'
-import i18n from '../../i18n'
+import i18n from '../../src/i18n'
 import { I18n, TFunction } from 'next-i18next'
 
 const useStyles = makeStyles((theme) => ({

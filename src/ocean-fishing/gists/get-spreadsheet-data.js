@@ -1,6 +1,5 @@
 const fs = require('fs')
 const path = require('path')
-const _ = require('lodash')
 const cheerio = require('cheerio')
 const WEATHERS = require('../../skywatcher/weather/consts/weathers')
 

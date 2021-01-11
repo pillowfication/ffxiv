@@ -1,6 +1,6 @@
 # Lulu’s Tools
 
-https://ffxiv.pf-n.co
+https://ffxiv.pf-n.co/
 
 Just a site so I can learn new frameworks and stuff.
 

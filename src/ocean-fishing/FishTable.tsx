@@ -16,7 +16,7 @@ import WeatherIcon from '../skywatcher/WeatherIcon'
 import { fishingSpots, fishes } from './gists/data'
 import * as maps from './maps'
 import { translate } from './utils'
-import i18n from '../../i18n'
+import i18n from '../i18n'
 import { I18n, TFunction } from 'next-i18next'
 
 const useStyles = makeStyles((theme) => ({
