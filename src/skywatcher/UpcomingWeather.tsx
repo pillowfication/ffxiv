@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
-import cn from 'classnames'
-import PropTypes from 'prop-types'
 import { getSeed, getNextWeathers, getZoneWeather, translateId } from './weather'
-import REGIONS from './weather/regions'
 import { paddedZero, formatTime } from '../utils'
 import Section from '../Section'
 import Typography from '@material-ui/core/Typography'
@@ -23,6 +21,8 @@ import TableBody from '@material-ui/core/TableBody'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import WeatherIcon from './WeatherIcon'
+import { Region, Zone } from './weather/consts'
+import PARTITION from './weather/regions-partition'
 
 const WEATHER_CELL_WIDTH = 75
 
@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2)
   },
   weatherTable: {
+    overflow: 'hidden',
     '& thead th': {
       fontWeight: 'normal',
       '&$current': {
@@ -76,27 +77,28 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const UpcomingWeather = ({ now }) => {
-  const [filter, setFilter] = useState('none')
+type Props = {
+  now?: Date
+}
+
+const UpcomingWeather = ({ now }: Props) => {
+  const classes = useStyles()
+  const router = useRouter()
+  const [filter, setFilter] = useState<Region | null>(null)
   const [showLabels, setShowLabels] = useState(true)
   const [showLocalTime, setShowLocalTime] = useState(false)
   const [showWeatherChance, setShowWeatherChance] = useState(false)
-  const classes = useStyles()
-  const router = useRouter()
 
   useEffect(() => {
-    const queryFilter = REGIONS.find((region) => region.query === router.query.filter)
-      ? router.query.filter
-      : 'none'
-    console.log(queryFilter)
-    setFilter(queryFilter)
+    const queryFilter = String(router.query.filter)
+    setFilter(Object.values(Region).includes(queryFilter as Region) ? queryFilter as Region : null)
   }, [router.query.filter])
 
-  const handleSelectFilter = (event) => {
-    const filter = event.target.value
+  const handleSelectFilter = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const filter = event.target.value === 'none' ? null : (event.target.value as Region)
     router.push({
       pathname: router.pathname,
-      query: filter === 'none' ? null : { filter }
+      query: filter && { filter }
     })
   }
 
@@ -118,10 +120,10 @@ const UpcomingWeather = ({ now }) => {
         <Grid item xs={12}>
           <FormControl variant='filled' fullWidth margin='dense'>
             <InputLabel>Select a region</InputLabel>
-            <Select onChange={handleSelectFilter} value={filter}>
+            <Select onChange={handleSelectFilter} value={filter || 'none'}>
               <MenuItem value='none'>Show all regions</MenuItem>
-              {REGIONS.map(({ regionId, query }) =>
-                <MenuItem key={query} value={query}>{translateId(regionId)}</MenuItem>
+              {Object.values(Region).map(region =>
+                <MenuItem key={region} value={region}>{translateId(region)}</MenuItem>
               )}
             </Select>
           </FormControl>
@@ -169,11 +171,11 @@ const UpcomingWeather = ({ now }) => {
 
           const currentSeed = getSeed()
           const hashes = getNextWeathers(currentSeed - 1, 10)
-          const filteredRegion = filter !== 'none' && REGIONS.find((region) => region.query === filter)
+          const sections = (filter ? [[filter, PARTITION[filter]]] : Object.entries(PARTITION)) as [Region, Zone[]][]
 
-          return (filteredRegion ? [filteredRegion] : REGIONS).map(({ regionId, zones }) =>
-            <React.Fragment key={regionId}>
-              <Typography variant='h6' gutterBottom>{translateId(regionId)}</Typography>
+          return sections.map(([region, zones]) =>
+            <Section key={region}>
+              <Typography variant='h6' gutterBottom>{translateId(region)}</Typography>
               <TableContainer>
                 <Table size='small' className={classes.weatherTable}>
                   <TableHead>
@@ -183,7 +185,7 @@ const UpcomingWeather = ({ now }) => {
                         const eorzeanTime = new Date((currentSeed - 1 + index) * 28800000)
                         const localTime = new Date(eorzeanTime.getTime() / (1440 / 70))
                         return (
-                          <TableCell key={index} className={cn(classes.weatherTime, index === 1 && classes.current)}>
+                          <TableCell key={index} className={clsx(classes.weatherTime, index === 1 && classes.current)}>
                             {showLocalTime
                               ? index === 1
                                   ? (
@@ -217,17 +219,17 @@ const UpcomingWeather = ({ now }) => {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {zones.map((zoneId) =>
-                      <TableRow key={zoneId} hover>
+                    {zones.map((zone) =>
+                      <TableRow key={zone} hover>
                         <TableCell component='th' scope='row' className={classes.regionCell}>
-                          <Typography>{translateId(zoneId)}</Typography>
+                          <Typography>{translateId(zone)}</Typography>
                         </TableCell>
                         {hashes.map((hash, index) =>
                           <TableCell
                             key={index}
-                            className={cn(classes.weatherCell, index === 1 && classes.current)}
+                            className={clsx(classes.weatherCell, index === 1 && classes.current)}
                           >
-                            <WeatherIcon weatherId={getZoneWeather(zoneId, hash)} showLabel={showLabels} />
+                            <WeatherIcon weather={getZoneWeather(zone, hash)} showLabel={showLabels} />
                           </TableCell>
                         )}
                       </TableRow>
@@ -235,15 +237,12 @@ const UpcomingWeather = ({ now }) => {
                   </TableBody>
                 </Table>
               </TableContainer>
-            </React.Fragment>)
+            </Section>
+          )
         })()}
       </NoSsr>
     </Section>
   )
-}
-
-UpcomingWeather.propTypes = {
-  now: PropTypes.object
 }
 
 export default UpcomingWeather

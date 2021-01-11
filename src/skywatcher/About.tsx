@@ -14,8 +14,7 @@ const useStyles = makeStyles((theme) => ({
   anemosTable: {
     width: 'initial',
     '& th, & td': {
-      paddingLeft: theme.spacing(4),
-      paddingRight: theme.spacing(4)
+      padding: theme.spacing(2, 4)
     }
   }
 }))
@@ -73,26 +72,26 @@ const weatherChance = step2 % 100
       <Table className={classes.anemosTable}>
         <TableHead>
           <TableRow>
-            <TableCell align='center'><code>weatherChance</code></TableCell>
-            <TableCell align='center'>Weather</TableCell>
+            <TableCell align='center'><Typography component='code'>weatherChance</Typography></TableCell>
+            <TableCell align='center'><Typography>Weather</Typography></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           <TableRow>
-            <TableCell align='center'>00-29</TableCell>
-            <TableCell>Fair Skies</TableCell>
+            <TableCell align='center'><Typography>00-29</Typography></TableCell>
+            <TableCell><Typography>Fair Skies</Typography></TableCell>
           </TableRow>
           <TableRow>
-            <TableCell align='center'>30-59</TableCell>
-            <TableCell>Gales</TableCell>
+            <TableCell align='center'><Typography>30-59</Typography></TableCell>
+            <TableCell><Typography>Gales</Typography></TableCell>
           </TableRow>
           <TableRow>
-            <TableCell align='center'>60-89</TableCell>
-            <TableCell>Showers</TableCell>
+            <TableCell align='center'><Typography>60-89</Typography></TableCell>
+            <TableCell><Typography>Showers</Typography></TableCell>
           </TableRow>
           <TableRow>
-            <TableCell align='center'>90-99</TableCell>
-            <TableCell>Snow</TableCell>
+            <TableCell align='center'><Typography>90-99</Typography></TableCell>
+            <TableCell><Typography>Snow</Typography></TableCell>
           </TableRow>
         </TableBody>
       </Table>
