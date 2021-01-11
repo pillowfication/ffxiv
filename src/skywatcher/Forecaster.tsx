@@ -29,14 +29,14 @@ import i18n from '../../i18n'
 import { I18n } from 'next-i18next'
 
 const REGIONS = [
-  Region.LA_NOSCEA,
-  Region.THE_BLACK_SHROUD,
-  Region.THANALAN,
-  Region.ISHGARD_AND_SURROUNDING_AREAS,
-  Region.GYR_ABANIA,
-  Region.THE_FAR_EAST,
-  Region.NORVRANDT,
-  Region.OTHERS
+  Region.LaNoscea,
+  Region.TheBlackShroud,
+  Region.Thanalan,
+  Region.IshgardAndSurroundingAreas,
+  Region.GyrAbania,
+  Region.TheFarEast,
+  Region.Norvrandt,
+  Region.Others
 ]
 const DATE_FORMAT = { month: '2-digit', day: '2-digit' }
 const WEATHER_CELL_WIDTH = 75

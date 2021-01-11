@@ -9,25 +9,25 @@ import i18n from '../../i18n'
 import { I18n } from 'next-i18next'
 
 const WEATHERS = [
-  Weather.CLEAR_SKIES,
-  Weather.FAIR_SKIES,
-  Weather.CLOUDS,
-  Weather.WIND,
-  Weather.GALES,
-  Weather.FOG,
-  Weather.RAIN,
-  Weather.SHOWERS,
-  Weather.THUNDER,
-  Weather.THUNDERSTORMS,
-  Weather.DUST_STORMS,
-  Weather.SANDSTORMS,
-  Weather.HEAT_WAVES,
-  Weather.HOT_SPELLS,
-  Weather.SNOW,
-  Weather.BLIZZARDS,
-  Weather.GLOOM,
-  Weather.UMBRAL_STATIC,
-  Weather.UMBRAL_WIND
+  Weather.ClearSkies,
+  Weather.FairSkies,
+  Weather.Clouds,
+  Weather.Wind,
+  Weather.Gales,
+  Weather.Fog,
+  Weather.Rain,
+  Weather.Showers,
+  Weather.Thunder,
+  Weather.Thunderstorms,
+  Weather.DustStorms,
+  Weather.Sandstorms,
+  Weather.HeatWaves,
+  Weather.HotSpells,
+  Weather.Snow,
+  Weather.Blizzards,
+  Weather.Gloom,
+  Weather.UmbralStatic,
+  Weather.UmbralWind
 ]
 
 const useStyles = makeStyles(() => {
