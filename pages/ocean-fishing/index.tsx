@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Typography from '@material-ui/core/Typography'
+import MuiLink from '@material-ui/core/Link'
 import Link from '../../src/Link'
 import Page from '../../src/Page'
 import Section from '../../src/Section'
@@ -52,7 +53,7 @@ const OceanFishing = ({ t }: Props) => {
       <ChecklistContext.Provider value={{ checklist, setChecklist }}>
         <Section>
           <Typography paragraph>
-            Data are taken from the <Link href='https://docs.google.com/spreadsheets/d/1brCfvmSdYl7RcY9lkgm_ds8uaFqq7qaxOOz-5BfHuuk/edit?usp=sharing'>Ocean Fishing Spreadsheet</Link> managed by S’yahn Tia. Bite times are from <Link href='https://ffxivteamcraft.com/'>Teamcraft</Link> when available. For questions/comments/corrections, please visit the <Link href='https://discord.gg/AnFaDpN'>Fisherman’s Horizon Discord</Link> or message Lulu Pillow@Adamantoise or Pillowfication#0538.
+            Data are taken from the <MuiLink href='https://docs.google.com/spreadsheets/d/1brCfvmSdYl7RcY9lkgm_ds8uaFqq7qaxOOz-5BfHuuk/edit?usp=sharing'>Ocean Fishing Spreadsheet</MuiLink> managed by S’yahn Tia. Bite times are from <MuiLink href='https://ffxivteamcraft.com/'>Teamcraft</MuiLink> when available. For questions/comments/corrections, please visit the <MuiLink href='https://discord.gg/AnFaDpN'>Fisherman’s Horizon Discord</MuiLink> or message Lulu Pillow@Adamantoise or Pillowfication#0538.
           </Typography>
           <Typography paragraph>
             For a static list of all the fish and more information, see the <Link href='/ocean-fishing/fish'>Fish page</Link>.
