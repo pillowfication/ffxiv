@@ -21,6 +21,7 @@ export type FishingSpot = {
 
 export type Fish = {
   id: number,
+  fishing_spot: number,
   name_de: string,
   name_en: string,
   name_fr: string,

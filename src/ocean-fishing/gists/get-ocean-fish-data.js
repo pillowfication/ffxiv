@@ -92,6 +92,7 @@ async function getLodestoneInfo (query) {
           const fish = fishMap[fishId]
           data[fish.ID] = {
             id: fish.ID,
+            fishing_spot: fishingSpot.ID,
             name_de: fish.Name_de,
             name_en: fish.Name_en,
             name_fr: fish.Name_fr,

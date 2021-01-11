@@ -90,7 +90,6 @@ export function getBlueFish (destinationCode: maps.DestinationStopTime): number[
 
 export const getBaitChain = memoize(function _getBaitChain (fishId: number): BaitChainProp[] {
   const fishInfo = fishes[fishId].spreadsheet_data
-  console.log(fishInfo)
   return fishInfo.bait
     ? [{ id: fishInfo.bait }, { id: fishId, tug: fishInfo.tug }]
     : [..._getBaitChain(fishInfo.mooch), { id: fishId, tug: fishInfo.tug }]
@@ -126,4 +125,48 @@ export function translate (locale: string = 'en', obj: any, ...keys: string[]): 
 
 export function upperFirst (str: string) {
   return str[0].toUpperCase() + str.slice(1)
+}
+
+export function getBlindDHRanges (fishId: number, baitId: number, time: maps.Time) {
+  const fishInfo = fishes[fishId].spreadsheet_data
+  if (time && fishInfo.time && fishInfo.time.indexOf(time) === -1) return null
+  if (!fishInfo.bite_time[baitId]) return null
+
+  const blindDHRanges = [fishInfo.bite_time[baitId]]
+  for (const otherFishId of fishingSpots[fishes[fishId].fishing_spot].fishes) {
+    if (otherFishId === fishId) continue
+    const otherFishInfo = fishes[otherFishId].spreadsheet_data
+
+    if (otherFishInfo.tug !== fishInfo.tug) continue
+    if (time && otherFishInfo.time && otherFishInfo.time.indexOf(time) === -1) continue
+    if (!otherFishInfo.bite_time[baitId]) continue
+    const otherRange = otherFishInfo.bite_time[baitId]
+
+    for (let i = 0; i < blindDHRanges.length;) {
+      const currentRange = blindDHRanges[i]
+      if (otherRange[1] < currentRange[0] || otherRange[0] > currentRange[1]) {
+        // No overlap
+        ++i
+      } else if (otherRange[0] <= currentRange[0] && otherRange[1] >= currentRange[1]) {
+        // Full overlap
+        blindDHRanges.splice(i, 1)
+      } else if (otherRange[0] > currentRange[0] && otherRange[1] < currentRange[1]) {
+        // Splits currentRange into 2
+        blindDHRanges.splice(i, 1, [currentRange[0], otherRange[0] - 1], [otherRange[1] + 1, currentRange[1]])
+        i += 2
+      } else {
+        // Partial overlap
+        if (otherRange[0] <= currentRange[0]) {
+          blindDHRanges.splice(i++, 1, [otherRange[0] + 1, currentRange[1]])
+        } else if (otherRange[1] >= currentRange[1]) {
+          blindDHRanges.splice(i++, 1, [currentRange[0], otherRange[1] - 1])
+        } else {
+          console.error('This should never happen')
+          i++
+        }
+      }
+    }
+  }
+
+  return blindDHRanges
 }

@@ -20,11 +20,27 @@ import TimeIcon from './TimeIcon'
 import BaitGroup from './BaitGroup'
 import ChecklistCheckmark from './ChecklistCheckmark'
 import WeatherIcon from '../skywatcher/WeatherIcon'
-import { fishes } from './gists/data'
+import { fishes, baits } from './gists/data'
 import * as maps from './maps'
-import { getBaitGroup, subtextBiteTime, translate } from './utils'
+import { getBaitGroup, subtextBiteTime, translate, getBlindDHRanges } from './utils'
 import i18n from '../../i18n'
 import { I18n, TFunction } from 'next-i18next'
+
+const BAITS = [
+  29714,
+  29715,
+  29716,
+  2587,
+  2591,
+  2603,
+  2613,
+  2619,
+  27590,
+  29722,
+  29761,
+  29718,
+  32107
+]
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -64,10 +80,21 @@ type Props = {
 const OceanFishPopper = ({ fishId, t, i18n }: Props) => {
   const classes = useStyles()
   const [expanded, setExpanded] = React.useState(false)
+  const [blindDHBait, setBlindDHBait] = React.useState(BAITS[0])
+  const [blindDHTime, setBlindDHTime] = React.useState<maps.Time>('D')
   const fish = fishes[fishId]
   const fishInfo = fish.spreadsheet_data
+  const blindDHRanges = getBlindDHRanges(fishId, blindDHBait, blindDHTime)
+  console.log(fishId, blindDHBait, blindDHTime)
+  console.log(blindDHRanges)
 
   const handleClickExpand = () => { setExpanded(!expanded) }
+  const handleSelectBlindDHBait = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setBlindDHBait(+event.target.value)
+  }
+  const handleSelectBlindDHTime = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setBlindDHTime(event.target.value as maps.Time)
+  }
 
   return (
     <Box boxShadow={8}>
@@ -158,6 +185,32 @@ const OceanFishPopper = ({ fishId, t, i18n }: Props) => {
                     : '?'}
                 </TableCell>
               </TableRow>
+              {expanded && (
+                <TableRow>
+                  <TableCell variant='head'>
+                    Blind DH?<br />
+                    <select value={blindDHBait} onChange={handleSelectBlindDHBait}>
+                      {BAITS.map(baitId =>
+                        <option key={baitId} value={baitId}>
+                          {translate(i18n.language, (baits[baitId] || fishes[baitId]), 'name')}
+                        </option>
+                      )}
+                    </select>
+                    <select value={blindDHTime} onChange={handleSelectBlindDHTime}>
+                      <option value='D'>Day</option>
+                      <option value='S'>Sunset</option>
+                      <option value='N'>Night</option>
+                    </select>
+                  </TableCell>
+                  <TableCell align='center'>
+                    {blindDHRanges
+                      ? blindDHRanges.length === 0
+                        ? 'Cannot blind DH'
+                        : blindDHRanges.map(range => range[0] === range[1] ? range[0] : range.join('-')).join(', ')
+                      : 'No data'}
+                  </TableCell>
+                </TableRow>
+              )}
             </TableBody>
           </Table>
         </CardContent>
