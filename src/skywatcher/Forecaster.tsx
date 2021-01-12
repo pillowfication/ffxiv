@@ -18,6 +18,7 @@ import TextField from '@material-ui/core/TextField'
 import Select from '@material-ui/core/Select'
 import Checkbox from '@material-ui/core/Checkbox'
 import MenuItem from '@material-ui/core/MenuItem'
+import Alert from '@material-ui/lab/Alert'
 import Autocomplete from '@material-ui/lab/Autocomplete'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
@@ -26,7 +27,7 @@ import WeatherIcon from './WeatherIcon'
 import { Weather, Region, Zone } from './weather/consts'
 import PARTITION from './weather/regions-partition'
 import i18n from '../i18n'
-import { I18n } from 'next-i18next'
+import { I18n, TFunction } from 'next-i18next'
 
 const REGIONS = [
   Region.LaNoscea,
@@ -110,10 +111,11 @@ function displayBell (seed: number) {
 
 type Props = {
   now?: Date,
+  t: TFunction,
   i18n: I18n
 }
 
-const Forecaster = ({ now, i18n }: Props) => {
+const Forecaster = ({ now, t, i18n }: Props) => {
   const classes = useStyles()
   const [zoneOption, setZoneOption] = useState<ZoneOption | null>(null)
   const [transitionWeather, setTransitionWeather] = useState<Weather | null>(null)
@@ -151,14 +153,14 @@ const Forecaster = ({ now, i18n }: Props) => {
   }
 
   return (
-    <Section title='Forecaster'>
+    <Section title={t('forecaster')}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={4}>
           <Autocomplete
             options={ZONES_OPTIONS}
             groupBy={({ region }) => translate('region', region, locale)}
             getOptionLabel={({ zone }) => translate('zone', zone, locale)}
-            renderInput={params => <TextField {...params} label='Select a zone' />}
+            renderInput={params => <TextField {...params} label={t('selectZone')} />}
             value={zoneOption}
             getOptionSelected={(option, value) => option.zone === value.zone}
             onChange={handleSelectZone}
@@ -166,13 +168,13 @@ const Forecaster = ({ now, i18n }: Props) => {
         </Grid>
         <Grid item xs={12} md={4}>
           <FormControl fullWidth className={classes.transitionWeather}>
-            <InputLabel>Transition from</InputLabel>
+            <InputLabel>{t('transitionWeather')}</InputLabel>
             <Select
               value={transitionWeather || 'none'}
               disabled={!zoneOption}
               onChange={handleSelectTransitionWeather}
             >
-              <MenuItem value='none'>{possibleWeathers ? 'Any weather' : 'Select a zone first'}</MenuItem>
+              <MenuItem value='none'>{t(possibleWeathers ? 'anyWeather' : 'selectZoneFirst')}</MenuItem>
               {possibleWeathers && (
                 possibleWeathers.map(weather =>
                   <MenuItem key={weather} value={weather}>{translate('weather', weather, locale)}</MenuItem>
@@ -182,13 +184,13 @@ const Forecaster = ({ now, i18n }: Props) => {
           </FormControl>
           <ArrowDownwardIcon className={classes.transitionArrow} />
           <FormControl fullWidth>
-            <InputLabel>Target weather</InputLabel>
+            <InputLabel>{t('targetWeather')}</InputLabel>
             <Select
               value={targetWeather || 'none'}
               disabled={!zoneOption}
               onChange={handleSelectTargetWeather}
             >
-              <MenuItem value='none'>{possibleWeathers ? 'Any weather' : 'Select a zone first'}</MenuItem>
+              <MenuItem value='none'>{t(possibleWeathers ? 'anyWeather' : 'selectZoneFirst')}</MenuItem>
               {possibleWeathers && (
                 possibleWeathers.map(weather =>
                   <MenuItem key={weather} value={weather}>{translate('weather', weather, locale)}</MenuItem>
@@ -199,7 +201,7 @@ const Forecaster = ({ now, i18n }: Props) => {
         </Grid>
         <Grid item xs={12} md={4}>
           <FormControl component='fieldset'>
-            <FormLabel component='legend'>Select times</FormLabel>
+            <FormLabel component='legend'>{t('selectTimes')}</FormLabel>
             <FormGroup>
               <FormControlLabel
                 control={<Checkbox checked={times[0]} onChange={handleSelectTimes.bind(null, 0)} />}
@@ -218,12 +220,11 @@ const Forecaster = ({ now, i18n }: Props) => {
         </Grid>
         {zoneOption && !hasTime && (
           <Grid item xs={12}>
-            <Typography><strong>Error:</strong> At least one time must be selected.</Typography>
+            <Alert variant='outlined' severity='error'>{t('noTimeSelected')}</Alert>
           </Grid>
         )}
         {forecast && (
           <Grid item xs={12}>
-            <Typography variant='h6' gutterBottom>Next 10 matches</Typography>
             <TableContainer>
               <Table size='small'>
                 <TableBody>

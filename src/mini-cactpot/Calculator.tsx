@@ -7,6 +7,8 @@ import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import CalculatorCell from './CalculatorCell'
 import CalculatorLineIndicator from './CalculatorLineIndicator'
+import i18n from '../i18n'
+import { TFunction } from 'next-i18next'
 
 const useStyles = makeStyles((theme) => ({
   gridShrink: {
@@ -31,7 +33,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const Calculator = () => {
+type Props = {
+  t: TFunction
+}
+
+const Calculator = ({ t }: Props) => {
   const [grid, setGrid] = useState<number[]>(Array(9).fill(null))
   const classes = useStyles()
 
@@ -126,32 +132,32 @@ const Calculator = () => {
               if (error) {
                 switch (error.type) {
                   case 'EMPTY':
-                    return <Typography paragraph>Click on a square to enter a digit.</Typography>
+                    return <Typography paragraph>{t('state.selectFirstCell')}</Typography>
                   case 'TOO MANY':
-                    return <Typography paragraph>Too many cells have been filled!</Typography>
+                    return <Typography paragraph>{t('state.tooManyDigits')}</Typography>
                   case 'DUPLICATES':
-                    return <Typography paragraph>Cells cannot repeat digits!</Typography>
+                    return <Typography paragraph>{t('state.duplicateDigits')}</Typography>
                 }
               } else {
                 switch (suggestion.type) {
                   case 'CELL':
                     return (
                       <>
-                        <Typography><b>Expected value:</b> {suggestion.maxCellEV | 0}</Typography>
-                        <Typography paragraph>Reveal a highlighted square.</Typography>
+                        <Typography>{t('expectedValue', { ev: Math.floor(suggestion.maxCellEV) })}</Typography>
+                        <Typography paragraph>{t('state.selectHighlightedCell')}</Typography>
                       </>
                     )
                   case 'LINE':
                     return (
                       <>
-                        <Typography><b>Expected value:</b> {suggestion.maxLineEV | 0}</Typography>
-                        <Typography paragraph>Select a highlighted line!</Typography>
+                        <Typography>{t('expectedValue', { ev: Math.floor(suggestion.maxLineEV) })}</Typography>
+                        <Typography paragraph>{t('state.selectHighlightedLine')}</Typography>
                       </>
                     )
                 }
               }
             })()}
-            <Button variant='contained' color='secondary' onClick={handleClickReset}>Reset</Button>
+            <Button variant='contained' color='secondary' onClick={handleClickReset}>{t('reset')}</Button>
           </div>
         </Grid>
       </Grid>
@@ -159,4 +165,4 @@ const Calculator = () => {
   )
 }
 
-export default Calculator
+export default i18n.withTranslation('mini-cactpot')(Calculator)

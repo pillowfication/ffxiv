@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button'
 import Section from '../Section'
 import HighOrLowCard from './HighOrLowCard'
 import calculateHighOrLow from './calculate-high-or-low'
+import i18n from '../i18n'
+import { TFunction } from 'next-i18next'
 
 enum CalculatorState {
   Incomplete,
@@ -13,7 +15,7 @@ enum CalculatorState {
 }
 
 function toPercent (p: number, q: number) {
-  return (p / q * 100 | 0) + '%'
+  return Math.floor(p / q * 100)
 }
 
 const useStyles = makeStyles(() => ({
@@ -24,7 +26,11 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const Calculator = () => {
+type Props = {
+  t: TFunction
+}
+
+const Calculator = ({ t }: Props) => {
   const [tb1, setTb1] = useState<number>(null)
   const [tb2, setTb2] = useState<number>(null)
   const [me, setMe] = useState<number>(null)
@@ -38,15 +44,10 @@ const Calculator = () => {
   let low: number
   let both: number
 
-  // Check to see if there are any duplicate cards
   if (tb1Error || tb2Error || meError) {
     state = CalculatorState.Duplicate
-
-  // Check to see if all the cards have been inputted
   } else if (tb1 === null || tb2 === null || me === null) {
     state = CalculatorState.Incomplete
-
-  // The cards are good!
   } else {
     state = CalculatorState.Complete
     ;({high, low, both} = calculateHighOrLow(tb1, tb2, me))
@@ -72,25 +73,25 @@ const Calculator = () => {
         {(() => {
           switch (state) {
             case CalculatorState.Incomplete:
-              return <Typography paragraph>Input cards above</Typography>
+              return <Typography paragraph>{t('state.inputCards')}</Typography>
             case CalculatorState.Duplicate:
-              return <Typography paragraph>Cannot have duplicate cards</Typography>
+              return <Typography paragraph>{t('state.duplicateCards')}</Typography>
             case CalculatorState.Complete: {
               const sum = high + low + both
               if (high > low) {
-                return <Typography paragraph>You are <b>High</b> ({toPercent(high, sum)})</Typography>
+                return <Typography paragraph>{t('state.high', { chance: toPercent(high, sum) })}</Typography>
               } else if (high < low) {
-                return <Typography paragraph>You are <b>Low</b> ({toPercent(low, sum)})</Typography>
+                return <Typography paragraph>{t('state.low', { chance: toPercent(low, sum) })}</Typography>
               } else {
-                return <Typography paragraph>You are <b>High</b> or <b>Low</b> ({toPercent(low, sum)})</Typography>
+                return <Typography paragraph>{t('state.both', { chance: toPercent(low, sum) })}</Typography>
               }
             }
           }
         })()}
-        <Button variant='contained' color='secondary' onClick={handleClickReset}>Reset</Button>
+        <Button variant='contained' color='secondary' onClick={handleClickReset}>{t('reset')}</Button>
       </div>
     </Section>
   )
 }
 
-export default Calculator
+export default i18n.withTranslation('high-or-low')(Calculator)

@@ -95,7 +95,7 @@ const useStyles = makeStyles(theme => ({
   },
   statsTable: {
     width: 'initial',
-    margin: '0 auto',
+    margin: theme.spacing(2, 'auto'),
     '& td': {
       padding: `${theme.spacing(0.5, 4)} !important`
     }

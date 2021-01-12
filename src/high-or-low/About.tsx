@@ -2,10 +2,16 @@ import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import Section from '../Section'
 import { $, $$ } from '../MathJax'
+import i18n from '../i18n'
+import { TFunction } from 'next-i18next'
 
-const About = () => {
+type Props = {
+  t: TFunction
+}
+
+const About = ({ t }: Props) => {
   return (
-    <Section title='About'>
+    <Section title={t('about')}>
       <Typography paragraph>
         The deck contains 9 cards valued 1 through 9. You and Tista-Bie are dealt 3 cards each, with 2 of hers and 1 of yours revealed. You guess if the sum of your 3 cards is higher or lower than the sum of her 3 cards. You win if you are correct.
       </Typography>
@@ -33,4 +39,4 @@ const About = () => {
   )
 }
 
-export default About
+export default i18n.withTranslation('high-or-low')(About)

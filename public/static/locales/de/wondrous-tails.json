@@ -1,1 +1,9 @@
-{}
+{
+  "title": "Wondrous Tails",
+  "selectStickers": "Select up to 9 stickers.",
+  "tooManyStickers": "Too many cells have been filled.",
+  "lines": "Lines",
+  "chance": "Chance",
+  "deviation": "Deviation",
+  "reset": "Reset"
+}

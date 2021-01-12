@@ -9,6 +9,8 @@ import TableBody from '@material-ui/core/TableBody'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import Highlight from '../Highlight'
+import i18n from '../i18n'
+import { TFunction } from 'next-i18next'
 
 const useStyles = makeStyles((theme) => ({
   anemosTable: {
@@ -19,11 +21,15 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const About = () => {
+type Props = {
+  t: TFunction
+}
+
+const About = ({ t }: Props) => {
   const classes = useStyles()
 
   return (
-    <Section title='About'>
+    <Section title={t('about')}>
       <Typography paragraph>
         The weather in Eorzea can be predicted. First, the number of Eorzean hours and days since the <Link href='https://en.wikipedia.org/wiki/Unix_time'>Unix epoch</Link> is calculated.
       </Typography>
@@ -99,4 +105,4 @@ const weatherChance = step2 % 100
   )
 }
 
-export default About
+export default i18n.withTranslation('skywatcher')(About)

@@ -16,7 +16,7 @@ import UpcomingWeatherTable from './UpcomingWeatherTable'
 import { Region } from './weather/consts'
 import PARTITION from './weather/regions-partition'
 import i18n from '../i18n'
-import { I18n } from 'next-i18next'
+import { I18n, TFunction } from 'next-i18next'
 
 const REGIONS = [
   Region.LaNoscea,
@@ -37,10 +37,11 @@ const useStyles = makeStyles((theme) => ({
 
 type Props = {
   now?: Date,
+  t: TFunction,
   i18n: I18n
 }
 
-const UpcomingWeather = ({ now, i18n }: Props) => {
+const UpcomingWeather = ({ now, t, i18n }: Props) => {
   const classes = useStyles()
   const router = useRouter()
   const [filter, setFilter] = useState<Region | null>(null)
@@ -67,13 +68,13 @@ const UpcomingWeather = ({ now, i18n }: Props) => {
   const handleToggleWeatherChance = () => { setShowWeatherChance(!showWeatherChance) }
 
   return (
-    <Section title='Upcoming Weather'>
+    <Section title={t('upcomingWeather')}>
       <Grid container spacing={1} className={classes.options}>
         <Grid item xs={12}>
           <FormControl variant='filled' fullWidth margin='dense'>
-            <InputLabel>Select a region</InputLabel>
+            <InputLabel>{t('selectRegion')}</InputLabel>
             <Select onChange={handleSelectFilter} value={filter || 'none'}>
-              <MenuItem value='none'>Show all regions</MenuItem>
+              <MenuItem value='none'>{t('showAllRegions')}</MenuItem>
               {REGIONS.map(region =>
                 <MenuItem key={region} value={region}>{translate('region', region, locale)}</MenuItem>
               )}
@@ -89,7 +90,7 @@ const UpcomingWeather = ({ now, i18n }: Props) => {
                 color='primary'
               />
             }
-            label='Show Labels'
+            label={t('showLabels')}
           />
           <FormControlLabel
             control={
@@ -99,7 +100,7 @@ const UpcomingWeather = ({ now, i18n }: Props) => {
                 color='primary'
               />
             }
-            label='Show local times'
+            label={t('showLocalTimes')}
           />
           <FormControlLabel
             control={

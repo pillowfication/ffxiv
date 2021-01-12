@@ -12,6 +12,8 @@ import Button from '@material-ui/core/Button'
 import Section from '../Section'
 import CalculatorCell from './CalculatorCell'
 import calculateProbabilities from './calculate-probabilities'
+import i18n from '../i18n'
+import { TFunction } from 'next-i18next'
 
 const PROB_1_LINES = 6688 / 11440
 const PROB_2_LINES = 1208 / 11440
@@ -67,7 +69,11 @@ function toDeviationPercent (val: number) {
   return <Typography style={{ color }}>{string}</Typography>
 }
 
-const Calculator = () => {
+type Props = {
+  t: TFunction
+}
+
+const Calculator = ({ t }: Props) => {
   const [board, setBoard] = useState(Array(16).fill(false))
   const classes = useStyles()
   const { lines1, lines2, lines3, total } = calculateProbabilities(board)
@@ -109,15 +115,15 @@ const Calculator = () => {
         <Grid item xs={12} className={classes.gridGrow}>
           <Typography variant='h6' paragraph>{filledCells} / 9</Typography>
           {filledCells <= 9
-            ? <Typography paragraph>Select up to 9 stickers.</Typography>
-            : <Typography paragraph>Too many cells have been filled!</Typography>}
+            ? <Typography paragraph>{t('selectStickers')}</Typography>
+            : <Typography paragraph>{t('tooManyStickers')}</Typography>}
           <TableContainer className={classes.probabilities}>
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>Lines</TableCell>
-                  <TableCell>Chance</TableCell>
-                  <TableCell>Deviation</TableCell>
+                  <TableCell>{t('lines')}</TableCell>
+                  <TableCell>{t('chance')}</TableCell>
+                  <TableCell>{t('deviation')}</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -139,11 +145,11 @@ const Calculator = () => {
               </TableBody>
             </Table>
           </TableContainer>
-          <Button variant='contained' color='secondary' onClick={handleClickReset}>Reset</Button>
+          <Button variant='contained' color='secondary' onClick={handleClickReset}>{t('reset')}</Button>
         </Grid>
       </Grid>
     </Section>
   )
 }
 
-export default Calculator
+export default i18n.withTranslation('wondrous-tails')(Calculator)

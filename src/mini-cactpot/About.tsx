@@ -12,8 +12,10 @@ import TableCell from '@material-ui/core/TableCell'
 import Section from '../Section'
 import { $ } from '../MathJax'
 import MiniGrid from './MiniGrid'
+import i18n from '../i18n'
+import { TFunction } from 'next-i18next'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   payoutsContainer: {
     marginBottom: theme.spacing(2)
   },
@@ -39,11 +41,15 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const About = () => {
+type Props = {
+  t: TFunction
+}
+
+const About = ({ t }: Props) => {
   const classes = useStyles()
 
   return (
-    <Section title='About'>
+    <Section title={t('about')}>
       <Typography paragraph>
         <MuiLink href='https://na.finalfantasyxiv.com/lodestone/playguide/contentsguide/goldsaucer/cactpot/'>Mini Cactpot</MuiLink> is a scratchcard lottery where each of the numbers {$('1')} through {$('9')} are hidden in a {$('3 \\times 3')} grid. One cell is initially revealed, and after selecting 3 more to uncover one at a time, you may select any row, column, or diagonal. The sum of your selected line determines how much MGP you win.
       </Typography>
@@ -143,4 +149,4 @@ const About = () => {
   )
 }
 
-export default About
+export default i18n.withTranslation('mini-cactpot')(About)

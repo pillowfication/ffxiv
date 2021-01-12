@@ -89,7 +89,7 @@ const NameGenerator = ({ t, i18n }: Props) => {
   }
 
   return (
-    <Page title={t('name-generator')}>
+    <Page title={t('title')}>
       <Section>
         <Grid container spacing={2}>
           <Grid item xs={12} md={3}>

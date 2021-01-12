@@ -127,34 +127,38 @@ const App = ({ Component, pageProps }: Props) => {
             <Grid container justify='space-between' alignItems='center'>
               <Grid item>
                 <Toolbar disableGutters className={classes.toolbar}>
-                  <Button
-                    component={Link}
-                    variant='contained'
-                    color='primary'
-                    disableElevation
-                    underline='none'
-                    href='/'
-                  >
-                    <HomeIcon className={classes.homeIcon} />
-                    <Typography>Lulu’s Tools</Typography>
-                  </Button>
-                </Toolbar>
-              </Grid>
-              <Grid item>
-                <Toolbar disableGutters className={classes.toolbar}>
-                  <Box display={{ xs: 'none', md: 'inline-block' }}>
+                  <Tooltip title='Go home' enterDelay={300}>
                     <Button
                       component={Link}
                       variant='contained'
                       color='primary'
                       disableElevation
                       underline='none'
-                      href='https://github.com/pillowfication/ffxiv'
+                      href='/'
                     >
-                      <GitHubIcon />
+                      <HomeIcon className={classes.homeIcon} />
+                      <Typography>Lulu’s Tools</Typography>
                     </Button>
+                  </Tooltip>
+                </Toolbar>
+              </Grid>
+              <Grid item>
+                <Toolbar disableGutters className={classes.toolbar}>
+                  <Box display={{ xs: 'none', md: 'inline-block' }}>
+                    <Tooltip title='Source code' enterDelay={300}>
+                      <Button
+                        component={Link}
+                        variant='contained'
+                        color='primary'
+                        disableElevation
+                        underline='none'
+                        href='https://github.com/pillowfication/ffxiv'
+                      >
+                        <GitHubIcon />
+                      </Button>
+                    </Tooltip>
                   </Box>
-                  <Tooltip title='Choose Language' enterDelay={300}>
+                  <Tooltip title='Change language' enterDelay={300}>
                     <Button
                       variant='contained'
                       color='primary'
