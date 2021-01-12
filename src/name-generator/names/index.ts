@@ -3,6 +3,7 @@ import generateElezen from './generate-elezen'
 import generateLalafell from './generate-lalafell'
 import generateMiqote from './generate-miqote'
 import generateRoegadyn from './generate-roegadyn'
+import generateAuRa from './generate-au-ra'
 import { Race, Clan, Gender } from './types'
 
 import en from './locales/en.json'
@@ -17,7 +18,7 @@ const GENERATORS: Record<Race, (clan: Clan, gender: Gender) => string> = {
   [Race.Lalafell]: generateLalafell,
   [Race.Miqote]: generateMiqote,
   [Race.Roegadyn]: generateRoegadyn,
-  [Race.AuRa]: () => '',
+  [Race.AuRa]: generateAuRa,
   [Race.Hrothgar]: () => '',
   [Race.Viera]: () => ''
 }

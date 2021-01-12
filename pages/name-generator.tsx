@@ -18,14 +18,16 @@ const RACES = [
   Race.Elezen,
   Race.Lalafell,
   Race.Miqote,
-  Race.Roegadyn
+  Race.Roegadyn,
+  Race.AuRa
 ]
 const CLANS: { [key: string]: [Clan, Clan] } = {
   [Race.Hyur]: [Clan.Midlander, Clan.Highlander],
   [Race.Elezen]: [Clan.Wildwood, Clan.Duskwight],
   [Race.Lalafell]: [Clan.Plainsfolk, Clan.Dunesfolk],
   [Race.Miqote]: [Clan.SeekersOfTheSun, Clan.KeepersOfTheMoon],
-  [Race.Roegadyn]: [Clan.SeaWolves, Clan.Hellsguard]
+  [Race.Roegadyn]: [Clan.SeaWolves, Clan.Hellsguard],
+  [Race.AuRa]: [Clan.Raen, Clan.Xaela]
 }
 const GENDERS = [
   Gender.Male,
