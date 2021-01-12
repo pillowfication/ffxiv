@@ -46,10 +46,11 @@ const BaitChain = ({ baits, subtext }: Props) => {
           <div className={classes.bait}>
             <OceanFishIcon type={index === 0 ? 'bait' : 'fish'} id={id} />
             {tug && <Tug sup strength={tug} />}
-            {(subtext && index === baits.length - 1) &&
+            {(subtext && index === baits.length - 1) && (
               <Typography className={classes.subtext} display='inline'>
                 {typeof subtext === 'string' ? subtext : subtext(id)}
-              </Typography>}
+              </Typography>
+            )}
           </div>
           {index < baits.length - 1 && <ChevronRightIcon className={classes.chevron} />}
         </React.Fragment>

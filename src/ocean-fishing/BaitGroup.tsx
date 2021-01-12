@@ -28,7 +28,7 @@ const BaitGroup = ({ baits, intuitionFishes, subtext, mainOnly }: Props) => {
   return (
     <>
       <BaitChain baits={baits} subtext={subtext} />
-      {intuitionFishes &&
+      {intuitionFishes && (
         <ul className={classes.intuitionFishes}>
           {intuitionFishes.map(({ count, baits }, index) =>
             <li key={index}>
@@ -36,7 +36,8 @@ const BaitGroup = ({ baits, intuitionFishes, subtext, mainOnly }: Props) => {
               <BaitChain baits={baits} subtext={!mainOnly && subtext} />
             </li>
           )}
-        </ul>}
+        </ul>
+      )}
     </>
   )
 }

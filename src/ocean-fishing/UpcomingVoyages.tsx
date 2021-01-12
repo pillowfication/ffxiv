@@ -37,7 +37,6 @@ const UpcomingVoyages = ({ now, onSelectRoute, t, i18n }: Props) => {
   const [numRows, setNumRows] = useState(10)
   const [filter, setFilter] = useState('none')
   const firstRender = useRef(false)
-
   const locale = i18n.language
 
   useEffect(() => {
@@ -133,10 +132,11 @@ const UpcomingVoyages = ({ now, onSelectRoute, t, i18n }: Props) => {
           </FormControl>
         </Grid>
         <NoSsr>
-          {now &&
+          {now && (
             <Grid item xs={12}>
               <UpcomingVoyagesTable now={now} numRows={numRows} filter={maps.FILTER_MAP[filter]} onSelectRoute={onSelectRoute} />
-            </Grid>}
+            </Grid>
+          )}
         </NoSsr>
       </Grid>
     </Section>

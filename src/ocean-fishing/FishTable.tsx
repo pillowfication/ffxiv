@@ -117,20 +117,24 @@ const FishTable = ({ spots, time, t, i18n }: Props) => {
                         {fishInfo.mooch && <OceanFishIcon type='fish' id={fishInfo.mooch} />}
                       </TableCell>
                       <TableCell align='center'>
-                        {fishInfo.tug &&
-                          <Tug strength={fishInfo.tug} className={classes.tug} />}
+                        {fishInfo.tug && (
+                          <Tug strength={fishInfo.tug} className={classes.tug} />
+                        )}
                       </TableCell>
                       <TableCell align='center'>
-                        {fishInfo.bite_time.all &&
-                          <Typography>{fishInfo.bite_time.all[0] === fishInfo.bite_time.all[1] ? fishInfo.bite_time.all[0] : fishInfo.bite_time.all.join('-')}</Typography>}
+                        {fishInfo.bite_time.all && (
+                          <Typography>{fishInfo.bite_time.all[0] === fishInfo.bite_time.all[1] ? fishInfo.bite_time.all[0] : fishInfo.bite_time.all.join('-')}</Typography>
+                        )}
                       </TableCell>
                       <TableCell align='center'>
-                        {fishInfo.points &&
-                          <Typography>{fishInfo.points}</Typography>}
+                        {fishInfo.points && (
+                          <Typography>{fishInfo.points}</Typography>
+                        )}
                       </TableCell>
                       <TableCell align='center'>
-                        {fishInfo.double_hook &&
-                          <Typography>{Array.isArray(fishInfo.double_hook) ? fishInfo.double_hook.join('-') : fishInfo.double_hook}</Typography>}
+                        {fishInfo.double_hook && (
+                          <Typography>{Array.isArray(fishInfo.double_hook) ? fishInfo.double_hook.join('-') : fishInfo.double_hook}</Typography>
+                        )}
                       </TableCell>
                       <TableCell align='center'>
                         {(() => {
@@ -161,8 +165,9 @@ const FishTable = ({ spots, time, t, i18n }: Props) => {
                         })()}
                       </TableCell>
                       <TableCell align='center'>
-                        {fishInfo.category &&
-                          <OceanFishIcon type='bonus-icon' id={fishInfo.category} size={30} />}
+                        {fishInfo.category && (
+                          <OceanFishIcon type='bonus-icon' id={fishInfo.category} size={30} />
+                        )}
                       </TableCell>
                     </TableRow>
                   )

@@ -159,18 +159,20 @@ const OceanFishIcon = ({ type, id, size = 40, className, i18n }: Props) => {
           onClick={handleClick}
         >
           <div className={clsx(classes.oceanFishIcon, classes[camelCase(id)])} />
-          {type !== 'bonus-icon' &&
-            <div className={type === 'achievement' ? classes.achievementOverlay : classes.iconOverlay} />}
+          {type !== 'bonus-icon' && (
+            <div className={type === 'achievement' ? classes.achievementOverlay : classes.iconOverlay} />
+          )}
         </div>
       </Tooltip>
-      {type === 'fish' &&
+      {type === 'fish' && (
         <Popper anchorEl={anchorEl} open={Boolean(anchorEl)} placement='bottom-start'>
           <ClickAwayListener onClickAway={handleClickAway}>
             <div>
               <OceanFishPopper fishId={id as number} />
             </div>
           </ClickAwayListener>
-        </Popper>}
+        </Popper>
+      )}
     </>
   )
 }

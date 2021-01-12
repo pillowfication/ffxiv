@@ -74,7 +74,7 @@ const UpcomingWeather = ({ now, i18n }: Props) => {
             <InputLabel>Select a region</InputLabel>
             <Select onChange={handleSelectFilter} value={filter || 'none'}>
               <MenuItem value='none'>Show all regions</MenuItem>
-              {Object.values(Region).map(region =>
+              {REGIONS.map(region =>
                 <MenuItem key={region} value={region}>{translate('region', region, locale)}</MenuItem>
               )}
             </Select>
