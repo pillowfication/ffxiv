@@ -1,0 +1,18 @@
+{
+  "helions": {
+    "forenames": [
+      "Ivica", "Matija", "Osorio", "Vladithgar", "Nenad", "Zlatan", "Toplica", "Zhdan", "Mistithgar", "Mutimir", "Bogomil", "Ratimir", "Radisa", "Cachi", "Zvonimir", "Nekras", "Vsethgar", "Taman", "Xeven", "Mladen", "Ladimir", "Ladio", "Devyatko", "Frathopan", "Svatomir", "Velibor", "Grugur", "Deyan", "Yaromir", "Ctibor", "Dmitar", "Borimir", "Loeman", "Luchezar", "Dobry", "Putimir", "Lovro", "Juraj", "Voron", "Svetithgar", "Jarrick", "Svante", "Velithgar", "Milorad", "Berimir", "Vtorak", "Yaropol", "Daren", "Bazhen", "Budimir", "Svetozar", "Drzithghar", "Hrvoye", "Jareck", "Veselin", "Vadim", "Duscha", "Ratmir", "Sudimir", "Tihomir", "Dragomir", "Pavao", "Kazek", "Tomithgar", "Radimir", "Razumnik", "Mylon", "Branimir", "Visethgar", "Brondy", "Bojan", "Miladin", "Semir", "Bogdan", "Petar", "Krsto", "Vojin", "Izet", "Mirothgar", "Bozidar", "Stjepan", "Yarothgar", "Preben", "Borna", "Sinisa", "Zoran", "Lutomis", "Gorynya", "Ninothgar", "Asmir", "Cededa", "Ratibor", "Mihalo"
+    ],
+    "surnames": [
+      "Amira", "Azora", "Avesna", "Azorya", "Astana", "Arodica", "Amilan", "Amirka", "Asvana", "Avira", "Aredna", "Azetina", "Astolla", "Amarya", "Atolna", "Atessa", "Ayurya", "Amov", "Adeanna", "Ajolla"
+    ]
+  },
+  "the_lost": {
+    "forenames": [
+      "Davor", "Tikhomir", "Lirim", "Kresimir", "Dob", "Desimir", "Slathac", "Matej", "Dobrica", "Ostromir", "Ivan", "Vsemil", "Mithgar", "Jaromir", "Volos", "Sead", "Vaclav", "Ludevit", "Andriya", "Ulfo", "Raclaw", "Ziv", "Matko", "Sladkey", "Domagoi", "Vyachko", "Boric", "Zdravko", "Miodrag", "Vlastimil", "Dubynya", "Radovan", "Iljko", "Drasko", "Darko", "Vencel", "Wenceslas", "Kriv", "Waldemar", "Goran", "Zorya", "Belun", "Mecek", "Bernardin", "Milovan", "Brathgar", "Mirko", "Haris", "Milenko", "Ajdin", "Voynomir", "Yov", "Damir", "Gostimil", "Vuk", "Gradimir", "Slobodan", "Stanik", "Rostik", "Zdethgar", "Dusan", "Vladan", "Koschey", "Ladithgar", "Zlatomir", "Vladimir", "Novak", "Velimir", "Stanimir", "Czethgar", "Stas", "Svyatogor", "Bozek", "Vsevolod", "Blaz", "Tilo", "Dalek", "Zelimir", "Drazan", "Mikac", "Radigost", "Milutin", "Kocelj", "Kulin", "Bronithgar", "Lubomir", "Adis", "Ivanis", "Tanix", "Bolek", "Cvetko", "Borsch", "Pribina", "Emerik", "Casimir", "Trpimir", "Boras"
+    ],
+    "surnames": [
+      "Zlatasch", "Liubasch", "Brankasch", "Tirasch", "Ratyasch", "Slanasch", "Enyasch", "Natasch", "Svenach", "Ditasch", "Anatalyasch", "Inivisch", "Jovasch", "Onasch", "Petyasch", "Linasch", "Ulgasch", "Maevsch", "Lentyasch", "Ovasch", "Yorvasch", "Slobasch", "Piryasch", "Votyasch", "Anovsch", "Ellasch", "Lantasch", "Stalyasch", "Zelasch", "Vetasch", "Lianasch", "Stevasch", "Utyasch", "Rolvasch", "Wenyasch", "Nintasch", "Olanasch", "Mildasch", "Ridnisch", "Tilvisch", "Slendisch", "Erayasch", "Yanavsch", "Veitasch", "Lunyasch", "Wirasch", "Liorasch", "Svanasch", "Irryasch"
+    ]
+  }
+}

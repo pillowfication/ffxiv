@@ -8,7 +8,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Button from '@material-ui/core/Button'
 import Page from '../src/Page'
 import Section from '../src/Section'
-import generate, { translate } from '../src/name-generator/names'
+import generate, { getClans, getGenders, translate } from '../src/name-generator/names'
 import { Race, Clan, Gender } from '../src/name-generator/names/types'
 import i18n from '../src/i18n'
 import { I18n, TFunction } from 'next-i18next'
@@ -19,19 +19,9 @@ const RACES = [
   Race.Lalafell,
   Race.Miqote,
   Race.Roegadyn,
-  Race.AuRa
-]
-const CLANS: { [key: string]: [Clan, Clan] } = {
-  [Race.Hyur]: [Clan.Midlander, Clan.Highlander],
-  [Race.Elezen]: [Clan.Wildwood, Clan.Duskwight],
-  [Race.Lalafell]: [Clan.Plainsfolk, Clan.Dunesfolk],
-  [Race.Miqote]: [Clan.SeekersOfTheSun, Clan.KeepersOfTheMoon],
-  [Race.Roegadyn]: [Clan.SeaWolves, Clan.Hellsguard],
-  [Race.AuRa]: [Clan.Raen, Clan.Xaela]
-}
-const GENDERS = [
-  Gender.Male,
-  Gender.Female
+  Race.AuRa,
+  Race.Hrothgar,
+  Race.Viera
 ]
 
 function randomElement<T> (array: T[]) {
@@ -64,10 +54,16 @@ const NameGenerator = ({ t, i18n }: Props) => {
   const [results, setResults] = useState<string[] | null>(null)
   const locale = i18n.language
 
+  const raceClans = race ? getClans(race) : []
+  const raceGenders = race ? getGenders(race) : []
+
   const handleSelectRace = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const race = event.target.value
-    setRace(race === 'none' ? null : race as Race)
-    setClan(null)
+    const race = event.target.value === 'none' ? null : event.target.value as Race
+    const raceClans = race && getClans(race)
+    const raceGenders = race && getGenders(race)
+    setRace(race)
+    setClan(race && raceClans.length === 1 ? raceClans[0] : null)
+    setGender(race && raceGenders.length === 1 ? raceGenders[0] : null)
   }
   const handleSelectClan = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const clan = event.target.value
@@ -82,8 +78,8 @@ const NameGenerator = ({ t, i18n }: Props) => {
     const newResults = []
     for (let i = 0; i < 10; ++i) {
       const genRace = race || randomElement(RACES)
-      const genClan = clan || randomElement(CLANS[genRace])
-      const genGender = gender || randomElement(GENDERS)
+      const genClan = clan || randomElement(getClans(genRace))
+      const genGender = gender || randomElement(getGenders(genRace))
       newResults.push(generate(genRace, genClan, genGender))
     }
     setResults(newResults)
@@ -114,10 +110,8 @@ const NameGenerator = ({ t, i18n }: Props) => {
                 value={clan || 'none'}
                 onChange={handleSelectClan}
               >
-                <MenuItem value='none'>{t('any-clan')}</MenuItem>
-                {race && CLANS[race].map(clan =>
-                  <MenuItem key={clan} value={clan}>{translate('clan', clan, locale)}</MenuItem>
-                )}
+                {raceClans.length !== 1 && <MenuItem value='none'>{t('any-clan')}</MenuItem>}
+                {raceClans.map(clan => <MenuItem key={clan} value={clan}>{translate('clan', clan, locale)}</MenuItem>)}
               </Select>
             </FormControl>
           </Grid>
@@ -128,10 +122,8 @@ const NameGenerator = ({ t, i18n }: Props) => {
                 value={gender || 'none'}
                 onChange={handleSelectGender}
               >
-                <MenuItem value='none'>{t('any-gender')}</MenuItem>
-                {GENDERS.map(gender =>
-                  <MenuItem key={gender} value={gender}>{translate('gender', gender, locale)}</MenuItem>
-                )}
+                {raceGenders.length !== 1 && <MenuItem value='none'>{t('any-gender')}</MenuItem>}
+                {raceGenders.map(gender => <MenuItem key={gender} value={gender}>{translate('gender', gender, locale)}</MenuItem>)}
               </Select>
             </FormControl>
           </Grid>
