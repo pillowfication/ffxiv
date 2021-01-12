@@ -12,7 +12,7 @@ export const lightTheme = createMuiTheme({
       dark: '#082554'
     },
     background: {
-      default: '#fafbfc'
+      default: '#f8f9fa'
     },
     action: {
       hover: fade(PRIMARY_COLOR, 0.15)

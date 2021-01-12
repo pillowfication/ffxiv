@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
+import Paper from '@material-ui/core/Paper'
 import FormControl from '@material-ui/core/FormControl'
 import InputLabel from '@material-ui/core/InputLabel'
 import Select from '@material-ui/core/Select'
@@ -31,7 +32,8 @@ function randomElement<T> (array: T[]) {
 
 const useStyles = makeStyles(theme => ({
   results: {
-    padding: theme.spacing(4, 2),
+    margin: theme.spacing(4),
+    padding: theme.spacing(2),
     fontSize: '1.75em',
     '& > span': {
       display: 'block',
@@ -132,11 +134,9 @@ const NameGenerator = ({ t, i18n }: Props) => {
             <Button variant='contained' color='primary' fullWidth onClick={handleClickGenerate}>Generate</Button>
           </Grid>
         </Grid>
-        {results && (
-          <div className={classes.results}>
-            {results.map((result, index) => <span key={index}>{result}</span>)}
-          </div>
-        )}
+        <Paper variant='outlined' className={classes.results}>
+          {results.map((result, index) => <span key={index}>{result}</span>)}
+        </Paper>
       </Section>
       <About />
     </Page>

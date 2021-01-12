@@ -97,7 +97,7 @@ const useStyles = makeStyles(theme => ({
     width: 'initial',
     margin: '0 auto',
     '& td': {
-      padding: theme.spacing(1, 4)
+      padding: `${theme.spacing(0.5, 4)} !important`
     }
   }
 }))
@@ -147,13 +147,13 @@ const About = ({ t, i18n }: Props) => {
                   rows.push(
                     <TableRow key={`${race},${clans[i]},${genders[j]}`}>
                       {i === 0 && j === 0 && (
-                        <TableCell rowSpan={clans.length * genders.length} align='center'>{translate('race', race, locale)}</TableCell>
+                        <TableCell rowSpan={clans.length * genders.length} align='center'><Typography>{translate('race', race, locale)}</Typography></TableCell>
                       )}
                       {j === 0 && (
-                        <TableCell rowSpan={genders.length} align='center'>{translate('clan', clans[i], locale)}</TableCell>
+                        <TableCell rowSpan={genders.length} align='center'><Typography>{translate('clan', clans[i], locale)}</Typography></TableCell>
                       )}
-                      <TableCell align='center'>{translate('gender', genders[j], locale)}</TableCell>
-                      <TableCell align='center'>{getStatistic(race, clans[i], genders[j]).toLocaleString(locale)}</TableCell>
+                      <TableCell align='center'><Typography>{translate('gender', genders[j], locale)}</Typography></TableCell>
+                      <TableCell align='right'><Typography>{getStatistic(race, clans[i], genders[j]).toLocaleString(locale)}</Typography></TableCell>
                     </TableRow>
                   )
                 }
