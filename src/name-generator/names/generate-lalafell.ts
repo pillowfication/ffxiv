@@ -2,7 +2,7 @@ import data from './data/lalafell.json'
 import { Clan, Gender } from './types'
 import { randomElement, upperFirst } from './utils'
 
-const PHONEMES = {
+export const PHONEMES = {
   [Clan.Plainsfolk]: {
     A: data.plainsfolk.phoneme_a,
     B: data.plainsfolk.phoneme_b,

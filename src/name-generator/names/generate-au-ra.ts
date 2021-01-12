@@ -2,7 +2,7 @@ import data from './data/au-ra.json'
 import { Clan, Gender } from './types'
 import { randomElement } from './utils'
 
-const FORENAMES = {
+export const FORENAMES = {
   [Clan.Raen]: {
     [Gender.Male]: data.raen.male_forenames,
     [Gender.Female]: data.raen.female_forenames
@@ -13,7 +13,7 @@ const FORENAMES = {
   }
 }
 
-const SURNAMES = {
+export const SURNAMES = {
   [Clan.Raen]: data.raen.surnames,
   [Clan.Xaela]: data.xaela.surnames
 }

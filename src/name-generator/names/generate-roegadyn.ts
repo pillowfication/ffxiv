@@ -2,7 +2,7 @@ import data from './data/roegadyn.json'
 import { Clan, Gender } from './types'
 import { randomElement } from './utils'
 
-const FORENAMES = {
+export const FORENAMES = {
   [Clan.SeaWolves]: {
     [Gender.Male]: data.sea_wolves.male_forenames,
     [Gender.Female]: data.sea_wolves.female_forenames
@@ -10,7 +10,7 @@ const FORENAMES = {
   [Clan.Hellsguard]: data.hellsguard.forenames
 }
 
-const SURNAMES = {
+export const SURNAMES = {
   [Clan.SeaWolves]: {
     [Gender.Male]: data.sea_wolves.male_surnames,
     [Gender.Female]: data.sea_wolves.female_surnames

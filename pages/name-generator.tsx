@@ -8,6 +8,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Button from '@material-ui/core/Button'
 import Page from '../src/Page'
 import Section from '../src/Section'
+import About from '../src/name-generator/About'
 import generate, { getClans, getGenders, translate } from '../src/name-generator/names'
 import { Race, Clan, Gender } from '../src/name-generator/names/types'
 import i18n from '../src/i18n'
@@ -51,7 +52,7 @@ const NameGenerator = ({ t, i18n }: Props) => {
   const [race, setRace] = useState<Race | null>(null)
   const [clan, setClan] = useState<Clan | null>(null)
   const [gender, setGender] = useState<Gender | null>(null)
-  const [results, setResults] = useState<string[] | null>(null)
+  const [results, setResults] = useState<string[]>(['Click the Generate button!'])
   const locale = i18n.language
 
   const raceClans = race ? getClans(race) : []
@@ -137,6 +138,7 @@ const NameGenerator = ({ t, i18n }: Props) => {
           </div>
         )}
       </Section>
+      <About />
     </Page>
   )
 }

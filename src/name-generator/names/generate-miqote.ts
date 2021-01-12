@@ -2,7 +2,7 @@ import data from './data/miqote.json'
 import { Clan, Gender } from './types'
 import { randomElement } from './utils'
 
-const FORENAMES = {
+export const FORENAMES = {
   [Clan.SeekersOfTheSun]: {
     [Gender.Male]: data.seekers_of_the_sun.male_forenames,
     [Gender.Female]: data.seekers_of_the_sun.female_forenames
@@ -13,7 +13,7 @@ const FORENAMES = {
   }
 }
 
-const SURNAMES = {
+export const SURNAMES = {
   [Clan.SeekersOfTheSun]: data.seekers_of_the_sun.female_surnames,
   [Clan.KeepersOfTheMoon]: data.keepers_of_the_moon.surnames
 }

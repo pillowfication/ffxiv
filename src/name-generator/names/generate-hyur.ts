@@ -2,7 +2,7 @@ import data from './data/hyur.json'
 import { Clan, Gender } from './types'
 import { randomElement } from './utils'
 
-const FORENAMES = {
+export const FORENAMES = {
   [Clan.Midlander]: {
     [Gender.Male]: data.midlander.male_forenames,
     [Gender.Female]: data.midlander.female_forenames
@@ -13,7 +13,7 @@ const FORENAMES = {
   }
 }
 
-const SURNAMES = {
+export const SURNAMES = {
   [Clan.Midlander]: data.midlander.surnames,
   [Clan.Highlander]: data.highlander.surnames
 }

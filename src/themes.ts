@@ -107,6 +107,15 @@ export const darkTheme = createMuiTheme({
         }
       }
     },
+    MuiButton: {
+      contained: {
+        backgroundColor: '#3c4145',
+        color: '#e0e0e0',
+        '&:hover': {
+          backgroundColor: '#54585c'
+        }
+      }
+    },
     MuiPaper: {
       root: {
         backgroundColor: '#31363f'

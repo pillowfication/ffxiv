@@ -2,9 +2,9 @@ import data from './data/viera.json'
 import { Clan } from './types'
 import { randomElement } from './utils'
 
-const FORENAMES = data.forenames
+export const FORENAMES = data.forenames
 
-const SURNAMES = {
+export const SURNAMES = {
   [Clan.Rava]: data.rava.surnames,
   [Clan.Veena]: data.veena.surnames
 }
