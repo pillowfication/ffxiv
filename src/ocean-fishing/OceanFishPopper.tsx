@@ -42,7 +42,7 @@ const BAITS = [
   32107
 ]
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   container: {
     width: 400,
   },

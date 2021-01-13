@@ -18,7 +18,7 @@ const SUBTITLES = {
   2756: 'catch-manta'
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   achievementIcon: {
     marginLeft: theme.spacing(1.5),
     verticalAlign: 'sub'

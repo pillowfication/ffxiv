@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   cardsContainer: {
     marginBottom: theme.spacing(2)
   }

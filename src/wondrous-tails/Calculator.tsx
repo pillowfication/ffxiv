@@ -19,7 +19,7 @@ const PROB_1_LINES = 6688 / 11440
 const PROB_2_LINES = 1208 / 11440
 const PROB_3_LINES = 24 / 11440
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   gridShrink: {
     textAlign: 'center',
     [theme.breakpoints.up('md')]: {

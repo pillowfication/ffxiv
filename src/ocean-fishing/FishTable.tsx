@@ -19,7 +19,7 @@ import { translate } from './utils'
 import i18n from '../i18n'
 import { I18n, TFunction } from 'next-i18next'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   table: {
     '& td': {
       fontSize: '0.9em',

@@ -20,7 +20,7 @@ import { I18n, TFunction } from 'next-i18next'
 
 const DATE_FORMAT: Intl.DateTimeFormatOptions = { month: '2-digit', day: '2-digit' }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   schedule: {
     '& td': {
       height: 53,
@@ -89,7 +89,6 @@ const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute, t, i18n }: 
         <TableBody onMouseOut={setHover.bind(null, null)}>
           {(() => {
             let previousDate: string
-
             return upcomingVoyages.map(({ time, destinationCode }) => {
               const dateString = time.toLocaleDateString(i18n.language, DATE_FORMAT)
               const timeString = toTimeString(time, { padded: true, locale: i18n.language })

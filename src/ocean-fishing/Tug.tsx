@@ -5,7 +5,7 @@ import Tooltip from '@material-ui/core/Tooltip'
 import i18n from '../i18n'
 import { TFunction } from 'next-i18next'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   tug: {
     display: 'inline-block',
     width: '1.2em',

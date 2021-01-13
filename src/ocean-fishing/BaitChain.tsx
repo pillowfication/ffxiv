@@ -5,7 +5,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import OceanFishIcon from './OceanFishIcon'
 import Tug from './Tug'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   baitChain: {
     display: 'inline-block',
     verticalAlign: 'middle'

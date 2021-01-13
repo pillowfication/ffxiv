@@ -17,7 +17,7 @@ import { I18n } from 'next-i18next'
 
 const WEATHER_CELL_WIDTH = 75
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   weatherTable: {
     overflow: 'hidden',
     '& thead th': {

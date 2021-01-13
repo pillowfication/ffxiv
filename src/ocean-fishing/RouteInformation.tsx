@@ -29,7 +29,7 @@ import {
 import i18n from '../i18n'
 import { I18n, TFunction } from 'next-i18next'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   headerSub: {
     marginLeft: theme.spacing(2),
     [theme.breakpoints.down('md')]: {

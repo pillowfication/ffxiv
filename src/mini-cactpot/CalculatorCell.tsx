@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { fade } from '@material-ui/core/styles/colorManipulator'
 import TextField from '@material-ui/core/TextField'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   cell: {
     width: '5em',
     height: '5em',
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cellInput: {
     textAlign: 'center',
-    fontSize: '2.5em',
+    fontSize: '2em',
     [theme.breakpoints.up('md')]: {
       fontSize: '4em'
     }

@@ -4,7 +4,7 @@ import Head from 'next/head'
 import ReactHighlight from 'react-highlight.js'
 import Paper from '@material-ui/core/Paper'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   highlight: {
     marginBottom: theme.spacing(2),
     '& pre': {
@@ -22,8 +22,8 @@ type Props = {
 }
 
 const Highlight = ({ language, children }: Props) => {
-  const theme = useTheme()
   const classes = useStyles()
+  const theme = useTheme()
   const themeCss = theme.palette.type === 'dark' ? 'atom-one-dark' : 'github'
 
   return (

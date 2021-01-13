@@ -12,7 +12,7 @@ import Highlight from '../Highlight'
 import i18n from '../i18n'
 import { TFunction } from 'next-i18next'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   anemosTable: {
     width: 'initial',
     '& th, & td': {

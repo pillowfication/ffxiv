@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography'
 import BaitGroup from './BaitGroup'
 import { Bait } from './BaitChain'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   baitList: {
     listStyleType: 'none',
     margin: 0,

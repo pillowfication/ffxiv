@@ -7,7 +7,7 @@ import { TFunction } from 'next-i18next'
 
 const ICON_SIZE = 32
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   timeIcon: {
     display: 'inline-block',
     position: 'relative',

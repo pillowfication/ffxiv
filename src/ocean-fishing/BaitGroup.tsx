@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import BaitChain, { Bait } from './BaitChain'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   intuitionFishes: {
     listStyleType: 'none',
     margin: 0,

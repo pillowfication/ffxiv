@@ -2,6 +2,7 @@ declare var MathJax: any
 
 import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import NoSsr from '@material-ui/core/NoSsr'
 import Highlight from './Highlight'
 
 const setImmediatePolyfill = typeof setImmediate !== 'undefined'
@@ -19,7 +20,7 @@ function queueRenderMath () {
   }
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   noMathJaxBlock: {
     marginBottom: theme.spacing(2)
   },
@@ -42,7 +43,6 @@ type Props = {
   displayMode?: boolean
 }
 
-// TODO: SSR still not happy
 const MathJaxComponent = ({ math, displayMode }: Props) => {
   const classes = useStyles()
   const [isMounted, setIsMounted] = useState(false)
@@ -64,5 +64,5 @@ const MathJaxComponent = ({ math, displayMode }: Props) => {
 
 export default MathJaxComponent
 
-export const $ = (math: string) => <MathJaxComponent math={math} />
-export const $$ = (math: string) => <MathJaxComponent math={math} displayMode />
+export const $ = (math: string) => <NoSsr><MathJaxComponent math={math} /></NoSsr>
+export const $$ = (math: string) => <NoSsr><MathJaxComponent math={math} displayMode /></NoSsr>

@@ -16,7 +16,7 @@ function getImgUrl (fish: Fish) {
   }
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   iconContainer: {
     display: 'inline-block',
     position: 'relative' as 'relative',

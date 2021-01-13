@@ -53,7 +53,7 @@ for (const region of REGIONS) {
   }
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   transitionWeather: {
     [theme.breakpoints.down('sm')]: {
       marginBottom: theme.spacing(2)

@@ -29,7 +29,7 @@ const REGIONS = [
   Region.Others
 ]
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   options: {
     marginBottom: theme.spacing(2)
   }

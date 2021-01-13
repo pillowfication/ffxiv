@@ -12,8 +12,9 @@ import TableCell from '@material-ui/core/TableCell'
 import Section from '../Section'
 import { $ } from '../MathJax'
 import MiniGrid from './MiniGrid'
+import { PAYOUTS } from './calculate-mini-cactpot'
 import i18n from '../i18n'
-import { TFunction } from 'next-i18next'
+import { I18n, TFunction } from 'next-i18next'
 
 const useStyles = makeStyles(theme => ({
   payoutsContainer: {
@@ -42,10 +43,11 @@ const useStyles = makeStyles(theme => ({
 }))
 
 type Props = {
-  t: TFunction
+  t: TFunction,
+  i18n: I18n
 }
 
-const About = ({ t }: Props) => {
+const About = ({ t, i18n }: Props) => {
   const classes = useStyles()
 
   return (
@@ -64,64 +66,31 @@ const About = ({ t }: Props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
-              <TableCell align='center'>6</TableCell>
-              <TableCell align='right'>10,000</TableCell>
-              <TableCell align='center'>16</TableCell>
-              <TableCell align='right'>72</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell align='center'>7</TableCell>
-              <TableCell align='right'>36</TableCell>
-              <TableCell align='center'>17</TableCell>
-              <TableCell align='right'>180</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell align='center'>8</TableCell>
-              <TableCell align='right'>720</TableCell>
-              <TableCell align='center'>18</TableCell>
-              <TableCell align='right'>119</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell align='center'>9</TableCell>
-              <TableCell align='right'>360</TableCell>
-              <TableCell align='center'>19</TableCell>
-              <TableCell align='right'>36</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell align='center'>10</TableCell>
-              <TableCell align='right'>80</TableCell>
-              <TableCell align='center'>20</TableCell>
-              <TableCell align='right'>306</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell align='center'>11</TableCell>
-              <TableCell align='right'>252</TableCell>
-              <TableCell align='center'>21</TableCell>
-              <TableCell align='right'>1,080</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell align='center'>12</TableCell>
-              <TableCell align='right'>108</TableCell>
-              <TableCell align='center'>22</TableCell>
-              <TableCell align='right'>144</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell align='center'>13</TableCell>
-              <TableCell align='right'>72</TableCell>
-              <TableCell align='center'>23</TableCell>
-              <TableCell align='right'>1,800</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell align='center'>14</TableCell>
-              <TableCell align='right'>54</TableCell>
-              <TableCell align='center'>24</TableCell>
-              <TableCell align='right'>3,600</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell align='center'>15</TableCell>
-              <TableCell align='right'>180</TableCell>
-            </TableRow>
+            {[
+              [6, 16],
+              [7, 17],
+              [8, 18],
+              [9, 19],
+              [10, 20],
+              [11, 21],
+              [12, 22],
+              [13, 23],
+              [14, 24],
+              [15]
+            ].map((row, index) =>
+              <TableRow key={index}>
+                {row.map((col, index) =>
+                  <>
+                    <TableCell key={index} align='center'>
+                      {col.toLocaleString(i18n.language)}
+                    </TableCell>
+                    <TableCell key={index} align='right'>
+                      {PAYOUTS[col].toLocaleString(i18n.language)}
+                    </TableCell>
+                  </>
+                )}
+              </TableRow>
+            )}
           </TableBody>
         </Table>
       </TableContainer>
