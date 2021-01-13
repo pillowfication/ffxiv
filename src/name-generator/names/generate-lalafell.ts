@@ -24,32 +24,32 @@ export default function generateLalafell (clan: Clan.Plainsfolk | Clan.Dunesfolk
   switch (clan) {
     case Clan.Plainsfolk:
       if (gender === Gender.Male) {
-        const A = randomElement(PHONEMES[clan].A)
-        const B = randomElement(PHONEMES[clan].B)
-        const C = randomElement(PHONEMES[clan].C)
-        const forename = upperFirst(A + B)
-        const surname = upperFirst(C + B)
+        const phonemeA = randomElement(PHONEMES[clan].A)
+        const phonemeB = randomElement(PHONEMES[clan].B)
+        const phonemeC = randomElement(PHONEMES[clan].C)
+        const forename = upperFirst(phonemeA + phonemeB)
+        const surname = upperFirst(phonemeC + phonemeB)
         return `${forename} ${surname}`
       } else {
-        const A = randomElement(PHONEMES[clan].A)
-        const B = randomElement(PHONEMES[clan].B)
-        const forename = upperFirst(A + B + B)
-        const surname = upperFirst(A + B)
+        const phonemeA = randomElement(PHONEMES[clan].A)
+        const phonemeB = randomElement(PHONEMES[clan].B)
+        const forename = upperFirst(phonemeA + phonemeB + phonemeB)
+        const surname = upperFirst(phonemeA + phonemeB)
         return `${forename} ${surname}`
       }
     case Clan.Dunesfolk:
       if (gender === Gender.Male) {
-        const A = randomElement(PHONEMES[clan][gender].AC)
-        const B = randomElement(PHONEMES[clan][gender].B)
-        const C = randomElement(PHONEMES[clan][gender].AC)
-        const forename = upperFirst(A + A + B)
-        const surname = upperFirst(C + C + B)
+        const phonemeA = randomElement(PHONEMES[clan][gender].AC)
+        const phonemeB = randomElement(PHONEMES[clan][gender].B)
+        const phonemeC = randomElement(PHONEMES[clan][gender].AC)
+        const forename = upperFirst(phonemeA + phonemeA + phonemeB)
+        const surname = upperFirst(phonemeC + phonemeC + phonemeB)
         return `${forename} ${surname}`
       } else {
-        const A = randomElement(PHONEMES[clan][gender].A)
-        const B = randomElement(PHONEMES[clan][gender].B)
-        const forename = upperFirst(A + A + B)
-        const surname = upperFirst(A + B)
+        const phonemeA = randomElement(PHONEMES[clan][gender].A)
+        const phonemeB = randomElement(PHONEMES[clan][gender].B)
+        const forename = upperFirst(phonemeA + phonemeA + phonemeB)
+        const surname = upperFirst(phonemeA + phonemeB)
         return `${forename} ${surname}`
       }
   }

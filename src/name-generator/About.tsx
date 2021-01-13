@@ -11,7 +11,7 @@ import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import Section from '../Section'
 import { getClans, getGenders, translate } from './names'
-import { Clan, Race, Gender } from './names/types'
+import { Race, Clan, Gender } from './names/types'
 import { FORENAMES as HYUR_FORENAMES, SURNAMES as HYUR_SURNAMES } from './names/generate-hyur'
 import { FORENAMES as ELEZEN_FORENAMES, SURNAMES as ELEZEN_SURNAMES } from './names/generate-elezen'
 import { PHONEMES as LALAFELL_PHONEMES } from './names/generate-lalafell'
@@ -112,7 +112,7 @@ const About = ({ t, i18n }: Props) => {
   const locale = i18n.language
 
   return (
-    <Section title='About'>
+    <Section title={t('about')}>
       <Typography paragraph>
         Naming conventions for the various races can be found here:
       </Typography>
@@ -124,7 +124,7 @@ const About = ({ t, i18n }: Props) => {
         )}
       </div>
       <Typography paragraph>
-        Data were also grabbed from the <Link href='https://docs.google.com/document/d/15GgcCjifWlSSnx5vbJ22Kgc-AmgTMlrH8NVXW4DsQ4A/edit'>FFXIV Name Generator Full List</Link> Google Doc and this <Link href='https://www.reddit.com/r/ffxiv/comments/c6hsew/hrothgarviera_names_datamined/'>Hrothgar/Viera names datamined</Link> Reddit post.
+        Data were also grabbed from the <Link href='https://docs.google.com/document/d/15GgcCjifWlSSnx5vbJ22Kgc-AmgTMlrH8NVXW4DsQ4A/edit'>FFXIV Name Generator Full List</Link> Google Doc and the <Link href='https://www.reddit.com/r/ffxiv/comments/c6hsew/hrothgarviera_names_datamined/'>Hrothgar/Viera names datamined</Link> Reddit post.
       </Typography>
       <TableContainer>
         <Table size='small' className={classes.statsTable}>

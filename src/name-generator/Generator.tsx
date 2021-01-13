@@ -8,6 +8,22 @@ import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import Button from '@material-ui/core/Button'
 import Section from '../Section'
+import MidlanderMale from './MidlanderMale'
+import MidlanderFemale from './MidlanderFemale'
+import HighlanderMale from './HighlanderMale'
+import HighlanderFemale from './HighlanderFemale'
+import WildwoodMale from './WildwoodMale'
+import WildwoodFemale from './WildwoodFemale'
+import DuskwightMale from './DuskwightMale'
+import DuskwightFemale from './DuskwightFemale'
+import PlainsfolkMale from './PlainsfolkMale'
+import PlainsfolkFemale from './PlainsfolkFemale'
+import DunesfolkMale from './DunesfolkMale'
+import DunesfolkFemale from './DunesfolkFemale'
+import SeekersOfTheSunMale from './SeekersOfTheSunMale'
+import SeekersOfTheSunFemale from './SeekersOfTheSunFemale'
+import KeepersOfTheMoonMale from './KeepersOfTheMoonMale'
+import KeepersOfTheMoonFemale from './KeepersOfTheMoonFemale'
 import generate, { getClans, getGenders, translate } from '../name-generator/names'
 import { Race, Clan, Gender } from '../name-generator/names/types'
 import i18n from '../i18n'
@@ -23,6 +39,24 @@ const RACES = [
   Race.Hrothgar,
   Race.Viera
 ]
+const ADVANCED: { [key: string]: any } = {
+  [`${Clan.Midlander},${Gender.Male}`]: MidlanderMale,
+  [`${Clan.Midlander},${Gender.Female}`]: MidlanderFemale,
+  [`${Clan.Highlander},${Gender.Male}`]: HighlanderMale,
+  [`${Clan.Highlander},${Gender.Female}`]: HighlanderFemale,
+  [`${Clan.Wildwood},${Gender.Male}`]: WildwoodMale,
+  [`${Clan.Wildwood},${Gender.Female}`]: WildwoodFemale,
+  [`${Clan.Duskwight},${Gender.Male}`]: DuskwightMale,
+  [`${Clan.Duskwight},${Gender.Female}`]: DuskwightFemale,
+  [`${Clan.Plainsfolk},${Gender.Male}`]: PlainsfolkMale,
+  [`${Clan.Plainsfolk},${Gender.Female}`]: PlainsfolkFemale,
+  [`${Clan.Dunesfolk},${Gender.Male}`]: DunesfolkMale,
+  [`${Clan.Dunesfolk},${Gender.Female}`]: DunesfolkFemale,
+  [`${Clan.SeekersOfTheSun},${Gender.Male}`]: SeekersOfTheSunMale,
+  [`${Clan.SeekersOfTheSun},${Gender.Female}`]: SeekersOfTheSunFemale,
+  [`${Clan.KeepersOfTheMoon},${Gender.Male}`]: KeepersOfTheMoonMale,
+  [`${Clan.KeepersOfTheMoon},${Gender.Female}`]: KeepersOfTheMoonFemale
+}
 
 function randomElement<T> (array: T[]) {
   return array[Math.floor(Math.random() * array.length)]
@@ -30,8 +64,12 @@ function randomElement<T> (array: T[]) {
 
 const useStyles = makeStyles(theme => ({
   results: {
-    margin: theme.spacing(4),
-    padding: theme.spacing(2),
+    margin: theme.spacing(2, 0),
+    padding: theme.spacing(1),
+    [theme.breakpoints.up('md')]: {
+      margin: theme.spacing(4),
+      padding: theme.spacing(2),
+    },
     fontSize: '1.75em',
     '& > span': {
       display: 'block',
@@ -57,6 +95,7 @@ const Generator = ({ t, i18n }: Props) => {
 
   const raceClans = race ? getClans(race) : []
   const raceGenders = race ? getGenders(race) : []
+  const AdvancedComponent = clan && gender && ADVANCED[`${clan},${gender}`]
 
   const handleSelectRace = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const race = event.target.value === 'none' ? null : event.target.value as Race
@@ -87,53 +126,56 @@ const Generator = ({ t, i18n }: Props) => {
   }
 
   return (
-    <Section>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={3}>
-          <FormControl fullWidth>
-            <InputLabel>{t('race')}</InputLabel>
-            <Select value={race || 'none'} onChange={handleSelectRace}>
-              <MenuItem value='none'>{t('any-race')}</MenuItem>
-              {RACES.map(race =>
-                <MenuItem key={race} value={race}>{translate('race', race, locale)}</MenuItem>
-              )}
-            </Select>
-          </FormControl>
+    <>
+      <Section>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={3}>
+            <FormControl fullWidth>
+              <InputLabel>{t('race')}</InputLabel>
+              <Select value={race || 'none'} onChange={handleSelectRace}>
+                <MenuItem value='none'>{t('any-race')}</MenuItem>
+                {RACES.map(race =>
+                  <MenuItem key={race} value={race}>{translate('race', race, locale)}</MenuItem>
+                )}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <FormControl fullWidth>
+              <InputLabel>{t('clan')}</InputLabel>
+              <Select value={clan || 'none'} onChange={handleSelectClan}>
+                {raceClans.length !== 1 && <MenuItem value='none'>{t('any-clan')}</MenuItem>}
+                {raceClans.map(clan =>
+                  <MenuItem key={clan} value={clan}>
+                    {translate('clan', clan, locale)}
+                  </MenuItem>
+                )}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <FormControl fullWidth>
+              <InputLabel>{t('gender')}</InputLabel>
+              <Select value={gender || 'none'} onChange={handleSelectGender}>
+                {raceGenders.length !== 1 && <MenuItem value='none'>{t('any-gender')}</MenuItem>}
+                {raceGenders.map(gender =>
+                  <MenuItem key={gender} value={gender}>
+                    {translate('gender', gender, locale)}
+                  </MenuItem>
+                )}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <Button variant='contained' color='primary' fullWidth onClick={handleClickGenerate}>{t('generate')}</Button>
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={3}>
-          <FormControl fullWidth>
-            <InputLabel>{t('clan')}</InputLabel>
-            <Select value={clan || 'none'} onChange={handleSelectClan}>
-              {raceClans.length !== 1 && <MenuItem value='none'>{t('any-clan')}</MenuItem>}
-              {raceClans.map(clan =>
-                <MenuItem key={clan} value={clan}>
-                  {translate('clan', clan, locale)}
-                </MenuItem>
-              )}
-            </Select>
-          </FormControl>
-        </Grid>
-        <Grid item xs={12} md={3}>
-          <FormControl fullWidth>
-            <InputLabel>{t('gender')}</InputLabel>
-            <Select value={gender || 'none'} onChange={handleSelectGender}>
-              {raceGenders.length !== 1 && <MenuItem value='none'>{t('any-gender')}</MenuItem>}
-              {raceGenders.map(gender =>
-                <MenuItem key={gender} value={gender}>
-                  {translate('gender', gender, locale)}
-                </MenuItem>
-              )}
-            </Select>
-          </FormControl>
-        </Grid>
-        <Grid item xs={12} md={3}>
-          <Button variant='contained' color='primary' fullWidth onClick={handleClickGenerate}>{t('generate')}</Button>
-        </Grid>
-      </Grid>
-      <Paper variant='outlined' className={classes.results}>
-        {results.map((result, index) => <span key={index}>{result}</span>)}
-      </Paper>
-    </Section>
+        <Paper variant='outlined' className={classes.results}>
+          {results.map((result, index) => <span key={index}>{result}</span>)}
+        </Paper>
+      </Section>
+      {AdvancedComponent && <AdvancedComponent />}
+    </>
   )
 }
 
