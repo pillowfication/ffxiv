@@ -12,7 +12,7 @@ function fromEpoch (day: number, hour: number) {
   return new Date(LULU_EPOCH + day * 86400000 + hour * 3600000 - _9HR)
 }
 
-function calculateVoyages (date: Date, count: number, filter?: string[]) {
+function _calculateVoyages (date: Date, count: number, filter?: string[]) {
   const adjustedDate = new Date(date.getTime() + _9HR - _45MIN) // Subtract 45 minutes to catch ongoing voyages
   let day = Math.floor((adjustedDate.getTime() - LULU_EPOCH) / 86400000)
   let hour = adjustedDate.getUTCHours()
@@ -25,8 +25,8 @@ function calculateVoyages (date: Date, count: number, filter?: string[]) {
 
   // Find the current voyage
   const voyageNumber = hour >> 1
-  let destIndex = (day + voyageNumber) % 4
-  let timeIndex = (day + voyageNumber) % 12
+  let destIndex = ((day + voyageNumber) % 4 + 4) % 4
+  let timeIndex = ((day + voyageNumber) % 12 + 12) % 12
 
   // Loop until however many voyages are found
   const upcomingVoyages: Array<{time: Date, destinationCode: DestinationStopTime}> = []
@@ -50,4 +50,20 @@ function calculateVoyages (date: Date, count: number, filter?: string[]) {
   return upcomingVoyages
 }
 
-export default calculateVoyages
+// Record the pattern for faster calculations
+const pattern = _calculateVoyages(new Date(_45MIN), 144).map(x => x.destinationCode)
+
+export default function calculateVoyages (date: Date, count: number, filter?: string[]) {
+  const startIndex = Math.floor((date.getTime() - _45MIN) / 7200000)
+  const results = []
+  for (let i = 0; results.length < count; ++i) {
+    const destinationCode = pattern[(startIndex + i) % 144]
+    if (!filter || filter.includes(destinationCode)) {
+      results.push({
+        time: new Date((startIndex + i + 1) * 7200000),
+        destinationCode
+      })
+    }
+  }
+  return results
+}
