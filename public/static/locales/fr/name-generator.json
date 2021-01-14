@@ -1,8 +1,8 @@
 {
   "title": "Name Generator",
   "race": "Race",
-  "clan": "Clan",
-  "gender": "Gender",
+  "clan": "Ethnie",
+  "gender": "Sexe",
   "any-race": "Any race",
   "any-clan": "Any clan",
   "any-gender": "Any gender",

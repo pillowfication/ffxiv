@@ -49,7 +49,7 @@ const DunesfolkFemale = ({ i18n }: Props) => {
         </Grid>
         <Grid item xs={12} md={6}>
           <Typography paragraph>
-            Female Dunesfolk names follow the phoneme pattern <b>AAB AB</b>.
+            Lalafellen names are ruled by rhythm, repetition, and rhyming. Female Dunesfolk names follow the phoneme pattern <b>AAB AB</b>.
           </Typography>
           <Typography>
             The <b>A</b> and <b>B</b> phonemes are one syllable.

@@ -1,0 +1,1831 @@
+{
+  "Abar": {
+    "definition_en": "Lone/Alone"
+    "grammar": "A"
+  },
+  "Abyl": {
+    "definition_en": "Rage",
+    "grammar": "N"
+  },
+  "Aent": {
+    "definition_en": "Duck",
+    "grammar": "N"
+  },
+  "Aerg": {
+    "definition_en": "Ambitious",
+    "grammar": "A"
+  },
+  "Aerm": {
+    "definition_en": "Poor",
+    "grammar": "A"
+  },
+  "Aerst": {
+    "definition_en": "First",
+    "grammar": "A"
+  },
+  "Agat": {
+    "definition_en": "Amber",
+    "grammar": "AN"
+  },
+  "Agynn": {
+    "definition_en": "Beginning",
+    "grammar": "N"
+  },
+  "Ahct": {
+    "definition_en": "River",
+    "grammar": "N"
+  },
+  "Ahl": {
+    "definition_en": "Eel",
+    "grammar": "N"
+  },
+  "Ahld": {
+    "definition_en": "Old",
+    "grammar": "A"
+  },
+  "Ahr": {
+    "definition_en": "Eagle",
+    "grammar": "N"
+  },
+  "Ahrm": {
+    "definition_en": "Arm",
+    "grammar": "N"
+  },
+  "Aht": {
+    "definition_en": "Eight",
+    "grammar": "A"
+  },
+  "Ahtyn": {
+    "definition_en": "Judge",
+    "grammar": "N"
+  },
+  "Ahtza": {
+    "definition_en": "Eighty",
+    "grammar": "A"
+  },
+  "Ais": {
+    "definition_en": "Ice",
+    "grammar": "N"
+  },
+  "Alyr": {
+    "definition_en": "Alder",
+    "grammar": "N"
+  },
+  "Anka": {
+    "definition_en": "Anchor",
+    "grammar": "N"
+  },
+  "Ansa": {
+    "definition_en": "Scythe",
+    "grammar": "N"
+  },
+  "Aren": {
+    "definition_en": "Harvest",
+    "grammar": "N"
+  },
+  "Ask": {
+    "definition_en": "Ash",
+    "grammar": "N"
+  },
+  "Awyr": {
+    "definition_en": "Absent",
+    "grammar": "A"
+  },
+  "Baen": {
+    "definition_en": "Bone",
+    "grammar": "N"
+  },
+  "Bara": {
+    "definition_en": "Bare/Naked",
+    "grammar": "A"
+  },
+  "Benn": {
+    "definition_en": "Leg",
+    "grammar": "N"
+  },
+  "Bera": {
+    "definition_en": "Berry",
+    "grammar": "N"
+  },
+  "Berk": {
+    "definition_en": "Mountain",
+    "grammar": "N"
+  },
+  "Bhald": {
+    "definition_en": "Bold/Brave",
+    "grammar": "A"
+  },
+  "Bhaln": {
+    "definition_en": "Plague",
+    "grammar": "N"
+  },
+  "Bhar": {
+    "definition_en": "Bear",
+    "grammar": "N"
+  },
+  "Bhir": {
+    "definition_en": "Ale",
+    "grammar": "N"
+  },
+  "Bhrat": {
+    "definition_en": "Meat",
+    "grammar": "N"
+  },
+  "Blaet": {
+    "definition_en": "Blood",
+    "grammar": "N"
+  },
+  "Blan": {
+    "definition_en": "Darkness/Dark",
+    "grammar": "AN"
+  },
+  "Blau": {
+    "definition_en": "Lead",
+    "grammar": "AN"
+  },
+  "Blei": {
+    "definition_en": "Pale",
+    "grammar": "A"
+  },
+  "Bloe": {
+    "definition_en": "Blue",
+    "grammar": "A"
+  },
+  "Bluom": {
+    "definition_en": "Flower",
+    "grammar": "N"
+  },
+  "Blyn": {
+    "definition_en": "Blind",
+    "grammar": "A"
+  },
+  "Blyss": {
+    "definition_en": "Blossom",
+    "grammar": "N"
+  },
+  "Borg": {
+    "definition_en": "Castle",
+    "grammar": "N"
+  },
+  "Born": {
+    "definition_en": "Boar",
+    "grammar": "N"
+  },
+  "Braen": {
+    "definition_en": "Break",
+    "grammar": "V"
+  },
+  "Brem": {
+    "definition_en": "Bramble",
+    "grammar": "N"
+  },
+  "Broda": {
+    "definition_en": "Brother",
+    "grammar": "N"
+  },
+  "Broen": {
+    "definition_en": "Brown",
+    "grammar": "A"
+  },
+  "Broes": {
+    "definition_en": "Chest",
+    "grammar": "N"
+  },
+  "Brot": {
+    "definition_en": "Bread",
+    "grammar": "N"
+  },
+  "Bryda": {
+    "definition_en": "Bride",
+    "grammar": "N"
+  },
+  "Bryn": {
+    "definition_en": "Spring",
+    "grammar": "N"
+  },
+  "Brytt": {
+    "definition_en": "Bridle",
+    "grammar": "N"
+  },
+  "Byld": {
+    "definition_en": "Make",
+    "grammar": "V"
+  },
+  "Bylda": {
+    "definition_en": "Maker",
+    "grammar": "N"
+  },
+  "Byrg": {
+    "definition_en": "Protect",
+    "grammar": "V",
+    "derivatives": {
+      "N": "Byrgin"
+    }
+  },
+  "Bylg": {
+    "definition_en": "Fertile",
+    "grammar": "A"
+  },
+  "Byrm": {
+    "definition_en": "Tree",
+    "grammar": "N"
+  },
+  "Byrt": {
+    "definition_en": "Axe",
+    "grammar": "N"
+  },
+  "Caepf": {
+    "definition_en": "Slate",
+    "grammar": "AN"
+  },
+  "Caer": {
+    "definition_en": "Sad",
+    "grammar": "A",
+    "derivatives": {
+      "A": "Careig"
+    }
+  },
+  "Ceig": {
+    "definition_en": "Sail",
+    "grammar": "N"
+  },
+  "Ceil": {
+    "definition_en": "Rope",
+    "grammar": "N"
+  },
+  "Cwaen": {
+    "definition_en": "Pine",
+    "grammar": "N"
+  },
+  "Cwin": {
+    "definition_en": "Wine",
+    "grammar": "N"
+  },
+  "Daeg": {
+    "definition_en": "Soldier",
+    "grammar": "N"
+  },
+  "Dani": {
+    "definition_en": "Narrow",
+    "grammar": "A"
+  },
+  "Denkyr": {
+    "definition_en": "Thinking",
+    "grammar": "A"
+  },
+  "Denn": {
+    "definition_en": "Thin",
+    "grammar": "A"
+  },
+  "Dhem": {
+    "definition_en": "Dusk",
+    "grammar": "N"
+  },
+  "Doen": {
+    "definition_en": "Thunder",
+    "grammar": "N"
+  },
+  "Doer": {
+    "definition_en": "Dry",
+    "grammar": "A"
+  },
+  "Does": {
+    "definition_en": "Two",
+    "grammar": "AN"
+  },
+  "Dornn": {
+    "definition_en": "Thorn",
+    "grammar": "N"
+  },
+  "Dorpf": {
+    "definition_en": "Village",
+    "grammar": "N"
+  },
+  "Draeg": {
+    "definition_en": "Carry",
+    "grammar": "V"
+  },
+  "Draga": {
+    "definition_en": "Carrier",
+    "grammar": "N"
+  },
+  "Drys": {
+    "definition_en": "Three",
+    "grammar": "AN"
+  },
+  "Dyn": {
+    "definition_en": "People",
+    "grammar": "N"
+  },
+  "Dyrf": {
+    "definition_en": "Farm",
+    "grammar": "N"
+  },
+  "Dyrst": {
+    "definition_en": "Thirsty/Thirst",
+    "grammar": "A"
+  },
+  "Eidin": {
+    "definition_en": "Oath",
+    "grammar": "N"
+  },
+  "Eifa": {
+    "definition_en": "Bitter",
+    "grammar": "A"
+  },
+  "Elak": {
+    "definition_en": "Elk",
+    "grammar": "N"
+  },
+  "Elil": {
+    "definition_en": "Exiled/Foreign",
+    "grammar": "A"
+  },
+  "Ent": {
+    "definition_en": "End",
+    "grammar": "N"
+  },
+  "Erna": {
+    "definition_en": "Earnest",
+    "grammar": "A"
+  },
+  "Ewan": {
+    "definition_en": "Even",
+    "grammar": "A"
+  },
+  "Eyha": {
+    "definition_en": "Oak",
+    "grammar": "N"
+  },
+  "Eyhil": {
+    "definition_en": "Acorn",
+    "grammar": "N"
+  },
+  "Eyn": {
+    "definition_en": "One",
+    "grammar": "AN"
+  },
+  "Eynli": {
+    "definition_en": "Eleven",
+    "grammar": "AN"
+  },
+  "Eyri": {
+    "definition_en": "Wandering",
+    "grammar": "A"
+  },
+  "Edz": {
+    "definition_en": "Eat",
+    "grammar": "V"
+  },
+  "Faeld": {
+    "definition_en": "Field",
+    "grammar": "N"
+  },
+  "Faez": {
+    "definition_en": "Fat",
+    "grammar": "A"
+  },
+  "Falk": {
+    "definition_en": "Falcon",
+    "grammar": "N"
+  },
+  "Farr": {
+    "definition_en": "Bull",
+    "grammar": "N"
+  },
+  "Fatyr": {
+    "definition_en": "Father",
+    "grammar": "N"
+  },
+  "Fedar": {
+    "definition_en": "Feather",
+    "grammar": "N"
+  },
+  "Fhet": {
+    "definition_en": "Fight",
+    "grammar": "V"
+  },
+  "Fhil": {
+    "definition_en": "Yellow",
+    "grammar": "A"
+  },
+  "Fhis": {
+    "definition_en": "Fish",
+    "grammar": "N",
+    "derivatives": {
+      "A": "Fhisk"
+    }
+  },
+  "Fhruh": {
+    "definition_en": "Early",
+    "grammar": "A"
+  },
+  "Fian": {
+    "definition_en": "Enemy",
+    "grammar": "N"
+  },
+  "Firk": {
+    "definition_en": "Explore",
+    "grammar": "V"
+  },
+  "Flaz": {
+    "definition_en": "Flat",
+    "grammar": "A"
+  },
+  "Flekk": {
+    "definition_en": "Spotted",
+    "grammar": "A"
+  },
+  "Floeg": {
+    "definition_en": "Fly",
+    "grammar": "V"
+  },
+  "Floer": {
+    "definition_en": "Lead",
+    "grammar": "V"
+  },
+  "Floh": {
+    "definition_en": "Flea",
+    "grammar": "N"
+  },
+  "Foer": {
+    "definition_en": "Four",
+    "grammar": "AN"
+  },
+  "Foet": {
+    "definition_en": "Foot",
+    "grammar": "N"
+  },
+  "Fohc": {
+    "definition_en": "Fox",
+    "grammar": "N"
+  },
+  "Folg": {
+    "definition_en": "Bird",
+    "grammar": "N"
+  },
+  "Frae": {
+    "definition_en": "Free",
+    "grammar": "A"
+  },
+  "Froe": {
+    "definition_en": "Lady",
+    "grammar": "N",
+    "derivatives": {
+      "A": "Froa"
+    }
+  },
+  "Frusk": {
+    "definition_en": "Frog",
+    "grammar": "N"
+  },
+  "Frut": {
+    "definition_en": "Fruit",
+    "grammar": "N"
+  },
+  "Fryd": {
+    "definition_en": "Peace/ful",
+    "grammar": "AN"
+  },
+  "Fryn": {
+    "definition_en": "Friend",
+    "grammar": "N"
+  },
+  "Fyr": {
+    "definition_en": "Fire",
+    "grammar": "N"
+  },
+  "Fyril": {
+    "definition_en": "Lost",
+    "grammar": "A"
+  },
+  "Fyst": {
+    "definition_en": "Fist",
+    "grammar": "N"
+  },
+  "Gaez": {
+    "definition_en": "Goat",
+    "grammar": "N"
+  },
+  "Ganz": {
+    "definition_en": "Perfect",
+    "grammar": "A"
+  },
+  "Gara": {
+    "definition_en": "Skin",
+    "grammar": "N"
+  },
+  "Garr": {
+    "definition_en": "Choir",
+    "grammar": "N"
+  },
+  "Geim": {
+    "definition_en": "Jewel",
+    "grammar": "N"
+  },
+  "Geiss": {
+    "definition_en": "Ghost",
+    "grammar": "N",
+    "derivatives": {
+      "A": "Geyss"
+    }
+  },
+  "Germa": {
+    "definition_en": "Conjurer",
+    "grammar": "N"
+  },
+  "Gheb": {
+    "definition_en": "Give",
+    "grammar": "V"
+  },
+  "Ghim": {
+    "definition_en": "Modest",
+    "grammar": "A"
+  },
+  "Glac": {
+    "definition_en": "Bell",
+    "grammar": "N"
+  },
+  "Glaz": {
+    "definition_en": "Glass",
+    "grammar": "AN"
+  },
+  "Goht": {
+    "definition_en": "God",
+    "grammar": "N"
+  },
+  "Gohta": {
+    "definition_en": "Goddess",
+    "grammar": "N"
+  },
+  "Graeb": {
+    "definition_en": "Grave",
+    "grammar": "N"
+  },
+  "Greh": {
+    "definition_en": "Calm",
+    "grammar": "A"
+  },
+  "Grein": {
+    "definition_en": "Bronze",
+    "grammar": "AN"
+  },
+  "Grina": {
+    "definition_en": "Howl",
+    "grammar": "V"
+  },
+  "Grym": {
+    "definition_en": "Cruel",
+    "grammar": "A"
+  },
+  "Gryne": {
+    "definition_en": "Green",
+    "grammar": "AN"
+  },
+  "Guht": {
+    "definition_en": "Good",
+    "grammar": "A"
+  },
+  "Guld": {
+    "definition_en": "Gold",
+    "grammar": "AN"
+  },
+  "Guol": {
+    "definition_en": "Glorious",
+    "grammar": "A"
+  },
+  "Gybal": {
+    "definition_en": "Skull",
+    "grammar": "N"
+  },
+  "Gybet": {
+    "definition_en": "Prayer",
+    "grammar": "N"
+  },
+  "Gyft": {
+    "definition_en": "Sell",
+    "grammar": "V"
+  },
+  "Hael": {
+    "definition_en": "Healthy",
+    "grammar": "A"
+  },
+  "Haemr": {
+    "definition_en": "Hammer",
+    "grammar": "N"
+  },
+  "Haer": {
+    "definition_en": "Grand",
+    "grammar": "A"
+  },
+  "Haerz": {
+    "definition_en": "Heart",
+    "grammar": "N"
+  },
+  "Hald": {
+    "definition_en": "Kind",
+    "grammar": "A"
+  },
+  "Halp": {
+    "definition_en": "Side",
+    "grammar": "N"
+  },
+  "Hana": {
+    "definition_en": "Hemp/Hempen",
+    "grammar": "AN"
+  },
+  "Hanth": {
+    "definition_en": "Hand",
+    "grammar": "N"
+  },
+  "Harr": {
+    "definition_en": "Hair",
+    "grammar": "N"
+  },
+  "Hart": {
+    "definition_en": "Hard",
+    "grammar": "A"
+  },
+  "Hast": {
+    "definition_en": "Hazel",
+    "grammar": "A",
+    "derivatives": {
+      "A": "Hastal"
+    }
+  },
+  "Helb": {
+    "definition_en": "Half",
+    "grammar": "AN"
+  },
+  "Herl": {
+    "definition_en": "Elder",
+    "grammar": "A"
+  },
+  "Hezz": {
+    "definition_en": "Hot",
+    "grammar": "A"
+  },
+  "Himal": {
+    "definition_en": "Sky",
+    "grammar": "N"
+  },
+  "Hint": {
+    "definition_en": "Behind",
+    "grammar": "A"
+  },
+  "Hirsk": {
+    "definition_en": "Agile",
+    "grammar": "A"
+  },
+  "Holas": {
+    "definition_en": "Bald",
+    "grammar": "A"
+  },
+  "Holl": {
+    "definition_en": "Hollow",
+    "grammar": "A"
+  },
+  "Holsk": {
+    "definition_en": "Fast",
+    "grammar": "A"
+  },
+  "Horsk": {
+    "definition_en": "Obedient",
+    "grammar": "A",
+    "derivatives": {
+      "N": "Horsam"
+    }
+  },
+  "Hort": {
+    "definition_en": "Treasure",
+    "grammar": "N"
+  },
+  "Hund": {
+    "definition_en": "Dog",
+    "grammar": "N",
+    "derivatives": {
+      "A": "Hundr"
+    }
+  },
+  "Hwab": {
+    "definition_en": "Hawk",
+    "grammar": "N"
+  },
+  "Hwyz": {
+    "definition_en": "Know",
+    "grammar": "V"
+  },
+  "Hyll": {
+    "definition_en": "Hell",
+    "grammar": "N"
+  },
+  "Hylt": {
+    "definition_en": "Forest",
+    "grammar": "N"
+  },
+  "Hymｌ": {
+    "definition_en": "Heaven",
+    "grammar": "N"
+  },
+  "Hyr": {
+    "definition_en": "Army",
+    "grammar": "N"
+  },
+  "Hyrt": {
+    "definition_en": "Autumn",
+    "grammar": "N"
+  },
+  "Ingil": {
+    "definition_en": "Angel",
+    "grammar": "N",
+    "derivatives": {
+      "A": "Inghil"
+    }
+  },
+  "Isil": {
+    "definition_en": "Island",
+    "grammar": "N"
+  },
+  "Itar": {
+    "definition_en": "Knight",
+    "grammar": "N"
+  },
+  "Iyrn": {
+    "definition_en": "Iron",
+    "grammar": "AN"
+  },
+  "Jaeg": {
+    "definition_en": "Hunt",
+    "grammar": "V"
+  },
+  "Jarr": {
+    "definition_en": "Year",
+    "grammar": "N"
+  },
+  "Jho": {
+    "definition_en": "And",
+    "grammar": "X"
+  },
+  "Jungh": {
+    "definition_en": "Young",
+    "grammar": "A"
+  },
+  "Keim": {
+    "definition_en": "Violet/Purple",
+    "grammar": "AN"
+  },
+  "Kelt": {
+    "definition_en": "Cold",
+    "grammar": "A"
+  },
+  "Kest": {
+    "definition_en": "Chestnut",
+    "grammar": "AN"
+  },
+  "Keten": {
+    "definition_en": "Chain/Chained",
+    "grammar": "AN"
+  },
+  "Khan": {
+    "definition_en": "Laugh",
+    "grammar": "V"
+  },
+  "Khezl": {
+    "definition_en": "Kettle",
+    "grammar": "N"
+  },
+  "Khra": {
+    "definition_en": "Crane",
+    "grammar": "N"
+  },
+  "Khus": {
+    "definition_en": "Chaste",
+    "grammar": "A"
+  },
+  "Kilb": {
+    "definition_en": "Calf",
+    "grammar": "N"
+  },
+  "Kirz": {
+    "definition_en": "Candle",
+    "grammar": "N"
+  },
+  "Klet": {
+    "definition_en": "Burdock",
+    "grammar": "N"
+  },
+  "Klin": {
+    "definition_en": "Child",
+    "grammar": "N",
+    "derivatives": {
+      "A": "Klind"
+    }
+  },
+  "Klyn": {
+    "definition_en": "Small",
+    "grammar": "A"
+  },
+  "Klyng": {
+    "definition_en": "Brook",
+    "grammar": "N"
+  },
+  "Kneh": {
+    "definition_en": "Near",
+    "grammar": "A"
+  },
+  "Knod": {
+    "definition_en": "Knot/Knotty",
+    "grammar": "AN"
+  },
+  "Koel": {
+    "definition_en": "Coeurl",
+    "grammar": "N"
+  },
+  "Koen": {
+    "definition_en": "King",
+    "grammar": "N"
+  },
+  "Koena": {
+    "definition_en": "Queen",
+    "grammar": "N",
+    "derivatives": {
+      "A": "Koenyb"
+    }
+  },
+  "Krepf": {
+    "definition_en": "Claw",
+    "grammar": "N"
+  },
+  "Kroem": {
+    "definition_en": "Bent",
+    "grammar": "A"
+  },
+  "Kryd": {
+    "definition_en": "Chalk",
+    "grammar": "AN"
+  },
+  "Kryst": {
+    "definition_en": "Crystal",
+    "grammar": "AN"
+  },
+  "Kupf": {
+    "definition_en": "Copper",
+    "grammar": "AN"
+  },
+  "Kympf": {
+    "definition_en": "Champion",
+    "grammar": "AN"
+  },
+  "Kynd": {
+    "definition_en": "Virgin",
+    "grammar": "AN"
+  },
+  "Kyrss": {
+    "definition_en": "Cherry",
+    "grammar": "N"
+  },
+  "Laent": {
+    "definition_en": "Land",
+    "grammar": "N"
+  },
+  "Lago": {
+    "definition_en": "Lament",
+    "grammar": "V"
+  },
+  "Lahz": {
+    "definition_en": "Salmon",
+    "grammar": "N"
+  },
+  "Lamm": {
+    "definition_en": "Lame/Injured",
+    "grammar": "A"
+  },
+  "Leita": {
+    "definition_en": "Bringer",
+    "grammar": "N"
+  },
+  "Liht": {
+    "definition_en": "Light",
+    "grammar": "N"
+  },
+  "Lleid": {
+    "definition_en": "Pain",
+    "grammar": "N"
+  },
+  "Loef": {
+    "definition_en": "Leaf",
+    "grammar": "N"
+  },
+  "Loet": {
+    "definition_en": "Loud",
+    "grammar": "A"
+  },
+  "Loeｔr": {
+    "definition_en": "Pure",
+    "grammar": "A"
+  },
+  "Loez": {
+    "definition_en": "Short",
+    "grammar": "A"
+  },
+  "Loh": {
+    "definition_en": "Cloth/Clothes",
+    "grammar": "AN"
+  },
+  "Lon": {
+    "definition_en": "Gatherer",
+    "grammar": "N",
+    "derivatives": {
+      "A": "Lona"
+    }
+  },
+  "Lora": {
+    "definition_en": "Laurel",
+    "grammar": "N"
+  },
+  "Lorh": {
+    "definition_en": "Rabbit",
+    "grammar": "N"
+  },
+  "Loug": {
+    "definition_en": "Leech",
+    "grammar": "N"
+  },
+  "Lubb": {
+    "definition_en": "Poison",
+    "grammar": "AN",
+    "derivatives": {
+      "A": "Lubd"
+    }
+  },
+  "Lydir": {
+    "definition_en": "Leather",
+    "grammar": "AN"
+  },
+  "Lyna": {
+    "definition_en": "Linen",
+    "grammar": "A"
+  },
+  "Lyng": {
+    "definition_en": "Long",
+    "grammar": "A"
+  },
+  "Maeti": {
+    "definition_en": "Mighty",
+    "grammar": "A"
+  },
+  "Maga": {
+    "definition_en": "Stomach",
+    "grammar": "N"
+  },
+  "Mann": {
+    "definition_en": "Man",
+    "grammar": "N"
+  },
+  "Marm": {
+    "definition_en": "Marble",
+    "grammar": "AN"
+  },
+  "Merl": {
+    "definition_en": "Sea",
+    "grammar": "N"
+  },
+  "Mhar": {
+    "definition_en": "Horse",
+    "grammar": "N"
+  },
+  "Mhas": {
+    "definition_en": "Scar",
+    "grammar": "N"
+  },
+  "Mhol": {
+    "definition_en": "Salamander/Eft",
+    "grammar": "N"
+  },
+  "Mhus": {
+    "definition_en": "Mouse",
+    "grammar": "N"
+  },
+  "Moeg": {
+    "definition_en": "Able",
+    "grammar": "A"
+  },
+  "Moen": {
+    "definition_en": "Moon",
+    "grammar": "N"
+  },
+  "Moer": {
+    "definition_en": "Kill",
+    "grammar": "V"
+  },
+  "Moht": {
+    "definition_en": "Mind",
+    "grammar": "N"
+  },
+  "Murl": {
+    "definition_en": "Wall",
+    "grammar": "N"
+  },
+  "Myna": {
+    "definition_en": "Love",
+    "grammar": "N"
+  },
+  "Mynd": {
+    "definition_en": "Mouth",
+    "grammar": "N"
+  },
+  "Myrgan": {
+    "definition_en": "Morning",
+    "grammar": "N"
+  },
+  "Myst": {
+    "definition_en": "Mistletoe",
+    "grammar": "N"
+  },
+  "Myte": {
+    "definition_en": "Middle",
+    "grammar": "AN"
+  },
+  "Nagl": {
+    "definition_en": "Nail",
+    "grammar": "N"
+  },
+  "Nahct": {
+    "definition_en": "Night",
+    "grammar": "N"
+  },
+  "Nazz": {
+    "definition_en": "Damp/Wet",
+    "grammar": "A"
+  },
+  "Nebb": {
+    "definition_en": "Fog",
+    "grammar": "N"
+  },
+  "Nedyr": {
+    "definition_en": "Low",
+    "grammar": "A"
+  },
+  "Niu": {
+    "definition_en": "New",
+    "grammar": "A"
+  },
+  "Noez": {
+    "definition_en": "Walnut",
+    "grammar": "N"
+  },
+  "Nort": {
+    "definition_en": "North",
+    "grammar": "N"
+  },
+  "Nortyr": {
+    "definition_en": "Northern",
+    "grammar": "A"
+  },
+  "Nyst": {
+    "definition_en": "Nest",
+    "grammar": "N"
+  },
+  "Nyun": {
+    "definition_en": "Nine",
+    "grammar": "AN"
+  },
+  "Oebb": {
+    "definition_en": "Above",
+    "grammar": "X"
+  },
+  "Oefyr": {
+    "definition_en": "Sacrifice",
+    "grammar": "N"
+  },
+  "Oeya": {
+    "definition_en": "Eye",
+    "grammar": "N"
+  },
+  "Ofan": {
+    "definition_en": "Clear",
+    "grammar": "A"
+  },
+  "Opyl": {
+    "definition_en": "Apple",
+    "grammar": "N"
+  },
+  "Orn": {
+    "definition_en": "Maple",
+    "grammar": "N"
+  },
+  "Ost": {
+    "definition_en": "East",
+    "grammar": "N"
+  },
+  "Ostyr": {
+    "definition_en": "Eastern",
+    "grammar": "A"
+  },
+  "Oura": {
+    "definition_en": "Ear",
+    "grammar": "N"
+  },
+  "Pfar": {
+    "definition_en": "Walking",
+    "grammar": "A"
+  },
+  "Pfef": {
+    "definition_en": "Pepper",
+    "grammar": "N"
+  },
+  "Pfrew": {
+    "definition_en": "Joy",
+    "grammar": "N"
+  },
+  "Pfrym": {
+    "definition_en": "Plum",
+    "grammar": "N"
+  },
+  "Pfym": {
+    "definition_en": "Five",
+    "grammar": "AN"
+  },
+  "Pfyn": {
+    "definition_en": "Finger",
+    "grammar": "N"
+  },
+  "Phati": {
+    "definition_en": "Late",
+    "grammar": "A"
+  },
+  "Rael": {
+    "definition_en": "Doe",
+    "grammar": "N"
+  },
+  "Raen": {
+    "definition_en": "Circle",
+    "grammar": "N",
+    "derivatives": {
+      "A": "Raeng"
+    }
+  },
+  "Raet": {
+    "definition_en": "Chariot",
+    "grammar": "N"
+  },
+  "Ramm": {
+    "definition_en": "Ram",
+    "grammar": "N"
+  },
+  "Rhen": {
+    "definition_en": "Clean",
+    "grammar": "A"
+  },
+  "Rhet": {
+    "definition_en": "Law",
+    "grammar": "N"
+  },
+  "Rheti": {
+    "definition_en": "Straight/Lawful",
+    "grammar": "A"
+  },
+  "Rhit": {
+    "definition_en": "Right",
+    "grammar": "A"
+  },
+  "Rhot": {
+    "definition_en": "Red",
+    "grammar": "A"
+  },
+  "Rhyl": {
+    "definition_en": "Plentiful",
+    "grammar": "A"
+  },
+  "Roegan": {
+    "definition_en": "Rain",
+    "grammar": "N",
+    "derivatives": {
+      "A": "Roega"
+    }
+  },
+  "Roeh": {
+    "definition_en": "Rough",
+    "grammar": "A"
+  },
+  "Ronth": {
+    "definition_en": "Run",
+    "grammar": "V"
+  },
+  "Ronn": {
+    "definition_en": "Current",
+    "grammar": "N"
+  },
+  "Rostn": {
+    "definition_en": "Rusty",
+    "grammar": "A"
+  },
+  "Ruht": {
+    "definition_en": "Smoke",
+    "grammar": "N"
+  },
+  "Ryhhe": {
+    "definition_en": "Empire",
+    "grammar": "N"
+  },
+  "Rymm": {
+    "definition_en": "Frost",
+    "grammar": "N"
+  },
+  "Ryss": {
+    "definition_en": "Giant",
+    "grammar": "AN"
+  },
+  "Saelb": {
+    "definition_en": "Sage",
+    "grammar": "N",
+    "derivatives": {
+      "A": "Sylbei"
+    }
+  },
+  "Saelz": {
+    "definition_en": "Salt",
+    "grammar": "N"
+  },
+  "Saem": {
+    "definition_en": "Seed",
+    "grammar": "N"
+  },
+  "Saes": {
+    "definition_en": "Six",
+    "grammar": "AN"
+  },
+  "Sald": {
+    "definition_en": "Luck",
+    "grammar": "N"
+  },
+  "Sath": {
+    "definition_en": "Knife",
+    "grammar": "N"
+  },
+  "Satz": {
+    "definition_en": "Dance",
+    "grammar": "N"
+  },
+  "Seik": {
+    "definition_en": "Lake",
+    "grammar": "N"
+  },
+  "Sfeik": {
+    "definition_en": "Lake",
+    "grammar": "N"
+  },
+  "Skaen": {
+    "definition_en": "Beautiful",
+    "grammar": "A"
+  },
+  "Skaet": {
+    "definition_en": "Shadow",
+    "grammar": "N"
+  },
+  "Skal": {
+    "definition_en": "Servant",
+    "grammar": "N"
+  },
+  "Skapf": {
+    "definition_en": "Sheep",
+    "grammar": "N"
+  },
+  "Skarn": {
+    "definition_en": "Horrible",
+    "grammar": "A"
+  },
+  "Skoef": {
+    "definition_en": "Poetry/Poet",
+    "grammar": "N"
+  },
+  "Skoen": {
+    "definition_en": "Shining",
+    "grammar": "A"
+  },
+  "Skrat": {
+    "definition_en": "Goblin",
+    "grammar": "N"
+  },
+  "Skrib": {
+    "definition_en": "Write",
+    "grammar": "V"
+  },
+  "Skyf": {
+    "definition_en": "Ship",
+    "grammar": "N"
+  },
+  "Skylt": {
+    "definition_en": "Shield",
+    "grammar": "N"
+  },
+  "Slae": {
+    "definition_en": "Dull",
+    "grammar": "A"
+  },
+  "Slaf": {
+    "definition_en": "Sleeping",
+    "grammar": "A"
+  },
+  "Slett": {
+    "definition_en": "Plain",
+    "grammar": "A"
+  },
+  "Smyd": {
+    "definition_en": "Smith",
+    "grammar": "N"
+  },
+  "Snoe": {
+    "definition_en": "Snow",
+    "grammar": "N"
+  },
+  "Some": {
+    "definition_en": "Summer",
+    "grammar": "N",
+    "derivatives": {
+      "A": "Soemr"
+    }
+  },
+  "Solk": {
+    "definition_en": "Blessed",
+    "grammar": "A"
+  },
+  "Spaer": {
+    "definition_en": "Sparrow",
+    "grammar": "N"
+  },
+  "Spyr": {
+    "definition_en": "Spear",
+    "grammar": "N"
+  },
+  "Stael": {
+    "definition_en": "Still",
+    "grammar": "A"
+  },
+  "Sterr": {
+    "definition_en": "Strong",
+    "grammar": "A"
+  },
+  "Sthal": {
+    "definition_en": "Steel",
+    "grammar": "AN"
+  },
+  "Sthan": {
+    "definition_en": "Stand",
+    "grammar": "V"
+  },
+  "Stral": {
+    "definition_en": "Arrow",
+    "grammar": "N"
+  },
+  "Stymm": {
+    "definition_en": "Voice",
+    "grammar": "N"
+  },
+  "Styr": {
+    "definition_en": "Star",
+    "grammar": "N",
+    "derivatives": {
+      "A": "Styrn"
+    }
+  },
+  "Styrm": {
+    "definition_en": "Storm",
+    "grammar": "N"
+  },
+  "Sund": {
+    "definition_en": "South",
+    "grammar": "N"
+  },
+  "Sundyr": {
+    "definition_en": "Southern",
+    "grammar": "A"
+  },
+  "Sunn": {
+    "definition_en": "Sun",
+    "grammar": "N"
+  },
+  "Swaen": {
+    "definition_en": "Mushroom",
+    "grammar": "N"
+  },
+  "Swar": {
+    "definition_en": "Black",
+    "grammar": "A"
+  },
+  "Sweig": {
+    "definition_en": "Herd",
+    "grammar": "NV"
+  },
+  "Swerd": {
+    "definition_en": "Sword",
+    "grammar": "N"
+  },
+  "Swoz": {
+    "definition_en": "Sweet",
+    "grammar": "A"
+  },
+  "Swyg": {
+    "definition_en": "Silent",
+    "grammar": "A"
+  },
+  "Swyn": {
+    "definition_en": "Round",
+    "grammar": "A"
+  },
+  "Swyr": {
+    "definition_en": "Big",
+    "grammar": "A"
+  },
+  "Swys": {
+    "definition_en": "Sister",
+    "grammar": "N",
+    "derivatives": {
+      "A": "Swysta"
+    }
+  },
+  "Sygg": {
+    "definition_en": "Victory",
+    "grammar": "N"
+  },
+  "Syhr": {
+    "definition_en": "Fearless",
+    "grammar": "A"
+  },
+  "Syk": {
+    "definition_en": "Sick",
+    "grammar": "A"
+  },
+  "Sylb": {
+    "definition_en": "Silver",
+    "grammar": "AN"
+  },
+  "Syn": {
+    "definition_en": "Son",
+    "grammar": "N"
+  },
+  "Syng": {
+    "definition_en": "Song",
+    "grammar": "N"
+  },
+  "Syngi": {
+    "definition_en": "Singing",
+    "grammar": "A"
+  },
+  "Synt": {
+    "definition_en": "Sand",
+    "grammar": "N"
+  },
+  "Syvin": {
+    "definition_en": "Seven",
+    "grammar": "AN"
+  },
+  "Syz": {
+    "definition_en": "Sit",
+    "grammar": "V"
+  },
+  "Syzn": {
+    "definition_en": "Sitting",
+    "grammar": "A"
+  },
+  "Thor": {
+    "definition_en": "Torn",
+    "grammar": "A"
+  },
+  "Thosin": {
+    "definition_en": "Grey",
+    "grammar": "A"
+  },
+  "Thota": {
+    "definition_en": "Daughter",
+    "grammar": "N"
+  },
+  "Thuba": {
+    "definition_en": "Mage",
+    "grammar": "N"
+  },
+  "Thubyr": {
+    "definition_en": "Magic",
+    "grammar": "AN"
+  },
+  "Thuv": {
+    "definition_en": "Dove",
+    "grammar": "N"
+  },
+  "Toeg": {
+    "definition_en": "Secret",
+    "grammar": "AN"
+  },
+  "Toff": {
+    "definition_en": "Deep",
+    "grammar": "A"
+  },
+  "Toum": {
+    "definition_en": "Dream",
+    "grammar": "N"
+  },
+  "Trach": {
+    "definition_en": "Dragon",
+    "grammar": "N"
+  },
+  "Trachyn": {
+    "definition_en": "Dragon",
+    "grammar": "A"
+  },
+  "Tragg": {
+    "definition_en": "Slow",
+    "grammar": "A"
+  },
+  "Trahg": {
+    "definition_en": "Lazy",
+    "grammar": "A"
+  },
+  "Troe": {
+    "definition_en": "Confused",
+    "grammar": "A",
+    "derivatives": {
+      "N": "Troeb"
+    }
+  },
+  "Troeg": {
+    "definition_en": "Monster",
+    "grammar": "N"
+  },
+  "Tu": {
+    "definition_en": "Dew",
+    "grammar": "N"
+  },
+  "Twyr": {
+    "definition_en": "Dwarf",
+    "grammar": "N"
+  },
+  "Tyl": {
+    "definition_en": "Valley",
+    "grammar": "N"
+  },
+  "Tymb": {
+    "definition_en": "Dumb",
+    "grammar": "A"
+  },
+  "Tyrb": {
+    "definition_en": "Cyclone",
+    "grammar": "N",
+    "derivatives": {
+      "A": "Terbin"
+    }
+  },
+  "Tyrn": {
+    "definition_en": "Tower",
+    "grammar": "N"
+  },
+  "Ubyl": {
+    "definition_en": "Evil",
+    "grammar": "A"
+  },
+  "Ulm": {
+    "definition_en": "Elm",
+    "grammar": "N"
+  },
+  "Und": {
+    "definition_en": "Wave",
+    "grammar": "N"
+  },
+  "Unsyn": {
+    "definition_en": "Innocent",
+    "grammar": "A"
+  },
+  "Unta": {
+    "definition_en": "Other",
+    "grammar": "A"
+  },
+  "Urs": {
+    "definition_en": "Auroch",
+    "grammar": "N"
+  },
+  "Usyn": {
+    "definition_en": "Ashen",
+    "grammar": "A"
+  },
+  "Uwil": {
+    "definition_en": "Owl",
+    "grammar": "N"
+  },
+  "Waeb": {
+    "definition_en": "Weave",
+    "grammar": "V"
+  },
+  "Waek": {
+    "definition_en": "Battle",
+    "grammar": "N"
+  },
+  "Waem": {
+    "definition_en": "Warm",
+    "grammar": "A"
+  },
+  "Waen": {
+    "definition_en": "Wind",
+    "grammar": "N",
+    "derivatives": {
+      "A": "Waent"
+    }
+  },
+  "Waht": {
+    "definition_en": "Guard",
+    "grammar": "N"
+  },
+  "Wakk": {
+    "definition_en": "Awake/Woken",
+    "grammar": "A"
+  },
+  "Wall": {
+    "definition_en": "Boil",
+    "grammar": "V"
+  },
+  "Wann": {
+    "definition_en": "Empty",
+    "grammar": "A"
+  },
+  "Ward": {
+    "definition_en": "Watch",
+    "grammar": "N"
+  },
+  "Warg": {
+    "definition_en": "truth",
+    "grammar": "N"
+  },
+  "Wast": {
+    "definition_en": "Sharp",
+    "grammar": "A"
+  },
+  "Webb": {
+    "definition_en": "Silk",
+    "grammar": "AN"
+  },
+  "Wegg": {
+    "definition_en": "Provoke",
+    "grammar": "V"
+  },
+  "Wein": {
+    "definition_en": "Woad",
+    "grammar": "N"
+  },
+  "Weitz": {
+    "definition_en": "Wheat",
+    "grammar": "N"
+  },
+  "Wezzn": {
+    "definition_en": "Punishment",
+    "grammar": "NV"
+  },
+  "Whas": {
+    "definition_en": "Wax",
+    "grammar": "AN"
+  },
+  "Whei": {
+    "definition_en": "Soft",
+    "grammar": "A"
+  },
+  "Wilf": {
+    "definition_en": "Wolf",
+    "grammar": "N"
+  },
+  "Wilt": {
+    "definition_en": "Wild",
+    "grammar": "A"
+  },
+  "Winst": {
+    "definition_en": "Left",
+    "grammar": "A"
+  },
+  "Wint": {
+    "definition_en": "Winter",
+    "grammar": "N"
+  },
+  "Wist": {
+    "definition_en": "West",
+    "grammar": "N"
+  },
+  "Wistyr": {
+    "definition_en": "Western",
+    "grammar": "A"
+  },
+  "Woerd": {
+    "definition_en": "Word",
+    "grammar": "N"
+  },
+  "Wolk": {
+    "definition_en": "Cloud",
+    "grammar": "N"
+  },
+  "Woll": {
+    "definition_en": "Wool",
+    "grammar": "AN"
+  },
+  "Wunt": {
+    "definition_en": "Under",
+    "grammar": "A"
+  },
+  "Wuot": {
+    "definition_en": "Berserk",
+    "grammar": "A"
+  },
+  "Wurt": {
+    "definition_en": "Herb",
+    "grammar": "N",
+    "derivatives": {
+      "A": "Wurth"
+    }
+  },
+  "Wyb": {
+    "definition_en": "Woman",
+    "grammar": "N"
+  },
+  "Wyda": {
+    "definition_en": "Willow",
+    "grammar": "N"
+  },
+  "Wyrk": {
+    "definition_en": "Work",
+    "grammar": "V"
+  },
+  "Wyrka": {
+    "definition_en": "Worker",
+    "grammar": "N"
+  },
+  "Wyrn": {
+    "definition_en": "Snake",
+    "grammar": "N"
+  },
+  "Wyrst": {
+    "definition_en": "Sausage",
+    "grammar": "N"
+  },
+  "Wyss": {
+    "definition_en": "Wise",
+    "grammar": "A"
+  },
+  "Wyta": {
+    "definition_en": "Water",
+    "grammar": "N"
+  },
+  "Wyzn": {
+    "definition_en": "White",
+    "grammar": "A"
+  },
+  "Ybolg": {
+    "definition_en": "Enraged",
+    "grammar": "A"
+  },
+  "Zaen": {
+    "definition_en": "Ten",
+    "grammar": "AN"
+  },
+  "Zaes": {
+    "definition_en": "Right",
+    "grammar": "A"
+  },
+  "Zagyl": {
+    "definition_en": "Tail",
+    "grammar": "N"
+  },
+  "Zahr": {
+    "definition_en": "Tear",
+    "grammar": "N"
+  },
+  "Zant": {
+    "definition_en": "Tooth",
+    "grammar": "N"
+  },
+  "Zedyr": {
+    "definition_en": "Cedar",
+    "grammar": "N"
+  },
+  "Zeh": {
+    "definition_en": "Toe",
+    "grammar": "N"
+  },
+  "Zent": {
+    "definition_en": "Send",
+    "grammar": "V"
+  },
+  "Zirn": {
+    "definition_en": "Fury/Furious",
+    "grammar": "AN"
+  },
+  "Zoeng": {
+    "definition_en": "Tongue",
+    "grammar": "N"
+  },
+  "Zoer": {
+    "definition_en": "Sour",
+    "grammar": "A"
+  },
+  "Zwelf": {
+    "definition_en": "Twelve",
+    "grammar": "AN"
+  },
+  "Zwyn": {
+    "definition_en": "Twin",
+    "grammar": "AN"
+  }
+}

@@ -49,7 +49,7 @@ const PlainsfolkFemale = ({ i18n }: Props) => {
         </Grid>
         <Grid item xs={12} md={6}>
           <Typography paragraph>
-            Female Plainsfolk names follow the phoneme pattern <b>ABB AB</b>.
+            Lalafellen names are ruled by rhythm, repetition, and rhyming. Female Plainsfolk names follow the phoneme pattern <b>ABB AB</b>.
           </Typography>
           <Typography>
             The <b>A</b> and <b>B</b> phonemes are one syllable.

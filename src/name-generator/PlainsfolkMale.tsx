@@ -59,7 +59,7 @@ const PlainsfolkMale = ({ i18n }: Props) => {
         </Grid>
         <Grid item xs={12} md={6}>
           <Typography paragraph>
-            Male Plainsfolk names follow the phoneme pattern <b>AB CB</b>.
+            Lalafellen names are ruled by rhythm, repetition, and rhyming. Male Plainsfolk names follow the phoneme pattern <b>AB CB</b>.
           </Typography>
           <Typography>
             The <b>A</b> and <b>C</b> phonemes do not have to rhyme, and the <b>A</b>, <b>B</b>, and <b>C</b> phonemes are usually limited to one or two syllables.

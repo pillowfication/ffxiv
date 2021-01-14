@@ -1,8 +1,8 @@
 {
   "title": "Name Generator",
-  "race": "Race",
-  "clan": "Clan",
-  "gender": "Gender",
+  "race": "種族",
+  "clan": "部族",
+  "gender": "性別",
   "any-race": "Any race",
   "any-clan": "Any clan",
   "any-gender": "Any gender",

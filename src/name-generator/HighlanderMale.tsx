@@ -50,7 +50,7 @@ const HighlanderMale = ({ i18n }: Props) => {
         </Grid>
         <Grid item xs={12} md={6}>
           <Typography paragraph>
-            Surnames are often violent nicknames earned during battle.
+            As a warring clan, surnames are often violent nicknames earned during battle.
           </Typography>
         </Grid>
         {name && (

@@ -57,7 +57,7 @@ const SeekersOfTheSunFemale = ({ i18n }: Props) => {
         </Grid>
         <Grid item xs={12} md={6}>
           <Typography paragraph>
-            The forename is always preceeded by a letter representing their tribe.
+            The forename is always preceeded by a letter representing their tribe. Tribe names are based on traditional beastkin, scalekin, or cloudkin totems said to protect the tribe.
           </Typography>
         </Grid>
         <Grid item xs={12} md={6}>
@@ -65,8 +65,8 @@ const SeekersOfTheSunFemale = ({ i18n }: Props) => {
             options={SURNAMES[Clan.SeekersOfTheSun]}
             value={surname}
             onChange={setSurname}
-            label='Position'
-            placeholder='Tia or Nunh'
+            label='Surname'
+            placeholder='Enter a surname'
           />
         </Grid>
         <Grid item xs={12} md={6}>

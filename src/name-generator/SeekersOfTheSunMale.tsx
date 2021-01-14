@@ -57,7 +57,7 @@ const SeekersOfTheSunMale = ({ i18n }: Props) => {
         </Grid>
         <Grid item xs={12} md={6}>
           <Typography paragraph>
-            The forename is always preceeded by a letter representing their tribe.
+            The forename is always preceeded by a letter representing their tribe. Tribe names are based on traditional beastkin, scalekin, or cloudkin totems said to protect the tribe.
           </Typography>
         </Grid>
         <Grid item xs={12} md={6}>
@@ -71,7 +71,7 @@ const SeekersOfTheSunMale = ({ i18n }: Props) => {
         </Grid>
         <Grid item xs={12} md={6}>
           <Typography paragraph>
-            Males do not have surnames, and will instead take on “Tia” or “Nunh” denoting their position within the tribe.
+            Males do not have surnames, as they are considered origins of new families, and will instead take on “Tia” or “Nunh” denoting their position within the tribe. All are born as tia and may challenge a tribe nunh to battle. If the tia is victorious, he takes the nunh’s title and position as tribe breeding male. A ratio of one nunh per fifty females is average. A tia may also become a nunh by leaving to start his own tribe.
           </Typography>
         </Grid>
         {name && (

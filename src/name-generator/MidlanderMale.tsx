@@ -50,7 +50,7 @@ const MidlanderMale = ({ i18n }: Props) => {
         </Grid>
         <Grid item xs={12} md={6}>
           <Typography paragraph>
-            Surnames are usually based off of professions (e.g. “Baker”) or outward features (e.g. “Browne”).
+            Surnames are usually based off of professions (e.g. “Baker”), locations where families lived (e.g. “Moore”), or outward features (e.g. “Browne”).
           </Typography>
         </Grid>
         {name && (

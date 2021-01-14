@@ -75,7 +75,7 @@ const KeepersOfTheMoonMale = ({ i18n }: Props) => {
         </Grid>
         <Grid item xs={12} md={6}>
           <Typography paragraph>
-            The forename is always proceeded by a suffix indicating their birth order.
+            The forename is always proceeded by a suffix indicating their birth order, although it is rare for families to have more than two or three sons.
           </Typography>
         </Grid>
         <Grid item xs={12} md={6}>
@@ -92,7 +92,7 @@ const KeepersOfTheMoonMale = ({ i18n }: Props) => {
         </Grid>
         <Grid item xs={12} md={6}>
           <Typography paragraph>
-            The male’s surname is also taken from his mother.
+            The surname is also taken from the mother.
           </Typography>
         </Grid>
         {name && (

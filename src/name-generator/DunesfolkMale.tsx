@@ -59,7 +59,7 @@ const DunesfolkMale = ({ i18n }: Props) => {
         </Grid>
         <Grid item xs={12} md={6}>
           <Typography paragraph>
-            Male Dunesfolk names follow the phoneme pattern <b>AAB CCB</b>.
+            Lalafellen names are ruled by rhythm, repetition, and rhyming. Male Dunesfolk names follow the phoneme pattern <b>AAB CCB</b>.
           </Typography>
           <Typography>
             The <b>A</b> and <b>C</b> phonemes are one syllable, and the <b>B</b> phoneme is two.

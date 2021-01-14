@@ -53,7 +53,7 @@ const KeepersOfTheMoonFemale = ({ i18n }: Props) => {
         </Grid>
         <Grid item xs={12} md={6}>
           <Typography paragraph>
-            The surname is passed down from the mother, not the father.
+            As part of a highly matriarchal society, the surname is passed down from the mother, not the father.
           </Typography>
         </Grid>
         {name && (
