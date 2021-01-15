@@ -10,7 +10,10 @@ type Props = {
 
 const WondrousTails = ({ t }: Props) => {
   return (
-    <Page title={t('title')}>
+    <Page
+      title={t('title')}
+      description='Calculator for the Wondrous Tails mini-game.'
+    >
       <Calculator />
     </Page>
   )

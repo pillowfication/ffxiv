@@ -11,7 +11,10 @@ type Props = {
 
 const MiniCactpot = ({ t }: Props) => {
   return (
-    <Page title={t('title')}>
+    <Page
+      title={t('title')}
+      description='Calculator for the Mini Cactpot lottery.'
+    >
       <Calculator />
       <About />
     </Page>

@@ -29,7 +29,10 @@ const Skywatcher = ({ t }: Props) => {
   }, [])
 
   return (
-    <Page title={t('title')}>
+    <Page
+      title={t('title')}
+      description='Schedule for weather in Eorzea and forecaster for upcoming weather patterns.'
+    >
       <Typography paragraph>
         The time in Eorzea is <b>{now ? toTimeString(new Date(now.getTime() * 1440 / 70)) : '…'}</b>.
       </Typography>

@@ -11,7 +11,10 @@ type Props = {
 
 const HighOrLow = ({ t }: Props) => {
   return (
-    <Page title={t('title')}>
+    <Page
+      title={t('title')}
+      description='Calculator for the guessing game “High or Low” played against Tista-Bie in Eulmore.'
+    >
       <Calculator />
       <About />
     </Page>

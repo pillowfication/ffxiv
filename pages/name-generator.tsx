@@ -11,7 +11,10 @@ type Props = {
 
 const NameGenerator = ({ t }: Props) => {
   return (
-    <Page title={t('title')}>
+    <Page
+      title={t('title')}
+      description='FFXIV random name generator for all the races.'
+    >
       <Generator />
       <About />
     </Page>

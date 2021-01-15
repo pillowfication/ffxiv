@@ -49,7 +49,10 @@ const OceanFishing = ({ t }: Props) => {
   }, [checklist])
 
   return (
-    <Page title={t('ocean-fishing')}>
+    <Page
+      title={t('title')}
+      description='Schedule for upcoming ocean fishing voyages with information on blue fish, achievements, and more.'
+    >
       <ChecklistContext.Provider value={{ checklist, setChecklist }}>
         <Section>
           <Typography paragraph>
