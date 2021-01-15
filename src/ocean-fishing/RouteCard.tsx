@@ -7,8 +7,7 @@ import CardHeader from '@material-ui/core/CardHeader'
 import { fishingSpots } from './gists/data'
 import * as maps from './maps'
 import { translate } from './utils'
-import i18n from '../i18n'
-import { I18n } from 'next-i18next'
+import { useTranslation } from '../i18n'
 
 const useStyles = makeStyles(() => ({
   routeCard: {
@@ -19,12 +18,13 @@ const useStyles = makeStyles(() => ({
 type Props = {
   index: number,
   stop: maps.StopTime,
-  children?: React.ReactNode,
-  i18n: I18n
+  children?: React.ReactNode
 }
 
-const RouteCard = ({ index, stop, children, i18n }: Props) => {
+const RouteCard = ({ index, stop, children }: Props) => {
   const classes = useStyles()
+  const { i18n } = useTranslation()
+  const locale = i18n.language
 
   return (
     <Grid item xs={12} md={4}>
@@ -32,7 +32,7 @@ const RouteCard = ({ index, stop, children, i18n }: Props) => {
         <CardHeader
           title={
             <Typography variant='h6'>
-              {index + 1}. {translate(i18n.language, fishingSpots[maps.STOP_MAP[stop[0]]], 'place_name_sub')} {maps.TIME_MAP[stop[1]]}
+              {index + 1}. {translate(locale, fishingSpots[maps.STOP_MAP[stop[0]]], 'place_name_sub')} {maps.TIME_MAP[stop[1]]}
             </Typography>
           }
           disableTypography
@@ -43,4 +43,4 @@ const RouteCard = ({ index, stop, children, i18n }: Props) => {
   )
 }
 
-export default i18n.withTranslation('ocean-fishing')(RouteCard)
+export default RouteCard

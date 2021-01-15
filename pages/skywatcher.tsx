@@ -5,14 +5,10 @@ import UpcomingWeather from '../src/skywatcher/UpcomingWeather'
 import Forecaster from '../src/skywatcher/Forecaster'
 import About from '../src/skywatcher/About'
 import { toTimeString } from '../src/utils'
-import i18n from '../src/i18n'
-import { TFunction } from 'next-i18next'
+import { useTranslation } from '../src/i18n'
 
-type Props = {
-  t: TFunction
-}
-
-const Skywatcher = ({ t }: Props) => {
+const Skywatcher = () => {
+  const { t } = useTranslation('skywatcher')
   const [now, setNow] = useState<Date | null>(null)
 
   useEffect(() => {
@@ -47,4 +43,4 @@ Skywatcher.getInitialProps = async () => ({
   namespacesRequired: ['common', 'skywatcher']
 })
 
-export default i18n.withTranslation('skywatcher')(Skywatcher)
+export default Skywatcher

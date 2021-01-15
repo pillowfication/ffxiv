@@ -31,7 +31,7 @@ const NameAutocomplete = ({
   return (
     <Autocomplete
       freeSolo
-      options={options.sort(sort)}
+      options={options.sort(sort).filter((name, index, array) => array.indexOf(name, index + 1) === -1)}
       getOptionLabel={getOptionLabel}
       value={value}
       inputValue={value}

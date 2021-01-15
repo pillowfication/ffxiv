@@ -20,10 +20,10 @@ import PlainsfolkMale from './PlainsfolkMale'
 import PlainsfolkFemale from './PlainsfolkFemale'
 import DunesfolkMale from './DunesfolkMale'
 import DunesfolkFemale from './DunesfolkFemale'
-import SeekersOfTheSunMale from './SeekersOfTheSunMale'
-import SeekersOfTheSunFemale from './SeekersOfTheSunFemale'
-import KeepersOfTheMoonMale from './KeepersOfTheMoonMale'
-import KeepersOfTheMoonFemale from './KeepersOfTheMoonFemale'
+import SeekerOfTheSunMale from './SeekerOfTheSunMale'
+import SeekerOfTheSunFemale from './SeekerOfTheSunFemale'
+import KeeperOfTheMoonMale from './KeeperOfTheMoonMale'
+import KeeperOfTheMoonFemale from './KeeperOfTheMoonFemale'
 import generate, { getClans, getGenders, translate } from '../name-generator/names'
 import { Race, Clan, Gender } from '../name-generator/names/types'
 import i18n from '../i18n'
@@ -52,10 +52,10 @@ const ADVANCED: { [key: string]: any } = {
   [`${Clan.Plainsfolk},${Gender.Female}`]: PlainsfolkFemale,
   [`${Clan.Dunesfolk},${Gender.Male}`]: DunesfolkMale,
   [`${Clan.Dunesfolk},${Gender.Female}`]: DunesfolkFemale,
-  [`${Clan.SeekersOfTheSun},${Gender.Male}`]: SeekersOfTheSunMale,
-  [`${Clan.SeekersOfTheSun},${Gender.Female}`]: SeekersOfTheSunFemale,
-  [`${Clan.KeepersOfTheMoon},${Gender.Male}`]: KeepersOfTheMoonMale,
-  [`${Clan.KeepersOfTheMoon},${Gender.Female}`]: KeepersOfTheMoonFemale
+  [`${Clan.SeekerOfTheSun},${Gender.Male}`]: SeekerOfTheSunMale,
+  [`${Clan.SeekerOfTheSun},${Gender.Female}`]: SeekerOfTheSunFemale,
+  [`${Clan.KeeperOfTheMoon},${Gender.Male}`]: KeeperOfTheMoonMale,
+  [`${Clan.KeeperOfTheMoon},${Gender.Female}`]: KeeperOfTheMoonFemale
 }
 
 function randomElement<T> (array: T[]) {

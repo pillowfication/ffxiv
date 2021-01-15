@@ -15,8 +15,7 @@ import { fishingSpots, fishes, achievements } from './gists/data'
 import calculateVoyages from './calculate-voyages'
 import * as maps from './maps'
 import { translate, upperFirst } from './utils'
-import i18n from '../i18n'
-import { I18n, TFunction } from 'next-i18next'
+import { useTranslation } from '../i18n'
 
 const useStyles = makeStyles(theme => ({
   listSubheader: {
@@ -26,14 +25,13 @@ const useStyles = makeStyles(theme => ({
 
 type Props = {
   now?: Date,
-  onSelectRoute: (route: maps.DestinationStopTime) => void,
-  t: TFunction,
-  i18n: I18n
+  onSelectRoute: (route: maps.DestinationStopTime) => void
 }
 
-const UpcomingVoyages = ({ now, onSelectRoute, t, i18n }: Props) => {
+const UpcomingVoyages = ({ now, onSelectRoute }: Props) => {
   const classes = useStyles()
   const router = useRouter()
+  const { t, i18n } = useTranslation('ocean-fishing')
   const [numRows, setNumRows] = useState(10)
   const [filter, setFilter] = useState('none')
   const firstRender = useRef(false)
@@ -70,13 +68,13 @@ const UpcomingVoyages = ({ now, onSelectRoute, t, i18n }: Props) => {
   }
 
   return (
-    <Section title={t('upcoming-voyages')}>
+    <Section title={t('upcomingVoyages')}>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <FormControl fullWidth>
             <TextField
               variant='filled'
-              label={t('number-of-rows')}
+              label={t('numberOfRows')}
               type='number'
               value={numRows}
               onChange={handleInputNumRows}
@@ -86,13 +84,13 @@ const UpcomingVoyages = ({ now, onSelectRoute, t, i18n }: Props) => {
         </Grid>
         <Grid item xs={12} sm={6}>
           <FormControl fullWidth variant='filled'>
-            <InputLabel>{t('filter-route')}</InputLabel>
+            <InputLabel>{t('filterRoute')}</InputLabel>
             <Select
               value={filter}
               onChange={handleSelectFilter}
             >
-              <MenuItem value='none'>{t('no-filter')}</MenuItem>
-              <ListSubheader disableSticky className={classes.listSubheader}>{t('blue-fish')}</ListSubheader>
+              <MenuItem value='none'>{t('noFilter')}</MenuItem>
+              <ListSubheader disableSticky className={classes.listSubheader}>{t('blueFish')}</ListSubheader>
               <MenuItem value='sothis'>{translate(locale, fishes[29788], 'name')}</MenuItem>
               <MenuItem value='coral_manta'>{translate(locale, fishes[29789], 'name')}</MenuItem>
               <MenuItem value='stonescale'>{translate(locale, fishes[29790], 'name')}</MenuItem>
@@ -110,24 +108,24 @@ const UpcomingVoyages = ({ now, onSelectRoute, t, i18n }: Props) => {
               <MenuItem value='mantas'>{translate(locale, achievements[2756], 'name')}</MenuItem>
               <ListSubheader disableSticky className={classes.listSubheader}>{upperFirst(translate(locale, fishingSpots[241], 'place_name_sub', 'no_article'))}</ListSubheader>
               <MenuItem value='R'>{upperFirst(translate(locale, fishingSpots[241], 'place_name_sub', 'no_article'))}</MenuItem>
-              <MenuItem value='RD'>{upperFirst(translate(locale, fishingSpots[241], 'place_name_sub', 'no_article'))} - {t('time-day')}</MenuItem>
-              <MenuItem value='RS'>{upperFirst(translate(locale, fishingSpots[241], 'place_name_sub', 'no_article'))} - {t('time-sunset')}</MenuItem>
-              <MenuItem value='RN'>{upperFirst(translate(locale, fishingSpots[241], 'place_name_sub', 'no_article'))} - {t('time-night')}</MenuItem>
+              <MenuItem value='RD'>{upperFirst(translate(locale, fishingSpots[241], 'place_name_sub', 'no_article'))} - {t('time.day')}</MenuItem>
+              <MenuItem value='RS'>{upperFirst(translate(locale, fishingSpots[241], 'place_name_sub', 'no_article'))} - {t('time.sunset')}</MenuItem>
+              <MenuItem value='RN'>{upperFirst(translate(locale, fishingSpots[241], 'place_name_sub', 'no_article'))} - {t('time.night')}</MenuItem>
               <ListSubheader disableSticky className={classes.listSubheader}>{upperFirst(translate(locale, fishingSpots[243], 'place_name_sub', 'no_article'))}</ListSubheader>
               <MenuItem value='N'>{upperFirst(translate(locale, fishingSpots[243], 'place_name_sub', 'no_article'))}</MenuItem>
-              <MenuItem value='ND'>{upperFirst(translate(locale, fishingSpots[243], 'place_name_sub', 'no_article'))} - {t('time-day')}</MenuItem>
-              <MenuItem value='NS'>{upperFirst(translate(locale, fishingSpots[243], 'place_name_sub', 'no_article'))} - {t('time-sunset')}</MenuItem>
-              <MenuItem value='NN'>{upperFirst(translate(locale, fishingSpots[243], 'place_name_sub', 'no_article'))} - {t('time-night')}</MenuItem>
+              <MenuItem value='ND'>{upperFirst(translate(locale, fishingSpots[243], 'place_name_sub', 'no_article'))} - {t('time.day')}</MenuItem>
+              <MenuItem value='NS'>{upperFirst(translate(locale, fishingSpots[243], 'place_name_sub', 'no_article'))} - {t('time.sunset')}</MenuItem>
+              <MenuItem value='NN'>{upperFirst(translate(locale, fishingSpots[243], 'place_name_sub', 'no_article'))} - {t('time.night')}</MenuItem>
               <ListSubheader disableSticky className={classes.listSubheader}>{upperFirst(translate(locale, fishingSpots[248], 'place_name_sub', 'no_article'))}</ListSubheader>
               <MenuItem value='B'>{upperFirst(translate(locale, fishingSpots[248], 'place_name_sub', 'no_article'))}</MenuItem>
-              <MenuItem value='BD'>{upperFirst(translate(locale, fishingSpots[248], 'place_name_sub', 'no_article'))} - {t('time-day')}</MenuItem>
-              <MenuItem value='BS'>{upperFirst(translate(locale, fishingSpots[248], 'place_name_sub', 'no_article'))} - {t('time-sunset')}</MenuItem>
-              <MenuItem value='BN'>{upperFirst(translate(locale, fishingSpots[248], 'place_name_sub', 'no_article'))} - {t('time-night')}</MenuItem>
+              <MenuItem value='BD'>{upperFirst(translate(locale, fishingSpots[248], 'place_name_sub', 'no_article'))} - {t('time.day')}</MenuItem>
+              <MenuItem value='BS'>{upperFirst(translate(locale, fishingSpots[248], 'place_name_sub', 'no_article'))} - {t('time.sunset')}</MenuItem>
+              <MenuItem value='BN'>{upperFirst(translate(locale, fishingSpots[248], 'place_name_sub', 'no_article'))} - {t('time.night')}</MenuItem>
               <ListSubheader disableSticky className={classes.listSubheader}>{upperFirst(translate(locale, fishingSpots[250], 'place_name_sub', 'no_article'))}</ListSubheader>
               <MenuItem value='T'>{upperFirst(translate(locale, fishingSpots[250], 'place_name_sub', 'no_article'))}</MenuItem>
-              <MenuItem value='TD'>{upperFirst(translate(locale, fishingSpots[250], 'place_name_sub', 'no_article'))} - {t('time-day')}</MenuItem>
-              <MenuItem value='TS'>{upperFirst(translate(locale, fishingSpots[250], 'place_name_sub', 'no_article'))} - {t('time-sunset')}</MenuItem>
-              <MenuItem value='TN'>{upperFirst(translate(locale, fishingSpots[250], 'place_name_sub', 'no_article'))} - {t('time-night')}</MenuItem>
+              <MenuItem value='TD'>{upperFirst(translate(locale, fishingSpots[250], 'place_name_sub', 'no_article'))} - {t('time.day')}</MenuItem>
+              <MenuItem value='TS'>{upperFirst(translate(locale, fishingSpots[250], 'place_name_sub', 'no_article'))} - {t('time.sunset')}</MenuItem>
+              <MenuItem value='TN'>{upperFirst(translate(locale, fishingSpots[250], 'place_name_sub', 'no_article'))} - {t('time.night')}</MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -143,4 +141,4 @@ const UpcomingVoyages = ({ now, onSelectRoute, t, i18n }: Props) => {
   )
 }
 
-export default i18n.withTranslation('ocean-fishing')(UpcomingVoyages)
+export default UpcomingVoyages

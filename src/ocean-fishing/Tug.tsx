@@ -2,8 +2,7 @@ import React from 'react'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import Tooltip from '@material-ui/core/Tooltip'
-import i18n from '../i18n'
-import { TFunction } from 'next-i18next'
+import { useTranslation } from '../i18n'
 
 const useStyles = makeStyles(theme => ({
   tug: {
@@ -34,33 +33,33 @@ const useStyles = makeStyles(theme => ({
 type Props = {
   strength: 1 | 2 | 3,
   sup?: boolean,
-  className?: string,
-  t: TFunction
+  className?: string
 }
 
-const Tug = ({ strength, sup, className, t }: Props) => {
+const Tug = ({ strength, sup, className }: Props) => {
   const classes = useStyles()
+  const { t } = useTranslation('ocean-fishing')
 
   switch (strength) {
     case 1:
       return (
-        <Tooltip arrow placement='top' title={t('tug-light')}>
+        <Tooltip arrow placement='top' title={t('tug.light')}>
           <span className={clsx(classes.tug, sup && classes.sup, classes.light, className)}>!</span>
         </Tooltip>
       )
     case 2:
       return (
-        <Tooltip arrow placement='top' title={t('tug-medium')}>
+        <Tooltip arrow placement='top' title={t('tug.medium')}>
           <span className={clsx(classes.tug, sup && classes.sup, classes.medium, className)}>!!</span>
         </Tooltip>
       )
     case 3:
       return (
-        <Tooltip arrow placement='top' title={t('tug-heavy')}>
+        <Tooltip arrow placement='top' title={t('tug.heavy')}>
           <span className={clsx(classes.tug, sup && classes.sup, classes.heavy, className)}>!!!</span>
         </Tooltip>
       )
   }
 }
 
-export default i18n.withTranslation('ocean-fishing')(Tug)
+export default Tug

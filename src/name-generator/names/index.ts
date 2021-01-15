@@ -18,8 +18,8 @@ const CLANS: Record<Race, Clan[]> = {
   [Race.Hyur]: [Clan.Midlander, Clan.Highlander],
   [Race.Elezen]: [Clan.Wildwood, Clan.Duskwight],
   [Race.Lalafell]: [Clan.Plainsfolk, Clan.Dunesfolk],
-  [Race.Miqote]: [Clan.SeekersOfTheSun, Clan.KeepersOfTheMoon],
-  [Race.Roegadyn]: [Clan.SeaWolves, Clan.Hellsguard],
+  [Race.Miqote]: [Clan.SeekerOfTheSun, Clan.KeeperOfTheMoon],
+  [Race.Roegadyn]: [Clan.SeaWolf, Clan.Hellsguard],
   [Race.AuRa]: [Clan.Raen, Clan.Xaela],
   [Race.Hrothgar]: [Clan.Helions, Clan.TheLost],
   [Race.Viera]: [Clan.Rava, Clan.Veena]

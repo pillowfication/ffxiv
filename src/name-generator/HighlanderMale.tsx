@@ -8,15 +8,10 @@ import { translate } from './names'
 import { upperFirst } from './names/utils'
 import { Clan, Gender } from './names/types'
 import { FORENAMES, SURNAMES } from './names/generate-hyur'
-import i18n from '../i18n'
-import { I18n, TFunction } from 'next-i18next'
+import { useTranslation } from '../i18n'
 
-type Props = {
-  t: TFunction,
-  i18n: I18n
-}
-
-const HighlanderMale = ({ i18n }: Props) => {
+const HighlanderMale = () => {
+  const { t, i18n } = useTranslation('name-generator')
   const [forename, setForename] = useState('')
   const [surname, setSurname] = useState('')
   const name = `${upperFirst(forename)} ${upperFirst(surname)}`.trim()
@@ -30,8 +25,8 @@ const HighlanderMale = ({ i18n }: Props) => {
             options={FORENAMES[Clan.Highlander][Gender.Male]}
             value={forename}
             onChange={setForename}
-            label='Forename'
-            placeholder='Enter a forename'
+            label={t('forename')}
+            placeholder={t('enterForename')}
           />
         </Grid>
         <Grid item xs={12} md={6}>
@@ -44,8 +39,8 @@ const HighlanderMale = ({ i18n }: Props) => {
             options={SURNAMES[Clan.Highlander]}
             value={surname}
             onChange={setSurname}
-            label='Surname'
-            placeholder='Enter a surname'
+            label={t('surname')}
+            placeholder={t('enterSurname')}
           />
         </Grid>
         <Grid item xs={12} md={6}>
@@ -63,4 +58,4 @@ const HighlanderMale = ({ i18n }: Props) => {
   )
 }
 
-export default i18n.withTranslation('name-generator')(HighlanderMale)
+export default HighlanderMale

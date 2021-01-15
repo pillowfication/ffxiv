@@ -8,8 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer'
 import Button from '@material-ui/core/Button'
 import CalculatorCell from './CalculatorCell'
 import CalculatorLineIndicator from './CalculatorLineIndicator'
-import i18n from '../i18n'
-import { TFunction } from 'next-i18next'
+import { useTranslation } from '../i18n'
 
 const useStyles = makeStyles(theme => ({
   gridShrink: {
@@ -35,13 +34,10 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-type Props = {
-  t: TFunction
-}
-
-const Calculator = ({ t }: Props) => {
-  const [grid, setGrid] = useState<number[]>(Array(9).fill(null))
+const Calculator = () => {
   const classes = useStyles()
+  const { t } = useTranslation('mini-cactpot')
+  const [grid, setGrid] = useState<number[]>(Array(9).fill(null))
 
   const handleInputDigit = (cellIndex: number, digit: number) => {
     const newGrid = grid.slice()
@@ -169,4 +165,4 @@ const Calculator = ({ t }: Props) => {
   )
 }
 
-export default i18n.withTranslation('mini-cactpot')(Calculator)
+export default Calculator

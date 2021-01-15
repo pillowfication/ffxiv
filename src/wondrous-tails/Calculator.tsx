@@ -12,8 +12,7 @@ import Button from '@material-ui/core/Button'
 import Section from '../Section'
 import CalculatorCell from './CalculatorCell'
 import calculateProbabilities from './calculate-probabilities'
-import i18n from '../i18n'
-import { TFunction } from 'next-i18next'
+import { useTranslation } from '../i18n'
 
 const PROB_1_LINES = 6688 / 11440
 const PROB_2_LINES = 1208 / 11440
@@ -69,13 +68,10 @@ function toDeviationPercent (val: number) {
   return <Typography style={{ color }}>{string}</Typography>
 }
 
-type Props = {
-  t: TFunction
-}
-
-const Calculator = ({ t }: Props) => {
-  const [board, setBoard] = useState(Array(16).fill(false))
+const Calculator = () => {
   const classes = useStyles()
+  const { t } = useTranslation('wondrous-tails')
+  const [board, setBoard] = useState(Array(16).fill(false))
   const { lines1, lines2, lines3, total } = calculateProbabilities(board)
   const filledCells = board.filter((x) => x).length
 
@@ -152,4 +148,4 @@ const Calculator = ({ t }: Props) => {
   )
 }
 
-export default i18n.withTranslation('wondrous-tails')(Calculator)
+export default Calculator

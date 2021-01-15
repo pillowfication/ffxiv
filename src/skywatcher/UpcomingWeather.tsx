@@ -15,8 +15,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import UpcomingWeatherTable from './UpcomingWeatherTable'
 import { Region } from './weather/consts'
 import PARTITION from './weather/regions-partition'
-import i18n from '../i18n'
-import { I18n, TFunction } from 'next-i18next'
+import { useTranslation } from '../i18n'
 
 const REGIONS = [
   Region.LaNoscea,
@@ -36,13 +35,12 @@ const useStyles = makeStyles(theme => ({
 }))
 
 type Props = {
-  now?: Date,
-  t: TFunction,
-  i18n: I18n
+  now?: Date
 }
 
-const UpcomingWeather = ({ now, t, i18n }: Props) => {
+const UpcomingWeather = ({ now }: Props) => {
   const classes = useStyles()
+  const { t, i18n } = useTranslation('skywatcher')
   const router = useRouter()
   const [filter, setFilter] = useState<Region | null>(null)
   const [showLabels, setShowLabels] = useState(true)
@@ -137,4 +135,4 @@ const UpcomingWeather = ({ now, t, i18n }: Props) => {
   )
 }
 
-export default i18n.withTranslation('skywatcher')(UpcomingWeather)
+export default UpcomingWeather

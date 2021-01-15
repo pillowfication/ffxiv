@@ -16,8 +16,7 @@ import WeatherIcon from '../skywatcher/WeatherIcon'
 import { fishingSpots, fishes } from './gists/data'
 import * as maps from './maps'
 import { translate } from './utils'
-import i18n from '../i18n'
-import { I18n, TFunction } from 'next-i18next'
+import { useTranslation } from '../i18n'
 
 const useStyles = makeStyles(theme => ({
   table: {
@@ -49,13 +48,13 @@ const useStyles = makeStyles(theme => ({
 
 type Props = {
   spots: number[],
-  time?: 'D' | 'S' | 'N',
-  t: TFunction,
-  i18n: I18n
+  time?: 'D' | 'S' | 'N'
 }
 
-const FishTable = ({ spots, time, t, i18n }: Props) => {
+const FishTable = ({ spots, time }: Props) => {
   const classes = useStyles()
+  const { t, i18n } = useTranslation('ocean-fishing')
+  const locale = i18n.language
 
   return (
     <TableContainer>
@@ -68,13 +67,13 @@ const FishTable = ({ spots, time, t, i18n }: Props) => {
               <TableHead>
                 <TableRow>
                   <TableCell colSpan={3} align='center'>{t('fish')}</TableCell>
-                  <TableCell align='center'>{t('bait')}</TableCell>
-                  <TableCell align='center'>{t('tug')}</TableCell>
-                  <TableCell align='center'>{t('bite-time')}</TableCell>
-                  <TableCell align='center'>{t('points')}</TableCell>
-                  <TableCell align='center'>{t('double-hook')}</TableCell>
-                  <TableCell align='center'>{t(isSpectral ? 'time-of-day' : 'weather')}</TableCell>
-                  <TableCell align='center'>{t('category')}</TableCell>
+                  <TableCell align='center'>{t('fishInfo.bait')}</TableCell>
+                  <TableCell align='center'>{t('fishInfo.tug')}</TableCell>
+                  <TableCell align='center'>{t('fishInfo.biteTime')}</TableCell>
+                  <TableCell align='center'>{t('fishInfo.points')}</TableCell>
+                  <TableCell align='center'>{t('fishInfo.doubleHook')}</TableCell>
+                  <TableCell align='center'>{t(`fishInfo.${isSpectral ? 'timeOfDay' : 'weather'}`)}</TableCell>
+                  <TableCell align='center'>{t('fishInfo.category')}</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -94,7 +93,7 @@ const FishTable = ({ spots, time, t, i18n }: Props) => {
                         <OceanFishIcon type='fish' id={fish.id} />
                       </TableCell>
                       <TableCell>
-                        <div><Typography>{translate(i18n.language, fish, 'name')}</Typography></div>
+                        <div><Typography>{translate(locale, fish, 'name')}</Typography></div>
                         {fishInfo.stars &&
                           <div className={classes.stars}>{'★'.repeat(fishInfo.stars)}</div>}
                       </TableCell>
@@ -181,4 +180,4 @@ const FishTable = ({ spots, time, t, i18n }: Props) => {
   )
 }
 
-export default i18n.withTranslation('ocean-fishing')(FishTable)
+export default FishTable

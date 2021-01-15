@@ -1,14 +1,11 @@
 import React from 'react'
 import Page from '../src/Page'
 import Calculator from '../src/wondrous-tails/Calculator'
-import i18n from '../src/i18n'
-import { TFunction } from 'next-i18next'
+import { useTranslation } from '../src/i18n'
 
-type Props = {
-  t: TFunction
-}
+const WondrousTails = () => {
+  const { t } = useTranslation('wondrous-tails')
 
-const WondrousTails = ({ t }: Props) => {
   return (
     <Page
       title={t('title')}
@@ -23,4 +20,4 @@ WondrousTails.getInitialProps = async () => ({
   namespacesRequired: ['common', 'wondrous-tails']
 })
 
-export default i18n.withTranslation('wondrous-tails')(WondrousTails)
+export default WondrousTails

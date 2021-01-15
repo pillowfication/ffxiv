@@ -8,15 +8,10 @@ import { translate } from './names'
 import { upperFirst } from './names/utils'
 import { Clan, Gender } from './names/types'
 import { PHONEMES } from './names/generate-lalafell'
-import i18n from '../i18n'
-import { I18n, TFunction } from 'next-i18next'
+import { useTranslation } from '../i18n'
 
-type Props = {
-  t: TFunction,
-  i18n: I18n
-}
-
-const PlainsfolkFemale = ({ i18n }: Props) => {
+const PlainsfolkFemale = () => {
+  const { t, i18n } = useTranslation('name-generator')
   const [phonemeA, setPhonemeA] = useState('')
   const [phonemeB, setPhonemeB] = useState('')
   const name = `${upperFirst(phonemeA + phonemeB + phonemeB)} ${upperFirst(phonemeA + phonemeB)}`.trim()
@@ -32,8 +27,8 @@ const PlainsfolkFemale = ({ i18n }: Props) => {
                 options={PHONEMES[Clan.Plainsfolk].A}
                 value={phonemeA}
                 onChange={setPhonemeA}
-                label='Phoneme A'
-                placeholder='Enter a phoneme'
+                label={t('phoneme', { label: 'A' })}
+                placeholder={t('enterPhoneme')}
               />
             </Grid>
             <Grid item xs={12}>
@@ -41,8 +36,8 @@ const PlainsfolkFemale = ({ i18n }: Props) => {
                 options={PHONEMES[Clan.Plainsfolk].B}
                 value={phonemeB}
                 onChange={setPhonemeB}
-                label='Phoneme B'
-                placeholder='Enter a phoneme'
+                label={t('phoneme', { label: 'B' })}
+                placeholder={t('enterPhoneme')}
               />
             </Grid>
           </Grid>
@@ -65,4 +60,4 @@ const PlainsfolkFemale = ({ i18n }: Props) => {
   )
 }
 
-export default i18n.withTranslation('name-generator')(PlainsfolkFemale)
+export default PlainsfolkFemale

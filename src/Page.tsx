@@ -4,19 +4,19 @@ import Head from 'next/head'
 import { NextSeo } from 'next-seo'
 import Typography from '@material-ui/core/Typography'
 import Footer from '../src/Footer'
-import i18n from '../src/i18n'
-import { I18n } from 'next-i18next'
+import { useTranslation } from '../src/i18n'
 
 type Props = {
   title?: string,
   description?: string,
   seo?: object,
-  i18n: I18n,
+  og?: object,
   children?: React.ReactNode
 }
 
-const Page = ({ title, description, seo = {}, i18n, children }: Props) => {
+const Page = ({ title, description, seo = {}, og = {}, children }: Props) => {
   const router = useRouter()
+  const { i18n } = useTranslation('common')
 
   return (
     <>
@@ -32,7 +32,8 @@ const Page = ({ title, description, seo = {}, i18n, children }: Props) => {
           title,
           description,
           locale: i18n.language,
-          site_name: 'Lulu’s Tools'
+          site_name: 'Lulu’s Tools',
+          ...og
         }}
         {...seo}
       />
@@ -43,4 +44,4 @@ const Page = ({ title, description, seo = {}, i18n, children }: Props) => {
   )
 }
 
-export default i18n.withTranslation()(Page)
+export default Page

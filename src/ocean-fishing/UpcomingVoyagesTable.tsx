@@ -15,8 +15,7 @@ import * as maps from './maps'
 import { toTimeString } from '../utils'
 import calculateVoyages from './calculate-voyages'
 import { getBlueFish, timeUntil, translate, upperFirst } from './utils'
-import i18n from '../i18n'
-import { I18n, TFunction } from 'next-i18next'
+import { useTranslation } from '../i18n'
 
 const DATE_FORMAT: Intl.DateTimeFormatOptions = { month: '2-digit', day: '2-digit' }
 
@@ -66,32 +65,32 @@ type Props = {
   now: Date,
   numRows: number,
   filter?: maps.DestinationStopTime[],
-  onSelectRoute: (route: maps.DestinationStopTime) => void,
-  t: TFunction,
-  i18n: I18n
+  onSelectRoute: (route: maps.DestinationStopTime) => void
 }
 
-const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute, t, i18n }: Props) => {
+const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute }: Props) => {
   const classes = useStyles()
+  const { t, i18n } = useTranslation('ocean-fishing')
   const [hover, setHover] = useState<maps.DestinationStopTime | null>(null)
   const upcomingVoyages = calculateVoyages(now, Math.min(Math.max(numRows, 1), 50), filter)
+  const locale = i18n.language
 
   return (
     <TableContainer component={Paper}>
       <Table size='small' className={classes.schedule}>
         <TableHead>
           <TableRow>
-            <TableCell colSpan={3} align='center'>{t('time')}</TableCell>
-            <TableCell colSpan={2} align='center'>{t('route')}</TableCell>
-            <TableCell align='center'>{t('objectives')}</TableCell>
+            <TableCell colSpan={3} align='center'>{t('routeInfo.time')}</TableCell>
+            <TableCell colSpan={2} align='center'>{t('routeInfo.route')}</TableCell>
+            <TableCell align='center'>{t('routeInfo.objectives')}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody onMouseOut={setHover.bind(null, null)}>
           {(() => {
             let previousDate: string
             return upcomingVoyages.map(({ time, destinationCode }) => {
-              const dateString = time.toLocaleDateString(i18n.language, DATE_FORMAT)
-              const timeString = toTimeString(time, { padded: true, locale: i18n.language })
+              const dateString = time.toLocaleDateString(locale, DATE_FORMAT)
+              const timeString = toTimeString(time, { padded: true, locale })
 
               return (
                 <TableRow
@@ -108,10 +107,10 @@ const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute, t, i18n }: 
                     <Typography>{timeString}</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography className={classes.timeUntil}>{timeUntil(now, time, { t, locale: i18n.language })}</Typography>
+                    <Typography className={classes.timeUntil}>{timeUntil(now, time, { t, locale: locale })}</Typography>
                   </TableCell>
                   <TableCell align='right'>
-                    <Typography>{upperFirst(translate(i18n.language, fishingSpots[maps.STOP_MAP[destinationCode[0]]], 'place_name_sub', 'no_article'))}</Typography>
+                    <Typography>{upperFirst(translate(locale, fishingSpots[maps.STOP_MAP[destinationCode[0]]], 'place_name_sub', 'no_article'))}</Typography>
                   </TableCell>
                   <TableCell className={classes.timeCell}>
                     {maps.TIME_MAP[destinationCode[1]]}
@@ -134,4 +133,4 @@ const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute, t, i18n }: 
   )
 }
 
-export default i18n.withTranslation('ocean-fishing')(UpcomingVoyagesTable)
+export default UpcomingVoyagesTable

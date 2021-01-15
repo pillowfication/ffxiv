@@ -9,8 +9,7 @@ import { fishes, baits, achievements } from './gists/data'
 // import ICONS_URL from './gists/data/ocean-fishing-icons.png'
 import ICONS_MAP from './gists/data/ocean-fishing-icons-map.json'
 import { translate } from './utils'
-import i18n from '../i18n'
-import { I18n } from 'next-i18next'
+import { useTranslation } from '../i18n'
 
 const ICON_ROWS = ICONS_MAP.length
 const ICON_COLS = Math.max(...ICONS_MAP.map(row => row.length))
@@ -125,13 +124,14 @@ type Props = {
   type: 'fish' | 'bait' | 'achievement' | 'bonus-icon',
   id: number | string,
   size?: number,
-  className?: string,
-  i18n: I18n
+  className?: string
 }
 
-const OceanFishIcon = ({ type, id, size = 40, className, i18n }: Props) => {
+const OceanFishIcon = ({ type, id, size = 40, className }: Props) => {
   const classes = useStyles({ size })
+  const { i18n } = useTranslation()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
+  const locale = i18n.language
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     if (type === 'fish' && !anchorEl) {
@@ -153,7 +153,7 @@ const OceanFishIcon = ({ type, id, size = 40, className, i18n }: Props) => {
 
   return (
     <>
-      <Tooltip arrow placement='top' title={translate(i18n.language, info, 'name')}>
+      <Tooltip arrow placement='top' title={translate(locale, info, 'name')}>
         <div
           className={clsx(classes.iconContainer, type === 'fish' && classes.hasPopper, className)}
           onClick={handleClick}
@@ -177,4 +177,4 @@ const OceanFishIcon = ({ type, id, size = 40, className, i18n }: Props) => {
   )
 }
 
-export default i18n.withTranslation('ocean-fishing')(OceanFishIcon)
+export default OceanFishIcon

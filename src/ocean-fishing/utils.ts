@@ -15,9 +15,9 @@ function memoize<T, R> (func: (arg: T) => R): (arg: T) => R {
 export function timeUntil (now: Date, then: Date, options: { t: TFunction, full?: boolean, locale?: string }) {
   const diff = then.getTime() - now.getTime()
   if (diff < -900000) {
-    return options.t('en-route')
+    return options.t('routeInfo.enRoute')
   } else if (diff < 0) {
-    return options.t('boarding-now')
+    return options.t('routeInfo.boardingNow')
   } else {
     return genericTimeUntil(now, then, { full: options.full, locale: options.locale })
   }

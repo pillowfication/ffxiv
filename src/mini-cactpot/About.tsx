@@ -13,8 +13,7 @@ import Section from '../Section'
 import { $ } from '../MathJax'
 import MiniGrid from './MiniGrid'
 import { PAYOUTS } from './calculate-mini-cactpot'
-import i18n from '../i18n'
-import { I18n, TFunction } from 'next-i18next'
+import { useTranslation } from '../i18n'
 
 const useStyles = makeStyles(theme => ({
   payoutsContainer: {
@@ -42,13 +41,9 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-type Props = {
-  t: TFunction,
-  i18n: I18n
-}
-
-const About = ({ t, i18n }: Props) => {
+const About = () => {
   const classes = useStyles()
+  const { t, i18n } = useTranslation('mini-cactpot')
 
   return (
     <Section title={t('about')}>
@@ -118,4 +113,4 @@ const About = ({ t, i18n }: Props) => {
   )
 }
 
-export default i18n.withTranslation('mini-cactpot')(About)
+export default About

@@ -26,8 +26,7 @@ import Section from '../Section'
 import WeatherIcon from './WeatherIcon'
 import { Weather, Region, Zone } from './weather/consts'
 import PARTITION from './weather/regions-partition'
-import i18n from '../i18n'
-import { I18n, TFunction } from 'next-i18next'
+import { useTranslation } from '../i18n'
 
 const REGIONS = [
   Region.LaNoscea,
@@ -110,13 +109,12 @@ function displayBell (seed: number) {
 }
 
 type Props = {
-  now?: Date,
-  t: TFunction,
-  i18n: I18n
+  now?: Date
 }
 
-const Forecaster = ({ now, t, i18n }: Props) => {
+const Forecaster = ({ now }: Props) => {
   const classes = useStyles()
+  const { t, i18n } = useTranslation('skywatcher')
   const [zoneOption, setZoneOption] = useState<ZoneOption | null>(null)
   const [transitionWeather, setTransitionWeather] = useState<Weather | null>(null)
   const [targetWeather, setTargetWeather] = useState<Weather | null>(null)
@@ -275,4 +273,4 @@ const Forecaster = ({ now, t, i18n }: Props) => {
   )
 }
 
-export default i18n.withTranslation('skywatcher')(Forecaster)
+export default Forecaster

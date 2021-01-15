@@ -12,8 +12,7 @@ import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import WeatherIcon from './WeatherIcon'
 import { Zone } from './weather/consts'
-import i18n from '../i18n'
-import { I18n } from 'next-i18next'
+import { useTranslation } from '../i18n'
 
 const WEATHER_CELL_WIDTH = 75
 
@@ -70,12 +69,12 @@ type Props = {
   zones: Zone[],
   showLabels?: boolean,
   showLocalTime?: boolean,
-  showWeatherChance?: boolean,
-  i18n: I18n
+  showWeatherChance?: boolean
 }
 
-const UpcomingWeatherTable = ({ now, zones, showLabels, showLocalTime, showWeatherChance, i18n }: Props) => {
+const UpcomingWeatherTable = ({ now, zones, showLabels, showLocalTime, showWeatherChance }: Props) => {
   const classes = useStyles()
+  const { i18n } = useTranslation()
   const currentSeed = getSeed(now)
   const hashes = getNextWeathers(currentSeed - 1, 10)
   const locale = i18n.language
@@ -145,4 +144,4 @@ const UpcomingWeatherTable = ({ now, zones, showLabels, showLocalTime, showWeath
   )
 }
 
-export default i18n.withTranslation('skywatcher')(UpcomingWeatherTable)
+export default UpcomingWeatherTable

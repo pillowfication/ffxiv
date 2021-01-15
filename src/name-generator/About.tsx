@@ -20,8 +20,7 @@ import { FORENAMES as ROEGADYN_FORENAMES, SURNAMES as ROEGADYN_SURNAMES } from '
 import { FORENAMES as AU_RA_FORENAMES, SURNAMES as AU_RA_SURNAMES } from './names/generate-au-ra'
 import { FORENAMES as HROTHGAR_FORENAMES, SURNAMES as HROTHGAR_SURNAMES } from './names/generate-hrothgar'
 import { FORENAMES as VIERA_FORENAMES, SURNAMES as VIERA_SURNAMES } from './names/generate-viera'
-import i18n from '../i18n'
-import { I18n, TFunction } from 'next-i18next'
+import { useTranslation } from '../i18n'
 
 const CONVENTION_LINKS: [Race, string][] = [
   [Race.Hyur, 'https://forum.square-enix.com/ffxiv/threads/63112-Race-Naming-Conventions?p=1014929&viewfull=1#post1014929'],
@@ -34,6 +33,12 @@ const CONVENTION_LINKS: [Race, string][] = [
   [Race.Viera, 'https://forum.square-enix.com/ffxiv/threads/398565-Viera-Naming-Conventions?p=5091421&viewfull=1#post5091421']
 ]
 
+function combinations (...arrays: any[][]) {
+  return arrays
+    .map(array => array.filter((name, index) => array.indexOf(name, index + 1) === -1))
+    .reduce((acc, curr) => acc * curr.length, 1)
+}
+
 function getStatistic (race: Race, clan: Clan, gender: Gender) {
   const category = `${race},${clan},${gender}` as `${Race},${Clan},${Gender}`
   switch (category) {
@@ -41,44 +46,44 @@ function getStatistic (race: Race, clan: Clan, gender: Gender) {
     case `${Race.Hyur},${Clan.Midlander},${Gender.Female}`:
     case `${Race.Hyur},${Clan.Highlander},${Gender.Male}`:
     case `${Race.Hyur},${Clan.Highlander},${Gender.Female}`:
-      return HYUR_FORENAMES[clan][gender].length * HYUR_SURNAMES[clan].length
+      return combinations(HYUR_FORENAMES[clan][gender], HYUR_SURNAMES[clan])
     case `${Race.Elezen},${Clan.Wildwood},${Gender.Male}`:
     case `${Race.Elezen},${Clan.Duskwight},${Gender.Male}`:
-      return (ELEZEN_FORENAMES[gender].length + ELEZEN_SURNAMES[Clan.Wildwood].length + ELEZEN_SURNAMES[Clan.Duskwight].length) * ELEZEN_SURNAMES[clan].length
+      return combinations([...ELEZEN_FORENAMES[gender], ...ELEZEN_SURNAMES[Clan.Wildwood], ...ELEZEN_SURNAMES[Clan.Duskwight]], ELEZEN_SURNAMES[clan])
     case `${Race.Elezen},${Clan.Wildwood},${Gender.Female}`:
     case `${Race.Elezen},${Clan.Duskwight},${Gender.Female}`:
-      return ELEZEN_FORENAMES[gender].length * ELEZEN_SURNAMES[clan].length
+      return combinations(ELEZEN_FORENAMES[gender], ELEZEN_SURNAMES[clan])
     case `${Race.Lalafell},${Clan.Plainsfolk},${Gender.Male}`:
-      return LALAFELL_PHONEMES[clan].A.length * LALAFELL_PHONEMES[clan].B.length * LALAFELL_PHONEMES[clan].C.length
+      return combinations(LALAFELL_PHONEMES[clan].A, LALAFELL_PHONEMES[clan].B, LALAFELL_PHONEMES[clan].C)
     case `${Race.Lalafell},${Clan.Plainsfolk},${Gender.Female}`:
-      return LALAFELL_PHONEMES[clan].A.length * LALAFELL_PHONEMES[clan].B.length
+      return combinations(LALAFELL_PHONEMES[clan].A, LALAFELL_PHONEMES[clan].B)
     case `${Race.Lalafell},${Clan.Dunesfolk},${Gender.Male}`:
-      return LALAFELL_PHONEMES[clan][gender].AC.length * LALAFELL_PHONEMES[clan][gender].B.length * LALAFELL_PHONEMES[clan][gender].AC.length
+      return combinations(LALAFELL_PHONEMES[clan][gender].AC, LALAFELL_PHONEMES[clan][gender].B, LALAFELL_PHONEMES[clan][gender].AC)
     case `${Race.Lalafell},${Clan.Dunesfolk},${Gender.Female}`:
-      return LALAFELL_PHONEMES[clan][gender].A.length * LALAFELL_PHONEMES[clan][gender].B.length
-    case `${Race.Miqote},${Clan.SeekersOfTheSun},${Gender.Male}`:
-      return MIQOTE_FORENAMES[clan][gender].length * 2
-    case `${Race.Miqote},${Clan.SeekersOfTheSun},${Gender.Female}`:
-    case `${Race.Miqote},${Clan.KeepersOfTheMoon},${Gender.Male}`:
-    case `${Race.Miqote},${Clan.KeepersOfTheMoon},${Gender.Female}`:
-      return MIQOTE_FORENAMES[clan][gender].length * MIQOTE_SURNAMES[clan].length
-    case `${Race.Roegadyn},${Clan.SeaWolves},${Gender.Male}`:
-    case `${Race.Roegadyn},${Clan.SeaWolves},${Gender.Female}`:
-      return ROEGADYN_FORENAMES[clan][gender].length * ROEGADYN_SURNAMES[clan][gender].length
+      return combinations(LALAFELL_PHONEMES[clan][gender].A, LALAFELL_PHONEMES[clan][gender].B)
+    case `${Race.Miqote},${Clan.SeekerOfTheSun},${Gender.Male}`:
+      return combinations(MIQOTE_FORENAMES[clan][gender]) * 2
+    case `${Race.Miqote},${Clan.SeekerOfTheSun},${Gender.Female}`:
+    case `${Race.Miqote},${Clan.KeeperOfTheMoon},${Gender.Male}`:
+    case `${Race.Miqote},${Clan.KeeperOfTheMoon},${Gender.Female}`:
+      return combinations(MIQOTE_FORENAMES[clan][gender], MIQOTE_SURNAMES[clan])
+    case `${Race.Roegadyn},${Clan.SeaWolf},${Gender.Male}`:
+    case `${Race.Roegadyn},${Clan.SeaWolf},${Gender.Female}`:
+      return combinations(ROEGADYN_FORENAMES[clan][gender], ROEGADYN_SURNAMES[clan][gender])
     case `${Race.Roegadyn},${Clan.Hellsguard},${Gender.Male}`:
     case `${Race.Roegadyn},${Clan.Hellsguard},${Gender.Female}`:
-      return ROEGADYN_FORENAMES[clan].length * ROEGADYN_SURNAMES[clan][gender].length
+      return combinations(ROEGADYN_FORENAMES[clan], ROEGADYN_SURNAMES[clan][gender])
     case `${Race.AuRa},${Clan.Raen},${Gender.Male}`:
     case `${Race.AuRa},${Clan.Raen},${Gender.Female}`:
     case `${Race.AuRa},${Clan.Xaela},${Gender.Male}`:
     case `${Race.AuRa},${Clan.Xaela},${Gender.Female}`:
-      return AU_RA_FORENAMES[clan][gender].length * AU_RA_SURNAMES[clan].length
+      return combinations(AU_RA_FORENAMES[clan][gender], AU_RA_SURNAMES[clan])
     case `${Race.Hrothgar},${Clan.Helions},${Gender.Male}`:
     case `${Race.Hrothgar},${Clan.TheLost},${Gender.Male}`:
-      return HROTHGAR_FORENAMES[clan].length * HROTHGAR_SURNAMES[clan].length
+      return combinations(HROTHGAR_FORENAMES[clan], HROTHGAR_SURNAMES[clan])
     case `${Race.Viera},${Clan.Rava},${Gender.Female}`:
     case `${Race.Viera},${Clan.Veena},${Gender.Female}`:
-      return VIERA_FORENAMES.length * VIERA_SURNAMES[clan].length
+      return combinations(VIERA_FORENAMES, VIERA_SURNAMES[clan])
     default:
       return 0
   }
@@ -102,13 +107,9 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-type Props = {
-  t: TFunction,
-  i18n: I18n
-}
-
-const About = ({ t, i18n }: Props) => {
+const About = () => {
   const classes = useStyles()
+  const { t, i18n } = useTranslation('name-generator')
   const locale = i18n.language
 
   return (
@@ -167,4 +168,4 @@ const About = ({ t, i18n }: Props) => {
   )
 }
 
-export default i18n.withTranslation('name-generator')(About)
+export default About

@@ -20,27 +20,10 @@ import TimeIcon from './TimeIcon'
 import BaitGroup from './BaitGroup'
 import ChecklistCheckmark from './ChecklistCheckmark'
 import WeatherIcon from '../skywatcher/WeatherIcon'
-import { fishes, baits } from './gists/data'
+import { fishes } from './gists/data'
 import * as maps from './maps'
-import { getBaitGroup, subtextBiteTime, translate, getBlindDHRanges } from './utils'
-import i18n from '../i18n'
-import { I18n, TFunction } from 'next-i18next'
-
-const BAITS = [
-  29714,
-  29715,
-  29716,
-  2587,
-  2591,
-  2603,
-  2613,
-  2619,
-  27590,
-  29722,
-  29761,
-  29718,
-  32107
-]
+import { getBaitGroup, subtextBiteTime, translate } from './utils'
+import { useTranslation } from '../i18n'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -72,36 +55,25 @@ const useStyles = makeStyles(theme => ({
 }))
 
 type Props = {
-  fishId: number,
-  t: TFunction,
-  i18n: I18n
+  fishId: number
 }
 
-const OceanFishPopper = ({ fishId, t, i18n }: Props) => {
+const OceanFishPopper = ({ fishId }: Props) => {
   const classes = useStyles()
+  const { t, i18n } = useTranslation('ocean-fishing')
   const [expanded, setExpanded] = React.useState(false)
-  const [blindDHBait, setBlindDHBait] = React.useState(BAITS[0])
-  const [blindDHTime, setBlindDHTime] = React.useState<maps.Time>('D')
   const fish = fishes[fishId]
   const fishInfo = fish.spreadsheet_data
-  const blindDHRanges = getBlindDHRanges(fishId, blindDHBait, blindDHTime)
-  console.log(fishId, blindDHBait, blindDHTime)
-  console.log(blindDHRanges)
+  const locale = i18n.language
 
   const handleClickExpand = () => { setExpanded(!expanded) }
-  const handleSelectBlindDHBait = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setBlindDHBait(+event.target.value)
-  }
-  const handleSelectBlindDHTime = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setBlindDHTime(event.target.value as maps.Time)
-  }
 
   return (
     <Box boxShadow={8}>
       <Card variant='outlined' className={classes.container}>
         <CardHeader
           avatar={<OceanFishIconLarge fishId={fishId} size={100} />}
-          title={translate(i18n.language, fish, 'name')}
+          title={translate(locale, fish, 'name')}
           titleTypographyProps={{ variant: 'h6', paragraph: true, className: classes.title }}
           subheader={(
             <div>
@@ -109,7 +81,7 @@ const OceanFishPopper = ({ fishId, t, i18n }: Props) => {
                 ? <Link href={`https://na.finalfantasyxiv.com${fish.lodestone_data.url}`}>Lodestone</Link>
                 : 'Lodestone'}
               <> | </>
-              <Link href={`https://ffxivteamcraft.com/db/${i18n.language}/item/${fishId}`}>Teamcraft</Link>
+              <Link href={`https://ffxivteamcraft.com/db/${locale}/item/${fishId}`}>Teamcraft</Link>
             </div>
           )}
           action={<ChecklistCheckmark fishId={fishId} />}
@@ -123,7 +95,7 @@ const OceanFishPopper = ({ fishId, t, i18n }: Props) => {
             <TableBody>
               <TableRow>
                 <TableCell variant='head'>
-                  {t('rating')}
+                  {t('fishInfo.rating')}
                 </TableCell>
                 <TableCell align='center'>
                   {fishInfo.stars ? '★'.repeat(fishInfo.stars) : '?'}
@@ -131,7 +103,7 @@ const OceanFishPopper = ({ fishId, t, i18n }: Props) => {
               </TableRow>
               <TableRow>
                 <TableCell variant='head'>
-                  {t('points')}
+                  {t('fishInfo.points')}
                 </TableCell>
                 <TableCell align='center'>
                   {fishInfo.points ? fishInfo.points : '?'}
@@ -139,7 +111,7 @@ const OceanFishPopper = ({ fishId, t, i18n }: Props) => {
               </TableRow>
               <TableRow>
                 <TableCell variant='head'>
-                  {t('double-hook')}
+                  {t('fishInfo.doubleHook')}
                 </TableCell>
                 <TableCell align='center'>
                   {fishInfo.double_hook ? (Array.isArray(fishInfo.double_hook) ? fishInfo.double_hook.join('-') : fishInfo.double_hook) : '?'}
@@ -147,7 +119,7 @@ const OceanFishPopper = ({ fishId, t, i18n }: Props) => {
               </TableRow>
               <TableRow>
                 <TableCell variant='head'>
-                  {t('weather')}
+                  {t('fishInfo.weather')}
                 </TableCell>
                 <TableCell align='center'>
                   {fishInfo.weathers
@@ -175,7 +147,7 @@ const OceanFishPopper = ({ fishId, t, i18n }: Props) => {
               </TableRow>
               <TableRow>
                 <TableCell variant='head'>
-                  {t('time-of-day')}
+                  {t('fishInfo.timeOfDay')}
                 </TableCell>
                 <TableCell align='center'>
                   {fishInfo.time ?
@@ -185,39 +157,13 @@ const OceanFishPopper = ({ fishId, t, i18n }: Props) => {
                     : '?'}
                 </TableCell>
               </TableRow>
-              {expanded && (
-                <TableRow>
-                  <TableCell variant='head'>
-                    Blind DH?<br />
-                    <select value={blindDHBait} onChange={handleSelectBlindDHBait}>
-                      {BAITS.map(baitId =>
-                        <option key={baitId} value={baitId}>
-                          {translate(i18n.language, (baits[baitId] || fishes[baitId]), 'name')}
-                        </option>
-                      )}
-                    </select>
-                    <select value={blindDHTime} onChange={handleSelectBlindDHTime}>
-                      <option value='D'>{t('time-day')}</option>
-                      <option value='S'>{t('time-sunset')}</option>
-                      <option value='N'>{t('time-night')}</option>
-                    </select>
-                  </TableCell>
-                  <TableCell align='center'>
-                    {blindDHRanges
-                      ? blindDHRanges.length === 0
-                        ? 'Cannot blind DH'
-                        : blindDHRanges.map(range => range[0] === range[1] ? range[0] : range.join('-')).join(', ')
-                      : 'No data'}
-                  </TableCell>
-                </TableRow>
-              )}
             </TableBody>
           </Table>
         </CardContent>
         <Collapse in={expanded} timeout='auto' unmountOnExit>
           <CardContent className={classes.content}>
             <Typography variant='body2' className={classes.description}>
-              {translate(i18n.language, fish, 'description').replace(/\n\n+/g, '\n\n')}
+              {translate(locale, fish, 'description').replace(/\n\n+/g, '\n\n')}
             </Typography>
           </CardContent>
         </Collapse>
@@ -231,4 +177,4 @@ const OceanFishPopper = ({ fishId, t, i18n }: Props) => {
   )
 }
 
-export default i18n.withTranslation('ocean-fishing')(OceanFishPopper)
+export default OceanFishPopper

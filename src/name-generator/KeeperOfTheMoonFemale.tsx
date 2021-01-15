@@ -8,30 +8,25 @@ import { translate } from './names'
 import { upperFirst } from './names/utils'
 import { Clan, Gender } from './names/types'
 import { FORENAMES, SURNAMES } from './names/generate-miqote'
-import i18n from '../i18n'
-import { I18n, TFunction } from 'next-i18next'
+import { useTranslation } from '../i18n'
 
-type Props = {
-  t: TFunction,
-  i18n: I18n
-}
-
-const KeepersOfTheMoonFemale = ({ i18n }: Props) => {
+const KeeperOfTheMoonFemale = () => {
+  const { t, i18n } = useTranslation('name-generator')
   const [forename, setForename] = useState('')
   const [surname, setSurname] = useState('')
   const name = `${upperFirst(forename)} ${upperFirst(surname)}`.trim()
   const locale = i18n.language
 
   return (
-    <Section title={`${translate('clan', Clan.KeepersOfTheMoon, locale)} (${translate('gender', Gender.Female, locale)})`}>
+    <Section title={`${translate('clan', Clan.KeeperOfTheMoon, locale)} (${translate('gender', Gender.Female, locale)})`}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <NameAutocomplete
-            options={FORENAMES[Clan.KeepersOfTheMoon][Gender.Female]}
+            options={FORENAMES[Clan.KeeperOfTheMoon][Gender.Female]}
             value={forename}
             onChange={setForename}
-            label='Forename'
-            placeholder='Enter a forename'
+            label={t('forename')}
+            placeholder={t('enterForename')}
           />
         </Grid>
         <Grid item xs={12} md={6}>
@@ -41,14 +36,11 @@ const KeepersOfTheMoonFemale = ({ i18n }: Props) => {
         </Grid>
         <Grid item xs={12} md={6}>
           <NameAutocomplete
-            options={
-              SURNAMES[Clan.KeepersOfTheMoon]
-                .filter((name, index, array) => array.indexOf(name, index + 1) === -1)
-            }
+            options={SURNAMES[Clan.KeeperOfTheMoon]}
             value={surname}
             onChange={setSurname}
-            label='Surname'
-            placeholder='Enter a surname'
+            label={t('surname')}
+            placeholder={t('enterSurname')}
           />
         </Grid>
         <Grid item xs={12} md={6}>
@@ -66,4 +58,4 @@ const KeepersOfTheMoonFemale = ({ i18n }: Props) => {
   )
 }
 
-export default i18n.withTranslation('name-generator')(KeepersOfTheMoonFemale)
+export default KeeperOfTheMoonFemale

@@ -5,17 +5,16 @@ import Section from '../Section'
 import OceanFishIcon from './OceanFishIcon'
 import { achievements } from './gists/data/ocean-fish-data.json'
 import { translate } from './utils'
-import i18n from '../i18n'
-import { I18n, TFunction } from 'next-i18next'
+import { useTranslation } from '../i18n'
 
 const SUBTITLES = {
-  2563: 'catch-octopus',
-  2564: 'catch-shark',
-  2565: 'catch-jellyfish',
-  2566: 'catch-seadragon',
-  2754: 'catch-balloon',
-  2755: 'catch-crab',
-  2756: 'catch-manta'
+  2563: 'achievementInfo.octopus',
+  2564: 'achievementInfo.shark',
+  2565: 'achievementInfo.jellyfish',
+  2566: 'achievementInfo.seadragon',
+  2754: 'achievementInfo.balloon',
+  2755: 'achievementInfo.crab',
+  2756: 'achievementInfo.manta'
 }
 
 const useStyles = makeStyles(theme => ({
@@ -34,19 +33,19 @@ const useStyles = makeStyles(theme => ({
 
 type Props = {
   achievement: number,
-  children?: React.ReactNode,
-  t: TFunction,
-  i18n: I18n
+  children?: React.ReactNode
 }
 
-const AchievementInformation = ({ achievement, children, t, i18n }: Props) => {
+const AchievementInformation = ({ achievement, children }: Props) => {
   const classes = useStyles()
+  const { t, i18n } = useTranslation('ocean-fishing')
+  const locale = i18n.language
 
   return (
     <Section
       title={
         <>
-          {translate(i18n.language, achievements[achievement], 'name')}
+          {translate(locale, achievements[achievement], 'name')}
           <OceanFishIcon type='achievement' id={achievement} className={classes.achievementIcon} />
           <Typography display='inline' className={classes.subtitle}>{t(SUBTITLES[achievement])}</Typography>
         </>
@@ -57,4 +56,4 @@ const AchievementInformation = ({ achievement, children, t, i18n }: Props) => {
   )
 }
 
-export default i18n.withTranslation('ocean-fishing')(AchievementInformation)
+export default AchievementInformation

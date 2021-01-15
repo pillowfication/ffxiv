@@ -9,15 +9,10 @@ import { upperFirst } from './names/utils'
 import { Clan, Gender } from './names/types'
 import { FORENAMES } from './names/generate-miqote'
 import miqoteTribes from './names/data/miqote-tribes.json'
-import i18n from '../i18n'
-import { I18n, TFunction } from 'next-i18next'
+import { useTranslation } from '../i18n'
 
-type Props = {
-  t: TFunction,
-  i18n: I18n
-}
-
-const SeekersOfTheSunMale = ({ i18n }: Props) => {
+const SeekersOfTheSunMale = () => {
+  const { t, i18n } = useTranslation('name-generator')
   const [forename, setForename] = useState('')
   const [tribe, setTribe] = useState('')
   const [surname, setSurname] = useState('')
@@ -25,19 +20,15 @@ const SeekersOfTheSunMale = ({ i18n }: Props) => {
   const locale = i18n.language
 
   return (
-    <Section title={`${translate('clan', Clan.SeekersOfTheSun, locale)} (${translate('gender', Gender.Male, locale)})`}>
+    <Section title={`${translate('clan', Clan.SeekerOfTheSun, locale)} (${translate('gender', Gender.Male, locale)})`}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <NameAutocomplete
-            options={
-              FORENAMES[Clan.SeekersOfTheSun][Gender.Male]
-                .map(name => upperFirst(name.replace(/^.*’/, '')))
-                .filter((name, index, array) => array.indexOf(name, index + 1) === -1)
-            }
+            options={FORENAMES[Clan.SeekerOfTheSun][Gender.Male].map(name => upperFirst(name.replace(/^.*’/, '')))}
             value={forename}
             onChange={setForename}
-            label='Forename'
-            placeholder='Enter a forename'
+            label={t('forename')}
+            placeholder={t('enterForename')}
           />
         </Grid>
         <Grid item xs={12} md={6}>
@@ -51,8 +42,8 @@ const SeekersOfTheSunMale = ({ i18n }: Props) => {
             getOptionLabel={tribe => `${tribe} - ${miqoteTribes[tribe]}`}
             value={tribe}
             onChange={setTribe}
-            label='Tribe'
-            placeholder='Enter a tribe'
+            label={t('tribe')}
+            placeholder={t('enterTribe')}
           />
         </Grid>
         <Grid item xs={12} md={6}>
@@ -65,8 +56,8 @@ const SeekersOfTheSunMale = ({ i18n }: Props) => {
             options={['Tia', 'Nunh']}
             value={surname}
             onChange={setSurname}
-            label='Position'
-            placeholder='Tia or Nunh'
+            label={t('position')}
+            placeholder={t('enterPosition')}
           />
         </Grid>
         <Grid item xs={12} md={6}>
@@ -84,4 +75,4 @@ const SeekersOfTheSunMale = ({ i18n }: Props) => {
   )
 }
 
-export default i18n.withTranslation('name-generator')(SeekersOfTheSunMale)
+export default SeekersOfTheSunMale

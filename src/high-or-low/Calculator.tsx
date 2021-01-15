@@ -5,8 +5,7 @@ import Button from '@material-ui/core/Button'
 import Section from '../Section'
 import HighOrLowCard from './HighOrLowCard'
 import calculateHighOrLow from './calculate-high-or-low'
-import i18n from '../i18n'
-import { TFunction } from 'next-i18next'
+import { useTranslation } from '../i18n'
 
 enum CalculatorState {
   Incomplete,
@@ -26,15 +25,12 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-type Props = {
-  t: TFunction
-}
-
-const Calculator = ({ t }: Props) => {
+const Calculator = () => {
+  const classes = useStyles()
+  const { t } = useTranslation('high-or-low')
   const [tb1, setTb1] = useState<number>(null)
   const [tb2, setTb2] = useState<number>(null)
   const [me, setMe] = useState<number>(null)
-  const classes = useStyles()
 
   let state: CalculatorState
   let tb1Error = tb1 && (tb1 === tb2 || tb1 === me)
@@ -94,4 +90,4 @@ const Calculator = ({ t }: Props) => {
   )
 }
 
-export default i18n.withTranslation('high-or-low')(Calculator)
+export default Calculator

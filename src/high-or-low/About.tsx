@@ -2,14 +2,11 @@ import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import Section from '../Section'
 import { $, $$ } from '../MathJax'
-import i18n from '../i18n'
-import { TFunction } from 'next-i18next'
+import { useTranslation } from '../i18n'
 
-type Props = {
-  t: TFunction
-}
+const About = () => {
+  const { t } = useTranslation('high-or-low')
 
-const About = ({ t }: Props) => {
   return (
     <Section title={t('about')}>
       <Typography paragraph>
@@ -39,4 +36,4 @@ const About = ({ t }: Props) => {
   )
 }
 
-export default i18n.withTranslation('high-or-low')(About)
+export default About

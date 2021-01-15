@@ -28,7 +28,7 @@
     "veena": "ヴィナ"
   },
   "gender": {
-    "male": "Male",
-    "female": "Female"
+    "male": "雄",
+    "female": "雌"
   }
 }

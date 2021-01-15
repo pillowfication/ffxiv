@@ -26,8 +26,7 @@ import {
   translate,
   upperFirst
 } from './utils'
-import i18n from '../i18n'
-import { I18n, TFunction } from 'next-i18next'
+import { useTranslation } from '../i18n'
 
 const useStyles = makeStyles(theme => ({
   headerSub: {
@@ -59,19 +58,19 @@ enum FishView {
 
 type Props = {
   now?: Date,
-  selectedRoute?: maps.DestinationStopTime,
-  t: TFunction,
-  i18n: I18n
+  selectedRoute?: maps.DestinationStopTime
 }
 
-const RouteInformation = ({ now, selectedRoute, t, i18n }: Props) => {
+const RouteInformation = ({ now, selectedRoute }: Props) => {
   if (!now || !selectedRoute) return null
 
   const classes = useStyles()
+  const { t, i18n } = useTranslation('ocean-fishing')
   const [fishView, setFishView] = useState<FishView>(FishView.Intuition)
   const [tab, setTab] = useState(0)
   const stops = getStops(selectedRoute)
   const next = calculateVoyages(now, 1, [selectedRoute])[0].time
+  const locale = i18n.language
 
   useEffect(() => {
     setTab(0)
@@ -90,19 +89,19 @@ const RouteInformation = ({ now, selectedRoute, t, i18n }: Props) => {
       title={
         <Grid container alignItems='flex-end'>
           <Grid item xs={12} md={8}>
-            {upperFirst(translate(i18n.language, fishingSpots[maps.STOP_MAP[selectedRoute[0]]], 'place_name_sub', 'no_article'))}
+            {upperFirst(translate(locale, fishingSpots[maps.STOP_MAP[selectedRoute[0]]], 'place_name_sub', 'no_article'))}
             <span className={classes.headerTime}>{maps.TIME_MAP[selectedRoute[1]]}</span>
             <Typography display='inline' className={classes.headerSub}>
-              {timeUntil(now, next, { t, full: true, locale: i18n.language })}
+              {timeUntil(now, next, { t, full: true, locale: locale })}
             </Typography>
           </Grid>
           <Grid item xs={12} md={4}>
             <div className={classes.fishViewSelect}>
               <Select value={fishView} onChange={handleSelectFishView}>
-                <MenuItem value={FishView.Intuition}>{t('show-intuition-fish')}</MenuItem>
-                <MenuItem value={FishView.TimeSensitive}>{t('show-time-fish')}</MenuItem>
-                <MenuItem value={FishView.Points}>{t('show-points-fish')}</MenuItem>
-                <MenuItem value={FishView.All}>{t('show-all-fish')}</MenuItem>
+                <MenuItem value={FishView.Intuition}>{t('showIntuitionFish')}</MenuItem>
+                <MenuItem value={FishView.TimeSensitive}>{t('showTimeFish')}</MenuItem>
+                <MenuItem value={FishView.Points}>{t('showPointsFish')}</MenuItem>
+                <MenuItem value={FishView.All}>{t('showAllFish')}</MenuItem>
               </Select>
             </div>
           </Grid>
@@ -125,7 +124,7 @@ const RouteInformation = ({ now, selectedRoute, t, i18n }: Props) => {
                         ]
                           .filter(x => x)
                           .map(fishId => ({
-                            header: translate(i18n.language, fishes[fishId], 'name'),
+                            header: translate(locale, fishes[fishId], 'name'),
                             baitGroupProps: getBaitGroup(fishId)
                           }))
                       } />
@@ -147,7 +146,7 @@ const RouteInformation = ({ now, selectedRoute, t, i18n }: Props) => {
                         ]
                           .filter(x => x)
                           .map(fishId => ({
-                            header: translate(i18n.language, fishes[fishId], 'name'),
+                            header: translate(locale, fishes[fishId], 'name'),
                             baitGroupProps: getBaitGroup(fishId)
                           }))
                       } />
@@ -173,7 +172,7 @@ const RouteInformation = ({ now, selectedRoute, t, i18n }: Props) => {
                           .map((fishId, index) => {
                             const fishInfo = fishes[fishId].spreadsheet_data
                             return {
-                            header: translate(i18n.language, fishes[fishId], 'name'),
+                            header: translate(locale, fishes[fishId], 'name'),
                             baitGroupProps: {
                               ...getBaitGroup(fishId),
                               subtext: index === 0 ? '' : (
@@ -195,7 +194,7 @@ const RouteInformation = ({ now, selectedRoute, t, i18n }: Props) => {
               <Card variant='outlined'>
                 <Tabs variant='fullWidth' value={tab} onChange={handleChangeTab}>
                   {stops.map((stop, index) =>
-                    <Tab key={stop} label={<>{index + 1}. {translate(i18n.language, fishingSpots[maps.STOP_MAP[stop[0]]], 'place_name_sub')} {maps.TIME_MAP[stop[1]]}</>} />
+                    <Tab key={stop} label={<>{index + 1}. {translate(locale, fishingSpots[maps.STOP_MAP[stop[0]]], 'place_name_sub')} {maps.TIME_MAP[stop[1]]}</>} />
                   )}
                 </Tabs>
                 {stops.map((stop, index) =>
@@ -209,4 +208,4 @@ const RouteInformation = ({ now, selectedRoute, t, i18n }: Props) => {
   )
 }
 
-export default i18n.withTranslation('ocean-fishing')(RouteInformation)
+export default RouteInformation

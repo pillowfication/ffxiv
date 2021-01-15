@@ -5,8 +5,7 @@ import Typography from '@material-ui/core/Typography'
 import Tooltip from '@material-ui/core/Tooltip'
 import { Weather } from './weather/consts'
 import { translate } from './weather'
-import i18n from '../i18n'
-import { I18n } from 'next-i18next'
+import { useTranslation } from '../i18n'
 
 const WEATHERS = [
   Weather.ClearSkies,
@@ -54,12 +53,12 @@ const useStyles = makeStyles(() => {
 
 type Props = {
   weather: Weather,
-  showLabel?: boolean,
-  i18n: I18n
+  showLabel?: boolean
 }
 
-const WeatherIcon = ({ weather, showLabel = false, i18n }: Props) => {
+const WeatherIcon = ({ weather, showLabel = false }: Props) => {
   const classes = useStyles()
+  const { i18n } = useTranslation()
   const weatherString = translate('weather', weather, i18n.language)
 
   return (
@@ -77,4 +76,4 @@ const WeatherIcon = ({ weather, showLabel = false, i18n }: Props) => {
   )
 }
 
-export default i18n.withTranslation()(WeatherIcon)
+export default WeatherIcon

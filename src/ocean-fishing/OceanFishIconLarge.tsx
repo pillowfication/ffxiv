@@ -4,8 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Tooltip from '@material-ui/core/Tooltip'
 import { fishes, Fish } from './gists/data'
 import { translate } from './utils'
-import i18n from '../i18n'
-import { I18n } from 'next-i18next'
+import { useTranslation } from '../i18n'
 
 function getImgUrl (fish: Fish) {
   if (!fish.lodestone_data) {
@@ -46,17 +45,18 @@ const useStyles = makeStyles(theme => ({
 type Props = {
   fishId: number,
   size?: number,
-  className?: string,
-  i18n: I18n
+  className?: string
 }
 
-const OceanFishIconLarge = ({ fishId, size = 128, className, i18n }: Props) => {
+const OceanFishIconLarge = ({ fishId, size = 128, className }: Props) => {
   const classes = useStyles({ size })
+  const { i18n } = useTranslation()
   const fish = fishes[fishId]
+  const locale = i18n.language
 
   return (
     <>
-      <Tooltip arrow placement='top' title={translate(i18n.language, fish, 'name')}>
+      <Tooltip arrow placement='top' title={translate(locale, fish, 'name')}>
         <div className={clsx(classes.iconContainer, className)}>
           <img src={getImgUrl(fish)} className={classes.oceanFishIcon} />
           <div className={classes.iconOverlay} />
@@ -66,4 +66,4 @@ const OceanFishIconLarge = ({ fishId, size = 128, className, i18n }: Props) => {
   )
 }
 
-export default i18n.withTranslation('ocean-fishing')(OceanFishIconLarge)
+export default OceanFishIconLarge

@@ -15,8 +15,7 @@ import Section from '../../src/Section'
 import FishTable from '../../src/ocean-fishing/FishTable'
 import { fishingSpots } from '../../src/ocean-fishing/gists/data'
 import { translate } from '../../src/ocean-fishing/utils'
-import i18n from '../../src/i18n'
-import { I18n, TFunction } from 'next-i18next'
+import { useTranslation } from '../../src/i18n'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -81,12 +80,8 @@ const ImportData = ({ setChecklist }: ImportDataProps) => {
   )
 }
 
-type Props = {
-  t: TFunction,
-  i18n: I18n
-}
-
-const OceanFishingFish = ({ t, i18n }: Props) => {
+const OceanFishingFish = () => {
+  const { t, i18n } = useTranslation('ocean-fishing')
   const [checklist, setChecklist] = useState<number[]>([])
   const [showImport, setShowImport] = useState(false)
 
@@ -138,4 +133,4 @@ OceanFishingFish.getInitialProps = async () => ({
   namespacesRequired: ['common', 'ocean-fishing']
 })
 
-export default i18n.withTranslation('ocean-fishing')(OceanFishingFish)
+export default OceanFishingFish

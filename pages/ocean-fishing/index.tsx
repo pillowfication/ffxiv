@@ -8,18 +8,14 @@ import UpcomingVoyages from '../../src/ocean-fishing/UpcomingVoyages'
 import RouteInformation from '../../src/ocean-fishing/RouteInformation'
 import AchievementsInformation from '../../src/ocean-fishing/AchievementsInformation'
 import * as maps from '../../src/ocean-fishing/maps'
-import i18n from '../../src/i18n'
-import { TFunction } from 'next-i18next'
+import { useTranslation } from '../../src/i18n'
 
 export const ChecklistContext = React.createContext<{ checklist: number[], setChecklist: (checklist: number[]) => void }>(
   { checklist: [], setChecklist: () => {} }
 )
 
-type Props = {
-  t: TFunction
-}
-
-const OceanFishing = ({ t }: Props) => {
+const OceanFishing = () => {
+  const { t } = useTranslation('ocean-fishing')
   const [now, setNow] = useState<Date | null>(null)
   const [selectedRoute, setSelectedRoute] = useState<maps.DestinationStopTime | null>(null)
   const [checklist, setChecklist] = useState<number[]>([])
@@ -74,4 +70,4 @@ OceanFishing.getInitialProps = async () => ({
   namespacesRequired: ['common', 'ocean-fishing']
 })
 
-export default i18n.withTranslation('ocean-fishing')(OceanFishing)
+export default OceanFishing
