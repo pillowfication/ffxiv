@@ -22,20 +22,20 @@ const Page = ({ title, description, seo = {}, i18n, children }: Props) => {
     <>
       <Head>
         <title>{title}</title>
-        <NextSeo
-          title={title}
-          description={description}
-          canonical={`https://ffxiv.pf-n.co${router.asPath}`}
-          openGraph={{
-            url: `https://ffxiv.pf-n.co${router.asPath}`,
-            title,
-            description,
-            locale: i18n.language,
-            site_name: 'Lulu’s Tools',
-          }}
-          {...seo}
-        />
       </Head>
+      <NextSeo
+        title={title}
+        description={description}
+        canonical={`https://ffxiv.pf-n.co${router.asPath}`}
+        openGraph={{
+          url: `https://ffxiv.pf-n.co${router.asPath}`,
+          title,
+          description,
+          locale: i18n.language,
+          site_name: 'Lulu’s Tools'
+        }}
+        {...seo}
+      />
       <Typography variant='h1' gutterBottom>{title}</Typography>
       {children}
       <Footer />
