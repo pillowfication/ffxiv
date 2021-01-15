@@ -53,7 +53,7 @@ const SeekersOfTheSunFemale = () => {
         </Grid>
         <Grid item xs={12} md={6}>
           <NameAutocomplete
-            options={SURNAMES[Clan.SeekersOfTheSun]}
+            options={SURNAMES[Clan.SeekerOfTheSun]}
             value={surname}
             onChange={setSurname}
             label={t('surname')}
