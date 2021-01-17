@@ -1,14 +1,7 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { getPossibleWeathers, forecastWeathers, translate } from './weather'
-import { toTimeString, timeUntil } from '../utils'
-import Typography from '@material-ui/core/Typography'
+import NoSsr from '@material-ui/core/NoSsr'
 import Grid from '@material-ui/core/Grid'
-import TableContainer from '@material-ui/core/TableContainer'
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableRow from '@material-ui/core/TableRow'
-import TableCell from '@material-ui/core/TableCell'
 import FormGroup from '@material-ui/core/FormGroup'
 import FormLabel from '@material-ui/core/FormLabel'
 import FormControl from '@material-ui/core/FormControl'
@@ -21,10 +14,10 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Alert from '@material-ui/lab/Alert'
 import Autocomplete from '@material-ui/lab/Autocomplete'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
 import Section from '../Section'
-import WeatherIcon from './WeatherIcon'
+import ForecasterTable from './ForecasterTable'
 import { Weather, Region, Zone } from './weather/consts'
+import { getSeed, getPossibleWeathers, forecastWeathers, translate } from './weather'
 import PARTITION from './weather/regions-partition'
 import { useTranslation } from '../i18n'
 
@@ -38,8 +31,6 @@ const REGIONS = [
   Region.Norvrandt,
   Region.Others
 ]
-const DATE_FORMAT = { month: '2-digit', day: '2-digit' }
-const WEATHER_CELL_WIDTH = 75
 
 type ZoneOption = {
   region: Region,
@@ -65,51 +56,11 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       display: 'none'
     }
-  },
-  dateCell: {
-    width: '150px'
-  },
-  forecastCell: {
-    whiteSpace: 'nowrap'
-  },
-  bellCell: {
-    width: 50,
-    paddingLeft: theme.spacing(0.5),
-    paddingRight: theme.spacing(0.5)
-  },
-  weatherCell: {
-    width: WEATHER_CELL_WIDTH + theme.spacing(1),
-    paddingLeft: theme.spacing(0.5),
-    paddingRight: theme.spacing(0.5),
-    verticalAlign: 'top',
-    lineHeight: 1,
-    '& span': {
-      display: 'inline-block',
-      width: WEATHER_CELL_WIDTH,
-      lineHeight: 1.1
-    },
-    '&:last-child': {
-      paddingRight: theme.spacing(5),
-      width: WEATHER_CELL_WIDTH + theme.spacing(5.5)
-    }
-  },
-  transitionCell: {
-    width: 50,
-    padding: theme.spacing(1),
-    textAlign: 'center'
   }
 }))
 
-function displayBell (seed: number) {
-  switch (seed % 3) {
-    case 0: return '00:00'
-    case 1: return '08:00'
-    case 2: return '16:00'
-  }
-}
-
 type Props = {
-  now?: Date
+  now: Date
 }
 
 const Forecaster = ({ now }: Props) => {
@@ -122,14 +73,18 @@ const Forecaster = ({ now }: Props) => {
   const possibleWeathers = zoneOption && getPossibleWeathers(zoneOption.zone)
   const hasTime = times[0] || times[8] || times[16]
   const forecast = (zoneOption && hasTime) &&
-    forecastWeathers(zoneOption.zone, (prevWeather, currWeather, seed) => {
-      if (transitionWeather && transitionWeather !== prevWeather) return false
-      if (targetWeather && targetWeather !== currWeather) return false
-      if (!times[0] && seed % 3 === 0) return false
-      if (!times[8] && seed % 3 === 1) return false
-      if (!times[16] && seed % 3 === 2) return false
-      return true
-    })
+    forecastWeathers(
+      zoneOption.zone,
+      (prevWeather, currWeather, seed) => {
+        if (transitionWeather && transitionWeather !== prevWeather) return false
+        if (targetWeather && targetWeather !== currWeather) return false
+        if (!times[0] && seed % 3 === 0) return false
+        if (!times[8] && seed % 3 === 1) return false
+        if (!times[16] && seed % 3 === 2) return false
+        return true
+      },
+      getSeed(now)
+    )
   const locale = i18n.language
 
   const handleSelectZone = (_: any, zoneOption: ZoneOption) => {
@@ -223,49 +178,9 @@ const Forecaster = ({ now }: Props) => {
         )}
         {forecast && (
           <Grid item xs={12}>
-            <TableContainer>
-              <Table size='small'>
-                <TableBody>
-                  {(() => {
-                    let previousDate: string
-
-                    return forecast.map(({ prevWeather, currWeather, seed, date }, index) => {
-                      const dateString = date.toLocaleDateString(undefined, DATE_FORMAT)
-                      const timeString = toTimeString(date, { padded: true })
-
-                      return (
-                        <TableRow key={index} hover>
-                          <TableCell className={classes.dateCell} align='right'>
-                            <Typography>{previousDate !== (previousDate = dateString) && dateString}</Typography>
-                          </TableCell>
-                          <TableCell className={classes.dateCell}>
-                            <Typography>{timeString}</Typography>
-                          </TableCell>
-                          <TableCell className={classes.forecastCell}>
-                            <Typography>{timeUntil(now, date)}</Typography>
-                          </TableCell>
-                          <TableCell align='right' className={classes.bellCell}>
-                            <Typography>{displayBell(seed - 1)}</Typography>
-                          </TableCell>
-                          <TableCell align='center' className={classes.weatherCell}>
-                            <WeatherIcon weather={prevWeather} showLabel />
-                          </TableCell>
-                          <TableCell className={classes.transitionCell}>
-                            <ArrowForwardIcon />
-                          </TableCell>
-                          <TableCell align='right' className={classes.bellCell}>
-                            <Typography>{displayBell(seed)}</Typography>
-                          </TableCell>
-                          <TableCell align='center' className={classes.weatherCell}>
-                            <WeatherIcon weather={currWeather} showLabel />
-                          </TableCell>
-                        </TableRow>
-                      )
-                    })
-                  })()}
-                </TableBody>
-              </Table>
-            </TableContainer>
+            <NoSsr>
+              <ForecasterTable now={now} forecast={forecast} />
+            </NoSsr>
           </Grid>
         )}
       </Grid>

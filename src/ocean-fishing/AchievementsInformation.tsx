@@ -9,11 +9,10 @@ import AchievementMantas from './AchievementMantas'
 import * as maps from './maps'
 
 type Props = {
-  selectedRoute?: maps.DestinationStopTime
+  selectedRoute: maps.DestinationStopTime
 }
 
 const AchievementsInformation = ({ selectedRoute }: Props) => {
-  if (!selectedRoute) return null
   return (
     <>
       {maps.ACHIEVEMENTS_MAP[selectedRoute].map(achievement => {

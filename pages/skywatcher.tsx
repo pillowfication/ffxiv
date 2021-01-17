@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import NoSsr from '@material-ui/core/NoSsr'
 import Typography from '@material-ui/core/Typography'
 import Page from '../src/Page'
 import UpcomingWeather from '../src/skywatcher/UpcomingWeather'
@@ -9,7 +10,7 @@ import { useTranslation } from '../src/i18n'
 
 const Skywatcher = () => {
   const { t } = useTranslation('skywatcher')
-  const [now, setNow] = useState<Date | null>(null)
+  const [now, setNow] = useState<Date>(new Date())
 
   useEffect(() => {
     let interval: NodeJS.Timeout
@@ -30,7 +31,7 @@ const Skywatcher = () => {
       description='Schedule for weather in Eorzea and forecaster for upcoming weather patterns.'
     >
       <Typography paragraph>
-        The time in Eorzea is <b>{now ? toTimeString(new Date(now.getTime() * 1440 / 70)) : '…'}</b>.
+        The time in Eorzea is <b><NoSsr>{toTimeString(new Date(now.getTime() * 1440 / 70))}</NoSsr></b>.
       </Typography>
       <Forecaster now={now} />
       <UpcomingWeather now={now} />

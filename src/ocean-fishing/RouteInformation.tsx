@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
     top: '-0.2em',
     marginLeft: '0.25em'
   },
-  fishViewSelect: {
+  fishFilterSelect: {
     display: 'block',
     [theme.breakpoints.up('md')]: {
       textAlign: 'right'
@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-enum FishView {
+enum FishFilter {
   Intuition,
   TimeSensitive,
   Points,
@@ -57,16 +57,14 @@ enum FishView {
 }
 
 type Props = {
-  now?: Date,
-  selectedRoute?: maps.DestinationStopTime
+  now: Date,
+  selectedRoute: maps.DestinationStopTime
 }
 
 const RouteInformation = ({ now, selectedRoute }: Props) => {
-  if (!now || !selectedRoute) return null
-
   const classes = useStyles()
   const { t, i18n } = useTranslation('ocean-fishing')
-  const [fishView, setFishView] = useState<FishView>(FishView.Intuition)
+  const [fishFilter, setFishFilter] = useState<FishFilter>(FishFilter.Intuition)
   const [tab, setTab] = useState(0)
   const stops = getStops(selectedRoute)
   const next = calculateVoyages(now, 1, [selectedRoute])[0].time
@@ -76,8 +74,8 @@ const RouteInformation = ({ now, selectedRoute }: Props) => {
     setTab(0)
   }, [selectedRoute])
 
-  const handleSelectFishView = (event: React.ChangeEvent<{ value: FishView }>) => {
-    setFishView(event.target.value)
+  const handleSelectFishFilter = (event: React.ChangeEvent<{ value: FishFilter }>) => {
+    setFishFilter(event.target.value)
   }
 
   const handleChangeTab = (_: any, value: number) => {
@@ -96,12 +94,12 @@ const RouteInformation = ({ now, selectedRoute }: Props) => {
             </Typography>
           </Grid>
           <Grid item xs={12} md={4}>
-            <div className={classes.fishViewSelect}>
-              <Select value={fishView} onChange={handleSelectFishView}>
-                <MenuItem value={FishView.Intuition}>{t('showIntuitionFish')}</MenuItem>
-                <MenuItem value={FishView.TimeSensitive}>{t('showTimeFish')}</MenuItem>
-                <MenuItem value={FishView.Points}>{t('showPointsFish')}</MenuItem>
-                <MenuItem value={FishView.All}>{t('showAllFish')}</MenuItem>
+            <div className={classes.fishFilterSelect}>
+              <Select value={fishFilter} onChange={handleSelectFishFilter}>
+                <MenuItem value={FishFilter.Intuition}>{t('showIntuitionFish')}</MenuItem>
+                <MenuItem value={FishFilter.TimeSensitive}>{t('showTimeFish')}</MenuItem>
+                <MenuItem value={FishFilter.Points}>{t('showPointsFish')}</MenuItem>
+                <MenuItem value={FishFilter.All}>{t('showAllFish')}</MenuItem>
               </Select>
             </div>
           </Grid>
@@ -109,8 +107,8 @@ const RouteInformation = ({ now, selectedRoute }: Props) => {
       }
     >
       {(() => {
-        switch (fishView) {
-          case FishView.Intuition:
+        switch (fishFilter) {
+          case FishFilter.Intuition:
             return (
               <RouteCardContainer>
                 {stops.map((stop, index) =>
@@ -133,7 +131,7 @@ const RouteInformation = ({ now, selectedRoute }: Props) => {
                 )}
               </RouteCardContainer>
             )
-          case FishView.TimeSensitive:
+          case FishFilter.TimeSensitive:
             return (
               <RouteCardContainer>
                 {stops.map((stop, index) =>
@@ -155,7 +153,7 @@ const RouteInformation = ({ now, selectedRoute }: Props) => {
                 )}
               </RouteCardContainer>
             )
-          case FishView.Points:
+          case FishFilter.Points:
             return (
               <RouteCardContainer>
                 {stops.map((stop, index) =>
@@ -189,7 +187,7 @@ const RouteInformation = ({ now, selectedRoute }: Props) => {
                 )}
               </RouteCardContainer>
             )
-          case FishView.All:
+          case FishFilter.All:
             return (
               <Card variant='outlined'>
                 <Tabs variant='fullWidth' value={tab} onChange={handleChangeTab}>

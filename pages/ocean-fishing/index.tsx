@@ -16,8 +16,8 @@ export const ChecklistContext = React.createContext<{ checklist: number[], setCh
 
 const OceanFishing = () => {
   const { t } = useTranslation('ocean-fishing')
-  const [now, setNow] = useState<Date | null>(null)
-  const [selectedRoute, setSelectedRoute] = useState<maps.DestinationStopTime | null>(null)
+  const [now, setNow] = useState<Date>(new Date())
+  const [selectedRoute, setSelectedRoute] = useState<maps.DestinationStopTime | null>(null) // This is initialized when UpcomingVoyages is mounted
   const [checklist, setChecklist] = useState<number[]>([])
 
   useEffect(() => {
@@ -59,8 +59,12 @@ const OceanFishing = () => {
           </Typography>
         </Section>
         <UpcomingVoyages now={now} onSelectRoute={setSelectedRoute} />
-        <RouteInformation now={now} selectedRoute={selectedRoute} />
-        <AchievementsInformation selectedRoute={selectedRoute} />
+        {selectedRoute && (
+          <>
+            <RouteInformation now={now} selectedRoute={selectedRoute} />
+            <AchievementsInformation selectedRoute={selectedRoute} />
+          </>
+        )}
       </ChecklistContext.Provider>
     </Page>
   )
