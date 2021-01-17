@@ -23,10 +23,10 @@ const AchievementBalloons = ({ selectedRoute }: Props) => {
           <CardContent>
             <BaitList
               baitGroups={[{
-                header: 'IC–DH at 5-10s',
+                header: 'IC–DH at 5-9s',
                 baitGroupProps: { ...getBaitGroup(32057), subtext: subtextDH }
               }, {
-                header: 'DH at <5s',
+                header: 'DH at <3s',
                 baitGroupProps: { ...getBaitGroup(32066), subtext: subtextDH }
               }]}
             />
@@ -38,7 +38,7 @@ const AchievementBalloons = ({ selectedRoute }: Props) => {
             </Typography>
             <Typography variant='overline'>Spectral</Typography>
             <Typography paragraph>
-              Anomalocaris Saron appears at 5s.
+              Only the instant <Tug strength={1} /> is Mythril Boxfish. Anomalocaris Saron appears at 5s.
             </Typography>
           </CardContent>
         </RouteCard>

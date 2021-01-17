@@ -39,7 +39,7 @@ const SeaWolfFemale = () => {
   const locale = i18n.language
 
   return (
-    <Section title={`${translate('clan', Clan.SeaWolf, locale)} (${translate('gender', Gender.Male, locale)})`}>
+    <Section title={`${translate('clan', Clan.SeaWolf, locale)} (${translate('gender', Gender.Female, locale)})`}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <Grid container spacing={2}>
