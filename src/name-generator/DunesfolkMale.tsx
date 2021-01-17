@@ -56,7 +56,7 @@ const DunesfolkMale = () => {
           <Typography paragraph>
             Lalafellen names are ruled by rhythm, repetition, and rhyming. Male Dunesfolk names follow the phoneme pattern <b>AAB CCB</b>.
           </Typography>
-          <Typography>
+          <Typography paragraph>
             The <b>A</b> and <b>C</b> phonemes are one syllable, and the <b>B</b> phoneme is two.
           </Typography>
         </Grid>

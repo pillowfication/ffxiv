@@ -1,3 +1,5 @@
+import roegadynDictionary from './data/roegadyn-dictionary.json'
+
 export function randomElement<T> (...arrays: T[][]) {
   if (arrays.length === 0) {
     return undefined
@@ -19,4 +21,57 @@ export function randomElement<T> (...arrays: T[][]) {
 
 export function upperFirst (string: string) {
   return string && string[0].toUpperCase() + string.slice(1).toLowerCase()
+}
+
+export function conjugateRoegadyn (word: string, grammar: 'A' | 'N') {
+  word = upperFirst(word.replace(/\s+/g, ''))
+  const entry = roegadynDictionary[word]
+
+  // If this word does not appear in the dictionary, leave it alone
+  if (!entry) {
+    return word
+  }
+
+  // If this word has the conjugation listed, use it
+  if (entry.derivatives && entry.derivatives[grammar]) {
+    return entry.derivatives[grammar]
+  }
+
+  // If this word is already the requested grammar, leave it alone
+  if (entry.grammar === grammar || (entry.grammar === 'AN')) {
+    return word
+  }
+
+  // Use the N -> A rule
+  if (entry.grammar === 'N' && grammar === 'A') {
+    return word + 'i'
+  }
+
+  // Use the V -> N rule
+  if (entry.grammar === 'V' && grammar === 'N') {
+    return word + 'a'
+  }
+
+  // Use the V -> A rule
+  if (entry.grammar === 'V' && grammar === 'A') {
+    return word + 'n'
+  }
+
+  // Do not know how to conjugate this word or grammar
+  return word
+}
+
+export function combineRoegadyn (...words: string[]) {
+  return upperFirst(
+    words.map((word, index) => {
+      if (index === 0) return word
+
+      const previousWord = words[index - 1]
+      if (word.charAt(0).toLowerCase() === previousWord.charAt(previousWord.length - 1)) {
+        return word.slice(1)
+      } else {
+        return word
+      }
+    }).join('')
+  )
 }

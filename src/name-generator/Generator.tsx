@@ -24,6 +24,10 @@ import SeekerOfTheSunMale from './SeekerOfTheSunMale'
 import SeekerOfTheSunFemale from './SeekerOfTheSunFemale'
 import KeeperOfTheMoonMale from './KeeperOfTheMoonMale'
 import KeeperOfTheMoonFemale from './KeeperOfTheMoonFemale'
+import SeaWolfMale from './SeaWolfMale'
+import SeaWolfFemale from './SeaWolfFemale'
+import HellsguardMale from './HellsguardMale'
+import HellsguardFemale from './HellsguardFemale'
 import generate, { getClans, getGenders, translate } from '../name-generator/names'
 import { Race, Clan, Gender } from '../name-generator/names/types'
 import i18n from '../i18n'
@@ -55,7 +59,11 @@ const ADVANCED: { [key: string]: any } = {
   [`${Clan.SeekerOfTheSun},${Gender.Male}`]: SeekerOfTheSunMale,
   [`${Clan.SeekerOfTheSun},${Gender.Female}`]: SeekerOfTheSunFemale,
   [`${Clan.KeeperOfTheMoon},${Gender.Male}`]: KeeperOfTheMoonMale,
-  [`${Clan.KeeperOfTheMoon},${Gender.Female}`]: KeeperOfTheMoonFemale
+  [`${Clan.KeeperOfTheMoon},${Gender.Female}`]: KeeperOfTheMoonFemale,
+  [`${Clan.SeaWolf},${Gender.Male}`]: SeaWolfMale,
+  [`${Clan.SeaWolf},${Gender.Female}`]: SeaWolfFemale,
+  [`${Clan.Hellsguard},${Gender.Male}`]: HellsguardMale,
+  [`${Clan.Hellsguard},${Gender.Female}`]: HellsguardFemale
 }
 
 function randomElement<T> (array: T[]) {
@@ -133,7 +141,7 @@ const Generator = ({ t, i18n }: Props) => {
             <FormControl fullWidth>
               <InputLabel>{t('race')}</InputLabel>
               <Select value={race || 'none'} onChange={handleSelectRace}>
-                <MenuItem value='none'>{t('any-race')}</MenuItem>
+                <MenuItem value='none'>{t('anyRace')}</MenuItem>
                 {RACES.map(race =>
                   <MenuItem key={race} value={race}>{translate('race', race, locale)}</MenuItem>
                 )}
@@ -144,7 +152,7 @@ const Generator = ({ t, i18n }: Props) => {
             <FormControl fullWidth>
               <InputLabel>{t('clan')}</InputLabel>
               <Select value={clan || 'none'} onChange={handleSelectClan}>
-                {raceClans.length !== 1 && <MenuItem value='none'>{t('any-clan')}</MenuItem>}
+                {raceClans.length !== 1 && <MenuItem value='none'>{t('anyClan')}</MenuItem>}
                 {raceClans.map(clan =>
                   <MenuItem key={clan} value={clan}>
                     {translate('clan', clan, locale)}
@@ -157,7 +165,7 @@ const Generator = ({ t, i18n }: Props) => {
             <FormControl fullWidth>
               <InputLabel>{t('gender')}</InputLabel>
               <Select value={gender || 'none'} onChange={handleSelectGender}>
-                {raceGenders.length !== 1 && <MenuItem value='none'>{t('any-gender')}</MenuItem>}
+                {raceGenders.length !== 1 && <MenuItem value='none'>{t('anyGender')}</MenuItem>}
                 {raceGenders.map(gender =>
                   <MenuItem key={gender} value={gender}>
                     {translate('gender', gender, locale)}
