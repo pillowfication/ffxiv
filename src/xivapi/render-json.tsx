@@ -8,7 +8,7 @@ import ImageIcon from '@material-ui/icons/Image'
 const MAX_DEPTH = 3
 
 function isImageUrl (url: string) {
-  return /^(\/|http).*\.(png|jpg)$/.test(url)
+  return /^(\/|http).*\.(png|jpg)(\?.*)?$/.test(url)
 }
 
 type Props = {
