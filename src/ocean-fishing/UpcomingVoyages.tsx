@@ -87,7 +87,7 @@ const UpcomingVoyages = ({ now, onSelectRoute }: Props) => {
                 <ListSubheader disableSticky className={classes.listSubheader}>{t('blueFish')}</ListSubheader>
                 <MenuItem value='sothis'>{translate(locale, fishes[29788], 'name')}</MenuItem>
                 <MenuItem value='coral_manta'>{translate(locale, fishes[29789], 'name')}</MenuItem>
-                <MenuItem value='stgonescale'>{translate(locale, fishes[29790], 'name')}</MenuItem>
+                <MenuItem value='stonescale'>{translate(locale, fishes[29790], 'name')}</MenuItem>
                 <MenuItem value='elasmosaurus'>{translate(locale, fishes[29791], 'name')}</MenuItem>
                 <MenuItem value='hafgufa'>{translate(locale, fishes[32074], 'name')}</MenuItem>
                 <MenuItem value='seafaring_toad'>{translate(locale, fishes[32094], 'name')}</MenuItem>
