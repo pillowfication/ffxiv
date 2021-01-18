@@ -137,6 +137,9 @@ const Index = () => {
           <IndexSection url='/wondrous-tails' title='Wondrous Tails'>
             Calculator for the Wondrous Tails mini-game.
           </IndexSection>
+          <IndexSection url='/xivapi' title='XIVAPI'>
+            An interface for browsing the XIVAPI.
+          </IndexSection>
         </dl>
       </Section>
       <Footer />
