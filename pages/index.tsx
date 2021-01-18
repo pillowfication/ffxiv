@@ -1,11 +1,14 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 import { makeStyles, fade } from '@material-ui/core/styles'
-import Link from '../src/Link'
+import { NextSeo } from 'next-seo'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import Section from '../src/Section'
 import Footer from '../src/Footer'
+import Link from '../src/Link'
 import Lulu from '../public/images/lulu-icon.svg'
+import { useTranslation } from '../src/i18n'
 
 const useStyles = makeStyles((theme) => ({
   splash: {
@@ -81,9 +84,23 @@ const IndexSection = ({ url, title, children }: IndexSectionProps) => {
 
 const Index = () => {
   const classes = useStyles()
+  const router = useRouter()
+  const { i18n } = useTranslation()
 
   return (
     <>
+      <NextSeo
+        title='Lulu’s Tools'
+        description='A bunch of FFXIV-related stuff I try making.'
+        canonical={`https://ffxiv.pf-n.co${router.asPath}`}
+        openGraph={{
+          url: `https://ffxiv.pf-n.co${router.asPath}`,
+          title: 'Lulu’s Tools',
+          description: 'A bunch of FFXIV-related stuff I try making.',
+          locale: i18n.language,
+          site_name: 'Lulu’s Tools'
+        }}
+      />
       <Grid container alignItems='flex-end' spacing={4} className={classes.splash}>
         <Grid item xs={12} className={classes.gridShrink}>
           <div className={classes.luluContainer}>
