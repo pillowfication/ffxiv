@@ -64,7 +64,7 @@ const XIVAPI = () => {
               InputProps={{
                 startAdornment: <InputAdornment position='start'>https://xivapi.com</InputAdornment>
               }}
-              value={inputUrl}
+              value={inputUrl || ''}
               onChange={handleInputUrl}
               onKeyPress={handleKeyPress}
               className={classes.input}
