@@ -6,9 +6,9 @@ import Section from '../Section'
 import NameAutocomplete from './NameAutocomplete'
 import MyNameIs from './MyNameIs'
 import roegadynDictionary from './names/data/roegadyn-dictionary.json'
-import { translate } from './names'
+import { translate, Clan, Gender } from './names'
 import { formatName, conjugateRoegadyn, combineRoegadyn } from './names/utils'
-import { Clan, Gender } from './names/types'
+
 import { useTranslation } from '../i18n'
 
 const WORDS = Object.keys(roegadynDictionary)

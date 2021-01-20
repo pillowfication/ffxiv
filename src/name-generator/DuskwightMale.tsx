@@ -5,9 +5,9 @@ import Section from '../Section'
 import NameAutocomplete from './NameAutocomplete'
 import MyNameIs from './MyNameIs'
 import names from './names/data/names.json'
-import { translate } from './names'
+import { translate, Clan, Gender } from './names'
 import { formatName } from './names/utils'
-import { Clan, Gender } from './names/types'
+
 import { useTranslation } from '../i18n'
 
 const DuskwightMale = () => {

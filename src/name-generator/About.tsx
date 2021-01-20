@@ -11,8 +11,7 @@ import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import Section from '../Section'
 import names from './names/data/names.json'
-import { getClans, getGenders, translate } from './names'
-import { Race, Clan, Gender } from './names/types'
+import { getClans, getGenders, translate, Race, Clan, Gender } from './names'
 import { useTranslation } from '../i18n'
 
 const CONVENTION_LINKS: [Race, string][] = [
