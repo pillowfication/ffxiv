@@ -16,8 +16,16 @@ import Autocomplete from '@material-ui/lab/Autocomplete'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import Section from '../Section'
 import ForecasterTable from './ForecasterTable'
-import { Weather, Region, Zone } from './weather/consts'
-import { getSeed, getPossibleWeathers, forecastWeathers, translate } from './weather'
+import {
+  getSeed,
+  getPossibleWeathers,
+  forecastWeathers,
+  translate,
+  translateWeather,
+  Weather,
+  Region,
+  Zone
+} from './weather'
 import PARTITION from './weather/regions-partition'
 import { useTranslation } from '../i18n'
 
@@ -94,11 +102,11 @@ const Forecaster = ({ now }: Props) => {
   }
 
   const handleSelectTransitionWeather = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setTransitionWeather(event.target.value === 'none' ? null : (event.target.value as Weather))
+    setTransitionWeather(event.target.value === 'none' ? null : (+event.target.value as Weather))
   }
 
   const handleSelectTargetWeather = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setTargetWeather(event.target.value === 'none' ? null : (event.target.value as Weather))
+    setTargetWeather(event.target.value === 'none' ? null : (+event.target.value as Weather))
   }
 
   const handleSelectTimes = (timeSlot: 0 | 8 | 16) => {
@@ -130,7 +138,7 @@ const Forecaster = ({ now }: Props) => {
               <MenuItem value='none'>{t(possibleWeathers ? 'anyWeather' : 'selectZoneFirst')}</MenuItem>
               {possibleWeathers && (
                 possibleWeathers.map(weather =>
-                  <MenuItem key={weather} value={weather}>{translate('weather', weather, locale)}</MenuItem>
+                  <MenuItem key={weather} value={weather}>{translateWeather(weather, locale)}</MenuItem>
                 )
               )}
             </Select>
@@ -146,7 +154,7 @@ const Forecaster = ({ now }: Props) => {
               <MenuItem value='none'>{t(possibleWeathers ? 'anyWeather' : 'selectZoneFirst')}</MenuItem>
               {possibleWeathers && (
                 possibleWeathers.map(weather =>
-                  <MenuItem key={weather} value={weather}>{translate('weather', weather, locale)}</MenuItem>
+                  <MenuItem key={weather} value={weather}>{translateWeather(weather, locale)}</MenuItem>
                 )
               )}
             </Select>

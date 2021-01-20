@@ -1,4 +1,4 @@
-import { Region, Zone } from './consts'
+import { Region, Zone } from '.'
 
 const PARTITION: { [key in Region]: Zone[] } = {
   [Region.Eureka]: [

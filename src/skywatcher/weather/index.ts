@@ -1,4 +1,7 @@
-import { Weather, Zone } from './consts'
+import { Weather } from './types/weathers'
+import { Region } from './types/regions'
+import { Zone } from './types/zones'
+import weathers from './data/weathers.json'
 import CHANCES from './chances'
 import en from './locales/en.json'
 import de from './locales/de.json'
@@ -7,6 +10,10 @@ import ja from './locales/ja.json'
 import softHyphens from './locales/soft-hyphens'
 
 const LOCALES = { en, de, fr, ja }
+
+export { Weather }
+export { Region }
+export { Zone }
 
 export function getSeed (date = new Date()) {
   return Math.floor(date.getTime() / 1400000)
@@ -69,7 +76,11 @@ export function forecastWeathers (
   return results
 }
 
-export function translate (type: 'weather' | 'region' | 'zone', id: string, locale: string = 'en') {
+export function translate (type: 'region' | 'zone', id: string, locale: string = 'en') {
   const translation = (LOCALES[locale] && LOCALES[locale][type][id]) || id
   return softHyphens[translation] || translation
+}
+
+export function translateWeather (weather: Weather, locale: string = 'en') {
+  return weathers[weather][`Name_${locale}`]
 }

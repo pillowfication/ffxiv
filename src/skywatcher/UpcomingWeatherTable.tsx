@@ -11,7 +11,7 @@ import TableBody from '@material-ui/core/TableBody'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import WeatherIcon from './WeatherIcon'
-import { Zone } from './weather/consts'
+import { Zone } from './weather'
 import { useTranslation } from '../i18n'
 
 const WEATHER_CELL_WIDTH = 75

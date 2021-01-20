@@ -8,7 +8,7 @@ import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
 import WeatherIcon from './WeatherIcon'
-import { Weather } from './weather/consts'
+import { Weather } from './weather'
 import { toTimeString, timeUntil } from '../utils'
 
 const DATE_FORMAT = { month: '2-digit', day: '2-digit' }

@@ -1,4 +1,4 @@
-import { Weather, Zone } from './consts'
+import { Weather, Zone } from '.'
 
 const CHANCES: { [key in Zone]: [number, Weather][] } = {
   [Zone.AmhAraeng]: [
