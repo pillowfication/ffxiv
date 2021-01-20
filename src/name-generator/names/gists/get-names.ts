@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { fetch, fetchAllPages } from '../../../fetch-xivapi'
+import fetch, { fetchAllPages } from '../../../fetch-xivapi'
 
 const DATA: { [key: string]: string[] } = {}
 const OUTPUT = path.resolve(__dirname, '../data/names.json')
@@ -10,7 +10,11 @@ const LOCALES = ['en', 'de', 'fr', 'ja']
 
 ;(async () => {
   // Fetch all the data
-  for (const { Url: url } of await fetchAllPages('/CharaMakeName')) {
+  console.log('Fetching', '/CharaMakeName')
+  const urls = await fetchAllPages('/CharaMakeName', { columns: 'Url' })
+  console.log(`${urls.length} URLs found`)
+
+  for (const { Url: url } of urls) {
     console.log('Fetching', url)
     const nameData = (await fetch(url)) as { [key: string]: string }
 

@@ -1,14 +1,35 @@
-import bent from 'bent'
+import fetch from 'node-fetch'
 
-export const fetch = bent('https://xivapi.com', 'json', 200)
+const XIVAPI = 'https://xivapi.com'
 
-export async function fetchAllPages (url: string) {
-  const results = []
-  for (let page = 1; ; ++page) {
-    const data = await fetch(url + `?page=${page}`)
-    results.push(...data.Results)
-    if (page === data.Pagination.PageTotal) {
-      return results
+export default async function fetchXIVAPI (endpoint: string, qs?: Record<string, string>) {
+  const url = new URL(XIVAPI + endpoint)
+  if (qs) {
+    for (const [key, value] of Object.entries(qs)) {
+      url.searchParams.append(key, value)
     }
   }
+
+  const response = await fetch(url)
+  const json = await response.json()
+
+  return json
+}
+
+export async function fetchAllPages (endpoint: string, qs?: Record<string, string>) {
+  const results: any[] = []
+  const _qs = Object.assign({}, qs)
+
+  for (let page = 1; ; ++page) {
+    _qs.page = String(page)
+    const json = await fetchXIVAPI(endpoint, _qs)
+    if (json.Results) {
+      results.push(...json.Results)
+    }
+    if (!json.Pagination || json.Pagination.Page === json.Pagination.PageTotal) {
+      break
+    }
+  }
+
+  return results
 }

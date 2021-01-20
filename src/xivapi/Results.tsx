@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import fetch from '../fetch-xivapi'
 import { makeStyles } from '@material-ui/core/styles'
-import bent from 'bent'
 import Paper from '@material-ui/core/Paper'
 import Pagination from './Pagination'
 import renderJSON from './render-json'
-
-const xivapi = bent('json', 'https://xivapi.com', 200)
 
 const CACHE: { key: string, value: any }[] = []
 
@@ -42,9 +40,9 @@ const Results = ({ url, onChangeUrl }: Props) => {
     if (cached) {
       setData(cached.value)
     } else {
-      // Use Suspense to avoid race thinggy, and handle errors
+      // Use Suspense to avoid race thinggy
       setData(null)
-      xivapi(url)
+      fetch(url)
         .then((json: any) => {
           addCached(url, json)
           setData(json)

@@ -22,7 +22,7 @@ const Pagination = ({ url, data, onChangeUrl }: Props) => {
   const handleChangePage = (_: any, page: number) => {
     const parsedUrl = new URL(url, 'https://xivapi.com')
     parsedUrl.searchParams.set('page', String(page))
-    onChangeUrl(page === 1 ? parsedUrl.pathname : `${parsedUrl.pathname}?${parsedUrl.searchParams.toString()}`)
+    onChangeUrl(`${parsedUrl.pathname}?${parsedUrl.searchParams.toString()}`)
   }
 
   if (!data || !data.Pagination) {
