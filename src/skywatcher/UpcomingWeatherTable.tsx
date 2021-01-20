@@ -1,7 +1,7 @@
 import React from 'react'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
-import { getSeed, getNextWeathers, getZoneWeather, translate } from './weather'
+import { getSeed, getHashes, getWeather, translatePlace } from './weather'
 import { paddedZero, formatTime } from '../utils'
 import Typography from '@material-ui/core/Typography'
 import TableContainer from '@material-ui/core/TableContainer'
@@ -11,7 +11,7 @@ import TableBody from '@material-ui/core/TableBody'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import WeatherIcon from './WeatherIcon'
-import { Zone } from './weather'
+import { Place } from './weather'
 import { useTranslation } from '../i18n'
 
 const WEATHER_CELL_WIDTH = 75
@@ -66,17 +66,17 @@ const useStyles = makeStyles(theme => ({
 
 type Props = {
   now: Date,
-  zones: Zone[],
+  places: Place[],
   showLabels?: boolean,
   showLocalTime?: boolean,
   showWeatherChance?: boolean
 }
 
-const UpcomingWeatherTable = ({ now, zones, showLabels, showLocalTime, showWeatherChance }: Props) => {
+const UpcomingWeatherTable = ({ now, places, showLabels, showLocalTime, showWeatherChance }: Props) => {
   const classes = useStyles()
   const { i18n } = useTranslation()
   const currentSeed = getSeed(now)
-  const hashes = getNextWeathers(currentSeed - 1, 10)
+  const hashes = getHashes(currentSeed - 1, 10)
   const locale = i18n.language
 
   return (
@@ -123,17 +123,17 @@ const UpcomingWeatherTable = ({ now, zones, showLabels, showLocalTime, showWeath
           </TableRow>
         </TableHead>
         <TableBody>
-          {zones.map((zone) =>
-            <TableRow key={zone} hover>
+          {places.map(place =>
+            <TableRow key={place} hover>
               <TableCell component='th' scope='row' className={classes.regionCell}>
-                <Typography>{translate('zone', zone, locale)}</Typography>
+                <Typography>{translatePlace(place, locale)}</Typography>
               </TableCell>
               {hashes.map((hash, index) =>
                 <TableCell
                   key={index}
                   className={clsx(classes.weatherCell, index === 1 && classes.current)}
                 >
-                  <WeatherIcon weather={getZoneWeather(zone, hash)} showLabel={showLabels} />
+                  <WeatherIcon weather={getWeather(place, hash)} showLabel={showLabels} />
                 </TableCell>
               )}
             </TableRow>

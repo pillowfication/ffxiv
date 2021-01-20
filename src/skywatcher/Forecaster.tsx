@@ -17,37 +17,26 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import Section from '../Section'
 import ForecasterTable from './ForecasterTable'
 import {
+  getRegions,
+  getPlaces,
   getSeed,
   getPossibleWeathers,
   forecastWeathers,
-  translate,
   translateWeather,
+  translatePlace,
   Weather,
-  Region,
-  Zone
+  Place
 } from './weather'
-import PARTITION from './weather/regions-partition'
 import { useTranslation } from '../i18n'
 
-const REGIONS = [
-  Region.LaNoscea,
-  Region.TheBlackShroud,
-  Region.Thanalan,
-  Region.IshgardAndSurroundingAreas,
-  Region.GyrAbania,
-  Region.TheFarEast,
-  Region.Norvrandt,
-  Region.Others
-]
-
-type ZoneOption = {
-  region: Region,
-  zone: Zone
+type PlaceOption = {
+  region: Place,
+  place: Place
 }
-const ZONES_OPTIONS: ZoneOption[] = []
-for (const region of REGIONS) {
-  for (const zone of PARTITION[region]) {
-    ZONES_OPTIONS.push({ region, zone })
+const PLACE_OPTIONS: PlaceOption[] = []
+for (const region of getRegions()) {
+  for (const place of getPlaces(region)) {
+    PLACE_OPTIONS.push({ region, place })
   }
 }
 
@@ -74,15 +63,15 @@ type Props = {
 const Forecaster = ({ now }: Props) => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('skywatcher')
-  const [zoneOption, setZoneOption] = useState<ZoneOption | null>(null)
+  const [placeOption, setPlaceOption] = useState<PlaceOption | null>(null)
   const [transitionWeather, setTransitionWeather] = useState<Weather | null>(null)
   const [targetWeather, setTargetWeather] = useState<Weather | null>(null)
   const [times, setTimes] = useState({ 0: true, 8: true, 16: true })
-  const possibleWeathers = zoneOption && getPossibleWeathers(zoneOption.zone)
+  const possibleWeathers = placeOption && getPossibleWeathers(placeOption.place)
   const hasTime = times[0] || times[8] || times[16]
-  const forecast = (zoneOption && hasTime) &&
+  const forecast = (placeOption && hasTime) &&
     forecastWeathers(
-      zoneOption.zone,
+      placeOption.place,
       (prevWeather, currWeather, seed) => {
         if (transitionWeather && transitionWeather !== prevWeather) return false
         if (targetWeather && targetWeather !== currWeather) return false
@@ -95,8 +84,8 @@ const Forecaster = ({ now }: Props) => {
     )
   const locale = i18n.language
 
-  const handleSelectZone = (_: any, zoneOption: ZoneOption) => {
-    setZoneOption(zoneOption)
+  const handleSelectPlace = (_: any, placeOption: PlaceOption) => {
+    setPlaceOption(placeOption)
     setTransitionWeather(null)
     setTargetWeather(null)
   }
@@ -118,13 +107,13 @@ const Forecaster = ({ now }: Props) => {
       <Grid container spacing={2}>
         <Grid item xs={12} md={4}>
           <Autocomplete
-            options={ZONES_OPTIONS}
-            groupBy={({ region }) => translate('region', region, locale)}
-            getOptionLabel={({ zone }) => translate('zone', zone, locale)}
-            renderInput={params => <TextField {...params} label={t('selectZone')} />}
-            value={zoneOption}
-            getOptionSelected={(option, value) => option.zone === value.zone}
-            onChange={handleSelectZone}
+            options={PLACE_OPTIONS}
+            groupBy={({ region }) => translatePlace(region, locale)}
+            getOptionLabel={({ place }) => translatePlace(place, locale)}
+            renderInput={params => <TextField {...params} label={t('selectPlace')} />}
+            value={placeOption}
+            getOptionSelected={(option, value) => option.place === value.place}
+            onChange={handleSelectPlace}
           />
         </Grid>
         <Grid item xs={12} md={4}>
@@ -132,10 +121,10 @@ const Forecaster = ({ now }: Props) => {
             <InputLabel>{t('transitionWeather')}</InputLabel>
             <Select
               value={transitionWeather || 'none'}
-              disabled={!zoneOption}
+              disabled={!placeOption}
               onChange={handleSelectTransitionWeather}
             >
-              <MenuItem value='none'>{t(possibleWeathers ? 'anyWeather' : 'selectZoneFirst')}</MenuItem>
+              <MenuItem value='none'>{t(possibleWeathers ? 'anyWeather' : 'selectPlaceFirst')}</MenuItem>
               {possibleWeathers && (
                 possibleWeathers.map(weather =>
                   <MenuItem key={weather} value={weather}>{translateWeather(weather, locale)}</MenuItem>
@@ -148,10 +137,10 @@ const Forecaster = ({ now }: Props) => {
             <InputLabel>{t('targetWeather')}</InputLabel>
             <Select
               value={targetWeather || 'none'}
-              disabled={!zoneOption}
+              disabled={!placeOption}
               onChange={handleSelectTargetWeather}
             >
-              <MenuItem value='none'>{t(possibleWeathers ? 'anyWeather' : 'selectZoneFirst')}</MenuItem>
+              <MenuItem value='none'>{t(possibleWeathers ? 'anyWeather' : 'selectPlaceFirst')}</MenuItem>
               {possibleWeathers && (
                 possibleWeathers.map(weather =>
                   <MenuItem key={weather} value={weather}>{translateWeather(weather, locale)}</MenuItem>
@@ -179,7 +168,7 @@ const Forecaster = ({ now }: Props) => {
             </FormGroup>
           </FormControl>
         </Grid>
-        {zoneOption && !hasTime && (
+        {placeOption && !hasTime && (
           <Grid item xs={12}>
             <Alert variant='outlined' severity='error'>{t('noTimeSelected')}</Alert>
           </Grid>

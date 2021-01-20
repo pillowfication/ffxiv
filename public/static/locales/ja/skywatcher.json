@@ -1,16 +1,18 @@
 {
   "title": "Skywatcher",
   "forecaster": "Forecaster",
-  "selectZone": "Select a zone",
-  "selectZoneFirst": "Select a zone first",
+  "selectPlace": "Select a place",
+  "selectPlaceFirst": "Select a place first",
   "transitionWeather": "Transition from",
   "targetWeather": "Target weather",
   "anyWeather": "Any weather",
   "selectTimes": "Select times",
+  "noTimeSelected": "At least one time bust be selected.",
   "upcomingWeather": "Upcoming Weather",
   "selectRegion": "Select a region",
   "showAllRegions": "Show all regions",
   "showLabels": "Show labels",
   "showLocalTimes": "Show local times",
+  "showAllPlaces": "Show All Places",
   "about": "About"
 }

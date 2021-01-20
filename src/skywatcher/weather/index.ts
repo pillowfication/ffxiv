@@ -1,19 +1,20 @@
-import { Weather } from './types/weathers'
-import { Region } from './types/regions'
-import { Zone } from './types/zones'
+import { Weather } from './types/weather'
+import { Place } from './types/place'
+import partition from './data/partition.json'
 import weathers from './data/weathers.json'
-import CHANCES from './chances'
-import en from './locales/en.json'
-import de from './locales/de.json'
-import fr from './locales/fr.json'
-import ja from './locales/ja.json'
-import softHyphens from './locales/soft-hyphens'
-
-const LOCALES = { en, de, fr, ja }
+import weatherRates from './data/weather-rates.json'
+import placeNames from './data/place-names.json'
 
 export { Weather }
-export { Region }
-export { Zone }
+export { Place }
+
+export function getRegions (): Place[] {
+  return Object.keys(partition.partition).map(key => Number(key))
+}
+
+export function getPlaces (region: Place): Place[] {
+  return partition.partition[region]
+}
 
 export function getSeed (date = new Date()) {
   return Math.floor(date.getTime() / 1400000)
@@ -30,39 +31,41 @@ export function hashSeed (seed = getSeed()) {
   return step2 % 100
 }
 
-export function getNextWeathers (seed = getSeed(), count = 10) {
-  const weathers = []
+export function getHashes (seed = getSeed(), count = 10): number[] {
+  const hashes = []
   for (let index = 0; index < count; ++index) {
-    weathers.push(hashSeed(seed + index))
+    hashes.push(hashSeed(seed + index))
   }
-  return weathers
+  return hashes
 }
 
-export function getZoneWeather (zone: Zone, hash: number) {
-  for (const [chance, weather] of CHANCES[zone]) {
+export function getWeather (place: Place, hash = hashSeed()): Weather {
+  const rates = weatherRates[partition.weatherRates[place]].Rates
+  for (const [chance, weather] of rates) {
     if (chance > hash) {
       return weather
     }
   }
 }
 
-export function getPossibleWeathers (zone: Zone) {
-  return CHANCES[zone].map(([, weather]) => weather)
+export function getPossibleWeathers (place: Place): Weather[] {
+  const rates = weatherRates[partition.weatherRates[place]].Rates
+  return rates.map(([, weather]) => weather)
 }
 
 export function forecastWeathers (
-  zone: Zone,
+  place: Place,
   filter?: (prevWeather: Weather, currWeather: Weather, seed: number) => boolean,
   seed = getSeed(),
   count = 10
 ) {
   const results: { prevWeather: Weather, currWeather: Weather, seed: number, date: Date }[] = []
   let prevHash = hashSeed(seed - 1)
-  let prevWeather = getZoneWeather(zone, prevHash)
+  let prevWeather = getWeather(place, prevHash)
 
-  while (results.length < count) {
+  for (let i = 0; results.length < count && i < 10000; ++i) {
     const currHash = hashSeed(seed)
-    const currWeather = getZoneWeather(zone, currHash)
+    const currWeather = getWeather(place, currHash)
 
     if (!filter || filter(prevWeather, currWeather, seed)) {
       results.push({ prevWeather, currWeather, seed, date: getDate(seed) })
@@ -76,11 +79,10 @@ export function forecastWeathers (
   return results
 }
 
-export function translate (type: 'region' | 'zone', id: string, locale: string = 'en') {
-  const translation = (LOCALES[locale] && LOCALES[locale][type][id]) || id
-  return softHyphens[translation] || translation
+export function translateWeather (weather: Weather, locale: string = 'en'): string {
+  return weathers[weather][`Name_${locale}`]
 }
 
-export function translateWeather (weather: Weather, locale: string = 'en') {
-  return weathers[weather][`Name_${locale}`]
+export function translatePlace (place: Place, locale: string = 'en'): string {
+  return placeNames[place][`Name_${locale}`]
 }

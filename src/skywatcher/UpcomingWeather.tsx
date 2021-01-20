@@ -12,20 +12,10 @@ import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import Section from '../Section'
 import UpcomingWeatherTable from './UpcomingWeatherTable'
-import { translate, Region } from './weather'
-import PARTITION from './weather/regions-partition'
+import { getRegions, getPlaces, getPossibleWeathers, translatePlace, Place } from './weather'
 import { useTranslation } from '../i18n'
 
-const REGIONS = [
-  Region.LaNoscea,
-  Region.TheBlackShroud,
-  Region.Thanalan,
-  Region.IshgardAndSurroundingAreas,
-  Region.GyrAbania,
-  Region.TheFarEast,
-  Region.Norvrandt,
-  Region.Others
-]
+const REGIONS = getRegions()
 
 const useStyles = makeStyles(theme => ({
   options: {
@@ -40,22 +30,24 @@ type Props = {
 const UpcomingWeather = ({ now }: Props) => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('skywatcher')
-  const [filter, setFilter] = useQueryState<Region | null>(
+  const [filter, setFilter] = useQueryState<Place | null>(
     'filter',
-    { parse: query => Object.values(Region).includes(query as Region) ? query as Region : null }
+    { parse: query => query && REGIONS.includes(Number(query)) ? Number(query) : null }
   )
   const [showLabels, setShowLabels] = useState(true)
   const [showLocalTime, setShowLocalTime] = useState(false)
+  const [showAllPlaces, setShowAllPlaces] = useState(false)
   const [showWeatherChance, setShowWeatherChance] = useState(false)
   const locale = i18n.language
 
   const handleSelectFilter = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const filter = event.target.value === 'none' ? null : (event.target.value as Region)
+    const filter = event.target.value === 'none' ? null : (+event.target.value as Place)
     setFilter(filter)
   }
 
   const handleToggleLabels = () => { setShowLabels(!showLabels) }
   const handleToggleLocalTime = () => { setShowLocalTime(!showLocalTime) }
+  const handleToggleShowAllPlaces = () => { setShowAllPlaces(!showAllPlaces) }
   const handleToggleWeatherChance = () => { setShowWeatherChance(!showWeatherChance) }
 
   return (
@@ -68,7 +60,7 @@ const UpcomingWeather = ({ now }: Props) => {
               <Select onChange={handleSelectFilter} value={filter || 'none'}>
                 <MenuItem value='none'>{t('showAllRegions')}</MenuItem>
                 {REGIONS.map(region =>
-                  <MenuItem key={region} value={region}>{translate('region', region, locale)}</MenuItem>
+                  <MenuItem key={region} value={region}>{translatePlace(region, locale)}</MenuItem>
                 )}
               </Select>
             </NoSsr>
@@ -98,6 +90,16 @@ const UpcomingWeather = ({ now }: Props) => {
           <FormControlLabel
             control={
               <Checkbox
+                checked={showAllPlaces}
+                onChange={handleToggleShowAllPlaces}
+                color='primary'
+              />
+            }
+            label={t('showAllPlaces')}
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
                 checked={showWeatherChance}
                 onChange={handleToggleWeatherChance}
                 color='primary'
@@ -108,13 +110,14 @@ const UpcomingWeather = ({ now }: Props) => {
         </Grid>
       </Grid>
       <NoSsr>
-        {(filter ? [filter] : REGIONS).map(region => ({ region, zones: PARTITION[region] }))
-          .map(({ region, zones }) =>
+        {(filter ? [filter] : REGIONS)
+          .sort((a, b) => a - b)
+          .map(region =>
             <Section key={region}>
-              <Typography variant='h6' gutterBottom>{translate('region', region, locale)}</Typography>
+              <Typography variant='h6' gutterBottom>{translatePlace(region, locale)}</Typography>
               <UpcomingWeatherTable
                 now={now}
-                zones={zones}
+                places={showAllPlaces ? getPlaces(region) : getPlaces(region).filter(place => getPossibleWeathers(place).length > 1)}
                 showLabels={showLabels}
                 showLocalTime={showLocalTime}
                 showWeatherChance={showWeatherChance}
