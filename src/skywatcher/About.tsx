@@ -9,8 +9,7 @@ import TableBody from '@material-ui/core/TableBody'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import Highlight from '../Highlight'
-import i18n from '../i18n'
-import { TFunction } from 'next-i18next'
+import { useTranslation } from '../i18n'
 
 const useStyles = makeStyles(theme => ({
   anemosTable: {
@@ -21,12 +20,10 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-type Props = {
-  t: TFunction
-}
-
-const About = ({ t }: Props) => {
+const About = () => {
   const classes = useStyles()
+  const { t } = useTranslation('skywatcher')
+  console.log('about')
 
   return (
     <Section title={t('about')}>
@@ -105,4 +102,4 @@ const weatherChance = step2 % 100
   )
 }
 
-export default i18n.withTranslation('skywatcher')(About)
+export default React.memo(About)

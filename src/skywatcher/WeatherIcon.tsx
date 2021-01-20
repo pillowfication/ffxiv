@@ -52,4 +52,4 @@ const WeatherIcon = ({ weather, showLabel = false }: Props) => {
   )
 }
 
-export default WeatherIcon
+export default React.memo(WeatherIcon)
