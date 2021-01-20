@@ -4,16 +4,21 @@ import partition from './data/partition.json'
 import weathers from './data/weathers.json'
 import weatherRates from './data/weather-rates.json'
 import placeNames from './data/place-names.json'
+import softHyphens from './soft-hyphens'
 
 export { Weather }
 export { Place }
 
+// Having these two functions is so ugly
 export function getRegions (): Place[] {
-  return Object.keys(partition.partition).map(key => Number(key))
+  return Object.keys(partition.partition)
+    .map(key => Number(key))
+    .sort((a, b) => a - b)
 }
 
 export function getPlaces (region: Place): Place[] {
-  return partition.partition[region]
+  return (partition.partition[region] as Place[])
+    .sort((a, b) => a - b)
 }
 
 export function getSeed (date = new Date()) {
@@ -80,7 +85,8 @@ export function forecastWeathers (
 }
 
 export function translateWeather (weather: Weather, locale: string = 'en'): string {
-  return weathers[weather][`Name_${locale}`]
+  const weatherString = weathers[weather][`Name_${locale}`]
+  return softHyphens[weatherString] || weatherString
 }
 
 export function translatePlace (place: Place, locale: string = 'en'): string {

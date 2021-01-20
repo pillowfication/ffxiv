@@ -111,7 +111,6 @@ const UpcomingWeather = ({ now }: Props) => {
       </Grid>
       <NoSsr>
         {(filter ? [filter] : REGIONS)
-          .sort((a, b) => a - b)
           .map(region =>
             <Section key={region}>
               <Typography variant='h6' gutterBottom>{translatePlace(region, locale)}</Typography>
