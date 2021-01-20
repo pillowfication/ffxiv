@@ -4,10 +4,10 @@ import Typography from '@material-ui/core/Typography'
 import Section from '../Section'
 import NameAutocomplete from './NameAutocomplete'
 import MyNameIs from './MyNameIs'
+import names from './names/data/names.json'
 import { translate } from './names'
 import { upperFirst } from './names/utils'
 import { Clan, Gender } from './names/types'
-import { FORENAMES, SURNAMES } from './names/generate-miqote'
 import miqoteTribes from './names/data/miqote-tribes.json'
 import { useTranslation } from '../i18n'
 
@@ -16,7 +16,7 @@ const SeekersOfTheSunFemale = () => {
   const [forename, setForename] = useState('')
   const [tribe, setTribe] = useState('')
   const [surname, setSurname] = useState('')
-  const name = `${upperFirst([tribe, forename].filter(x => x).join('’'))} ${upperFirst(surname)}`.trim()
+  const name = `${upperFirst([tribe, forename].filter(x => x).join('\''))} ${upperFirst(surname)}`.trim()
   const locale = i18n.language
 
   return (
@@ -24,7 +24,7 @@ const SeekersOfTheSunFemale = () => {
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <NameAutocomplete
-            options={FORENAMES[Clan.SeekerOfTheSun][Gender.Female].map(name => upperFirst(name.replace(/^.*’/, '')))}
+            options={names.MiqoteSunFemale.map(name => upperFirst(name.replace(/^.*'/, '')))}
             value={forename}
             onChange={setForename}
             label={t('forename')}
@@ -53,7 +53,7 @@ const SeekersOfTheSunFemale = () => {
         </Grid>
         <Grid item xs={12} md={6}>
           <NameAutocomplete
-            options={SURNAMES[Clan.SeekerOfTheSun]}
+            options={names.MiqoteSunFemaleLastName}
             value={surname}
             onChange={setSurname}
             label={t('surname')}

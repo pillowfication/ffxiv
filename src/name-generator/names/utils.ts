@@ -19,8 +19,14 @@ export function randomElement<T> (...arrays: T[][]) {
   }
 }
 
-export function upperFirst (string: string) {
-  return string && string[0].toUpperCase() + string.slice(1).toLowerCase()
+export function upperFirst (string?: string) {
+  if (!string) return ''
+  string = string.replace(/[^a-z'-]/ig, '')
+  return string[0].toUpperCase() + string.slice(1).toLowerCase()
+}
+
+export function formatName (forename: string, surname: string) {
+  return (upperFirst(forename) + ' ' + upperFirst(surname)).trim()
 }
 
 export function conjugateRoegadyn (word: string, grammar: 'A' | 'N') {

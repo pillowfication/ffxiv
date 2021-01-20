@@ -5,9 +5,9 @@ import Typography from '@material-ui/core/Typography'
 import Section from '../Section'
 import NameAutocomplete from './NameAutocomplete'
 import MyNameIs from './MyNameIs'
-import { translate } from './names'
-import { conjugateRoegadyn, combineRoegadyn } from './names/utils'
 import roegadynDictionary from './names/data/roegadyn-dictionary.json'
+import { translate } from './names'
+import { formatName, conjugateRoegadyn, combineRoegadyn } from './names/utils'
 import { Clan, Gender } from './names/types'
 import { useTranslation } from '../i18n'
 
@@ -35,7 +35,7 @@ const SeaWolfMale = () => {
   const forename = combineRoegadyn(conjugateRoegadyn(forenameWord1, 'A'), conjugateRoegadyn(forenameWord2, 'N'))
   const surname = (surnameWord1 || surnameWord2) &&
     combineRoegadyn(conjugateRoegadyn(surnameWord1, 'A'), conjugateRoegadyn(surnameWord2, 'N'), 'Syn')
-  const name = `${forename} ${surname}`.trim()
+  const name = formatName(forename, surname)
   const locale = i18n.language
 
   return (

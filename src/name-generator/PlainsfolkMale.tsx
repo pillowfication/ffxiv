@@ -4,10 +4,10 @@ import Typography from '@material-ui/core/Typography'
 import Section from '../Section'
 import NameAutocomplete from './NameAutocomplete'
 import MyNameIs from './MyNameIs'
+import names from './names/data/names.json'
 import { translate } from './names'
-import { upperFirst } from './names/utils'
+import { upperFirst, formatName } from './names/utils'
 import { Clan, Gender } from './names/types'
-import { PHONEMES } from './names/generate-lalafell'
 import { useTranslation } from '../i18n'
 
 const PlainsfolkMale = () => {
@@ -15,7 +15,7 @@ const PlainsfolkMale = () => {
   const [phonemeA, setPhonemeA] = useState('')
   const [phonemeB, setPhonemeB] = useState('')
   const [phonemeC, setPhonemeC] = useState('')
-  const name = `${upperFirst(phonemeA + phonemeB)} ${upperFirst(phonemeC + phonemeB)}`.trim()
+  const name = formatName(phonemeA + phonemeB, phonemeC + phonemeB)
   const locale = i18n.language
 
   return (
@@ -25,7 +25,7 @@ const PlainsfolkMale = () => {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <NameAutocomplete
-                options={PHONEMES[Clan.Plainsfolk].A}
+                options={names.LalafellPlainsfolkFirstNameStart}
                 value={phonemeA}
                 onChange={setPhonemeA}
                 label={t('phoneme', { label: 'A' })}
@@ -34,7 +34,7 @@ const PlainsfolkMale = () => {
             </Grid>
             <Grid item xs={12}>
               <NameAutocomplete
-                options={PHONEMES[Clan.Plainsfolk].B}
+                options={names.LalafellPlainsfolkEndOfNames.map(upperFirst)}
                 value={phonemeB}
                 onChange={setPhonemeB}
                 label={t('phoneme', { label: 'B' })}
@@ -43,7 +43,7 @@ const PlainsfolkMale = () => {
             </Grid>
             <Grid item xs={12}>
               <NameAutocomplete
-                options={PHONEMES[Clan.Plainsfolk].C}
+                options={names.LalafellPlainsfolkLastNameStart}
                 value={phonemeC}
                 onChange={setPhonemeC}
                 label={t('phoneme', { label: 'C' })}

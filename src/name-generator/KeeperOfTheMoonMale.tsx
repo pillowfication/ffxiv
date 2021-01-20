@@ -4,10 +4,10 @@ import Typography from '@material-ui/core/Typography'
 import Section from '../Section'
 import NameAutocomplete from './NameAutocomplete'
 import MyNameIs from './MyNameIs'
+import names from './names/data/names.json'
 import { translate } from './names'
-import { upperFirst } from './names/utils'
+import { upperFirst, formatName } from './names/utils'
 import { Clan, Gender } from './names/types'
-import { FORENAMES, SURNAMES } from './names/generate-miqote'
 import miqoteSuffixes from './names/data/miqote-suffixes.json'
 import { useTranslation } from '../i18n'
 
@@ -25,7 +25,7 @@ const ORDINALS = {
 }
 
 function translateSuffix (suffix: string) {
-  return `${upperFirst(ORDINALS[miqoteSuffixes[suffix]])} Son`
+  return `${ORDINALS[miqoteSuffixes[suffix]]} son`
 }
 
 const KeeperOfTheMoonMale = () => {
@@ -33,7 +33,7 @@ const KeeperOfTheMoonMale = () => {
   const [forename, setForename] = useState('')
   const [suffix, setSuffix] = useState('')
   const [surname, setSurname] = useState('')
-  const name = `${upperFirst([forename, suffix].filter(x => x).join('’'))} ${upperFirst(surname)}`.trim()
+  const name = formatName([forename, suffix].filter(x => x).join('\''), surname)
   const locale = i18n.language
 
   return (
@@ -41,7 +41,7 @@ const KeeperOfTheMoonMale = () => {
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <NameAutocomplete
-            options={FORENAMES[Clan.KeeperOfTheMoon][Gender.Male].map(name => upperFirst(name.replace(/’.*$/, '')))}
+            options={names.MiqoteMoonMale.map(name => upperFirst(name.replace(/'.*$/, '')))}
             value={forename}
             onChange={setForename}
             label={t('forename')}
@@ -71,7 +71,7 @@ const KeeperOfTheMoonMale = () => {
         </Grid>
         <Grid item xs={12} md={6}>
           <NameAutocomplete
-            options={SURNAMES[Clan.KeeperOfTheMoon].filter((name, index, array) => array.indexOf(name, index + 1) === -1)}
+            options={names.MiqoteMoonLastname}
             value={surname}
             onChange={setSurname}
             label={t('surname')}

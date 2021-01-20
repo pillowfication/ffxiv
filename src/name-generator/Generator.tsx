@@ -128,7 +128,7 @@ const Generator = ({ t, i18n }: Props) => {
       const genRace = race || randomElement(RACES)
       const genClan = clan || randomElement(getClans(genRace))
       const genGender = gender || randomElement(getGenders(genRace))
-      newResults.push(generate(genRace, genClan, genGender))
+      newResults.push(generate(genClan, genGender))
     }
     setResults(newResults)
   }

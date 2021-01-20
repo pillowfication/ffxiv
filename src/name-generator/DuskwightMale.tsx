@@ -4,17 +4,17 @@ import Typography from '@material-ui/core/Typography'
 import Section from '../Section'
 import NameAutocomplete from './NameAutocomplete'
 import MyNameIs from './MyNameIs'
+import names from './names/data/names.json'
 import { translate } from './names'
-import { upperFirst } from './names/utils'
+import { formatName } from './names/utils'
 import { Clan, Gender } from './names/types'
-import { FORENAMES, SURNAMES } from './names/generate-elezen'
 import { useTranslation } from '../i18n'
 
 const DuskwightMale = () => {
   const { t, i18n } = useTranslation('name-generator')
   const [forename, setForename] = useState('')
   const [surname, setSurname] = useState('')
-  const name = `${upperFirst(forename)} ${upperFirst(surname)}`.trim()
+  const name = formatName(forename, surname)
   const locale = i18n.language
 
   return (
@@ -22,7 +22,7 @@ const DuskwightMale = () => {
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <NameAutocomplete
-            options={[...FORENAMES[Gender.Male], ...SURNAMES[Clan.Wildwood], ...SURNAMES[Clan.Duskwight]]}
+            options={names.ElezenMale}
             value={forename}
             onChange={setForename}
             label={t('forename')}
@@ -36,7 +36,7 @@ const DuskwightMale = () => {
         </Grid>
         <Grid item xs={12} md={6}>
           <NameAutocomplete
-            options={SURNAMES[Clan.Duskwight]}
+            options={names.ElezenDuskwightLastName}
             value={surname}
             onChange={setSurname}
             label={t('surname')}
