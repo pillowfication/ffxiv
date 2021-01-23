@@ -72,6 +72,7 @@ const Forecaster = ({ now }: Props) => {
   const forecast = (placeOption && hasTime) &&
     forecastWeathers(
       placeOption.place,
+      0,
       (prevWeather, currWeather, seed) => {
         if (transitionWeather && transitionWeather !== prevWeather) return false
         if (targetWeather && targetWeather !== currWeather) return false

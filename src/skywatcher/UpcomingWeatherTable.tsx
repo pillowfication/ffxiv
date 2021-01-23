@@ -133,7 +133,7 @@ const UpcomingWeatherTable = ({ now, places, showLabels, showLocalTime, showWeat
                   key={index}
                   className={clsx(classes.weatherCell, index === 1 && classes.current)}
                 >
-                  <WeatherIcon weather={getWeather(place, hash)} showLabel={showLabels} />
+                  <WeatherIcon weather={getWeather(place, 0, hash)} showLabel={showLabels} />
                 </TableCell>
               )}
             </TableRow>

@@ -43,8 +43,8 @@ export function getHashes (seed = getSeed(), count = 10): number[] {
   return hashes
 }
 
-export function getWeather (place: Place, hash = hashSeed()): Weather {
-  const rates = weatherRates[partition.weatherRates[place]].Rates
+export function getWeather (place: Place, weatherRateIndex = 0, hash = hashSeed()): Weather {
+  const rates = weatherRates[partition.weatherRates[place][weatherRateIndex]].Rates
   for (const [chance, weather] of rates) {
     if (chance > hash) {
       return weather
@@ -52,24 +52,25 @@ export function getWeather (place: Place, hash = hashSeed()): Weather {
   }
 }
 
-export function getPossibleWeathers (place: Place): Weather[] {
-  const rates = weatherRates[partition.weatherRates[place]].Rates
+export function getPossibleWeathers (place: Place, weatherRateIndex = 0): Weather[] {
+  const rates = weatherRates[partition.weatherRates[place][weatherRateIndex]].Rates
   return rates.map(([, weather]) => weather)
 }
 
 export function forecastWeathers (
   place: Place,
+  weatherRateIndex = 0,
   filter?: (prevWeather: Weather, currWeather: Weather, seed: number) => boolean,
   seed = getSeed(),
   count = 10
 ) {
   const results: { prevWeather: Weather, currWeather: Weather, seed: number, date: Date }[] = []
   let prevHash = hashSeed(seed - 1)
-  let prevWeather = getWeather(place, prevHash)
+  let prevWeather = getWeather(place, weatherRateIndex, prevHash)
 
   for (let i = 0; results.length < count && i < 100000; ++i) {
     const currHash = hashSeed(seed)
-    const currWeather = getWeather(place, currHash)
+    const currWeather = getWeather(place, weatherRateIndex, currHash)
 
     if (!filter || filter(prevWeather, currWeather, seed)) {
       results.push({ prevWeather, currWeather, seed, date: getDate(seed) })
