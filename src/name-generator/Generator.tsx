@@ -28,10 +28,8 @@ import SeaWolfMale from './SeaWolfMale'
 import SeaWolfFemale from './SeaWolfFemale'
 import HellsguardMale from './HellsguardMale'
 import HellsguardFemale from './HellsguardFemale'
-import generate, { getClans, getGenders, translate } from '../name-generator/names'
-import { Race, Clan, Gender } from '../name-generator/names/types'
-import i18n from '../i18n'
-import { I18n, TFunction } from 'next-i18next'
+import generate, { getClans, getGenders, translate, Race, Clan, Gender } from '../name-generator/names'
+import { useTranslation } from '../i18n'
 
 const RACES = [
   Race.Hyur,
@@ -43,7 +41,7 @@ const RACES = [
   Race.Hrothgar,
   Race.Viera
 ]
-const ADVANCED: { [key: string]: any } = {
+const ADVANCED: { [key: string]: React.FunctionComponent<{}> } = {
   [`${Clan.Midlander},${Gender.Male}`]: MidlanderMale,
   [`${Clan.Midlander},${Gender.Female}`]: MidlanderFemale,
   [`${Clan.Highlander},${Gender.Male}`]: HighlanderMale,
@@ -88,13 +86,9 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-type Props = {
-  t: TFunction,
-  i18n: I18n
-}
-
-const Generator = ({ t, i18n }: Props) => {
+const Generator = () => {
   const classes = useStyles()
+  const { t, i18n } = useTranslation('name-generator')
   const [race, setRace] = useState<Race | null>(null)
   const [clan, setClan] = useState<Clan | null>(null)
   const [gender, setGender] = useState<Gender | null>(null)
@@ -187,4 +181,4 @@ const Generator = ({ t, i18n }: Props) => {
   )
 }
 
-export default i18n.withTranslation('name-generator')(Generator)
+export default Generator

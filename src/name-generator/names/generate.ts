@@ -1,6 +1,6 @@
 import names from './data/names.json'
 import { randomElement, formatName } from './utils'
-import { Clan, Gender } from '.'
+import { Clan, Gender } from './types'
 
 const GENERATORS: Record<Clan, { [key in Gender]: () => string }> = {
   [Clan.Midlander]: {
