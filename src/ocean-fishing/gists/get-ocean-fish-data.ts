@@ -2,7 +2,12 @@ import fs from 'fs'
 import path from 'path'
 import fetch from 'node-fetch'
 import cheerio from 'cheerio'
-import { fishingSpots, fishes, baits, achievements } from './data/fish-data.json'
+
+// TypeScript hates that `fish-data.json` might not exist, even though this file
+// does not need to be executed on the server. I don't want to commit the the file,
+// and I don't know how to tell TypeScript to not compile this file. Using `require`
+// instead of `import` allows TypeScript to be quiet.
+const { fishingSpots, fishes, baits, achievements } = require('./data/fish-dadta.json')
 
 const OUTPUT = path.resolve(__dirname, './data/ocean-fish-data.json')
 
@@ -56,7 +61,7 @@ async function getLodestoneInfo (query: string) {
   const results = {
     fishingSpots: (() => {
       const data = {}
-      for (const fishingSpot of Object.values(fishingSpots)) {
+      for (const fishingSpot of <any>Object.values(fishingSpots)) {
         data[fishingSpot.ID] = {
           id: fishingSpot.ID,
           place_name_de: fishingSpot.PlaceName.Name_de,
@@ -78,7 +83,7 @@ async function getLodestoneInfo (query: string) {
     })(),
     fishes: await (async () => {
       const data = {}
-      for (const fishingSpot of Object.values(fishingSpots)) {
+      for (const fishingSpot of <any>Object.values(fishingSpots)) {
         for (const fishId of getFishIds(fishingSpot)) {
           const fish = fishes[fishId]
           data[fish.ID] = {
@@ -101,7 +106,7 @@ async function getLodestoneInfo (query: string) {
     })(),
     baits: (() => {
       const data = {}
-      for (const bait of Object.values(baits)) {
+      for (const bait of <any>Object.values(baits)) {
         data[bait.ID] = {
           id: bait.ID,
           name_de: bait.Name_de,
@@ -115,7 +120,7 @@ async function getLodestoneInfo (query: string) {
     })(),
     achievements: (() => {
       const data = {}
-      for (const achievement of Object.values(achievements)) {
+      for (const achievement of <any>Object.values(achievements)) {
         data[achievement.ID] = {
           id: achievement.ID,
           name_de: achievement.Name_de,
