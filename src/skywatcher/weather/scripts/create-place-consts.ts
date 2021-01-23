@@ -18,7 +18,7 @@ fs.writeFileSync(OUTPUT, 'export enum Place {\n')
 
 for (let i = 0; i < IDS.length; ++i) {
   const id = IDS[i]
-  const key = placeNames[id].Name_en && placeNames[id].Name_en.replace(/[^a-z]+/ig, '') || 'UNKNOWN'
+  const key = placeNames[id].Name_en && placeNames[id].Name_en.replace(/[^a-z0-9]+/ig, '') || 'UNKNOWN'
   const count = getCount(key)
   fs.appendFileSync(OUTPUT, `  ${key}${count > 1 ? `_${count}` : ''} = ${id}${i < IDS.length - 1 ? ',' : ''}\n`)
 }

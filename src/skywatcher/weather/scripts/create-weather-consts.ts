@@ -18,7 +18,7 @@ fs.writeFileSync(OUTPUT, 'export enum Weather {\n')
 
 for (let i = 0; i < IDS.length; ++i) {
   const id = IDS[i]
-  const key = weathers[id].Name_en && weathers[id].Name_en.replace(/[^a-z]+/ig, '') || 'UNKNOWN'
+  const key = weathers[id].Name_en && weathers[id].Name_en.replace(/[^a-z0-9]+/ig, '') || 'UNKNOWN'
   const count = getCount(key)
   fs.appendFileSync(OUTPUT, `  ${key}${count > 1 ? `_${count}` : ''} = ${id}${i < IDS.length - 1 ? ',' : ''}\n`)
 }

@@ -20,6 +20,7 @@ import {
   getRegions,
   getPlaces,
   getSeed,
+  getWeatherRates,
   getPossibleWeathers,
   forecastWeathers,
   translateWeather,
@@ -31,12 +32,15 @@ import { useTranslation } from '../i18n'
 
 type PlaceOption = {
   region: Place,
-  place: Place
+  place: Place,
+  weatherRateIndex: number
 }
 const PLACE_OPTIONS: PlaceOption[] = []
 for (const region of getRegions()) {
   for (const place of getPlaces(region)) {
-    PLACE_OPTIONS.push({ region, place })
+    for (let index = 0; index < getWeatherRates(place).length; ++index) {
+      PLACE_OPTIONS.push({ region, place, weatherRateIndex: index })
+    }
   }
 }
 
@@ -67,12 +71,12 @@ const Forecaster = ({ now }: Props) => {
   const [transitionWeather, setTransitionWeather] = useState<Weather | null>(null)
   const [targetWeather, setTargetWeather] = useState<Weather | null>(null)
   const [times, setTimes] = useState({ 0: true, 8: true, 16: true })
-  const possibleWeathers = placeOption && getPossibleWeathers(placeOption.place)
+  const possibleWeathers = placeOption && getPossibleWeathers(placeOption.place, placeOption.weatherRateIndex)
   const hasTime = times[0] || times[8] || times[16]
   const forecast = (placeOption && hasTime) &&
     forecastWeathers(
       placeOption.place,
-      0,
+      placeOption.weatherRateIndex,
       (prevWeather, currWeather, seed) => {
         if (transitionWeather && transitionWeather !== prevWeather) return false
         if (targetWeather && targetWeather !== currWeather) return false
@@ -110,10 +114,10 @@ const Forecaster = ({ now }: Props) => {
           <Autocomplete
             options={PLACE_OPTIONS}
             groupBy={({ region }) => translatePlace(region, locale)}
-            getOptionLabel={({ place }) => translatePlace(place, locale)}
+            getOptionLabel={({ place, weatherRateIndex }) => translatePlace(place, locale) + (weatherRateIndex > 0 ? ` (alt. ${weatherRateIndex})` : '')}
             renderInput={params => <TextField {...params} label={t('selectPlace')} />}
             value={placeOption}
-            getOptionSelected={(option, value) => option.place === value.place}
+            getOptionSelected={(option, value) => option.place === value.place && option.weatherRateIndex === value.weatherRateIndex}
             onChange={handleSelectPlace}
           />
         </Grid>

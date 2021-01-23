@@ -12,7 +12,14 @@ import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import Section from '../Section'
 import UpcomingWeatherTable from './UpcomingWeatherTable'
-import { getRegions, getPlaces, getPossibleWeathers, translatePlace, Place } from './weather'
+import {
+  getRegions,
+  getPlaces,
+  getWeatherRates,
+  getPossibleWeathers,
+  translatePlace,
+  Place
+} from './weather'
 import { useTranslation } from '../i18n'
 
 const REGIONS = getRegions()
@@ -111,18 +118,23 @@ const UpcomingWeather = ({ now }: Props) => {
       </Grid>
       <NoSsr>
         {(filter ? [filter] : REGIONS)
-          .map(region =>
-            <Section key={region}>
-              <Typography variant='h6' gutterBottom>{translatePlace(region, locale)}</Typography>
-              <UpcomingWeatherTable
-                now={now}
-                places={showAllPlaces ? getPlaces(region) : getPlaces(region).filter(place => getPossibleWeathers(place).length > 1)}
-                showLabels={showLabels}
-                showLocalTime={showLocalTime}
-                showWeatherChance={showWeatherChance}
-              />
-            </Section>
-          )
+          .map(region => {
+            const places = getPlaces(region)
+              .flatMap(place => getWeatherRates(place).map((_: any, index) => ({ place, weatherRateIndex: index })))
+
+            return (
+              <Section key={region}>
+                <Typography variant='h6' gutterBottom>{translatePlace(region, locale)}</Typography>
+                <UpcomingWeatherTable
+                  now={now}
+                  places={showAllPlaces ? places : places.filter(({ place, weatherRateIndex }) => getPossibleWeathers(place, weatherRateIndex).length > 1)}
+                  showLabels={showLabels}
+                  showLocalTime={showLocalTime}
+                  showWeatherChance={showWeatherChance}
+                />
+              </Section>
+            )
+          })
         }
       </NoSsr>
     </Section>

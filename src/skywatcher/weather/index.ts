@@ -35,8 +35,8 @@ export function hashSeed (seed = getSeed()) {
   return step2 % 100
 }
 
-export function getHashes (seed = getSeed(), count = 10): number[] {
-  const hashes = []
+export function getHashes (seed = getSeed(), count = 10) {
+  const hashes: number[] = []
   for (let index = 0; index < count; ++index) {
     hashes.push(hashSeed(seed + index))
   }
@@ -50,6 +50,10 @@ export function getWeather (place: Place, weatherRateIndex = 0, hash = hashSeed(
       return weather
     }
   }
+}
+
+export function getWeatherRates (place: Place): number[] {
+  return partition.weatherRates[place]
 }
 
 export function getPossibleWeathers (place: Place, weatherRateIndex = 0): Weather[] {

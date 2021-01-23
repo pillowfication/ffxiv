@@ -66,7 +66,7 @@ const useStyles = makeStyles(theme => ({
 
 type Props = {
   now: Date,
-  places: Place[],
+  places: { place: Place, weatherRateIndex: number }[],
   showLabels?: boolean,
   showLocalTime?: boolean,
   showWeatherChance?: boolean
@@ -123,17 +123,17 @@ const UpcomingWeatherTable = ({ now, places, showLabels, showLocalTime, showWeat
           </TableRow>
         </TableHead>
         <TableBody>
-          {places.map(place =>
-            <TableRow key={place} hover>
+          {places.map(({ place, weatherRateIndex }) =>
+            <TableRow key={`${place}-${weatherRateIndex}`} hover>
               <TableCell component='th' scope='row' className={classes.regionCell}>
-                <Typography>{translatePlace(place, locale)}</Typography>
+                <Typography>{translatePlace(place, locale)}{weatherRateIndex > 0 && ` (alt. ${weatherRateIndex})`}</Typography>
               </TableCell>
               {hashes.map((hash, index) =>
                 <TableCell
                   key={index}
                   className={clsx(classes.weatherCell, index === 1 && classes.current)}
                 >
-                  <WeatherIcon weather={getWeather(place, 0, hash)} showLabel={showLabels} />
+                  <WeatherIcon weather={getWeather(place, weatherRateIndex, hash)} showLabel={showLabels} />
                 </TableCell>
               )}
             </TableRow>
