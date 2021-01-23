@@ -1,7 +1,5 @@
-import fishData from './ocean-fish-data.json'
-import spreadsheetData from './spreadsheet-data.json'
-import biteTimes from './ocean-fish-bite-times.json'
-import { Weather } from '../../../skywatcher/weather/consts'
+import everything from './everything.json'
+import { Weather } from '../../../skywatcher/weather'
 
 export type FishingSpot = {
   id: number,
@@ -37,10 +35,10 @@ export type Fish = {
     icon_sm?: string,
     icon_lg?: string
   },
-  spreadsheet_data: FishInfo
+  spreadsheet_data: SpreadsheetInfo
 }
 
-export type FishInfo = {
+export type SpreadsheetInfo = {
   name: string,
   bait?: number,
   points?: number,
@@ -58,7 +56,7 @@ export type FishInfo = {
     { type: 'NOT OK', list: Weather[] },
   stars?: number,
   category?: 'octopus' | 'shark' | 'jellyfish' | 'seadragon' | 'balloon' | 'crab' | 'manta',
-  intuition?: Array<{id: number, count: number}>
+  intuition?: { id: number, count: number }[]
 }
 
 export type Bait = {
@@ -79,32 +77,7 @@ export type Achievement = {
   icon: string
 }
 
-const fishesByName = {}
-Object.values(fishData.fishes).forEach(fish => { fishesByName[fish.name_en] = fish })
-
-const baitsByName = {}
-Object.values(fishData.baits).forEach(bait => { baitsByName[bait.name_en] = bait })
-
-const spreadsheetFishes = Object.values(spreadsheetData).flatMap((x: Array<any>) => x)
-
-// Attach spreadsheet data to fishes
-for (const fishId in fishData.fishes) {
-  const fish = fishData.fishes[fishId]
-  const spreadsheetData = spreadsheetFishes.find(fishInfo => fishInfo.name === fish.name_en)
-  if (spreadsheetData) {
-    // Replace baits/mooches/intuitions with their corresponding IDs
-    if (spreadsheetData.bait) spreadsheetData.bait = baitsByName[spreadsheetData.bait].id
-    if (spreadsheetData.mooch) spreadsheetData.mooch = fishesByName[spreadsheetData.mooch].id
-    if (spreadsheetData.intuition) spreadsheetData.intuition = spreadsheetData.intuition.map(({ name, count }) => ({ id: fishesByName[name].id, count }))
-    // Replace biteTime with TC data
-    spreadsheetData.bite_time = biteTimes[fishId]
-  } else {
-    console.error('Could find spreadsheet data for fish:', fish)
-  }
-  fish.spreadsheet_data = spreadsheetData
-}
-
-export const fishingSpots: { [key: number]: FishingSpot } = fishData.fishingSpots
-export const fishes: { [key: number]: Fish } = <any>fishData.fishes
-export const baits: { [key: number]: Bait } = fishData.baits
-export const achievements: { [key: number]: Bait } = fishData.achievements
+export const fishingSpots: { [key: number]: FishingSpot } = everything.fishingSpots
+export const fishes: { [key: number]: Fish } = <any>everything.fishes
+export const baits: { [key: number]: Bait } = everything.baits
+export const achievements: { [key: number]: Bait } = everything.achievements

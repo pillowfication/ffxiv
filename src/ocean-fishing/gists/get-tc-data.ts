@@ -1,7 +1,7 @@
-const fs = require('fs')
-const path = require('path')
-const fetch = require('node-fetch')
-const { fishingSpots, baits } = require('./data/ocean-fish-data.json')
+import fs from 'fs'
+import path from 'path'
+import fetch from 'node-fetch'
+import { fishingSpots, baits } from './data/ocean-fish-data.json'
 
 const BAITS = [
   ...Object.keys(baits).map(Number),
@@ -11,9 +11,9 @@ const BAITS = [
   32107 // Rothlyt Mussel
 ]
 
-const BEARER_TOKEN = require('./tc-bearer-token.json')
+import BEARER_TOKEN from './tc-bearer-token.json'
 
-async function getTCData (spotId, baitId) {
+async function getTCData (spotId: number, baitId: number) {
   const res = await fetch(
     'https://us-central1-ffxivteamcraft.cloudfunctions.net/gubal-proxy',
     {
@@ -28,16 +28,16 @@ async function getTCData (spotId, baitId) {
         'sec-fetch-mode': 'cors',
         'sec-fetch-site': 'cross-site'
       },
-      referrer: 'https://ffxivteamcraft.com/',
-      referrerPolicy: 'strict-origin-when-cross-origin',
+      // referrer: 'https://ffxivteamcraft.com/',
+      // referrerPolicy: 'strict-origin-when-cross-origin',
       body: `{"operationName":"BiteTimesPerFishPerSpotPerBaitQuery","variables":{"spotId":${spotId},"baitId":${baitId}},"query":"query BiteTimesPerFishPerSpotPerBaitQuery($fishId: Int, $spotId: Int, $baitId: Int) {\\n  biteTimes: bite_time_per_fish_per_spot_per_bait(where: {spot: {_eq: $spotId}, itemId: {_eq: $fishId}, baitId: {_eq: $baitId}, biteTime: {_gt: 1}, occurences: {_gte: 1}}) {\\n    itemId\\n    spot\\n    baitId\\n    biteTime\\n    occurences\\n    __typename\\n  }\\n}\\n"}`,
-      method: 'POST',
-      mode: 'cors'
+      method: 'POST'
+      // mode: 'cors'
     }
   )
 
   const json = await res.json()
-  json.data.biteTimes = json.data.biteTimes.map(datum => ({
+  json.data.biteTimes = json.data.biteTimes.map((datum: any) => ({
     itemId: datum.itemId,
     baitId: datum.baitId,
     biteTime: datum.biteTime,

@@ -1,37 +1,15 @@
-const fs = require('fs')
-const path = require('path')
-const bent = require('bent')
-
-const XIVAPI = 'https://xivapi.com'
-const getJSON = bent('json')
+import fs from 'fs'
+import path from 'path'
+import fetch, { fetchAllPages, getSearchResult } from '../../fetch-xivapi'
 
 const OUTPUT = path.resolve(__dirname, './data/fish-data.json')
-
-async function getAllPages (url, qThing) {
-  const results = []
-  for (let page = 1; ; ++page) {
-    const data = await getJSON(`${XIVAPI}${url}${qThing ? '&' : '?'}page=${page}`)
-    results.push(...data.Results)
-    if (page === data.Pagination.PageTotal) {
-      return results
-    }
-  }
-}
-
-async function getSearchResult (query, type) {
-  const results = await getAllPages(`/search?string=${query}`, true)
-  for (const result of results) {
-    if (result.UrlType === type && result.Name === query) {
-      return await getJSON(`${XIVAPI}${result.Url}`)
-    }
-  }
-  throw new Error(`Could not find item: ${query} (${type})`)
-}
+const THE_HIGH_SEAS = 900 // TerritoryID
 
 ;(async () => {
   // Get the list of all fishing spots
-  console.log(`Fetching ${XIVAPI}/FishingSpot`)
-  const fishingSpots = await getAllPages('/FishingSpot')
+  console.log('Fetching', '/FishingSpot')
+  const fishingSpots = await fetchAllPages('/FishingSpot', { columns: 'Url' })
+  console.log(`${fishingSpots.length} URLs found`)
 
   // All the gathered data for whatever will be shoved in here
   const fishingSpotsResults = {}
@@ -41,15 +19,18 @@ async function getSearchResult (query, type) {
 
   // Get data for fishing spots and fishes
   for (const { Url: url } of fishingSpots) {
-    console.log(`Fetching ${XIVAPI}${url}`)
-    const fishingSpotData = await getJSON(`${XIVAPI}${url}`)
+    console.log('Fetching', url)
+    const fishingSpotData = await fetch(url)
+    if (fishingSpotData.TerritoryTypeTargetID !== THE_HIGH_SEAS) {
+      continue
+    }
 
     // Add all the fishes found there
     for (let i = 0; i < 10; ++i) {
       const fishData = fishingSpotData[`Item${i}`]
       if (fishData) {
         fishesResults[fishData.ID] = fishData
-        fishingSpotData[`Item${i}`] = true // Remove the fish data here to avoid duplicate data
+        fishingSpotData[`Item${i}`] = fishData.ID // Remove the fish data here to avoid duplicate data
       }
     }
 
@@ -71,7 +52,7 @@ async function getSearchResult (query, type) {
     'Pill Bug'
   ]
   for (const bait of BAITS) {
-    console.log(`Fetching ${XIVAPI}/search?string=${bait}`)
+    console.log('Fetching', `/search?string=${bait}`)
     const baitData = await getSearchResult(bait, 'Item')
     baitsResults[baitData.ID] = baitData
   }
@@ -87,7 +68,7 @@ async function getSearchResult (query, type) {
     'What Did Mantas Do to You?'
   ]
   for (const achievement of ACHIEVEMENTS) {
-    console.log(`Fetching ${XIVAPI}/search?string=${achievement}`)
+    console.log('Fetching', `/search?string=${achievement}`)
     const achievementData = await getSearchResult(achievement, 'Achievement')
     achievementsResults[achievementData.ID] = achievementData
   }

@@ -1,7 +1,7 @@
-const fs = require('fs')
-const path = require('path')
-const { fishingSpots, fishes, baits } = require('./data/ocean-fish-data.json')
-const biteTimes = require('./data/ocean-fish-bite-times.json')
+import fs from 'fs'
+import path from 'path'
+import { fishes, baits } from './data/ocean-fish-data.json'
+import biteTimes from './data/ocean-fish-bite-times.json'
 
 const OUTPUT = path.resolve(__dirname, './data/bite-times.csv')
 

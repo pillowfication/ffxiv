@@ -1,6 +1,6 @@
-const fs = require('fs')
-const path = require('path')
-const { fishingSpots, fishes, baits } = require('./data/ocean-fish-data.json')
+import fs from 'fs'
+import path from 'path'
+import { fishingSpots, fishes, baits } from './data/ocean-fish-data.json'
 
 const CUTOFF = 0.02
 const OUTPUT = path.resolve(__dirname, './data/ocean-fish-bite-times.json')
@@ -17,19 +17,19 @@ let DATA = []
 for (const fishingSpot of Object.keys(fishingSpots)) {
   DATA.push(...require(`./data/tc/spot-${fishingSpot}.json`))
 }
-DATA = DATA.filter(datum => datum.occurrences >= CUTOFF)
 
-function getBiteTime (fishId, baitId) {
+function getBiteTime (fishId: number, baitId: number) {
   const times = DATA
     .filter(datum => datum.itemId === fishId && (!baitId || datum.baitId === baitId))
     .sort((a, b) => a.biteTime - b.biteTime)
   const totalOccurrences = times.reduce((acc, curr) => acc + curr.occurrences, 0)
 
   if (totalOccurrences < 10) {
+    // Too few reports for meaningful data
     return null
   } else {
     const cutOff = Math.floor(totalOccurrences * CUTOFF)
-    let minTime, maxTime
+    let minTime: number, maxTime: number
     for (let count = 0, index = 0; index < times.length; ++index) {
       count += times[index].occurrences
       if (minTime === undefined && count >= cutOff) {
@@ -46,7 +46,7 @@ function getBiteTime (fishId, baitId) {
 const biteTimes = {}
 for (const fish of Object.values(fishes)) {
   const biteTimesByBait = {}
-  let minBiteTime, maxBiteTime
+  let minBiteTime: number, maxBiteTime: number
   BAITS.forEach(baitId => {
     const biteTime = getBiteTime(fish.id, +baitId)
     if (biteTime) {

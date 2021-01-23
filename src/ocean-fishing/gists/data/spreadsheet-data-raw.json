@@ -39,10 +39,10 @@
       "weathers": {
         "type": "OK",
         "list": [
-          "fairSkies",
-          "clouds",
-          "fog",
-          "clearSkies"
+          2,
+          3,
+          4,
+          1
         ]
       },
       "stars": 1,
@@ -59,10 +59,10 @@
       "weathers": {
         "type": "OK",
         "list": [
-          "fairSkies",
-          "rain",
-          "showers",
-          "clearSkies"
+          2,
+          7,
+          8,
+          1
         ]
       },
       "stars": 2,
@@ -79,7 +79,7 @@
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "showers"
+          8
         ]
       },
       "stars": 2,
@@ -141,7 +141,7 @@
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "clearSkies"
+          1
         ]
       },
       "stars": 4,
@@ -315,10 +315,10 @@
       "weathers": {
         "type": "OK",
         "list": [
-          "fairSkies",
-          "fog",
-          "clouds",
-          "clearSkies"
+          2,
+          4,
+          3,
+          1
         ]
       },
       "stars": 1,
@@ -380,10 +380,10 @@
       "weathers": {
         "type": "OK",
         "list": [
-          "fairSkies",
-          "wind",
-          "gales",
-          "clearSkies"
+          2,
+          5,
+          6,
+          1
         ]
       },
       "stars": 2,
@@ -441,7 +441,7 @@
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "clearSkies"
+          1
         ]
       },
       "stars": 4,
@@ -612,9 +612,9 @@
       "weathers": {
         "type": "OK",
         "list": [
-          "fairSkies",
-          "fog",
-          "clearSkies"
+          2,
+          4,
+          1
         ]
       },
       "stars": 1,
@@ -673,10 +673,10 @@
       "weathers": {
         "type": "OK",
         "list": [
-          "fairSkies",
-          "snow",
-          "blizzards",
-          "clearSkies"
+          2,
+          15,
+          16,
+          1
         ]
       },
       "stars": 2,
@@ -906,7 +906,7 @@
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "heatWaves"
+          14
         ]
       },
       "stars": 1,
@@ -937,10 +937,10 @@
       "weathers": {
         "type": "OK",
         "list": [
-          "fairSkies",
-          "clouds",
-          "fog",
-          "clearSkies"
+          2,
+          3,
+          4,
+          1
         ]
       },
       "stars": 1,
@@ -985,10 +985,10 @@
       "weathers": {
         "type": "OK",
         "list": [
-          "fairSkies",
-          "dustStorms",
-          "heatWaves",
-          "clearSkies"
+          2,
+          11,
+          14,
+          1
         ]
       },
       "stars": 2,
@@ -1214,10 +1214,10 @@
       "weathers": {
         "type": "OK",
         "list": [
-          "fairSkies",
-          "clouds",
-          "fog",
-          "clearSkies"
+          2,
+          3,
+          4,
+          1
         ]
       },
       "stars": 1,
@@ -1258,7 +1258,7 @@
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "thunderstorms"
+          10
         ]
       },
       "stars": 2,
@@ -1275,10 +1275,10 @@
       "weathers": {
         "type": "OK",
         "list": [
-          "fairSkies",
-          "thunder",
-          "thunderstorms",
-          "clearSkies"
+          2,
+          9,
+          10,
+          1
         ]
       },
       "stars": 2,
@@ -1319,7 +1319,7 @@
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "clearSkies"
+          1
         ]
       },
       "stars": 4,
@@ -1483,10 +1483,10 @@
       "weathers": {
         "type": "OK",
         "list": [
-          "fairSkies",
-          "clouds",
-          "fog",
-          "clearSkies"
+          2,
+          3,
+          4,
+          1
         ]
       },
       "stars": 1,
@@ -1515,7 +1515,7 @@
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "showers"
+          8
         ]
       },
       "stars": 2,
@@ -1544,10 +1544,10 @@
       "weathers": {
         "type": "OK",
         "list": [
-          "fairSkies",
-          "rain",
-          "showers",
-          "clearSkies"
+          2,
+          7,
+          8,
+          1
         ]
       },
       "stars": 2,
@@ -1588,7 +1588,7 @@
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "clearSkies"
+          1
         ]
       },
       "stars": 4,
@@ -1767,10 +1767,10 @@
       "weathers": {
         "type": "OK",
         "list": [
-          "fairSkies",
-          "clouds",
-          "fog",
-          "clearSkies"
+          2,
+          3,
+          4,
+          1
         ]
       },
       "stars": 1,
@@ -1799,10 +1799,10 @@
       "weathers": {
         "type": "OK",
         "list": [
-          "fairSkies",
-          "thunder",
-          "thunderstorms",
-          "clearSkies"
+          2,
+          9,
+          10,
+          1
         ]
       },
       "stars": 2,
@@ -1819,7 +1819,7 @@
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "thunderstorms"
+          10
         ]
       },
       "stars": 2,
@@ -1860,7 +1860,7 @@
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "clearSkies"
+          1
         ]
       },
       "stars": 4,

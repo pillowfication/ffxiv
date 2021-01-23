@@ -1,46 +1,38 @@
-const fs = require('fs')
-const path = require('path')
-const bent = require('bent')
-const cheerio = require('cheerio')
-const { fishingSpots, fishes, baits, achievements } = require('./data/fish-data.json')
+import fs from 'fs'
+import path from 'path'
+import fetch from 'node-fetch'
+import cheerio from 'cheerio'
+import { fishingSpots, fishes, baits, achievements } from './data/fish-data.json'
 
 const OUTPUT = path.resolve(__dirname, './data/ocean-fish-data.json')
-const THE_HIGH_SEAS = 900 // TerritoryID
 
-const _getFFXIV = bent('https://na.finalfantasyxiv.com', 'string', 200)
-async function getFFXIV (url) {
-  console.log('Fetching:', url)
-  return await _getFFXIV(url)
+async function getFFXIV (url: string) {
+  console.log('Fetching', url)
+  const response = await fetch('https://na.finalfantasyxiv.com' + url)
+  return await response.text()
 }
 
-const fishMap = {}
-for (const [id, fish] of Object.entries(fishes)) {
-  fishMap[id] = fish
-}
-
-function getFishIds (fishingSpot) {
+function getFishIds (fishingSpot: any): number[] {
   const fishIds = []
   for (let i = 0; i < 10; ++i) {
     if (fishingSpot[`Item${i}`]) {
-      fishIds.push(fishingSpot[`Item${i}TargetID`])
+      fishIds.push(fishingSpot[`Item${i}`])
     }
   }
   return fishIds
 }
 
-function findId (url) {
-  return url.match(/(?:^|\/)([^/.]+)\.png/)[1]
-}
-
-async function getLodestoneInfo (query) {
+async function getLodestoneInfo (query: string) {
   let $ = cheerio.load(await getFFXIV(`/lodestone/playguide/db/item/?db_search_category=item&category2=6&category3=47&q=${query}`))
-  const info = {}
+  const info: any = {}
 
   $('table.db-table > tbody > tr > td:first-child').each((_, elem) => {
     const td = $(elem)
     if ((new RegExp(query, 'i')).test(td.find('.db-table__link_txt > a').text())) {
       info.url = td.find('.db-table__link_txt > a').attr('href')
-      info.icon_sm = findId(td.find('.db-list__item__icon img').attr('src'))
+      info.icon_sm = td.find('.db-list__item__icon img')
+        .attr('src')
+        .match(/(?:^|\/)([^/.]+)\.png/)[1]
     }
   })
 
@@ -51,19 +43,20 @@ async function getLodestoneInfo (query) {
 
   $ = cheerio.load(await getFFXIV(info.url))
   const main = $('.db__l_main')
-
-  info.icon_lg = findId(main.find('.db-view__item__icon img').eq(1).attr('src'))
+  info.icon_lg = main.find('.db-view__item__icon img')
+    .eq(1)
+    .attr('src')
+    .match(/(?:^|\/)([^/.]+)\.png/)[1]
 
   return info
 }
 
+// The format of the data can be better seen with the types defined in `data/index.ts`
 ;(async () => {
   const results = {
     fishingSpots: (() => {
       const data = {}
-      const oceanFishingSpots = Object.values(fishingSpots)
-        .filter(fishingSpot => fishingSpot.TerritoryTypeTargetID === THE_HIGH_SEAS)
-      for (const fishingSpot of oceanFishingSpots) {
+      for (const fishingSpot of Object.values(fishingSpots)) {
         data[fishingSpot.ID] = {
           id: fishingSpot.ID,
           place_name_de: fishingSpot.PlaceName.Name_de,
@@ -85,11 +78,9 @@ async function getLodestoneInfo (query) {
     })(),
     fishes: await (async () => {
       const data = {}
-      const oceanFishingSpots = Object.values(fishingSpots)
-        .filter(fishingSpot => fishingSpot.TerritoryTypeTargetID === THE_HIGH_SEAS)
-      for (const fishingSpot of oceanFishingSpots) {
+      for (const fishingSpot of Object.values(fishingSpots)) {
         for (const fishId of getFishIds(fishingSpot)) {
-          const fish = fishMap[fishId]
+          const fish = fishes[fishId]
           data[fish.ID] = {
             id: fish.ID,
             fishing_spot: fishingSpot.ID,

@@ -1,12 +1,16 @@
-const fs = require('fs')
-const path = require('path')
-const cheerio = require('cheerio')
-const WEATHERS = require('../../skywatcher/weather/consts/weathers')
+import fs from 'fs'
+import path from 'path'
+import cheerio from 'cheerio'
+import { Weather } from '../../skywatcher/weather'
 
-const SHEET = fs.readFileSync(path.resolve(__dirname, './data/Ocean Fishing Textual Style.html'))
+const SHEET = path.resolve(__dirname, './data/Ocean Fishing Textual Style.html')
 const OUTPUT = path.resolve(__dirname, './data/spreadsheet-data-raw.json')
-const $ = cheerio.load(SHEET.toString())
+const $ = cheerio.load(fs.readFileSync(SHEET).toString())
 
+type Cheerio = any // I don't know how to get the Cheerio type from cheerio
+
+// Parsing the sheet works by finding the cells with these strings as text,
+// then reading the 10 rows after it
 const REGIONS = [
   'Outer Galadion Bay',
   'Galadion Spectral Current',
@@ -27,14 +31,13 @@ const REGIONS = [
 const data = {}
 
 ;(async () => {
-  //
-  // Do basic parsing
-  //
   for (const region of REGIONS) {
+    // Find the cell contain the `region` text
     data[region] = []
     let tr = $('table.waffle tr').filter((_, elem) => $(elem).text().indexOf(region) >= 0).eq(0)
     tr = tr.next()
 
+    // Loop over the 10 rows after it
     for (let i = 0; i < 10; ++i) {
       tr = tr.next()
       data[region].push({
@@ -67,7 +70,8 @@ const data = {}
     }
   }
 
-  function isBlue (elem) {
+  function isBlue (elem: Cheerio) {
+    // These are the classNames of blue cells indicating desynth baits
     for (const className of ['s36', 's45', 's46', 's73']) {
       if (elem.hasClass(className)) {
         return true
@@ -76,7 +80,7 @@ const data = {}
     return false
   }
 
-  function parsePoints (str) {
+  function parsePoints (str: string) {
     if (/^\d+$/.test(str)) {
       return Number(str)
     }
@@ -84,7 +88,7 @@ const data = {}
     return null
   }
 
-  function parseDoubleHook (str) {
+  function parseDoubleHook (str: string) {
     if (/^\d+$/.test(str)) {
       return Number(str)
     }
@@ -98,14 +102,14 @@ const data = {}
     return null
   }
 
-  function parseMooch (str) {
+  function parseMooch (str: string) {
     if (!/^mooch bait$/i.test(str)) {
       return str || null
     }
     return null
   }
 
-  function parseTug (str) {
+  function parseTug (str: string) {
     if (/^!+$/.test(str)) {
       return str.length
     }
@@ -113,7 +117,7 @@ const data = {}
     return null
   }
 
-  function parseTime (str) {
+  function parseTime (str: string) {
     if (/^all$/i.test(str)) {
       return 'DSN'
     }
@@ -130,7 +134,7 @@ const data = {}
     return null
   }
 
-  function parseWeathers (str) {
+  function parseWeathers (str: string) {
     if (!str) {
       return null
     }
@@ -152,7 +156,7 @@ const data = {}
     if (/^restricted \(likely just from clear\)$/i.test(str)) {
       return {
         type: 'NOT OK',
-        list: [WEATHERS.CLEAR_SKIES]
+        list: [Weather.ClearSkies]
       }
     }
     if (str.indexOf('/') !== -1) {
@@ -165,35 +169,35 @@ const data = {}
     return null
   }
 
-  function parseWeatherNames (weathers) {
-    const map = {
-      [WEATHERS.BLIZZARDS]: ['blizzard'],
-      [WEATHERS.CLEAR_SKIES]: ['clear'],
-      [WEATHERS.CLOUDS]: ['clouds'],
-      [WEATHERS.DUST_STORMS]: ['dust'],
-      [WEATHERS.FAIR_SKIES]: ['fair'],
-      [WEATHERS.FOG]: ['fog'],
-      [WEATHERS.GALES]: ['gales'],
-      [WEATHERS.HEAT_WAVES]: ['heat', 'heat waves'],
-      [WEATHERS.RAIN]: ['rain'],
-      [WEATHERS.SHOWERS]: ['showers'],
-      [WEATHERS.SNOW]: ['snow'],
-      [WEATHERS.THUNDER]: ['thunder'],
-      [WEATHERS.THUNDERSTORMS]: ['thunderstorms', 'storms'],
-      [WEATHERS.WIND]: ['wind']
-    }
-    return weathers.map((weather) => {
-      for (const key in map) {
-        if (map[key].includes(weather.toLowerCase())) {
-          return key
+  function parseWeatherNames (weathers: string[]) {
+    const map: [Weather, string[]][] = [
+      [Weather.Blizzards, ['blizzard']],
+      [Weather.ClearSkies, ['clear']],
+      [Weather.Clouds, ['clouds']],
+      [Weather.DustStorms, ['dust']],
+      [Weather.FairSkies, ['fair']],
+      [Weather.Fog, ['fog']],
+      [Weather.Gales, ['gales']],
+      [Weather.HeatWaves, ['heat', 'heat waves']],
+      [Weather.Rain, ['rain']],
+      [Weather.Showers, ['showers']],
+      [Weather.Snow, ['snow']],
+      [Weather.Thunder, ['thunder']],
+      [Weather.Thunderstorms, ['thunderstorms', 'storms']],
+      [Weather.Wind, ['wind']]
+    ]
+    return weathers.map(alias => {
+      for (const [weather, aliases] of map) {
+        if (aliases.includes(alias.toLowerCase())) {
+          return weather
         }
       }
-      console.log('UNKNOWN WEATHER NAME:', weather)
+      console.log('UNKNOWN WEATHER NAME:', alias)
       return null
-    }).filter((x) => x)
+    }).filter(x => x)
   }
 
-  function parseStars (str) {
+  function parseStars (str: string) {
     if (/^\d+$/.test(str)) {
       return Number(str)
     }
@@ -201,7 +205,7 @@ const data = {}
     return null
   }
 
-  function parseCategory (str) {
+  function parseCategory (str: string) {
     if (/octopus travelers/i.test(str)) {
       return 'octopus'
     }

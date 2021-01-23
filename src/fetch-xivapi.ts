@@ -33,3 +33,13 @@ export async function fetchAllPages (endpoint: string, qs?: Record<string, strin
 
   return results
 }
+
+export async function getSearchResult (query: string, type: string, qs?: Record<string, string>) {
+  const results = await fetchAllPages('/search', { string: query, columns: 'Name,UrlType,Url' })
+  for (const result of results) {
+    if (result.Name === query && result.UrlType === type) {
+      return await fetchXIVAPI(result.Url, qs)
+    }
+  }
+  throw new Error(`Could not find item: ${query} (${type})`)
+}

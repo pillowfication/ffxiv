@@ -7,7 +7,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [2, 11],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -22,7 +21,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [2, 13],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -37,13 +35,12 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [3, 19],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "rain",
-          "showers"
+          7,
+          8
         ]
       },
       "stars": 1,
@@ -56,13 +53,12 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [7, 24],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "clouds",
-          "fog"
+          3,
+          4
         ]
       },
       "stars": 2,
@@ -75,12 +71,11 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 3,
-      "bite_time": [12, 36],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "showers"
+          8
         ]
       },
       "stars": 2,
@@ -93,7 +88,6 @@
       "double_hook": [3, 4],
       "mooch": null,
       "tug": 1,
-      "bite_time": [5, 19],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -108,7 +102,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 2,
-      "bite_time": [15, 29],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -123,7 +116,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [13, 25],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -138,12 +130,11 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [18, 37],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "clearSkies"
+          1
         ]
       },
       "stars": 4,
@@ -156,7 +147,6 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [15, 28],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -179,7 +169,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 2,
-      "bite_time": [2, 6],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -194,7 +183,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [2, 6],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -209,7 +197,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 2,
-      "bite_time": [2, 7],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -224,7 +211,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [2, 10],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -239,7 +225,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [2, 7],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -254,7 +239,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [6, 12],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -269,7 +253,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [3, 7],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -284,7 +267,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 3,
-      "bite_time": [3, 12],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -299,7 +281,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [10, 18],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -314,7 +295,6 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [9, 11],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -341,13 +321,12 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [2, 10],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "wind",
-          "gales"
+          5,
+          6
         ]
       },
       "stars": 1,
@@ -360,7 +339,6 @@
       "double_hook": [3, 4],
       "mooch": null,
       "tug": 1,
-      "bite_time": [2, 7],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -375,7 +353,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [2, 12],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -390,7 +367,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [2, 13],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -405,13 +381,12 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "bite_time": [7, 22],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "clouds",
-          "fog"
+          3,
+          4
         ]
       },
       "stars": 2,
@@ -424,7 +399,6 @@
       "double_hook": 2,
       "mooch": "Ghoul Barracuda",
       "tug": 3,
-      "bite_time": [6, 22],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -439,7 +413,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [13, 28],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -453,7 +426,6 @@
       "double_hook": 2,
       "mooch": "Ghoul Barracuda",
       "tug": 2,
-      "bite_time": [6, 13],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -468,12 +440,11 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [18, 36],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "clearSkies"
+          1
         ]
       },
       "stars": 4,
@@ -486,7 +457,6 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [15, 27],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -509,7 +479,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "bite_time": [4, 9],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -523,7 +492,6 @@
       "double_hook": 2,
       "mooch": "Hi-aetherlouse",
       "tug": 2,
-      "bite_time": [2, 3],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -538,7 +506,6 @@
       "double_hook": 2,
       "mooch": "Hi-aetherlouse",
       "tug": 2,
-      "bite_time": [2, 5],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -553,7 +520,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [2, 7],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -568,7 +534,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [2, 8],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -583,7 +548,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [2, 8],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -597,7 +561,6 @@
       "double_hook": 2,
       "mooch": "Hi-aetherlouse",
       "tug": 2,
-      "bite_time": [2, 6],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -612,7 +575,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [2, 8],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -626,7 +588,6 @@
       "double_hook": 2,
       "mooch": "Hi-aetherlouse",
       "tug": 3,
-      "bite_time": [2, 4],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -641,7 +602,6 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [9, 11],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -664,13 +624,12 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [2, 10],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "blizzards",
-          "snow"
+          15,
+          16
         ]
       },
       "stars": 1,
@@ -683,7 +642,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [2, 13],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -698,7 +656,6 @@
       "double_hook": 2,
       "mooch": "Tossed Dagger",
       "tug": 2,
-      "bite_time": [6, 25],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -713,7 +670,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [3, 18],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -728,13 +684,12 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [9, 25],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "clouds",
-          "fog"
+          3,
+          4
         ]
       },
       "stars": 2,
@@ -747,7 +702,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [8, 22],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -762,7 +716,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [16, 28],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -776,7 +729,6 @@
       "double_hook": 2,
       "mooch": "Tossed Dagger",
       "tug": 2,
-      "bite_time": [9, 16],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -791,12 +743,11 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [18, 38],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "clearSkies"
+          1
         ]
       },
       "stars": 4,
@@ -809,7 +760,6 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [16, 27],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -832,7 +782,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [2, 5],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -847,7 +796,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [2, 5],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -862,7 +810,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "bite_time": [3, 8],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -877,7 +824,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [2, 7],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -892,7 +838,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 2,
-      "bite_time": [4, 9],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -907,7 +852,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [2, 8],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -922,7 +866,6 @@
       "double_hook": [3, 4],
       "mooch": null,
       "tug": 3,
-      "bite_time": [2, 10],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -937,7 +880,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "bite_time": [6, 12],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -952,7 +894,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [7, 10],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -967,7 +908,6 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [9, 10],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -990,12 +930,11 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [2, 13],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "heatWaves"
+          14
         ]
       },
       "stars": 1,
@@ -1008,7 +947,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [2, 13],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1023,13 +961,12 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [2, 14],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "dustStorms",
-          "heatWaves"
+          11,
+          14
         ]
       },
       "stars": 1,
@@ -1042,7 +979,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 2,
-      "bite_time": [3, 18],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1057,7 +993,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 3,
-      "bite_time": [14, 33],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1072,13 +1007,12 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [4, 19],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "clouds",
-          "fog"
+          3,
+          4
         ]
       },
       "stars": 2,
@@ -1091,7 +1025,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [14, 26],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1106,7 +1039,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [9, 16],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1121,12 +1053,11 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [20, 36],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "clearSkies"
+          1
         ]
       },
       "stars": 4,
@@ -1139,7 +1070,6 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [11, 19],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1162,7 +1092,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [2, 5],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1177,7 +1106,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [3, 7],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -1192,7 +1120,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "bite_time": [2, 7],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1207,7 +1134,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [2, 11],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1222,7 +1148,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 3,
-      "bite_time": [4, 10],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -1237,7 +1162,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "bite_time": [6, 11],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -1252,7 +1176,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [2, 9],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1267,7 +1190,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [2, 8],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1282,7 +1204,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [4, 8],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -1297,7 +1218,6 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [10, 12],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -1324,7 +1244,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [5, 15],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1339,13 +1258,12 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [12, 22],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "thunder",
-          "thunderstorms"
+          9,
+          10
         ]
       },
       "stars": 1,
@@ -1358,7 +1276,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [5, 12],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1373,7 +1290,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [14, 23],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1388,12 +1304,11 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [8, 23],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "thunderstorms"
+          10
         ]
       },
       "stars": 2,
@@ -1406,13 +1321,12 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 3,
-      "bite_time": [6, 10],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "clouds",
-          "fog"
+          3,
+          4
         ]
       },
       "stars": 2,
@@ -1425,7 +1339,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 3,
-      "bite_time": [25, 25],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1440,7 +1353,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [15, 25],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1455,12 +1367,11 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [13, 18],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "clearSkies"
+          1
         ]
       },
       "stars": 4,
@@ -1473,7 +1384,6 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [21, 27],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1496,7 +1406,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 2,
-      "bite_time": [1, 5],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1511,7 +1420,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "bite_time": [2, 5],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1526,7 +1434,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [4, 5],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1541,7 +1448,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [5, 6],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1556,7 +1462,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [7.5, 7.5],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -1571,7 +1476,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 3,
-      "bite_time": [1, 2],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1586,7 +1490,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [5, 10],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -1601,7 +1504,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 3,
-      "bite_time": [5, 7],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -1616,7 +1518,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [8, 12],
       "time": "S",
       "weathers": {
         "type": "ALL"
@@ -1631,7 +1532,6 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [10, 10],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -1658,7 +1558,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [3, 8],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1673,13 +1572,12 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [7, 13],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "rain",
-          "showers"
+          7,
+          8
         ]
       },
       "stars": 1,
@@ -1692,7 +1590,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [4, 10],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1707,12 +1604,11 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [11, 15],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "showers"
+          8
         ]
       },
       "stars": 2,
@@ -1725,7 +1621,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "bite_time": [14, 28],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1740,13 +1635,12 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [5, 10],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "clouds",
-          "fog"
+          3,
+          4
         ]
       },
       "stars": 2,
@@ -1759,7 +1653,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [15, 20],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1774,7 +1667,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 3,
-      "bite_time": [16, 20],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1789,12 +1681,11 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [15, 16],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "clearSkies"
+          1
         ]
       },
       "stars": 4,
@@ -1807,7 +1698,6 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [1, 10],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1830,7 +1720,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "bite_time": [2, 3],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -1845,7 +1734,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [3, 3],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1860,7 +1748,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 2,
-      "bite_time": [6, 6],
       "time": "N",
       "weathers": {
         "type": "ALL"
@@ -1875,7 +1762,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [3, 3],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1890,7 +1776,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 2,
-      "bite_time": null,
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1905,7 +1790,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "bite_time": [6, 6],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -1920,7 +1804,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [3, 5],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1935,7 +1818,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 3,
-      "bite_time": [3, 4],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1950,7 +1832,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 3,
-      "bite_time": [7, 8],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -1965,7 +1846,6 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": null,
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -1988,7 +1868,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [3, 7],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -2003,7 +1882,6 @@
       "double_hook": [3, 4],
       "mooch": null,
       "tug": 1,
-      "bite_time": [5, 11],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -2018,13 +1896,12 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [5, 10],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "thunder",
-          "thunderstorms"
+          9,
+          10
         ]
       },
       "stars": 1,
@@ -2037,7 +1914,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "bite_time": [12, 23],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -2052,13 +1928,12 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [12, 26],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "clouds",
-          "fog"
+          3,
+          4
         ]
       },
       "stars": 2,
@@ -2071,12 +1946,11 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [16, 23],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "thunderstorms"
+          10
         ]
       },
       "stars": 2,
@@ -2089,7 +1963,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 3,
-      "bite_time": [12, 16],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -2104,7 +1977,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [15, 25],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -2119,12 +1991,11 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [16, 21],
       "time": "DSN",
       "weathers": {
         "type": "NOT OK",
         "list": [
-          "clearSkies"
+          1
         ]
       },
       "stars": 4,
@@ -2137,7 +2008,6 @@
       "double_hook": 1,
       "mooch": null,
       "tug": 3,
-      "bite_time": [12, 18],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -2160,7 +2030,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 1,
-      "bite_time": [2, 2],
       "time": "DN",
       "weathers": {
         "type": "ALL"
@@ -2175,7 +2044,6 @@
       "double_hook": 2,
       "mooch": "Rothlyt Mussel",
       "tug": 2,
-      "bite_time": [2, 2],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -2190,7 +2058,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [2, 2],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -2205,7 +2072,6 @@
       "double_hook": 2,
       "mooch": "Rothlyt Mussel",
       "tug": 2,
-      "bite_time": [2, 2],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -2220,7 +2086,6 @@
       "double_hook": 4,
       "mooch": null,
       "tug": 2,
-      "bite_time": [5, 5],
       "time": "DN",
       "weathers": {
         "type": "ALL"
@@ -2234,7 +2099,6 @@
       "double_hook": 2,
       "mooch": "Rothlyt Mussel",
       "tug": 1,
-      "bite_time": [3, 3],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -2249,7 +2113,6 @@
       "double_hook": 4,
       "mooch": "Rothlyt Mussel",
       "tug": 2,
-      "bite_time": [6, 7],
       "time": "D",
       "weathers": {
         "type": "ALL"
@@ -2264,7 +2127,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 1,
-      "bite_time": [4, 7],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -2279,7 +2141,6 @@
       "double_hook": 2,
       "mooch": null,
       "tug": 2,
-      "bite_time": [7, 9],
       "time": "DSN",
       "weathers": {
         "type": "ALL"
@@ -2293,7 +2154,6 @@
       "double_hook": 1,
       "mooch": "Rothlyt Mussel",
       "tug": 3,
-      "bite_time": null,
       "time": "S",
       "weathers": {
         "type": "ALL"

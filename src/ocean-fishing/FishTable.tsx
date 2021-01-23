@@ -32,6 +32,9 @@ const useStyles = makeStyles(theme => ({
   count: {
     verticalAlign: 'middle'
   },
+  baitCell: {
+    whiteSpace: 'nowrap'
+  },
   intuition: {
     position: 'relative',
     verticalAlign: 'middle',
@@ -97,7 +100,7 @@ const FishTable = ({ spots, time }: Props) => {
                         {fishInfo.stars &&
                           <div className={classes.stars}>{'★'.repeat(fishInfo.stars)}</div>}
                       </TableCell>
-                      <TableCell align='center'>
+                      <TableCell align='center' className={classes.baitCell}>
                         {fishInfo.intuition && (
                           <>
                             {fishInfo.intuition.map((intuitionFish, index) =>

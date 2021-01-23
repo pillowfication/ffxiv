@@ -1,7 +1,7 @@
-const fs = require('fs')
-const path = require('path')
-const { createCanvas, loadImage } = require('canvas')
-const { fishingSpots, fishes, baits, achievements } = require('./data/ocean-fish-data.json')
+import fs from 'fs'
+import path from 'path'
+import { createCanvas, loadImage, Image } from 'canvas'
+import { fishingSpots, fishes, baits, achievements } from './data/ocean-fish-data.json'
 
 const OUTPUT = path.resolve(__dirname, './data/ocean-fishing-icons.png')
 const OUTPUT_MAP = path.resolve(__dirname, './data/ocean-fishing-icons-map.json')
@@ -13,15 +13,15 @@ const OUTPUT_MAP = path.resolve(__dirname, './data/ocean-fishing-icons-map.json'
 //   Baits
 //   Achievements
 //   Bonus Icons
-const ICONS = []
+const ICONS: { id: number | string, icon: string, isLocal?: boolean }[][] = []
 
-function getValuesSorted (obj) {
+function getValuesSorted (obj: object) {
   return Object.values(obj).sort((a, b) => a.id - b.id)
 }
 
 // Add fishes
 for (const fishingSpot of getValuesSorted(fishingSpots)) {
-  ICONS.push(fishingSpot.fishes.map(fishId => (
+  ICONS.push(fishingSpot.fishes.map((fishId: number) => (
     { id: fishId, icon: fishes[fishId].icon }
   )))
 }
@@ -54,15 +54,17 @@ const canvas = createCanvas(ICON_COLS * ICON_SIZE, ICON_ROWS * ICON_SIZE)
 const ctx = canvas.getContext('2d')
 
 ;(async () => {
+  // Draw the icons
   for (let row = 0; row < ICON_ROWS; ++row) {
     for (let col = 0; col < ICONS[row].length; ++col) {
       const cell = ICONS[row][col]
-      let img
+      let img: Image
       if (cell.isLocal) {
-        console.log(`Fetching local image ${cell.icon}`)
+        // These images I could not find on XIVAPI
+        console.log(`Fetching local image ${path.resolve(__dirname, cell.icon)}`)
         img = await loadImage(path.resolve(__dirname, cell.icon))
       } else {
-        console.log(`Fetching image ${cell.icon}`)
+        console.log(`Fetching image ${XIVAPI}${cell.icon}`)
         img = await loadImage(`${XIVAPI}${cell.icon}`)
       }
       ctx.drawImage(img, col * ICON_SIZE, row * ICON_SIZE)
