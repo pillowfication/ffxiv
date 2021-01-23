@@ -3,7 +3,9 @@ import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Tooltip from '@material-ui/core/Tooltip'
-import { translateWeather, Weather } from './weather'
+import { Weather } from './weather/src/types/weather'
+import translateWeather from './weather/src/translate-weather'
+import softHyphens from './soft-hyphens'
 import { useTranslation } from '../i18n'
 import ICONS from './weather/data/weather-icons-map.json'
 
@@ -21,7 +23,7 @@ const useStyles = makeStyles(() => {
     }
   }
   ICONS.forEach((weather, index) => {
-    styles[`w${weather}`] = { backgroundPosition: `${index * -100}% 0%` }
+    styles[weather] = { backgroundPosition: `${index * -100}% 0%` }
   })
   return styles
 })
@@ -35,12 +37,12 @@ const WeatherIcon = ({ weather, showLabel = false }: Props) => {
   const classes = useStyles()
   const { i18n } = useTranslation()
   const locale = i18n.language
-  const weatherName = translateWeather(weather, locale)
+  const weatherName = softHyphens(translateWeather(weather, locale))
 
   return (
     <>
       <Tooltip arrow placement='top' title={weatherName}>
-        <div className={clsx(classes.weatherIcon, classes[`w${weather}`])} />
+        <div className={clsx(classes.weatherIcon, classes[weather])} />
       </Tooltip>
       {showLabel && (
         <>

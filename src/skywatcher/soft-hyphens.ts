@@ -2,7 +2,7 @@ const SHY = '\u00AD'
 
 // Not sure of any better way yet
 // Split all words that are >= 10 letters
-export default {
+const WITH_HYPHENS = {
   Thunderstorms: `Thunder${SHY}storms`,
   Sandstorms: `Sand${SHY}storms`,
   Hyperelectricity: `Hyper${SHY}elec${SHY}tricity`,
@@ -66,4 +66,8 @@ export default {
   'Turbulences ombrales': `Turbu${SHY}lences ombrales`,
   Apocalypse: `Apoca${SHY}lypse`,
   Rayonnement: `Rayon${SHY}nement`,
+}
+
+export default function softHyphens (str: string) {
+  return WITH_HYPHENS[str] || str
 }

@@ -1,13 +1,12 @@
-import { Weather } from './types/weather'
-import { Place } from './types/place'
+import { Weather } from './src/types/weather'
+import { Place } from './src/types/place'
 import partition from './data/partition.json'
-import weathers from './data/weathers.json'
 import weatherRates from './data/weather-rates.json'
-import placeNames from './data/place-names.json'
-import softHyphens from './soft-hyphens'
 
 export { Weather }
 export { Place }
+export { default as translateWeather } from './src/translate-weather'
+export { default as translatePlace } from './src/translate-place'
 
 // Having these two functions is so ugly
 export function getRegions (): Place[] {
@@ -68,7 +67,7 @@ export function forecastWeathers (
   let prevHash = hashSeed(seed - 1)
   let prevWeather = getWeather(place, prevHash)
 
-  for (let i = 0; results.length < count && i < 10000; ++i) {
+  for (let i = 0; results.length < count && i < 100000; ++i) {
     const currHash = hashSeed(seed)
     const currWeather = getWeather(place, currHash)
 
@@ -82,13 +81,4 @@ export function forecastWeathers (
   }
 
   return results
-}
-
-export function translateWeather (weather: Weather, locale: string = 'en'): string {
-  const weatherString = weathers[weather][`Name_${locale}`]
-  return softHyphens[weatherString] || weatherString
-}
-
-export function translatePlace (place: Place, locale: string = 'en'): string {
-  return placeNames[place][`Name_${locale}`]
 }

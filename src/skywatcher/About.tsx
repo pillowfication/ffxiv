@@ -23,7 +23,6 @@ const useStyles = makeStyles(theme => ({
 const About = () => {
   const classes = useStyles()
   const { t } = useTranslation('skywatcher')
-  console.log('about')
 
   return (
     <Section title={t('about')}>

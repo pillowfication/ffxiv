@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import placeNames from '../data/place-names.json'
 
-const OUTPUT = path.resolve(__dirname, '../types/place.ts')
+const OUTPUT = path.resolve(__dirname, '../src/types/place.ts')
 const IDS = Object.keys(placeNames).map(Number).sort((a, b) => a - b)
 
 const counts: Record<string, number> = {}

@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import weathers from '../data/weathers.json'
 
-const OUTPUT = path.resolve(__dirname, '../types/weather.ts')
+const OUTPUT = path.resolve(__dirname, '../src/types/weather.ts')
 const IDS = Object.keys(weathers).map(Number).sort((a, b) => a - b)
 
 const counts: Record<string, number> = {}

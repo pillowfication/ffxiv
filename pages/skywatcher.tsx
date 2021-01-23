@@ -17,7 +17,9 @@ const Skywatcher = () => {
     ;(function loop () {
       const now = new Date()
       setNow(now)
-      interval = setTimeout(loop, (60000 - (now.getTime() * 1440 / 70) % 60000) / (1440 / 70))
+      interval = setTimeout(() => {
+        interval = setTimeout(loop, (60000 - (now.getTime() * 1440 / 70) % 60000) / (1440 / 70))
+      }, 0)
     })()
 
     return () => {
