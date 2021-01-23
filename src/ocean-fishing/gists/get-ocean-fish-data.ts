@@ -3,11 +3,8 @@ import path from 'path'
 import fetch from 'node-fetch'
 import cheerio from 'cheerio'
 
-// TypeScript hates that `fish-data.json` might not exist, even though this file
-// does not need to be executed on the server. I don't want to commit the the file,
-// and I don't know how to tell TypeScript to not compile this file. Using `require`
-// instead of `import` allows TypeScript to be quiet.
-const { fishingSpots, fishes, baits, achievements } = require('./data/fish-dadta.json')
+// @ts-ignore
+import { fishingSpots, fishes, baits, achievements } from './data/fish-data.json'
 
 const OUTPUT = path.resolve(__dirname, './data/ocean-fish-data.json')
 

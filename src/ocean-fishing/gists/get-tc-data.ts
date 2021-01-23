@@ -11,6 +11,7 @@ const BAITS = [
   32107 // Rothlyt Mussel
 ]
 
+// @ts-ignore
 import BEARER_TOKEN from './tc-bearer-token.json'
 
 async function getTCData (spotId: number, baitId: number) {
