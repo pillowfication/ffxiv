@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import { createCanvas, loadImage, Image } from 'canvas'
 import { fishingSpots, fishes, baits, achievements } from '../data/ocean-fish-data.json'
+import objectives from '../data/ocean-fishing-objectives.json'
 
 const OUTPUT = path.resolve(__dirname, '../data/ocean-fishing-icons.png')
 const OUTPUT_MAP = path.resolve(__dirname, '../data/ocean-fishing-icons-map.json')
@@ -34,16 +35,20 @@ ICONS.push(getValuesSorted(achievements).map(achievement => (
   { id: achievement.id, icon: achievement.icon }
 )))
 
-// Add bonus icons
-ICONS.push([
-  { id: 'octopus', icon: './icons/octopodes.png', isLocal: true },
-  { id: 'shark', icon: './icons/sharks.png', isLocal: true },
-  { id: 'jellyfish', icon: './icons/jellyfish.png', isLocal: true },
-  { id: 'seadragon', icon: './icons/seadragons.png', isLocal: true },
-  { id: 'balloon', icon: './icons/balloons.png', isLocal: true },
-  { id: 'crab', icon: './icons/crabs.png', isLocal: true },
-  { id: 'manta', icon: './icons/mantas.png', isLocal: true }
-])
+// Add objectives icons
+ICONS.push(
+  ...Object.values(objectives)
+    .map(objective => ({
+      id: objective.id,
+      icon: `./objectives-icons/${objective.id}.png`,
+      isLocal: true
+    }))
+    .reduce((acc, curr, index) => {
+      const chunk = Math.floor(index / 10)
+      ;(acc[chunk] || (acc[chunk] = [])).push(curr)
+      return acc
+    }, [])
+)
 
 const ICON_ROWS = ICONS.length
 const ICON_COLS = Math.max(...ICONS.map(row => row.length))

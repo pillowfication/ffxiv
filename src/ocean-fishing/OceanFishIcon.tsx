@@ -5,60 +5,13 @@ import Tooltip from '@material-ui/core/Tooltip'
 import Popper from '@material-ui/core/Popper'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import OceanFishPopper from './OceanFishPopper'
-import { fishes, baits, achievements } from './ocean-fishing/data'
+import { fishes, baits, achievements, objectives } from './ocean-fishing/data'
 import ICONS_MAP from './ocean-fishing/data/ocean-fishing-icons-map.json'
 import { translate } from './utils'
 import { useTranslation } from '../i18n'
 
 const ICON_ROWS = ICONS_MAP.length
 const ICON_COLS = Math.max(...ICONS_MAP.map(row => row.length))
-
-// TODO: This needs to be found on XIVAPI somehow
-// Can maybe be parsed from the achievement descriptions
-const BONUS_ICONS_INFO = {
-  octopus: {
-    name_en: 'Octopus Travelers',
-    name_de: 'Oktopussreiter',
-    name_fr: 'Octo-opus',
-    name_ja: 'オクトパストラベラー'
-  },
-  shark: {
-    name_en: 'Certifiable Shark Hunters',
-    name_de: 'Haijäger',
-    name_fr: 'Chasseurs de requins',
-    name_ja: 'シャークハンター'
-  },
-  jellyfish: {
-    name_en: 'Jelled Together',
-    name_de: 'Quallenfänger',
-    name_fr: 'Le bateau de la méduse',
-    name_ja: 'クラゲマニア'
-  },
-  seadragon: {
-    name_en: 'Maritime Dragonslayers',
-    name_de: 'Seepferdchenbändiger',
-    name_fr: 'Fièvre de cheval des mers',
-    name_ja: 'シードラゴンキラー'
-  },
-  balloon: {
-    name_en: 'Balloon Catchers',
-    name_de: 'Ballonfänger',
-    name_fr: 'Amateur du ballon rond',
-    name_ja: 'バルーンキャッチャー'
-  },
-  crab: {
-    name_en: 'Crab Boat Crew',
-    name_de: 'Krabbenschiffsbesatzung',
-    name_fr: 'Pince-sans-rire',
-    name_ja: '蟹工船'
-  },
-  manta: {
-    name_en: 'Sticking it to the Manta',
-    name_de: 'Manta! Manta!',
-    name_fr: 'Raies arraisonnées',
-    name_ja: 'エイエイオー'
-  }
-}
 
 function camelCase (id: number | string): string {
   if (typeof id === 'number') {
@@ -120,7 +73,7 @@ const useStyles = makeStyles(theme => {
 })
 
 type Props = {
-  type: 'fish' | 'bait' | 'achievement' | 'bonus-icon',
+  type: 'fish' | 'bait' | 'achievement' | 'objective',
   id: number | string,
   size?: number,
   className?: string
@@ -147,7 +100,7 @@ const OceanFishIcon = ({ type, id, size = 40, className }: Props) => {
     case 'fish': info = fishes[id]; break
     case 'bait': info = baits[id]; break
     case 'achievement': info = achievements[id]; break
-    case 'bonus-icon': info = BONUS_ICONS_INFO[id]; break
+    case 'objective': info = objectives[id]; break
   }
 
   return (
@@ -158,7 +111,7 @@ const OceanFishIcon = ({ type, id, size = 40, className }: Props) => {
           onClick={handleClick}
         >
           <div className={clsx(classes.oceanFishIcon, classes[camelCase(id)])} />
-          {type !== 'bonus-icon' && (
+          {type !== 'objective' && (
             <div className={type === 'achievement' ? classes.achievementOverlay : classes.iconOverlay} />
           )}
         </div>

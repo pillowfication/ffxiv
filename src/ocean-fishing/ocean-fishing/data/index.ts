@@ -1,4 +1,5 @@
 import everything from './everything.json'
+import oceanFishingObjectives from './ocean-fishing-objectives.json'
 import { Weather } from '../../../skywatcher/weather'
 
 export type FishingSpot = {
@@ -77,7 +78,22 @@ export type Achievement = {
   icon: string
 }
 
-export const fishingSpots: { [key: number]: FishingSpot } = everything.fishingSpots
-export const fishes: { [key: number]: Fish } = <any>everything.fishes
-export const baits: { [key: number]: Bait } = everything.baits
-export const achievements: { [key: number]: Bait } = everything.achievements
+export type Objective = {
+  id: string,
+  icon?: string,
+  name_de: string,
+  name_en: string,
+  name_fr: string,
+  name_ja: string,
+  description_de: string,
+  description_en: string,
+  description_fr: string,
+  description_ja: string,
+  bonus: number
+}
+
+export const fishingSpots: Record<number, FishingSpot> = everything.fishingSpots
+export const fishes: Record<number, Fish> = <any>everything.fishes
+export const baits: Record<number, Bait> = everything.baits
+export const achievements: Record<number, Bait> = everything.achievements
+export const objectives: Record<string, Objective> = oceanFishingObjectives

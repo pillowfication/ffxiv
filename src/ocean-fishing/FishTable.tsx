@@ -15,6 +15,7 @@ import ChecklistCheckmark from './ChecklistCheckmark'
 import WeatherIcon from '../skywatcher/WeatherIcon'
 import { fishingSpots, fishes } from './ocean-fishing/data'
 import { Time } from './ocean-fishing'
+import * as maps from './maps'
 import { translate } from './utils'
 import { useTranslation } from '../i18n'
 
@@ -168,7 +169,7 @@ const FishTable = ({ spots, time }: Props) => {
                       </TableCell>
                       <TableCell align='center'>
                         {fishInfo.category && (
-                          <OceanFishIcon type='bonus-icon' id={fishInfo.category} size={30} />
+                          <OceanFishIcon type='objective' id={maps.OBJECTIVES_MAP[fishInfo.category]} size={30} />
                         )}
                       </TableCell>
                     </TableRow>
