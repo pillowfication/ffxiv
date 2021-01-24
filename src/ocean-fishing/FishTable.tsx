@@ -111,7 +111,7 @@ const FishTable = ({ spots, time }: Props) => {
                                 <OceanFishIcon type='fish' id={intuitionFish.id} />
                               </React.Fragment>
                             )}
-                            <img src='/images/fishers-intuition.png' className={classes.intuition} />
+                            <img src='/images/ocean-fishing/fishers-intuition.png' className={classes.intuition} />
                           </>
                         )}
                         {fishInfo.bait && <OceanFishIcon type='bait' id={fishInfo.bait} />}

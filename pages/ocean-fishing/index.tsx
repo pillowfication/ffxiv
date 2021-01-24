@@ -1,23 +1,40 @@
 import React, { useState, useEffect } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
-import MuiLink from '@material-ui/core/Link'
+import Button from '@material-ui/core/Button'
 import Link from '../../src/Link'
 import Page from '../../src/Page'
 import Section from '../../src/Section'
 import UpcomingVoyages from '../../src/ocean-fishing/UpcomingVoyages'
 import RouteInformation from '../../src/ocean-fishing/RouteInformation'
 import AchievementsInformation from '../../src/ocean-fishing/AchievementsInformation'
-import * as maps from '../../src/ocean-fishing/maps'
+import { DestinationStopTime } from '../../src/ocean-fishing/ocean-fishing'
 import { useTranslation } from '../../src/i18n'
 
 export const ChecklistContext = React.createContext<{ checklist: number[], setChecklist: (checklist: number[]) => void }>(
   { checklist: [], setChecklist: () => {} }
 )
 
+const useStyles = makeStyles(theme => ({
+  buttons: {
+    textAlign: 'center',
+    marginBottom: theme.spacing(2),
+    '& > *': {
+      margin: theme.spacing(1),
+      color: theme.palette.text.primary,
+      textTransform: 'none',
+      '&:hover': {
+        textDecoration: 'none'
+      }
+    }
+  }
+}))
+
 const OceanFishing = () => {
+  const classes = useStyles()
   const { t } = useTranslation('ocean-fishing')
   const [now, setNow] = useState<Date>(new Date())
-  const [selectedRoute, setSelectedRoute] = useState<maps.DestinationStopTime | null>(null) // This is initialized when UpcomingVoyages is mounted
+  const [selectedRoute, setSelectedRoute] = useState<DestinationStopTime | null>(null) // This is initialized when UpcomingVoyages is mounted
   const [checklist, setChecklist] = useState<number[]>([])
 
   useEffect(() => {
@@ -52,11 +69,16 @@ const OceanFishing = () => {
       <ChecklistContext.Provider value={{ checklist, setChecklist }}>
         <Section>
           <Typography paragraph>
-            Data are taken from the <MuiLink href='https://docs.google.com/spreadsheets/d/1brCfvmSdYl7RcY9lkgm_ds8uaFqq7qaxOOz-5BfHuuk/edit?usp=sharing'>Ocean Fishing Spreadsheet</MuiLink> managed by S’yahn Tia. Bite times are from <MuiLink href='https://ffxivteamcraft.com/'>Teamcraft</MuiLink> when available. For questions/comments/corrections, please visit the <MuiLink href='https://discord.gg/AnFaDpN'>Fisherman’s Horizon Discord</MuiLink> or message Lulu Pillow@Adamantoise or Pillowfication#0538.
+            Data are taken from the <Link href='https://docs.google.com/spreadsheets/d/1brCfvmSdYl7RcY9lkgm_ds8uaFqq7qaxOOz-5BfHuuk/edit?usp=sharing'>Ocean Fishing Spreadsheet</Link> managed by S’yahn Tia. Bite times are from <Link href='https://ffxivteamcraft.com/'>Teamcraft</Link> when available. For questions/comments/corrections, please visit the <Link href='https://discord.gg/AnFaDpN'>Fisherman’s Horizon Discord</Link> or message Lulu Pillow@Adamantoise or Pillowfication#0538.
           </Typography>
-          <Typography paragraph>
-            For a static list of all the fish and more information, see the <Link href='/ocean-fishing/fish'>Fish page</Link>.
-          </Typography>
+          <div className={classes.buttons}>
+            <Button component={Link} variant='contained' href='/ocean-fishing/about'>
+              <Typography>{t('about')}</Typography>
+            </Button>
+            <Button component={Link} variant='contained' href='/ocean-fishing/fish'>
+              <Typography>{t('fish')}</Typography>
+            </Button>
+          </div>
         </Section>
         <UpcomingVoyages now={now} onSelectRoute={setSelectedRoute} />
         {selectedRoute && (
