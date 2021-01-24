@@ -64,7 +64,7 @@ type Props = {
 const RouteInformation = ({ now, selectedRoute }: Props) => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('ocean-fishing')
-  const [fishFilter, setFishFilter] = useState<FishFilter>(FishFilter.Intuition)
+  const [fishFilter, setFishFilter] = useState(FishFilter.Intuition)
   const [tab, setTab] = useState(0)
   const stops = getStops(selectedRoute)
   const next = calculateVoyages(now, 1, [selectedRoute])[0].time

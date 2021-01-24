@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
     left: 0,
     width: ({ size }: { size: number }) => size * 1.2,
     height: ({ size }: { size: number }) => size * 1.1,
-    backgroundImage: `url("${'/images/item-overlay-lg.png'}")`,
+    backgroundImage: 'url("/images/ocean-fishing/item-overlay-lg.png")',
     backgroundSize: '100% auto'
   }
 }))
@@ -66,4 +66,4 @@ const OceanFishIconLarge = ({ fishId, size = 128, className }: Props) => {
   )
 }
 
-export default OceanFishIconLarge
+export default React.memo(OceanFishIconLarge)

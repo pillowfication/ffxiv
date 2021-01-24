@@ -70,7 +70,7 @@ function camelCase (id: number | string): string {
   }
 }
 
-const useStyles = makeStyles((theme) => {
+const useStyles = makeStyles(theme => {
   const styles = {
     iconContainer: {
       display: 'inline-block',
@@ -86,7 +86,7 @@ const useStyles = makeStyles((theme) => {
       left: ({ size }: { size: number }) => size * 0.1,
       width: ({ size }: { size: number }) => size,
       height: ({ size }: { size: number }) => size,
-      backgroundImage: `url("${'/images/ocean-fishing-icons.png'}")`,
+      backgroundImage: 'url("/images/ocean-fishing/ocean-fishing-icons.png")',
       backgroundSize: `${ICON_COLS * 100}% ${ICON_ROWS * 100}%`
     },
     iconOverlay: {
@@ -95,7 +95,7 @@ const useStyles = makeStyles((theme) => {
       left: 0,
       width: ({ size }: { size: number }) => size * 1.2,
       height: ({ size }: { size: number }) => size * 1.1,
-      backgroundImage: `url("${'/images/item-overlay.png'}")`,
+      backgroundImage: 'url("/images/ocean-fishing/item-overlay.png")',
     },
     achievementOverlay: {
       position: 'absolute' as 'absolute',
@@ -103,7 +103,7 @@ const useStyles = makeStyles((theme) => {
       left: 0,
       width: ({ size }: { size: number }) => size * 1.2,
       height: ({ size }: { size: number }) => size * 1.2,
-      backgroundImage: `url("${'/images/achievement-overlay.png'}")`
+      backgroundImage: 'url("/images/ocean-fishing/achievement-overlay.png")'
     },
     hasPopper: {
       cursor: 'pointer'
@@ -177,4 +177,4 @@ const OceanFishIcon = ({ type, id, size = 40, className }: Props) => {
   )
 }
 
-export default OceanFishIcon
+export default React.memo(OceanFishIcon)

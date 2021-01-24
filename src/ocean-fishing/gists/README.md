@@ -10,7 +10,7 @@ This reformats the data from `data/fish-data.json`, picking only relevant data a
 
 3. `ts-node create-sprites.ts`
 
-All the images needed are fetched and spliced together into a single image at `data/ocean-fishing-icons.png`. The file `data/ocean-fishing-icons-map.json` is also created which keeps track of which image was placed where. Copy the image to `/public/images/ocean-fishing-icons.png`.
+All the images needed are fetched and spliced together into a single image at `data/ocean-fishing-icons.png`. The file `data/ocean-fishing-icons-map.json` is also created which keeps track of which image was placed where. Copy the image to `/public/images/ocean-fishing/ocean-fishing-icons.png`.
 
 4. Go to the [Ocean Fishing spreadsheet](https://docs.google.com/spreadsheets/d/1brCfvmSdYl7RcY9lkgm_ds8uaFqq7qaxOOz-5BfHuuk/edit#gid=149797934) and click `File > Download > Web page`. Extract `Ocean Fishing Textual Style.html` into the `data` folder.
 

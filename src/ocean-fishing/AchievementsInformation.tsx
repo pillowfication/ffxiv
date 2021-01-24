@@ -31,4 +31,4 @@ const AchievementsInformation = ({ selectedRoute }: Props) => {
   )
 }
 
-export default AchievementsInformation
+export default React.memo(AchievementsInformation)

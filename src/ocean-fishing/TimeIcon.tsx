@@ -72,4 +72,4 @@ const TimeIcon = ({ time }: Props) => {
   }
 }
 
-export default TimeIcon
+export default React.memo(TimeIcon)
