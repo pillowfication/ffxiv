@@ -4,7 +4,8 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
-import { fishingSpots } from './gists/data'
+import { fishingSpots } from './ocean-fishing/data'
+import { StopTime } from './ocean-fishing'
 import * as maps from './maps'
 import { translate } from './utils'
 import { useTranslation } from '../i18n'
@@ -17,7 +18,7 @@ const useStyles = makeStyles(() => ({
 
 type Props = {
   index: number,
-  stop: maps.StopTime,
+  stop: StopTime,
   children?: React.ReactNode
 }
 

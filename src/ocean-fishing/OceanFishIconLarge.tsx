@@ -2,7 +2,7 @@ import React from 'react'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import Tooltip from '@material-ui/core/Tooltip'
-import { fishes, Fish } from './gists/data'
+import { fishes, Fish } from './ocean-fishing/data'
 import { translate } from './utils'
 import { useTranslation } from '../i18n'
 

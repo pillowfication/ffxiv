@@ -10,10 +10,10 @@ import TableBody from '@material-ui/core/TableBody'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import OceanFishIcon from './OceanFishIcon'
-import { fishingSpots } from './gists/data'
+import { fishingSpots } from './ocean-fishing/data'
+import { calculateVoyages, DestinationStopTime } from './ocean-fishing'
 import * as maps from './maps'
 import { toTimeString } from '../utils'
-import calculateVoyages from './calculate-voyages'
 import { getBlueFish, timeUntil, translate, upperFirst } from './utils'
 import { useTranslation } from '../i18n'
 
@@ -64,14 +64,14 @@ const useStyles = makeStyles(theme => ({
 type Props = {
   now: Date,
   numRows: number,
-  filter?: maps.DestinationStopTime[],
-  onSelectRoute: (route: maps.DestinationStopTime) => void
+  filter?: DestinationStopTime[],
+  onSelectRoute: (route: DestinationStopTime) => void
 }
 
 const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute }: Props) => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('ocean-fishing')
-  const [hover, setHover] = useState<maps.DestinationStopTime | null>(null)
+  const [hover, setHover] = useState<DestinationStopTime | null>(null)
   const upcomingVoyages = calculateVoyages(now, Math.min(Math.max(numRows, 1), 50), filter)
   const locale = i18n.language
 

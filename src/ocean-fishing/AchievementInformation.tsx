@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Section from '../Section'
 import OceanFishIcon from './OceanFishIcon'
-import { achievements } from './gists/data/ocean-fish-data.json'
+import { achievements } from './ocean-fishing/data'
 import { translate } from './utils'
 import { useTranslation } from '../i18n'
 

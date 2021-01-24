@@ -11,8 +11,8 @@ import ListSubheader from '@material-ui/core/ListSubheader'
 import MenuItem from '@material-ui/core/MenuItem'
 import Section from '../Section'
 import UpcomingVoyagesTable from './UpcomingVoyagesTable'
-import { fishingSpots, fishes, achievements } from './gists/data'
-import calculateVoyages from './calculate-voyages'
+import { fishingSpots, fishes, achievements } from './ocean-fishing/data'
+import { calculateVoyages, DestinationStopTime } from './ocean-fishing'
 import * as maps from './maps'
 import { translate, upperFirst } from './utils'
 import { useTranslation } from '../i18n'
@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
 
 type Props = {
   now: Date,
-  onSelectRoute: (route: maps.DestinationStopTime) => void
+  onSelectRoute: (route: DestinationStopTime) => void
 }
 
 const UpcomingVoyages = ({ now, onSelectRoute }: Props) => {

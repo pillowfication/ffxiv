@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import fetch from 'node-fetch'
-import { fishingSpots, baits } from './data/ocean-fish-data.json'
+import { fishingSpots, baits } from '../data/ocean-fish-data.json'
 
 const BAITS = [
   ...Object.keys(baits).map(Number),

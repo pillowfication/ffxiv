@@ -1,5 +1,6 @@
 import { timeUntil as genericTimeUntil } from '../utils'
-import { fishingSpots, fishes } from './gists/data'
+import { fishingSpots, fishes } from './ocean-fishing/data'
+import { getStops, Time, DestinationStopTime } from './ocean-fishing'
 import { Bait as BaitChainProp } from './BaitChain'
 import * as maps from './maps'
 import { TFunction } from 'next-i18next'
@@ -23,13 +24,7 @@ export function timeUntil (now: Date, then: Date, options: { t: TFunction, full?
   }
 }
 
-export function getStops (destinationCode: maps.DestinationStopTime) {
-  const stops: maps.Stop[] = maps.STOPS_SEQUENCE[destinationCode[0]]
-  const times: maps.Time[] = maps.TIMES_SEQUENCE[destinationCode[1]]
-  return [stops[0] + times[0], stops[1] + times[1], stops[2] + times[2]] as [maps.StopTime, maps.StopTime, maps.StopTime]
-}
-
-export function getTimeSensitiveFish (destinationCode: maps.DestinationStopTime): number[][] {
+export function getTimeSensitiveFish (destinationCode: DestinationStopTime): number[][] {
   const stopTimes = getStops(destinationCode)
   return stopTimes
     .map((destinationStopTime, index) => {
@@ -43,7 +38,7 @@ export function getTimeSensitiveFish (destinationCode: maps.DestinationStopTime)
     })
 }
 
-export function getPointsFish (destinationCode: maps.DestinationStopTime): number[][] {
+export function getPointsFish (destinationCode: DestinationStopTime): number[][] {
   const stopTimes = getStops(destinationCode)
   return stopTimes
     .map((destinationStopTime, index) => {
@@ -77,7 +72,7 @@ export function getPointsFish (destinationCode: maps.DestinationStopTime): numbe
     })
 }
 
-export function getBlueFish (destinationCode: maps.DestinationStopTime): number[] {
+export function getBlueFish (destinationCode: DestinationStopTime): number[] {
   const stopTimes = getStops(destinationCode)
   return stopTimes
     .map(destinationStopTime => maps.BLUE_FISH_MAP[destinationStopTime[0]])
@@ -127,7 +122,7 @@ export function upperFirst (str: string) {
   return str[0].toUpperCase() + str.slice(1)
 }
 
-export function getBlindDHRanges (fishId: number, baitId: number, time: maps.Time) {
+export function getBlindDHRanges (fishId: number, baitId: number, time: Time) {
   const fishInfo = fishes[fishId].spreadsheet_data
   if (time && fishInfo.time && fishInfo.time.indexOf(time) === -1) return null
   if (!fishInfo.bite_time[baitId]) return null

@@ -1,4 +1,4 @@
-import { DestinationStop, Time, DestinationStopTime } from './maps'
+import { DestinationStop, Time, DestinationStopTime } from './types'
 
 const _9HR = 32400000
 const _45MIN = 2700000
@@ -29,7 +29,7 @@ function _calculateVoyages (date: Date, count: number, filter?: string[]) {
   let timeIndex = ((day + voyageNumber) % 12 + 12) % 12
 
   // Loop until however many voyages are found
-  const upcomingVoyages: Array<{time: Date, destinationCode: DestinationStopTime}> = []
+  const upcomingVoyages: { time: Date, destinationCode: DestinationStopTime }[] = []
   while (upcomingVoyages.length < count) {
     const destinationCode = DEST_CYCLE[destIndex] + TIME_CYCLE[timeIndex] as DestinationStopTime
     if (!filter || filter.includes(destinationCode)) {
@@ -53,12 +53,12 @@ function _calculateVoyages (date: Date, count: number, filter?: string[]) {
 // Record the pattern for faster calculations
 const pattern = _calculateVoyages(new Date(_45MIN), 144).map(x => x.destinationCode)
 
-export default function calculateVoyages (date: Date, count: number, filter?: string[]) {
+export default function calculateVoyages (date: Date, count: number, filter?: string[] | ((destinationCode: DestinationStopTime) => boolean)) {
   const startIndex = Math.floor((date.getTime() - _45MIN) / 7200000)
   const results = []
-  for (let i = 0; results.length < count; ++i) {
+  for (let i = 0; results.length < count && i < 100000; ++i) {
     const destinationCode = pattern[(startIndex + i) % 144]
-    if (!filter || filter.includes(destinationCode)) {
+    if (!filter || (typeof filter === 'function' ? filter(destinationCode) : filter.includes(destinationCode))) {
       results.push({
         time: new Date((startIndex + i + 1) * 7200000),
         destinationCode

@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Tooltip from '@material-ui/core/Tooltip'
-import * as maps from './maps'
+import { Time } from './ocean-fishing'
 import { useTranslation } from '../i18n'
 
 const ICON_SIZE = 32
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 type Props = {
-  time: maps.Time
+  time: Time
 }
 
 const TimeIcon = ({ time }: Props) => {

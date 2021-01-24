@@ -1,8 +1,8 @@
 import fs from 'fs'
 import path from 'path'
-import fetch, { fetchAllPages, getSearchResult } from '../../fetch-xivapi'
+import fetch, { fetchAllPages, getSearchResult } from '../../../fetch-xivapi'
 
-const OUTPUT = path.resolve(__dirname, './data/fish-data.json')
+const OUTPUT = path.resolve(__dirname, '../data/fish-data.json')
 const THE_HIGH_SEAS = 900 // TerritoryID
 
 ;(async () => {

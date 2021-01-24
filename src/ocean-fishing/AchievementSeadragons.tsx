@@ -6,12 +6,12 @@ import AchievementInformation from './AchievementInformation'
 import RouteCardContainer from './RouteCardContainer'
 import RouteCard from './RouteCard'
 import BaitList from './BaitList'
-import { getStops, getBaitGroup, subtextDH } from './utils'
-import * as maps from './maps'
+import { getStops, DestinationStopTime } from './ocean-fishing'
+import { getBaitGroup, subtextDH } from './utils'
 import seadragonsMacro from './macros/seadragons.ffmacro'
 
 type Props = {
-  selectedRoute: maps.DestinationStopTime
+  selectedRoute: DestinationStopTime
 }
 
 const AchievementSeadragons = ({ selectedRoute }: Props) => {

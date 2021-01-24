@@ -1,10 +1,10 @@
 import fs from 'fs'
 import path from 'path'
 import { createCanvas, loadImage, Image } from 'canvas'
-import { fishingSpots, fishes, baits, achievements } from './data/ocean-fish-data.json'
+import { fishingSpots, fishes, baits, achievements } from '../data/ocean-fish-data.json'
 
-const OUTPUT = path.resolve(__dirname, './data/ocean-fishing-icons.png')
-const OUTPUT_MAP = path.resolve(__dirname, './data/ocean-fishing-icons-map.json')
+const OUTPUT = path.resolve(__dirname, '../data/ocean-fishing-icons.png')
+const OUTPUT_MAP = path.resolve(__dirname, '../data/ocean-fishing-icons-map.json')
 
 // Layout will be
 //   Fishing Spot #1 fishes

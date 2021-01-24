@@ -1,26 +1,8 @@
 import React from 'react'
 import TimeIcon from './TimeIcon'
+import { Stop, Time, DestinationStopTime } from './ocean-fishing'
 
-export type DestinationStop = 'B' | 'N' | 'R' | 'T'
-export type Stop = 'B' | 'C' | 'G' | 'N' | 'R' | 'S' | 'T'
-export type Time = 'D' | 'S' | 'N'
-export type DestinationStopTime = `${DestinationStop}${Time}`
-export type StopTime = `${Stop}${Time}`
-
-export const STOPS_SEQUENCE: { [key in DestinationStop]: [Stop, Stop, Stop] } = {
-  B: ['C', 'N', 'B'],
-  N: ['S', 'G', 'N'],
-  R: ['G', 'S', 'R'],
-  T: ['C', 'R', 'T']
-}
-
-export const TIMES_SEQUENCE: { [key in Time]: [Time, Time, Time] } = {
-  D: ['S', 'N', 'D'],
-  S: ['N', 'D', 'S'],
-  N: ['D', 'S', 'N']
-}
-
-export const STOP_MAP: { [key in Stop]: number } = {
+export const STOP_MAP: Record<Stop, number> = {
   B: 248,
   C: 246,
   G: 237,
@@ -30,13 +12,13 @@ export const STOP_MAP: { [key in Stop]: number } = {
   T: 250
 }
 
-export const TIME_MAP: { [key in Time]: React.ReactNode } = {
+export const TIME_MAP: Record<Time, React.ReactNode> = {
   D: React.createElement(TimeIcon, { time: 'D' }),
   N: React.createElement(TimeIcon, { time: 'N' }),
   S: React.createElement(TimeIcon, { time: 'S' })
 }
 
-export const SPECTRAL_FISH_MAP: { [key in Stop]: number } = {
+export const SPECTRAL_FISH_MAP: Record<Stop, number> = {
   B: 32083,
   C: 32063,
   G: 29784,
@@ -46,7 +28,7 @@ export const SPECTRAL_FISH_MAP: { [key in Stop]: number } = {
   T: 32103
 }
 
-export const GREEN_FISH_MAP: { [key in Stop]: number } = {
+export const GREEN_FISH_MAP: Record<Stop, number> = {
   B: 32084,
   C: 32064,
   G: 29744,
@@ -56,7 +38,7 @@ export const GREEN_FISH_MAP: { [key in Stop]: number } = {
   T: 32104
 }
 
-export const BLUE_FISH_MAP: { [key in Stop]: number } = {
+export const BLUE_FISH_MAP: Record<Stop, number> = {
   B: 32094,
   C: 32074,
   G: 29788,
@@ -66,7 +48,7 @@ export const BLUE_FISH_MAP: { [key in Stop]: number } = {
   T: 32114
 }
 
-export const ACHIEVEMENTS_MAP: { [key in DestinationStopTime]: number[] } = {
+export const ACHIEVEMENTS_MAP: Record<DestinationStopTime, number[]> = {
   BD: [2755],
   BN: [2756],
   BS: [],

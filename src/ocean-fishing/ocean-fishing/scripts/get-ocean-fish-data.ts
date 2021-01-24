@@ -4,9 +4,9 @@ import fetch from 'node-fetch'
 import cheerio from 'cheerio'
 
 // @ts-ignore
-import { fishingSpots, fishes, baits, achievements } from './data/fish-data.json'
+import { fishingSpots, fishes, baits, achievements } from '../data/fish-data.json'
 
-const OUTPUT = path.resolve(__dirname, './data/ocean-fish-data.json')
+const OUTPUT = path.resolve(__dirname, '../data/ocean-fish-data.json')
 
 async function getFFXIV (url: string) {
   console.log('Fetching', url)

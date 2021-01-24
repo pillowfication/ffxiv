@@ -1,10 +1,10 @@
 import fs from 'fs'
 import path from 'path'
 import cheerio from 'cheerio'
-import { Weather } from '../../skywatcher/weather'
+import { Weather } from '../../../skywatcher/weather'
 
-const SHEET = path.resolve(__dirname, './data/Ocean Fishing Textual Style.html')
-const OUTPUT = path.resolve(__dirname, './data/spreadsheet-data-raw.json')
+const SHEET = path.resolve(__dirname, '../data/Ocean Fishing Textual Style.html')
+const OUTPUT = path.resolve(__dirname, '../data/spreadsheet-data-raw.json')
 const $ = cheerio.load(fs.readFileSync(SHEET).toString())
 
 type Cheerio = any // I don't know how to get the Cheerio type from cheerio

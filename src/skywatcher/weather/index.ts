@@ -3,8 +3,7 @@ import { Place } from './src/types/place'
 import partition from './data/partition.json'
 import weatherRates from './data/weather-rates.json'
 
-export { Weather }
-export { Place }
+export type { Weather, Place }
 export { default as translateWeather } from './src/translate-weather'
 export { default as translatePlace } from './src/translate-place'
 

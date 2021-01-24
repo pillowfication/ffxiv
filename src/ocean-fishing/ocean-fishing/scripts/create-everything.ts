@@ -1,10 +1,10 @@
 import fs from 'fs'
 import path from 'path'
-import fishData from './data/ocean-fish-data.json'
-import spreadsheet from './data/spreadsheet-data.json'
-import biteTimes from './data/ocean-fish-bite-times.json'
+import fishData from '../data/ocean-fish-data.json'
+import spreadsheet from '../data/spreadsheet-data.json'
+import biteTimes from '../data/ocean-fish-bite-times.json'
 
-const OUTPUT = path.resolve(__dirname, './data/everything.json')
+const OUTPUT = path.resolve(__dirname, '../data/everything.json')
 
 const fishesByName = {}
 Object.values(fishData.fishes).forEach(fish => { fishesByName[fish.name_en] = fish })

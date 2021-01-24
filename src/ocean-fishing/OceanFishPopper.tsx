@@ -20,8 +20,8 @@ import TimeIcon from './TimeIcon'
 import BaitGroup from './BaitGroup'
 import ChecklistCheckmark from './ChecklistCheckmark'
 import WeatherIcon from '../skywatcher/WeatherIcon'
-import { fishes } from './gists/data'
-import * as maps from './maps'
+import { fishes } from './ocean-fishing/data'
+import { Time } from './ocean-fishing'
 import { getBaitGroup, subtextBiteTime, translate } from './utils'
 import { useTranslation } from '../i18n'
 
@@ -153,7 +153,7 @@ const OceanFishPopper = ({ fishId }: Props) => {
                   {fishInfo.time ?
                     fishInfo.time === 'DSN'
                       ? 'Any'
-                      : fishInfo.time && fishInfo.time.split('').map(time => <TimeIcon key={time} time={time as maps.Time} />)
+                      : fishInfo.time && fishInfo.time.split('').map(time => <TimeIcon key={time} time={time as Time} />)
                     : '?'}
                 </TableCell>
               </TableRow>

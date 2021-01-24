@@ -13,8 +13,8 @@ import TimeIcon from './TimeIcon'
 import Tug from './Tug'
 import ChecklistCheckmark from './ChecklistCheckmark'
 import WeatherIcon from '../skywatcher/WeatherIcon'
-import { fishingSpots, fishes } from './gists/data'
-import * as maps from './maps'
+import { fishingSpots, fishes } from './ocean-fishing/data'
+import { Time } from './ocean-fishing'
 import { translate } from './utils'
 import { useTranslation } from '../i18n'
 
@@ -143,7 +143,7 @@ const FishTable = ({ spots, time }: Props) => {
                           if (isSpectral) {
                             return fishInfo.time === 'DSN'
                               ? 'Any'
-                              : fishInfo.time && fishInfo.time.split('').map(time => <TimeIcon key={time} time={time as maps.Time} />)
+                              : fishInfo.time && fishInfo.time.split('').map(time => <TimeIcon key={time} time={time as Time} />)
                           } else {
                             if (!fishInfo.weathers) return null
                             switch (fishInfo.weathers.type) {

@@ -1,9 +1,9 @@
 import fs from 'fs'
 import path from 'path'
-import { fishes, baits } from './data/ocean-fish-data.json'
-import biteTimes from './data/ocean-fish-bite-times.json'
+import { fishes, baits } from '../data/ocean-fish-data.json'
+import biteTimes from '../data/ocean-fish-bite-times.json'
 
-const OUTPUT = path.resolve(__dirname, './data/bite-times.csv')
+const OUTPUT = path.resolve(__dirname, '../data/bite-times.csv')
 
 const BAITS = [
   ...Object.keys(baits).map(Number),

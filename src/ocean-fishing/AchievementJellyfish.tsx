@@ -7,12 +7,12 @@ import RouteCardContainer from './RouteCardContainer'
 import RouteCard from './RouteCard'
 import BaitList from './BaitList'
 import Tug from './Tug'
-import { getStops, getBaitGroup, subtextDH } from './utils'
-import * as maps from './maps'
+import { getStops, DestinationStopTime } from './ocean-fishing'
+import { getBaitGroup, subtextDH } from './utils'
 import jellyfishMacro from './macros/jellyfish.ffmacro'
 
 type Props = {
-  selectedRoute: maps.DestinationStopTime
+  selectedRoute: DestinationStopTime
 }
 
 const AchievementJellyfish = ({ selectedRoute }: Props) => {

@@ -6,10 +6,11 @@ import AchievementSeadragons from './AchievementSeadragons'
 import AchievementBalloons from './AchievementBalloons'
 import AchievementCrabs from './AchievementCrabs'
 import AchievementMantas from './AchievementMantas'
+import { DestinationStopTime } from './ocean-fishing'
 import * as maps from './maps'
 
 type Props = {
-  selectedRoute: maps.DestinationStopTime
+  selectedRoute: DestinationStopTime
 }
 
 const AchievementsInformation = ({ selectedRoute }: Props) => {

@@ -13,12 +13,11 @@ import RouteCardContainer from './RouteCardContainer'
 import RouteCard from './RouteCard'
 import FishPanel from './FishPanel'
 import BaitList from './BaitList'
-import calculateVoyages from './calculate-voyages'
-import { fishingSpots, fishes } from './gists/data'
+import { fishingSpots, fishes } from './ocean-fishing/data'
+import { calculateVoyages, getStops, DestinationStopTime } from './ocean-fishing'
 import * as maps from './maps'
 import {
   timeUntil,
-  getStops,
   getTimeSensitiveFish,
   getPointsFish,
   getBlueFish,
@@ -58,7 +57,7 @@ enum FishFilter {
 
 type Props = {
   now: Date,
-  selectedRoute: maps.DestinationStopTime
+  selectedRoute: DestinationStopTime
 }
 
 const RouteInformation = ({ now, selectedRoute }: Props) => {
