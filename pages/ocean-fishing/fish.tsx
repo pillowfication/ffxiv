@@ -103,7 +103,7 @@ const Fish = () => {
   }
 
   return (
-    <Page title={`${t('title')} - ${t('fish')}`}>
+    <Page title={`${t('title')} - ${t('fishPage.title')}`}>
       <ChecklistContext.Provider value={{ checklist, setChecklist }}>
         <Section>
           <Typography paragraph>

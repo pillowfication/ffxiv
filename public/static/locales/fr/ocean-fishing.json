@@ -11,7 +11,19 @@
   "showPointsFish": "Show high-value fish",
   "showAllFish": "Montrer tous les poissons",
   "fish": "Poisson",
-  "about": "About",
+  "aboutPage": {
+    "title": "About",
+    "data": "Data",
+    "algorithm": "Algorithm"
+  },
+  "fishPage": {
+    "title": "Poisson"
+  },
+  "objectivesPage": {
+    "title": "Objectifs",
+    "calculator": "Calculator",
+    "basePoints": "Base Points"
+  },
   "routeInfo": {
     "time": "Heure",
     "route": "Itinéraire",

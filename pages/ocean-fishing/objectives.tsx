@@ -1,177 +1,263 @@
-import React from 'react'
+import React, { useState } from 'react'
+import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
-import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
+import Table from '@material-ui/core/Table'
+import TableHead from '@material-ui/core/TableHead'
+import TableBody from '@material-ui/core/TableBody'
+import TableRow from '@material-ui/core/TableRow'
+import TableCell from '@material-ui/core/TableCell'
+import TextField from '@material-ui/core/TextField'
+import InputAdornment from '@material-ui/core/InputAdornment'
+import IconButton from '@material-ui/core/IconButton'
+import CheckIcon from '@material-ui/icons/Check'
 import Page from '../../src/Page'
 import Section from '../../src/Section'
-import Link from '../../src/Link'
-import Highlight from '../../src/Highlight'
-import { mathJaxRequire, $$ } from '../../src/MathJax'
+import OceanFishIcon from '../../src/ocean-fishing/OceanFishIcon'
+import { objectives } from '../../src/ocean-fishing/ocean-fishing/data'
+import { translate } from '../../src/ocean-fishing/utils'
 import { useTranslation } from '../../src/i18n'
 
 const useStyles = makeStyles(theme => ({
-  nestedList: {
-    listStyleType: 'none',
-    counterReset: 'counter',
-    '& li': {
-      position: 'relative',
-      marginTop: theme.spacing(0.5),
-      marginBottom: theme.spacing(0.5),
-      '&::before': {
-        position: 'absolute',
-        left: '-2em',
-        content: 'counters(counter, ".") "."',
-        counterIncrement: 'counter'
-      }
+  check: {
+    padding: 10
+  },
+  unchecked: {
+    opacity: 0.4
+  },
+  checked: {
+    color: 'green'
+  },
+  bonusContainer: {
+    margin: theme.spacing(2, 0),
+    paddingBottom: theme.spacing(4),
+    textAlign: 'center',
+    '& > *': {
+      display: 'inline-block',
+      verticalAlign: 'middle'
     }
   },
-  code: {
-    padding: theme.spacing(0.2, 1)
+  bonus: {
+    position: 'relative'
+  },
+  bonusPercentage: {
+    position: 'absolute',
+    left: 0,
+    right: 0
+  },
+  bigger: {
+    fontSize: '1.5em'
+  },
+  calculatorGoal: {
+    textAlign: 'justify',
+    textAlignLast: 'justify',
+    '& > *': {
+      display: 'inline-block'
+    }
   }
 }))
 
-const About = () => {
+function getOverrides (objectiveId: string) {
+  switch (objectiveId) {
+    case 'big-fish-in-a-small-pond': return ['small-fish-in-a-big-pond']
+    case 'teach-a-man-to-fish': return ['give-a-man-a-fish']
+    case 'ocean-fishing-enthusiast': return ['ocean-fishing-amateur']
+    case 'ocean-fishing-fanatic': return ['ocean-fishing-amateur', 'ocean-fishing-enthusiast']
+    default: return []
+  }
+}
+
+function getOverriddenBy (objectiveId: string) {
+  switch (objectiveId) {
+    case 'small-fish-in-a-big-pond': return ['big-fish-in-a-small-pond']
+    case 'give-a-man-a-fish': return ['teach-a-man-to-fish']
+    case 'ocean-fishing-amateur': return ['ocean-fishing-enthusiast', 'ocean-fishing-fanatic']
+    case 'ocean-fishing-enthusiast': return ['ocean-fishing-fanatic']
+    default: return []
+  }
+}
+
+const Objectives = () => {
   const classes = useStyles()
-  const { t } = useTranslation('ocean-fishing')
+  const [basePoints, setBasePoints] = useState(5000)
+  const [checked, setChecked] = useState<Record<string, boolean>>({
+    'small-fish-in-a-big-pond': true,
+    'big-fish-in-a-small-pond': true,
+    'a-rare-catch': true,
+    'give-a-man-a-fish': true,
+    'bream-team-galadion-bay': true,
+    'bream-team-southern-strait-of-merlthor': true,
+    'bream-team-northern-strait-of-merlthor': true,
+    'ocean-fishing-amateur': true,
+    'ocean-fishing-enthusiast': true,
+    'ocean-fishing-fanatic': true
+  })
+  const { t, i18n } = useTranslation('ocean-fishing')
+  const locale = i18n.language
+
+  const filteredObjectives = Object.values(objectives)
+    .filter(objective => {
+      if (!checked[objective.id]) {
+        return false
+      }
+      for (const override of getOverriddenBy(objective.id)) {
+        if (checked[override]) {
+          return false
+        }
+      }
+      return true
+    })
+  const totalBonus = filteredObjectives.reduce((acc, curr) => acc + curr.bonus, 0)
+  const totalBonusPercentage = (100 + totalBonus) / 100
+
+  const handleClickChecked = (objectiveId: string) => {
+    const newChecked = { ...checked, [objectiveId]: !checked[objectiveId]}
+    if (newChecked[objectiveId]) {
+      getOverrides(objectiveId).forEach(objective => { newChecked[objective] = true })
+    } else {
+      getOverriddenBy(objectiveId).forEach(objective => { newChecked[objective] = false })
+    }
+    setChecked(newChecked)
+  }
+
+  const handleInputBasePoints = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setBasePoints(Math.max(0, Number(event.target.value)))
+  }
 
   return (
-    <Page title={`${t('title')} - ${t('about')}`}>
-      {mathJaxRequire('cancel')}
-      <Section title={t('about.data')}>
-        <Typography paragraph>
-          Data are taken from the <Link href='https://docs.google.com/spreadsheets/d/1brCfvmSdYl7RcY9lkgm_ds8uaFqq7qaxOOz-5BfHuuk/edit?usp=sharing'>Ocean Fishing Spreadsheet</Link> managed by S’yahn Tia. To report errors, please visit the <Link href='https://discord.gg/AnFaDpN'>Fisherman’s Horizon Discord</Link> or message Lulu Pillow@Adamantoise or Pillowfication#0538.
-        </Typography>
-        <Typography paragraph>
-          Bite times are periodically fetched from <Link href='https://ffxivteamcraft.com/'>Teamcraft</Link> and cleaned up with the following process:
-        </Typography>
-        <ol className={classes.nestedList}>
-          <Typography component='li'>
-            For each of the 14 fishing spots (non spectral and spectral) and for each of the 15 baits (mooches included), fetch all reports at the specified fishing spot with the specified bait.
-          </Typography>
-          <Typography component='li'>
-            For each fish-bait combination, calculate the bite time range from the reports.
-            <ol className={classes.nestedList}>
-              <Typography component='li'>
-                If there are fewer than 10 total reports, do not calculate the bite time range. (This tends to remove reports where fish are caught with the baits that should be impossible, or blue fish where too few reports are recorded)
-              </Typography>
-              <Typography component='li'>
-                Otherwise, remove the top 5% and the bottom 5% of the reports. The minimum and maximum of the remaining reports is used as the bite time range. (This tends to remove outliers, like <Link href='https://media.discordapp.net/attachments/593471315319717888/797807850562912256/unknown.png'>Godsbed taking 18 hours to catch</Link>)
-              </Typography>
-            </ol>
-          </Typography>
-          <Typography component='li'>
-            For each fish, calculate the bite time range for all baits, excluding Versatile Lure.
-          </Typography>
-        </ol>
-        <Typography paragraph>
-          The bite times shown on the <Link href='/ocean-fishing'>Ocean Fishing page</Link> are the bite time ranges for all baits. The bite time ranges for all baits can currently be found at <Link href='https://github.com/pillowfication/ffxiv/blob/master/src/ocean-fishing/ocean-fishing/data/bite-times.csv'>bite-times.csv</Link>.
-        </Typography>
-        <Typography paragraph>
-          All my data and the code I used are available on <Link href='https://github.com/pillowfication/ffxiv/tree/master/src/ocean-fishing/ocean-fishing'>GitHub</Link>.
-        </Typography>
+    <Page title={`${t('title')} - ${t('objectivesPage.title')}`}>
+      <Section>
+        <Table size='small'>
+          <TableHead>
+            <TableRow>
+              <TableCell colSpan={3} align='center'>Objective</TableCell>
+              <TableCell align='center'>Description</TableCell>
+              <TableCell align='center'>Bonus</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {Object.values(objectives).map(objective =>
+              <TableRow key={objective.id}>
+                <TableCell>
+                  <IconButton
+                    className={clsx(classes.check, checked[objective.id] ? classes.checked : classes.unchecked)}
+                    onClick={handleClickChecked.bind(null, objective.id)}
+                  >
+                    <CheckIcon />
+                  </IconButton>
+                </TableCell>
+                <TableCell>
+                  <OceanFishIcon type='objective' id={objective.id} />
+                </TableCell>
+                <TableCell>
+                  <Typography>{translate(locale, objective, 'name')}</Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography>{translate(locale, objective, 'description')}</Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography align='center'>{objective.bonus}%</Typography>
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
       </Section>
-      <Section title={t('about.algorithm')}>
-        <Typography paragraph>
-          Ocean Fishing voyages follow a specific pattern best seen using Japan Standard Time (JST). Voyages leave every 2 hours on odd hours (at 1:00, 3:00, …, 23:00). The destination always cycles between the 4 destinations in the following order:
-        </Typography>
-        <Box mb={2}>
-          {$$('\\cdots \\to \\text{Bloodbrine Sea} \\to \\text{Rothlyt Sound} \\to \\text{Northern Strait of Merlthor} \\to \\text{Rhotano Sea} \\to \\cdots')}
-        </Box>
-        <Typography paragraph>
-          The 4 destinations will all be set to arrive at Day, then repeated to arrive at Sunset, then repeated to arrive at Night. There are 12 routes that I label as
-        </Typography>
-        <Box mb={2}>
-          {$$(`
-            \\begin{array}{r|ccc}
-              & \\text{Day (D)} & \\text{Sunset (S)} & \\text{Night (N)} \\\\
-              \\hline
-              \\text{Bloodbrine Sea (B)} & \\text{BD} & \\text{BS} & \\text{BN} \\\\
-              \\text{Rothlyt Sound (T)} & \\text{TD} & \\text{TS} & \\text{TN} \\\\
-              \\text{Northern Strait of Merlthor (N)} & \\text{ND} & \\text{NS} & \\text{NN} \\\\
-              \\text{Rhotano Sea (R)} & \\text{RD} & \\text{RS} & \\text{RN} \\\\
-            \\end{array}
-          `)}
-        </Box>
-        <Typography paragraph>
-          and they follow the sequence
-        </Typography>
-        <Box mb={2}>
-          {$$(`
-            \\begin{array}{rcccccccccl}
-              \\cdots & \\to & \\text{BD} & \\to & \\text{TD} & \\to & \\text{ND} & \\to & \\text{RD} \\\\
-              & \\to & \\text{BS} & \\to & \\text{TS} & \\to & \\text{NS} & \\to & \\text{RS} \\\\
-              & \\to & \\text{BN} & \\to & \\text{TN} & \\to & \\text{NN} & \\to & \\text{RN} & \\to & \\cdots \\\\
-            \\end{array}
-          `)}
-        </Box>
-        <Typography paragraph>
-          However, the first voyage of every day (at 1:00 JST) will skip a route. So there might be the schedule
-        </Typography>
-        <Box mb={2}>
-          {$$(`
-            \\cdots
-            \\begin{array}{c|c}
-              \\text{19:00} & \\text{21:00} & \\text{23:00} & \\text{01:00} & \\text{03:00} & \\text{05:00} & \\text{07:00} \\\\
-              \\text{NS} & \\text{RS} & \\text{BN} & \\begin{array}{c}\\cancel{\\text{TN}} \\\\ \\text{NN}\\end{array} & \\text{RN} & \\text{BD} & \\text{TD} \\\\
-            \\end{array}
-            \\cdots
-          `)}
-        </Box>
-        <Typography paragraph>
-          Since there are 12 routes and 12 voyages a day, the route that is skipped will cycle through all 12 routes in 12 days. The full pattern of routes is 144 routes long.
-        </Typography>
-        <Box mb={2}>
-          <Highlight language='javascript'>
-            {`
-const PATTERN = [
-  'BD', 'TD', 'ND', 'RD', 'BS', 'TS', 'NS', 'RS', 'BN', 'TN', 'NN', 'RN',
-  'TD', 'ND', 'RD', 'BS', 'TS', 'NS', 'RS', 'BN', 'TN', 'NN', 'RN', 'BD',
-  'ND', 'RD', 'BS', 'TS', 'NS', 'RS', 'BN', 'TN', 'NN', 'RN', 'BD', 'TD',
-  'RD', 'BS', 'TS', 'NS', 'RS', 'BN', 'TN', 'NN', 'RN', 'BD', 'TD', 'ND',
-  'BS', 'TS', 'NS', 'RS', 'BN', 'TN', 'NN', 'RN', 'BD', 'TD', 'ND', 'RD',
-  'TS', 'NS', 'RS', 'BN', 'TN', 'NN', 'RN', 'BD', 'TD', 'ND', 'RD', 'BS',
-  'NS', 'RS', 'BN', 'TN', 'NN', 'RN', 'BD', 'TD', 'ND', 'RD', 'BS', 'TS',
-  'RS', 'BN', 'TN', 'NN', 'RN', 'BD', 'TD', 'ND', 'RD', 'BS', 'TS', 'NS',
-  'BN', 'TN', 'NN', 'RN', 'BD', 'TD', 'ND', 'RD', 'BS', 'TS', 'NS', 'RS',
-  'TN', 'NN', 'RN', 'BD', 'TD', 'ND', 'RD', 'BS', 'TS', 'NS', 'RS', 'BN',
-  'NN', 'RN', 'BD', 'TD', 'ND', 'RD', 'BS', 'TS', 'NS', 'RS', 'BN', 'TN',
-  'RN', 'BD', 'TD', 'ND', 'RD', 'BS', 'TS', 'NS', 'RS', 'BN', 'TN', 'NN'
-]
-            `.trim()}
-          </Highlight>
-        </Box>
-        <Typography paragraph>
-          To figure out the route at a given time, we need to first establish some epoch as the first voyage and determine where in <Paper component='code' variant='outlined' className={classes.code}>PATTERN</Paper> that voyage lies. All other routes will be calculated relative to that epoch. Fortunately, JST is UTC+09:00, which means a voyage lands on the <Link href='https://www.wikiwand.com/en/Unix_time'>Unix epoch</Link>. As it turns out, this voyage is index 88 in <Paper component='code' variant='outlined' className={classes.code}>PATTERN</Paper>. Altogether,
-        </Typography>
-        <Box mb={2}>
-          <Highlight language='typescript'>
-            {`
-const TWO_HOURS = 2 * 60 * 60 * 1000
-const OFFSET = 88
-
-/**
- * Returns the route of the most recent voyage.
- */
-function getRoute (date: Date) {
-  // Get the number of voyages since 00:00:00 UTC, 1 January 1970
-  const voyageNumber = Math.floor(date.getTime() / TWO_HOURS)
-
-  // Get where it lies in the pattern
-  const route = PATTERN[(OFFSET + voyageNumber) % PATTERN.length]
-
-  return route
-}
-            `.trim()}
-          </Highlight>
-        </Box>
+      <Section title={t('objectivesPage.calculator')}>
+        <div className={classes.bonusContainer}>
+          {filteredObjectives.length > 0
+            ? filteredObjectives.map(objective =>
+              <div className={classes.bonus}>
+                <OceanFishIcon key={objective.id} type='objective' id={objective.id} />
+                <br />
+                <Typography variant='body2' className={classes.bonusPercentage}>{objective.bonus}%</Typography>
+              </div>
+            )
+            : <Typography>No objectives selected</Typography>
+          }
+          <Typography className={classes.bigger}>&nbsp;= {totalBonus}%</Typography>
+        </div>
+        <Grid container justify='center'>
+          <Grid item xs={12} md={8}>
+            <Grid container spacing={2} alignItems='flex-end'>
+              <Grid item xs={8}>
+                <TextField
+                  type='number'
+                  fullWidth
+                  label={t('objectivesPage.basePoints')}
+                  InputProps={{
+                    endAdornment: <InputAdornment position='end'>×{100 + totalBonus}%</InputAdornment>
+                  }}
+                  value={basePoints}
+                  onChange={handleInputBasePoints}
+                />
+              </Grid>
+              <Grid item xs={4}>
+                <Typography className={classes.bigger}>= {Math.floor(basePoints * totalBonusPercentage).toLocaleString(locale)}</Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <Box m={2} />
+              </Grid>
+              <Grid item xs={8}>
+                <div className={classes.calculatorGoal}>
+                  <Typography>The Major-General</Typography>&nbsp;
+                  <Typography component='div' align='right' className={classes.bigger}>
+                    {Math.ceil(5000 / totalBonusPercentage).toLocaleString(locale)}
+                    <Box display='inline' ml={2}><Typography display='inline'>×{100 + totalBonus}%</Typography></Box>
+                  </Typography>
+                </div>
+              </Grid>
+              <Grid item xs={4}>
+                <Typography className={classes.bigger}>= {(5000).toLocaleString(locale)}</Typography>
+              </Grid>
+              <Grid item xs={8}>
+                <div className={classes.calculatorGoal}>
+                  <Typography>Hybodus</Typography>&nbsp;
+                  <Typography component='div' align='right' className={classes.bigger}>
+                    {Math.ceil(10000 / totalBonusPercentage).toLocaleString(locale)}
+                    <Box display='inline' ml={2}><Typography display='inline'>×{100 + totalBonus}%</Typography></Box>
+                  </Typography>
+                </div>
+              </Grid>
+              <Grid item xs={4}>
+                <Typography className={classes.bigger}>= {(10000).toLocaleString(locale)}</Typography>
+              </Grid>
+              <Grid item xs={8}>
+                <div className={classes.calculatorGoal}>
+                  <Typography>“Ocean Fisher”</Typography>&nbsp;
+                  <Typography component='div' align='right' className={classes.bigger}>
+                    {Math.ceil(16000 / totalBonusPercentage).toLocaleString(locale)}
+                    <Box display='inline' ml={2}><Typography display='inline'>×{100 + totalBonus}%</Typography></Box>
+                  </Typography>
+                </div>
+              </Grid>
+              <Grid item xs={4}>
+                <Typography className={classes.bigger}>= {(16000).toLocaleString(locale)}</Typography>
+              </Grid>
+              <Grid item xs={8}>
+                <div className={classes.calculatorGoal}>
+                  <Typography>“Master of the Sea”</Typography>&nbsp;
+                  <Typography component='div' align='right' className={classes.bigger}>
+                    {Math.ceil(20000 / totalBonusPercentage).toLocaleString(locale)}
+                    <Box display='inline' ml={2}><Typography display='inline'>×{100 + totalBonus}%</Typography></Box>
+                  </Typography>
+                </div>
+              </Grid>
+              <Grid item xs={4}>
+                <Typography className={classes.bigger}>= {(20000).toLocaleString(locale)}</Typography>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
       </Section>
     </Page>
   )
 }
 
-About.getInitialProps = async () => ({
+Objectives.getInitialProps = async () => ({
   namespacesRequired: ['common', 'ocean-fishing']
 })
 
-export default About
+export default Objectives

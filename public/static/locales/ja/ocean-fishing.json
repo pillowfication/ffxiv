@@ -11,7 +11,19 @@
   "showPointsFish": "表示：高得点の魚",
   "showAllFish": "表示：すべての魚",
   "fish": "魚",
-  "about": "About",
+  "aboutPage": {
+    "title": "About",
+    "data": "Data",
+    "algorithm": "Algorithm"
+  },
+  "fishPage": {
+    "title": "魚"
+  },
+  "objectivesPage": {
+    "title": "狙い目",
+    "calculator": "Calculator",
+    "basePoints": "Base Points"
+  },
   "routeInfo": {
     "time": "受付開始時間",
     "route": "行き先",

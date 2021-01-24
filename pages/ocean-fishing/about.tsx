@@ -36,9 +36,9 @@ const About = () => {
   const { t } = useTranslation('ocean-fishing')
 
   return (
-    <Page title={`${t('title')} - ${t('about')}`}>
+    <Page title={`${t('title')} - ${t('aboutPage.title')}`}>
       {mathJaxRequire('cancel')}
-      <Section title={t('about.data')}>
+      <Section title={t('aboutPage.data')}>
         <Typography paragraph>
           Data are taken from the <Link href='https://docs.google.com/spreadsheets/d/1brCfvmSdYl7RcY9lkgm_ds8uaFqq7qaxOOz-5BfHuuk/edit?usp=sharing'>Ocean Fishing Spreadsheet</Link> managed by S’yahn Tia. To report errors, please visit the <Link href='https://discord.gg/AnFaDpN'>Fisherman’s Horizon Discord</Link> or message Lulu Pillow@Adamantoise or Pillowfication#0538.
         </Typography>
@@ -71,7 +71,7 @@ const About = () => {
           All my data and the code I used are available on <Link href='https://github.com/pillowfication/ffxiv/tree/master/src/ocean-fishing/ocean-fishing'>GitHub</Link>.
         </Typography>
       </Section>
-      <Section title={t('about.algorithm')}>
+      <Section title={t('aboutPage.algorithm')}>
         <Typography paragraph>
           Ocean Fishing voyages follow a specific pattern best seen using Japan Standard Time (JST). Voyages leave every 2 hours on odd hours (at 1:00, 3:00, …, 23:00). The destination always cycles between the 4 destinations in the following order:
         </Typography>
@@ -151,7 +151,7 @@ const TWO_HOURS = 2 * 60 * 60 * 1000
 const OFFSET = 88
 
 /**
- * Returns the route of the most recent voyage.
+ * Returns the route of the ongoing/most recent voyage.
  */
 function getRoute (date: Date) {
   // Get the number of voyages since 00:00:00 UTC, 1 January 1970
