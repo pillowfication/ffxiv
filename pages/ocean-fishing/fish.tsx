@@ -13,7 +13,7 @@ import { ChecklistContext } from './index'
 import Page from '../../src/Page'
 import Section from '../../src/Section'
 import FishTable from '../../src/ocean-fishing/FishTable'
-import { fishingSpots } from '../../src/ocean-fishing/ocean-fishing/data'
+import { fishingSpots, placeNames } from '../../src/ocean-fishing/ocean-fishing/data'
 import { translate } from '../../src/ocean-fishing/utils'
 import { useTranslation } from '../../src/i18n'
 
@@ -120,7 +120,7 @@ const Fish = () => {
         {Object.values(fishingSpots)
           .sort((a, b) => a.id - b.id)
           .map(fishingSpot =>
-            <Section key={fishingSpot.id} title={translate(i18n.language, fishingSpot, 'place_name')}>
+            <Section key={fishingSpot.id} title={translate(i18n.language, placeNames[fishingSpot.placeName], 'name')}>
               <FishTable spots={[fishingSpot.id]} />
             </Section>
           )}
