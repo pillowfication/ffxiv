@@ -10,7 +10,7 @@ import TableBody from '@material-ui/core/TableBody'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import OceanFishIcon from './OceanFishIcon'
-import { fishingSpots } from './ocean-fishing/data'
+import { fishingSpots, placeNames } from './ocean-fishing/data'
 import { calculateVoyages, DestinationStopTime } from './ocean-fishing'
 import * as maps from './maps'
 import { toTimeString } from '../utils'
@@ -110,7 +110,7 @@ const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute }: Props) =>
                     <Typography className={classes.timeUntil}>{timeUntil(now, time, { t, locale: locale })}</Typography>
                   </TableCell>
                   <TableCell align='right'>
-                    <Typography>{upperFirst(translate(locale, fishingSpots[maps.STOP_MAP[destinationCode[0]]], 'place_name_sub', 'no_article'))}</Typography>
+                    <Typography>{upperFirst(translate(locale, placeNames[fishingSpots[maps.STOP_MAP[destinationCode[0]]].placeName_sub], 'name_noArticle', 'name'))}</Typography>
                   </TableCell>
                   <TableCell className={classes.timeCell}>
                     {maps.TIME_MAP[destinationCode[1]]}

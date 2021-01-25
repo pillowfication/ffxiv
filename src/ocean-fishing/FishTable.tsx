@@ -13,9 +13,7 @@ import TimeIcon from './TimeIcon'
 import Tug from './Tug'
 import ChecklistCheckmark from './ChecklistCheckmark'
 import WeatherIcon from '../skywatcher/WeatherIcon'
-import { fishingSpots, fishes } from './ocean-fishing/data'
-import { Time } from './ocean-fishing'
-import * as maps from './maps'
+import { fishingSpots, placeNames, oceanFishes } from './ocean-fishing/data'
 import { translate } from './utils'
 import { useTranslation } from '../i18n'
 
@@ -65,7 +63,7 @@ const FishTable = ({ spots, time }: Props) => {
       <Table size='small' className={classes.table}>
         {spots.map(spotId => {
           const fishingSpot = fishingSpots[spotId]
-          const isSpectral = /spectral/i.test(fishingSpot.place_name_en)
+          const isSpectral = /spectral/i.test(placeNames[fishingSpot.placeName].name_en)
           return (
             <React.Fragment key={spotId}>
               <TableHead>
@@ -82,13 +80,13 @@ const FishTable = ({ spots, time }: Props) => {
               </TableHead>
               <TableBody>
                 {fishingSpot.fishes.map(fishId => {
-                  const fish = fishes[fishId]
-                  const fishInfo = fish.spreadsheet_data
+                  const fish = oceanFishes[fishId]
+                  const spreadsheetData = fish.spreadsheetData
                   return (
                     <TableRow
                       key={fishId}
                       hover
-                      className={clsx(time && fishInfo.time && fishInfo.time.indexOf(time) === -1 && classes.disabled)}
+                      className={clsx(time && spreadsheetData.time && spreadsheetData.time.indexOf(time) === -1 && classes.disabled)}
                     >
                       <TableCell align='center'>
                         <ChecklistCheckmark fishId={fish.id} />
@@ -98,67 +96,65 @@ const FishTable = ({ spots, time }: Props) => {
                       </TableCell>
                       <TableCell>
                         <div><Typography>{translate(locale, fish, 'name')}</Typography></div>
-                        {fishInfo.stars &&
-                          <div className={classes.stars}>{'★'.repeat(fishInfo.stars)}</div>}
+                        {spreadsheetData.stars &&
+                          <div className={classes.stars}>{'★'.repeat(spreadsheetData.stars)}</div>}
                       </TableCell>
                       <TableCell align='center' className={classes.baitCell}>
-                        {fishInfo.intuition && (
+                        {spreadsheetData.intuition && (
                           <>
-                            {fishInfo.intuition.map((intuitionFish, index) =>
-                              <React.Fragment key={index}>
+                            {spreadsheetData.intuition.map(({ fishId, count }, index) =>
+                              <React.Fragment key={fishId}>
                                 <Typography className={classes.count} display='inline'>
-                                  {index === 0 ? `${intuitionFish.count}×` : `, ${intuitionFish.count}×`}
+                                  {index === 0 ? `${count}×` : `, ${count}×`}
                                 </Typography>
-                                <OceanFishIcon type='fish' id={intuitionFish.id} />
+                                <OceanFishIcon type='fish' id={fishId} />
                               </React.Fragment>
                             )}
                             <img src='/images/ocean-fishing/fishers-intuition.png' className={classes.intuition} />
                           </>
                         )}
-                        {fishInfo.bait && <OceanFishIcon type='bait' id={fishInfo.bait} />}
-                        {fishInfo.bait && fishInfo.mooch && 'or'}
-                        {fishInfo.mooch && <OceanFishIcon type='fish' id={fishInfo.mooch} />}
+                        {spreadsheetData.bait && <OceanFishIcon type='bait' id={spreadsheetData.bait} />}
+                        {spreadsheetData.bait && spreadsheetData.mooch && 'or'}
+                        {spreadsheetData.mooch && <OceanFishIcon type='fish' id={spreadsheetData.mooch} />}
                       </TableCell>
                       <TableCell align='center'>
-                        {fishInfo.tug && (
-                          <Tug strength={fishInfo.tug} className={classes.tug} />
+                        {spreadsheetData.tug && (
+                          <Tug strength={spreadsheetData.tug} className={classes.tug} />
                         )}
                       </TableCell>
                       <TableCell align='center'>
-                        {fishInfo.bite_time.all && (
-                          <Typography>{fishInfo.bite_time.all[0] === fishInfo.bite_time.all[1] ? fishInfo.bite_time.all[0] : fishInfo.bite_time.all.join('-')}</Typography>
+                        {fish.biteTimes.all && (
+                          <Typography>{fish.biteTimes.all[0] === fish.biteTimes.all[1] ? fish.biteTimes.all[0] : fish.biteTimes.all.join('-')}</Typography>
                         )}
                       </TableCell>
                       <TableCell align='center'>
-                        {fishInfo.points && (
-                          <Typography>{fishInfo.points}</Typography>
+                        {spreadsheetData.points && (
+                          <Typography>{spreadsheetData.points}</Typography>
                         )}
                       </TableCell>
                       <TableCell align='center'>
-                        {fishInfo.double_hook && (
-                          <Typography>{Array.isArray(fishInfo.double_hook) ? fishInfo.double_hook.join('-') : fishInfo.double_hook}</Typography>
+                        {spreadsheetData.doubleHook && (
+                          <Typography>{Array.isArray(spreadsheetData.doubleHook) ? spreadsheetData.doubleHook.join('-') : spreadsheetData.doubleHook}</Typography>
                         )}
                       </TableCell>
                       <TableCell align='center'>
                         {(() => {
                           if (isSpectral) {
-                            return fishInfo.time === 'DSN'
-                              ? 'Any'
-                              : fishInfo.time && fishInfo.time.split('').map(time => <TimeIcon key={time} time={time as Time} />)
+                            return spreadsheetData.time.length === 3 ? 'Any' : spreadsheetData.time && spreadsheetData.time.map(time => <TimeIcon key={time} time={time} />)
                           } else {
-                            if (!fishInfo.weathers) return null
-                            switch (fishInfo.weathers.type) {
+                            if (!spreadsheetData.weathers) return null
+                            switch (spreadsheetData.weathers.type) {
                               case 'ALL':
                                 return 'Any'
                               case 'OK':
-                                return fishInfo.weathers.list.map(weather =>
+                                return spreadsheetData.weathers.list.map(weather =>
                                   <WeatherIcon key={weather} weather={weather} showLabel={false} />
                                 )
                               case 'NOT OK':
                                 return (
                                   <>
                                     <span style={{ verticalAlign: 'middle' }}>Not </span>
-                                    {fishInfo.weathers.list.map(weather =>
+                                    {spreadsheetData.weathers.list.map(weather =>
                                       <WeatherIcon key={weather} weather={weather} showLabel={false} />
                                     )}
                                   </>
@@ -168,8 +164,8 @@ const FishTable = ({ spots, time }: Props) => {
                         })()}
                       </TableCell>
                       <TableCell align='center'>
-                        {fishInfo.category && (
-                          <OceanFishIcon type='objective' id={maps.OBJECTIVES_MAP[fishInfo.category]} size={30} />
+                        {fish.contentBonus && (
+                          <OceanFishIcon type='content-bonus' id={fish.contentBonus} size={30} />
                         )}
                       </TableCell>
                     </TableRow>

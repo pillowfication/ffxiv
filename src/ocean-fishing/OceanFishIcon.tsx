@@ -5,22 +5,13 @@ import Tooltip from '@material-ui/core/Tooltip'
 import Popper from '@material-ui/core/Popper'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import OceanFishPopper from './OceanFishPopper'
-import { fishes, baits, achievements, objectives } from './ocean-fishing/data'
+import { oceanFishes, baits, achievements, contentBonuses } from './ocean-fishing/data'
 import ICONS_MAP from './ocean-fishing/data/ocean-fishing-icons-map.json'
 import { translate } from './utils'
 import { useTranslation } from '../i18n'
 
 const ICON_ROWS = ICONS_MAP.length
 const ICON_COLS = Math.max(...ICONS_MAP.map(row => row.length))
-
-function camelCase (id: number | string): string {
-  if (typeof id === 'number') {
-    return String(id)
-  } else {
-    id = id.replace(/[^a-z]/g, '')
-    return id[0].toLowerCase() + id.slice(1)
-  }
-}
 
 const useStyles = makeStyles(theme => {
   const styles = {
@@ -41,7 +32,7 @@ const useStyles = makeStyles(theme => {
       backgroundImage: 'url("/images/ocean-fishing/ocean-fishing-icons.png")',
       backgroundSize: `${ICON_COLS * 100}% ${ICON_ROWS * 100}%`
     },
-    iconOverlay: {
+    itemOverlay: {
       position: 'absolute' as 'absolute',
       top: ({ size }: { size: number }) => size * 0.05,
       left: 0,
@@ -64,7 +55,7 @@ const useStyles = makeStyles(theme => {
 
   for (let row = 0; row < ICON_ROWS; ++row) {
     for (let col = 0; col < ICONS_MAP[row].length; ++col) {
-      styles[camelCase(ICONS_MAP[row][col])] = {
+      styles[ICONS_MAP[row][col]] = {
         backgroundPosition: `${col * -100}% ${row * -100}%`
       }
     }
@@ -73,8 +64,8 @@ const useStyles = makeStyles(theme => {
 })
 
 type Props = {
-  type: 'fish' | 'bait' | 'achievement' | 'objective',
-  id: number | string,
+  type: 'fish' | 'bait' | 'achievement' | 'content-bonus',
+  id: number,
   size?: number,
   className?: string
 }
@@ -95,25 +86,25 @@ const OceanFishIcon = ({ type, id, size = 40, className }: Props) => {
     setAnchorEl(null)
   }
 
-  let info: any
+  let tooltip: string
   switch (type) {
-    case 'fish': info = fishes[id]; break
-    case 'bait': info = baits[id]; break
-    case 'achievement': info = achievements[id]; break
-    case 'objective': info = objectives[id]; break
+    case 'fish': tooltip = translate(locale, oceanFishes[id], 'name'); break
+    case 'bait': tooltip = translate(locale, baits[id], 'name'); break
+    case 'achievement': tooltip = translate(locale, achievements[id], 'name'); break
+    case 'content-bonus': tooltip = translate(locale, contentBonuses[id], 'objective'); break
   }
 
   return (
     <>
-      <Tooltip arrow placement='top' title={translate(locale, info, 'name')}>
+      <Tooltip arrow placement='top' title={tooltip}>
         <div
           className={clsx(classes.iconContainer, type === 'fish' && classes.hasPopper, className)}
           onClick={handleClick}
         >
-          <div className={clsx(classes.oceanFishIcon, classes[camelCase(id)])} />
-          {type !== 'objective' && (
-            <div className={type === 'achievement' ? classes.achievementOverlay : classes.iconOverlay} />
-          )}
+          <div className={clsx(classes.oceanFishIcon, classes[`${type}_${id}`])} />
+          {type === 'fish' && <div className={classes.itemOverlay} />}
+          {type === 'bait' && <div className={classes.itemOverlay} />}
+          {type === 'achievement' && <div className={classes.achievementOverlay} />}
         </div>
       </Tooltip>
       {type === 'fish' && (

@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
-import { fishingSpots } from './ocean-fishing/data'
+import { fishingSpots, placeNames } from './ocean-fishing/data'
 import { StopTime } from './ocean-fishing'
 import * as maps from './maps'
 import { translate } from './utils'
@@ -33,7 +33,7 @@ const RouteCard = ({ index, stop, children }: Props) => {
         <CardHeader
           title={
             <Typography variant='h6'>
-              {index + 1}. {translate(locale, fishingSpots[maps.STOP_MAP[stop[0]]], 'place_name_sub')} {maps.TIME_MAP[stop[1]]}
+              {index + 1}. {translate(locale, placeNames[fishingSpots[maps.STOP_MAP[stop[0]]].placeName_sub], 'name')} {maps.TIME_MAP[stop[1]]}
             </Typography>
           }
           disableTypography

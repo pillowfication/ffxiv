@@ -2,17 +2,13 @@ import React from 'react'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import Tooltip from '@material-ui/core/Tooltip'
-import { fishes, Fish } from './ocean-fishing/data'
+import { oceanFishes } from './ocean-fishing/data'
 import { translate } from './utils'
 import { useTranslation } from '../i18n'
 
-function getImgUrl (fish: Fish) {
-  if (!fish.lodestone_data) {
-    return `https://xivapi.com${fish.icon}`
-  } else {
-    const id = fish.lodestone_data.icon_lg
-    return `https://img.finalfantasyxiv.com/lds/pc/global/images/itemicon/${id.slice(0, 2)}/${id}.png`
-  }
+// No Lodestone images for now
+function getImgUrl (fish: any) {
+  return `https://xivapi.com/i/${('000000' + (fish.icon - (fish.icon % 1000))).slice(-6)}/${('000000' + fish.icon).slice(-6)}.png`
 }
 
 const useStyles = makeStyles(theme => ({
@@ -51,7 +47,7 @@ type Props = {
 const OceanFishIconLarge = ({ fishId, size = 128, className }: Props) => {
   const classes = useStyles({ size })
   const { i18n } = useTranslation()
-  const fish = fishes[fishId]
+  const fish = oceanFishes[fishId]
   const locale = i18n.language
 
   return (

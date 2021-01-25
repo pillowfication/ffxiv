@@ -63,16 +63,6 @@ export const ACHIEVEMENTS_MAP: Record<DestinationStopTime, number[]> = {
   TS: []
 }
 
-export const OBJECTIVES_MAP: Record<string, string> = {
-  octopus: 'octopus-travelers',
-  shark: 'certifiable-shark-hunters',
-  jellyfish: 'jelled-together',
-  seadragon: 'maritime-dragonslayers',
-  balloon: 'balloon-catchers',
-  crab: 'crab-boat-crew',
-  manta: 'sticking-it-to-the-manta'
-}
-
 // This should be automated later...
 export const FILTER_MAP = {
   B: ['BD', 'BN', 'BS'],

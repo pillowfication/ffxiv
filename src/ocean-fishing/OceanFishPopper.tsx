@@ -20,8 +20,7 @@ import TimeIcon from './TimeIcon'
 import BaitGroup from './BaitGroup'
 import ChecklistCheckmark from './ChecklistCheckmark'
 import WeatherIcon from '../skywatcher/WeatherIcon'
-import { fishes } from './ocean-fishing/data'
-import { Time } from './ocean-fishing'
+import { oceanFishes } from './ocean-fishing/data'
 import { getBaitGroup, subtextBiteTime, translate } from './utils'
 import { useTranslation } from '../i18n'
 
@@ -62,8 +61,8 @@ const OceanFishPopper = ({ fishId }: Props) => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('ocean-fishing')
   const [expanded, setExpanded] = React.useState(false)
-  const fish = fishes[fishId]
-  const fishInfo = fish.spreadsheet_data
+  const fish = oceanFishes[fishId]
+  const spreadsheetData = fish.spreadsheetData
   const locale = i18n.language
 
   const handleClickExpand = () => { setExpanded(!expanded) }
@@ -77,9 +76,7 @@ const OceanFishPopper = ({ fishId }: Props) => {
           titleTypographyProps={{ variant: 'h6', paragraph: true, className: classes.title }}
           subheader={(
             <div>
-              {(fish.lodestone_data && fish.lodestone_data.url)
-                ? <Link href={`https://na.finalfantasyxiv.com${fish.lodestone_data.url}`}>Lodestone</Link>
-                : 'Lodestone'}
+              {'Lodestone'}
               <> | </>
               <Link href={`https://ffxivteamcraft.com/db/${locale}/item/${fishId}`}>Teamcraft</Link>
             </div>
@@ -98,7 +95,7 @@ const OceanFishPopper = ({ fishId }: Props) => {
                   {t('fishInfo.rating')}
                 </TableCell>
                 <TableCell align='center'>
-                  {fishInfo.stars ? '★'.repeat(fishInfo.stars) : '?'}
+                  {spreadsheetData.stars ? '★'.repeat(spreadsheetData.stars) : '?'}
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -106,7 +103,7 @@ const OceanFishPopper = ({ fishId }: Props) => {
                   {t('fishInfo.points')}
                 </TableCell>
                 <TableCell align='center'>
-                  {fishInfo.points ? fishInfo.points : '?'}
+                  {spreadsheetData.points ? spreadsheetData.points : '?'}
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -114,7 +111,7 @@ const OceanFishPopper = ({ fishId }: Props) => {
                   {t('fishInfo.doubleHook')}
                 </TableCell>
                 <TableCell align='center'>
-                  {fishInfo.double_hook ? (Array.isArray(fishInfo.double_hook) ? fishInfo.double_hook.join('-') : fishInfo.double_hook) : '?'}
+                  {spreadsheetData.doubleHook ? (Array.isArray(spreadsheetData.doubleHook) ? spreadsheetData.doubleHook.join('-') : spreadsheetData.doubleHook) : '?'}
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -122,20 +119,20 @@ const OceanFishPopper = ({ fishId }: Props) => {
                   {t('fishInfo.weather')}
                 </TableCell>
                 <TableCell align='center'>
-                  {fishInfo.weathers
+                  {spreadsheetData.weathers
                     ? (() => {
-                        switch (fishInfo.weathers.type) {
+                        switch (spreadsheetData.weathers.type) {
                           case 'ALL':
                             return 'Any'
                           case 'OK':
-                            return fishInfo.weathers.list.map(weather =>
+                            return spreadsheetData.weathers.list.map(weather =>
                               <WeatherIcon key={weather} weather={weather} showLabel={false} />
                             )
                           case 'NOT OK':
                             return (
                               <>
                                 <span style={{ verticalAlign: 'middle' }}>Not </span>
-                                {fishInfo.weathers.list.map(weather =>
+                                {spreadsheetData.weathers.list.map(weather =>
                                   <WeatherIcon key={weather} weather={weather} showLabel={false} />
                                 )}
                               </>
@@ -150,11 +147,7 @@ const OceanFishPopper = ({ fishId }: Props) => {
                   {t('fishInfo.timeOfDay')}
                 </TableCell>
                 <TableCell align='center'>
-                  {fishInfo.time ?
-                    fishInfo.time === 'DSN'
-                      ? 'Any'
-                      : fishInfo.time && fishInfo.time.split('').map(time => <TimeIcon key={time} time={time as Time} />)
-                    : '?'}
+                  {spreadsheetData.time ? (spreadsheetData.time.length === 3 ? 'Any' : spreadsheetData.time.map(time => <TimeIcon key={time} time={time} />)) : '?'}
                 </TableCell>
               </TableRow>
             </TableBody>

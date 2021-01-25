@@ -21,6 +21,9 @@
   },
   "objectivesPage": {
     "title": "Objectives",
+    "objective": "Objective",
+    "requirement": "Requirement",
+    "bonus": "Bonus",
     "calculator": "Calculator",
     "basePoints": "Base Points"
   },
@@ -41,15 +44,6 @@
     "timeOfDay": "Time",
     "weather": "Weather",
     "category": "Category"
-  },
-  "achievementInfo": {
-    "octopus": "As a party, catch 150 or more octopodes. (18.75 each)",
-    "shark": "As a party, catch 200 or more sharks. (25 each)",
-    "jellyfish": "As a party, catch 150 or more jellyfish. (18.75 each)",
-    "seadragon": "As a party, catch 100 or more seahorses. (12.5 each)",
-    "balloon": "As a party, catch 250 or more fugu. (31.25 each)",
-    "crab": "As a party, catch 250 or more crabs. (31.25 each)",
-    "manta": "As an individual, catch 25 or more mantas."
   },
   "time": {
     "day": "Day",

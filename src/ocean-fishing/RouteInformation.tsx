@@ -13,7 +13,7 @@ import RouteCardContainer from './RouteCardContainer'
 import RouteCard from './RouteCard'
 import FishPanel from './FishPanel'
 import BaitList from './BaitList'
-import { fishingSpots, fishes } from './ocean-fishing/data'
+import { fishingSpots, placeNames, oceanFishes } from './ocean-fishing/data'
 import { calculateVoyages, getStops, DestinationStopTime } from './ocean-fishing'
 import * as maps from './maps'
 import {
@@ -86,7 +86,7 @@ const RouteInformation = ({ now, selectedRoute }: Props) => {
       title={
         <Grid container alignItems='flex-end'>
           <Grid item xs={12} md={8}>
-            {upperFirst(translate(locale, fishingSpots[maps.STOP_MAP[selectedRoute[0]]], 'place_name_sub', 'no_article'))}
+            {upperFirst(translate(locale, placeNames[fishingSpots[maps.STOP_MAP[selectedRoute[0]]].placeName_sub], 'name_noArticle', 'name'))}
             <span className={classes.headerTime}>{maps.TIME_MAP[selectedRoute[1]]}</span>
             <Typography display='inline' className={classes.headerSub}>
               {timeUntil(now, next, { t, full: true, locale: locale })}
@@ -121,7 +121,7 @@ const RouteInformation = ({ now, selectedRoute }: Props) => {
                         ]
                           .filter(x => x)
                           .map(fishId => ({
-                            header: translate(locale, fishes[fishId], 'name'),
+                            header: translate(locale, oceanFishes[fishId], 'name'),
                             baitGroupProps: getBaitGroup(fishId)
                           }))
                       } />
@@ -143,7 +143,7 @@ const RouteInformation = ({ now, selectedRoute }: Props) => {
                         ]
                           .filter(x => x)
                           .map(fishId => ({
-                            header: translate(locale, fishes[fishId], 'name'),
+                            header: translate(locale, oceanFishes[fishId], 'name'),
                             baitGroupProps: getBaitGroup(fishId)
                           }))
                       } />
@@ -167,14 +167,14 @@ const RouteInformation = ({ now, selectedRoute }: Props) => {
                         ]
                           .filter(x => x)
                           .map((fishId, index) => {
-                            const fishInfo = fishes[fishId].spreadsheet_data
+                            const spreadsheetData = oceanFishes[fishId].spreadsheetData
                             return {
-                            header: translate(locale, fishes[fishId], 'name'),
+                            header: translate(locale, oceanFishes[fishId], 'name'),
                             baitGroupProps: {
                               ...getBaitGroup(fishId),
                               subtext: index === 0 ? '' : (
-                                `DH: ×${Array.isArray(fishInfo.double_hook) ? fishInfo.double_hook.join('-') : fishInfo.double_hook}` +
-                                ` = ${(Array.isArray(fishInfo.double_hook) ? fishInfo.double_hook[1] : fishInfo.double_hook) * fishInfo.points}`
+                                `DH: ×${Array.isArray(spreadsheetData.doubleHook) ? spreadsheetData.doubleHook.join('-') : spreadsheetData.doubleHook}` +
+                                ` = ${(Array.isArray(spreadsheetData.doubleHook) ? spreadsheetData.doubleHook[1] : spreadsheetData.doubleHook) * spreadsheetData.points}`
                               ),
                               mainOnly: true
                             }
@@ -191,7 +191,7 @@ const RouteInformation = ({ now, selectedRoute }: Props) => {
               <Card variant='outlined'>
                 <Tabs variant='fullWidth' value={tab} onChange={handleChangeTab}>
                   {stops.map((stop, index) =>
-                    <Tab key={stop} label={<>{index + 1}. {translate(locale, fishingSpots[maps.STOP_MAP[stop[0]]], 'place_name_sub')} {maps.TIME_MAP[stop[1]]}</>} />
+                    <Tab key={stop} label={<>{index + 1}. {translate(locale, placeNames[fishingSpots[maps.STOP_MAP[stop[0]]].placeName_sub], 'name')} {maps.TIME_MAP[stop[1]]}</>} />
                   )}
                 </Tabs>
                 {stops.map((stop, index) =>

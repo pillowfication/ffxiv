@@ -1,5 +1,5 @@
 import { timeUntil as genericTimeUntil } from '../utils'
-import { fishingSpots, fishes } from './ocean-fishing/data'
+import { fishingSpots, oceanFishes } from './ocean-fishing/data'
 import { getStops, Time, DestinationStopTime } from './ocean-fishing'
 import { Bait as BaitChainProp } from './BaitChain'
 import * as maps from './maps'
@@ -29,11 +29,11 @@ export function getTimeSensitiveFish (destinationCode: DestinationStopTime): num
   return stopTimes
     .map((destinationStopTime, index) => {
       const fishingSpotId = maps.STOP_MAP[destinationStopTime[0]]
-      const time = stopTimes[index][1]
+      const time: Time = <any>stopTimes[index][1]
       return (fishingSpots[fishingSpotId + 1].fishes)
         .filter(fishId => {
-          const fishInfo = fishes[fishId].spreadsheet_data
-          return fishInfo.time && fishInfo.time !== 'DSN' && fishInfo.time.indexOf(time) > -1
+          const spreadsheetData = oceanFishes[fishId].spreadsheetData
+          return spreadsheetData.time && spreadsheetData.time.length !== 3 && spreadsheetData.time.includes(time)
         })
     })
 }
@@ -43,20 +43,20 @@ export function getPointsFish (destinationCode: DestinationStopTime): number[][]
   return stopTimes
     .map((destinationStopTime, index) => {
       const fishingSpotId = maps.STOP_MAP[destinationStopTime[0]]
-      const time = stopTimes[index][1]
+      const time: Time = <any>stopTimes[index][1]
 
       let highestPointsFish: { fishId: number, points: number }[] = []
       const pointsFish = (fishingSpots[fishingSpotId + 1].fishes)
         .filter(fishId => {
-          const fishInfo = fishes[fishId].spreadsheet_data
-          if (fishInfo.time && fishInfo.time.indexOf(time) === -1) {
+          const spreadsheetData = oceanFishes[fishId].spreadsheetData
+          if (spreadsheetData.time && !spreadsheetData.time.includes(time)) {
             return false
-          } else if (fishInfo.intuition) {
+          } else if (spreadsheetData.intuition) {
             return false
-          } else if (!fishInfo.points || !fishInfo.double_hook) {
+          } else if (!spreadsheetData.points || !spreadsheetData.doubleHook) {
             return false
           } else {
-            const points = (Array.isArray(fishInfo.double_hook) ? fishInfo.double_hook[1] : fishInfo.double_hook) * fishInfo.points
+            const points = (Array.isArray(spreadsheetData.doubleHook) ? spreadsheetData.doubleHook[1] : spreadsheetData.doubleHook) * spreadsheetData.points
             if (highestPointsFish.length === 0) {
               highestPointsFish.push({ fishId, points })
             } else if (points === highestPointsFish[0].points) {
@@ -77,45 +77,52 @@ export function getBlueFish (destinationCode: DestinationStopTime): number[] {
   return stopTimes
     .map(destinationStopTime => maps.BLUE_FISH_MAP[destinationStopTime[0]])
     .map((fishId, index) => {
-      const time = stopTimes[index][1]
-      const fishInfo = fishes[fishId].spreadsheet_data
-      return fishInfo.time && fishInfo.time.indexOf(time) > -1 ? fishId : null
+      const time: Time = <any>stopTimes[index][1]
+      const spreadsheetData = oceanFishes[fishId].spreadsheetData
+      return spreadsheetData.time && spreadsheetData.time.includes(time) ? fishId : null
     })
 }
 
 export const getBaitChain = memoize(function _getBaitChain (fishId: number): BaitChainProp[] {
-  const fishInfo = fishes[fishId].spreadsheet_data
-  return fishInfo.bait
-    ? [{ id: fishInfo.bait }, { id: fishId, tug: fishInfo.tug }]
-    : [..._getBaitChain(fishInfo.mooch), { id: fishId, tug: fishInfo.tug }]
+  const spreadsheetData = oceanFishes[fishId].spreadsheetData
+  if (!spreadsheetData.bait && !spreadsheetData.mooch) {
+    return [{ id: 29717 }, { id: fishId, tug: spreadsheetData.tug }] // Versatile Lure as fallback
+  } else {
+    return spreadsheetData.bait
+      ? [{ id: spreadsheetData.bait }, { id: fishId, tug: spreadsheetData.tug }]
+      : [..._getBaitChain(spreadsheetData.mooch), { id: fishId, tug: spreadsheetData.tug }]
+  }
 })
 
 export const getBaitGroup = memoize(
   (fishId: number): { baits: BaitChainProp[], intuitionFishes?: { baits: BaitChainProp[], count: number }[] } => {
-    const fishInfo = fishes[fishId].spreadsheet_data
+    const spreadsheetData = oceanFishes[fishId].spreadsheetData
     return {
       baits: getBaitChain(fishId),
-      intuitionFishes: fishInfo.intuition && fishInfo.intuition.map(({ id, count }) => ({ baits: getBaitChain(id), count }))
+      intuitionFishes: spreadsheetData.intuition && spreadsheetData.intuition.map(({ fishId, count }) => ({ baits: getBaitChain(fishId), count }))
     }
   }
 )
 
 export function subtextDH (fishId: number) {
-  const doubleHook = fishes[fishId].spreadsheet_data.double_hook
+  const doubleHook = oceanFishes[fishId].spreadsheetData.doubleHook
   return doubleHook ? `DH: ${Array.isArray(doubleHook) ? doubleHook.join('-') : doubleHook}` : 'DH: ?'
 }
 
 export function subtextBiteTime (fishId: number) {
-  const biteTime = fishes[fishId].spreadsheet_data.bite_time.all
-  return biteTime ? `${biteTime[0] === biteTime[1] ? biteTime[0] : biteTime.join('-')}s` : '?s'
+  const biteTimeAll = oceanFishes[fishId].biteTimes.all
+  return biteTimeAll ? `${biteTimeAll[0] === biteTimeAll[1] ? biteTimeAll[0] : biteTimeAll.join('-')}s` : '?s'
 }
 
 export function translate (locale: string = 'en', obj: any, ...keys: string[]): string {
-  for (let i = keys.length; i > 0; --i) {
-    const key = `${keys.slice(0, i).join('_')}_${locale}`
-    if (obj[key]) return obj[key]
+  if (!obj) {
+    return `{${JSON.stringify(obj)}}`
   }
-  return `{${obj.name || obj.id}.${keys.join('_')}}`
+  for (const key of keys) {
+    const keyLocale = `${key}_${locale}`
+    if (obj[keyLocale]) return obj[keyLocale]
+  }
+  return `{[Object].${keys.join(',')}}`
 }
 
 export function upperFirst (str: string) {
@@ -123,19 +130,20 @@ export function upperFirst (str: string) {
 }
 
 export function getBlindDHRanges (fishId: number, baitId: number, time: Time) {
-  const fishInfo = fishes[fishId].spreadsheet_data
-  if (time && fishInfo.time && fishInfo.time.indexOf(time) === -1) return null
-  if (!fishInfo.bite_time[baitId]) return null
+  const spreadsheetData = oceanFishes[fishId].spreadsheetData
+  if (time && spreadsheetData.time && spreadsheetData.time.indexOf(time) === -1) return null
+  if (!oceanFishes[fishId].biteTimes[baitId]) return null
 
-  const blindDHRanges = [fishInfo.bite_time[baitId]]
-  for (const otherFishId of fishingSpots[fishes[fishId].fishing_spot].fishes) {
+  const blindDHRanges = [oceanFishes[fishId].biteTimes[baitId]]
+  const fishingSpot = Object.values(fishingSpots).find(fishingSpot => fishingSpot.fishes.includes(fishId))
+  for (const otherFishId of fishingSpot.fishes) {
     if (otherFishId === fishId) continue
-    const otherFishInfo = fishes[otherFishId].spreadsheet_data
+    const otherSpreadsheetData = oceanFishes[otherFishId].spreadsheetData
 
-    if (otherFishInfo.tug !== fishInfo.tug) continue
-    if (time && otherFishInfo.time && otherFishInfo.time.indexOf(time) === -1) continue
-    if (!otherFishInfo.bite_time[baitId]) continue
-    const otherRange = otherFishInfo.bite_time[baitId]
+    if (otherSpreadsheetData.tug !== spreadsheetData.tug) continue
+    if (time && otherSpreadsheetData.time && otherSpreadsheetData.time.indexOf(time) === -1) continue
+    if (!oceanFishes[otherFishId].biteTimes[baitId]) continue
+    const otherRange = oceanFishes[otherFishId].biteTimes[baitId]
 
     for (let i = 0; i < blindDHRanges.length;) {
       const currentRange = blindDHRanges[i]

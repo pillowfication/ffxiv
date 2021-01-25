@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
+import MuiLink from '@material-ui/core/Link'
 import Page from '../../src/Page'
 import Section from '../../src/Section'
 import Link from '../../src/Link'
@@ -40,10 +41,10 @@ const About = () => {
       {mathJaxRequire('cancel')}
       <Section title={t('aboutPage.data')}>
         <Typography paragraph>
-          Data are taken from the <Link href='https://docs.google.com/spreadsheets/d/1brCfvmSdYl7RcY9lkgm_ds8uaFqq7qaxOOz-5BfHuuk/edit?usp=sharing'>Ocean Fishing Spreadsheet</Link> managed by S’yahn Tia. To report errors, please visit the <Link href='https://discord.gg/AnFaDpN'>Fisherman’s Horizon Discord</Link> or message Lulu Pillow@Adamantoise or Pillowfication#0538.
+          Data are taken from the <MuiLink href='https://docs.google.com/spreadsheets/d/1brCfvmSdYl7RcY9lkgm_ds8uaFqq7qaxOOz-5BfHuuk/edit?usp=sharing'>Ocean Fishing Spreadsheet</MuiLink> managed by S’yahn Tia. To report errors, please visit the <MuiLink href='https://discord.gg/AnFaDpN'>Fisherman’s Horizon Discord</MuiLink> or message Lulu Pillow@Adamantoise or Pillowfication#0538.
         </Typography>
         <Typography paragraph>
-          Bite times are periodically fetched from <Link href='https://ffxivteamcraft.com/'>Teamcraft</Link> and cleaned up with the following process:
+          Bite times are periodically fetched from <MuiLink href='https://ffxivteamcraft.com/'>Teamcraft</MuiLink> and cleaned up with the following process:
         </Typography>
         <ol className={classes.nestedList}>
           <Typography component='li'>
@@ -56,7 +57,7 @@ const About = () => {
                 If there are fewer than 10 total reports, do not calculate the bite time range. (This tends to remove reports where fish are caught with the baits that should be impossible, or blue fish where too few reports are recorded)
               </Typography>
               <Typography component='li'>
-                Otherwise, remove the top 5% and the bottom 5% of the reports. The minimum and maximum of the remaining reports is used as the bite time range. (This tends to remove outliers, like <Link href='https://media.discordapp.net/attachments/593471315319717888/797807850562912256/unknown.png'>Godsbed taking 18 hours to catch</Link>)
+                Otherwise, remove the top 5% and the bottom 5% of the reports. The minimum and maximum of the remaining reports is used as the bite time range. (This tends to remove outliers, like <MuiLink href='https://media.discordapp.net/attachments/593471315319717888/797807850562912256/unknown.png'>Godsbed taking 18 hours to catch</MuiLink>)
               </Typography>
             </ol>
           </Typography>
@@ -65,10 +66,10 @@ const About = () => {
           </Typography>
         </ol>
         <Typography paragraph>
-          The bite times shown on the <Link href='/ocean-fishing'>Ocean Fishing page</Link> are the bite time ranges for all baits. The bite time ranges for all baits can currently be found at <Link href='https://github.com/pillowfication/ffxiv/blob/master/src/ocean-fishing/ocean-fishing/data/bite-times.csv'>bite-times.csv</Link>.
+          The bite times shown on the <Link href='/ocean-fishing'>Ocean Fishing page</Link> are the bite time ranges for all baits. The bite time ranges for all baits can currently be found at <MuiLink href='https://github.com/pillowfication/ffxiv/blob/master/src/ocean-fishing/ocean-fishing/data/bite-times.csv'>bite-times.csv</MuiLink>.
         </Typography>
         <Typography paragraph>
-          All my data and the code I used are available on <Link href='https://github.com/pillowfication/ffxiv/tree/master/src/ocean-fishing/ocean-fishing'>GitHub</Link>.
+          All my data and the code I used are available on <MuiLink href='https://github.com/pillowfication/ffxiv/tree/master/src/ocean-fishing/ocean-fishing'>GitHub</MuiLink>.
         </Typography>
       </Section>
       <Section title={t('aboutPage.algorithm')}>
@@ -142,7 +143,7 @@ const PATTERN = [
           </Highlight>
         </Box>
         <Typography paragraph>
-          To figure out the route at a given time, we need to first establish some epoch as the first voyage and determine where in <Paper component='code' variant='outlined' className={classes.code}>PATTERN</Paper> that voyage lies. All other routes will be calculated relative to that epoch. Fortunately, JST is UTC+09:00, which means a voyage lands on the <Link href='https://www.wikiwand.com/en/Unix_time'>Unix epoch</Link>. As it turns out, this voyage is index 88 in <Paper component='code' variant='outlined' className={classes.code}>PATTERN</Paper>. Altogether,
+          To figure out the route at a given time, we need to first establish some epoch as the first voyage and determine where in <Paper component='code' variant='outlined' className={classes.code}>PATTERN</Paper> that voyage lies. All other routes will be calculated relative to that epoch. Fortunately, JST is UTC+09:00, which means a voyage lands on the <MuiLink href='https://www.wikiwand.com/en/Unix_time'>Unix epoch</MuiLink>. As it turns out, this voyage is index 88 in <Paper component='code' variant='outlined' className={classes.code}>PATTERN</Paper>. Altogether,
         </Typography>
         <Box mb={2}>
           <Highlight language='typescript'>

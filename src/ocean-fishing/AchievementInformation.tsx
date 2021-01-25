@@ -3,18 +3,23 @@ import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Section from '../Section'
 import OceanFishIcon from './OceanFishIcon'
-import { achievements } from './ocean-fishing/data'
+import { achievements, contentBonuses } from './ocean-fishing/data'
 import { translate } from './utils'
 import { useTranslation } from '../i18n'
 
-const SUBTITLES = {
-  2563: 'achievementInfo.octopus',
-  2564: 'achievementInfo.shark',
-  2565: 'achievementInfo.jellyfish',
-  2566: 'achievementInfo.seadragon',
-  2754: 'achievementInfo.balloon',
-  2755: 'achievementInfo.crab',
-  2756: 'achievementInfo.manta'
+const contentBonusMap: Record<number, number> = {
+  2563: 13,
+  2564: 14,
+  2565: 15,
+  2566: 16,
+  2754: 20,
+  2755: 21,
+  2756: 22
+}
+
+function cleanRequirement (requirement: string) {
+  const str = requirement.replace(/^(Requirement:|Bedingung:|Condition :|達成条件：)/, '').trim()
+  return str[0].toUpperCase() + str.slice(1)
 }
 
 const useStyles = makeStyles(theme => ({
@@ -38,7 +43,7 @@ type Props = {
 
 const AchievementInformation = ({ achievement, children }: Props) => {
   const classes = useStyles()
-  const { t, i18n } = useTranslation('ocean-fishing')
+  const { i18n } = useTranslation('ocean-fishing')
   const locale = i18n.language
 
   return (
@@ -47,7 +52,7 @@ const AchievementInformation = ({ achievement, children }: Props) => {
         <>
           {translate(locale, achievements[achievement], 'name')}
           <OceanFishIcon type='achievement' id={achievement} className={classes.achievementIcon} />
-          <Typography display='inline' className={classes.subtitle}>{t(SUBTITLES[achievement])}</Typography>
+          <Typography display='inline' className={classes.subtitle}>{cleanRequirement(translate(locale, contentBonuses[contentBonusMap[achievement]], 'requirement'))}</Typography>
         </>
       }
     >

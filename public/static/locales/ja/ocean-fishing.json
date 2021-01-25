@@ -21,6 +21,9 @@
   },
   "objectivesPage": {
     "title": "狙い目",
+    "objective": "Objective",
+    "requirement": "Requirement",
+    "bonus": "Bonus",
     "calculator": "Calculator",
     "basePoints": "Base Points"
   },
@@ -41,15 +44,6 @@
     "timeOfDay": "時間帯",
     "weather": "天候",
     "category": "種類"
-  },
-  "achievementInfo": {
-    "octopus": "パーティ合計で150匹以上、タコを釣り上げる。(1人につき18.75匹)",
-    "shark": "パーティ合計で200匹以上、サメを釣り上げる。(1人につき25匹)",
-    "jellyfish": "パーティ合計で150匹以上、クラゲを釣り上げる。(1人につき18.75匹)",
-    "seadragon": "パーティ合計で100匹以上、タツノオトシゴを釣り上げる。(1人につき12.5匹)",
-    "balloon": "パーティ合計で250匹以上、フグを釣り上げる。(1人につき31.25匹)",
-    "crab": "パーティ合計で250匹以上、カニを釣り上げる。(1人につき31.25匹)",
-    "manta": "個人合計で25匹以上、エイを釣り上げる。"
   },
   "time": {
     "day": "昼",
