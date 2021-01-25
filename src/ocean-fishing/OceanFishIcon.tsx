@@ -12,7 +12,7 @@ import { useTranslation } from '../i18n'
 
 const ICON_ROWS = ICONS_MAP.length
 const ICON_COLS = Math.max(...ICONS_MAP.map(row => row.length))
-
+makeStyles
 const useStyles = makeStyles(theme => {
   const styles = {
     iconContainer: {
@@ -32,21 +32,21 @@ const useStyles = makeStyles(theme => {
       backgroundImage: 'url("/images/ocean-fishing/ocean-fishing-icons.png")',
       backgroundSize: `${ICON_COLS * 100}% ${ICON_ROWS * 100}%`
     },
-    itemOverlay: {
+    itemCover: {
       position: 'absolute' as 'absolute',
       top: ({ size }: { size: number }) => size * 0.05,
       left: 0,
       width: ({ size }: { size: number }) => size * 1.2,
       height: ({ size }: { size: number }) => size * 1.1,
-      backgroundImage: 'url("/images/ocean-fishing/item-overlay.png")',
+      backgroundImage: 'url("/images/ocean-fishing/item-cover.png")',
     },
-    achievementOverlay: {
+    achievementCover: {
       position: 'absolute' as 'absolute',
       top: 0,
       left: 0,
       width: ({ size }: { size: number }) => size * 1.2,
       height: ({ size }: { size: number }) => size * 1.2,
-      backgroundImage: 'url("/images/ocean-fishing/achievement-overlay.png")'
+      backgroundImage: 'url("/images/ocean-fishing/achievement-cover.png")'
     },
     hasPopper: {
       cursor: 'pointer'
@@ -102,16 +102,16 @@ const OceanFishIcon = ({ type, id, size = 40, className }: Props) => {
           onClick={handleClick}
         >
           <div className={clsx(classes.oceanFishIcon, classes[`${type}_${id}`])} />
-          {type === 'fish' && <div className={classes.itemOverlay} />}
-          {type === 'bait' && <div className={classes.itemOverlay} />}
-          {type === 'achievement' && <div className={classes.achievementOverlay} />}
+          {type === 'fish' && <div className={classes.itemCover} />}
+          {type === 'bait' && <div className={classes.itemCover} />}
+          {type === 'achievement' && <div className={classes.achievementCover} />}
         </div>
       </Tooltip>
       {type === 'fish' && (
         <Popper anchorEl={anchorEl} open={Boolean(anchorEl)} placement='bottom-start'>
           <ClickAwayListener onClickAway={handleClickAway}>
             <div>
-              <OceanFishPopper fishId={id as number} />
+              <OceanFishPopper fishId={id} />
             </div>
           </ClickAwayListener>
         </Popper>

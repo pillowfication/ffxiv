@@ -15,14 +15,23 @@ import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import IconButton from '@material-ui/core/IconButton'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import OceanFishIconLarge from './OceanFishIconLarge'
+import ItemIcon from './ItemIcon'
 import TimeIcon from './TimeIcon'
 import BaitGroup from './BaitGroup'
 import ChecklistCheckmark from './ChecklistCheckmark'
 import WeatherIcon from '../skywatcher/WeatherIcon'
-import { oceanFishes } from './ocean-fishing/data'
+import { oceanFishes, OceanFish } from './ocean-fishing/data'
 import { getBaitGroup, subtextBiteTime, translate } from './utils'
 import { useTranslation } from '../i18n'
+
+function getImgUrl (fish: OceanFish) {
+  if (fish.lodestoneData) {
+    return `https://img.finalfantasyxiv.com/lds/pc/global/images/itemicon/${fish.lodestoneData.icon_lg.slice(0, 2)}/${fish.lodestoneData.icon_lg}.png`
+  } else {
+    // Fallback to XIVAPI's icons
+    return `https://xivapi.com/i/${('000000' + (fish.icon - (fish.icon % 1000))).slice(-6)}/${('000000' + fish.icon).slice(-6)}.png`
+  }
+}
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -71,14 +80,13 @@ const OceanFishPopper = ({ fishId }: Props) => {
     <Box boxShadow={8}>
       <Card variant='outlined' className={classes.container}>
         <CardHeader
-          avatar={<OceanFishIconLarge fishId={fishId} size={100} />}
+          avatar={<ItemIcon src={getImgUrl(fish)} />}
           title={translate(locale, fish, 'name')}
           titleTypographyProps={{ variant: 'h6', paragraph: true, className: classes.title }}
           subheader={(
             <div>
-              {'Lodestone'}
-              <> | </>
-              <Link href={`https://ffxivteamcraft.com/db/${locale}/item/${fishId}`}>Teamcraft</Link>
+              {fish.lodestoneData && <div><Link href={`https://na.finalfantasyxiv.com/lodestone/playguide/db/item/${fish.lodestoneData.item}/`}>Lodestone</Link></div>}
+              <div><Link href={`https://ffxivteamcraft.com/db/${locale}/item/${fishId}`}>Teamcraft</Link></div>
             </div>
           )}
           action={<ChecklistCheckmark fishId={fishId} />}

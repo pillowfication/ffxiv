@@ -6,6 +6,7 @@ import oceanFishingContentBonuses from './ocean-fishing-content-bonuses.json'
 import oceanFishingAchievements from './ocean-fishing-achievements.json'
 import oceanFishingBiteTimes from './ocean-fishing-bite-times.json'
 import spreadsheetData from './spreadsheet-data.json'
+import lodestoneData from './lodestone-data.json'
 
 import { Time } from '../types'
 import { Weather } from '../../../skywatcher/weather/src/types/weather'
@@ -44,6 +45,13 @@ export type SpreadsheetData = {
   intuition?: { fishId: number, count: number }[]
 }
 
+export type LodestoneData = {
+  item: string,
+  icon_sm: string,
+  icon_md: string,
+  icon_lg: string
+}
+
 export type OceanFish = {
   id: number,
   icon: number,
@@ -56,11 +64,12 @@ export type OceanFish = {
   description_fr: string,
   description_ja: string,
   contentBonus: number,
-  spreadsheetData: SpreadsheetData,
   biteTimes: {
     [key: number]: [number, number],
     all?: [number, number]
-  }
+  },
+  spreadsheetData: SpreadsheetData,
+  lodestoneData?: LodestoneData
 }
 
 export type Bait = {
@@ -116,8 +125,11 @@ function getMapped<T> (map: Record<string, T>, name: string) {
   return map[name]
 }
 
-// Attach spreadsheet data and bite times
 for (const oceanFish of Object.values<any>(oceanFishingFishes)) {
+  // Attach bite times
+  oceanFish.biteTimes = oceanFishingBiteTimes[oceanFish.id] || {}
+
+  // Attach spreadsheet data
   const spreadsheetData = getMapped(spreadsheetMap, oceanFish.name_en)
   oceanFish.spreadsheetData = {
     bait: spreadsheetData.bait && getMapped(baitMap, spreadsheetData.bait),
@@ -142,7 +154,8 @@ for (const oceanFish of Object.values<any>(oceanFishingFishes)) {
     intuition: spreadsheetData.intuition && spreadsheetData.intuition.map(({ name, count }) => ({ fishId: getMapped(fishMap, name), count }))
   }
 
-  oceanFish.biteTimes = oceanFishingBiteTimes[oceanFish.id] || {}
+  // Attach Lodestone data
+  oceanFish.lodestoneData = lodestoneData[oceanFish.id]
 }
 
 export const fishingSpots = oceanFishingFishingSpots as Record<number, FishingSpot>
