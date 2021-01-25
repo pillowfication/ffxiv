@@ -30,7 +30,7 @@ function getValuesSorted<T> (object: Record<any, T>, property: string) {
 
 // Add fishes
 for (const fishingSpot of getValuesSorted(fishingSpots, 'order')) {
-  ICONS.push(fishingSpot.items.map(fishId => (
+  ICONS.push(fishingSpot.fishes.map(fishId => (
     { type: 'fish', id: fishId, icon: oceanFishes[fishId].icon }
   )))
 }
