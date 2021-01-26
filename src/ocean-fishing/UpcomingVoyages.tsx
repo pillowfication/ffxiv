@@ -14,7 +14,8 @@ import UpcomingVoyagesTable from './UpcomingVoyagesTable'
 import { fishingSpots, placeNames, oceanFishes, achievements } from './ocean-fishing/data'
 import { calculateVoyages, DestinationStopTime } from './ocean-fishing'
 import * as maps from './maps'
-import { translate, upperFirst } from './utils'
+import { upperFirst } from './utils'
+import { translate } from '../utils'
 import { useTranslation } from '../i18n'
 
 const useStyles = makeStyles(theme => ({

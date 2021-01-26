@@ -22,7 +22,7 @@ const PlaceName_fr = saintCoinach.get('PlaceName.fr')
 const PlaceName_ja = saintCoinach.get('PlaceName.ja')
 
 console.log('Collecting ocean fishing spots...')
-const oceanFishingSpots = (FishingSpot_en.data as any[])
+const oceanFishingSpots = FishingSpot_en.data
   .filter(({ ['PlaceName{Main}']: PlaceName_Main }) => PlaceName_Main === 'The High Seas')
   .map(fishingSpot => {
     return {
@@ -68,7 +68,7 @@ const placeNames = Object.values<any>(oceanFishingSpots)
 fs.writeFileSync(path.resolve(__dirname, '../data/ocean-fishing-place-names.json'), JSON.stringify(placeNames))
 
 console.log('Collecting ocean fishes...')
-const oceanFishes = (IKDFishParam.data as any[])
+const oceanFishes = IKDFishParam.data
   .map(ikdFishParam => {
     const itemId = Item_en.data.find(({ Name }) => Name === ikdFishParam.Fish)['#']
     const item_en = Item_en.data.find(({ ['#']: id }) => id === itemId)
@@ -127,7 +127,7 @@ const baits = [
 fs.writeFileSync(path.resolve(__dirname, '../data/ocean-fishing-baits.json'), JSON.stringify(baits))
 
 console.log('Collecting content bonuses...')
-const contentBonuses = (IKDContentBonus_en.data as any[])
+const contentBonuses = IKDContentBonus_en.data
   .map(ikdContentBonus => {
     const ikdContentBonusId = ikdContentBonus['#']
     const ikdContentBonus_en = IKDContentBonus_en.data.find(({ ['#']: id }) => id === ikdContentBonusId)

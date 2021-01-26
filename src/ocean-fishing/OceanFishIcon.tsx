@@ -7,7 +7,7 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import OceanFishPopper from './OceanFishPopper'
 import { oceanFishes, baits, achievements, contentBonuses } from './ocean-fishing/data'
 import ICONS_MAP from './ocean-fishing/data/ocean-fishing-icons-map.json'
-import { translate } from './utils'
+import { translate } from '../utils'
 import { useTranslation } from '../i18n'
 
 const ICON_ROWS = ICONS_MAP.length

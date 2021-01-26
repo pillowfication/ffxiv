@@ -7,7 +7,7 @@ import CardHeader from '@material-ui/core/CardHeader'
 import { fishingSpots, placeNames } from './ocean-fishing/data'
 import { StopTime } from './ocean-fishing'
 import * as maps from './maps'
-import { translate } from './utils'
+import { translate } from '../utils'
 import { useTranslation } from '../i18n'
 
 const useStyles = makeStyles(() => ({

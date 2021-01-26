@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography'
 import Section from '../Section'
 import OceanFishIcon from './OceanFishIcon'
 import { achievements, contentBonuses } from './ocean-fishing/data'
-import { translate } from './utils'
+import { translate } from '../utils'
 import { useTranslation } from '../i18n'
 
 const contentBonusMap: Record<number, number> = {

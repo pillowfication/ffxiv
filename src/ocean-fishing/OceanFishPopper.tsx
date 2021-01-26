@@ -21,7 +21,8 @@ import BaitGroup from './BaitGroup'
 import ChecklistCheckmark from './ChecklistCheckmark'
 import WeatherIcon from '../skywatcher/WeatherIcon'
 import { oceanFishes, OceanFish } from './ocean-fishing/data'
-import { getBaitGroup, subtextBiteTime, translate } from './utils'
+import { getBaitGroup, subtextBiteTime } from './utils'
+import { translate } from '../utils'
 import { useTranslation } from '../i18n'
 
 function getImgUrl (fish: OceanFish) {

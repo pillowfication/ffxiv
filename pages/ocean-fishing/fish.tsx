@@ -14,7 +14,7 @@ import Page from '../../src/Page'
 import Section from '../../src/Section'
 import FishTable from '../../src/ocean-fishing/FishTable'
 import { fishingSpots, placeNames } from '../../src/ocean-fishing/ocean-fishing/data'
-import { translate } from '../../src/ocean-fishing/utils'
+import { translate } from '../../src/utils'
 import { useTranslation } from '../../src/i18n'
 
 const useStyles = makeStyles((theme) => ({

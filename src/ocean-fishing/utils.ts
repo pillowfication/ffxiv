@@ -114,17 +114,6 @@ export function subtextBiteTime (fishId: number) {
   return biteTimeAll ? `${biteTimeAll[0] === biteTimeAll[1] ? biteTimeAll[0] : biteTimeAll.join('-')}s` : '?s'
 }
 
-export function translate (locale: string = 'en', obj: any, ...keys: string[]): string {
-  if (!obj) {
-    return `{${JSON.stringify(obj)}}`
-  }
-  for (const key of keys) {
-    const keyLocale = `${key}_${locale}`
-    if (obj[keyLocale]) return obj[keyLocale]
-  }
-  return `{[Object].${keys.join(',')}}`
-}
-
 export function upperFirst (str: string) {
   return str[0].toUpperCase() + str.slice(1)
 }

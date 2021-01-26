@@ -14,7 +14,8 @@ import { fishingSpots, placeNames } from './ocean-fishing/data'
 import { calculateVoyages, DestinationStopTime } from './ocean-fishing'
 import * as maps from './maps'
 import { toTimeString } from '../utils'
-import { getBlueFish, timeUntil, translate, upperFirst } from './utils'
+import { getBlueFish, timeUntil, upperFirst } from './utils'
+import { translate } from '../utils'
 import { useTranslation } from '../i18n'
 
 const DATE_FORMAT: Intl.DateTimeFormatOptions = { month: '2-digit', day: '2-digit' }

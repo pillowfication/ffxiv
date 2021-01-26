@@ -22,9 +22,9 @@ import {
   getPointsFish,
   getBlueFish,
   getBaitGroup,
-  translate,
   upperFirst
 } from './utils'
+import { translate } from '../utils'
 import { useTranslation } from '../i18n'
 
 const useStyles = makeStyles(theme => ({
