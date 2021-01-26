@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography'
 import Section from '../Section'
 import NameAutocomplete from './NameAutocomplete'
 import MyNameIs from './MyNameIs'
-import names from './names/data/names.json'
+import names from './names/data/chara-make-names.json'
 import { translate, Clan, Gender } from './names'
 import { upperFirst } from './names/utils'
 

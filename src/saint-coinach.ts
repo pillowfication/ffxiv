@@ -42,11 +42,12 @@ export function get (key: string) {
   const csv = csvParse(buffer.toString(), { columns: true })
   const [_keys, _types, _defaults, ..._data] = csv
 
+  const keys = mapKeys(_keys, _keys) as Record<string, string>
   const types = mapKeys(_keys, _types) as Record<string, string>
   const defaults = parseValues(types, mapKeys(_keys, _defaults))
   const data = _data.map((datum: any) => parseValues(types, mapKeys(_keys, datum))) as any[]
 
-  return { types, defaults, data }
+  return { keys, types, defaults, data }
 }
 
 function padZeroes (id: number) {

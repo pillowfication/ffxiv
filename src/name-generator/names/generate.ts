@@ -1,4 +1,4 @@
-import names from './data/names.json'
+import names from './data/chara-make-names.json'
 import { randomElement, formatName } from './utils'
 import { Clan, Gender } from './types'
 

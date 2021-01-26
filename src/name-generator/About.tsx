@@ -10,7 +10,7 @@ import TableBody from '@material-ui/core/TableBody'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import Section from '../Section'
-import names from './names/data/names.json'
+import names from './names/data/chara-make-names.json'
 import { getClans, getGenders, translate, Race, Clan, Gender } from './names'
 import { useTranslation } from '../i18n'
 
@@ -31,7 +31,7 @@ function combinations (...arrays: any[][]) {
     .reduce((acc, curr) => acc * curr.length, 1)
 }
 
-const STATISTICS: Record<Clan, { [key in Gender]: number }> = {
+const STATISTICS: Record<Clan, Record<Gender, number>> = {
   [Clan.Midlander]: {
     [Gender.Male]: combinations(names.HyurMidlanderMale, names.HyurMidlanderLastName),
     [Gender.Female]: combinations(names.HyurMidlanderFemale, names.HyurMidlanderLastName)
