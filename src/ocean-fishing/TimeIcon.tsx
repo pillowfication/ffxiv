@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Tooltip from '@material-ui/core/Tooltip'
-import { Time } from './ocean-fishing'
+import { Time } from './ffxiv-ocean-fishing'
 import { useTranslation } from '../i18n'
 
 const ICON_SIZE = 32

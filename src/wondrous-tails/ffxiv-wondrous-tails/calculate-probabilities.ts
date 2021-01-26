@@ -23,7 +23,7 @@ function countLines (board: boolean[]) {
 
 function choose (set: number[], count: number): number[][] {
   if (count >= set.length) {
-    return [set.slice()]
+    return [[...set]]
   } else if (count === 0) {
     return [[]]
   } else {
@@ -34,7 +34,7 @@ function choose (set: number[], count: number): number[][] {
   }
 }
 
-function calculateProbabilities (board: boolean[]) {
+export default function calculateProbabilities (board: boolean[]) {
   const emptyIndices = Array(16).fill(undefined).map((_, index) => index).filter(index => !board[index])
   const possibleBoards = choose(emptyIndices, Math.max(emptyIndices.length - 7, 0)).map(empties => {
     const newBoard = board.slice()
@@ -56,5 +56,3 @@ function calculateProbabilities (board: boolean[]) {
     total: possibleBoards.length
   }
 }
-
-export default calculateProbabilities

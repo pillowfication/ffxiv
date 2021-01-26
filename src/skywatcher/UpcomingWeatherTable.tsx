@@ -1,8 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
-import { getSeed, getHashes, getWeather, translatePlace } from './weather'
-import { paddedZero, formatTime } from '../utils'
 import Typography from '@material-ui/core/Typography'
 import TableContainer from '@material-ui/core/TableContainer'
 import Table from '@material-ui/core/Table'
@@ -11,7 +9,8 @@ import TableBody from '@material-ui/core/TableBody'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import WeatherIcon from './WeatherIcon'
-import { Place } from './weather'
+import { getSeed, getHashes, getWeather, translatePlace, Place } from './ffxiv-skywatcher'
+import { paddedZero, formatTime } from '../utils'
 import { useTranslation } from '../i18n'
 
 const WEATHER_CELL_WIDTH = 75

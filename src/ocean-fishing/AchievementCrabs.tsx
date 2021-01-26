@@ -5,7 +5,7 @@ import AchievementInformation from './AchievementInformation'
 import RouteCardContainer from './RouteCardContainer'
 import RouteCard from './RouteCard'
 import BaitList from './BaitList'
-import { getStops, DestinationStopTime } from './ocean-fishing'
+import { getStops, DestinationStopTime } from './ffxiv-ocean-fishing'
 import { getBaitGroup, subtextDH } from './utils'
 
 type Props = {

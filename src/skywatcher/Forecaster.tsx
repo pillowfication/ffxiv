@@ -27,7 +27,7 @@ import {
   translatePlace,
   Weather,
   Place
-} from './weather'
+} from './ffxiv-skywatcher'
 import { useTranslation } from '../i18n'
 
 type PlaceOption = {

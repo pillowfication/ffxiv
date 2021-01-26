@@ -1,13 +1,15 @@
-import generate from './generate'
 import { Race, Clan, Gender } from './types'
 
-import en from './locales/en.json'
-import de from './locales/de.json'
-import fr from './locales/fr.json'
-import ja from './locales/ja.json'
-const LOCALES = { en, de, fr, ja }
-
-export { Race, Clan, Gender }
+const RACES = [
+  Race.Hyur,
+  Race.Elezen,
+  Race.Lalafell,
+  Race.Miqote,
+  Race.Roegadyn,
+  Race.AuRa,
+  Race.Hrothgar,
+  Race.Viera
+]
 
 const CLANS: Record<Race, Clan[]> = {
   [Race.Hyur]: [Clan.Midlander, Clan.Highlander],
@@ -18,6 +20,10 @@ const CLANS: Record<Race, Clan[]> = {
   [Race.AuRa]: [Clan.Raen, Clan.Xaela],
   [Race.Hrothgar]: [Clan.Helions, Clan.TheLost],
   [Race.Viera]: [Clan.Rava, Clan.Veena]
+}
+
+export function getRaces () {
+  return RACES
 }
 
 export function getClans (race: Race) {
@@ -31,9 +37,3 @@ export function getGenders (race: Race) {
     default: return [Gender.Male, Gender.Female]
   }
 }
-
-export function translate (type: 'race' | 'clan' | 'gender', id: string, locale: string = 'en') {
-  return (LOCALES[locale] && LOCALES[locale][type][id]) || `{${type}.${id}}`
-}
-
-export default generate

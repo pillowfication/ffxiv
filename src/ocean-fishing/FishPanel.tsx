@@ -1,6 +1,6 @@
 import React from 'react'
 import FishTable from './FishTable'
-import { Stop, Time, StopTime } from './ocean-fishing'
+import { Stop, Time, StopTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 
 type Props = {

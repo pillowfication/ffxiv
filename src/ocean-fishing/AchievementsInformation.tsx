@@ -6,7 +6,7 @@ import AchievementSeadragons from './AchievementSeadragons'
 import AchievementBalloons from './AchievementBalloons'
 import AchievementCrabs from './AchievementCrabs'
 import AchievementMantas from './AchievementMantas'
-import { DestinationStopTime } from './ocean-fishing'
+import { DestinationStopTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 
 type Props = {

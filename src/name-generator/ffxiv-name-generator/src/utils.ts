@@ -1,4 +1,9 @@
-import roegadynDictionary from './data/roegadyn-dictionary.json'
+import roegadynDictionary from '../data/roegadyn-dictionary.json'
+import en from '../locales/en.json'
+import de from '../locales/de.json'
+import fr from '../locales/fr.json'
+import ja from '../locales/ja.json'
+const LOCALES = { en, de, fr, ja }
 
 export function randomElement<T> (...arrays: T[][]) {
   if (arrays.length === 0) {
@@ -80,4 +85,8 @@ export function combineRoegadyn (...words: string[]) {
       }
     }).join('')
   )
+}
+
+export function translate (type: 'race' | 'clan' | 'gender', id: string, locale: string = 'en') {
+  return (LOCALES[locale] && LOCALES[locale][type][id]) || `{${type}.${id}}`
 }

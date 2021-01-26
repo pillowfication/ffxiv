@@ -9,7 +9,7 @@ import Section from '../../src/Section'
 import UpcomingVoyages from '../../src/ocean-fishing/UpcomingVoyages'
 import RouteInformation from '../../src/ocean-fishing/RouteInformation'
 import AchievementsInformation from '../../src/ocean-fishing/AchievementsInformation'
-import { DestinationStopTime } from '../../src/ocean-fishing/ocean-fishing'
+import { DestinationStopTime } from '../../src/ocean-fishing/ffxiv-ocean-fishing'
 import { useTranslation } from '../../src/i18n'
 
 export const ChecklistContext = React.createContext<{ checklist: number[], setChecklist: (checklist: number[]) => void }>(

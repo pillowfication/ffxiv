@@ -8,8 +8,8 @@ import oceanFishingBiteTimes from './ocean-fishing-bite-times.json'
 import spreadsheetData from './spreadsheet-data.json'
 import lodestoneData from './lodestone-data.json'
 
-import { Time } from '../types'
-import { Weather } from '../../../skywatcher/weather/src/types/weather'
+import { Time } from '../src/types'
+import { Weather } from '../../../skywatcher/ffxiv-skywatcher/src/types/weather'
 
 export type FishingSpot = {
   id: number,

@@ -4,11 +4,10 @@ import Typography from '@material-ui/core/Typography'
 import Section from '../Section'
 import NameAutocomplete from './NameAutocomplete'
 import MyNameIs from './MyNameIs'
-import names from './names/data/chara-make-names.json'
-import { translate, Clan, Gender } from './names'
-import { upperFirst } from './names/utils'
-
-import miqoteTribes from './names/data/miqote-tribes.json'
+import names from './ffxiv-name-generator/data/chara-make-names.json'
+import { translate, Clan, Gender } from './ffxiv-name-generator'
+import { upperFirst } from './ffxiv-name-generator/src/utils'
+import miqoteTribes from './ffxiv-name-generator/data/miqote-tribes.json'
 import { useTranslation } from '../i18n'
 
 const SeekersOfTheSunFemale = () => {

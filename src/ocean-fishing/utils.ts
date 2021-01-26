@@ -1,6 +1,6 @@
 import { timeUntil as genericTimeUntil } from '../utils'
-import { fishingSpots, oceanFishes } from './ocean-fishing/data'
-import { getStops, Time, DestinationStopTime } from './ocean-fishing'
+import { fishingSpots, oceanFishes } from './ffxiv-ocean-fishing/data'
+import { getStops, Time, DestinationStopTime } from './ffxiv-ocean-fishing'
 import { Bait as BaitChainProp } from './BaitChain'
 import * as maps from './maps'
 import { TFunction } from 'next-i18next'

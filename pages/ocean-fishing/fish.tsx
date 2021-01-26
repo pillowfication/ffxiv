@@ -13,7 +13,7 @@ import { ChecklistContext } from './index'
 import Page from '../../src/Page'
 import Section from '../../src/Section'
 import FishTable from '../../src/ocean-fishing/FishTable'
-import { fishingSpots, placeNames } from '../../src/ocean-fishing/ocean-fishing/data'
+import { fishingSpots, placeNames } from '../../src/ocean-fishing/ffxiv-ocean-fishing/data'
 import { translate } from '../../src/utils'
 import { useTranslation } from '../../src/i18n'
 

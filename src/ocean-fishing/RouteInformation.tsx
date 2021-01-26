@@ -13,8 +13,8 @@ import RouteCardContainer from './RouteCardContainer'
 import RouteCard from './RouteCard'
 import FishPanel from './FishPanel'
 import BaitList from './BaitList'
-import { fishingSpots, placeNames, oceanFishes } from './ocean-fishing/data'
-import { calculateVoyages, getStops, DestinationStopTime } from './ocean-fishing'
+import { fishingSpots, placeNames, oceanFishes } from './ffxiv-ocean-fishing/data'
+import { calculateVoyages, getStops, DestinationStopTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 import {
   timeUntil,

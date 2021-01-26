@@ -3,11 +3,11 @@ import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Tooltip from '@material-ui/core/Tooltip'
-import { Weather } from './weather/src/types/weather'
-import translateWeather from './weather/src/translate-weather'
+import { Weather } from './ffxiv-skywatcher/src/types/weather'
+import translateWeather from './ffxiv-skywatcher/src/translate-weather'
+import ICONS from './ffxiv-skywatcher/data/weather-icons-map.json'
 import softHyphens from './soft-hyphens'
 import { useTranslation } from '../i18n'
-import ICONS from './weather/data/weather-icons-map.json'
 
 const ICON_SIZE = 32
 

@@ -19,7 +19,7 @@ import {
   getPossibleWeathers,
   translatePlace,
   Place
-} from './weather'
+} from './ffxiv-skywatcher'
 import { useTranslation } from '../i18n'
 
 const REGIONS = getRegions()

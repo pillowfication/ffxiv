@@ -1,7 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
-import Link from '../Link'
 import Button from '@material-ui/core/Button'
 import TableContainer from '@material-ui/core/TableContainer'
 import Table from '@material-ui/core/Table'
@@ -10,20 +9,28 @@ import TableBody from '@material-ui/core/TableBody'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import Section from '../Section'
-import names from './names/data/chara-make-names.json'
-import { getClans, getGenders, translate, Race, Clan, Gender } from './names'
+import names from './ffxiv-name-generator/data/chara-make-names.json'
+import {
+  getRaces,
+  getClans,
+  getGenders,
+  translate,
+  Race,
+  Clan,
+  Gender
+} from './ffxiv-name-generator'
 import { useTranslation } from '../i18n'
 
-const CONVENTION_LINKS: [Race, string][] = [
-  [Race.Hyur, 'https://forum.square-enix.com/ffxiv/threads/63112-Race-Naming-Conventions?p=1014929&viewfull=1#post1014929'],
-  [Race.Elezen, 'https://forum.square-enix.com/ffxiv/threads/63112-Race-Naming-Conventions?p=1014928&viewfull=1#post1014928'],
-  [Race.Lalafell, 'https://forum.square-enix.com/ffxiv/threads/63112-Race-Naming-Conventions?p=1014931&viewfull=1#post1014931'],
-  [Race.Miqote, 'https://forum.square-enix.com/ffxiv/threads/63112-Race-Naming-Conventions?p=1014930&viewfull=1#post1014930'],
-  [Race.Roegadyn, 'https://forum.square-enix.com/ffxiv/threads/63112-Race-Naming-Conventions?p=1014932&viewfull=1#post1014932'],
-  [Race.AuRa, 'https://forum.square-enix.com/ffxiv/threads/63112-Race-Naming-Conventions?p=3039574&viewfull=1#post3039574'],
-  [Race.Hrothgar, 'https://forum.square-enix.com/ffxiv/threads/398566-Hrothgar-Naming-Conventions?p=5091422&viewfull=1#post5091422'],
-  [Race.Viera, 'https://forum.square-enix.com/ffxiv/threads/398565-Viera-Naming-Conventions?p=5091421&viewfull=1#post5091421']
-]
+const CONVENTION_LINKS: Record<Race, string> = {
+  [Race.Hyur]: 'https://forum.square-enix.com/ffxiv/threads/63112-Race-Naming-Conventions?p=1014929&viewfull=1#post1014929',
+  [Race.Elezen]: 'https://forum.square-enix.com/ffxiv/threads/63112-Race-Naming-Conventions?p=1014928&viewfull=1#post1014928',
+  [Race.Lalafell]: 'https://forum.square-enix.com/ffxiv/threads/63112-Race-Naming-Conventions?p=1014931&viewfull=1#post1014931',
+  [Race.Miqote]: 'https://forum.square-enix.com/ffxiv/threads/63112-Race-Naming-Conventions?p=1014930&viewfull=1#post1014930',
+  [Race.Roegadyn]: 'https://forum.square-enix.com/ffxiv/threads/63112-Race-Naming-Conventions?p=1014932&viewfull=1#post1014932',
+  [Race.AuRa]: 'https://forum.square-enix.com/ffxiv/threads/63112-Race-Naming-Conventions?p=3039574&viewfull=1#post3039574',
+  [Race.Hrothgar]: 'https://forum.square-enix.com/ffxiv/threads/398566-Hrothgar-Naming-Conventions?p=5091422&viewfull=1#post5091422',
+  [Race.Viera]: 'https://forum.square-enix.com/ffxiv/threads/398565-Viera-Naming-Conventions?p=5091421&viewfull=1#post5091421'
+}
 
 function combinations (...arrays: any[][]) {
   return arrays
@@ -127,15 +134,12 @@ const About = () => {
         Naming conventions for the various races can be found here:
       </Typography>
       <div className={classes.buttons}>
-        {CONVENTION_LINKS.map(([race, url]) =>
-          <Button key={race} variant='contained' href={url}>
+        {getRaces().map(race =>
+          <Button key={race} variant='contained' href={CONVENTION_LINKS[race]}>
             <Typography>{translate('race', race, locale)}</Typography>
           </Button>
         )}
       </div>
-      <Typography paragraph>
-        Data were also grabbed from the <Link href='/xivapi?url=%2FCharaMakeName'>XIVAPI</Link>.
-      </Typography>
       <TableContainer>
         <Table size='small' className={classes.statsTable}>
           <TableHead>
@@ -147,7 +151,7 @@ const About = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {CONVENTION_LINKS.flatMap(([race]) => {
+            {getRaces().map(race => {
               const rows = []
               const clans = getClans(race)
               const genders = getGenders(race)
@@ -157,13 +161,21 @@ const About = () => {
                   rows.push(
                     <TableRow key={`${race},${clans[i]},${genders[j]}`}>
                       {i === 0 && j === 0 && (
-                        <TableCell rowSpan={clans.length * genders.length} align='center'><Typography>{translate('race', race, locale)}</Typography></TableCell>
+                        <TableCell rowSpan={clans.length * genders.length} align='center'>
+                          <Typography>{translate('race', race, locale)}</Typography>
+                        </TableCell>
                       )}
                       {j === 0 && (
-                        <TableCell rowSpan={genders.length} align='center'><Typography>{translate('clan', clans[i], locale)}</Typography></TableCell>
+                        <TableCell rowSpan={genders.length} align='center'>
+                          <Typography>{translate('clan', clans[i], locale)}</Typography>
+                        </TableCell>
                       )}
-                      <TableCell align='center'><Typography>{translate('gender', genders[j], locale)}</Typography></TableCell>
-                      <TableCell align='right'><Typography>{STATISTICS[clans[i]][genders[j]].toLocaleString(locale)}</Typography></TableCell>
+                      <TableCell align='center'>
+                        <Typography>{translate('gender', genders[j], locale)}</Typography>
+                      </TableCell>
+                      <TableCell align='right'>
+                        <Typography>{STATISTICS[clans[i]][genders[j]].toLocaleString(locale)}</Typography>
+                      </TableCell>
                     </TableRow>
                   )
                 }

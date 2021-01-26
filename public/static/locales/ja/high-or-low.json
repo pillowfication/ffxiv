@@ -5,7 +5,7 @@
     "duplicateCards": "Cannot have duplicate cards",
     "high": "You are High ({{chance}}%)",
     "low": "You are Low ({{chance}}%)",
-    "both": "You are High or Low ({{chance}}%)"
+    "same": "You are High or Low ({{chance}}%)"
   },
   "reset": "Reset",
   "about": "About"

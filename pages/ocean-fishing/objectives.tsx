@@ -17,7 +17,7 @@ import CheckIcon from '@material-ui/icons/Check'
 import Page from '../../src/Page'
 import Section from '../../src/Section'
 import OceanFishIcon from '../../src/ocean-fishing/OceanFishIcon'
-import { contentBonuses } from '../../src/ocean-fishing/ocean-fishing/data'
+import { contentBonuses } from '../../src/ocean-fishing/ffxiv-ocean-fishing/data'
 import { translate } from '../../src/utils'
 import { useTranslation } from '../../src/i18n'
 

@@ -4,11 +4,10 @@ import Typography from '@material-ui/core/Typography'
 import Section from '../Section'
 import NameAutocomplete from './NameAutocomplete'
 import MyNameIs from './MyNameIs'
-import names from './names/data/chara-make-names.json'
-import { translate, Clan, Gender } from './names'
-import { upperFirst, formatName } from './names/utils'
-
-import miqoteSuffixes from './names/data/miqote-suffixes.json'
+import names from './ffxiv-name-generator/data/chara-make-names.json'
+import { translate, Clan, Gender } from './ffxiv-name-generator'
+import { upperFirst, formatName } from './ffxiv-name-generator/src/utils'
+import miqoteSuffixes from './ffxiv-name-generator/data/miqote-suffixes.json'
 import { useTranslation } from '../i18n'
 
 const ORDINALS = {

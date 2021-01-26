@@ -7,7 +7,6 @@ export { Weather, Place }
 export { default as translateWeather } from './src/translate-weather'
 export { default as translatePlace } from './src/translate-place'
 
-// Having these two functions is so ugly
 export function getRegions (): Place[] {
   return Object.keys(partition.partition)
     .map(key => Number(key))

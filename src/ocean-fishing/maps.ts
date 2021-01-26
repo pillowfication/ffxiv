@@ -1,6 +1,6 @@
 import React from 'react'
 import TimeIcon from './TimeIcon'
-import { Stop, Time, DestinationStopTime } from './ocean-fishing'
+import { Stop, Time, DestinationStopTime } from './ffxiv-ocean-fishing'
 
 export const STOP_MAP: Record<Stop, number> = {
   B: 248,

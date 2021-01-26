@@ -13,7 +13,7 @@ import TimeIcon from './TimeIcon'
 import Tug from './Tug'
 import ChecklistCheckmark from './ChecklistCheckmark'
 import WeatherIcon from '../skywatcher/WeatherIcon'
-import { fishingSpots, placeNames, oceanFishes } from './ocean-fishing/data'
+import { fishingSpots, placeNames, oceanFishes } from './ffxiv-ocean-fishing/data'
 import { translate } from '../utils'
 import { useTranslation } from '../i18n'
 

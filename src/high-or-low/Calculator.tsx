@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import Section from '../Section'
 import HighOrLowCard from './HighOrLowCard'
-import calculateHighOrLow from './calculate-high-or-low'
+import calculateHighOrLow from './ffxiv-high-or-low'
 import { useTranslation } from '../i18n'
 
 enum CalculatorState {
@@ -28,9 +28,9 @@ const useStyles = makeStyles(() => ({
 const Calculator = () => {
   const classes = useStyles()
   const { t } = useTranslation('high-or-low')
-  const [tb1, setTb1] = useState<number>(null)
-  const [tb2, setTb2] = useState<number>(null)
-  const [me, setMe] = useState<number>(null)
+  const [tb1, setTb1] = useState<number | null>(null)
+  const [tb2, setTb2] = useState<number | null>(null)
+  const [me, setMe] = useState<number | null>(null)
 
   let state: CalculatorState
   let tb1Error = tb1 && (tb1 === tb2 || tb1 === me)
@@ -38,7 +38,7 @@ const Calculator = () => {
   let meError = me && (me === tb1 || me === tb2)
   let high: number
   let low: number
-  let both: number
+  let same: number
 
   if (tb1Error || tb2Error || meError) {
     state = CalculatorState.Duplicate
@@ -46,7 +46,7 @@ const Calculator = () => {
     state = CalculatorState.Incomplete
   } else {
     state = CalculatorState.Complete
-    ;({high, low, both} = calculateHighOrLow(tb1, tb2, me))
+    ;({ high, low, same } = calculateHighOrLow(tb1, tb2, me))
   }
 
   const handleClickReset = () => {
@@ -73,13 +73,13 @@ const Calculator = () => {
             case CalculatorState.Duplicate:
               return <Typography paragraph>{t('state.duplicateCards')}</Typography>
             case CalculatorState.Complete: {
-              const sum = high + low + both
+              const sum = high + low + same
               if (high > low) {
                 return <Typography paragraph>{t('state.high', { chance: toPercent(high, sum) })}</Typography>
               } else if (high < low) {
                 return <Typography paragraph>{t('state.low', { chance: toPercent(low, sum) })}</Typography>
               } else {
-                return <Typography paragraph>{t('state.both', { chance: toPercent(low, sum) })}</Typography>
+                return <Typography paragraph>{t('state.same', { chance: toPercent(low, sum) })}</Typography>
               }
             }
           }

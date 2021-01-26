@@ -4,9 +4,9 @@ import Typography from '@material-ui/core/Typography'
 import Section from '../Section'
 import NameAutocomplete from './NameAutocomplete'
 import MyNameIs from './MyNameIs'
-import names from './names/data/chara-make-names.json'
-import { translate, Clan, Gender } from './names'
-import { upperFirst, formatName } from './names/utils'
+import names from './ffxiv-name-generator/data/chara-make-names.json'
+import { translate, Clan, Gender } from './ffxiv-name-generator'
+import { upperFirst, formatName } from './ffxiv-name-generator/src/utils'
 import { useTranslation } from '../i18n'
 
 function splitPhoneme (phoneme: string) {

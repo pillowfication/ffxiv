@@ -28,19 +28,18 @@ import SeaWolfMale from './SeaWolfMale'
 import SeaWolfFemale from './SeaWolfFemale'
 import HellsguardMale from './HellsguardMale'
 import HellsguardFemale from './HellsguardFemale'
-import generate, { getClans, getGenders, translate, Race, Clan, Gender } from '../name-generator/names'
+import {
+  generate,
+  getRaces,
+  getClans,
+  getGenders,
+  translate,
+  Race,
+  Clan,
+  Gender
+} from './ffxiv-name-generator'
 import { useTranslation } from '../i18n'
 
-const RACES = [
-  Race.Hyur,
-  Race.Elezen,
-  Race.Lalafell,
-  Race.Miqote,
-  Race.Roegadyn,
-  Race.AuRa,
-  Race.Hrothgar,
-  Race.Viera
-]
 const ADVANCED: { [key: string]: React.FunctionComponent<{}> } = {
   [`${Clan.Midlander},${Gender.Male}`]: MidlanderMale,
   [`${Clan.Midlander},${Gender.Female}`]: MidlanderFemale,
@@ -119,7 +118,7 @@ const Generator = () => {
   const handleClickGenerate = () => {
     const newResults = []
     for (let i = 0; i < 10; ++i) {
-      const genRace = race || randomElement(RACES)
+      const genRace = race || randomElement(getRaces())
       const genClan = clan || randomElement(getClans(genRace))
       const genGender = gender || randomElement(getGenders(genRace))
       newResults.push(generate(genClan, genGender))
@@ -136,7 +135,7 @@ const Generator = () => {
               <InputLabel>{t('race')}</InputLabel>
               <Select value={race || 'none'} onChange={handleSelectRace}>
                 <MenuItem value='none'>{t('anyRace')}</MenuItem>
-                {RACES.map(race =>
+                {getRaces().map(race =>
                   <MenuItem key={race} value={race}>{translate('race', race, locale)}</MenuItem>
                 )}
               </Select>

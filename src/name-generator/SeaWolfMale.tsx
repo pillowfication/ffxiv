@@ -5,10 +5,9 @@ import Typography from '@material-ui/core/Typography'
 import Section from '../Section'
 import NameAutocomplete from './NameAutocomplete'
 import MyNameIs from './MyNameIs'
-import roegadynDictionary from './names/data/roegadyn-dictionary.json'
-import { translate, Clan, Gender } from './names'
-import { formatName, conjugateRoegadyn, combineRoegadyn } from './names/utils'
-
+import roegadynDictionary from './ffxiv-name-generator/data/roegadyn-dictionary.json'
+import { translate, Clan, Gender } from './ffxiv-name-generator'
+import { formatName, conjugateRoegadyn, combineRoegadyn } from './ffxiv-name-generator/src/utils'
 import { useTranslation } from '../i18n'
 
 const WORDS = Object.keys(roegadynDictionary)

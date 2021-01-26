@@ -11,7 +11,7 @@ import TableCell from '@material-ui/core/TableCell'
 import Button from '@material-ui/core/Button'
 import Section from '../Section'
 import CalculatorCell from './CalculatorCell'
-import calculateProbabilities from './calculate-probabilities'
+import { calculateProbabilities } from './ffxiv-wondrous-tails'
 import { useTranslation } from '../i18n'
 
 const PROB_1_LINES = 6688 / 11440
