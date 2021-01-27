@@ -1,69 +1,12 @@
-import _stains from './data/stains.json'
+import { stains, Color } from './data'
 
-function clampRGB (value: number) {
-  return value < 0 ? 0 : value > 255 ? 255 : value
-}
-
-export class Color {
-  R: number
-  G: number
-  B: number
-
-  constructor (R: number, G: number, B: number) {
-    this.R = clampRGB(R)
-    this.G = clampRGB(G)
-    this.B = clampRGB(B)
-  }
-
-  add ({ R, G, B }: { R: number, G: number, B: number }) {
-    return new Color(this.R + R, this.G + G, this.B + B)
-  }
-
-  differenceFrom (color: Color) {
-    return {
-      R: color.R - this.R,
-      G: color.G - this.G,
-      B: color.B - this.B
-    }
-  }
-
-  distanceTo (color: Color) {
-    return Math.hypot(this.R - color.R, this.G - color.G, this.B - color.B)
-  }
-
-  clone () {
-    return new Color(this.R, this.G, this.B)
-  }
-
-  toString () {
-    return [this.R, this.G, this.B].map(a => ('   ' + a).slice(-3)).join(', ')
-  }
-}
-
-type Stain = {
-  id: number,
-  color: Color
-  name_en: string,
-  name_de: string,
-  name_fr: string,
-  name_ja: string,
-  shade: number,
-  shadeIndex: number
-}
-
-for (const stain of Object.values(_stains)) {
-  stain.color = new Color(stain.color.R, stain.color.G, stain.color.B)
-}
-
-export const stains = <any>_stains as Record<number, Stain>
-
-enum Fruit {
-  XelphatolApple = 'xalphatolApple',
-  MamookPear = 'mamookPear',
-  OGhomoroBerries = 'oGhomoroBerries',
-  Valfruit = 'valfruit',
-  DomanPlum = 'domanPlum',
-  CieldalaesPineapple = 'cieldalaesPineapple'
+export enum Fruit {
+  XelphatolApple = 8157,
+  MamookPear = 8158,
+  OGhomoroBerries = 8159,
+  DomanPlum = 8160,
+  Valfruit = 8161,
+  CieldalaesPineapple = 8162
 }
 
 const fruitValues: Record<Fruit, { R: number, G: number, B: number }> = {
@@ -107,7 +50,7 @@ function calculateFruitsDistance (fromColor: Color, toColor: Color, lookahead = 
 
   while (true) {
     const best = maximum(
-      pick(Object.keys(fruitValues) as Fruit[], lookahead),
+      pick(Object.keys(fruitValues).map(Number) as Fruit[], lookahead),
       fruits => -fruits.reduce((acc, curr) => acc.add(fruitValues[curr]), currentColor).distanceTo(toColor)
     )
     if (-best.val >= currentDistance) {
@@ -142,7 +85,6 @@ function calculateFruitsMatrix (fromColor: Color, toColor: Color) {
       fruitCounts.filter(([, count]) => count > 0),
       ([fruit]) => {
         const nextColor = currentColor.add(fruitValues[fruit])
-        // return -nextColor.distanceTo(toColor)
         return -Math.max(...[nextColor.R, nextColor.G, nextColor.B].map(val => Math.abs(127.5 - val)))
       }
     )
@@ -201,13 +143,13 @@ function applyFruits (color: Color, fruits: Fruit[]) {
   return fruits.reduce
 }
 
-const CURRANT_PURPLE = stains[79]
-const GRAPE_PURPLE = stains[81]
-
-for (const stain of Object.values(stains)) {
-  // console.log(`${stain.name_en} -> ${CURRANT_PURPLE.name_en}`)
-  const fruits = calculateFruitsDistance(stain.color, CURRANT_PURPLE.color, 3)
-  const result = fruits.reduce((color, fruit) => color.add(fruitValues[fruit]), stain.color)
-  const closestMatch = maximum(Object.values(stains), stain => -stain.color.distanceTo(result))
-  console.log(`${stain.name_en} -> ${closestMatch.elem.name_en}`)
-}
+// const CURRANT_PURPLE = stains[79]
+// const GRAPE_PURPLE = stains[81]
+//
+// for (const stain of Object.values(stains)) {
+//   // console.log(`${stain.name_en} -> ${CURRANT_PURPLE.name_en}`)
+//   const fruits = calculateFruitsDistance(stain.color, CURRANT_PURPLE.color, 3)
+//   const result = fruits.reduce((color, fruit) => color.add(fruitValues[fruit]), stain.color)
+//   const closestMatch = maximum(Object.values(stains), stain => -stain.color.distanceTo(result))
+//   console.log(`${stain.name_en} -> ${closestMatch.elem.name_en}`)
+// }
