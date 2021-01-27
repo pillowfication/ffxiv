@@ -46,12 +46,9 @@ const BaitChain = ({ baits, baitIsRequired, subtext }: Props) => {
       {baits.map(({ id, tug }, index) =>
         <React.Fragment key={id}>
           <div className={classes.bait}>
-            <OceanFishIcon
-              type={index === 0 ? 'bait' : 'fish'}
-              id={id}
-              Badge={baitIsRequired && <StarBadge />}
-            />
-            {tug && <Tug sup strength={tug} />}
+            {index === 0
+              ? <OceanFishIcon type='bait' id={id} Badge={baitIsRequired && <StarBadge />} />
+              : <OceanFishIcon type='fish' id={id} Badge={tug && <Tug size='small' strength={tug} />} />}
             {(subtext && index === baits.length - 1) && (
               <Typography className={classes.subtext} display='inline'>
                 {typeof subtext === 'string' ? subtext : subtext(id)}

@@ -53,9 +53,9 @@ const useStyles = makeStyles(theme => {
     },
     badge: {
       position: 'absolute' as 'absolute',
-      top: '-0.25em',
+      top: -5,
       left: '100%',
-      marginLeft: '-1em'
+      marginLeft: -10
     }
   }
 

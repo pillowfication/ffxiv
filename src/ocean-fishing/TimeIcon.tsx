@@ -40,7 +40,7 @@ const TimeIcon = ({ time }: Props) => {
               const round = (n: number) => Math.round(n * 100) / 100
               const ct = (theta: number, rho: number) => round(ICON_SIZE / 2 + rho * Math.cos(theta)) + ' ' + round(ICON_SIZE / 2 + rho * Math.sin(theta))
 
-              const rays = []
+              const rays: React.ReactNode[] = []
               for (let i = 0; i < 8; ++i) {
                 const theta = i * Math.PI / 4 + Math.PI / 8
                 rays.push(

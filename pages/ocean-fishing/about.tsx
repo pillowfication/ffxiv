@@ -69,7 +69,7 @@ const About = () => {
           The bite times shown on the <Link href='/ocean-fishing'>Ocean Fishing page</Link> are the bite time ranges for all baits. The bite time ranges for all baits can currently be found at <MuiLink href='https://github.com/pillowfication/ffxiv/blob/master/src/ocean-fishing/ffxiv-ocean-fishing/data/bite-times.csv'>bite-times.csv</MuiLink>.
         </Typography>
         <Typography paragraph>
-          All my data and the code I used are available on <MuiLink href='https://github.com/pillowfication/ffxiv/tree/master/src/ocean-fishing/ocean-fishing'>GitHub</MuiLink>.
+          All my data and the code I used are available on <MuiLink href='https://github.com/pillowfication/ffxiv/tree/master/src/ocean-fishing/ffxiv-ocean-fishing'>GitHub</MuiLink>.
         </Typography>
       </Section>
       <Section title={t('aboutPage.algorithm')}>

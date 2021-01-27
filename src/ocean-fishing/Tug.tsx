@@ -14,10 +14,8 @@ const useStyles = makeStyles(theme => ({
     lineHeight: '1.2em',
     textAlign: 'center'
   },
-  sup: {
-    position: 'absolute',
-    left: '2.25em',
-    top: 0
+  small: {
+    fontSize: '0.9em'
   },
   light: {
     backgroundColor: theme.palette.type === 'dark' ? '#078203' : '#aaffaa'
@@ -32,11 +30,11 @@ const useStyles = makeStyles(theme => ({
 
 type Props = {
   strength: 1 | 2 | 3,
-  sup?: boolean,
+  size?: 'small' | 'normal',
   className?: string
 }
 
-const Tug = ({ strength, sup, className }: Props) => {
+const Tug = ({ strength, size = 'normal', className }: Props) => {
   const classes = useStyles()
   const { t } = useTranslation('ocean-fishing')
 
@@ -44,19 +42,19 @@ const Tug = ({ strength, sup, className }: Props) => {
     case 1:
       return (
         <Tooltip arrow placement='top' title={t('tug.light')}>
-          <span className={clsx(classes.tug, sup && classes.sup, classes.light, className)}>!</span>
+          <span className={clsx(classes.tug, size === 'small' && classes.small, classes.light, className)}>!</span>
         </Tooltip>
       )
     case 2:
       return (
         <Tooltip arrow placement='top' title={t('tug.medium')}>
-          <span className={clsx(classes.tug, sup && classes.sup, classes.medium, className)}>!!</span>
+          <span className={clsx(classes.tug, size === 'small' && classes.small, classes.medium, className)}>!!</span>
         </Tooltip>
       )
     case 3:
       return (
         <Tooltip arrow placement='top' title={t('tug.heavy')}>
-          <span className={clsx(classes.tug, sup && classes.sup, classes.heavy, className)}>!!!</span>
+          <span className={clsx(classes.tug, size === 'small' && classes.small, classes.heavy, className)}>!!!</span>
         </Tooltip>
       )
   }
