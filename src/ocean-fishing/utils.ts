@@ -83,6 +83,17 @@ export function getBlueFish (destinationCode: DestinationStopTime): number[] {
     })
 }
 
+export function isBaitRequired (fishId: number, baitId: number) {
+  for (const otherBaitId of Object.keys(oceanFishes[fishId].biteTimes)) {
+    if (otherBaitId === 'all' || Number(otherBaitId) === baitId || Number(otherBaitId) === 29717) {
+      continue
+    } else {
+      return false
+    }
+  }
+  return true
+}
+
 export const getBaitChain = memoize(function _getBaitChain (fishId: number): BaitChainProp[] {
   const spreadsheetData = oceanFishes[fishId].spreadsheetData
   if (!spreadsheetData.bait && !spreadsheetData.mooch) {
@@ -95,11 +106,20 @@ export const getBaitChain = memoize(function _getBaitChain (fishId: number): Bai
 })
 
 export const getBaitGroup = memoize(
-  (fishId: number): { baits: BaitChainProp[], intuitionFishes?: { baits: BaitChainProp[], count: number }[] } => {
+  (fishId: number): { baits: BaitChainProp[], baitIsRequired?: boolean, intuitionFishes?: { baits: BaitChainProp[], baitIsRequired?: boolean, count: number }[] } => {
     const spreadsheetData = oceanFishes[fishId].spreadsheetData
+    const baitChain = getBaitChain(fishId)
     return {
-      baits: getBaitChain(fishId),
-      intuitionFishes: spreadsheetData.intuition && spreadsheetData.intuition.map(({ fishId, count }) => ({ baits: getBaitChain(fishId), count }))
+      baits: baitChain,
+      baitIsRequired: isBaitRequired(fishId, baitChain[0].id),
+      intuitionFishes: spreadsheetData.intuition && spreadsheetData.intuition.map(({ fishId, count }) => {
+        const baitChain = getBaitChain(fishId)
+        return {
+          baits: baitChain,
+          baitIsRequired: isBaitRequired(fishId, baitChain[0].id),
+          count
+        }
+      })
     }
   }
 )

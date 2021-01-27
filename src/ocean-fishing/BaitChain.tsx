@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import OceanFishIcon from './OceanFishIcon'
 import Tug from './Tug'
+import StarBadge from './StarBadge'
 
 const useStyles = makeStyles(theme => ({
   baitChain: {
@@ -33,10 +34,11 @@ export type Bait = {
 
 type Props = {
   baits: Bait[],
+  baitIsRequired?: boolean,
   subtext?: string | ((fishId: number) => string),
 }
 
-const BaitChain = ({ baits, subtext }: Props) => {
+const BaitChain = ({ baits, baitIsRequired, subtext }: Props) => {
   const classes = useStyles()
 
   return (
@@ -44,7 +46,11 @@ const BaitChain = ({ baits, subtext }: Props) => {
       {baits.map(({ id, tug }, index) =>
         <React.Fragment key={id}>
           <div className={classes.bait}>
-            <OceanFishIcon type={index === 0 ? 'bait' : 'fish'} id={id} />
+            <OceanFishIcon
+              type={index === 0 ? 'bait' : 'fish'}
+              id={id}
+              Badge={baitIsRequired && <StarBadge />}
+            />
             {tug && <Tug sup strength={tug} />}
             {(subtext && index === baits.length - 1) && (
               <Typography className={classes.subtext} display='inline'>

@@ -20,7 +20,8 @@ type Props = {
     header: string,
     baitGroupProps: {
       baits: Bait[],
-      intuitionFishes?: { baits: Bait[], count: number }[],
+      baitIsRequired?: boolean,
+      intuitionFishes?: { baits: Bait[], baitIsRequired?: boolean, count: number }[],
       subtext?: string | ((fishId: number) => string),
       mainOnly?: boolean
     }

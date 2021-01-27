@@ -17,23 +17,24 @@ const useStyles = makeStyles(theme => ({
 
 type Props = {
   baits: Bait[],
-  intuitionFishes?: { baits: Bait[], count: number }[],
+  baitIsRequired?: boolean,
+  intuitionFishes?: { baits: Bait[], baitIsRequired?: boolean, count: number }[],
   subtext?: string | ((fishId: number) => string),
   mainOnly?: boolean
 }
 
-const BaitGroup = ({ baits, intuitionFishes, subtext, mainOnly }: Props) => {
+const BaitGroup = ({ baits, baitIsRequired, intuitionFishes, subtext, mainOnly }: Props) => {
   const classes = useStyles()
 
   return (
     <>
-      <BaitChain baits={baits} subtext={subtext} />
+      <BaitChain baits={baits} baitIsRequired={baitIsRequired} subtext={subtext} />
       {intuitionFishes && (
         <ul className={classes.intuitionFishes}>
-          {intuitionFishes.map(({ count, baits }, index) =>
+          {intuitionFishes.map(({ baits, baitIsRequired, count }, index) =>
             <li key={index}>
               <Typography className={classes.count} display='inline'>{count}×</Typography>
-              <BaitChain baits={baits} subtext={!mainOnly && subtext} />
+              <BaitChain baits={baits} baitIsRequired={baitIsRequired} subtext={!mainOnly && subtext} />
             </li>
           )}
         </ul>

@@ -11,9 +11,11 @@ import TableCell from '@material-ui/core/TableCell'
 import OceanFishIcon from './OceanFishIcon'
 import TimeIcon from './TimeIcon'
 import Tug from './Tug'
+import StarBadge from './StarBadge'
 import ChecklistCheckmark from './ChecklistCheckmark'
 import WeatherIcon from '../skywatcher/WeatherIcon'
 import { fishingSpots, placeNames, oceanFishes } from './ffxiv-ocean-fishing/data'
+import { isBaitRequired } from './utils'
 import { translate } from '../utils'
 import { useTranslation } from '../i18n'
 
@@ -113,7 +115,13 @@ const FishTable = ({ spots, time }: Props) => {
                             <img src='/images/ocean-fishing/fishers-intuition.png' className={classes.intuition} />
                           </>
                         )}
-                        {spreadsheetData.bait && <OceanFishIcon type='bait' id={spreadsheetData.bait} />}
+                        {spreadsheetData.bait && (
+                          <OceanFishIcon
+                            type='bait'
+                            id={spreadsheetData.bait}
+                            Badge={isBaitRequired(fishId, spreadsheetData.bait) && <StarBadge />}
+                          />
+                        )}
                         {spreadsheetData.bait && spreadsheetData.mooch && 'or'}
                         {spreadsheetData.mooch && <OceanFishIcon type='fish' id={spreadsheetData.mooch} />}
                       </TableCell>

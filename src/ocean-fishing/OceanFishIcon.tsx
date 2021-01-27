@@ -12,7 +12,7 @@ import { useTranslation } from '../i18n'
 
 const ICON_ROWS = ICONS_MAP.length
 const ICON_COLS = Math.max(...ICONS_MAP.map(row => row.length))
-makeStyles
+
 const useStyles = makeStyles(theme => {
   const styles = {
     iconContainer: {
@@ -50,6 +50,12 @@ const useStyles = makeStyles(theme => {
     },
     hasPopper: {
       cursor: 'pointer'
+    },
+    badge: {
+      position: 'absolute' as 'absolute',
+      top: '-0.25em',
+      left: '100%',
+      marginLeft: '-1em'
     }
   }
 
@@ -67,10 +73,11 @@ type Props = {
   type: 'fish' | 'bait' | 'achievement' | 'content-bonus',
   id: number,
   size?: number,
+  Badge?: React.ReactNode,
   className?: string
 }
 
-const OceanFishIcon = ({ type, id, size = 40, className }: Props) => {
+const OceanFishIcon = ({ type, id, size = 40, Badge, className }: Props) => {
   const classes = useStyles({ size })
   const { i18n } = useTranslation()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
@@ -105,6 +112,7 @@ const OceanFishIcon = ({ type, id, size = 40, className }: Props) => {
           {type === 'fish' && <div className={classes.itemCover} />}
           {type === 'bait' && <div className={classes.itemCover} />}
           {type === 'achievement' && <div className={classes.achievementCover} />}
+          {Badge && <div className={classes.badge}>{Badge}</div>}
         </div>
       </Tooltip>
       {type === 'fish' && (
