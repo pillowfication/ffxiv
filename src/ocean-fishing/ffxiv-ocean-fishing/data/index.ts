@@ -9,7 +9,7 @@ import spreadsheetData from './spreadsheet-data.json'
 import lodestoneData from './lodestone-data.json'
 
 import { Time } from '../src/types'
-import { Weather } from '../../../skywatcher/ffxiv-skywatcher/src/types/weather'
+import { Weather } from '../../../skywatcher/ffxiv-skywatcher/src/types'
 
 export type FishingSpot = {
   id: number,

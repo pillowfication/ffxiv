@@ -1,20 +1,18 @@
-import { Weather } from './src/types/weather'
-import { Place } from './src/types/place'
-import partition from './data/partition.json'
-import weatherRates from './data/weather-rates.json'
+import { Weather, Place } from './src/types'
+import { weatherRates, partition } from './data'
 
 export { Weather, Place }
 export { default as translateWeather } from './src/translate-weather'
 export { default as translatePlace } from './src/translate-place'
 
-export function getRegions (): Place[] {
-  return Object.keys(partition.partition)
-    .map(key => Number(key))
+export function getRegions () {
+  return Object.keys(partition.placeNames)
+    .map(key => Number(key) as Place)
     .sort((a, b) => a - b)
 }
 
-export function getPlaces (region: Place): Place[] {
-  return (partition.partition[region] as Place[])
+export function getPlaces (region: Place) {
+  return (partition.placeNames[region] as Place[])
     .sort((a, b) => a - b)
 }
 
@@ -42,9 +40,10 @@ export function getHashes (seed = getSeed(), count = 10) {
 }
 
 export function getWeather (place: Place, weatherRateIndex = 0, hash = hashSeed()): Weather {
-  const rates = weatherRates[partition.weatherRates[place][weatherRateIndex]].Rates
-  for (const [chance, weather] of rates) {
-    if (chance > hash) {
+  const rates = weatherRates[partition.weatherRates[place][weatherRateIndex]].rates
+  let cumChance = 0
+  for (const [weather, chance] of rates) {
+    if ((cumChance += chance) > hash) {
       return weather
     }
   }
@@ -55,8 +54,10 @@ export function getWeatherRates (place: Place): number[] {
 }
 
 export function getPossibleWeathers (place: Place, weatherRateIndex = 0): Weather[] {
-  const rates = weatherRates[partition.weatherRates[place][weatherRateIndex]].Rates
-  return rates.map(([, weather]) => weather)
+  const rates = weatherRates[partition.weatherRates[place][weatherRateIndex]].rates
+  return rates.map(([weather]) => weather)
+    // .filter((weather, index, array) => array.indexOf(weather, index + 1) === -1)
+    // .sort((a, b) => a - b)
 }
 
 export function forecastWeathers (

@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Tooltip from '@material-ui/core/Tooltip'
-import { Weather } from './ffxiv-skywatcher/src/types/weather'
+import { Weather } from './ffxiv-skywatcher/src/types'
 import translateWeather from './ffxiv-skywatcher/src/translate-weather'
 import ICONS from './ffxiv-skywatcher/data/weather-icons-map.json'
 import softHyphens from './soft-hyphens'
@@ -18,7 +18,7 @@ const useStyles = makeStyles(() => {
       width: ICON_SIZE,
       height: ICON_SIZE,
       verticalAlign: 'middle',
-      backgroundImage: 'url("/images/weather-icons.png")',
+      backgroundImage: 'url("/images/skywatcher/weather-icons.png")',
       backgroundSize: `${ICONS.length * 100}% 100%`
     }
   }

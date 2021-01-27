@@ -9,6 +9,7 @@ import TableBody from '@material-ui/core/TableBody'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import WeatherIcon from './WeatherIcon'
+import renderFfxiv from './render-ffxiv'
 import { getSeed, getHashes, getWeather, translatePlace, Place } from './ffxiv-skywatcher'
 import { paddedZero, formatTime } from '../utils'
 import { useTranslation } from '../i18n'
@@ -125,7 +126,7 @@ const UpcomingWeatherTable = ({ now, places, showLabels, showLocalTime, showWeat
           {places.map(({ place, weatherRateIndex }) =>
             <TableRow key={`${place}-${weatherRateIndex}`} hover>
               <TableCell component='th' scope='row' className={classes.regionCell}>
-                <Typography>{translatePlace(place, locale)}{weatherRateIndex > 0 && ` (alt. ${weatherRateIndex})`}</Typography>
+                <Typography>{renderFfxiv(translatePlace(place, locale))}{weatherRateIndex > 0 && ` (alt. ${weatherRateIndex})`}</Typography>
               </TableCell>
               {hashes.map((hash, index) =>
                 <TableCell
