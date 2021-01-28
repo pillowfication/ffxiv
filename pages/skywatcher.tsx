@@ -5,7 +5,7 @@ import Page from '../src/Page'
 import UpcomingWeather from '../src/skywatcher/UpcomingWeather'
 import Forecaster from '../src/skywatcher/Forecaster'
 import About from '../src/skywatcher/About'
-import { toTimeString } from '../src/utils'
+import { formatTime } from '../src/utils'
 import { useTranslation } from '../src/i18n'
 
 const Skywatcher = () => {
@@ -33,7 +33,7 @@ const Skywatcher = () => {
       description='Schedule for weather in Eorzea and forecaster for upcoming weather patterns.'
     >
       <Typography paragraph>
-        The time in Eorzea is <b><NoSsr>{toTimeString(new Date(now.getTime() * 1440 / 70))}</NoSsr></b>.
+        The time in Eorzea is <b><NoSsr>{formatTime(new Date(now.getTime() * (1440 / 70)))}</NoSsr></b>.
       </Typography>
       <Forecaster now={now} />
       <UpcomingWeather now={now} />
