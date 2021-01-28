@@ -2,10 +2,10 @@ name,Pill Bug,Rat Tail,Glowworm,Shrimp Cage Feeder,Heavy Steel Jig,Squid Strip,R
 Galadion Goby,,,,,,,3-7,3-7,3-7,6-10
 Galadion Chovy,,,,,,,5-10,5-10,5-10,8-13
 Rosy Bream,,,,,,,12-18,6-12,11-18,12-18
-Tripod Fish,,,,,,,15-23,10-18,14-23,14-23
+Tripod Fish,,,,,,,15-23,9-18,14-23,14-23
 Sunfly,,,,,,,4-8,4-8,4-8,7-11
 Tarnished Shark,,,,,,,21-35,21-35,16-30,21-35
-Tossed Dagger,,,,,,,6-13,11-18,11-17,10-15
+Tossed Dagger,,,,,,,6-13,10-18,11-17,10-15
 Jasperhead,,,,,,,15-23,10-18,15-23,15-23
 Merlthor Lobster,,,,,,,17-27,16-26,17-27,17-27
 Heavenswimmer,,,,,,,15-23,16-24,16-24,15-24
@@ -33,7 +33,7 @@ Dark Nautilus,,,,,,,17-26,15-25,16-26,16-25
 Elder Dinichthys,,,,,,,,,,
 Drunkfish,,,,,,,,16-27,,
 Little Leviathan,,,,,,,,,16-27,
-Sabaton,,,,,,,,11-19,,
+Sabaton,,,,,,,,11-18,,
 Shooting Star,,,,,,,16-27,,,
 Hammerclaw,,,,,4-5,,2-2,2-2,2-2,4-5
 Heavenskey,,,2-2,,,,2-2,2-2,2-2,4-5
@@ -44,7 +44,7 @@ Casket Oyster,,,,,,,6-10,,,9-12
 Fishmonger,,,3-7,,,,3-7,3-7,3-7,6-10
 Mythril Sovereign,,,,,,,,4-5,,7-8
 Nimble Dancer,,,,,,,11-16,,,13-18
-Sea Nettle,,,,,,,4-7,,,3-23
+Sea Nettle,,,,,,,4-7,,,3-9
 Great Grandmarlin,,,,,,,,,,
 Shipwreck's Sail,,,,2-2,,,2-2,2-2,2-2,4-5
 Azeyma's Sleeve,,,,2-5,,,2-5,2-5,2-5,5-8
@@ -65,7 +65,7 @@ Slipsnail,,,,,,,2-5,,,7-8
 Aronnax,,2-2,,,,,2-2,2-2,2-2,3-5
 Coccosteus,,,,,2-2,,2-2,2-2,2-2,3-5
 Bartholomew the Chopper,,,,,,,4-5,,,5-8
-Prowler,,,,,2-4,,2-4,2-4,2-4,4-7
+Prowler,,,,,2-4,,2-4,2-4,2-4,5-7
 Charlatan Survivor,,,,2-4,,,2-4,2-4,2-4,4-7
 Prodigal Son,,5-8,,,,,2-5,2-5,2-5,5-8
 Gugrusaurus,,,,,3-7,,3-7,3-7,3-7,6-10
@@ -80,39 +80,39 @@ Coral Manta,,,,8-12,,,,,,
 Stonescale,,9-12,,,,,,,,
 Elasmosaurus,,,,,9-11,,,,,
 Tortoiseshell Crab,,,,,,,6-11,5-11,6-11,9-14
-Lady's Cameo,,,,,,,11-21,11-21,11-21,14-23
+Lady's Cameo,,,,,,,11-21,11-21,11-21,14-24
 Metallic Boxfish,,,,,,,5-9,5-9,5-9,8-13
 Goobbue Ray,,,,,,,16-26,16-26,11-21,16-25
 Watermoura,,,,,,,13-20,8-15,13-20,13-20
 King Cobrafish,,,,,,,8-12,8-12,3-7,9-11
-Mamahi-mahi,,,,,,,18-29,18-29,16-28,21-28
-Lavandin Remora,,,,,,,15-24,15-23,15-24,
+Mamahi-mahi,,,,,,,18-29,18-29,16-28,17-28
+Lavandin Remora,,,,,,,15-24,15-23,15-24,15-24
 Spectral Butterfly,,,,,,,11-17,11-17,11-17,
 Cieldalaes Geode,,,,,,,,14-24,,
-Titanshell Crab,,,,,,4-5,2-2,2-2,2-2,4-5
+Titanshell Crab,,,,,,3-5,2-2,2-2,2-2,4-5
 Mythril Boxfish,,,,,,3-5,2-2,2-2,2-2,3-5
 Mistbeard's Cup,,,,,,2-4,2-4,2-4,2-4,5-6
 Anomalocaris Saron,,,,,,2-5,2-5,2-5,2-5,5-8
 Flaming Eel,,,,,,,,5-8,,
 Jetborne Manta,,,,,,2-5,2-3,2-2,2-2,4-5
-Devil's Sting,,,,,,,,5-9,,
+Devil's Sting,,,,,,,,5-10,,
 Callichthyid,,,,,,,,,3-7,
 Meandering Mora,,,,,,,,,6-9,
 Hafgufa,,,,,,8-11,,,,
 Thaliak Crab,,,,,,,3-7,3-7,3-7,6-10
 Star of the Destroyer,,,,,,,6-12,6-13,5-12,9-16
-True Scad,,,,,,,5-10,5-9,5-10,8-13
+True Scad,,,,,,,4-9,5-9,5-10,8-13
 Blooded Wrasse,,,,,,,10-16,10-16,5-11,10-16
-Bloodpolish Crab,,,,,,,13-26,18-31,17-31,
+Bloodpolish Crab,,,,,,,13-26,18-31,17-31,19-29
 Blue Stitcher,,,,,,,7-10,2-5,7-10,8-10
-Bloodfresh Tuna,,,,,,,13-20,13-20,13-19,
-Sunken Mask,,,,,,,13-20,13-21,14-21,16-20
-Spectral Eel,,,,,,,13-20,13-20,,
+Bloodfresh Tuna,,,,,,,13-20,13-20,12-19,
+Sunken Mask,,,,,,,13-20,13-21,14-21,15-21
+Spectral Eel,,,,,,,12-20,13-20,,
 Bareface,,,,,,,,8-14,,
 Oracular Crab,,,,,,,2-2,2-2,2-2,
 Dravanian Bream,,,,,,,2-4,2-4,2-4,4-7
 Skaldminni,,,,,,,,3-7,,
-Serrated Clam,2-3,,,,,,2-4,2-4,2-4,5-7
+Serrated Clam,2-4,,,,,,2-4,2-4,2-4,5-7
 Beatific Vision,2-2,,,,,,2-2,2-2,2-2,
 Exterminator,,,,,,,4-7,,,
 Gory Tuna,2-4,,,,,,2-4,2-4,2-4,4-7
@@ -125,14 +125,14 @@ Living Lantern,,,,,,,4-9,4-9,5-9,
 Honeycomb Fish,,,,,,,11-21,17-26,16-26,
 Godsbed,,,,,,,16-26,16-26,11-21,17-27
 Lansquenet,,,,,,,14-23,11-23,9-18,
-Thavnairian Shark,,,,,,,11-16,9-14,11-15,
-Nephrite Eel,,,,,,,15-23,13-22,14-22,
-Spectresaur,,,,,,,14-23,15-23,14-23,
+Thavnairian Shark,,,,,,,11-15,9-14,11-15,
+Nephrite Eel,,,,,,,15-23,13-22,14-23,
+Spectresaur,,,,,,,14-24,15-23,14-23,
 Ginkgo Fin,,,,,,,10-17,,,
 Garum Jug,,,,,,,2-2,2-2,2-2,4-5
-Smooth Jaguar,,,,,,,2-4,2-4,2-4,
+Smooth Jaguar,,,,,,,2-4,2-4,2-4,5-6
 Rothlyt Mussel,,,,,,,2-4,2-4,2-4,
-Levi Elver,,,,,,,2-2,2-2,2-2,4-5
+Levi Elver,,,,,,,2-2,2-2,2-3,4-5
 Pearl Bombfish,,,,,,,,3-5,,
 Trollfish,,,,,,,,,,
 Panoptes,,,,,,,,,3-7,

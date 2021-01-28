@@ -65,6 +65,6 @@ async function getTCData (spotId: number, baitId: number) {
       console.log('Fetching:', { spot: fishingSpot, baitId })
       allData.push(...await getTCData(fishingSpot, baitId))
     }
-    fs.writeFileSync(path.resolve(__dirname, `./data/tc/spot-${fishingSpot}.json`), JSON.stringify(allData))
+    fs.writeFileSync(path.resolve(__dirname, `../data/tc/spot-${fishingSpot}.json`), JSON.stringify(allData))
   }
 })()
