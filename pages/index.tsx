@@ -119,6 +119,9 @@ const Index = () => {
       </Grid>
       <Section>
         <dl className={classes.links}>
+          <IndexSection url='/chocobo-color' title='Chocobo Color'>
+            Calculator for changing your chocobo’s color.
+          </IndexSection>
           <IndexSection url='/high-or-low' title='High or Low'>
             Calculator for the guessing game “High or Low” played against Tista-Bie in Eulmore.
           </IndexSection>

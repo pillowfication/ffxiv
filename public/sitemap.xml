@@ -8,6 +8,13 @@
     <xhtml:link href="https://ffxiv.pf-n.co/ja/" hreflang="ja" rel="alternate" />
   </url>
   <url>
+    <loc>https://ffxiv.pf-n.co/chocobo-color/</loc>
+    <xhtml:link href="https://ffxiv.pf-n.co/chocobo-color/" hreflang="x-default" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/de/chocobo-color/" hreflang="de" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/fr/chocobo-color/" hreflang="fr" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/ja/chocobo-color/" hreflang="ja" rel="alternate" />
+  </url>
+  <url>
     <loc>https://ffxiv.pf-n.co/high-or-low/</loc>
     <xhtml:link href="https://ffxiv.pf-n.co/high-or-low/" hreflang="x-default" rel="alternate" />
     <xhtml:link href="https://ffxiv.pf-n.co/de/high-or-low/" hreflang="de" rel="alternate" />
@@ -37,10 +44,10 @@
   </url>
   <url>
     <loc>https://ffxiv.pf-n.co/ocean-fishing/about/</loc>
-    <xhtml:link href="https://ffxiv.pf-n.co/ocean-fishing/fish/" hreflang="x-default" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/de/ocean-fishing/fish/" hreflang="de" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/fr/ocean-fishing/fish/" hreflang="fr" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/ja/ocean-fishing/fish/" hreflang="ja" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/ocean-fishing/about/" hreflang="x-default" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/de/ocean-fishing/about/" hreflang="de" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/fr/ocean-fishing/about/" hreflang="fr" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/ja/ocean-fishing/about/" hreflang="ja" rel="alternate" />
   </url>
   <url>
     <loc>https://ffxiv.pf-n.co/ocean-fishing/fish/</loc>
@@ -50,11 +57,11 @@
     <xhtml:link href="https://ffxiv.pf-n.co/ja/ocean-fishing/fish/" hreflang="ja" rel="alternate" />
   </url>
   <url>
-    <loc>https://ffxiv.pf-n.co/ocean-fishing/objectives/</loc>
-    <xhtml:link href="https://ffxiv.pf-n.co/ocean-fishing/fish/" hreflang="x-default" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/de/ocean-fishing/fish/" hreflang="de" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/fr/ocean-fishing/fish/" hreflang="fr" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/ja/ocean-fishing/fish/" hreflang="ja" rel="alternate" />
+    <loc>https://ffxiv.pf-n.co/ocean-fishing/bonuses/</loc>
+    <xhtml:link href="https://ffxiv.pf-n.co/ocean-fishing/bonuses/" hreflang="x-default" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/de/ocean-fishing/bonuses/" hreflang="de" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/fr/ocean-fishing/bonuses/" hreflang="fr" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/ja/ocean-fishing/bonuses/" hreflang="ja" rel="alternate" />
   </url>
   <url>
     <loc>https://ffxiv.pf-n.co/skywatcher/</loc>
@@ -76,6 +83,13 @@
     <xhtml:link href="https://ffxiv.pf-n.co/de/" hreflang="de" rel="alternate" />
     <xhtml:link href="https://ffxiv.pf-n.co/fr/" hreflang="fr" rel="alternate" />
     <xhtml:link href="https://ffxiv.pf-n.co/ja/" hreflang="ja" rel="alternate" />
+  </url>
+  <url>
+    <loc>https://ffxiv.pf-n.co/de/chocobo-color/</loc>
+    <xhtml:link href="https://ffxiv.pf-n.co/chocobo-color/" hreflang="x-default" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/de/chocobo-color/" hreflang="de" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/fr/chocobo-color/" hreflang="fr" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/ja/chocobo-color/" hreflang="ja" rel="alternate" />
   </url>
   <url>
     <loc>https://ffxiv.pf-n.co/de/high-or-low/</loc>
@@ -107,10 +121,10 @@
   </url>
   <url>
     <loc>https://ffxiv.pf-n.co/de/ocean-fishing/about/</loc>
-    <xhtml:link href="https://ffxiv.pf-n.co/ocean-fishing/fish/" hreflang="x-default" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/de/ocean-fishing/fish/" hreflang="de" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/fr/ocean-fishing/fish/" hreflang="fr" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/ja/ocean-fishing/fish/" hreflang="ja" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/ocean-fishing/about/" hreflang="x-default" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/de/ocean-fishing/about/" hreflang="de" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/fr/ocean-fishing/about/" hreflang="fr" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/ja/ocean-fishing/about/" hreflang="ja" rel="alternate" />
   </url>
   <url>
     <loc>https://ffxiv.pf-n.co/de/ocean-fishing/fish/</loc>
@@ -120,11 +134,11 @@
     <xhtml:link href="https://ffxiv.pf-n.co/ja/ocean-fishing/fish/" hreflang="ja" rel="alternate" />
   </url>
   <url>
-    <loc>https://ffxiv.pf-n.co/de/ocean-fishing/objectives/</loc>
-    <xhtml:link href="https://ffxiv.pf-n.co/ocean-fishing/fish/" hreflang="x-default" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/de/ocean-fishing/fish/" hreflang="de" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/fr/ocean-fishing/fish/" hreflang="fr" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/ja/ocean-fishing/fish/" hreflang="ja" rel="alternate" />
+    <loc>https://ffxiv.pf-n.co/de/ocean-fishing/bonuses/</loc>
+    <xhtml:link href="https://ffxiv.pf-n.co/ocean-fishing/bonuses/" hreflang="x-default" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/de/ocean-fishing/bonuses/" hreflang="de" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/fr/ocean-fishing/bonuses/" hreflang="fr" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/ja/ocean-fishing/bonuses/" hreflang="ja" rel="alternate" />
   </url>
   <url>
     <loc>https://ffxiv.pf-n.co/de/skywatcher/</loc>
@@ -146,6 +160,13 @@
     <xhtml:link href="https://ffxiv.pf-n.co/de/" hreflang="de" rel="alternate" />
     <xhtml:link href="https://ffxiv.pf-n.co/fr/" hreflang="fr" rel="alternate" />
     <xhtml:link href="https://ffxiv.pf-n.co/ja/" hreflang="ja" rel="alternate" />
+  </url>
+  <url>
+    <loc>https://ffxiv.pf-n.co/fr/chocobo-color/</loc>
+    <xhtml:link href="https://ffxiv.pf-n.co/chocobo-color/" hreflang="x-default" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/de/chocobo-color/" hreflang="de" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/fr/chocobo-color/" hreflang="fr" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/ja/chocobo-color/" hreflang="ja" rel="alternate" />
   </url>
   <url>
     <loc>https://ffxiv.pf-n.co/fr/high-or-low/</loc>
@@ -177,10 +198,10 @@
   </url>
   <url>
     <loc>https://ffxiv.pf-n.co/fr/ocean-fishing/about/</loc>
-    <xhtml:link href="https://ffxiv.pf-n.co/ocean-fishing/fish/" hreflang="x-default" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/de/ocean-fishing/fish/" hreflang="de" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/fr/ocean-fishing/fish/" hreflang="fr" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/ja/ocean-fishing/fish/" hreflang="ja" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/ocean-fishing/about/" hreflang="x-default" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/de/ocean-fishing/about/" hreflang="de" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/fr/ocean-fishing/about/" hreflang="fr" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/ja/ocean-fishing/about/" hreflang="ja" rel="alternate" />
   </url>
   <url>
     <loc>https://ffxiv.pf-n.co/fr/ocean-fishing/fish/</loc>
@@ -190,11 +211,11 @@
     <xhtml:link href="https://ffxiv.pf-n.co/ja/ocean-fishing/fish/" hreflang="ja" rel="alternate" />
   </url>
   <url>
-    <loc>https://ffxiv.pf-n.co/fr/ocean-fishing/objectives/</loc>
-    <xhtml:link href="https://ffxiv.pf-n.co/ocean-fishing/fish/" hreflang="x-default" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/de/ocean-fishing/fish/" hreflang="de" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/fr/ocean-fishing/fish/" hreflang="fr" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/ja/ocean-fishing/fish/" hreflang="ja" rel="alternate" />
+    <loc>https://ffxiv.pf-n.co/fr/ocean-fishing/bonuses/</loc>
+    <xhtml:link href="https://ffxiv.pf-n.co/ocean-fishing/bonuses/" hreflang="x-default" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/de/ocean-fishing/bonuses/" hreflang="de" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/fr/ocean-fishing/bonuses/" hreflang="fr" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/ja/ocean-fishing/bonuses/" hreflang="ja" rel="alternate" />
   </url>
   <url>
     <loc>https://ffxiv.pf-n.co/fr/skywatcher/</loc>
@@ -216,6 +237,13 @@
     <xhtml:link href="https://ffxiv.pf-n.co/de/" hreflang="de" rel="alternate" />
     <xhtml:link href="https://ffxiv.pf-n.co/fr/" hreflang="fr" rel="alternate" />
     <xhtml:link href="https://ffxiv.pf-n.co/ja/" hreflang="ja" rel="alternate" />
+  </url>
+  <url>
+    <loc>https://ffxiv.pf-n.co/ja/chocobo-color/</loc>
+    <xhtml:link href="https://ffxiv.pf-n.co/chocobo-color/" hreflang="x-default" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/de/chocobo-color/" hreflang="de" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/fr/chocobo-color/" hreflang="fr" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/ja/chocobo-color/" hreflang="ja" rel="alternate" />
   </url>
   <url>
     <loc>https://ffxiv.pf-n.co/ja/high-or-low/</loc>
@@ -247,10 +275,10 @@
   </url>
   <url>
     <loc>https://ffxiv.pf-n.co/ja/ocean-fishing/about/</loc>
-    <xhtml:link href="https://ffxiv.pf-n.co/ocean-fishing/fish/" hreflang="x-default" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/de/ocean-fishing/fish/" hreflang="de" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/fr/ocean-fishing/fish/" hreflang="fr" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/ja/ocean-fishing/fish/" hreflang="ja" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/ocean-fishing/about/" hreflang="x-default" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/de/ocean-fishing/about/" hreflang="de" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/fr/ocean-fishing/about/" hreflang="fr" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/ja/ocean-fishing/about/" hreflang="ja" rel="alternate" />
   </url>
   <url>
     <loc>https://ffxiv.pf-n.co/ja/ocean-fishing/fish/</loc>
@@ -260,11 +288,11 @@
     <xhtml:link href="https://ffxiv.pf-n.co/ja/ocean-fishing/fish/" hreflang="ja" rel="alternate" />
   </url>
   <url>
-    <loc>https://ffxiv.pf-n.co/ja/ocean-fishing/objectives/</loc>
-    <xhtml:link href="https://ffxiv.pf-n.co/ocean-fishing/fish/" hreflang="x-default" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/de/ocean-fishing/fish/" hreflang="de" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/fr/ocean-fishing/fish/" hreflang="fr" rel="alternate" />
-    <xhtml:link href="https://ffxiv.pf-n.co/ja/ocean-fishing/fish/" hreflang="ja" rel="alternate" />
+    <loc>https://ffxiv.pf-n.co/ja/ocean-fishing/bonuses/</loc>
+    <xhtml:link href="https://ffxiv.pf-n.co/ocean-fishing/bonuses/" hreflang="x-default" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/de/ocean-fishing/bonuses/" hreflang="de" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/fr/ocean-fishing/bonuses/" hreflang="fr" rel="alternate" />
+    <xhtml:link href="https://ffxiv.pf-n.co/ja/ocean-fishing/bonuses/" hreflang="ja" rel="alternate" />
   </url>
   <url>
     <loc>https://ffxiv.pf-n.co/ja/skywatcher/</loc>
