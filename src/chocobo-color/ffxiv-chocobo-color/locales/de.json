@@ -1,11 +1,11 @@
 {
   "shade": {
-    "white": "White",
-    "red": "Red",
+    "white": "Weiß",
+    "red": "Rot",
     "orange": "Orange",
-    "yellow": "Yellow",
-    "green": "Green",
-    "blue": "Blue",
-    "purple": "Purple"
+    "yellow": "Gelb",
+    "green": "Grün",
+    "blue": "Blau",
+    "purple": "Lila"
   }
 }

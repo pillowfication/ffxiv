@@ -1,12 +1,24 @@
 import React, { useState } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 import Autocomplete from '@material-ui/lab/Autocomplete'
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import Section from '../Section'
 import ShadeButton from './ShadeButton'
 import StainButton from './StainButton'
-import { translate as translateChocoboColor } from './ffxiv-chocobo-color'
-import { stains, Stain, Shade, Color } from './ffxiv-chocobo-color/data'
+import FruitsList from './FruitsList'
+import {
+  isValidStain,
+  calculateFruitsDistance,
+  translate as translateChocoboColor,
+  Color,
+  Shade,
+  Stain,
+  Fruit
+} from './ffxiv-chocobo-color'
+import { stains } from './ffxiv-chocobo-color/data'
 import { translate } from '../utils'
 import { useTranslation } from '../i18n'
 
@@ -38,25 +50,50 @@ const SHADES_MAP: Record<number, { shade: Shade, color: Color }> = {
   9: {
     shade: Shade.Purple,
     color: new Color(166, 98, 228)
-  },
+  }
 }
 
 const VALID_STAINS = Object.values(stains)
+  .filter(isValidStain)
   .sort((a, b) => a.shade - b.shade || a.shadeIndex - b.shadeIndex)
-  .filter(stain => SHADES_MAP[stain.shade])
+
+const useStyles = makeStyles(theme => ({
+  transitionArrow: {
+    display: 'block',
+    margin: theme.spacing(2, 'auto'),
+    fontSize: '2em'
+  },
+  palette: {
+    margin: theme.spacing(2, 0)
+  },
+  fruitsList: {
+    '& > li': {
+      padding: 0
+    },
+    '& > li > div:first-child': {
+      paddingTop: 0,
+      paddingBottom: 0
+    }
+  },
+  fruitName: {
+    marginLeft: theme.spacing(2)
+  }
+}))
 
 const Calculator = () => {
+  const classes = useStyles()
   const { t, i18n } = useTranslation('chocobo-color')
   const [currentStain, setCurrentStain] = useState(stains[36]) // Desert Yellow
   const [targetStain, setTargetStain] = useState(VALID_STAINS[0])
+  const [solution, setSolution] = useState<Fruit[] | null>(null)
   const locale = i18n.language
 
-  const handleInputCurrentStain = (_: any, value: Stain) => {
-    setCurrentStain(value)
+  const handleInputCurrentStain = (_: any, stain: Stain) => {
+    stain && setCurrentStain(stain)
   }
 
-  const handleInputTargetStain = (_: any, value: Stain) => {
-    setTargetStain(value)
+  const handleInputTargetStain = (_: any, stain: Stain) => {
+    stain && setTargetStain(stain)
   }
 
   const handleSelectShade = (shadeId: number) => {
@@ -67,10 +104,14 @@ const Calculator = () => {
     setTargetStain(stain)
   }
 
+  const handleClickCalculate = () => {
+    setSolution(calculateFruitsDistance(currentStain.color, targetStain.color, 3))
+  }
+
   return (
-    <Section title={t('calculator')}>
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
+    <Section>
+      <Grid container justify='center' spacing={4}>
+        <Grid item xs={12} md={8}>
           <Autocomplete
             options={VALID_STAINS}
             groupBy={option => translateChocoboColor('shade', SHADES_MAP[option.shade].shade, locale)}
@@ -79,8 +120,7 @@ const Calculator = () => {
             value={currentStain}
             onChange={handleInputCurrentStain}
           />
-        </Grid>
-        <Grid item xs={12}>
+          <ArrowDownwardIcon className={classes.transitionArrow} />
           <Autocomplete
             options={VALID_STAINS}
             groupBy={option => translateChocoboColor('shade', SHADES_MAP[option.shade].shade, locale)}
@@ -89,31 +129,46 @@ const Calculator = () => {
             value={targetStain}
             onChange={handleInputTargetStain}
           />
+          <div className={classes.palette}>
+            {Object.entries(SHADES_MAP)
+              .sort((a, b) => Number(a[0]) - Number(b[0]))
+              .map(([shadeId, val]) => (
+                <ShadeButton
+                  key={shadeId}
+                  shade={val.shade}
+                  color={val.color}
+                  selected={targetStain.shade === Number(shadeId)}
+                  onClick={handleSelectShade.bind(null, Number(shadeId))}
+                />
+              ))
+            }
+            <br />
+            {VALID_STAINS
+              .filter(stain => stain.shade === targetStain.shade)
+              .map(stain => (
+                <StainButton
+                  key={stain.id}
+                  stain={stain}
+                  selected={targetStain.id === stain.id}
+                  onClick={handleSelectStain.bind(null, stain)}
+                />
+              ))
+            }
+          </div>
+          <Button
+            variant='contained'
+            color='primary'
+            fullWidth
+            onClick={handleClickCalculate}
+          >
+            {t('calculate')}
+          </Button>
         </Grid>
-        <Grid item xs={12}>
-          {Object.entries(SHADES_MAP)
-            .sort((a, b) => Number(a[0]) - Number(b[0]))
-            .map(([shadeId, val]) => (
-              <ShadeButton
-                shade={val.shade}
-                color={val.color}
-                selected={targetStain.shade === Number(shadeId)}
-                onClick={handleSelectShade.bind(null, Number(shadeId))}
-              />
-            ))
-          }
-          <br />
-          {VALID_STAINS
-            .filter(stain => stain.shade === targetStain.shade)
-            .map(stain => (
-              <StainButton
-                stain={stain}
-                selected={targetStain.id === stain.id}
-                onClick={handleSelectStain.bind(null, stain)}
-              />
-            ))
-          }
-        </Grid>
+        {solution && (
+          <Grid item xs={12} md={8}>
+            <FruitsList fruits={solution} />
+          </Grid>
+        )}
       </Grid>
     </Section>
   )

@@ -1,3 +1,6 @@
 {
-  "title": "Chocobo Color"
+  "title": "Chocobo Color",
+  "currentStain": "Current color",
+  "targetStain": "Desired color",
+  "calculate": "Calculate"
 }

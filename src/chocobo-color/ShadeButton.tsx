@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     cursor: 'pointer'
   },
   selected: {
-    border: `3px solid ${theme.palette.primary.main}`
+    border: `3px solid ${theme.palette.type === 'dark' ? theme.palette.primary.light : theme.palette.primary.main}`
   }
 }))
 
@@ -35,7 +35,7 @@ const ShadeButton = ({ shade, color, selected, onClick }: Props) => {
   const locale = i18n.language
 
   return (
-    <Tooltip title={translate('shade', shade, locale)}>
+    <Tooltip placement='top' arrow title={translate('shade', shade, locale)}>
       <Paper
         className={clsx(classes.shadeButton, selected && classes.selected)}
         style={{ backgroundColor: `rgb(${color.R},${color.G},${color.B})` }}

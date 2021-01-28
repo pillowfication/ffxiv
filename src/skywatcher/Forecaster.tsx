@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
   },
   transitionArrow: {
     display: 'block',
-    margin: `${theme.spacing(0.5)}px auto`,
+    margin: theme.spacing(0.5, 'auto'),
     fontSize: '2em',
     [theme.breakpoints.down('sm')]: {
       display: 'none'

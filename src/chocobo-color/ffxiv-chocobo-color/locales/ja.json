@@ -1,11 +1,11 @@
 {
   "shade": {
-    "white": "White",
-    "red": "Red",
-    "orange": "Orange",
-    "yellow": "Yellow",
-    "green": "Green",
-    "blue": "Blue",
-    "purple": "Purple"
+    "white": "白",
+    "red": "赤",
+    "orange": "オレンジ",
+    "yellow": "黄",
+    "green": "緑",
+    "blue": "青",
+    "purple": "紫"
   }
 }

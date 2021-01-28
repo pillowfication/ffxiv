@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     cursor: 'pointer'
   },
   selected: {
-    border: `3px solid ${theme.palette.primary.main}`
+    border: `3px solid ${theme.palette.type === 'dark' ? theme.palette.primary.light : theme.palette.primary.main}`
   }
 }))
 
@@ -33,7 +33,7 @@ const StainButton = ({ stain, selected, onClick }: Props) => {
   const locale = i18n.language
 
   return (
-    <Tooltip title={translate(locale, stain, 'name')}>
+    <Tooltip placement='top' arrow title={translate(locale, stain, 'name')}>
       <Paper
         square
         className={clsx(classes.stainButton, selected && classes.selected)}

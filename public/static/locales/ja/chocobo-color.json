@@ -1,3 +1,6 @@
 {
-  "title": "Chocobo Color"
+  "title": "チョコボカラー",
+  "currentStain": "現在の色",
+  "targetStain": "好みの色",
+  "calculate": "計算"
 }

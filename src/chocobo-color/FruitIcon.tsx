@@ -14,7 +14,8 @@ const useStyles = makeStyles(() => {
       position: 'relative' as 'relative',
       width: 48,
       height: 48,
-      verticalAlign: 'middle'
+      verticalAlign: 'middle',
+      transform: ({ size }) => `scale(${size})`
     },
     fruitIcon: {
       position: 'absolute' as 'absolute',
@@ -45,11 +46,12 @@ const useStyles = makeStyles(() => {
 })
 
 type Props = {
-  fruit: number
+  fruit: number,
+  size: number
 }
 
-const FruitIcon = ({ fruit }: Props) => {
-  const classes = useStyles()
+const FruitIcon = ({ fruit, size }: Props) => {
+  const classes = useStyles(({ size }))
   const { i18n } = useTranslation()
   const locale = i18n.language
 
