@@ -119,7 +119,7 @@ const Forecaster = ({ now }: Props) => {
             options={PLACE_OPTIONS}
             groupBy={({ region }) => translatePlace(region, locale)}
             getOptionLabel={({ place, weatherRateIndex }) => removeTags(translatePlace(place, locale)) + (weatherRateIndex > 0 ? ` (alt. ${weatherRateIndex})` : '')}
-            renderInput={params => <TextField {...params} label={t('selectPlace')} />}
+            renderInput={params => <TextField {...params} label={t('place')} placeholder={t('selectPlace')} InputLabelProps={{ shrink: true }} />}
             value={placeOption}
             getOptionSelected={(option, value) => option.place === value.place && option.weatherRateIndex === value.weatherRateIndex}
             onChange={handleSelectPlace}

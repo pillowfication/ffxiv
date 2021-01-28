@@ -1,6 +1,7 @@
 {
   "title": "Skywatcher",
   "forecaster": "Forecaster",
+  "place": "Place",
   "selectPlace": "Select a place",
   "selectPlaceFirst": "Select a place first",
   "transitionWeather": "Transition from",
@@ -14,5 +15,5 @@
   "showLabels": "Show labels",
   "showLocalTimes": "Show local times",
   "showAllPlaces": "Show all places",
-  "about": "About"
+  "algorithm": "Algorithm"
 }

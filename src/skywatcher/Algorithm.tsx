@@ -20,12 +20,12 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const About = () => {
+const Algorithm = () => {
   const classes = useStyles()
   const { t } = useTranslation('skywatcher')
 
   return (
-    <Section title={t('about')}>
+    <Section title={t('algorithm')}>
       <Typography paragraph>
         The weather in Eorzea can be predicted. First, the number of Eorzean hours and days since the <Link href='https://en.wikipedia.org/wiki/Unix_time'>Unix epoch</Link> is calculated.
       </Typography>
@@ -101,4 +101,4 @@ const weatherChance = step2 % 100
   )
 }
 
-export default React.memo(About)
+export default React.memo(Algorithm)
