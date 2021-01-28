@@ -68,8 +68,10 @@ const FruitsList = ({ fruits: fruitIds }: Props) => {
         <ListItem
           key={index}
           divider
-          className={clsx(classes.item, checklist[index] && classes.itemChecked)}
-          onClick={handleClickItem.bind(null, index)}
+          ContainerProps={{
+            className: clsx(classes.item, checklist[index] && classes.itemChecked),
+            onClick: handleClickItem.bind(null, index)
+          }}
         >
           <FruitIcon fruit={fruit} size={0.75} />
           <Typography className={classes.fruitName}>{translate(locale, fruits[fruit], 'name')}</Typography>
