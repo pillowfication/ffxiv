@@ -44,6 +44,10 @@ for (const region of getRegions()) {
   }
 }
 
+function removeTags (markdown: string) {
+  return markdown.replace(/<\/?.+?>/g, '')
+}
+
 const useStyles = makeStyles(theme => ({
   transitionWeather: {
     [theme.breakpoints.down('sm')]: {
@@ -114,7 +118,7 @@ const Forecaster = ({ now }: Props) => {
           <Autocomplete
             options={PLACE_OPTIONS}
             groupBy={({ region }) => translatePlace(region, locale)}
-            getOptionLabel={({ place, weatherRateIndex }) => translatePlace(place, locale) + (weatherRateIndex > 0 ? ` (alt. ${weatherRateIndex})` : '')}
+            getOptionLabel={({ place, weatherRateIndex }) => removeTags(translatePlace(place, locale)) + (weatherRateIndex > 0 ? ` (alt. ${weatherRateIndex})` : '')}
             renderInput={params => <TextField {...params} label={t('selectPlace')} />}
             value={placeOption}
             getOptionSelected={(option, value) => option.place === value.place && option.weatherRateIndex === value.weatherRateIndex}

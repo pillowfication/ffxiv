@@ -10,6 +10,7 @@ import InputLabel from '@material-ui/core/InputLabel'
 import Checkbox from '@material-ui/core/Checkbox'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
+import Tooltip from '@material-ui/core/Tooltip'
 import Section from '../Section'
 import UpcomingWeatherTable from './UpcomingWeatherTable'
 import {
@@ -44,7 +45,6 @@ const UpcomingWeather = ({ now }: Props) => {
   const [showLabels, setShowLabels] = useState(true)
   const [showLocalTime, setShowLocalTime] = useState(false)
   const [showAllPlaces, setShowAllPlaces] = useState(false)
-  const [showWeatherChance, setShowWeatherChance] = useState(false)
   const locale = i18n.language
 
   const handleSelectFilter = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -55,7 +55,6 @@ const UpcomingWeather = ({ now }: Props) => {
   const handleToggleLabels = () => { setShowLabels(!showLabels) }
   const handleToggleLocalTime = () => { setShowLocalTime(!showLocalTime) }
   const handleToggleShowAllPlaces = () => { setShowAllPlaces(!showAllPlaces) }
-  const handleToggleWeatherChance = () => { setShowWeatherChance(!showWeatherChance) }
 
   return (
     <Section title={t('upcomingWeather')}>
@@ -94,26 +93,18 @@ const UpcomingWeather = ({ now }: Props) => {
             }
             label={t('showLocalTimes')}
           />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={showAllPlaces}
-                onChange={handleToggleShowAllPlaces}
-                color='primary'
-              />
-            }
-            label={t('showAllPlaces')}
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={showWeatherChance}
-                onChange={handleToggleWeatherChance}
-                color='primary'
-              />
-            }
-            label={<>Show <code>weatherChance</code></>}
-          />
+          <Tooltip enterDelay={200} title={<Typography variant='caption'>Include places with only 1 possible weather</Typography>}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={showAllPlaces}
+                  onChange={handleToggleShowAllPlaces}
+                  color='primary'
+                />
+              }
+              label={t('showAllPlaces')}
+            />
+          </Tooltip>
         </Grid>
       </Grid>
       <NoSsr>
@@ -130,7 +121,6 @@ const UpcomingWeather = ({ now }: Props) => {
                   places={showAllPlaces ? places : places.filter(({ place, weatherRateIndex }) => getPossibleWeathers(place, weatherRateIndex).length > 1)}
                   showLabels={showLabels}
                   showLocalTime={showLocalTime}
-                  showWeatherChance={showWeatherChance}
                 />
               </Section>
             )

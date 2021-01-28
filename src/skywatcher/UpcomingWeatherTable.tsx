@@ -11,7 +11,7 @@ import TableCell from '@material-ui/core/TableCell'
 import WeatherIcon from './WeatherIcon'
 import renderFfxiv from './render-ffxiv'
 import { getSeed, getHashes, getWeather, translatePlace, Place } from './ffxiv-skywatcher'
-import { paddedZero, formatTime } from '../utils'
+import { formatTime } from '../utils'
 import { useTranslation } from '../i18n'
 
 const WEATHER_CELL_WIDTH = 75
@@ -68,11 +68,10 @@ type Props = {
   now: Date,
   places: { place: Place, weatherRateIndex: number }[],
   showLabels?: boolean,
-  showLocalTime?: boolean,
-  showWeatherChance?: boolean
+  showLocalTime?: boolean
 }
 
-const UpcomingWeatherTable = ({ now, places, showLabels, showLocalTime, showWeatherChance }: Props) => {
+const UpcomingWeatherTable = ({ now, places, showLabels, showLocalTime }: Props) => {
   const classes = useStyles()
   const { i18n } = useTranslation()
   const currentSeed = getSeed(now)
@@ -85,38 +84,27 @@ const UpcomingWeatherTable = ({ now, places, showLabels, showLocalTime, showWeat
         <TableHead>
           <TableRow>
             <TableCell />
-            {hashes.map((hash, index) => {
+            {hashes.map((_, index) => {
               const eorzeanTime = new Date((currentSeed - 1 + index) * 28800000)
               const localTime = new Date(eorzeanTime.getTime() / (1440 / 70))
               return (
                 <TableCell key={index} className={clsx(classes.weatherTime, index === 1 && classes.current)}>
                   {showLocalTime
                     ? index === 1
-                        ? (
-                          <>
-                            {formatTime(new Date(now.getTime() * (1440 / 70)))} ET
-                            <br />
-                            {formatTime(now)} LT
-                          </>
-                          )
-                        : (
-                          <>
-                            {formatTime(eorzeanTime)} ET
-                            <br />
-                            {formatTime(localTime)} LT
-                          </>
-                          )
-                    : (
-                        index === 1
-                          ? formatTime(new Date(now.getTime() * (1440 / 70)))
-                          : formatTime(eorzeanTime)
-                      )}
-                  {showWeatherChance && (
-                    <>
-                      <br />
-                      {paddedZero(hash)}
-                    </>
-                  )}
+                      ? <>
+                          {formatTime(new Date(now.getTime() * (1440 / 70)))} ET
+                          <br />
+                          {formatTime(now)} LT
+                        </>
+                      : <>
+                          {formatTime(eorzeanTime)} ET
+                          <br />
+                          {formatTime(localTime)} LT
+                        </>
+                    : index === 1
+                      ? formatTime(new Date(now.getTime() * (1440 / 70)))
+                      : formatTime(eorzeanTime)
+                  }
                 </TableCell>
               )
             })}
