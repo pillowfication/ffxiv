@@ -36,7 +36,7 @@ export class Color {
 export enum Shade {
   White = 'white',
   Red = 'red',
-  Orange = 'orange',
+  Brown = 'brown',
   Yellow = 'yellow',
   Green = 'green',
   Blue = 'blue',

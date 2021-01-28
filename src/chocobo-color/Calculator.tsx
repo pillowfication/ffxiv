@@ -32,7 +32,7 @@ const SHADES_MAP: Record<number, { shade: Shade, color: Color }> = {
     color: new Color(210, 28, 28)
   },
   5: {
-    shade: Shade.Orange,
+    shade: Shade.Brown,
     color: new Color(170, 114, 54)
   },
   6: {
