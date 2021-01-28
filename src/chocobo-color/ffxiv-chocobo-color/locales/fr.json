@@ -1,0 +1,11 @@
+{
+  "shade": {
+    "white": "White",
+    "red": "Red",
+    "orange": "Orange",
+    "yellow": "Yellow",
+    "green": "Green",
+    "blue": "Blue",
+    "purple": "Purple"
+  }
+}

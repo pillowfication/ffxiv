@@ -43,7 +43,7 @@ const Skywatcher = () => {
           Certain special weathers such as Tension will replace the predicted weather depending on certain conditions.
         </Typography>
         <Typography component='li'>
-          The weathers associated with The <em>Endeavor</em> only apply to cutscenes and have no apparent correlation to the weathers experienced during the voyage.
+          The weathers associated with The <em>Endeavor</em> only apply to cutscenes and have no apparent correlation with the weathers experienced during the voyage.
         </Typography>
       </ul>
       <Forecaster now={now} />

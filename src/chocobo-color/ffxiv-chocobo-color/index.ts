@@ -1,4 +1,9 @@
 import { stains, Color } from './data'
+import en from './locales/en.json'
+import de from './locales/de.json'
+import fr from './locales/fr.json'
+import ja from './locales/ja.json'
+const LOCALES = { en, de, fr, ja }
 
 export enum Fruit {
   XelphatolApple = 8157,
@@ -153,3 +158,7 @@ function applyFruits (color: Color, fruits: Fruit[]) {
 //   const closestMatch = maximum(Object.values(stains), stain => -stain.color.distanceTo(result))
 //   console.log(`${stain.name_en} -> ${closestMatch.elem.name_en}`)
 // }
+
+export function translate (type: 'shade', id: string, locale: string = 'en') {
+  return (LOCALES[locale] && LOCALES[locale][type][id]) || `{${type}.${id}}`
+}

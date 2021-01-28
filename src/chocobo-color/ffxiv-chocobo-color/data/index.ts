@@ -33,7 +33,17 @@ export class Color {
   }
 }
 
-type Stain = {
+export enum Shade {
+  White = 'white',
+  Red = 'red',
+  Orange = 'orange',
+  Yellow = 'yellow',
+  Green = 'green',
+  Blue = 'blue',
+  Purple = 'purple'
+}
+
+export type Stain = {
   id: number,
   color: Color,
   name_en: string,
@@ -44,7 +54,7 @@ type Stain = {
   shadeIndex: number
 }
 
-type Fruit = {
+export type Fruit = {
   id: number,
   icon: number,
   name_en: string,
