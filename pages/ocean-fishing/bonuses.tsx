@@ -45,10 +45,10 @@ const useStyles = makeStyles(theme => ({
   },
   bonusContainer: {
     margin: theme.spacing(2, 0),
-    paddingBottom: theme.spacing(4),
     textAlign: 'center',
     '& > *': {
       display: 'inline-block',
+      paddingBottom: theme.spacing(4),
       verticalAlign: 'middle'
     }
   },
@@ -68,6 +68,13 @@ const useStyles = makeStyles(theme => ({
     textAlignLast: 'justify',
     '& > *': {
       display: 'inline-block'
+    }
+  },
+  reward: {
+    [theme.breakpoints.down('xs')]: {
+      display: 'block',
+      textAlign: 'left',
+      textAlignLast: 'left'
     }
   }
 }))
@@ -101,7 +108,36 @@ function cleanRequirement (requirement: string) {
   return str[0].toUpperCase() + str.slice(1)
 }
 
-const Objectives = () => {
+type CalculatorRowProps = {
+  reward: string,
+  requiredPoints: number,
+  totalBonus: number
+}
+
+const CalculatorRow = ({ reward, requiredPoints, totalBonus }: CalculatorRowProps) => {
+  const classes = useStyles()
+  const { i18n } = useTranslation('ocean-fishing')
+  const locale = i18n.language
+
+  return (
+    <>
+      <Grid item xs={8}>
+        <div className={classes.calculatorGoal}>
+          <Typography className={classes.reward}>{reward}</Typography>&nbsp;
+          <Typography component='div' align='right' className={classes.bigger}>
+            {Math.ceil(requiredPoints / totalBonus * 100).toLocaleString(locale)}
+            <Box display='inline' ml={2}><Typography display='inline'>×{totalBonus}%</Typography></Box>
+          </Typography>
+        </div>
+      </Grid>
+      <Grid item xs={4}>
+        <Typography className={classes.bigger}>= {requiredPoints.toLocaleString(locale)}</Typography>
+      </Grid>
+    </>
+  )
+}
+
+const Bonuses = () => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('ocean-fishing')
   const [basePoints, setBasePoints] = useState(5000)
@@ -144,15 +180,15 @@ const Objectives = () => {
   }
 
   return (
-    <Page title={`${t('title')} - ${t('objectivesPage.title')}`}>
+    <Page title={`${t('title')} - ${t('bonusesPage.title')}`}>
       <Section>
         <TableContainer>
           <Table className={classes.contentBonusesTable}>
             <TableHead>
               <TableRow>
-                <TableCell colSpan={3} align='center'>{t('objectivesPage.objective')}</TableCell>
-                <TableCell align='center'>{t('objectivesPage.requirement')}</TableCell>
-                <TableCell align='center'>{t('objectivesPage.bonus')}</TableCell>
+                <TableCell colSpan={3} align='center'>{t('bonusesPage.objective')}</TableCell>
+                <TableCell align='center'>{t('bonusesPage.requirement')}</TableCell>
+                <TableCell align='center'>{t('bonusesPage.bonus')}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -184,12 +220,12 @@ const Objectives = () => {
           </Table>
         </TableContainer>
       </Section>
-      <Section title={t('objectivesPage.calculator')}>
+      <Section title={t('bonusesPage.calculator')}>
         <div className={classes.bonusContainer}>
           {filteredContentBonuses.length > 0
             ? filteredContentBonuses.map(contentBonus =>
-              <div className={classes.bonus}>
-                <OceanFishIcon key={contentBonus.id} type='content-bonus' id={contentBonus.id} />
+              <div key={contentBonus.id} className={classes.bonus}>
+                <OceanFishIcon type='content-bonus' id={contentBonus.id} />
                 <br />
                 <Typography variant='body2' className={classes.bonusPercentage}>{contentBonus.bonus - 100}%</Typography>
               </div>
@@ -205,7 +241,7 @@ const Objectives = () => {
                 <TextField
                   type='number'
                   fullWidth
-                  label={t('objectivesPage.basePoints')}
+                  label={t('bonusesPage.basePoints')}
                   InputProps={{
                     endAdornment: <InputAdornment position='end'>×{totalBonus}%</InputAdornment>
                   }}
@@ -219,54 +255,10 @@ const Objectives = () => {
               <Grid item xs={12}>
                 <Box m={2} />
               </Grid>
-              <Grid item xs={8}>
-                <div className={classes.calculatorGoal}>
-                  <Typography>The Major-General</Typography>&nbsp;
-                  <Typography component='div' align='right' className={classes.bigger}>
-                    {Math.ceil(5000 / totalBonus * 100).toLocaleString(locale)}
-                    <Box display='inline' ml={2}><Typography display='inline'>×{totalBonus}%</Typography></Box>
-                  </Typography>
-                </div>
-              </Grid>
-              <Grid item xs={4}>
-                <Typography className={classes.bigger}>= {(5000).toLocaleString(locale)}</Typography>
-              </Grid>
-              <Grid item xs={8}>
-                <div className={classes.calculatorGoal}>
-                  <Typography>Hybodus</Typography>&nbsp;
-                  <Typography component='div' align='right' className={classes.bigger}>
-                    {Math.ceil(10000 / totalBonus * 100).toLocaleString(locale)}
-                    <Box display='inline' ml={2}><Typography display='inline'>×{totalBonus}%</Typography></Box>
-                  </Typography>
-                </div>
-              </Grid>
-              <Grid item xs={4}>
-                <Typography className={classes.bigger}>= {(10000).toLocaleString(locale)}</Typography>
-              </Grid>
-              <Grid item xs={8}>
-                <div className={classes.calculatorGoal}>
-                  <Typography>“Ocean Fisher”</Typography>&nbsp;
-                  <Typography component='div' align='right' className={classes.bigger}>
-                    {Math.ceil(16000 / totalBonus * 100).toLocaleString(locale)}
-                    <Box display='inline' ml={2}><Typography display='inline'>×{totalBonus}%</Typography></Box>
-                  </Typography>
-                </div>
-              </Grid>
-              <Grid item xs={4}>
-                <Typography className={classes.bigger}>= {(16000).toLocaleString(locale)}</Typography>
-              </Grid>
-              <Grid item xs={8}>
-                <div className={classes.calculatorGoal}>
-                  <Typography>“Master of the Sea”</Typography>&nbsp;
-                  <Typography component='div' align='right' className={classes.bigger}>
-                    {Math.ceil(20000 / totalBonus * 100).toLocaleString(locale)}
-                    <Box display='inline' ml={2}><Typography display='inline'>×{totalBonus}%</Typography></Box>
-                  </Typography>
-                </div>
-              </Grid>
-              <Grid item xs={4}>
-                <Typography className={classes.bigger}>= {(20000).toLocaleString(locale)}</Typography>
-              </Grid>
+              <CalculatorRow reward='The Major-General' requiredPoints={5000} totalBonus={totalBonus} />
+              <CalculatorRow reward='Hybodus' requiredPoints={10000} totalBonus={totalBonus} />
+              <CalculatorRow reward='“Ocean Fisher”' requiredPoints={16000} totalBonus={totalBonus} />
+              <CalculatorRow reward='“Master of the Sea”' requiredPoints={20000} totalBonus={totalBonus} />
             </Grid>
           </Grid>
         </Grid>
@@ -275,8 +267,8 @@ const Objectives = () => {
   )
 }
 
-Objectives.getInitialProps = async () => ({
+Bonuses.getInitialProps = async () => ({
   namespacesRequired: ['common', 'ocean-fishing']
 })
 
-export default Objectives
+export default Bonuses

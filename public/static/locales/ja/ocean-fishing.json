@@ -19,8 +19,8 @@
   "fishPage": {
     "title": "魚"
   },
-  "objectivesPage": {
-    "title": "狙い目",
+  "bonusesPage": {
+    "title": "Bonuses",
     "objective": "Objective",
     "requirement": "Requirement",
     "bonus": "Bonus",

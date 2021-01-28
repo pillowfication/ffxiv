@@ -19,8 +19,8 @@
   "fishPage": {
     "title": "Poisson"
   },
-  "objectivesPage": {
-    "title": "Objectifs",
+  "bonusesPage": {
+    "title": "Bonuses",
     "objective": "Objective",
     "requirement": "Requirement",
     "bonus": "Bonus",

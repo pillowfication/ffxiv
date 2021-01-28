@@ -79,8 +79,8 @@ const OceanFishing = () => {
             <Button component={Link} variant='contained' href='/ocean-fishing/fish'>
               <Typography>{t('fishPage.title')}</Typography>
             </Button>
-            <Button component={Link} variant='contained' href='/ocean-fishing/objectives'>
-              <Typography>{t('objectivesPage.title')}</Typography>
+            <Button component={Link} variant='contained' href='/ocean-fishing/bonuses'>
+              <Typography>{t('bonusesPage.title')}</Typography>
             </Button>
           </div>
         </Section>

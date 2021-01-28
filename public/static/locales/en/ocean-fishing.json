@@ -19,8 +19,8 @@
   "fishPage": {
     "title": "Fish"
   },
-  "objectivesPage": {
-    "title": "Objectives",
+  "bonusesPage": {
+    "title": "Bonuses",
     "objective": "Objective",
     "requirement": "Requirement",
     "bonus": "Bonus",
