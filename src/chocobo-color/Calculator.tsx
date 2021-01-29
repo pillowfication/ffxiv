@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Autocomplete from '@material-ui/lab/Autocomplete'
@@ -8,6 +9,7 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import Section from '../Section'
 import ShadeButton from './ShadeButton'
 import StainButton from './StainButton'
+import FruitIcon from './FruitIcon'
 import FruitsList from './FruitsList'
 import {
   isValidStain,
@@ -18,7 +20,7 @@ import {
   Stain,
   Fruit
 } from './ffxiv-chocobo-color'
-import { stains } from './ffxiv-chocobo-color/data'
+import { stains, fruits } from './ffxiv-chocobo-color/data'
 import { translate } from '../utils'
 import { useTranslation } from '../i18n'
 
@@ -66,17 +68,15 @@ const useStyles = makeStyles(theme => ({
   palette: {
     margin: theme.spacing(2, 0)
   },
-  fruitsList: {
-    '& > li': {
-      padding: 0
-    },
-    '& > li > div:first-child': {
-      paddingTop: 0,
-      paddingBottom: 0
-    }
+  fruitsCount: {
+    display: 'inline-block',
+    width: '2.5em',
+    textAlign: 'right',
+    fontSize: '1.25em',
+    overflow: 'visible'
   },
-  fruitName: {
-    marginLeft: theme.spacing(2)
+  fruitsIcon: {
+    margin: theme.spacing(0, 1)
   }
 }))
 
@@ -109,9 +109,9 @@ const Calculator = () => {
   }
 
   return (
-    <Section>
+    <Section title={t('calculator')}>
       <Grid container justify='center' spacing={4}>
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12} md={10} lg={8}>
           <Autocomplete
             options={VALID_STAINS}
             groupBy={option => translateChocoboColor('shade', SHADES_MAP[option.shade].shade, locale)}
@@ -165,7 +165,33 @@ const Calculator = () => {
           </Button>
         </Grid>
         {solution && (
-          <Grid item xs={12} md={8}>
+          <Grid item xs={12} md={10} lg={8}>
+            <Typography variant='h6' gutterBottom>Fruits needed</Typography>
+            {solution.length > 0
+              ? [
+                  Fruit.XelphatolApple,
+                  Fruit.MamookPear,
+                  Fruit.OGhomoroBerries,
+                  Fruit.DomanPlum,
+                  Fruit.Valfruit,
+                  Fruit.CieldalaesPineapple
+                ]
+                  .map(fruit => ({ fruit, count: solution.filter(solFruit => solFruit === fruit).length }))
+                  .filter(({ count }) => count > 0)
+                  .map(({ fruit, count }) => (
+                    <div>
+                      <Typography component='span' className={classes.fruitsCount}>×{count}</Typography>
+                      <FruitIcon fruit={fruit} className={classes.fruitsIcon} />
+                      <Typography component='span'>{translate(locale, fruits[fruit], 'name')}</Typography>
+                    </div>
+                  ))
+              : <Typography>No fruits</Typography>
+            }
+          </Grid>
+        )}
+        {solution && solution.length > 0 && (
+          <Grid item xs={12} md={10} lg={8}>
+            <Typography variant='h6' gutterBottom>Feeding order</Typography>
             <FruitsList fruits={solution} />
           </Grid>
         )}

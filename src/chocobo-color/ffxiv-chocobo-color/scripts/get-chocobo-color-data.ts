@@ -45,7 +45,8 @@ const fruits = [
   8159, // Mamook Pear
   8160, // Valfruit
   8161, // O'Ghomoro Berries
-  8162 // Cieldalaes Pineapple
+  8162, // Cieldalaes Pineapple
+  8163  // Han Lemon
 ]
   .map(itemId => {
     const item_en = Item_en.data.find(({ ['#']: id }) => id === itemId)

@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
     display: 'inline-block',
     width: '2.5em',
     height: '2.5em',
-    margin: theme.spacing(1),
+    margin: theme.spacing(0.75),
     border: '1px solid #0005',
     borderRadius: '50%',
     cursor: 'pointer'

@@ -47,10 +47,11 @@ const useStyles = makeStyles(() => {
 
 type Props = {
   fruit: number,
-  size: number
+  size?: number,
+  className?: string
 }
 
-const FruitIcon = ({ fruit, size }: Props) => {
+const FruitIcon = ({ fruit, size = 1, className }: Props) => {
   const classes = useStyles(({ size }))
   const { i18n } = useTranslation()
   const locale = i18n.language
@@ -58,7 +59,7 @@ const FruitIcon = ({ fruit, size }: Props) => {
   return (
     <>
       <Tooltip arrow placement='top' title={translate(locale, fruits[fruit], 'name')}>
-        <div className={classes.iconContainer}>
+        <div className={clsx(classes.iconContainer, className)}>
           <div className={clsx(classes.fruitIcon, classes[fruit])} />
           <div className={classes.itemCover} />
         </div>
