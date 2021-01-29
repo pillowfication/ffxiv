@@ -13,7 +13,9 @@ const useStyles = makeStyles(theme => ({
     width: '2em',
     height: '2em',
     margin: theme.spacing(0.5),
-    border: '1px solid #0005',
+    border: '1px solid #0005'
+  },
+  clickable: {
     cursor: 'pointer'
   },
   selected: {
@@ -24,10 +26,11 @@ const useStyles = makeStyles(theme => ({
 type Props = {
   stain: Stain,
   selected?: boolean,
-  onClick: () => void
+  onClick?: () => void,
+  className?: string
 }
 
-const StainButton = ({ stain, selected, onClick }: Props) => {
+const StainButton = ({ stain, selected, onClick, className }: Props) => {
   const classes = useStyles()
   const { i18n } = useTranslation()
   const locale = i18n.language
@@ -35,8 +38,9 @@ const StainButton = ({ stain, selected, onClick }: Props) => {
   return (
     <Tooltip placement='top' arrow title={translate(locale, stain, 'name')}>
       <Paper
+        component='span'
         square
-        className={clsx(classes.stainButton, selected && classes.selected)}
+        className={clsx(classes.stainButton, selected && classes.selected, onClick && classes.clickable, className)}
         style={{ backgroundColor: `rgb(${stain.color.R},${stain.color.G},${stain.color.B})` }}
         onClick={onClick}
       />

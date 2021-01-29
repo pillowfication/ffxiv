@@ -12,17 +12,17 @@ const useStyles = makeStyles(() => {
     iconContainer: {
       display: 'inline-block',
       position: 'relative' as 'relative',
-      width: 48,
-      height: 48,
+      width: ({ size }) => 48 * size,
+      height: ({ size }) => 48 * size,
       verticalAlign: 'middle',
       transform: ({ size }) => `scale(${size})`
     },
     fruitIcon: {
       position: 'absolute' as 'absolute',
-      top: 2,
-      left: 4,
-      width: 40,
-      height: 40,
+      top: ({ size }) => 2 * size,
+      left: ({ size }) => 4 * size,
+      width: ({ size }) => 40 * size,
+      height: ({ size }) => 40 * size,
       backgroundImage: 'url("/images/chocobo-color/fruits-icons.png")',
       backgroundSize: `${ICONS_MAP.length * 100}% 100%`
     },
@@ -30,10 +30,10 @@ const useStyles = makeStyles(() => {
       position: 'absolute' as 'absolute',
       top: 0,
       left: 0,
-      width: 48,
-      height: 48,
+      width: ({ size }) => 48 * size,
+      height: ({ size }) => 48 * size,
       backgroundImage: 'url("/images/chocobo-color/item-cover.png")',
-      backgroundRepeat: 'no-repeat'
+      backgroundSize: '100% 100%',
     }
   }
 

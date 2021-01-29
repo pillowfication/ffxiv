@@ -1,9 +1,9 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
-import Page from '../src/Page'
-import Section from '../src/Section'
-import Calculator from '../src/chocobo-color/Calculator'
-import { useTranslation } from '../src/i18n'
+import Page from '../../src/Page'
+import Section from '../../src/Section'
+import Calculator from '../../src/chocobo-color/Calculator'
+import { useTranslation } from '../../src/i18n'
 
 const ChocoboColor = () => {
   const { t } = useTranslation('chocobo-color')

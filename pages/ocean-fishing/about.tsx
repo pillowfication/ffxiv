@@ -143,7 +143,7 @@ const PATTERN = [
           </Highlight>
         </Box>
         <Typography paragraph>
-          To figure out the route at a given time, we need to first establish some epoch as the first voyage and determine where in <Paper component='code' variant='outlined' className={classes.code}>PATTERN</Paper> that voyage lies. All other routes will be calculated relative to that epoch. Fortunately, JST is UTC+09:00, which means a voyage lands on the <MuiLink href='https://www.wikiwand.com/en/Unix_time'>Unix epoch</MuiLink>. As it turns out, this voyage is index 88 in <Paper component='code' variant='outlined' className={classes.code}>PATTERN</Paper>. Altogether,
+          To figure out the route at a given time, we need to first establish some epoch as the first voyage and determine where in <Paper component='code' variant='outlined' className={classes.code}>PATTERN</Paper> that voyage lies. All other routes will be calculated relative to that epoch. Fortunately, JST is UTC+09:00, which means a voyage lands on the <MuiLink href='https://en.wikipedia.org/wiki/Unix_time'>Unix epoch</MuiLink>. As it turns out, this voyage is index 88 in <Paper component='code' variant='outlined' className={classes.code}>PATTERN</Paper>. Altogether,
         </Typography>
         <Box mb={2}>
           <Highlight language='typescript'>

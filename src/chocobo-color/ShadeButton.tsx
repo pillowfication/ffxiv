@@ -14,7 +14,9 @@ const useStyles = makeStyles(theme => ({
     height: '2.5em',
     margin: theme.spacing(0.75),
     border: '1px solid #0005',
-    borderRadius: '50%',
+    borderRadius: '50%'
+  },
+  clickable: {
     cursor: 'pointer'
   },
   selected: {
@@ -26,10 +28,11 @@ type Props = {
   shade: Shade,
   color: Color,
   selected?: boolean,
-  onClick: () => void
+  onClick?: () => void,
+  className?: string
 }
 
-const ShadeButton = ({ shade, color, selected, onClick }: Props) => {
+const ShadeButton = ({ shade, color, selected, onClick, className }: Props) => {
   const classes = useStyles()
   const { i18n } = useTranslation()
   const locale = i18n.language
@@ -37,7 +40,8 @@ const ShadeButton = ({ shade, color, selected, onClick }: Props) => {
   return (
     <Tooltip placement='top' arrow title={translate('shade', shade, locale)}>
       <Paper
-        className={clsx(classes.shadeButton, selected && classes.selected)}
+        component='span'
+        className={clsx(classes.shadeButton, selected && classes.selected, onClick && classes.clickable, className)}
         style={{ backgroundColor: `rgb(${color.R},${color.G},${color.B})` }}
         onClick={onClick}
       />
