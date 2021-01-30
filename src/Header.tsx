@@ -113,11 +113,9 @@ const Header = ({ theme, setTheme }: Props) => {
               <Box display={{ xs: 'none', md: 'inline-block' }}>
                 <Tooltip title='Source code' enterDelay={300}>
                   <Button
-                    component={MuiLink}
                     variant='contained'
                     color='primary'
                     disableElevation
-                    underline='none'
                     href='https://github.com/pillowfication/ffxiv'
                   >
                     <GitHubIcon />
