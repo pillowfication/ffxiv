@@ -66,7 +66,11 @@ export function calculateFruitsDistance (fromColor: Color, toColor: Color, looka
       fruits => -fruits.reduce((acc, curr) => acc.add(fruitValues[curr]), currentColor).distanceTo(toColor)
     )
     if (-best.val >= currentDistance) {
-      return fruits
+      return {
+        fruits,
+        color: currentColor,
+        distance: currentDistance
+      }
     } else {
       fruits.push(best.elem[0])
       currentColor = currentColor.add(fruitValues[best.elem[0]])
@@ -105,7 +109,11 @@ export function calculateFruitsMatrix (fromColor: Color, toColor: Color) {
     best.elem[1] -= 1
   }
 
-  return fruits
+  return {
+    fruits,
+    color: currentColor,
+    distance: currentColor.distanceTo(toColor)
+  }
 }
 
 export function translate (type: 'shade', id: string, locale: string = 'en') {

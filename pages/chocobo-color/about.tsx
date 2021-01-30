@@ -84,7 +84,7 @@ const About = () => {
   }
 
   return (
-    <Page title={`${t('title')} - ${t('about')}`}>
+    <Page title={`${t('title')} - ${t('aboutPage.title')}`}>
       <Section>
         <Typography paragraph>
           Your chocobo’s plumage can be modified by feeding it 6 possible fruits. Each fruit changes the chocobo’s RGB values according to the following table:
@@ -379,58 +379,58 @@ while (true) {
               </TableHead>
               <TableBody>
                 <TableRow>
-                  <TableCell component='th' scope='row' rowSpan={3} align='center'>{$('b-5')}</TableCell>
-                  <TableCell component='th' scope='row' align='center'>{$('g-5')}</TableCell>
+                  <TableCell component='th' scope='row' rowSpan={3} align='center'>{$('g-5')}</TableCell>
+                  <TableCell component='th' scope='row' align='center'>{$('b-5')}</TableCell>
                   <TableCell align='center' className={classes.positive}>{$('(r-5, g-5, b-5)')}</TableCell>
                   <TableCell align='center' className={classes.negative}>{$('(r+0, g-5, b-5)')}</TableCell>
                   <TableCell align='center' className={classes.positive}>{$('(r+5, g-5, b-5)')}</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell component='th' scope='row' align='center'>{$('g')}</TableCell>
-                  <TableCell align='center' className={classes.negative}>{$('(r-5, g+0, b-5)')}</TableCell>
-                  <TableCell align='center' className={classes.negative}>{$('(r+0, g+0, b-5)')}</TableCell>
-                  <TableCell align='center' className={classes.negative}>{$('(r+5, g+0, b-5)')}</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell component='th' scope='row' align='center'>{$('g+5')}</TableCell>
-                  <TableCell align='center' className={classes.positive}>{$('(r-5, g+5, b-5)')}</TableCell>
-                  <TableCell align='center' className={classes.negative}>{$('(r+0, g+5, b-5)')}</TableCell>
-                  <TableCell align='center' className={classes.positive}>{$('(r+5, g+5, b-5)')}</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell component='th' scope='row' rowSpan={3} align='center'>{$('b')}</TableCell>
-                  <TableCell component='th' scope='row' align='center'>{$('g-5')}</TableCell>
+                  <TableCell component='th' scope='row' align='center'>{$('b')}</TableCell>
                   <TableCell align='center' className={classes.negative}>{$('(r-5, g-5, b+0)')}</TableCell>
                   <TableCell align='center' className={classes.negative}>{$('(r+0, g-5, b+0)')}</TableCell>
                   <TableCell align='center' className={classes.negative}>{$('(r+5, g-5, b+0)')}</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell component='th' scope='row' align='center'>{$('g')}</TableCell>
-                  <TableCell align='center' className={classes.negative}>{$('(r-5, g+0, b+0)')}</TableCell>
-                  <TableCell align='center' className={classes.positive}>{$('(r+0, g+0, b+0)')}</TableCell>
-                  <TableCell align='center' className={classes.negative}>{$('(r+5, g+0, b+0)')}</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell component='th' scope='row' align='center'>{$('g+5')}</TableCell>
-                  <TableCell align='center' className={classes.negative}>{$('(r-5, g+5, b+0)')}</TableCell>
-                  <TableCell align='center' className={classes.negative}>{$('(r+0, g+5, b+0)')}</TableCell>
-                  <TableCell align='center' className={classes.negative}>{$('(r+5, g+5, b+0)')}</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell component='th' scope='row' rowSpan={3} align='center'>{$('b+5')}</TableCell>
-                  <TableCell component='th' scope='row' align='center'>{$('g-5')}</TableCell>
+                  <TableCell component='th' scope='row' align='center'>{$('b+5')}</TableCell>
                   <TableCell align='center' className={classes.positive}>{$('(r-5, g-5, b+5)')}</TableCell>
                   <TableCell align='center' className={classes.negative}>{$('(r+0, g-5, b+5)')}</TableCell>
                   <TableCell align='center' className={classes.positive}>{$('(r+5, g-5, b+5)')}</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell component='th' scope='row' align='center'>{$('g')}</TableCell>
+                  <TableCell component='th' scope='row' rowSpan={3} align='center'>{$('g')}</TableCell>
+                  <TableCell component='th' scope='row' align='center'>{$('b-5')}</TableCell>
+                  <TableCell align='center' className={classes.negative}>{$('(r-5, g+0, b-5)')}</TableCell>
+                  <TableCell align='center' className={classes.negative}>{$('(r+0, g+0, b-5)')}</TableCell>
+                  <TableCell align='center' className={classes.negative}>{$('(r+5, g+0, b-5)')}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell component='th' scope='row' align='center'>{$('b')}</TableCell>
+                  <TableCell align='center' className={classes.negative}>{$('(r-5, g+0, b+0)')}</TableCell>
+                  <TableCell align='center' className={classes.positive}>{$('(r+0, g+0, b+0)')}</TableCell>
+                  <TableCell align='center' className={classes.negative}>{$('(r+5, g+0, b+0)')}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell component='th' scope='row' align='center'>{$('b+5')}</TableCell>
                   <TableCell align='center' className={classes.negative}>{$('(r-5, g+0, b+5)')}</TableCell>
                   <TableCell align='center' className={classes.negative}>{$('(r+0, g+0, b+5)')}</TableCell>
                   <TableCell align='center' className={classes.negative}>{$('(r+5, g+0, b+5)')}</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell component='th' scope='row' align='center'>{$('g+5')}</TableCell>
+                  <TableCell component='th' scope='row' rowSpan={3} align='center'>{$('g+5')}</TableCell>
+                  <TableCell component='th' scope='row' align='center'>{$('b-5')}</TableCell>
+                  <TableCell align='center' className={classes.positive}>{$('(r-5, g+5, b-5)')}</TableCell>
+                  <TableCell align='center' className={classes.negative}>{$('(r+0, g+5, b-5)')}</TableCell>
+                  <TableCell align='center' className={classes.positive}>{$('(r+5, g+5, b-5)')}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell component='th' scope='row' align='center'>{$('b')}</TableCell>
+                  <TableCell align='center' className={classes.negative}>{$('(r-5, g+5, b+0)')}</TableCell>
+                  <TableCell align='center' className={classes.negative}>{$('(r+0, g+5, b+0)')}</TableCell>
+                  <TableCell align='center' className={classes.negative}>{$('(r+5, g+5, b+0)')}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell component='th' scope='row' align='center'>{$('b+5')}</TableCell>
                   <TableCell align='center' className={classes.positive}>{$('(r-5, g+5, b+5)')}</TableCell>
                   <TableCell align='center' className={classes.negative}>{$('(r+0, g+5, b+5)')}</TableCell>
                   <TableCell align='center' className={classes.positive}>{$('(r+5, g+5, b+5)')}</TableCell>

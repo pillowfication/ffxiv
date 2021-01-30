@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import Alert from '@material-ui/lab/Alert'
 import Autocomplete from '@material-ui/lab/Autocomplete'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import Section from '../Section'
@@ -85,7 +86,7 @@ const Calculator = () => {
   const { t, i18n } = useTranslation('chocobo-color')
   const [currentStain, setCurrentStain] = useState(stains[36]) // Desert Yellow
   const [targetStain, setTargetStain] = useState(VALID_STAINS[0])
-  const [solution, setSolution] = useState<Fruit[] | null>(null)
+  const [solution, setSolution] = useState<{ fromColor: Color, toColor: Color, fruits: Fruit[], resultantColor: Color } | null>(null)
   const locale = i18n.language
 
   const handleInputCurrentStain = (_: any, stain: Stain) => {
@@ -105,7 +106,13 @@ const Calculator = () => {
   }
 
   const handleClickCalculate = () => {
-    setSolution(calculateFruitsDistance(currentStain.color, targetStain.color, 3))
+    const solution = calculateFruitsDistance(currentStain.color, targetStain.color, 3)
+    setSolution({
+      fromColor: currentStain.color,
+      toColor: targetStain.color,
+      fruits: solution.fruits,
+      resultantColor: solution.color
+    })
   }
 
   return (
@@ -164,10 +171,15 @@ const Calculator = () => {
             {t('calculate')}
           </Button>
         </Grid>
+        {solution && solution.fruits.length > calculateFruitsDistance(stains[36].color, solution.toColor, 3).fruits.length && (
+          <Grid item xs={12} md={10} lg={8}>
+            <Alert severity='info'>You might save fruits by resetting to Desert Yellow with a Han Lemon first.</Alert>
+          </Grid>
+        )}
         {solution && (
           <Grid item xs={12} md={10} lg={8}>
             <Typography variant='h6' gutterBottom>Fruits needed</Typography>
-            {solution.length > 0
+            {solution.fruits.length > 0
               ? [
                   Fruit.XelphatolApple,
                   Fruit.MamookPear,
@@ -176,7 +188,7 @@ const Calculator = () => {
                   Fruit.Valfruit,
                   Fruit.CieldalaesPineapple
                 ]
-                  .map(fruit => ({ fruit, count: solution.filter(solFruit => solFruit === fruit).length }))
+                  .map(fruit => ({ fruit, count: solution.fruits.filter(solFruit => solFruit === fruit).length }))
                   .filter(({ count }) => count > 0)
                   .map(({ fruit, count }) => (
                     <div>
@@ -189,10 +201,10 @@ const Calculator = () => {
             }
           </Grid>
         )}
-        {solution && solution.length > 0 && (
+        {solution && solution.fruits.length > 0 && (
           <Grid item xs={12} md={10} lg={8}>
             <Typography variant='h6' gutterBottom>Feeding order</Typography>
-            <FruitsList fruits={solution} />
+            <FruitsList fruits={solution.fruits} />
           </Grid>
         )}
       </Grid>

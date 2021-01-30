@@ -3,5 +3,8 @@
   "calculator": "Calculateur",
   "currentStain": "Couleur actuelle",
   "targetStain": "Couleur désirée",
-  "calculate": "Calculer"
+  "calculate": "Calculer",
+  "aboutPage": {
+    "title": "About"
+  }
 }

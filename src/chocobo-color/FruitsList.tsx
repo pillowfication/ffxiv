@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
   fruitsList: {
     padding: 0,
     '& > li': {
-      padding: 0
+      padding: theme.spacing(0.25, 0)
     },
     '& > li > div:first-child': {
       paddingTop: 0,
@@ -73,7 +73,7 @@ const FruitsList = ({ fruits: fruitIds }: Props) => {
             onClick: handleClickItem.bind(null, index)
           }}
         >
-          <FruitIcon fruit={fruit} size={0.75} />
+          <FruitIcon fruit={fruit} size={0.9} />
           <Typography className={classes.fruitName}>{translate(locale, fruits[fruit], 'name')}</Typography>
           <ListItemSecondaryAction>
             <CheckIcon className={clsx(classes.checkMark, checklist[index] && classes.checkMarkChecked)} />
