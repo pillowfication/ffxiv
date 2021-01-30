@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
@@ -12,6 +13,7 @@ import ShadeButton from './ShadeButton'
 import StainButton from './StainButton'
 import FruitIcon from './FruitIcon'
 import FruitsList from './FruitsList'
+import ChocoboCompanionPreview from './ChocoboCompanionPreview'
 import {
   isValidStain,
   calculateFruitsDistance,
@@ -65,9 +67,6 @@ const useStyles = makeStyles(theme => ({
     display: 'block',
     margin: theme.spacing(2, 'auto'),
     fontSize: '2em'
-  },
-  palette: {
-    margin: theme.spacing(2, 0)
   },
   fruitsCount: {
     display: 'inline-block',
@@ -136,7 +135,7 @@ const Calculator = () => {
             value={targetStain}
             onChange={handleInputTargetStain}
           />
-          <div className={classes.palette}>
+          <Box my={2}>
             {Object.entries(SHADES_MAP)
               .sort((a, b) => Number(a[0]) - Number(b[0]))
               .map(([shadeId, val]) => (
@@ -161,7 +160,10 @@ const Calculator = () => {
                 />
               ))
             }
-          </div>
+          </Box>
+          <Box mb={2} textAlign='center'>
+            <ChocoboCompanionPreview color={targetStain.color} />
+          </Box>
           <Button
             variant='contained'
             color='primary'
@@ -191,7 +193,7 @@ const Calculator = () => {
                   .map(fruit => ({ fruit, count: solution.fruits.filter(solFruit => solFruit === fruit).length }))
                   .filter(({ count }) => count > 0)
                   .map(({ fruit, count }) => (
-                    <div>
+                    <div key={fruit}>
                       <Typography component='span' className={classes.fruitsCount}>×{count}</Typography>
                       <FruitIcon fruit={fruit} className={classes.fruitsIcon} />
                       <Typography component='span'>{translate(locale, fruits[fruit], 'name')}</Typography>
