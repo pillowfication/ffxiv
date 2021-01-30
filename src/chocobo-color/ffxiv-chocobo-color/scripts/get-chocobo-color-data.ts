@@ -60,7 +60,15 @@ const fruits = [
       name_en: item_en.Name,
       name_de: item_de.Name,
       name_fr: item_fr.Name,
-      name_ja: item_ja.Name
+      name_ja: item_ja.Name,
+      singular_en: item_en.Singular,
+      singular_de: item_de.Singular,
+      singular_fr: item_fr.Singular,
+      singular_ja: item_ja.Singular,
+      plural_en: item_en.Plural,
+      plural_de: item_de.Plural,
+      plural_fr: item_fr.Plural,
+      plural_ja: item_ja.Plural
     }
   })
   .reduce((acc, curr) => (acc[curr.id] = curr, acc), {})

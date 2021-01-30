@@ -10,7 +10,7 @@ import { useTranslation } from '../src/i18n'
 
 const Skywatcher = () => {
   const { t } = useTranslation('skywatcher')
-  const [now, setNow] = useState<Date>(new Date())
+  const [now, setNow] = useState(new Date())
 
   useEffect(() => {
     let interval: NodeJS.Timeout

@@ -25,12 +25,16 @@ import { fruitValues, Fruit, Color } from '../../src/chocobo-color/ffxiv-chocobo
 import { translate } from '../../src/utils'
 import { useTranslation } from '../../src/i18n'
 
-const MATRIX_SOLUTION = [
-  8159, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157, 8159, 8158, 8157
-]
+// const MATRIX_SOLUTION = calculateFruitsMatrix(stains[1].color, stains[6].color).fruits
+// const DISTANCE_SOLUTION = calculateFruitsDistance(stains[1].color, stains[6].color, 6).fruits
+// console.log(MATRIX_SOLUTION)
+// console.log(DISTANCE_SOLUTION)
 
-const DISTANCE_SOLUTION = [
-  8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8158, 8158, 8158, 8158, 8158, 8159, 8158, 8159, 8158, 8159, 8158, 8159, 8158, 8159, 8158, 8159, 8158, 8159, 8158, 8159, 8157, 8158, 8159, 8157, 8158, 8159, 8157, 8158, 8159, 8157, 8158, 8159, 8157, 8158, 8159, 8157, 8158, 8159, 8157, 8158, 8159, 8157, 8158, 8159, 8157, 8158, 8159, 8157, 8158, 8159, 8157, 8158, 8159, 8157, 8158, 8159, 8157, 8158, 8159, 8157, 8158, 8159, 8157, 8158, 8159, 8157, 8158, 8159, 8157, 8158, 8159, 8157, 8158, 8159, 8157, 8159, 8159, 8159, 8159, 8159
+const MATRIX_SOLUTION: Fruit[] = [
+  8161, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157, 8161, 8159, 8157
+]
+const DISTANCE_SOLUTION: Fruit[] = [
+  8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8159, 8159, 8159, 8159, 8159, 8161, 8159, 8161, 8159, 8161, 8159, 8161, 8159, 8161, 8159, 8161, 8159, 8161, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8161, 8161, 8161, 8161, 8161
 ]
 
 function formatDiff (val: number, locale = 'en') {
@@ -73,15 +77,88 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const About = () => {
+const ClampedTable = () => {
   const classes = useStyles()
-  const { t, i18n } = useTranslation('chocobo-color')
   const [showClamping, setShowClamping] = useState(false)
-  const locale = i18n.language
 
   const handleClickToggleClamping = () => {
     setShowClamping(!showClamping)
   }
+
+  return (
+    <Box mb={2}>
+      <Button variant='contained' onClick={handleClickToggleClamping}>Show/Hide Solutions</Button>
+      <Collapse in={showClamping}>
+      <TableContainer>
+        <Table size='small' className={classes.clampTable}>
+          <TableHead>
+            <TableRow>
+              <TableCell colSpan={5} align='center'>Without clamping</TableCell>
+              <TableCell colSpan={5} align='center'>With clamping</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {(() => {
+              const rows = []
+              const length = Math.max(MATRIX_SOLUTION.length, DISTANCE_SOLUTION.length)
+              let currentColorMatrix = stains[1].color
+              let currentColorDistance = stains[1].color
+
+              rows.push(
+                <TableRow key={-1}>
+                  <TableCell />
+                  <TableCell>{$(`${currentColorMatrix.R}`)}</TableCell>
+                  <TableCell>{$(`${currentColorMatrix.G}`)}</TableCell>
+                  <TableCell>{$(`${currentColorMatrix.B}`)}</TableCell>
+                  <TableCell><StainButton color={currentColorMatrix} className={classes.stain} /></TableCell>
+                  <TableCell />
+                  <TableCell>{$(`${currentColorDistance.R}`)}</TableCell>
+                  <TableCell>{$(`${currentColorDistance.G}`)}</TableCell>
+                  <TableCell>{$(`${currentColorDistance.B}`)}</TableCell>
+                  <TableCell><StainButton color={currentColorDistance} className={classes.stain} /></TableCell>
+                </TableRow>
+              )
+
+              for (let index = 0; index < length; ++index) {
+                const matrixFruit = MATRIX_SOLUTION[index]
+                const distanceFruit = DISTANCE_SOLUTION[index]
+                if (matrixFruit) {
+                  currentColorMatrix = currentColorMatrix.add(fruitValues[matrixFruit])
+                }
+                if (distanceFruit) {
+                  currentColorDistance = currentColorDistance.add(fruitValues[distanceFruit])
+                }
+
+                rows.push(
+                  <TableRow key={index}>
+                    <TableCell align='center'>{matrixFruit && <FruitIcon fruit={matrixFruit} size={0.8} />}</TableCell>
+                    <TableCell align='center'>{matrixFruit && $(`${currentColorMatrix.R}`)}</TableCell>
+                    <TableCell align='center'>{matrixFruit && $(`${currentColorMatrix.G}`)}</TableCell>
+                    <TableCell align='center'>{matrixFruit && $(`${currentColorMatrix.B}`)}</TableCell>
+                    <TableCell>{matrixFruit && <StainButton color={currentColorMatrix} className={classes.stain} />}</TableCell>
+                    <TableCell align='center'>{distanceFruit && <FruitIcon fruit={distanceFruit} size={0.8} />}</TableCell>
+                    <TableCell align='center'>{distanceFruit && $(`${currentColorDistance.R}`)}</TableCell>
+                    <TableCell align='center'>{distanceFruit && $(`${currentColorDistance.G}`)}</TableCell>
+                    <TableCell align='center'>{distanceFruit && $(`${currentColorDistance.B}`)}</TableCell>
+                    <TableCell>{distanceFruit && <StainButton color={currentColorDistance} className={classes.stain} />}</TableCell>
+                  </TableRow>
+                )
+              }
+
+              return rows
+            })()}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      </Collapse>
+    </Box>
+  )
+}
+
+const About = () => {
+  const classes = useStyles()
+  const { t, i18n } = useTranslation('chocobo-color')
+  const locale = i18n.language
 
   return (
     <Page title={`${t('title')} - ${t('aboutPage.title')}`}>
@@ -119,19 +196,19 @@ const About = () => {
                             align='center'
                             className={clsx(classes.RGB, R > 0 ? classes.positive : R < 0 ? classes.negative : undefined)}
                           >
-                            {formatDiff(R)}
+                            {$(formatDiff(R))}
                           </TableCell>
                           <TableCell
                             align='center'
                             className={clsx(classes.RGB, G > 0 ? classes.positive : G < 0 ? classes.negative : undefined)}
                           >
-                            {formatDiff(G)}
+                            {$(formatDiff(G))}
                           </TableCell>
                           <TableCell
                             align='center'
                             className={clsx(classes.RGB, B > 0 ? classes.positive : B < 0 ? classes.negative : undefined)}
                           >
-                            {formatDiff(B)}
+                            {$(formatDiff(B))}
                           </TableCell>
                         </TableRow>
                       )
@@ -142,7 +219,7 @@ const About = () => {
           </TableContainer>
         </Box>
         <Typography paragraph>
-          RGB values can never exceed 250 or go below 0. If eating a fruit will cause a value to go beyond the valid range, it will be clamped. The RGB values of possible colors are known, and the problem is how to determine what sequence of fruits will get from one color to another. Unfortunately, not all RGB values are possible since the fruits always change values in increments of 5 (disregarding clamping). The goal is to reach certain RGB values such that the closest possible color is the desired color. Distance here is measured using the <MuiLink href='https://en.wikipedia.org/wiki/Euclidean_distance'>Euclidean norm</MuiLink>.
+          RGB values can never exceed {$('250')} or go below {$('0')}. If eating a fruit will cause a value to go beyond the valid range, it will be clamped. The RGB values of possible colors are known, and the problem is how to determine what sequence of fruits will get from one color to another. Unfortunately, not all RGB values are possible since the fruits always change values in increments of {$('5')} (ignoring clamping). The goal is to reach certain RGB values such that the closest possible color is the desired color. Distance here is measured using the <MuiLink href='https://en.wikipedia.org/wiki/Euclidean_distance'>Euclidean norm</MuiLink>.
         </Typography>
         {$$('\\lVert \\text{Color} \\rVert = \\sqrt{\\text{Color.R}^2 + \\text{Color.G}^2 + \\text{Color.B}^2}')}
       </Section>
@@ -181,43 +258,42 @@ function calculate (fromColor: Color, toColor: Color): Fruit[] {
           </Highlight>
         </Box>
         <Typography paragraph>
-          This algorithm has several shortcomings, but performs decently well and serves as the basis to the actual algorithm I used. The biggest issue is that the algorithm tends to stop early. Suppose the target color is {$('\\operatorname{RGB}(100, 100, 100)')}, and the current color is {$('\\operatorname{RGB}(105, 105, 105)')}. The current distance is {$('\\sqrt{75}')} and eating any fruit will cause this distance to jump up to {$('\\sqrt{100}')} or {$('\\sqrt{200}')}, so the algorithm terminates. But feeding the 3 fruits Xelphatol Apple, Doman Plum, and Mamook Pear would land exactly on the target color.
+          This algorithm has several shortcomings, but performs decently well and serves as the basis to the actual algorithm I used. The biggest issue is that the algorithm tends to stop early. Suppose the target color is {$('\\operatorname{RGB}(100, 100, 100)')}, and the current color is {$('\\operatorname{RGB}(105, 105, 105)')}. The current distance is {$('\\sqrt{75}')} and eating any fruit will cause this distance to jump up to {$('\\sqrt{100}')} or {$('\\sqrt{200}')}, so the algorithm terminates. But feeding the 3 fruits {translate(locale, fruits[Fruit.XelphatolApple], 'name')}, {translate(locale, fruits[Fruit.MamookPear], 'name')}, and {translate(locale, fruits[Fruit.OGhomoroBerries], 'name')} would land exactly on the target color.
         </Typography>
       </Section>
       <Section title='Matrix Algorithm'>
         <Typography paragraph>
-          The next algorithm to consider involves treating the problem as an <MuiLink href='https://en.wikipedia.org/wiki/Integer_programming'>integer linear program</MuiLink>. Using the variables
+          The next algorithm to consider involves treating the problem as a sort of matrix equation. Using the variables
         </Typography>
         {$$(`
           \\begin{align}
-            X & = \\text{# of Xelphatol Apples} \\\\
-            M & = \\text{# of Mamook Pears} \\\\
-            O & = \\text{# of O'Ghomoro Berries} \\\\
-            D & = \\text{# of Doman Plums} \\\\
-            V & = \\text{# of Valfruits} \\\\
-            C & = \\text{# of Cieldalaes Pineapples} \\\\
+            X & = \\text{# of ${translate(locale, fruits[Fruit.XelphatolApple], 'plural')}} \\\\
+            M & = \\text{# of ${translate(locale, fruits[Fruit.MamookPear], 'plural')}} \\\\
+            O & = \\text{# of ${translate(locale, fruits[Fruit.OGhomoroBerries], 'plural')}} \\\\
+            D & = \\text{# of ${translate(locale, fruits[Fruit.DomanPlum], 'plural')}} \\\\
+            V & = \\text{# of ${translate(locale, fruits[Fruit.Valfruit], 'plural')}} \\\\
+            C & = \\text{# of ${translate(locale, fruits[Fruit.CieldalaesPineapple], 'plural')}} \\\\
           \\end{align}
         `)}
         <Typography paragraph>
-          our program is
+          and not requiring them to be integers, we must solve
         </Typography>
         {$$(`
           \\begin{array}{ll}
-            \\text{minimize}   & \\phantom{+}X +D +M +V +O +C, \\\\
+            \\text{minimize}   & \\phantom{+}X +M +O +D +V +C, \\\\
             \\\\
-            \\text{subject to} & \\phantom{+}X -M -O -D +V +C = R / 5, \\\\
-                               &            -X +M -O +D -V +C = G / 5, \\\\
-                               &            -X -M +O +D +V -C = B / 5, \\\\
+            \\text{subject to} & +X -M -O -D +V +C = R / 5, \\\\
+                               & -X +M -O +D -V +C = G / 5, \\\\
+                               & -X -M +O +D +V -C = B / 5, \\\\
             \\\\
-            \\text{and}        & X, M, O, D, V, C \\geq 0, \\\\
-                               & X, M, O, D, V, C \\in \\Bbb{Z} \\\\
+            \\text{and}        & X, M, O, D, V, C \\geq 0 \\\\
           \\end{array}
         `)}
         <Typography paragraph>
           where {$('R, G, B')} is the difference {$('\\text{DesiredColor} - \\text{CurrentColor}')}. This does not take into account clamping, which can be avoided almost always anyways. It gives only the number of fruits required, which is then ordered to hopefully avoid clamping. I did this by repeatedly picking fruits that minimize the distance to {$('\\operatorname{RGB}(127.5, 127.5, 127.5)')} using the <MuiLink href='https://en.wikipedia.org/wiki/Uniform_norm'>uniform norm</MuiLink>.
         </Typography>
         <Typography paragraph>
-          The step of determining how many fruits are required can be simplified immensely by dropping the integer constraint. And since the {$('D, V, C')} fruits are “opposites” of the {$('X, M, O')} fruits, we can drop the {$('D, V, C')} variables by removing the nonnegativity constraints on {$('X, M, O')}. This transforms the problem into the standard linear equation
+          Since the {$('D, V, C')} fruits are “opposites” of the {$('X, M, O')} fruits, we can drop the {$('D, V, C')} variables by removing the nonnegativity constraints on {$('X, M, O')}. This transforms the problem into the standard linear equation
         </Typography>
         {$$(`
           \\begin{pmatrix}
@@ -234,7 +310,7 @@ function calculate (fromColor: Color, toColor: Color): Fruit[] {
           \\end{pmatrix},
         `)}
         <Typography paragraph>
-          with a negative value of {$('X')} corresponding to a positive value of {$('V')}, etc. To turn the solutions into integers, I round them (although some combinations of {$('\\operatorname{ceil}')} and {$('\\operatorname{floor}')} can give better results, and there is no guarantee we can find the optimal solution this way). This algorithm can outperform the first algorithm in situations where the first algorithm would terminate early.
+          with a negative value of {$('X')} corresponding to a positive value of {$('D')}, etc. To turn the solutions into integers, I round them (this doesn’t always give the closest color, and that problem is the <MuiLink href='https://en.wikipedia.org/wiki/Lattice_problem#Closest_vector_problem_(CVP)'>closest vector problem</MuiLink>). This algorithm can outperform the first algorithm in situations where the first algorithm would terminate early.
         </Typography>
       </Section>
       <Section title='Lookahead'>
@@ -276,70 +352,9 @@ while (true) {
           With a big enough lookahead, the algorithm is able to momentarily step further away from the target color in order to get closer later. The algorithm implemented on the <Link href='/chocobo-color'>Chocobo Color page</Link> is this algorithm with a lookahead of {$('L = 3')}, which specifically admits the strategy of eating 3 fruits to increase/reduce all values by 5. This performs very well.
         </Typography>
         <Typography paragraph>
-          Lookahead also allows the algorithm to utilizing clamping, considering cases where the fruits no longer commute. For example, if the current color is Snow White <StainButton stain={stains[1]} className={classes.stain} /> and the target color is Soot Black <StainButton stain={stains[6]} className={classes.stain} />, then we need to decrease the RGB values as much as possible. Without any clamping, this can be done in 110 fruits. With clamping, it’s possible to get as close with 97 fruits instead. It involves feeding a bunch of Xelphatol Apples first to max out the RGB’s red value so that subsequent Xelphatol Apples will lower the average RGB value quicker. Unfortunately, lookaheads with {$('L > 5')} quickly become infeasible, the benefits are small, and situations that can use it are rare.
+          Lookahead also allows the algorithm to utilizing clamping, considering cases where the fruits no longer commute. For example, if the current color is {translate(locale, stains[1], 'name')} <StainButton stain={stains[1]} className={classes.stain} /> and the target color is {translate(locale, stains[6], 'name')} <StainButton stain={stains[6]} className={classes.stain} />, then we need to decrease the RGB values as much as possible. Without any clamping, this can be done in 110 fruits. With clamping, it’s possible to get as close with 97 fruits instead. It involves feeding a bunch of {translate(locale, fruits[Fruit.XelphatolApple], 'plural')} first to max out the RGB’s red value so that subsequent {translate(locale, fruits[Fruit.XelphatolApple], 'plural')} will lower the average RGB value quicker. Unfortunately, lookaheads with {$('L > 5')} quickly become infeasible, the benefits are small, and situations that can use it are rare.
         </Typography>
-        <Box mb={2}>
-          <Button variant='contained' onClick={handleClickToggleClamping}>Show/Hide Solutions</Button>
-          <Collapse in={showClamping}>
-          <TableContainer>
-            <Table size='small' className={classes.clampTable}>
-              <TableHead>
-                <TableRow>
-                  <TableCell colSpan={4} align='center'>Without clamping</TableCell>
-                  <TableCell colSpan={4} align='center'>With clamping</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {(() => {
-                  const rows = []
-                  const length = Math.max(MATRIX_SOLUTION.length, DISTANCE_SOLUTION.length)
-                  let currentColorMatrix = stains[1].color
-                  let currentColorDistance = stains[1].color
-
-                  rows.push(
-                    <TableRow key={-1}>
-                      <TableCell />
-                      <TableCell>{currentColorMatrix.R}</TableCell>
-                      <TableCell>{currentColorMatrix.G}</TableCell>
-                      <TableCell>{currentColorMatrix.B}</TableCell>
-                      <TableCell />
-                      <TableCell>{currentColorDistance.R}</TableCell>
-                      <TableCell>{currentColorDistance.G}</TableCell>
-                      <TableCell>{currentColorDistance.B}</TableCell>
-                    </TableRow>
-                  )
-
-                  for (let index = 0; index < length; ++index) {
-                    const matrixFruit = MATRIX_SOLUTION[index]
-                    const distanceFruit = DISTANCE_SOLUTION[index]
-                    if (matrixFruit) {
-                      currentColorMatrix = currentColorMatrix.add(fruitValues[matrixFruit])
-                    }
-                    if (distanceFruit) {
-                      currentColorDistance = currentColorDistance.add(fruitValues[distanceFruit])
-                    }
-
-                    rows.push(
-                      <TableRow key={index}>
-                        <TableCell align='center'>{matrixFruit && <FruitIcon fruit={matrixFruit} size={0.8} />}</TableCell>
-                        <TableCell align='center'>{matrixFruit && currentColorMatrix.R}</TableCell>
-                        <TableCell align='center'>{matrixFruit && currentColorMatrix.G}</TableCell>
-                        <TableCell align='center'>{matrixFruit && currentColorMatrix.B}</TableCell>
-                        <TableCell align='center'>{distanceFruit && <FruitIcon fruit={distanceFruit} size={0.8} />}</TableCell>
-                        <TableCell align='center'>{distanceFruit && currentColorDistance.R}</TableCell>
-                        <TableCell align='center'>{distanceFruit && currentColorDistance.G}</TableCell>
-                        <TableCell align='center'>{distanceFruit && currentColorDistance.B}</TableCell>
-                      </TableRow>
-                    )
-                  }
-
-                  return rows
-                })()}
-              </TableBody>
-            </Table>
-          </TableContainer>
-          </Collapse>
-        </Box>
+        <ClampedTable />
       </Section>
       <Section title='Optimality'>
         <Typography paragraph>
@@ -457,10 +472,10 @@ while (true) {
       </Section>
       <Section title='Error'>
         <Typography paragraph>
-          The algorithm can get us pretty close to the desired color, but it’s not always possible to be exact. The two closest possible colors a chocobo can be are Currant Purple <StainButton stain={stains[79]} className={classes.stain} /> and Grape Purple <StainButton stain={stains[81]} className={classes.stain} />. These two have a distance of {$('9.434')}, so if we can guarantee an error of less than {$('9.434 / 2 = 4.717')}, then the desired color will always be the closest color, but this is impossible to guarantee.
+          The algorithm can get us pretty close to the desired color, but it’s not always possible to be exact. The two closest possible colors a chocobo can be are {translate(locale, stains[79], 'name')} <StainButton stain={stains[79]} className={classes.stain} /> and {translate(locale, stains[81], 'name')} <StainButton stain={stains[81]} className={classes.stain} />. These two have a distance of {$('9.434')}, so if we can guarantee an error of less than {$('9.434 / 2 = 4.717')}, then the desired color will always be the closest color, but this is impossible to guarantee.
         </Typography>
         <Typography paragraph>
-          Feeding a fruit will always change the parity of the RGB values, i.e. odd → even or even → odd. If the target color is {$('\\operatorname{RGB}(100, 100, 100)')} with all even values, and the current color is {$('\\operatorname{RGB}(100, 100, 105)')} with 1 odd value, no sequence of fruits can get closer (ignoring clamping). Thus the maximum error is bounded below by {$('5')}, and we cannot guarantee that the closest color is the desired color. The maximum error is actually about {$('5\\sqrt{5}/2 \\approx 5.59')} given by the vector {$('5, 2.5, 0')}.
+          Feeding a fruit will always change the parity of the RGB values, i.e. odd → even or even → odd. If the target color is {$('\\operatorname{RGB}(100, 100, 100)')} with all even values, and the current color is {$('\\operatorname{RGB}(100, 100, 105)')} with 1 odd value, no sequence of fruits can get closer (ignoring clamping). Thus the maximum error is bounded below by {$('5')}, and we cannot guarantee that the closest color is the desired color. The maximum error is actually about {$('5\\sqrt{5}/2 \\approx 5.59')} given by the vector {$('(5, 2.5, 0)')}.
         </Typography>
         <Typography paragraph>
           A possible solution is to instead aim for some color that is near the desired color and far from other nearby colors, maximizing the likelihood that we end up at the desired color. The hope is that our final color ends up inside the <MuiLink href='https://en.wikipedia.org/wiki/Voronoi_diagram'>Voronoi cell</MuiLink> of the desired color, so a sensible target would be the centroid of this region. In 2D, this may look like

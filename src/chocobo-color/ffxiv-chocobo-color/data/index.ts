@@ -60,7 +60,15 @@ export type Fruit = {
   name_en: string,
   name_de: string,
   name_fr: string,
-  name_ja: string
+  name_ja: string,
+  singular_en: string,
+  singular_de: string,
+  singular_fr: string,
+  singular_ja: string,
+  plural_en: string,
+  plural_de: string,
+  plural_fr: string,
+  plural_ja: string
 }
 
 for (const stain of Object.values(_stains)) {
