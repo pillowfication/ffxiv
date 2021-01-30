@@ -24,6 +24,11 @@ const useStyles = makeStyles(theme => ({
       paddingBottom: 0
     }
   },
+  counter: {
+    width: '2em',
+    marginRight: theme.spacing(2),
+    textAlign: 'right'
+  },
   fruitName: {
     marginLeft: theme.spacing(2)
   },
@@ -63,24 +68,27 @@ const FruitsList = ({ fruits: fruitIds }: Props) => {
   }
 
   return (
-    <List component={Paper} dense className={classes.fruitsList}>
-      {fruitIds.map((fruit, index) => (
-        <ListItem
-          key={index}
-          divider
-          ContainerProps={{
-            className: clsx(classes.item, checklist[index] && classes.itemChecked),
-            onClick: handleClickItem.bind(null, index)
-          }}
-        >
-          <FruitIcon fruit={fruit} size={0.9} />
-          <Typography className={classes.fruitName}>{translate(locale, fruits[fruit], 'name')}</Typography>
-          <ListItemSecondaryAction>
-            <CheckIcon className={clsx(classes.checkMark, checklist[index] && classes.checkMarkChecked)} />
-          </ListItemSecondaryAction>
-        </ListItem>
-      ))}
-    </List>
+    <Paper>
+      <List component='ol' dense className={classes.fruitsList}>
+        {fruitIds.map((fruit, index) => (
+          <ListItem
+            key={index}
+            divider
+            ContainerProps={{
+              className: clsx(classes.item, checklist[index] && classes.itemChecked),
+              onClick: handleClickItem.bind(null, index)
+            }}
+          >
+            <Typography variant='body2' className={classes.counter}>{index + 1}</Typography>
+            <FruitIcon fruit={fruit} size={0.9} />
+            <Typography className={classes.fruitName}>{translate(locale, fruits[fruit], 'name')}</Typography>
+            <ListItemSecondaryAction>
+              <CheckIcon className={clsx(classes.checkMark, checklist[index] && classes.checkMarkChecked)} />
+            </ListItemSecondaryAction>
+          </ListItem>
+        ))}
+      </List>
+    </Paper>
   )
 }
 

@@ -194,7 +194,7 @@ const Calculator = () => {
                   .filter(({ count }) => count > 0)
                   .map(({ fruit, count }) => (
                     <div key={fruit}>
-                      <Typography component='span' className={classes.fruitsCount}>×{count}</Typography>
+                      <Typography component='span' className={classes.fruitsCount}>{count}×</Typography>
                       <FruitIcon fruit={fruit} className={classes.fruitsIcon} />
                       <Typography component='span'>{translate(locale, fruits[fruit], 'name')}</Typography>
                     </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import NoSsr from '@material-ui/core/NoSsr'
 import Typography from '@material-ui/core/Typography'
+import MuiLink from '@material-ui/core/Link'
 import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
@@ -112,7 +113,7 @@ const Header = ({ theme, setTheme }: Props) => {
               <Box display={{ xs: 'none', md: 'inline-block' }}>
                 <Tooltip title='Source code' enterDelay={300}>
                   <Button
-                    component={Link}
+                    component={MuiLink}
                     variant='contained'
                     color='primary'
                     disableElevation
