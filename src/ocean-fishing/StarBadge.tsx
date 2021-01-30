@@ -1,5 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import Tooltip from '@material-ui/core/Tooltip'
+import { useTranslation } from '../i18n'
 
 const useStyles = makeStyles(theme => ({
   starBadge: {
@@ -15,26 +17,29 @@ const useStyles = makeStyles(theme => ({
 
 const StarBadge = () => {
   const classes = useStyles()
+  const { t } = useTranslation('ocean-fishing')
 
   return (
-    <svg width={20} height={20} className={classes.starBadge}>
-      {(() => {
-        const r = 3
-        const R = 7
-        const round = (n: number) => Math.round(n * 100) / 100
-        const ct = (theta: number, rho: number) => round(10 + rho * Math.cos(theta)) + ' ' + round(10 + rho * Math.sin(theta))
+    <Tooltip placement='top' arrow title={t('requiredBait')}>
+      <svg width={20} height={20} className={classes.starBadge}>
+        {(() => {
+          const r = 3
+          const R = 7
+          const round = (n: number) => Math.round(n * 100) / 100
+          const ct = (theta: number, rho: number) => round(10 + rho * Math.cos(theta)) + ' ' + round(10 + rho * Math.sin(theta))
 
-        const points: string[] = []
-        for (let i = 0; i < 5; ++i) {
-          const theta = i * (2 * Math.PI / 5) + (Math.PI / 2)
-          points.push(ct(theta, r))
-          points.push(ct(theta + (2 * Math.PI / 10), R))
-        }
+          const points: string[] = []
+          for (let i = 0; i < 5; ++i) {
+            const theta = i * (2 * Math.PI / 5) + (Math.PI / 2)
+            points.push(ct(theta, r))
+            points.push(ct(theta + (2 * Math.PI / 10), R))
+          }
 
-        return <path d={`M ${points.join(' L ')} Z`} />
-      })()}
-    </svg>
+          return <path d={`M ${points.join(' L ')} Z`} />
+        })()}
+      </svg>
+    </Tooltip>
   )
 }
 
-export default StarBadge
+export default React.memo(StarBadge)

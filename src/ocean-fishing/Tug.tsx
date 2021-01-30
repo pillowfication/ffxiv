@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center'
   },
   small: {
-    fontSize: '0.9em'
+    fontSize: '0.95em'
   },
   light: {
     backgroundColor: theme.palette.type === 'dark' ? '#078203' : '#aaffaa'

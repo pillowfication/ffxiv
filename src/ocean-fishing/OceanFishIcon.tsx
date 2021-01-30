@@ -15,13 +15,15 @@ const ICON_COLS = Math.max(...ICONS_MAP.map(row => row.length))
 
 const useStyles = makeStyles(theme => {
   const styles = {
-    iconContainer: {
+    container: {
       display: 'inline-block',
       position: 'relative' as 'relative',
-      width: ({ size }: { size: number }) => size * 1.2,
-      height: ({ size }: { size: number }) => size * 1.2,
       margin: theme.spacing(0.1),
       verticalAlign: 'middle'
+    },
+    iconContainer: {
+      width: ({ size }: { size: number }) => size * 1.2,
+      height: ({ size }: { size: number }) => size * 1.2,
     },
     oceanFishIcon: {
       position: 'absolute' as 'absolute',
@@ -103,18 +105,20 @@ const OceanFishIcon = ({ type, id, size = 40, Badge, className }: Props) => {
 
   return (
     <>
-      <Tooltip arrow placement='top' title={tooltip}>
-        <div
-          className={clsx(classes.iconContainer, type === 'fish' && classes.hasPopper, className)}
-          onClick={handleClick}
-        >
-          <div className={clsx(classes.oceanFishIcon, classes[`${type}_${id}`])} />
-          {type === 'fish' && <div className={classes.itemCover} />}
-          {type === 'bait' && <div className={classes.itemCover} />}
-          {type === 'achievement' && <div className={classes.achievementCover} />}
-          {Badge && <div className={classes.badge}>{Badge}</div>}
-        </div>
-      </Tooltip>
+      <div className={classes.container}>
+        <Tooltip arrow placement='top' title={tooltip}>
+          <div
+            className={clsx(classes.iconContainer, type === 'fish' && classes.hasPopper, className)}
+            onClick={handleClick}
+          >
+            <div className={clsx(classes.oceanFishIcon, classes[`${type}_${id}`])} />
+            {type === 'fish' && <div className={classes.itemCover} />}
+            {type === 'bait' && <div className={classes.itemCover} />}
+            {type === 'achievement' && <div className={classes.achievementCover} />}
+          </div>
+        </Tooltip>
+        {Badge && <div className={classes.badge}>{Badge}</div>}
+      </div>
       {type === 'fish' && (
         <Popper anchorEl={anchorEl} open={Boolean(anchorEl)} placement='bottom-start'>
           <ClickAwayListener onClickAway={handleClickAway}>

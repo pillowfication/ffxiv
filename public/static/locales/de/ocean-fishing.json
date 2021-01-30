@@ -11,6 +11,7 @@
   "showPointsFish": "Show high-value fish",
   "showAllFish": "Anzeigen alle Fischen",
   "fish": "Fisch",
+  "requiredBait": "Required bait",
   "aboutPage": {
     "title": "About",
     "data": "Data",
