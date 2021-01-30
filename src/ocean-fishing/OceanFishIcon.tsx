@@ -105,10 +105,10 @@ const OceanFishIcon = ({ type, id, size = 40, Badge, className }: Props) => {
 
   return (
     <>
-      <div className={classes.container}>
+      <div className={clsx(classes.container, className)}>
         <Tooltip arrow placement='top' title={tooltip}>
           <div
-            className={clsx(classes.iconContainer, type === 'fish' && classes.hasPopper, className)}
+            className={clsx(classes.iconContainer, type === 'fish' && classes.hasPopper)}
             onClick={handleClick}
           >
             <div className={clsx(classes.oceanFishIcon, classes[`${type}_${id}`])} />

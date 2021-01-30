@@ -61,7 +61,7 @@ type Props = {
 const Header = ({ theme, setTheme }: Props) => {
   const classes = useStyles()
   const { i18n } = useTranslation('common')
-  const [languageAnchorEl, setLanguageAnchorEl] = useState<null | HTMLElement>(null)
+  const [languageAnchorEl, setLanguageAnchorEl] = useState<HTMLElement | null>(null)
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
