@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Tooltip from '@material-ui/core/Tooltip'
 import { translate } from '../utils'
-import { Stain } from './ffxiv-chocobo-color/data'
+import { Stain, Color } from './ffxiv-chocobo-color'
 import { useTranslation } from '../i18n'
 
 const useStyles = makeStyles(theme => ({
@@ -24,24 +24,27 @@ const useStyles = makeStyles(theme => ({
 }))
 
 type Props = {
-  stain: Stain,
+  stain?: Stain,
+  color?: Color,
   selected?: boolean,
   onClick?: () => void,
   className?: string
 }
 
-const StainButton = ({ stain, selected, onClick, className }: Props) => {
+const StainButton = ({ stain, color, selected, onClick, className }: Props) => {
   const classes = useStyles()
   const { i18n } = useTranslation()
   const locale = i18n.language
+  const stainColor = stain ? stain.color : color
+  const title = stain ? translate(locale, stain, 'name') : `(${color.R}, ${color.G}, ${color.B})`
 
   return (
-    <Tooltip placement='top' arrow title={translate(locale, stain, 'name')}>
+    <Tooltip placement='top' arrow title={title}>
       <Paper
         component='span'
         square
         className={clsx(classes.stainButton, selected && classes.selected, onClick && classes.clickable, className)}
-        style={{ backgroundColor: `rgb(${stain.color.R},${stain.color.G},${stain.color.B})` }}
+        style={{ backgroundColor: `rgb(${stainColor.R},${stainColor.G},${stainColor.B})` }}
         onClick={onClick}
       />
     </Tooltip>

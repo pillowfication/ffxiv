@@ -10,10 +10,10 @@ export type { Stain, FruitInfo }
 
 export enum Fruit {
   XelphatolApple = 8157,
-  MamookPear = 8158,
-  OGhomoroBerries = 8159,
-  DomanPlum = 8160,
-  Valfruit = 8161,
+  DomanPlum = 8158,
+  MamookPear = 8159,
+  Valfruit = 8160,
+  OGhomoroBerries = 8161,
   CieldalaesPineapple = 8162
 }
 
@@ -114,6 +114,30 @@ export function calculateFruitsMatrix (fromColor: Color, toColor: Color) {
     color: currentColor,
     distance: currentColor.distanceTo(toColor)
   }
+}
+
+const cache: Record<string, { fruits: Fruit[], color: Color, distance: number }> = {}
+
+export function calculateFruits (fromStain: Stain, toStain: Stain) {
+  const key = `${fromStain.id},${toStain.id}`
+  if (cache[key]) return cache[key]
+
+  const solution = calculateFruitsDistance(fromStain.color, toStain.color, 3)
+
+  // Honey Yellow -> Currant Purple
+  if (fromStain.id === 37 && toStain.id === 79) {
+    solution.fruits.splice(solution.fruits.lastIndexOf(Fruit.XelphatolApple), 1)
+    solution.color = solution.color.add(fruitValues[Fruit.DomanPlum])
+    solution.distance = solution.color.distanceTo(toStain.color)
+  }
+  // Celeste Green -> Currant Purple
+  if (fromStain.id === 57 && toStain.id === 79) {
+    solution.fruits.push(Fruit.MamookPear)
+    solution.color = solution.color.add(fruitValues[Fruit.MamookPear])
+    solution.distance = solution.color.distanceTo(toStain.color)
+  }
+
+  return (cache[key] = solution)
 }
 
 export function translate (type: 'shade', id: string, locale: string = 'en') {

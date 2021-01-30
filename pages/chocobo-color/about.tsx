@@ -21,7 +21,7 @@ import { $, $$ } from '../../src/MathJax'
 import FruitIcon from '../../src/chocobo-color/FruitIcon'
 import StainButton from '../../src/chocobo-color/StainButton'
 import { stains, fruits } from '../../src/chocobo-color/ffxiv-chocobo-color/data'
-import { fruitValues, Fruit } from '../../src/chocobo-color/ffxiv-chocobo-color'
+import { fruitValues, Fruit, Color } from '../../src/chocobo-color/ffxiv-chocobo-color'
 import { translate } from '../../src/utils'
 import { useTranslation } from '../../src/i18n'
 
@@ -191,10 +191,10 @@ function calculate (fromColor: Color, toColor: Color): Fruit[] {
         {$$(`
           \\begin{align}
             X & = \\text{# of Xelphatol Apples} \\\\
-            D & = \\text{# of Doman Plums} \\\\
             M & = \\text{# of Mamook Pears} \\\\
-            V & = \\text{# of Valfruits} \\\\
             O & = \\text{# of O'Ghomoro Berries} \\\\
+            D & = \\text{# of Doman Plums} \\\\
+            V & = \\text{# of Valfruits} \\\\
             C & = \\text{# of Cieldalaes Pineapples} \\\\
           \\end{align}
         `)}
@@ -205,19 +205,19 @@ function calculate (fromColor: Color, toColor: Color): Fruit[] {
           \\begin{array}{ll}
             \\text{minimize}   & \\phantom{+}X +D +M +V +O +C, \\\\
             \\\\
-            \\text{subject to} & \\phantom{+}X -D -M -V +O +C = R / 5, \\\\
-                               &            -X +D -M +V -O +C = G / 5, \\\\
-                               &            -X -D +M +V +O -C = B / 5, \\\\
+            \\text{subject to} & \\phantom{+}X -M -O -D +V +C = R / 5, \\\\
+                               &            -X +M -O +D -V +C = G / 5, \\\\
+                               &            -X -M +O +D +V -C = B / 5, \\\\
             \\\\
-            \\text{and}        & X, D, M, V, O, C \\geq 0, \\\\
-                               & X, D, M, V, O, C \\in \\Bbb{Z} \\\\
+            \\text{and}        & X, M, O, D, V, C \\geq 0, \\\\
+                               & X, M, O, D, V, C \\in \\Bbb{Z} \\\\
           \\end{array}
         `)}
         <Typography paragraph>
           where {$('R, G, B')} is the difference {$('\\text{DesiredColor} - \\text{CurrentColor}')}. This does not take into account clamping, which can be avoided almost always anyways. It gives only the number of fruits required, which is then ordered to hopefully avoid clamping. I did this by repeatedly picking fruits that minimize the distance to {$('\\operatorname{RGB}(127.5, 127.5, 127.5)')} using the <MuiLink href='https://en.wikipedia.org/wiki/Uniform_norm'>uniform norm</MuiLink>.
         </Typography>
         <Typography paragraph>
-          The step of determining how many fruits are required can be simplified immensely by dropping the integer constraint. And since the {$('V, O, C')} fruits are “opposites” of the {$('X, D, M')} fruits, we can drop the {$('V, O, C')} variables by removing the nonnegativity constraints on {$('X, D, M')}. This transforms the problem into the standard linear equation
+          The step of determining how many fruits are required can be simplified immensely by dropping the integer constraint. And since the {$('D, V, C')} fruits are “opposites” of the {$('X, M, O')} fruits, we can drop the {$('D, V, C')} variables by removing the nonnegativity constraints on {$('X, M, O')}. This transforms the problem into the standard linear equation
         </Typography>
         {$$(`
           \\begin{pmatrix}
@@ -226,7 +226,7 @@ function calculate (fromColor: Color, toColor: Color): Fruit[] {
                        -5 &            -5 &  \\phantom{+}5 \\\\
           \\end{pmatrix}
           \\begin{pmatrix}
-            X \\\\ D \\\\ M
+            X \\\\ M \\\\ O
           \\end{pmatrix}
           =
           \\begin{pmatrix}
@@ -341,23 +341,6 @@ while (true) {
           </Collapse>
         </Box>
       </Section>
-      <Section title='Error'>
-        <Typography paragraph>
-          The algorithm can get us pretty close to the desired color, but it’s not always possible to be exact. The two closest possible colors a chocobo can be are Currant Purple <StainButton stain={stains[79]} className={classes.stain} /> and Grape Purple <StainButton stain={stains[81]} className={classes.stain} />. These two have a distance of {$('9.434')}, so if we can guarantee an error of less than {$('9.434 / 2 = 4.717')}, then the desired color will always be the closest color, but this is impossible to guarantee.
-        </Typography>
-        <Typography paragraph>
-          Feeding a fruit will always change the parity of the RGB values, i.e. odd → even or even → odd. If the target color is {$('\\operatorname{RGB}(100, 100, 100)')} with all even values, and the current color is {$('\\operatorname{RGB}(100, 100, 105)')} with 1 odd value, no sequence of fruits can get closer (ignoring clamping). Thus the maximum error is bounded below by {$('5')}, and we cannot guarantee that the closest color is the desired color.
-        </Typography>
-        <Typography paragraph>
-          A possible solution is to instead aim for some color that is near the desired color and far from other nearby colors, maximizing the likelihood that we end up at the desired color. The hope is that our final color ends up inside the <MuiLink href='https://en.wikipedia.org/wiki/Voronoi_diagram'>Voronoi cell</MuiLink> of the desired color, so a sensible target would be the centroid of this region. In 2D, this may look like
-        </Typography>
-        <Box mb={2} textAlign='center'>
-          <img src='/images/chocobo-color/voronoi-diagram.png' className={classes.image} />
-        </Box>
-        <Typography paragraph>
-          This would allow more room for error, but I decided computing these targets would be too much work. As long as the algorithm gets as close to the desired color as possible (ignoring clamping), it’s sufficient.
-        </Typography>
-      </Section>
       <Section title='Optimality'>
         <Typography paragraph>
           Fortunately, a lookahead of {$('L = 3')} is enough to guarantee that our algorithm terminates with a color as close to the target color as possible (ignoring clamping). By feeding 2 fruits, any individual RGB value can be adjusted by {$('\\pm10')} while leaving the other two values unaffected. This means that the color we end up at cannot have coordinates that differ from the target color’s by more than {$('5')}. The same must be true of the optimal solution.
@@ -458,7 +441,7 @@ while (true) {
                 </TableRow>
                 <TableRow>
                   <TableCell align='center'>{$('(r+5, g+5, b+5)')}</TableCell>
-                  <TableCell align='center'><FruitIcon fruit={Fruit.XelphatolApple} /><FruitIcon fruit={Fruit.DomanPlum} /><FruitIcon fruit={Fruit.MamookPear} /></TableCell>
+                  <TableCell align='center'><FruitIcon fruit={Fruit.DomanPlum} /><FruitIcon fruit={Fruit.Valfruit} /><FruitIcon fruit={Fruit.CieldalaesPineapple} /></TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell align='center'>{$('(r+5, g+5, b-5)')}</TableCell>
@@ -471,6 +454,66 @@ while (true) {
         <Typography paragraph>
           Thus the algorithm is optimal.
         </Typography>
+      </Section>
+      <Section title='Error'>
+        <Typography paragraph>
+          The algorithm can get us pretty close to the desired color, but it’s not always possible to be exact. The two closest possible colors a chocobo can be are Currant Purple <StainButton stain={stains[79]} className={classes.stain} /> and Grape Purple <StainButton stain={stains[81]} className={classes.stain} />. These two have a distance of {$('9.434')}, so if we can guarantee an error of less than {$('9.434 / 2 = 4.717')}, then the desired color will always be the closest color, but this is impossible to guarantee.
+        </Typography>
+        <Typography paragraph>
+          Feeding a fruit will always change the parity of the RGB values, i.e. odd → even or even → odd. If the target color is {$('\\operatorname{RGB}(100, 100, 100)')} with all even values, and the current color is {$('\\operatorname{RGB}(100, 100, 105)')} with 1 odd value, no sequence of fruits can get closer (ignoring clamping). Thus the maximum error is bounded below by {$('5')}, and we cannot guarantee that the closest color is the desired color. The maximum error is actually about {$('5\\sqrt{5}/2 \\approx 5.59')} given by the vector {$('5, 2.5, 0')}.
+        </Typography>
+        <Typography paragraph>
+          A possible solution is to instead aim for some color that is near the desired color and far from other nearby colors, maximizing the likelihood that we end up at the desired color. The hope is that our final color ends up inside the <MuiLink href='https://en.wikipedia.org/wiki/Voronoi_diagram'>Voronoi cell</MuiLink> of the desired color, so a sensible target would be the centroid of this region. In 2D, this may look like
+        </Typography>
+        <Box mb={2} textAlign='center'>
+          <img src='/images/chocobo-color/voronoi-diagram.png' className={classes.image} />
+        </Box>
+        <Typography paragraph>
+          This would allow more room for error, but I decided computing these targets would be too much work. As long as the algorithm gets as close to the desired color as possible (ignoring clamping), it’s sufficient. There are only two color combinations where the closest color does not lead to the desired color, and those have hardcoded solutions for now.
+        </Typography>
+        <Box mb={2}>
+          <TableContainer>
+            <Table className={classes.table}>
+              <TableBody>
+                <TableRow>
+                  <TableCell component='th' scope='row' align='center'>Current color</TableCell>
+                  <TableCell align='center'>{translate(locale, stains[37], 'name')}<br />{$('(250, 198, 43)')}</TableCell>
+                  <TableCell align='center'><StainButton stain={stains[37]} className={null} /></TableCell>
+                  <TableCell align='center'>{translate(locale, stains[57], 'name')}<br />{$('(150, 189, 185)')}</TableCell>
+                  <TableCell align='center'><StainButton stain={stains[57]} className={null} /></TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell component='th' scope='row' align='center'>Desired color</TableCell>
+                  <TableCell align='center'>{translate(locale, stains[79], 'name')}<br />{$('(50, 44, 59)')}</TableCell>
+                  <TableCell align='center'><StainButton stain={stains[79]} className={null} /></TableCell>
+                  <TableCell align='center'>{translate(locale, stains[79], 'name')}<br />{$('(50, 44, 59)')}</TableCell>
+                  <TableCell align='center'><StainButton stain={stains[79]} className={null} /></TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell component='th' scope='row' align='center'>Closest solution</TableCell>
+                  <TableCell align='center'>{$('(55, 43, 58)')}</TableCell>
+                  <TableCell align='center'><StainButton color={new Color(55, 43, 58)} className={null} /></TableCell>
+                  <TableCell align='center'>{$('(55, 44, 60)')}</TableCell>
+                  <TableCell align='center'><StainButton color={new Color(55, 44, 60)} className={null} /></TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell component='th' scope='row' align='center'>Resultant color</TableCell>
+                  <TableCell align='center'>{translate(locale, stains[81], 'name')}<br />{$('(59, 42, 61)')}</TableCell>
+                  <TableCell align='center'><StainButton stain={stains[81]} className={null} /></TableCell>
+                  <TableCell align='center'>{translate(locale, stains[81], 'name')}<br />{$('(59, 42, 61)')}</TableCell>
+                  <TableCell align='center'><StainButton stain={stains[81]} className={null} /></TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell component='th' scope='row' align='center'>Adjusted solution</TableCell>
+                  <TableCell align='center'>Remove 1× <FruitIcon fruit={Fruit.XelphatolApple} /><br />{$('(50, 48, 63)')}</TableCell>
+                  <TableCell align='center'><StainButton color={new Color(50, 48, 63)} className={null} /></TableCell>
+                  <TableCell align='center'>Add 1× <FruitIcon fruit={Fruit.MamookPear} /><br />{$('(50, 49, 55)')}</TableCell>
+                  <TableCell align='center'><StainButton color={new Color(50, 49, 55)} className={null} /></TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Box>
       </Section>
     </Page>
   )

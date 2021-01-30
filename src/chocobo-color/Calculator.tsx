@@ -16,7 +16,7 @@ import FruitsList from './FruitsList'
 import ChocoboCompanionPreview from './ChocoboCompanionPreview'
 import {
   isValidStain,
-  calculateFruitsDistance,
+  calculateFruits,
   translate as translateChocoboColor,
   Color,
   Shade,
@@ -85,7 +85,7 @@ const Calculator = () => {
   const { t, i18n } = useTranslation('chocobo-color')
   const [currentStain, setCurrentStain] = useState(stains[36]) // Desert Yellow
   const [targetStain, setTargetStain] = useState(VALID_STAINS[0])
-  const [solution, setSolution] = useState<{ fromColor: Color, toColor: Color, fruits: Fruit[], resultantColor: Color } | null>(null)
+  const [solution, setSolution] = useState<{ fromStain: Stain, toStain: Stain, fruits: Fruit[], resultantColor: Color } | null>(null)
   const locale = i18n.language
 
   const handleInputCurrentStain = (_: any, stain: Stain) => {
@@ -105,10 +105,10 @@ const Calculator = () => {
   }
 
   const handleClickCalculate = () => {
-    const solution = calculateFruitsDistance(currentStain.color, targetStain.color, 3)
+    const solution = calculateFruits(currentStain, targetStain)
     setSolution({
-      fromColor: currentStain.color,
-      toColor: targetStain.color,
+      fromStain: currentStain,
+      toStain: targetStain,
       fruits: solution.fruits,
       resultantColor: solution.color
     })
@@ -173,7 +173,7 @@ const Calculator = () => {
             {t('calculate')}
           </Button>
         </Grid>
-        {solution && solution.fruits.length > calculateFruitsDistance(stains[36].color, solution.toColor, 3).fruits.length && (
+        {solution && solution.fruits.length > calculateFruits(stains[36], solution.toStain).fruits.length && (
           <Grid item xs={12} md={10} lg={8}>
             <Alert severity='info'>You might save fruits by resetting to Desert Yellow with a Han Lemon first.</Alert>
           </Grid>
