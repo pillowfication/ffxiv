@@ -3,7 +3,6 @@ import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import { fade } from '@material-ui/core/styles/colorManipulator'
 import Box from '@material-ui/core/Box'
-import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import MuiLink from '@material-ui/core/Link'
 import Button from '@material-ui/core/Button'
@@ -42,7 +41,7 @@ const useStyles = makeStyles(theme => ({
   image: {
     maxWidth: '100%'
   },
-  fruitsTable: {
+  table: {
     width: 'initial',
     margin: theme.spacing(0, 'auto')
   },
@@ -92,7 +91,7 @@ const About = () => {
         </Typography>
         <Box mb={2}>
           <TableContainer>
-            <Table size='small' className={classes.fruitsTable}>
+            <Table size='small' className={classes.table}>
               <TableHead>
                 <TableRow>
                   <TableCell align='center'>Fruit</TableCell>
@@ -146,6 +145,8 @@ const About = () => {
           RGB values can never exceed 250 or go below 0. If eating a fruit will cause a value to go beyond the valid range, it will be clamped. The RGB values of possible colors are known, and the problem is how to determine what sequence of fruits will get from one color to another. Unfortunately, not all RGB values are possible since the fruits always change values in increments of 5 (disregarding clamping). The goal is to reach certain RGB values such that the closest possible color is the desired color. Distance here is measured using the <MuiLink href='https://en.wikipedia.org/wiki/Euclidean_distance'>Euclidean norm</MuiLink>.
         </Typography>
         {$$('\\lVert \\text{Color} \\rVert = \\sqrt{\\text{Color.R}^2 + \\text{Color.G}^2 + \\text{Color.B}^2}')}
+      </Section>
+      <Section title='Greedy Algorithm'>
         <Typography paragraph>
           A simple algorithm is to keep picking the fruit that gets us closest to the desired color, stopping when no single fruit can get any closer.
         </Typography>
@@ -182,6 +183,8 @@ function calculate (fromColor: Color, toColor: Color): Fruit[] {
         <Typography paragraph>
           This algorithm has several shortcomings, but performs decently well and serves as the basis to the actual algorithm I used. The biggest issue is that the algorithm tends to stop early. Suppose the target color is {$('\\operatorname{RGB}(100, 100, 100)')}, and the current color is {$('\\operatorname{RGB}(105, 105, 105)')}. The current distance is {$('\\sqrt{75}')} and eating any fruit will cause this distance to jump up to {$('\\sqrt{100}')} or {$('\\sqrt{200}')}, so the algorithm terminates. But feeding the 3 fruits Xelphatol Apple, Doman Plum, and Mamook Pear would land exactly on the target color.
         </Typography>
+      </Section>
+      <Section title='Matrix Algorithm'>
         <Typography paragraph>
           The next algorithm to consider involves treating the problem as an <MuiLink href='https://en.wikipedia.org/wiki/Integer_programming'>integer linear program</MuiLink>. Using the variables
         </Typography>
@@ -211,7 +214,7 @@ function calculate (fromColor: Color, toColor: Color): Fruit[] {
           \\end{array}
         `)}
         <Typography paragraph>
-          where {$('R, G, B')} is the difference {$('\\text{TargetColor} - \\text{CurrentColor}')}. This does not take into account clamping, which can be avoided almost always anyways. It gives only the number of fruits required, which is then ordered to hopefully avoid clamping. I did this by repeatedly picking fruits that minimize the distance to {$('\\operatorname{RGB}(127.5, 127.5, 127.5)')} using the <MuiLink href='https://en.wikipedia.org/wiki/Uniform_norm'>uniform norm</MuiLink>.
+          where {$('R, G, B')} is the difference {$('\\text{DesiredColor} - \\text{CurrentColor}')}. This does not take into account clamping, which can be avoided almost always anyways. It gives only the number of fruits required, which is then ordered to hopefully avoid clamping. I did this by repeatedly picking fruits that minimize the distance to {$('\\operatorname{RGB}(127.5, 127.5, 127.5)')} using the <MuiLink href='https://en.wikipedia.org/wiki/Uniform_norm'>uniform norm</MuiLink>.
         </Typography>
         <Typography paragraph>
           The step of determining how many fruits are required can be simplified immensely by dropping the integer constraint. And since the {$('V, O, C')} fruits are “opposites” of the {$('X, D, M')} fruits, we can drop the {$('V, O, C')} variables by removing the nonnegativity constraints on {$('X, D, M')}. This transforms the problem into the standard linear equation
@@ -231,8 +234,10 @@ function calculate (fromColor: Color, toColor: Color): Fruit[] {
           \\end{pmatrix},
         `)}
         <Typography paragraph>
-          with a negative value of {$('X')} corresponding to a positive value of {$('V')}, etc. To turn the solutions into integers, I round them (although some combinations of {$('\\operatorname{ceil}')} and {$('\\operatorname{floor}')} can give better results). This algorithm can outperform the first algorithm in situations where the first algorithm would terminate early.
+          with a negative value of {$('X')} corresponding to a positive value of {$('V')}, etc. To turn the solutions into integers, I round them (although some combinations of {$('\\operatorname{ceil}')} and {$('\\operatorname{floor}')} can give better results, and there is no guarantee we can find the optimal solution this way). This algorithm can outperform the first algorithm in situations where the first algorithm would terminate early.
         </Typography>
+      </Section>
+      <Section title='Lookahead'>
         <Typography paragraph>
           To fix the issue of early termination in the first algorithm, some amount of lookahead is introduced. Instead of considering fruits one by one, the algorithm does the following:
         </Typography>
@@ -335,6 +340,8 @@ while (true) {
           </TableContainer>
           </Collapse>
         </Box>
+      </Section>
+      <Section title='Error'>
         <Typography paragraph>
           The algorithm can get us pretty close to the desired color, but it’s not always possible to be exact. The two closest possible colors a chocobo can be are Currant Purple <StainButton stain={stains[79]} className={classes.stain} /> and Grape Purple <StainButton stain={stains[81]} className={classes.stain} />. These two have a distance of {$('9.434')}, so if we can guarantee an error of less than {$('9.434 / 2 = 4.717')}, then the desired color will always be the closest color, but this is impossible to guarantee.
         </Typography>
@@ -342,7 +349,7 @@ while (true) {
           Feeding a fruit will always change the parity of the RGB values, i.e. odd → even or even → odd. If the target color is {$('\\operatorname{RGB}(100, 100, 100)')} with all even values, and the current color is {$('\\operatorname{RGB}(100, 100, 105)')} with 1 odd value, no sequence of fruits can get closer (ignoring clamping). Thus the maximum error is bounded below by {$('5')}, and we cannot guarantee that the closest color is the desired color.
         </Typography>
         <Typography paragraph>
-          A possible solution is to intead aim for some color that is near the desired color and far from other nearby colors, maximizing the likelihood that we end up at the desired color. The hope is that our final color ends up inside the <MuiLink href='https://en.wikipedia.org/wiki/Voronoi_diagram'>Voronoi cell</MuiLink> of the desired color, so a sensible target would be the centroid of this region. In 2D, this may look like
+          A possible solution is to instead aim for some color that is near the desired color and far from other nearby colors, maximizing the likelihood that we end up at the desired color. The hope is that our final color ends up inside the <MuiLink href='https://en.wikipedia.org/wiki/Voronoi_diagram'>Voronoi cell</MuiLink> of the desired color, so a sensible target would be the centroid of this region. In 2D, this may look like
         </Typography>
         <Box mb={2} textAlign='center'>
           <img src='/images/chocobo-color/voronoi-diagram.png' className={classes.image} />
@@ -350,8 +357,119 @@ while (true) {
         <Typography paragraph>
           This would allow more room for error, but I decided computing these targets would be too much work. As long as the algorithm gets as close to the desired color as possible (ignoring clamping), it’s sufficient.
         </Typography>
+      </Section>
+      <Section title='Optimality'>
         <Typography paragraph>
-          TODO: Prove that the current algorithm minimizes the error.
+          Fortunately, a lookahead of {$('L = 3')} is enough to guarantee that our algorithm terminates with a color as close to the target color as possible (ignoring clamping). By feeding 2 fruits, any individual RGB value can be adjusted by {$('\\pm10')} while leaving the other two values unaffected. This means that the color we end up at cannot have coordinates that differ from the target color’s by more than {$('5')}. The same must be true of the optimal solution.
+        </Typography>
+        <Typography paragraph>
+          Let the solution our algorithm returns be {$('\\operatorname{RGB(r, g, b)}')}. Focusing only on the red component, the optimal solution must have a red component of {$('r-5')}, {$('r')}, or {$('r+5')}. Now we consider the 27 points:
+        </Typography>
+        <Box mb={2}>
+          <TableContainer>
+            <Table size='small' className={classes.table}>
+              <TableHead>
+                <TableRow>
+                  <TableCell />
+                  <TableCell />
+                  <TableCell align='center'>{$('r-5')}</TableCell>
+                  <TableCell align='center'>{$('r')}</TableCell>
+                  <TableCell align='center'>{$('r+5')}</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow>
+                  <TableCell component='th' scope='row' rowSpan={3} align='center'>{$('b-5')}</TableCell>
+                  <TableCell component='th' scope='row' align='center'>{$('g-5')}</TableCell>
+                  <TableCell align='center' className={classes.positive}>{$('(r-5, g-5, b-5)')}</TableCell>
+                  <TableCell align='center' className={classes.negative}>{$('(r+0, g-5, b-5)')}</TableCell>
+                  <TableCell align='center' className={classes.positive}>{$('(r+5, g-5, b-5)')}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell component='th' scope='row' align='center'>{$('g')}</TableCell>
+                  <TableCell align='center' className={classes.negative}>{$('(r-5, g+0, b-5)')}</TableCell>
+                  <TableCell align='center' className={classes.negative}>{$('(r+0, g+0, b-5)')}</TableCell>
+                  <TableCell align='center' className={classes.negative}>{$('(r+5, g+0, b-5)')}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell component='th' scope='row' align='center'>{$('g+5')}</TableCell>
+                  <TableCell align='center' className={classes.positive}>{$('(r-5, g+5, b-5)')}</TableCell>
+                  <TableCell align='center' className={classes.negative}>{$('(r+0, g+5, b-5)')}</TableCell>
+                  <TableCell align='center' className={classes.positive}>{$('(r+5, g+5, b-5)')}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell component='th' scope='row' rowSpan={3} align='center'>{$('b')}</TableCell>
+                  <TableCell component='th' scope='row' align='center'>{$('g-5')}</TableCell>
+                  <TableCell align='center' className={classes.negative}>{$('(r-5, g-5, b+0)')}</TableCell>
+                  <TableCell align='center' className={classes.negative}>{$('(r+0, g-5, b+0)')}</TableCell>
+                  <TableCell align='center' className={classes.negative}>{$('(r+5, g-5, b+0)')}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell component='th' scope='row' align='center'>{$('g')}</TableCell>
+                  <TableCell align='center' className={classes.negative}>{$('(r-5, g+0, b+0)')}</TableCell>
+                  <TableCell align='center' className={classes.positive}>{$('(r+0, g+0, b+0)')}</TableCell>
+                  <TableCell align='center' className={classes.negative}>{$('(r+5, g+0, b+0)')}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell component='th' scope='row' align='center'>{$('g+5')}</TableCell>
+                  <TableCell align='center' className={classes.negative}>{$('(r-5, g+5, b+0)')}</TableCell>
+                  <TableCell align='center' className={classes.negative}>{$('(r+0, g+5, b+0)')}</TableCell>
+                  <TableCell align='center' className={classes.negative}>{$('(r+5, g+5, b+0)')}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell component='th' scope='row' rowSpan={3} align='center'>{$('b+5')}</TableCell>
+                  <TableCell component='th' scope='row' align='center'>{$('g-5')}</TableCell>
+                  <TableCell align='center' className={classes.positive}>{$('(r-5, g-5, b+5)')}</TableCell>
+                  <TableCell align='center' className={classes.negative}>{$('(r+0, g-5, b+5)')}</TableCell>
+                  <TableCell align='center' className={classes.positive}>{$('(r+5, g-5, b+5)')}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell component='th' scope='row' align='center'>{$('g')}</TableCell>
+                  <TableCell align='center' className={classes.negative}>{$('(r-5, g+0, b+5)')}</TableCell>
+                  <TableCell align='center' className={classes.negative}>{$('(r+0, g+0, b+5)')}</TableCell>
+                  <TableCell align='center' className={classes.negative}>{$('(r+5, g+0, b+5)')}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell component='th' scope='row' align='center'>{$('g+5')}</TableCell>
+                  <TableCell align='center' className={classes.positive}>{$('(r-5, g+5, b+5)')}</TableCell>
+                  <TableCell align='center' className={classes.negative}>{$('(r+0, g+5, b+5)')}</TableCell>
+                  <TableCell align='center' className={classes.positive}>{$('(r+5, g+5, b+5)')}</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Box>
+        <Typography paragraph>
+          One of these points is the optimal solution, and all the points marked as red are impossible to reach due to parity. Starting at {$('(r, g, b)')}, we must show that our algorithm considers all the green points with a lookahead of {$('L = 3')}. By symmetry, there are only 3 cases needed to be checked.
+        </Typography>
+        <Box mb={2}>
+          <TableContainer>
+            <Table className={classes.table}>
+              <TableHead>
+                <TableRow>
+                  <TableCell align='center'>Target color</TableCell>
+                  <TableCell align='center'>Solution</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow>
+                  <TableCell align='center'>{$('(r+0, g+0, b+0)')}</TableCell>
+                  <TableCell align='center'><Typography>No fruits</Typography></TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell align='center'>{$('(r+5, g+5, b+5)')}</TableCell>
+                  <TableCell align='center'><FruitIcon fruit={Fruit.XelphatolApple} /><FruitIcon fruit={Fruit.DomanPlum} /><FruitIcon fruit={Fruit.MamookPear} /></TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell align='center'>{$('(r+5, g+5, b-5)')}</TableCell>
+                  <TableCell align='center'><FruitIcon fruit={Fruit.CieldalaesPineapple} /></TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Box>
+        <Typography paragraph>
+          Thus the algorithm is optimal.
         </Typography>
       </Section>
     </Page>
