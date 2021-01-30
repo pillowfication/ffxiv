@@ -56,8 +56,8 @@ export function getWeatherRates (place: Place): number[] {
 export function getPossibleWeathers (place: Place, weatherRateIndex = 0): Weather[] {
   const rates = weatherRates[partition.weatherRates[place][weatherRateIndex]].rates
   return rates.map(([weather]) => weather)
-    // .filter((weather, index, array) => array.indexOf(weather, index + 1) === -1)
-    // .sort((a, b) => a - b)
+    .filter((weather, index, array) => array.indexOf(weather, index + 1) === -1)
+    .sort((a, b) => a - b)
 }
 
 export function forecastWeathers (
