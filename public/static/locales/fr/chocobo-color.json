@@ -4,7 +4,10 @@
   "currentStain": "Couleur actuelle",
   "targetStain": "Couleur désirée",
   "calculate": "Calculer",
+  "fruitsNeeded": "Les fruits qu’il faut",
+  "fruitsOrder": "l’ordre de fruits",
+  "noFruits": "Pas besoin de fruits",
   "aboutPage": {
-    "title": "About"
+    "title": "Apropos de"
   }
 }

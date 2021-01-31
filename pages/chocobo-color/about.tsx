@@ -62,11 +62,6 @@ const useStyles = makeStyles(theme => ({
       ? fade(theme.palette.error.main, 0.15)
       : fade(theme.palette.error.main, 0.25)
   },
-  stain: {
-    margin: 0,
-    fontSize: '0.75em',
-    verticalAlign: 'text-bottom'
-  },
   clampTable: {
     width: 'initial',
     margin: theme.spacing(0, 'auto'),
@@ -110,12 +105,12 @@ const ClampedTable = () => {
                   <TableCell>{$(`${currentColorMatrix.R}`)}</TableCell>
                   <TableCell>{$(`${currentColorMatrix.G}`)}</TableCell>
                   <TableCell>{$(`${currentColorMatrix.B}`)}</TableCell>
-                  <TableCell><StainButton color={currentColorMatrix} className={classes.stain} /></TableCell>
+                  <TableCell><StainButton inline color={currentColorMatrix} /></TableCell>
                   <TableCell />
                   <TableCell>{$(`${currentColorDistance.R}`)}</TableCell>
                   <TableCell>{$(`${currentColorDistance.G}`)}</TableCell>
                   <TableCell>{$(`${currentColorDistance.B}`)}</TableCell>
-                  <TableCell><StainButton color={currentColorDistance} className={classes.stain} /></TableCell>
+                  <TableCell><StainButton inline color={currentColorDistance} /></TableCell>
                 </TableRow>
               )
 
@@ -135,12 +130,12 @@ const ClampedTable = () => {
                     <TableCell align='center'>{matrixFruit && $(`${currentColorMatrix.R}`)}</TableCell>
                     <TableCell align='center'>{matrixFruit && $(`${currentColorMatrix.G}`)}</TableCell>
                     <TableCell align='center'>{matrixFruit && $(`${currentColorMatrix.B}`)}</TableCell>
-                    <TableCell>{matrixFruit && <StainButton color={currentColorMatrix} className={classes.stain} />}</TableCell>
+                    <TableCell>{matrixFruit && <StainButton inline color={currentColorMatrix} />}</TableCell>
                     <TableCell align='center'>{distanceFruit && <FruitIcon fruit={distanceFruit} size={0.8} />}</TableCell>
                     <TableCell align='center'>{distanceFruit && $(`${currentColorDistance.R}`)}</TableCell>
                     <TableCell align='center'>{distanceFruit && $(`${currentColorDistance.G}`)}</TableCell>
                     <TableCell align='center'>{distanceFruit && $(`${currentColorDistance.B}`)}</TableCell>
-                    <TableCell>{distanceFruit && <StainButton color={currentColorDistance} className={classes.stain} />}</TableCell>
+                    <TableCell>{distanceFruit && <StainButton inline color={currentColorDistance} />}</TableCell>
                   </TableRow>
                 )
               }
@@ -352,7 +347,7 @@ while (true) {
           With a big enough lookahead, the algorithm is able to momentarily step further away from the target color in order to get closer later. The algorithm implemented on the <Link href='/chocobo-color'>Chocobo Color page</Link> is this algorithm with a lookahead of {$('L = 3')}, which specifically admits the strategy of eating 3 fruits to increase/reduce all values by 5. This performs very well.
         </Typography>
         <Typography paragraph>
-          Lookahead also allows the algorithm to utilizing clamping, considering cases where the fruits no longer commute. For example, if the current color is {translate(locale, stains[1], 'name')} <StainButton stain={stains[1]} className={classes.stain} /> and the target color is {translate(locale, stains[6], 'name')} <StainButton stain={stains[6]} className={classes.stain} />, then we need to decrease the RGB values as much as possible. Without any clamping, this can be done in 110 fruits. With clamping, it’s possible to get as close with 97 fruits instead. It involves feeding a bunch of {translate(locale, fruits[Fruit.XelphatolApple], 'plural')} first to max out the RGB’s red value so that subsequent {translate(locale, fruits[Fruit.XelphatolApple], 'plural')} will lower the average RGB value quicker. Unfortunately, lookaheads with {$('L > 5')} quickly become infeasible, the benefits are small, and situations that can use it are rare.
+          Lookahead also allows the algorithm to utilizing clamping, considering cases where the fruits no longer commute. For example, if the current color is {translate(locale, stains[1], 'name')} <StainButton inline stain={stains[1]} /> and the target color is {translate(locale, stains[6], 'name')} <StainButton inline stain={stains[6]} />, then we need to decrease the RGB values as much as possible. Without any clamping, this can be done in 110 fruits. With clamping, it’s possible to get as close with 97 fruits instead. It involves feeding a bunch of {translate(locale, fruits[Fruit.XelphatolApple], 'plural')} first to max out the RGB’s red value so that subsequent {translate(locale, fruits[Fruit.XelphatolApple], 'plural')} will lower the average RGB value quicker. Unfortunately, lookaheads with {$('L > 5')} quickly become infeasible, the benefits are small, and situations that can use it are rare.
         </Typography>
         <ClampedTable />
       </Section>
@@ -472,7 +467,7 @@ while (true) {
       </Section>
       <Section title='Error'>
         <Typography paragraph>
-          The algorithm can get us pretty close to the desired color, but it’s not always possible to be exact. The two closest possible colors a chocobo can be are {translate(locale, stains[79], 'name')} <StainButton stain={stains[79]} className={classes.stain} /> and {translate(locale, stains[81], 'name')} <StainButton stain={stains[81]} className={classes.stain} />. These two have a distance of {$('9.434')}, so if we can guarantee an error of less than {$('9.434 / 2 = 4.717')}, then the desired color will always be the closest color, but this is impossible to guarantee.
+          The algorithm can get us pretty close to the desired color, but it’s not always possible to be exact. The two closest possible colors a chocobo can be are {translate(locale, stains[79], 'name')} <StainButton inline stain={stains[79]} /> and {translate(locale, stains[81], 'name')} <StainButton inline stain={stains[81]} />. These two have a distance of {$('9.434')}, so if we can guarantee an error of less than {$('9.434 / 2 = 4.717')}, then the desired color will always be the closest color, but this is impossible to guarantee.
         </Typography>
         <Typography paragraph>
           Feeding a fruit will always change the parity of the RGB values, i.e. odd → even or even → odd. If the target color is {$('\\operatorname{RGB}(100, 100, 100)')} with all even values, and the current color is {$('\\operatorname{RGB}(100, 100, 105)')} with 1 odd value, no sequence of fruits can get closer (ignoring clamping). Thus the maximum error is bounded below by {$('5')}, and we cannot guarantee that the closest color is the desired color. The maximum error is actually about {$('5\\sqrt{5}/2 \\approx 5.59')} given by the vector {$('(5, 2.5, 0)')}.

@@ -20,18 +20,24 @@ const useStyles = makeStyles(theme => ({
   },
   selected: {
     border: `3px solid ${theme.palette.type === 'dark' ? theme.palette.primary.light : theme.palette.primary.main}`
+  },
+  inline: {
+    margin: 0,
+    fontSize: '0.75em',
+    verticalAlign: 'text-bottom'
   }
 }))
 
 type Props = {
   stain?: Stain,
   color?: Color,
+  inline?: boolean,
   selected?: boolean,
   onClick?: () => void,
   className?: string
 }
 
-const StainButton = ({ stain, color, selected, onClick, className }: Props) => {
+const StainButton = ({ stain, color, inline, selected, onClick, className }: Props) => {
   const classes = useStyles()
   const { i18n } = useTranslation()
   const locale = i18n.language
@@ -43,7 +49,7 @@ const StainButton = ({ stain, color, selected, onClick, className }: Props) => {
       <Paper
         component='span'
         square
-        className={clsx(classes.stainButton, selected && classes.selected, onClick && classes.clickable, className)}
+        className={clsx(classes.stainButton, inline && classes.inline, selected && classes.selected, onClick && classes.clickable, className)}
         style={{ backgroundColor: `rgb(${stainColor.R},${stainColor.G},${stainColor.B})` }}
         onClick={onClick}
       />

@@ -4,6 +4,9 @@
   "currentStain": "現在の色",
   "targetStain": "好みの色",
   "calculate": "計算",
+  "fruitsNeeded": "Fruits needed",
+  "fruitsOrder": "Feeding order",
+  "noFruits": "No fruits needed",
   "aboutPage": {
     "title": "About"
   }
