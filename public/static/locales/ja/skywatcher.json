@@ -1,5 +1,6 @@
 {
-  "title": "天気予報士",
+  "_title": "天気予報士",
+  "_description": "Schedule for weather in Eorzea and forecaster for upcoming weather patterns.",
   "forecaster": "Forecaster",
   "place": "Place",
   "selectPlace": "Select a place",

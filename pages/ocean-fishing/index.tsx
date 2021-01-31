@@ -63,10 +63,7 @@ const OceanFishing = () => {
   }, [checklist])
 
   return (
-    <Page
-      title={t('title')}
-      description='Schedule for upcoming ocean fishing voyages with information on blue fish, achievements, and more.'
-    >
+    <Page title={t('_title')} description={t('_description')}>
       <ChecklistContext.Provider value={{ checklist, setChecklist }}>
         <Section>
           <Typography paragraph>
@@ -74,13 +71,13 @@ const OceanFishing = () => {
           </Typography>
           <div className={classes.buttons}>
             <Button component={Link} variant='contained' href='/ocean-fishing/about'>
-              <Typography>{t('aboutPage.title')}</Typography>
+              <Typography>{t('aboutPage._title')}</Typography>
             </Button>
             <Button component={Link} variant='contained' href='/ocean-fishing/fish'>
-              <Typography>{t('fishPage.title')}</Typography>
+              <Typography>{t('fishPage._title')}</Typography>
             </Button>
             <Button component={Link} variant='contained' href='/ocean-fishing/bonuses'>
-              <Typography>{t('bonusesPage.title')}</Typography>
+              <Typography>{t('bonusesPage._title')}</Typography>
             </Button>
           </div>
         </Section>

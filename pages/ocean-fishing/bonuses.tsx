@@ -180,7 +180,7 @@ const Bonuses = () => {
   }
 
   return (
-    <Page title={`${t('title')} - ${t('bonusesPage.title')}`}>
+    <Page title={`${t('_title')} - ${t('bonusesPage._title')}`}>
       <Section>
         <TableContainer>
           <Table className={classes.contentBonusesTable}>

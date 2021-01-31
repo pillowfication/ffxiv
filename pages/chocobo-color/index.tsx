@@ -10,10 +10,7 @@ const ChocoboColor = () => {
   const { t } = useTranslation('chocobo-color')
 
   return (
-    <Page
-      title={t('title')}
-      description='Calculator for changing your chocobo’s color.'
-    >
+    <Page title={t('_title')} description={t('_description')}>
       <Section>
         <Typography paragraph>
           This calculator works by getting your chocobo’s color as close to the desired color as possible. In rare cases, this may still result in a different, nearby color to be chosen. Your chocobo’s true color values may also slightly differ from the possible colors, leading to inaccuracies. Feeding fruits in an order other than what is recommended may also cause color values to cap out, resulting in a different color.

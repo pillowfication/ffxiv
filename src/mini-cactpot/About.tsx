@@ -44,6 +44,7 @@ const useStyles = makeStyles(theme => ({
 const About = () => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('mini-cactpot')
+  const locale = i18n.language
 
   return (
     <Section title={t('about')}>
@@ -77,10 +78,10 @@ const About = () => {
                 {row.map((col, index) =>
                   <>
                     <TableCell key={index} align='center'>
-                      {col.toLocaleString(i18n.language)}
+                      {col.toLocaleString(locale)}
                     </TableCell>
                     <TableCell key={index} align='right'>
-                      {PAYOUTS[col].toLocaleString(i18n.language)}
+                      {PAYOUTS[col].toLocaleString(locale)}
                     </TableCell>
                   </>
                 )}
@@ -102,12 +103,12 @@ const About = () => {
         Next, select a line as follows:
       </Typography>
       <ol>
-        <Typography component='li'>If a line can be the 123 line, select it; otherwise</Typography>
-        <Typography component='li'>if a line can be the 789 line, select it; otherwise</Typography>
+        <Typography component='li'>If a line can be the {$('123')} line, select it; otherwise</Typography>
+        <Typography component='li'>if a line can be the {$('789')} line, select it; otherwise</Typography>
         <Typography component='li'>select whatever line can have the biggest sum (not payout).</Typography>
       </ol>
       <Typography paragraph>
-        This strategy gives an expected value of 1259, whereas perfect play gives 1484. Note that in steps 1 and 2, if a 123 or 789 line exists, you will always select it without ambiguity. In step 3, you may have to guess which lines may have a large sum.
+        This strategy gives an expected value of {(1259).toLocaleString(locale)}, whereas perfect play gives {(1484).toLocaleString(locale)}. Note that in steps 1 and 2, if a {$('123')} or {$('789')} line exists, you will always select it without ambiguity. In step 3, you may have to guess which lines may have a large sum.
       </Typography>
     </Section>
   )

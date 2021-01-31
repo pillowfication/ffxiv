@@ -28,10 +28,7 @@ const Skywatcher = () => {
   }, [])
 
   return (
-    <Page
-      title={t('title')}
-      description='Schedule for weather in Eorzea and forecaster for upcoming weather patterns.'
-    >
+    <Page title={t('_title')} description={t('_description')}>
       <Typography paragraph>
         The time in Eorzea is <b><NoSsr>{formatTime(new Date(now.getTime() * (1440 / 70)))}</NoSsr></b>.
       </Typography>

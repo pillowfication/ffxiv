@@ -1,5 +1,6 @@
 {
-  "title": "Carnet de Khloe",
+  "_title": "Carnet de Khloe",
+  "_description": "Calculator for the Wondrous Tails mini-game.",
   "selectStickers": "Choisissez des collants (Pas plus de neuf).",
   "tooManyStickers": "Trop de collants.",
   "lines": "Lignes",

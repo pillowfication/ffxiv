@@ -8,10 +8,7 @@ const HighOrLow = () => {
   const { t } = useTranslation('high-or-low')
 
   return (
-    <Page
-      title={t('title')}
-      description='Calculator for the guessing game “High or Low” played against Tista-Bie in Eulmore.'
-    >
+    <Page title={t('_title')} description={t('_description')}>
       <Calculator />
       <About />
     </Page>

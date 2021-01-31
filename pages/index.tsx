@@ -85,7 +85,7 @@ const IndexSection = ({ url, title, children }: IndexSectionProps) => {
 const Index = () => {
   const classes = useStyles()
   const router = useRouter()
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation('index')
 
   return (
     <>
@@ -95,8 +95,8 @@ const Index = () => {
         canonical={`https://ffxiv.pf-n.co${router.asPath}`}
         openGraph={{
           url: `https://ffxiv.pf-n.co${router.asPath}`,
-          title: 'Lulu’s Tools',
-          description: 'A bunch of FFXIV-related stuff I try making.',
+          title: t('_title'),
+          description: t('_description'),
           locale: i18n.language,
           site_name: 'Lulu’s Tools'
         }}
@@ -110,7 +110,7 @@ const Index = () => {
         <Grid item xs={12} className={classes.gridGrow}>
           <Typography variant='h4' className={classes.luluPillow}>Lulu Pillow</Typography>
           <Typography paragraph style={{ fontSize: '1.3em' }}>
-            A bunch of FFXIV-related stuff I try making.
+            {t('_description')}
           </Typography>
           <Typography paragraph style={{ fontSize: '1.3em' }}>
             Message Lulu Pillow@Adamantoise or Pillowfication#0538 with questions or comments.
@@ -119,30 +119,20 @@ const Index = () => {
       </Grid>
       <Section>
         <dl className={classes.links}>
-          <IndexSection url='/chocobo-color' title='Chocobo Color'>
-            Calculator for changing your chocobo’s color.
-          </IndexSection>
-          <IndexSection url='/high-or-low' title='High or Low'>
-            Calculator for the guessing game “High or Low” played against Tista-Bie in Eulmore.
-          </IndexSection>
-          <IndexSection url='/mini-cactpot' title='Mini Cactpot'>
-            Calculator for the Mini Cactpot lottery.
-          </IndexSection>
-          <IndexSection url='/name-generator' title='Name Generator'>
-            FFXIV random name generator for all the races.
-          </IndexSection>
-          <IndexSection url='/ocean-fishing' title='Ocean Fishing'>
-            Schedule for upcoming ocean fishing voyages with information on blue fish, achievements, and more.
-          </IndexSection>
-          <IndexSection url='/skywatcher' title='Skywatcher'>
-            Schedule for weather in Eorzea and forecaster for upcoming weather patterns.
-          </IndexSection>
-          <IndexSection url='/wondrous-tails' title='Wondrous Tails'>
-            Calculator for the Wondrous Tails mini-game.
-          </IndexSection>
-          <IndexSection url='/xivapi' title='XIVAPI'>
-            An interface for browsing the XIVAPI.
-          </IndexSection>
+          {[
+            { key: 'chocoboColor', url: '/chocobo-color' },
+            { key: 'highOrLow', url: '/high-or-low' },
+            { key: 'miniCactpot', url: '/mini-cactpot' },
+            { key: 'nameGenerator', url: '/name-generator' },
+            { key: 'oceanFishing', url: '/ocean-fishing' },
+            { key: 'skywatcher', url: '/skywatcher' },
+            { key: 'wondrousTails', url: '/wondrous-tails' },
+            { key: 'xivapi', url: '/xivapi' }
+          ].map(({ key, url }) => (
+            <IndexSection key={key} url={url} title={t(`${key}.title`)}>
+              {t(`${key}.description`)}
+            </IndexSection>
+          ))}
         </dl>
       </Section>
       <Footer />

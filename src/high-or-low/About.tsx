@@ -10,7 +10,7 @@ const About = () => {
   return (
     <Section title={t('about')}>
       <Typography paragraph>
-        The deck contains 9 cards valued 1 through 9. You and Tista-Bie are dealt 3 cards each, with 2 of hers and 1 of yours revealed. You guess if the sum of your 3 cards is higher or lower than the sum of her 3 cards. You win if you are correct.
+        The deck contains 9 cards valued {$('1')} through {$('9')}. You and Tista-Bie are dealt 3 cards each, with 2 of hers and 1 of yours revealed. You guess if the sum of your 3 cards is higher or lower than the sum of her 3 cards. You win if you are correct.
       </Typography>
       <Typography paragraph>
         There is a simple way to determine if your sum is more likely to be higher or lower. Calculate the <strong>scores</strong> of you and Tista-Bie according to the following formula:
@@ -36,4 +36,4 @@ const About = () => {
   )
 }
 
-export default About
+export default React.memo(About)

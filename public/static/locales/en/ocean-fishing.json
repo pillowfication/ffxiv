@@ -1,5 +1,6 @@
 {
-  "title": "Ocean Fishing",
+  "_title": "Ocean Fishing",
+  "_description": "Schedule for upcoming ocean fishing voyages with information on blue fish, achievements, and more.",
   "upcomingVoyages": "Upcoming Voyages",
   "numberOfRows": "Number of rows",
   "filterRoute": "Filter route",
@@ -13,15 +14,15 @@
   "fish": "Fish",
   "requiredBait": "Required bait",
   "aboutPage": {
-    "title": "About",
+    "_title": "About",
     "data": "Data",
     "algorithm": "Algorithm"
   },
   "fishPage": {
-    "title": "Fish"
+    "_title": "Fish"
   },
   "bonusesPage": {
-    "title": "Bonuses",
+    "_title": "Bonuses",
     "objective": "Objective",
     "requirement": "Requirement",
     "bonus": "Bonus",

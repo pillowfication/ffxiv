@@ -1,5 +1,6 @@
 {
-  "title": "Name Generator",
+  "_title": "Name Generator",
+  "_description": "FFXIV random name generator for all the races.",
   "race": "Race",
   "clan": "Clan",
   "gender": "Gender",

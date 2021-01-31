@@ -1,5 +1,6 @@
 {
-  "title": "Météorologue",
+  "_title": "Météorologue",
+  "_description": "Schedule for weather in Eorzea and forecaster for upcoming weather patterns.",
   "forecaster": "Prévisionniste",
   "place": "Place",
   "selectPlace": "Choisissez une place",

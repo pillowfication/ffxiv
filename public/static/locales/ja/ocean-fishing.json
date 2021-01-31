@@ -1,5 +1,6 @@
 {
-  "title": "オーシャンフィッシング",
+  "_title": "オーシャンフィッシング",
+  "_description": "Schedule for upcoming ocean fishing voyages with information on blue fish, achievements, and more.",
   "upcomingVoyages": "運行表",
   "numberOfRows": "表示する行数",
   "filterRoute": "行き先の絞り込み",
@@ -13,15 +14,15 @@
   "fish": "魚",
   "requiredBait": "Required bait",
   "aboutPage": {
-    "title": "About",
+    "_title": "About",
     "data": "Data",
     "algorithm": "Algorithm"
   },
   "fishPage": {
-    "title": "魚"
+    "_title": "魚"
   },
   "bonusesPage": {
-    "title": "Bonuses",
+    "_title": "Bonuses",
     "objective": "Objective",
     "requirement": "Requirement",
     "bonus": "Bonus",

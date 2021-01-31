@@ -1,5 +1,6 @@
 {
-  "title": "Auf großer Fahrt",
+  "_title": "Auf großer Fahrt",
+  "_description": "Schedule for upcoming ocean fishing voyages with information on blue fish, achievements, and more.",
   "upcomingVoyages": "Bevorstehende Routen",
   "numberOfRows": "Zeilenanzahl",
   "filterRoute": "Routenfilter",
@@ -13,15 +14,15 @@
   "fish": "Fisch",
   "requiredBait": "Required bait",
   "aboutPage": {
-    "title": "About",
+    "_title": "About",
     "data": "Data",
     "algorithm": "Algorithm"
   },
   "fishPage": {
-    "title": "Fisch"
+    "_title": "Fisch"
   },
   "bonusesPage": {
-    "title": "Bonuses",
+    "_title": "Bonuses",
     "objective": "Objective",
     "requirement": "Requirement",
     "bonus": "Bonus",

@@ -36,8 +36,9 @@ const useStyles = makeStyles(theme => ({
 
 const Calculator = () => {
   const classes = useStyles()
-  const { t } = useTranslation('mini-cactpot')
+  const { t, i18n } = useTranslation('mini-cactpot')
   const [grid, setGrid] = useState<number[]>(Array(9).fill(null))
+  const locale = i18n.language
 
   const handleInputDigit = (cellIndex: number, digit: number) => {
     const newGrid = grid.slice()
@@ -136,21 +137,21 @@ const Calculator = () => {
                   case 'TOO MANY':
                     return <Typography paragraph>{t('state.tooManyDigits')}</Typography>
                   case 'DUPLICATES':
-                    return <Typography paragraph>{t('state.duplicateDigits')}</Typography>
+                    return <Typography paragraph>{t('state.repeatedDigits')}</Typography>
                 }
               } else {
                 switch (suggestion.type) {
                   case 'CELL':
                     return (
                       <>
-                        <Typography>{t('expectedValue', { ev: Math.floor(suggestion.maxCellEV) })}</Typography>
+                        <Typography>{t('expectedValue')}: {Math.floor(suggestion.maxCellEV).toLocaleString(locale)}</Typography>
                         <Typography paragraph>{t('state.selectHighlightedCell')}</Typography>
                       </>
                     )
                   case 'LINE':
                     return (
                       <>
-                        <Typography>{t('expectedValue', { ev: Math.floor(suggestion.maxLineEV) })}</Typography>
+                        <Typography>{t('expectedValue')}: {Math.floor(suggestion.maxLineEV).toLocaleString(locale)}</Typography>
                         <Typography paragraph>{t('state.selectHighlightedLine')}</Typography>
                       </>
                     )

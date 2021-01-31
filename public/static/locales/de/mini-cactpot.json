@@ -1,5 +1,6 @@
 {
-  "title": "Mini-Glückskaktor",
+  "_title": "Mini-Glückskaktor",
+  "_description": "Calculator for the Mini Cactpot lottery."
   "state": {
     "selectFirstCell": "Click on a square to enter a digit.",
     "selectHighlightedCell": "Select a highlighted square.",
@@ -7,7 +8,7 @@
     "repeatedDigits": "Cells cannot repeat digits.",
     "tooManyDigits": "Too many cells have been filled."
   },
-  "expectedValue": "Expected value: {{ev}}",
+  "expectedValue": "Expected value",
   "reset": "Reset",
   "about": "About"
 }

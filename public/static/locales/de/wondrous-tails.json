@@ -1,5 +1,6 @@
 {
-  "title": "Khloes Abenteueralbum",
+  "_title": "Khloes Abenteueralbum",
+  "_description": "Calculator for the Wondrous Tails mini-game",
   "selectStickers": "Select up to 9 stickers.",
   "tooManyStickers": "Too many stickers added.",
   "lines": "Lines",

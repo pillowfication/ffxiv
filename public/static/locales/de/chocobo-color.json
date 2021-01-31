@@ -1,5 +1,6 @@
 {
-  "title": "Chocobo Farbe",
+  "_title": "Chocobo Farbe",
+  "_description": "Calculator for changing your chocobo’s color.",
   "calculator": "Farbenrechner",
   "currentStain": "Aktuelle Farbe",
   "targetStain": "Gewünschte Farbe",
@@ -8,6 +9,6 @@
   "fruitsOrder": "Feeding order",
   "noFruits": "No fruits needed",
   "aboutPage": {
-    "title": "About"
+    "_title": "About"
   }
 }

@@ -51,10 +51,7 @@ const XIVAPI = () => {
   }
 
   return (
-    <Page
-      title={t('XIVAPI')}
-      description='An interface for browsing the XIVAPI.'
-    >
+    <Page title={t('_title')} description={t('_description')}>
       <Section>
         <Grid container spacing={2}>
           <Grid item xs={12} className={classes.inputContainer}>

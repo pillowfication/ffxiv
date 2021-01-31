@@ -8,10 +8,7 @@ const NameGenerator = () => {
   const { t } = useTranslation('name-generator')
 
   return (
-    <Page
-      title={t('title')}
-      description='FFXIV random name generator for all the races.'
-    >
+    <Page title={t('_title')} description={t('_description')}>
       <Generator />
       <About />
     </Page>

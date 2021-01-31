@@ -1,5 +1,6 @@
 {
-  "title": "Skywatcher",
+  "_title": "Skywatcher",
+  "_description": "Schedule for weather in Eorzea and forecaster for upcoming weather patterns.",
   "forecaster": "Forecaster",
   "place": "Place",
   "selectPlace": "Select a place",

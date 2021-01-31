@@ -7,10 +7,7 @@ import { useTranslation } from '../src/i18n'
 const MiniCactpot = () => {
   const { t } = useTranslation('mini-cactpot')
   return (
-    <Page
-      title={t('title')}
-      description='Calculator for the Mini Cactpot lottery.'
-    >
+    <Page title={t('_title')} description={t('_description')}>
       <Calculator />
       <About />
     </Page>

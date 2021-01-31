@@ -1,1 +1,36 @@
-{}
+{
+  "_title": "Lulu’s Tools",
+  "_description": "A bunch of FFXIV-related stuff I try making.",
+  "chocoboColor": {
+    "title": "Couleur de Chocobo",
+    "description": "Calculator for changing your chocobo’s color."
+  },
+  "highOrLow": {
+    "title": "“Plus ou moins”",
+    "description": "Calculator for the guessing game “High or Low” played against Tista-Bie in Eulmore."
+  },
+  "miniCactpot": {
+    "title": "Mini Cactpot",
+    "description": "Calculator for the Mini Cactpot lottery."
+  },
+  "nameGenerator": {
+    "title": "Name Generator",
+    "description": "FFXIV random name generator for all the races."
+  },
+  "oceanFishing": {
+    "title": "Pêche en mer",
+    "description": "Schedule for upcoming ocean fishing voyages with information on blue fish, achievements, and more."
+  },
+  "skywatcher": {
+    "title": "Météorologue",
+    "description": "Schedule for weather in Eorzea and forecaster for upcoming weather patterns."
+  },
+  "wondrousTails": {
+    "title": "Carnet de Khloe",
+    "description": "Calculator for the Wondrous Tails mini-game."
+  },
+  "xivapi": {
+    "title": "XIVAPI",
+    "description": "An interface for browsing the XIVAPI."
+  }
+}

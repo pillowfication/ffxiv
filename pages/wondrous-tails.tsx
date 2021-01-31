@@ -7,10 +7,7 @@ const WondrousTails = () => {
   const { t } = useTranslation('wondrous-tails')
 
   return (
-    <Page
-      title={t('title')}
-      description='Calculator for the Wondrous Tails mini-game.'
-    >
+    <Page title={t('_title')} description={t('_description')}>
       <Calculator />
     </Page>
   )

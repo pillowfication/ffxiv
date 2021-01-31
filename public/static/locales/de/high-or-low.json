@@ -1,5 +1,6 @@
 {
-  "title": "„Höher oder Tiefer“",
+  "_title": "„Höher oder Tiefer“",
+  "_description": "Calculator for the guessing game “High or Low” played against Tista-Bie in Eulmore.",
   "state": {
     "inputCards": "Input cards above",
     "duplicateCards": "Cannot have duplicate cards",

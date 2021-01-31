@@ -1,5 +1,6 @@
 {
-  "title": "“High or Low”",
+  "_title": "“High or Low”",
+  "_description": "Calculator for the guessing game “High or Low” played against Tista-Bie in Eulmore.",
   "state": {
     "inputCards": "Input cards above",
     "duplicateCards": "Cannot have duplicate cards",
