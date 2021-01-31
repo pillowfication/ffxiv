@@ -4,6 +4,9 @@
   "currentStain": "Aktuelle Farbe",
   "targetStain": "Gewünschte Farbe",
   "calculate": "Berechnen",
+  "fruitsNeeded": "Fruits needed",
+  "fruitsOrder": "Feeding order",
+  "noFruits": "No fruits needed",
   "aboutPage": {
     "title": "About"
   }

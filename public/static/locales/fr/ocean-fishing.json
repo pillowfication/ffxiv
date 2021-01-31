@@ -6,14 +6,14 @@
   "noFilter": "Sans filtre",
   "blueFish": "Poisson bleu",
   "achievements": "Hauts faits",
-  "showIntuitionFish": "Show intuition fish",
-  "showTimeFish": "Show time-sensitive fish",
-  "showPointsFish": "Show high-value fish",
+"showIntuitionFish": "Montrer les poissons d’instinct",
+  "showTimeFish": "Montrer les poissons du temps",
+  "showPointsFish": "Montrer les poissons avec beaucoup de valueur",
   "showAllFish": "Montrer tous les poissons",
   "fish": "Poisson",
-  "requiredBait": "Required bait",
+  "requiredBait": "Appât requis",
   "aboutPage": {
-    "title": "About",
+    "title": "Apropos de",
     "data": "Data",
     "algorithm": "Algorithm"
   },
@@ -22,17 +22,17 @@
   },
   "bonusesPage": {
     "title": "Bonuses",
-    "objective": "Objective",
+    "objective": "Objectif",
     "requirement": "Requirement",
     "bonus": "Bonus",
-    "calculator": "Calculator",
-    "basePoints": "Base Points"
+    "calculator": "Calculateur",
+    "basePoints": "Points de base"
   },
   "routeInfo": {
     "time": "Heure",
     "route": "Itinéraire",
     "objectives": "Objectifs",
-    "boardingNow": "boarding now",
+    "boardingNow": "on embarque",
     "enRoute": "en route"
   },
   "fishInfo": {

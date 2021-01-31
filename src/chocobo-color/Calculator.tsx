@@ -2,17 +2,14 @@ import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import Alert from '@material-ui/lab/Alert'
 import Autocomplete from '@material-ui/lab/Autocomplete'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import Section from '../Section'
 import ShadeButton from './ShadeButton'
 import StainButton from './StainButton'
-import FruitIcon from './FruitIcon'
-import FruitsList from './FruitsList'
+import Solution from './Solution'
 import ChocoboCompanionPreview from './ChocoboCompanionPreview'
 import {
   isValidStain,
@@ -23,7 +20,7 @@ import {
   Stain,
   Fruit
 } from './ffxiv-chocobo-color'
-import { stains, fruits } from './ffxiv-chocobo-color/data'
+import { stains } from './ffxiv-chocobo-color/data'
 import { translate } from '../utils'
 import { useTranslation } from '../i18n'
 
@@ -161,7 +158,7 @@ const Calculator = () => {
               ))
             }
           </Box>
-          <Box mb={2} textAlign='center'>
+          <Box my={4} textAlign='center'>
             <ChocoboCompanionPreview color={targetStain.color} />
           </Box>
           <Button
@@ -173,42 +170,7 @@ const Calculator = () => {
             {t('calculate')}
           </Button>
         </Grid>
-        {solution && solution.fruits.length > calculateFruits(stains[36], solution.toStain).fruits.length && (
-          <Grid item xs={12} md={10} lg={8}>
-            <Alert severity='info'>You might save fruits by resetting to Desert Yellow with a Han Lemon first.</Alert>
-          </Grid>
-        )}
-        {solution && (
-          <Grid item xs={12} md={10} lg={8}>
-            <Typography variant='h6' gutterBottom>Fruits needed</Typography>
-            {solution.fruits.length > 0
-              ? [
-                  Fruit.XelphatolApple,
-                  Fruit.MamookPear,
-                  Fruit.OGhomoroBerries,
-                  Fruit.DomanPlum,
-                  Fruit.Valfruit,
-                  Fruit.CieldalaesPineapple
-                ]
-                  .map(fruit => ({ fruit, count: solution.fruits.filter(solFruit => solFruit === fruit).length }))
-                  .filter(({ count }) => count > 0)
-                  .map(({ fruit, count }) => (
-                    <div key={fruit}>
-                      <Typography component='span' className={classes.fruitsCount}>{count}×</Typography>
-                      <FruitIcon fruit={fruit} className={classes.fruitsIcon} />
-                      <Typography component='span'>{translate(locale, fruits[fruit], 'name')}</Typography>
-                    </div>
-                  ))
-              : <Typography>No fruits</Typography>
-            }
-          </Grid>
-        )}
-        {solution && solution.fruits.length > 0 && (
-          <Grid item xs={12} md={10} lg={8}>
-            <Typography variant='h6' gutterBottom>Feeding order</Typography>
-            <FruitsList fruits={solution.fruits} />
-          </Grid>
-        )}
+        {solution && <Solution solution={solution} />}
       </Grid>
     </Section>
   )
