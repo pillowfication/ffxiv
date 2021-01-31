@@ -6,17 +6,17 @@ import * as maps from './maps'
 type Props = {
   tab: number,
   index: number,
-  stop: StopTime
+  stopTime: StopTime
 }
 
-function FishPanel ({ tab, index, stop }: Props) {
-  const fishingSpotId: number = maps.STOP_MAP[stop[0] as Stop]
+function FishPanel ({ tab, index, stopTime }: Props) {
+  const fishingSpotId: number = maps.STOP_MAP[stopTime[0] as Stop]
   return (
     <div hidden={tab !== index}>
       {tab === index && (
         <FishTable
           spots={[fishingSpotId, fishingSpotId + 1]}
-          time={stop[1] as Time}
+          time={stopTime[1] as Time}
         />
       )}
     </div>

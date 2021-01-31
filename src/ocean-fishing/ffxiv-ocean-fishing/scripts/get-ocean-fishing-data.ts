@@ -38,7 +38,7 @@ const oceanFishingSpots = FishingSpot_en.data
     }
   })
   .reduce((acc, curr) => (acc[curr.id] = curr, acc), {})
-fs.writeFileSync(path.resolve(__dirname, '../data/ocean-fishing-fishing-spots.json'), JSON.stringify(oceanFishingSpots))
+fs.writeFileSync(path.resolve(__dirname, '../data/fishing-spots.json'), JSON.stringify(oceanFishingSpots))
 
 console.log('Collecting place names...')
 const placeNames = Object.values<any>(oceanFishingSpots)
@@ -65,7 +65,7 @@ const placeNames = Object.values<any>(oceanFishingSpots)
     }
   })
   .reduce((acc, curr) => (acc[curr.id] = curr, acc), {})
-fs.writeFileSync(path.resolve(__dirname, '../data/ocean-fishing-place-names.json'), JSON.stringify(placeNames))
+fs.writeFileSync(path.resolve(__dirname, '../data/place-names.json'), JSON.stringify(placeNames))
 
 console.log('Collecting ocean fishes...')
 const oceanFishes = IKDFishParam.data
@@ -93,7 +93,7 @@ const oceanFishes = IKDFishParam.data
     }
   })
   .reduce((acc, curr) => (acc[curr.id] = curr, acc), {})
-fs.writeFileSync(path.resolve(__dirname, '../data/ocean-fishing-fishes.json'), JSON.stringify(oceanFishes))
+fs.writeFileSync(path.resolve(__dirname, '../data/fishes.json'), JSON.stringify(oceanFishes))
 
 console.log('Collecting baits...')
 const baits = [
@@ -124,7 +124,7 @@ const baits = [
     }
   })
   .reduce((acc, curr) => (acc[curr.id] = curr, acc), {})
-fs.writeFileSync(path.resolve(__dirname, '../data/ocean-fishing-baits.json'), JSON.stringify(baits))
+fs.writeFileSync(path.resolve(__dirname, '../data/baits.json'), JSON.stringify(baits))
 
 console.log('Collecting content bonuses...')
 const contentBonuses = IKDContentBonus_en.data
@@ -151,7 +151,7 @@ const contentBonuses = IKDContentBonus_en.data
     }
   })
   .reduce((acc, curr) => (acc[curr.id] = curr, acc), {})
-fs.writeFileSync(path.resolve(__dirname, '../data/ocean-fishing-content-bonuses.json'), JSON.stringify(contentBonuses))
+fs.writeFileSync(path.resolve(__dirname, '../data/content-bonuses.json'), JSON.stringify(contentBonuses))
 
 function range (start: number, end: number) {
   return Array.from({ length: end - start + 1 }, (_, index) => start + index)
@@ -180,4 +180,4 @@ const oceanFishingAchievements = [...range(2553, 2566), ...range(2748, 2759)]
     }
   })
   .reduce((acc, curr) => (acc[curr.id] = curr, acc), {})
-fs.writeFileSync(path.resolve(__dirname, '../data/ocean-fishing-achievements.json'), JSON.stringify(oceanFishingAchievements))
+fs.writeFileSync(path.resolve(__dirname, '../data/achievements.json'), JSON.stringify(oceanFishingAchievements))

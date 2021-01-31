@@ -11,7 +11,7 @@ import ListSubheader from '@material-ui/core/ListSubheader'
 import MenuItem from '@material-ui/core/MenuItem'
 import Section from '../Section'
 import UpcomingVoyagesTable from './UpcomingVoyagesTable'
-import { fishingSpots, placeNames, oceanFishes, achievements } from './ffxiv-ocean-fishing/data'
+import { fishingSpots, placeNames, fishes, achievements } from './ffxiv-ocean-fishing/data'
 import { calculateVoyages, DestinationStopTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 import { upperFirst } from './utils'
@@ -86,13 +86,13 @@ const UpcomingVoyages = ({ now, onSelectRoute }: Props) => {
               >
                 <MenuItem value='none'>{t('noFilter')}</MenuItem>
                 <ListSubheader disableSticky className={classes.listSubheader}>{t('blueFish')}</ListSubheader>
-                <MenuItem value='sothis'>{translate(locale, oceanFishes[29788], 'name')}</MenuItem>
-                <MenuItem value='coral_manta'>{translate(locale, oceanFishes[29789], 'name')}</MenuItem>
-                <MenuItem value='stonescale'>{translate(locale, oceanFishes[29790], 'name')}</MenuItem>
-                <MenuItem value='elasmosaurus'>{translate(locale, oceanFishes[29791], 'name')}</MenuItem>
-                <MenuItem value='hafgufa'>{translate(locale, oceanFishes[32074], 'name')}</MenuItem>
-                <MenuItem value='seafaring_toad'>{translate(locale, oceanFishes[32094], 'name')}</MenuItem>
-                <MenuItem value='placodus'>{translate(locale, oceanFishes[32114], 'name')}</MenuItem>
+                <MenuItem value='sothis'>{translate(locale, fishes[29788], 'name')}</MenuItem>
+                <MenuItem value='coral_manta'>{translate(locale, fishes[29789], 'name')}</MenuItem>
+                <MenuItem value='stonescale'>{translate(locale, fishes[29790], 'name')}</MenuItem>
+                <MenuItem value='elasmosaurus'>{translate(locale, fishes[29791], 'name')}</MenuItem>
+                <MenuItem value='hafgufa'>{translate(locale, fishes[32074], 'name')}</MenuItem>
+                <MenuItem value='seafaring_toad'>{translate(locale, fishes[32094], 'name')}</MenuItem>
+                <MenuItem value='placodus'>{translate(locale, fishes[32114], 'name')}</MenuItem>
                 <ListSubheader disableSticky className={classes.listSubheader}>{t('achievements')}</ListSubheader>
                 <MenuItem value='octopodes'>{translate(locale, achievements[2563], 'name')}</MenuItem>
                 <MenuItem value='sharks'>{translate(locale, achievements[2564], 'name')}</MenuItem>

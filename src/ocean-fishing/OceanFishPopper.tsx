@@ -20,7 +20,7 @@ import TimeIcon from './TimeIcon'
 import BaitGroup from './BaitGroup'
 import ChecklistCheckmark from './ChecklistCheckmark'
 import WeatherIcon from '../skywatcher/WeatherIcon'
-import { oceanFishes, OceanFish } from './ffxiv-ocean-fishing/data'
+import { fishes, OceanFish } from './ffxiv-ocean-fishing/data'
 import { getBaitGroup, subtextBiteTime } from './utils'
 import { translate } from '../utils'
 import { useTranslation } from '../i18n'
@@ -71,7 +71,7 @@ const OceanFishPopper = ({ fishId }: Props) => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('ocean-fishing')
   const [expanded, setExpanded] = React.useState(false)
-  const fish = oceanFishes[fishId]
+  const fish = fishes[fishId]
   const spreadsheetData = fish.spreadsheetData
   const locale = i18n.language
 

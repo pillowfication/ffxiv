@@ -5,8 +5,8 @@ import Tooltip from '@material-ui/core/Tooltip'
 import Popper from '@material-ui/core/Popper'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import OceanFishPopper from './OceanFishPopper'
-import { oceanFishes, baits, achievements, contentBonuses } from './ffxiv-ocean-fishing/data'
-import ICONS_MAP from './ffxiv-ocean-fishing/data/ocean-fishing-icons-map.json'
+import { fishes, baits, achievements, contentBonuses } from './ffxiv-ocean-fishing/data'
+import ICONS_MAP from './ffxiv-ocean-fishing/data/icons-map.json'
 import { translate } from '../utils'
 import { useTranslation } from '../i18n'
 
@@ -97,7 +97,7 @@ const OceanFishIcon = ({ type, id, size = 40, Badge, className }: Props) => {
 
   let tooltip: string
   switch (type) {
-    case 'fish': tooltip = translate(locale, oceanFishes[id], 'name'); break
+    case 'fish': tooltip = translate(locale, fishes[id], 'name'); break
     case 'bait': tooltip = translate(locale, baits[id], 'name'); break
     case 'achievement': tooltip = translate(locale, achievements[id], 'name'); break
     case 'content-bonus': tooltip = translate(locale, contentBonuses[id], 'objective'); break

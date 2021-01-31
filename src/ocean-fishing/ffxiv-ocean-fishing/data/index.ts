@@ -1,10 +1,10 @@
-import oceanFishingFishingSpots from './ocean-fishing-fishing-spots.json'
-import oceanFishingPlaceNames from './ocean-fishing-place-names.json'
-import oceanFishingFishes from './ocean-fishing-fishes.json'
-import oceanFishingBaits from './ocean-fishing-baits.json'
-import oceanFishingContentBonuses from './ocean-fishing-content-bonuses.json'
-import oceanFishingAchievements from './ocean-fishing-achievements.json'
-import oceanFishingBiteTimes from './ocean-fishing-bite-times.json'
+import _fishingSpots from './fishing-spots.json'
+import _placeNames from './place-names.json'
+import _fishes from './fishes.json'
+import _baits from './baits.json'
+import _contentBonuses from './content-bonuses.json'
+import _achievements from './achievements.json'
+import _biteTimes from './bite-times.json'
 import spreadsheetData from './spreadsheet-data.json'
 import lodestoneData from './lodestone-data.json'
 
@@ -110,9 +110,9 @@ export type Achievement = {
   order: number
 }
 
-const baitMap: Record<string, number> = Object.values(oceanFishingBaits)
+const baitMap: Record<string, number> = Object.values(_baits)
   .reduce((acc, curr) => (acc[curr.name_en] = curr.id, acc), {})
-const fishMap: Record<string, number> = Object.values(oceanFishingFishes)
+const fishMap: Record<string, number> = Object.values(_fishes)
   .reduce((acc, curr) => (acc[curr.name_en] = curr.id, acc), {})
 const spreadsheetMap: Record<string, any> = Object.values<any>(spreadsheetData)
   .flatMap(x => x)
@@ -125,9 +125,9 @@ function getMapped<T> (map: Record<string, T>, name: string) {
   return map[name]
 }
 
-for (const oceanFish of Object.values<any>(oceanFishingFishes)) {
+for (const oceanFish of Object.values<any>(_fishes)) {
   // Attach bite times
-  oceanFish.biteTimes = oceanFishingBiteTimes[oceanFish.id] || {}
+  oceanFish.biteTimes = _biteTimes[oceanFish.id] || {}
 
   // Attach spreadsheet data
   const spreadsheetData = getMapped(spreadsheetMap, oceanFish.name_en)
@@ -158,9 +158,9 @@ for (const oceanFish of Object.values<any>(oceanFishingFishes)) {
   oceanFish.lodestoneData = lodestoneData[oceanFish.id]
 }
 
-export const fishingSpots = oceanFishingFishingSpots as Record<number, FishingSpot>
-export const placeNames = oceanFishingPlaceNames as Record<number, PlaceName>
-export const oceanFishes = <any>oceanFishingFishes as Record<number, OceanFish>
-export const baits = oceanFishingBaits as Record<number, Bait>
-export const contentBonuses = oceanFishingContentBonuses as Record<number, ContentBonus>
-export const achievements = oceanFishingAchievements as Record<number, Achievement>
+export const fishingSpots = _fishingSpots as Record<number, FishingSpot>
+export const placeNames = _placeNames as Record<number, PlaceName>
+export const fishes = <any>_fishes as Record<number, OceanFish>
+export const baits = _baits as Record<number, Bait>
+export const contentBonuses = _contentBonuses as Record<number, ContentBonus>
+export const achievements = _achievements as Record<number, Achievement>

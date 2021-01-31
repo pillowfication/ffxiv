@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import fetch from 'node-fetch'
 import cheerio from 'cheerio'
-import oceanFishingFishes from '../data/ocean-fishing-fishes.json'
+import oceanFishingFishes from '../data/fishes.json'
 
 const OUTPUT = path.resolve(__dirname, '../data/lodestone-data.json')
 

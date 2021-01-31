@@ -60,4 +60,4 @@ const Tug = ({ strength, size = 'normal', className }: Props) => {
   }
 }
 
-export default Tug
+export default React.memo(Tug)

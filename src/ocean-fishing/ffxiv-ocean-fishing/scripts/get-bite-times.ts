@@ -1,11 +1,11 @@
 import fs from 'fs'
 import path from 'path'
-import oceanFishingFishingSpots from '../data/ocean-fishing-fishing-spots.json'
-import oceanFishingFishes from '../data/ocean-fishing-fishes.json'
-import oceanFishingBaits from '../data/ocean-fishing-baits.json'
+import oceanFishingFishingSpots from '../data/fishing-spots.json'
+import oceanFishingFishes from '../data/fishes.json'
+import oceanFishingBaits from '../data/baits.json'
 
 const CUTOFF = 0.02
-const OUTPUT = path.resolve(__dirname, '../data/ocean-fishing-bite-times.json')
+const OUTPUT = path.resolve(__dirname, '../data/bite-times.json')
 
 const BAIT_IDS = [
   ...Object.keys(oceanFishingBaits).map(Number),
@@ -66,3 +66,31 @@ for (const fish of Object.values(oceanFishingFishes)) {
 }
 
 fs.writeFileSync(OUTPUT, JSON.stringify(biteTimes))
+
+//
+// Create CSV
+//
+
+import csvStringify from 'csv-stringify/lib/sync'
+
+const CSV_OUTPUT = path.resolve(__dirname, '../data/bite-times.csv')
+
+function _getBiteTime (fishId: number, baitId: number) {
+  return biteTimes[fishId]
+    && biteTimes[fishId][baitId]
+    && biteTimes[fishId][baitId].join('-')
+    || undefined
+}
+
+const csv = csvStringify(
+  Object.values(oceanFishingFishes)
+    .map(fish => Object.values(oceanFishingBaits).reduce(
+      (acc, bait) => (acc[bait.name_en] = _getBiteTime(fish.id, bait.id), acc),
+      { name: fish.name_en }
+    )),
+  {
+    header: true,
+    columns: ['name', ...Object.values(oceanFishingBaits).map(bait => bait.name_en)]
+  }
+)
+fs.writeFileSync(CSV_OUTPUT, csv)

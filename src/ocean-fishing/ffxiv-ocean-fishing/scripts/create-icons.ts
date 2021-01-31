@@ -1,11 +1,15 @@
 import fs from 'fs'
 import path from 'path'
 import { createCanvas, loadImage } from 'canvas'
-import { fishingSpots, oceanFishes, baits, contentBonuses, achievements } from '../data'
+import fishingSpots from '../data/fishing-spots.json'
+import fishes from '../data/fishes.json'
+import baits from '../data/baits.json'
+import contentBonuses from '../data/content-bonuses.json'
+import achievements from '../data/achievements.json'
 import * as saintCoinach from '../../../saint-coinach'
 
-const OUTPUT = path.resolve(__dirname, '../data/ocean-fishing-icons.png')
-const OUTPUT_MAP = path.resolve(__dirname, '../data/ocean-fishing-icons-map.json')
+const OUTPUT = path.resolve(__dirname, '../data/icons.png')
+const OUTPUT_MAP = path.resolve(__dirname, '../data/icons-map.json')
 
 // Layout will be
 //   Fishing Spot #1 fishes
@@ -31,7 +35,7 @@ function getValuesSorted<T> (object: Record<any, T>, property: string) {
 // Add fishes
 for (const fishingSpot of getValuesSorted(fishingSpots, 'order')) {
   ICONS.push(fishingSpot.fishes.map(fishId => (
-    { type: 'fish', id: fishId, icon: oceanFishes[fishId].icon }
+    { type: 'fish', id: fishId, icon: fishes[fishId].icon }
   )))
 }
 

@@ -267,12 +267,12 @@ function calculate (fromColor: Color, toColor: Color): Fruit[] {
         </Typography>
         {$$(`
           \\begin{align}
-            X & = \\text{# of ${translate(locale, fruits[Fruit.XelphatolApple], 'plural')}} \\\\
-            M & = \\text{# of ${translate(locale, fruits[Fruit.MamookPear], 'plural')}} \\\\
-            O & = \\text{# of ${translate(locale, fruits[Fruit.OGhomoroBerries], 'plural')}} \\\\
-            D & = \\text{# of ${translate(locale, fruits[Fruit.DomanPlum], 'plural')}} \\\\
-            V & = \\text{# of ${translate(locale, fruits[Fruit.Valfruit], 'plural')}} \\\\
-            C & = \\text{# of ${translate(locale, fruits[Fruit.CieldalaesPineapple], 'plural')}} \\\\
+            X & = \\text{# of ${translate(locale, fruits[Fruit.XelphatolApple], 'plural', 'singular')}} \\\\
+            M & = \\text{# of ${translate(locale, fruits[Fruit.MamookPear], 'plural', 'singular')}} \\\\
+            O & = \\text{# of ${translate(locale, fruits[Fruit.OGhomoroBerries], 'plural', 'singular')}} \\\\
+            D & = \\text{# of ${translate(locale, fruits[Fruit.DomanPlum], 'plural', 'singular')}} \\\\
+            V & = \\text{# of ${translate(locale, fruits[Fruit.Valfruit], 'plural', 'singular')}} \\\\
+            C & = \\text{# of ${translate(locale, fruits[Fruit.CieldalaesPineapple], 'plural', 'singular')}} \\\\
           \\end{align}
         `)}
         <Typography paragraph>
@@ -352,7 +352,7 @@ while (true) {
           With a big enough lookahead, the algorithm is able to momentarily step further away from the target color in order to get closer later. The algorithm implemented on the <Link href='/chocobo-color'>Chocobo Color page</Link> is this algorithm with a lookahead of {$('L = 3')}, which specifically admits the strategy of eating 3 fruits to increase/reduce all values by 5. This performs very well.
         </Typography>
         <Typography paragraph>
-          Lookahead also allows the algorithm to utilizing clamping, considering cases where the fruits no longer commute. For example, if the current color is {translate(locale, stains[1], 'name')} <StainButton stain={stains[1]} className={classes.stain} /> and the target color is {translate(locale, stains[6], 'name')} <StainButton stain={stains[6]} className={classes.stain} />, then we need to decrease the RGB values as much as possible. Without any clamping, this can be done in 110 fruits. With clamping, it’s possible to get as close with 97 fruits instead. It involves feeding a bunch of {translate(locale, fruits[Fruit.XelphatolApple], 'plural')} first to max out the RGB’s red value so that subsequent {translate(locale, fruits[Fruit.XelphatolApple], 'plural')} will lower the average RGB value quicker. Unfortunately, lookaheads with {$('L > 5')} quickly become infeasible, the benefits are small, and situations that can use it are rare.
+          Lookahead also allows the algorithm to utilizing clamping, considering cases where the fruits no longer commute. For example, if the current color is {translate(locale, stains[1], 'name')} <StainButton stain={stains[1]} className={classes.stain} /> and the target color is {translate(locale, stains[6], 'name')} <StainButton stain={stains[6]} className={classes.stain} />, then we need to decrease the RGB values as much as possible. Without any clamping, this can be done in 110 fruits. With clamping, it’s possible to get as close with 97 fruits instead. It involves feeding a bunch of {translate(locale, fruits[Fruit.XelphatolApple], 'plural', 'singular')} first to max out the RGB’s red value so that subsequent {translate(locale, fruits[Fruit.XelphatolApple], 'plural', 'singular')} will lower the average RGB value quicker. Unfortunately, lookaheads with {$('L > 5')} quickly become infeasible, the benefits are small, and situations that can use it are rare.
         </Typography>
         <ClampedTable />
       </Section>

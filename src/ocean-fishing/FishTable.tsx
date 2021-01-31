@@ -14,7 +14,7 @@ import Tug from './Tug'
 import StarBadge from './StarBadge'
 import ChecklistCheckmark from './ChecklistCheckmark'
 import WeatherIcon from '../skywatcher/WeatherIcon'
-import { fishingSpots, placeNames, oceanFishes } from './ffxiv-ocean-fishing/data'
+import { fishingSpots, placeNames, fishes } from './ffxiv-ocean-fishing/data'
 import { isBaitRequired } from './utils'
 import { translate } from '../utils'
 import { useTranslation } from '../i18n'
@@ -82,7 +82,7 @@ const FishTable = ({ spots, time }: Props) => {
               </TableHead>
               <TableBody>
                 {fishingSpot.fishes.map(fishId => {
-                  const fish = oceanFishes[fishId]
+                  const fish = fishes[fishId]
                   const spreadsheetData = fish.spreadsheetData
                   return (
                     <TableRow

@@ -18,11 +18,11 @@ const useStyles = makeStyles(() => ({
 
 type Props = {
   index: number,
-  stop: StopTime,
+  stopTime: StopTime,
   children?: React.ReactNode
 }
 
-const RouteCard = ({ index, stop, children }: Props) => {
+const RouteCard = ({ index, stopTime, children }: Props) => {
   const classes = useStyles()
   const { i18n } = useTranslation()
   const locale = i18n.language
@@ -33,7 +33,7 @@ const RouteCard = ({ index, stop, children }: Props) => {
         <CardHeader
           title={
             <Typography variant='h6'>
-              {index + 1}. {translate(locale, placeNames[fishingSpots[maps.STOP_MAP[stop[0]]].placeName_sub], 'name')} {maps.TIME_MAP[stop[1]]}
+              {index + 1}. {translate(locale, placeNames[fishingSpots[maps.STOP_MAP[stopTime[0]]].placeName_sub], 'name')} {maps.TIME_MAP[stopTime[1]]}
             </Typography>
           }
           disableTypography

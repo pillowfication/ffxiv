@@ -1,29 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Section from '../Section'
 import Grid from '@material-ui/core/Grid'
-import Tabs from '@material-ui/core/Tabs'
-import Tab from '@material-ui/core/Tab'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import Typography from '@material-ui/core/Typography'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import RouteCardContainer from './RouteCardContainer'
-import RouteCard from './RouteCard'
-import FishPanel from './FishPanel'
-import BaitList from './BaitList'
-import { fishingSpots, placeNames, oceanFishes } from './ffxiv-ocean-fishing/data'
+import RouteInformationIntuition from './RouteInformationIntuition'
+import RouteInformationTimeSensitive from './RouteInformationTimeSensitive'
+import RouteInformationPoints from './RouteInformationPoints'
+import RouteInformationAll from './RouteInformationAll'
+import { fishingSpots, placeNames } from './ffxiv-ocean-fishing/data'
 import { calculateVoyages, getStops, DestinationStopTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
-import {
-  timeUntil,
-  getTimeSensitiveFish,
-  getPointsFish,
-  getBlueFish,
-  getBaitGroup,
-  upperFirst
-} from './utils'
+import { timeUntil, upperFirst } from './utils'
 import { translate } from '../utils'
 import { useTranslation } from '../i18n'
 
@@ -45,6 +34,9 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('md')]: {
       textAlign: 'right'
     }
+  },
+  fishTab: {
+    textTransform: 'none'
   }
 }))
 
@@ -64,21 +56,12 @@ const RouteInformation = ({ now, selectedRoute }: Props) => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('ocean-fishing')
   const [fishFilter, setFishFilter] = useState(FishFilter.Intuition)
-  const [tab, setTab] = useState(0)
-  const stops = getStops(selectedRoute)
+  const stopTimes = getStops(selectedRoute)
   const next = calculateVoyages(now, 1, [selectedRoute])[0].time
   const locale = i18n.language
 
-  useEffect(() => {
-    setTab(0)
-  }, [selectedRoute])
-
   const handleSelectFishFilter = (event: React.ChangeEvent<{ value: FishFilter }>) => {
     setFishFilter(event.target.value)
-  }
-
-  const handleChangeTab = (_: any, value: number) => {
-    setTab(value)
   }
 
   return (
@@ -108,97 +91,13 @@ const RouteInformation = ({ now, selectedRoute }: Props) => {
       {(() => {
         switch (fishFilter) {
           case FishFilter.Intuition:
-            return (
-              <RouteCardContainer>
-                {stops.map((stop, index) =>
-                  <RouteCard key={stop} index={index} stop={stop}>
-                    <CardContent>
-                      <BaitList baitGroups={
-                        [
-                          maps.SPECTRAL_FISH_MAP[stop[0]],
-                          maps.GREEN_FISH_MAP[stop[0]],
-                          getBlueFish(selectedRoute)[index]
-                        ]
-                          .filter(x => x)
-                          .map(fishId => ({
-                            header: translate(locale, oceanFishes[fishId], 'name'),
-                            baitGroupProps: getBaitGroup(fishId)
-                          }))
-                      } />
-                    </CardContent>
-                  </RouteCard>
-                )}
-              </RouteCardContainer>
-            )
+            return <RouteInformationIntuition stopTimes={stopTimes} />
           case FishFilter.TimeSensitive:
-            return (
-              <RouteCardContainer>
-                {stops.map((stop, index) =>
-                  <RouteCard key={stop} index={index} stop={stop}>
-                    <CardContent>
-                      <BaitList baitGroups={
-                        [
-                          maps.SPECTRAL_FISH_MAP[stop[0]],
-                          ...getTimeSensitiveFish(selectedRoute)[index]
-                        ]
-                          .filter(x => x)
-                          .map(fishId => ({
-                            header: translate(locale, oceanFishes[fishId], 'name'),
-                            baitGroupProps: getBaitGroup(fishId)
-                          }))
-                      } />
-                    </CardContent>
-                  </RouteCard>
-                )}
-              </RouteCardContainer>
-            )
+            return <RouteInformationTimeSensitive stopTimes={stopTimes} />
           case FishFilter.Points:
-            return (
-              <RouteCardContainer>
-                {stops.map((stop, index) =>
-                  <RouteCard key={stop} index={index} stop={stop}>
-                    <CardContent>
-                      <BaitList baitGroups={
-                        [
-                          maps.SPECTRAL_FISH_MAP[stop[0]],
-                          maps.GREEN_FISH_MAP[stop[0]],
-                          ...getPointsFish(selectedRoute)[index],
-                          getBlueFish(selectedRoute)[index]
-                        ]
-                          .filter(x => x)
-                          .map((fishId, index) => {
-                            const spreadsheetData = oceanFishes[fishId].spreadsheetData
-                            return {
-                            header: translate(locale, oceanFishes[fishId], 'name'),
-                            baitGroupProps: {
-                              ...getBaitGroup(fishId),
-                              subtext: index === 0 ? '' : (
-                                `DH: ×${Array.isArray(spreadsheetData.doubleHook) ? spreadsheetData.doubleHook.join('-') : spreadsheetData.doubleHook}` +
-                                ` = ${(Array.isArray(spreadsheetData.doubleHook) ? spreadsheetData.doubleHook[1] : spreadsheetData.doubleHook) * spreadsheetData.points}`
-                              ),
-                              mainOnly: true
-                            }
-                          }
-                        })
-                      } />
-                    </CardContent>
-                  </RouteCard>
-                )}
-              </RouteCardContainer>
-            )
+            return <RouteInformationPoints stopTimes={stopTimes} />
           case FishFilter.All:
-            return (
-              <Card variant='outlined'>
-                <Tabs variant='fullWidth' value={tab} onChange={handleChangeTab}>
-                  {stops.map((stop, index) =>
-                    <Tab key={stop} label={<>{index + 1}. {translate(locale, placeNames[fishingSpots[maps.STOP_MAP[stop[0]]].placeName_sub], 'name')} {maps.TIME_MAP[stop[1]]}</>} />
-                  )}
-                </Tabs>
-                {stops.map((stop, index) =>
-                  <FishPanel key={stop} tab={tab} index={index} stop={stop} />
-                )}
-              </Card>
-            )
+            return <RouteInformationAll stopTimes={stopTimes} />
         }
       })()}
     </Section>
