@@ -1,26 +1,24 @@
 import React from 'react'
 import CardContent from '@material-ui/core/CardContent'
-import RouteCardContainer from './RouteCardContainer'
-import RouteCard from './RouteCard'
+import StopCardsContainer from './StopCardsContainer'
+import StopCard from './StopCard'
 import BaitList from './BaitList'
 import { fishingSpots, fishes } from './ffxiv-ocean-fishing/data'
-import { Time, StopTime } from './ffxiv-ocean-fishing'
+import { Stop, Time, StopTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 import { getBaitGroup } from './utils'
 import { translate } from '../utils'
 import { useTranslation } from '../i18n'
 
-function getTimeSensitiveFish (stopTimes: StopTime[]): number[][] {
-  return stopTimes
-    .map((destinationStopTime, index) => {
-      const fishingSpotId = maps.STOP_MAP[destinationStopTime[0]]
-      const time = stopTimes[index][1] as Time
-      return (fishingSpots[fishingSpotId + 1].fishes)
-        .filter(fishId => {
-          const spreadsheetData = fishes[fishId].spreadsheetData
-          return spreadsheetData.time && spreadsheetData.time.length !== 3 && spreadsheetData.time.includes(time)
-        })
-    })
+function getTimeSensitiveFishes (stopTime: StopTime): number[] {
+  const fishingSpotId = maps.STOP_MAP[stopTime[0] as Stop]
+  const spectralFishingSpot = fishingSpots[fishingSpotId + 1]
+  const time = stopTime[1] as Time
+
+  return spectralFishingSpot.fishes.filter(fishId => {
+    const { time: spreadsheetTime } = fishes[fishId].spreadsheetData
+    return spreadsheetTime && spreadsheetTime.length !== 3 && spreadsheetTime.includes(time)
+  })
 }
 
 type Props = {
@@ -32,14 +30,14 @@ const RouteInformationTimeSensitive = ({ stopTimes }: Props) => {
   const locale = i18n.language
 
   return (
-    <RouteCardContainer>
+    <StopCardsContainer>
       {stopTimes.map((stopTime, index) =>
-        <RouteCard key={stopTime} index={index} stopTime={stopTime}>
+        <StopCard key={stopTime} index={index} stopTime={stopTime}>
           <CardContent>
             <BaitList baitGroups={
               [
-                maps.SPECTRAL_FISH_MAP[stopTime[0]],
-                ...getTimeSensitiveFish(stopTimes)[index]
+                maps.SPECTRAL_FISH_MAP[stopTime[0] as Stop],
+                ...getTimeSensitiveFishes(stopTime)
               ]
                 .filter(x => x)
                 .map(fishId => ({
@@ -48,9 +46,9 @@ const RouteInformationTimeSensitive = ({ stopTimes }: Props) => {
                 }))
             } />
           </CardContent>
-        </RouteCard>
+        </StopCard>
       )}
-    </RouteCardContainer>
+    </StopCardsContainer>
   )
 }
 

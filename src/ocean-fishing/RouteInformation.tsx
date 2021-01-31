@@ -10,7 +10,7 @@ import RouteInformationTimeSensitive from './RouteInformationTimeSensitive'
 import RouteInformationPoints from './RouteInformationPoints'
 import RouteInformationAll from './RouteInformationAll'
 import { fishingSpots, placeNames } from './ffxiv-ocean-fishing/data'
-import { calculateVoyages, getStops, DestinationStopTime } from './ffxiv-ocean-fishing'
+import { calculateVoyages, getStopTimes, Dest, Time, DestTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 import { timeUntil, upperFirst } from './utils'
 import { translate } from '../utils'
@@ -49,15 +49,15 @@ enum FishFilter {
 
 type Props = {
   now: Date,
-  selectedRoute: DestinationStopTime
+  route: DestTime
 }
 
-const RouteInformation = ({ now, selectedRoute }: Props) => {
+const RouteInformation = ({ now, route }: Props) => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('ocean-fishing')
   const [fishFilter, setFishFilter] = useState(FishFilter.Intuition)
-  const stopTimes = getStops(selectedRoute)
-  const next = calculateVoyages(now, 1, [selectedRoute])[0].time
+  const stopTimes = getStopTimes(route)
+  const next = calculateVoyages(now, 1, [route])[0].date
   const locale = i18n.language
 
   const handleSelectFishFilter = (event: React.ChangeEvent<{ value: FishFilter }>) => {
@@ -69,8 +69,8 @@ const RouteInformation = ({ now, selectedRoute }: Props) => {
       title={
         <Grid container alignItems='flex-end'>
           <Grid item xs={12} md={8}>
-            {upperFirst(translate(locale, placeNames[fishingSpots[maps.STOP_MAP[selectedRoute[0]]].placeName_sub], 'name_noArticle', 'name'))}
-            <span className={classes.headerTime}>{maps.TIME_MAP[selectedRoute[1]]}</span>
+            {upperFirst(translate(locale, placeNames[fishingSpots[maps.STOP_MAP[route[0] as Dest]].placeName_sub], 'name_noArticle', 'name'))}
+            <span className={classes.headerTime}>{maps.TIME_MAP[route[1] as Time]}</span>
             <Typography display='inline' className={classes.headerSub}>
               {timeUntil(now, next, { t, full: true, locale: locale })}
             </Typography>

@@ -1,18 +1,18 @@
-import { DestinationStop, Time, DestinationStopTime } from './types'
+import { Dest, Time, DestTime } from './types'
 
 const _9HR = 32400000
 const _45MIN = 2700000
 
 // Cycle repeats every 12 days starting at this epoch
 const LULU_EPOCH = 1593270000000 + _9HR
-const DEST_CYCLE: DestinationStop[] = ['B', 'T', 'N', 'R']
+const DEST_CYCLE: Dest[] = ['B', 'T', 'N', 'R']
 const TIME_CYCLE: Time[] = ['S', 'S', 'S', 'S', 'N', 'N', 'N', 'N', 'D', 'D', 'D', 'D']
 
 function fromEpoch (day: number, hour: number) {
   return new Date(LULU_EPOCH + day * 86400000 + hour * 3600000 - _9HR)
 }
 
-function _calculateVoyages (date: Date, count: number, filter?: string[]) {
+function _calculateVoyages (date: Date, count: number, filter?: DestTime[]) {
   const adjustedDate = new Date(date.getTime() + _9HR - _45MIN) // Subtract 45 minutes to catch ongoing voyages
   let day = Math.floor((adjustedDate.getTime() - LULU_EPOCH) / 86400000)
   let hour = adjustedDate.getUTCHours()
@@ -29,11 +29,11 @@ function _calculateVoyages (date: Date, count: number, filter?: string[]) {
   let timeIndex = ((day + voyageNumber) % 12 + 12) % 12
 
   // Loop until however many voyages are found
-  const upcomingVoyages: { time: Date, destinationCode: DestinationStopTime }[] = []
+  const upcomingVoyages: { date: Date, destTime: DestTime }[] = []
   while (upcomingVoyages.length < count) {
-    const destinationCode = DEST_CYCLE[destIndex] + TIME_CYCLE[timeIndex] as DestinationStopTime
-    if (!filter || filter.includes(destinationCode)) {
-      upcomingVoyages.push({ time: fromEpoch(day, hour), destinationCode })
+    const destTime = DEST_CYCLE[destIndex] + TIME_CYCLE[timeIndex] as DestTime
+    if (!filter || filter.includes(destTime)) {
+      upcomingVoyages.push({ date: fromEpoch(day, hour), destTime })
     }
     if (hour === 23) {
       day += 1
@@ -51,19 +51,18 @@ function _calculateVoyages (date: Date, count: number, filter?: string[]) {
 }
 
 // Record the pattern for faster calculations
-const pattern = _calculateVoyages(new Date(_45MIN), 144).map(x => x.destinationCode)
+const pattern = _calculateVoyages(new Date(_45MIN), 144).map(({ destTime }) => destTime)
 
-export default function calculateVoyages (date: Date, count: number, filter?: string[] | ((destinationCode: DestinationStopTime) => boolean)) {
+export default function calculateVoyages (date: Date, count: number, filter?: DestTime[]) {
   const startIndex = Math.floor((date.getTime() - _45MIN) / 7200000)
-  const results = []
-  for (let i = 0; results.length < count && i < 100000; ++i) {
-    const destinationCode = pattern[(startIndex + i) % 144]
-    if (!filter || (typeof filter === 'function' ? filter(destinationCode) : filter.includes(destinationCode))) {
-      results.push({
-        time: new Date((startIndex + i + 1) * 7200000),
-        destinationCode
-      })
+  const upcomingVoyages: { date: Date, destTime: DestTime }[] = []
+
+  for (let i = 0; upcomingVoyages.length < count && i < 100000; ++i) {
+    const destTime = pattern[(startIndex + i) % 144]
+    if (!filter || filter.includes(destTime)) {
+      upcomingVoyages.push({ date: new Date((startIndex + i + 1) * 7200000), destTime })
     }
   }
-  return results
+
+  return upcomingVoyages
 }

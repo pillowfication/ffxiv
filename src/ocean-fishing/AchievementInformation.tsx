@@ -52,7 +52,9 @@ const AchievementInformation = ({ achievement, children }: Props) => {
         <>
           {translate(locale, achievements[achievement], 'name')}
           <OceanFishIcon type='achievement' id={achievement} className={classes.achievementIcon} />
-          <Typography display='inline' className={classes.subtitle}>{cleanRequirement(translate(locale, contentBonuses[contentBonusMap[achievement]], 'requirement'))}</Typography>
+          <Typography display='inline' className={classes.subtitle}>
+            {cleanRequirement(translate(locale, contentBonuses[contentBonusMap[achievement]], 'requirement'))}
+          </Typography>
         </>
       }
     >

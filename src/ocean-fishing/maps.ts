@@ -1,6 +1,6 @@
 import React from 'react'
 import TimeIcon from './TimeIcon'
-import { Stop, Time, DestinationStopTime } from './ffxiv-ocean-fishing'
+import { Stop, Time, DestTime } from './ffxiv-ocean-fishing'
 
 export const STOP_MAP: Record<Stop, number> = {
   B: 248,
@@ -48,7 +48,7 @@ export const BLUE_FISH_MAP: Record<Stop, number> = {
   T: 32114
 }
 
-export const ACHIEVEMENTS_MAP: Record<DestinationStopTime, number[]> = {
+export const ACHIEVEMENTS_MAP: Record<DestTime, number[]> = {
   BD: [2755],
   BN: [2756],
   BS: [],
@@ -64,7 +64,7 @@ export const ACHIEVEMENTS_MAP: Record<DestinationStopTime, number[]> = {
 }
 
 // This should be automated later...
-export const FILTER_MAP = {
+export const FILTER_MAP: Record<string, DestTime[]> = <any>{
   B: ['BD', 'BN', 'BS'],
   N: ['ND', 'NN', 'NS'],
   R: ['RD', 'RN', 'RS'],

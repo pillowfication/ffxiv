@@ -5,13 +5,13 @@ import Typography from '@material-ui/core/Typography'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
 import { fishingSpots, placeNames } from './ffxiv-ocean-fishing/data'
-import { StopTime } from './ffxiv-ocean-fishing'
+import { Stop, Time, StopTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 import { translate } from '../utils'
 import { useTranslation } from '../i18n'
 
 const useStyles = makeStyles(() => ({
-  routeCard: {
+  stopCard: {
     height: '100%'
   }
 }))
@@ -22,18 +22,18 @@ type Props = {
   children?: React.ReactNode
 }
 
-const RouteCard = ({ index, stopTime, children }: Props) => {
+const StopCard = ({ index, stopTime, children }: Props) => {
   const classes = useStyles()
   const { i18n } = useTranslation()
   const locale = i18n.language
 
   return (
     <Grid item xs={12} md={4}>
-      <Card variant='outlined' className={classes.routeCard}>
+      <Card variant='outlined' className={classes.stopCard}>
         <CardHeader
           title={
             <Typography variant='h6'>
-              {index + 1}. {translate(locale, placeNames[fishingSpots[maps.STOP_MAP[stopTime[0]]].placeName_sub], 'name')} {maps.TIME_MAP[stopTime[1]]}
+              {index + 1}. {translate(locale, placeNames[fishingSpots[maps.STOP_MAP[stopTime[0] as Stop]].placeName_sub], 'name')} {maps.TIME_MAP[stopTime[1] as Time]}
             </Typography>
           }
           disableTypography
@@ -44,4 +44,4 @@ const RouteCard = ({ index, stopTime, children }: Props) => {
   )
 }
 
-export default RouteCard
+export default StopCard

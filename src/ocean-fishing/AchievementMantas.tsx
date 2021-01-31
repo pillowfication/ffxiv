@@ -2,24 +2,24 @@ import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import CardContent from '@material-ui/core/CardContent'
 import AchievementInformation from './AchievementInformation'
-import RouteCardContainer from './RouteCardContainer'
-import RouteCard from './RouteCard'
+import StopCardsContainer from './StopCardsContainer'
+import StopCard from './StopCard'
 import BaitList from './BaitList'
 import Tug from './Tug'
-import { getStops, DestinationStopTime } from './ffxiv-ocean-fishing'
+import { getStopTimes, DestTime } from './ffxiv-ocean-fishing'
 import { getBaitGroup, subtextDH } from './utils'
 
 type Props = {
-  selectedRoute: DestinationStopTime
+  route: DestTime
 }
 
-const AchievementJellyfish = ({ selectedRoute }: Props) => {
-  const stops = getStops(selectedRoute)
+const AchievementMantas = ({ route }: Props) => {
+  const stopTimes = getStopTimes(route)
 
   return (
     <AchievementInformation achievement={2756}>
-      <RouteCardContainer>
-        <RouteCard index={0} stop={stops[0]}>
+      <StopCardsContainer>
+        <StopCard index={0} stopTime={stopTimes[0]}>
           <CardContent>
             <BaitList
               baitGroups={[{
@@ -45,8 +45,8 @@ const AchievementJellyfish = ({ selectedRoute }: Props) => {
               Spend all remaining GP on mantas.
             </Typography>
           </CardContent>
-        </RouteCard>
-        <RouteCard index={1} stop={stops[1]}>
+        </StopCard>
+        <StopCard index={1} stopTime={stopTimes[1]}>
           <CardContent>
             <Typography paragraph>
               No mantas here.
@@ -55,10 +55,10 @@ const AchievementJellyfish = ({ selectedRoute }: Props) => {
               You may opt for no spectral here for an extended one in the next zone.
             </Typography>
           </CardContent>
-        </RouteCard>
-        <RouteCard index={2} stop={stops[2]}>
+        </StopCard>
+        <StopCard index={2} stopTime={stopTimes[2]}>
           {(() => {
-            switch (stops[2]) {
+            switch (stopTimes[2]) {
               case 'BN':
                 return (
                   <>
@@ -102,10 +102,10 @@ const AchievementJellyfish = ({ selectedRoute }: Props) => {
                 )
             }
           })()}
-        </RouteCard>
-      </RouteCardContainer>
+        </StopCard>
+      </StopCardsContainer>
     </AchievementInformation>
   )
 }
 
-export default AchievementJellyfish
+export default AchievementMantas

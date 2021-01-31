@@ -1,6 +1,6 @@
 import { timeUntil as genericTimeUntil } from '../utils'
-import { fishingSpots, fishes } from './ffxiv-ocean-fishing/data'
-import { getStops, Time, DestinationStopTime } from './ffxiv-ocean-fishing'
+import { fishes } from './ffxiv-ocean-fishing/data'
+import { Stop, Time, StopTime } from './ffxiv-ocean-fishing'
 import { Bait as BaitChainProp } from './BaitChain'
 import * as maps from './maps'
 import { TFunction } from 'next-i18next'
@@ -24,15 +24,14 @@ export function timeUntil (now: Date, then: Date, options: { t: TFunction, full?
   }
 }
 
-export function getBlueFish (destinationCode: DestinationStopTime): number[] {
-  const stopTimes = getStops(destinationCode)
-  return stopTimes
-    .map(destinationStopTime => maps.BLUE_FISH_MAP[destinationStopTime[0]])
-    .map((fishId, index) => {
-      const time: Time = <any>stopTimes[index][1]
-      const spreadsheetData = fishes[fishId].spreadsheetData
-      return spreadsheetData.time && spreadsheetData.time.includes(time) ? fishId : null
-    })
+export function getBlueFish (stopTime: StopTime) {
+  const blueFishId = maps.BLUE_FISH_MAP[stopTime[0] as Stop]
+  const spreadsheetData = fishes[blueFishId].spreadsheetData
+  if (spreadsheetData.time && spreadsheetData.time.includes(stopTime[1] as Time)) {
+    return blueFishId
+  } else {
+    return null
+  }
 }
 
 export function isBaitRequired (fishId: number, baitId: number) {
@@ -90,47 +89,47 @@ export function upperFirst (str: string) {
   return str[0].toUpperCase() + str.slice(1)
 }
 
-export function getBlindDHRanges (fishId: number, baitId: number, time: Time) {
-  const spreadsheetData = fishes[fishId].spreadsheetData
-  if (time && spreadsheetData.time && spreadsheetData.time.indexOf(time) === -1) return null
-  if (!fishes[fishId].biteTimes[baitId]) return null
-
-  const blindDHRanges = [fishes[fishId].biteTimes[baitId]]
-  const fishingSpot = Object.values(fishingSpots).find(fishingSpot => fishingSpot.fishes.includes(fishId))
-  for (const otherFishId of fishingSpot.fishes) {
-    if (otherFishId === fishId) continue
-    const otherSpreadsheetData = fishes[otherFishId].spreadsheetData
-
-    if (otherSpreadsheetData.tug !== spreadsheetData.tug) continue
-    if (time && otherSpreadsheetData.time && otherSpreadsheetData.time.indexOf(time) === -1) continue
-    if (!fishes[otherFishId].biteTimes[baitId]) continue
-    const otherRange = fishes[otherFishId].biteTimes[baitId]
-
-    for (let i = 0; i < blindDHRanges.length;) {
-      const currentRange = blindDHRanges[i]
-      if (otherRange[1] < currentRange[0] || otherRange[0] > currentRange[1]) {
-        // No overlap
-        ++i
-      } else if (otherRange[0] <= currentRange[0] && otherRange[1] >= currentRange[1]) {
-        // Full overlap
-        blindDHRanges.splice(i, 1)
-      } else if (otherRange[0] > currentRange[0] && otherRange[1] < currentRange[1]) {
-        // Splits currentRange into 2
-        blindDHRanges.splice(i, 1, [currentRange[0], otherRange[0] - 1], [otherRange[1] + 1, currentRange[1]])
-        i += 2
-      } else {
-        // Partial overlap
-        if (currentRange[0] < otherRange[0] && otherRange[0] < currentRange[1]) {
-          blindDHRanges.splice(i++, 1, [currentRange[0], otherRange[0] - 1])
-        } else if (currentRange[0] < otherRange[1] && otherRange[1] < currentRange[1]) {
-          blindDHRanges.splice(i++, 1, [otherRange[1] + 1, currentRange[1]])
-        } else {
-          console.error('This should never happen')
-          i++
-        }
-      }
-    }
-  }
-
-  return blindDHRanges
-}
+// export function getBlindDHRanges (fishId: number, baitId: number, time: Time) {
+//   const spreadsheetData = fishes[fishId].spreadsheetData
+//   if (time && spreadsheetData.time && spreadsheetData.time.indexOf(time) === -1) return null
+//   if (!fishes[fishId].biteTimes[baitId]) return null
+//
+//   const blindDHRanges = [fishes[fishId].biteTimes[baitId]]
+//   const fishingSpot = Object.values(fishingSpots).find(fishingSpot => fishingSpot.fishes.includes(fishId))
+//   for (const otherFishId of fishingSpot.fishes) {
+//     if (otherFishId === fishId) continue
+//     const otherSpreadsheetData = fishes[otherFishId].spreadsheetData
+//
+//     if (otherSpreadsheetData.tug !== spreadsheetData.tug) continue
+//     if (time && otherSpreadsheetData.time && otherSpreadsheetData.time.indexOf(time) === -1) continue
+//     if (!fishes[otherFishId].biteTimes[baitId]) continue
+//     const otherRange = fishes[otherFishId].biteTimes[baitId]
+//
+//     for (let i = 0; i < blindDHRanges.length;) {
+//       const currentRange = blindDHRanges[i]
+//       if (otherRange[1] < currentRange[0] || otherRange[0] > currentRange[1]) {
+//         // No overlap
+//         ++i
+//       } else if (otherRange[0] <= currentRange[0] && otherRange[1] >= currentRange[1]) {
+//         // Full overlap
+//         blindDHRanges.splice(i, 1)
+//       } else if (otherRange[0] > currentRange[0] && otherRange[1] < currentRange[1]) {
+//         // Splits currentRange into 2
+//         blindDHRanges.splice(i, 1, [currentRange[0], otherRange[0] - 1], [otherRange[1] + 1, currentRange[1]])
+//         i += 2
+//       } else {
+//         // Partial overlap
+//         if (currentRange[0] < otherRange[0] && otherRange[0] < currentRange[1]) {
+//           blindDHRanges.splice(i++, 1, [currentRange[0], otherRange[0] - 1])
+//         } else if (currentRange[0] < otherRange[1] && otherRange[1] < currentRange[1]) {
+//           blindDHRanges.splice(i++, 1, [otherRange[1] + 1, currentRange[1]])
+//         } else {
+//           console.error('This should never happen')
+//           i++
+//         }
+//       }
+//     }
+//   }
+//
+//   return blindDHRanges
+// }

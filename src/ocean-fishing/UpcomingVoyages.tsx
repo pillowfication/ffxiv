@@ -12,7 +12,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Section from '../Section'
 import UpcomingVoyagesTable from './UpcomingVoyagesTable'
 import { fishingSpots, placeNames, fishes, achievements } from './ffxiv-ocean-fishing/data'
-import { calculateVoyages, DestinationStopTime } from './ffxiv-ocean-fishing'
+import { calculateVoyages, DestTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 import { upperFirst } from './utils'
 import { translate } from '../utils'
@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
 
 type Props = {
   now: Date,
-  onSelectRoute: (route: DestinationStopTime) => void
+  onSelectRoute: (route: DestTime) => void
 }
 
 const UpcomingVoyages = ({ now, onSelectRoute }: Props) => {
@@ -40,8 +40,8 @@ const UpcomingVoyages = ({ now, onSelectRoute }: Props) => {
   const locale = i18n.language
 
   useEffect(() => {
-    onSelectRoute(calculateVoyages(now, 1, filter && maps.FILTER_MAP[filter])[0].destinationCode)
-  }, [])
+    onSelectRoute(calculateVoyages(now, 1, filter && maps.FILTER_MAP[filter])[0].destTime)
+  }, [filter])
 
   const handleInputNumRows = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNumRows(Number(event.target.value))

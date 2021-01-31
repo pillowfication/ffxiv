@@ -1,5 +1,5 @@
-import { DestinationStop, Stop, Time, DestinationStopTime, StopTime } from './src/types'
-export type { DestinationStop, Stop, Time, DestinationStopTime, StopTime }
+import { Stop, Dest, Time, StopTime, DestTime } from './src/types'
+export type { Stop, Dest, Time, StopTime, DestTime }
 
 export { default as calculateVoyages } from './src/calculate-voyages'
-export { default as getStops } from './src/get-stops'
+export { default as getStopTimes } from './src/get-stop-times'

@@ -1,10 +1,10 @@
 import React from 'react'
 import CardContent from '@material-ui/core/CardContent'
-import RouteCardContainer from './RouteCardContainer'
-import RouteCard from './RouteCard'
+import StopCardsContainer from './StopCardsContainer'
+import StopCard from './StopCard'
 import BaitList from './BaitList'
 import { fishes } from './ffxiv-ocean-fishing/data'
-import { StopTime } from './ffxiv-ocean-fishing'
+import { Stop, StopTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 import { getBlueFish, getBaitGroup } from './utils'
 import { translate } from '../utils'
@@ -19,15 +19,15 @@ const RouteInformationIntuition = ({ stopTimes }: Props) => {
   const locale = i18n.language
 
   return (
-    <RouteCardContainer>
+    <StopCardsContainer>
       {stopTimes.map((stopTime, index) =>
-        <RouteCard key={stopTime} index={index} stopTime={stopTime}>
+        <StopCard key={stopTime} index={index} stopTime={stopTime}>
           <CardContent>
             <BaitList baitGroups={
               [
-                maps.SPECTRAL_FISH_MAP[stopTime[0]],
-                maps.GREEN_FISH_MAP[stopTime[0]],
-                getBlueFish(stopTimes[2] as any)[index]
+                maps.SPECTRAL_FISH_MAP[stopTime[0] as Stop],
+                maps.GREEN_FISH_MAP[stopTime[0] as Stop],
+                getBlueFish(stopTime)
               ]
                 .filter(x => x)
                 .map(fishId => ({
@@ -36,9 +36,9 @@ const RouteInformationIntuition = ({ stopTimes }: Props) => {
                 }))
             } />
           </CardContent>
-        </RouteCard>
+        </StopCard>
       )}
-    </RouteCardContainer>
+    </StopCardsContainer>
   )
 }
 

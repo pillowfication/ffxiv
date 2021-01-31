@@ -9,7 +9,7 @@ import Section from '../../src/Section'
 import UpcomingVoyages from '../../src/ocean-fishing/UpcomingVoyages'
 import RouteInformation from '../../src/ocean-fishing/RouteInformation'
 import AchievementsInformation from '../../src/ocean-fishing/AchievementsInformation'
-import { DestinationStopTime } from '../../src/ocean-fishing/ffxiv-ocean-fishing'
+import { DestTime } from '../../src/ocean-fishing/ffxiv-ocean-fishing'
 import { useTranslation } from '../../src/i18n'
 
 export const ChecklistContext = React.createContext<{ checklist: number[], setChecklist: (checklist: number[]) => void }>(
@@ -35,7 +35,7 @@ const OceanFishing = () => {
   const classes = useStyles()
   const { t } = useTranslation('ocean-fishing')
   const [now, setNow] = useState<Date>(new Date())
-  const [selectedRoute, setSelectedRoute] = useState<DestinationStopTime | null>(null) // This is initialized when UpcomingVoyages is mounted
+  const [selectedRoute, setSelectedRoute] = useState<DestTime | null>(null) // This is initialized when UpcomingVoyages is mounted
   const [checklist, setChecklist] = useState<number[]>([])
 
   useEffect(() => {
@@ -87,8 +87,8 @@ const OceanFishing = () => {
         <UpcomingVoyages now={now} onSelectRoute={setSelectedRoute} />
         {selectedRoute && (
           <>
-            <RouteInformation now={now} selectedRoute={selectedRoute} />
-            <AchievementsInformation selectedRoute={selectedRoute} />
+            <RouteInformation now={now} route={selectedRoute} />
+            <AchievementsInformation route={selectedRoute} />
           </>
         )}
       </ChecklistContext.Provider>

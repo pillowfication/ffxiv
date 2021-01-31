@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => {
       left: ({ size }: { size: number }) => size * 0.1,
       width: ({ size }: { size: number }) => size,
       height: ({ size }: { size: number }) => size,
-      backgroundImage: 'url("/images/ocean-fishing/ocean-fishing-icons.png")',
+      backgroundImage: 'url("/images/ocean-fishing/icons.png")',
       backgroundSize: `${ICON_COLS * 100}% ${ICON_ROWS * 100}%`
     },
     itemCover: {

@@ -5,7 +5,7 @@ import Tab from '@material-ui/core/Tab'
 import Card from '@material-ui/core/Card'
 import FishPanel from './FishPanel'
 import { fishingSpots, placeNames } from './ffxiv-ocean-fishing/data'
-import { StopTime } from './ffxiv-ocean-fishing'
+import { Stop, Time, StopTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 import { translate } from '../utils'
 import { useTranslation } from '../i18n'
@@ -60,8 +60,8 @@ const RouteInformationAll = ({ stopTimes }: Props) => {
             key={stopTime}
             label={(
               <>
-                {index + 1}. {translate(locale, placeNames[fishingSpots[maps.STOP_MAP[stopTime[0]]].placeName_sub], 'name')}
-                {maps.TIME_MAP[stopTime[1]]}
+                {index + 1}. {translate(locale, placeNames[fishingSpots[maps.STOP_MAP[stopTime[0] as Stop]].placeName_sub], 'name')}
+                {maps.TIME_MAP[stopTime[1] as Time]}
               </>
             )}
             className={classes.fishTab}

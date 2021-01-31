@@ -11,7 +11,7 @@ import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import OceanFishIcon from './OceanFishIcon'
 import { fishingSpots, placeNames } from './ffxiv-ocean-fishing/data'
-import { calculateVoyages, DestinationStopTime } from './ffxiv-ocean-fishing'
+import { getStopTimes, calculateVoyages, Dest, Time, DestTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 import { toTimeString } from '../utils'
 import { getBlueFish, timeUntil, upperFirst } from './utils'
@@ -65,14 +65,14 @@ const useStyles = makeStyles(theme => ({
 type Props = {
   now: Date,
   numRows: number,
-  filter?: DestinationStopTime[],
-  onSelectRoute: (route: DestinationStopTime) => void
+  filter?: DestTime[],
+  onSelectRoute?: (route: DestTime) => void
 }
 
 const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute }: Props) => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('ocean-fishing')
-  const [hover, setHover] = useState<DestinationStopTime | null>(null)
+  const [hover, setHover] = useState<DestTime | null>(null)
   const upcomingVoyages = calculateVoyages(now, Math.min(Math.max(numRows, 1), 50), filter)
   const locale = i18n.language
 
@@ -89,17 +89,17 @@ const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute }: Props) =>
         <TableBody onMouseOut={setHover.bind(null, null)}>
           {(() => {
             let previousDate: string
-            return upcomingVoyages.map(({ time, destinationCode }) => {
-              const dateString = time.toLocaleDateString(locale, DATE_FORMAT)
-              const timeString = toTimeString(time, { padded: true, locale })
+            return upcomingVoyages.map(({ date, destTime }) => {
+              const dateString = date.toLocaleDateString(locale, DATE_FORMAT)
+              const timeString = toTimeString(date, { padded: true, locale })
 
               return (
                 <TableRow
-                  key={time.getTime()}
+                  key={date.getTime()}
                   hover
-                  className={clsx(!filter && hover === destinationCode && classes.hoverRow)}
-                  onMouseOver={setHover.bind(null, destinationCode)}
-                  onClick={onSelectRoute.bind(null, destinationCode)}
+                  className={clsx(!filter && hover === destTime && classes.hoverRow)}
+                  onMouseOver={setHover.bind(null, destTime)}
+                  onClick={onSelectRoute.bind(null, destTime)}
                 >
                   <TableCell align='right'>
                     {previousDate !== (previousDate = dateString) && <Typography>{dateString}</Typography>}
@@ -108,21 +108,22 @@ const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute }: Props) =>
                     <Typography>{timeString}</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography className={classes.timeUntil}>{timeUntil(now, time, { t, locale: locale })}</Typography>
+                    <Typography className={classes.timeUntil}>{timeUntil(now, date, { t, locale: locale })}</Typography>
                   </TableCell>
                   <TableCell align='right'>
-                    <Typography>{upperFirst(translate(locale, placeNames[fishingSpots[maps.STOP_MAP[destinationCode[0]]].placeName_sub], 'name_noArticle', 'name'))}</Typography>
+                    <Typography>{upperFirst(translate(locale, placeNames[fishingSpots[maps.STOP_MAP[destTime[0] as Dest]].placeName_sub], 'name_noArticle', 'name'))}</Typography>
                   </TableCell>
                   <TableCell className={classes.timeCell}>
-                    {maps.TIME_MAP[destinationCode[1]]}
+                    {maps.TIME_MAP[destTime[1] as Time]}
                   </TableCell>
                   <TableCell className={classes.objectivesCell}>
-                    {maps.ACHIEVEMENTS_MAP[destinationCode].map((achievement: number) =>
+                    {maps.ACHIEVEMENTS_MAP[destTime].map((achievement: number) =>
                       <OceanFishIcon key={achievement} type='achievement' id={achievement} />
                     )}
-                    {getBlueFish(destinationCode).map((fishId?: number) =>
-                      fishId && <OceanFishIcon key={fishId} type='fish' id={fishId} />
-                    )}
+                    {getStopTimes(destTime).map(stopTime => {
+                      const blueFishId = getBlueFish(stopTime)
+                      return blueFishId && <OceanFishIcon key={blueFishId} type='fish' id={blueFishId} />
+                    })}
                   </TableCell>
                 </TableRow>
               )

@@ -2,24 +2,24 @@ import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import CardContent from '@material-ui/core/CardContent'
 import AchievementInformation from './AchievementInformation'
-import RouteCardContainer from './RouteCardContainer'
-import RouteCard from './RouteCard'
+import StopCardsContainer from './StopCardsContainer'
+import StopCard from './StopCard'
 import BaitList from './BaitList'
 import Tug from './Tug'
-import { getStops, DestinationStopTime } from './ffxiv-ocean-fishing'
+import { getStopTimes, DestTime } from './ffxiv-ocean-fishing'
 import { getBaitGroup, subtextDH } from './utils'
 
 type Props = {
-  selectedRoute: DestinationStopTime
+  route: DestTime
 }
 
-const AchievementBalloons = ({ selectedRoute }: Props) => {
-  const stops = getStops(selectedRoute)
+const AchievementBalloons = ({ route }: Props) => {
+  const stopTimes = getStopTimes(route)
 
   return (
     <AchievementInformation achievement={2754}>
-      <RouteCardContainer>
-        <RouteCard index={0} stop={stops[0]}>
+      <StopCardsContainer>
+        <StopCard index={0} stopTime={stopTimes[0]}>
           <CardContent>
             <BaitList
               baitGroups={[{
@@ -41,8 +41,8 @@ const AchievementBalloons = ({ selectedRoute }: Props) => {
               Only the instant <Tug strength={1} /> is Mythril Boxfish. Anomalocaris Saron appears at 5s.
             </Typography>
           </CardContent>
-        </RouteCard>
-        <RouteCard index={1} stop={stops[1]}>
+        </StopCard>
+        <StopCard index={1} stopTime={stopTimes[1]}>
           <CardContent>
             <BaitList
               baitGroups={[{
@@ -67,8 +67,8 @@ const AchievementBalloons = ({ selectedRoute }: Props) => {
               Can blind DH Silencers at &gt;3s. The instant <Tug strength={1} /> are Aronnaxes.
             </Typography>
           </CardContent>
-        </RouteCard>
-        <RouteCard index={2} stop={stops[2]}>
+        </StopCard>
+        <StopCard index={2} stopTime={stopTimes[2]}>
           <CardContent>
             <BaitList
               baitGroups={[{
@@ -96,8 +96,8 @@ const AchievementBalloons = ({ selectedRoute }: Props) => {
               Switch to Krill to go for both Garum Jugs and Pearl Bombfish.
             </Typography>
           </CardContent>
-        </RouteCard>
-      </RouteCardContainer>
+        </StopCard>
+      </StopCardsContainer>
     </AchievementInformation>
   )
 }
