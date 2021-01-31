@@ -46,7 +46,7 @@ const RouteInformationAll = ({ stopTimes }: Props) => {
 
   useEffect(() => {
     setTab(0)
-  }, [stopTimes])
+  }, [])
 
   const handleChangeTab = (_: any, value: number) => {
     setTab(value)
