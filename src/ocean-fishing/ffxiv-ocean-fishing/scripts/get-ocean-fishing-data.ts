@@ -87,9 +87,18 @@ const oceanFishes = IKDFishParam.data
       description_de: item_de.Description,
       description_fr: item_fr.Description,
       description_ja: item_ja.Description,
-      contentBonus: ikdFishParam.IKDContentBonus
-        ? IKDContentBonus_en.data.find(({ Objective }) => Objective === ikdFishParam.IKDContentBonus)['#']
-        : null
+      // contentBonus: ikdFishParam.IKDContentBonus
+      //   ? IKDContentBonus_en.data.find(({ Objective }) => Objective === ikdFishParam.IKDContentBonus)['#']
+      //   : null
+      contentBonus: (() => {
+        if (ikdFishParam.IKDContentBonus) {
+          return IKDContentBonus_en.data.find(({ Objective }) => Objective === ikdFishParam.IKDContentBonus)['#']
+        } else if (ikdFishParam['Unknown[5-4]'] === 22) {
+          return 22
+        } else {
+          return null
+        }
+      })()
     }
   })
   .reduce((acc, curr) => (acc[curr.id] = curr, acc), {})
