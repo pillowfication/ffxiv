@@ -4,7 +4,7 @@ import Calculator from '../src/high-or-low/Calculator'
 import About from '../src/high-or-low/About'
 import { useTranslation } from '../src/i18n'
 
-const HighOrLow = () => {
+const HighOrLow = (): React.ReactElement => {
   const { t } = useTranslation('high-or-low')
 
   return (

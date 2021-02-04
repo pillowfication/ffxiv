@@ -17,7 +17,7 @@ const contentBonusMap: Record<number, number> = {
   2756: 22
 }
 
-function cleanRequirement (requirement: string) {
+function cleanRequirement (requirement: string): string {
   const str = requirement.replace(/^(Requirement:|Bedingung:|Condition :|達成条件：)/, '').trim()
   return str[0].toUpperCase() + str.slice(1)
 }
@@ -36,12 +36,12 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-type Props = {
-  achievement: number,
+interface Props {
+  achievement: number
   children?: React.ReactNode
 }
 
-const AchievementInformation = ({ achievement, children }: Props) => {
+const AchievementInformation = ({ achievement, children }: Props): React.ReactElement => {
   const classes = useStyles()
   const { i18n } = useTranslation('ocean-fishing')
   const locale = i18n.language

@@ -7,16 +7,8 @@ import ImageIcon from '@material-ui/icons/Image'
 
 const MAX_DEPTH = 3
 
-function isImageUrl (url: string) {
+function isImageUrl (url: string): boolean {
   return /^(\/|http).*\.(png|jpg)(\?.*)?$/.test(url)
-}
-
-type Props = {
-  depth: number,
-  objKey?: string,
-  comma?: boolean,
-  onChangeUrl?: (url: string) => void,
-  _isContent?: boolean // This is a weird one that I pass if the url is /content
 }
 
 const useStyles = makeStyles(theme => ({
@@ -77,22 +69,28 @@ const useStyles = makeStyles(theme => ({
   null: {
     fontWeight: 'bold',
     color: theme.palette.type === 'dark' ? '#c5b6ff' : '#3e20b7'
-  },
+  }
 }))
 
-const JSONObject = ({ data, opt: { depth, objKey, comma, onChangeUrl, _isContent } }: { data: object, opt: Props }) => {
+interface Props {
+  depth: number
+  objKey?: string
+  comma?: boolean
+  onChangeUrl?: (url: string) => void
+  _isContent?: boolean // This is a weird one that I pass if the url is /content
+}
+
+const JSONObject = ({ data, opt: { depth, objKey, comma = false, onChangeUrl, _isContent = false } }: { data: object, opt: Props }): React.ReactElement => {
   const classes = useStyles()
   const [open, setOpen] = useState(depth <= MAX_DEPTH)
 
-  const handleToggleOpen = () => {
-    setOpen(!open)
-  }
+  const handleToggleOpen = (): void => { setOpen(!open) }
 
   if (!open) {
     return (
       <>
         <span onClick={handleToggleOpen} className={clsx(classes.collapsible, !open && classes.collapsibleClosed)}>
-          {objKey && <span className={classes.key}>{`"${objKey}": `}</span>}{'{ ... }'}{comma && ','}
+          {objKey !== undefined && <span className={classes.key}>{`"${objKey}": `}</span>}{'{ ... }'}{comma && ','}
         </span>
         <br />
       </>
@@ -101,7 +99,7 @@ const JSONObject = ({ data, opt: { depth, objKey, comma, onChangeUrl, _isContent
     return (
       <>
         <span onClick={handleToggleOpen} className={clsx(classes.collapsible, !open && classes.collapsibleClosed)}>
-          {objKey && <span className={classes.key}>{`"${objKey}": `}</span>}{'{'}
+          {objKey !== undefined && <span className={classes.key}>{`"${objKey}": `}</span>}{'{'}
         </span>
         <br />
         <ul className={classes.level}>
@@ -118,19 +116,17 @@ const JSONObject = ({ data, opt: { depth, objKey, comma, onChangeUrl, _isContent
   }
 }
 
-const JSONArray = ({ data, opt: { depth, objKey, comma, onChangeUrl, _isContent } }: { data: any[], opt: Props }) => {
+const JSONArray = ({ data, opt: { depth, objKey, comma = false, onChangeUrl, _isContent = false } }: { data: any[], opt: Props }): React.ReactElement => {
   const classes = useStyles()
   const [open, setOpen] = useState(depth <= MAX_DEPTH)
 
-  const handleToggleOpen = () => {
-    setOpen(!open)
-  }
+  const handleToggleOpen = (): void => { setOpen(!open) }
 
   if (!open) {
     return (
       <>
         <span onClick={handleToggleOpen} className={clsx(classes.collapsible, !open && classes.collapsibleClosed)}>
-          {objKey && <span className={classes.key}>{`"${objKey}": `}</span>}{'[ ... ]'}{comma && ','}
+          {objKey !== undefined && <span className={classes.key}>{`"${objKey}": `}</span>}{'[ ... ]'}{comma && ','}
         </span>
         <br />
       </>
@@ -139,7 +135,7 @@ const JSONArray = ({ data, opt: { depth, objKey, comma, onChangeUrl, _isContent 
     return (
       <>
         <span onClick={handleToggleOpen} className={clsx(classes.collapsible, !open && classes.collapsibleClosed)}>
-          {objKey && <span className={classes.key}>{`"${objKey}": `}</span>}{'['}
+          {objKey !== undefined && <span className={classes.key}>{`"${objKey}": `}</span>}{'['}
         </span>
         <br />
         <ul className={classes.level}>
@@ -156,19 +152,17 @@ const JSONArray = ({ data, opt: { depth, objKey, comma, onChangeUrl, _isContent 
   }
 }
 
-const JSONString = ({ data, opt: { objKey, comma, onChangeUrl, _isContent } }: { data: string, opt: Props }) => {
+const JSONString = ({ data, opt: { objKey, comma = false, onChangeUrl, _isContent = false } }: { data: string, opt: Props }): React.ReactElement => {
   const classes = useStyles()
   const [open, setOpen] = useState(false)
 
-  const handleToggleOpen = () => {
-    setOpen(!open)
-  }
+  const handleToggleOpen = (): void => { setOpen(!open) }
 
   if (_isContent || objKey === 'Url') {
     return (
       <>
         <span>
-          {objKey && <span className={classes.key}>{`"${objKey}": `}</span>}<Link onClick={() => onChangeUrl(_isContent ? `/${data}` : data)} className={classes.string}>"{data}"{!_isContent && <> <div className={classes.icon}><LinkIcon /></div></>}</Link>{comma && ','}
+          {objKey !== undefined && <span className={classes.key}>{`"${objKey}": `}</span>}<Link onClick={onChangeUrl !== undefined ? () => onChangeUrl(_isContent ? `/${data}` : data) : undefined} className={classes.string}>"{data}"{!_isContent && <> <div className={classes.icon}><LinkIcon /></div></>}</Link>{comma && ','}
         </span>
         <br />
       </>
@@ -177,7 +171,7 @@ const JSONString = ({ data, opt: { objKey, comma, onChangeUrl, _isContent } }: {
     return (
       <>
         <span>
-          {objKey && <span className={classes.key}>{`"${objKey}": `}</span>}<Link onClick={handleToggleOpen} className={classes.string}>"{data}" <div className={classes.icon}><ImageIcon /></div></Link>{comma && ','}
+          {objKey !== undefined && <span className={classes.key}>{`"${objKey}": `}</span>}<Link onClick={handleToggleOpen} className={classes.string}>"{data}" <div className={classes.icon}><ImageIcon /></div></Link>{comma && ','}
         </span>
         {open && (
           <>
@@ -192,7 +186,7 @@ const JSONString = ({ data, opt: { objKey, comma, onChangeUrl, _isContent } }: {
     return (
       <>
         <span>
-          {objKey && <span className={classes.key}>{`"${objKey}": `}</span>}<span className={classes.string}>"{data}"</span>{comma && ','}
+          {objKey !== undefined && <span className={classes.key}>{`"${objKey}": `}</span>}<span className={classes.string}>"{data}"</span>{comma && ','}
         </span>
         <br />
       </>
@@ -200,59 +194,59 @@ const JSONString = ({ data, opt: { objKey, comma, onChangeUrl, _isContent } }: {
   }
 }
 
-const JSONFunction = ({ data, opt: { objKey, comma } }: { data: Function, opt: Props }) => {
+const JSONFunction = ({ data, opt: { objKey, comma = false } }: { data: Function, opt: Props }): React.ReactElement => {
   const classes = useStyles()
 
   return (
     <>
       <span>
-        {objKey && <span className={classes.key}>{`"${objKey}": `}</span>}<span className={classes.function}>{String(data)}</span>{comma && ','}
+        {objKey !== undefined && <span className={classes.key}>{`"${objKey}": `}</span>}<span className={classes.function}>{String(data)}</span>{comma && ','}
       </span>
       <br />
     </>
   )
 }
 
-const JSONNumber = ({ data, opt: { objKey, comma } }: { data: number, opt: Props }) => {
+const JSONNumber = ({ data, opt: { objKey, comma = false } }: { data: number, opt: Props }): React.ReactElement => {
   const classes = useStyles()
 
   return (
     <>
       <span>
-        {objKey && <span className={classes.key}>{`"${objKey}": `}</span>}<span className={classes.number}>{data}</span>{comma && ','}
+        {objKey !== undefined && <span className={classes.key}>{`"${objKey}": `}</span>}<span className={classes.number}>{data}</span>{comma && ','}
       </span>
       <br />
     </>
   )
 }
 
-const JSONUndefined = ({ opt: { objKey, comma } }: { data: string, opt: Props }) => {
+const JSONUndefined = ({ opt: { objKey, comma = false } }: { data: string, opt: Props }): React.ReactElement => {
   const classes = useStyles()
 
   return (
     <>
       <span>
-        {objKey && <span className={classes.key}>{`"${objKey}": `}</span>}<span className={classes.undefined}>undefined</span>{comma && ','}
+        {objKey !== undefined && <span className={classes.key}>{`"${objKey}": `}</span>}<span className={classes.undefined}>undefined</span>{comma && ','}
       </span>
       <br />
     </>
   )
 }
 
-const JSONNull = ({ opt: { objKey, comma } }: { data: string, opt: Props }) => {
+const JSONNull = ({ opt: { objKey, comma = false } }: { data: string, opt: Props }): React.ReactElement => {
   const classes = useStyles()
 
   return (
     <>
       <span>
-        {objKey && <span className={classes.key}>{`"${objKey}": `}</span>}<span className={classes.null}>null</span>{comma && ','}
+        {objKey !== undefined && <span className={classes.key}>{`"${objKey}": `}</span>}<span className={classes.null}>null</span>{comma && ','}
       </span>
       <br />
     </>
   )
 }
 
-export default function renderJSON (data: any, opt: Props) {
+export default function renderJSON (data: any, opt: Props): React.ReactElement {
   if (data === undefined) return <JSONUndefined data={data} opt={opt} />
   if (data === null) return <JSONNull data={data} opt={opt} />
 

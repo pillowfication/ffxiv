@@ -27,18 +27,18 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export type Bait = {
-  id: number,
+export interface Bait {
+  id: number
   tug?: 1 | 2 | 3
 }
 
-type Props = {
-  baits: Bait[],
-  baitIsRequired?: boolean,
-  subtext?: string | ((fishId: number) => string),
+interface Props {
+  baits: Bait[]
+  baitIsRequired?: boolean
+  subtext?: string | ((fishId: number) => string)
 }
 
-const BaitChain = ({ baits, baitIsRequired, subtext }: Props) => {
+const BaitChain = ({ baits, baitIsRequired = false, subtext }: Props): React.ReactElement => {
   const classes = useStyles()
 
   return (
@@ -48,8 +48,8 @@ const BaitChain = ({ baits, baitIsRequired, subtext }: Props) => {
           <div className={classes.bait}>
             {index === 0
               ? <OceanFishIcon type='bait' id={id} Badge={baitIsRequired && <StarBadge />} />
-              : <OceanFishIcon type='fish' id={id} Badge={tug && <Tug size='small' strength={tug} />} />}
-            {(subtext && index === baits.length - 1) && (
+              : <OceanFishIcon type='fish' id={id} Badge={tug !== undefined && <Tug size='small' strength={tug} />} />}
+            {(subtext !== undefined && index === baits.length - 1) && (
               <Typography className={classes.subtext} display='inline'>
                 {typeof subtext === 'string' ? subtext : subtext(id)}
               </Typography>

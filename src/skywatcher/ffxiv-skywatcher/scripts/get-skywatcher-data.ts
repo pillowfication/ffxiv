@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import * as saintCoinach from '../../../saint-coinach'
 
+/* eslint-disable @typescript-eslint/naming-convention */
 const TerritoryType = saintCoinach.get('TerritoryType')
 const PlaceName_en = saintCoinach.get('PlaceName.en')
 const PlaceName_de = saintCoinach.get('PlaceName.de')
@@ -25,18 +26,18 @@ const territories = TerritoryType.data
       weatherRate: territory.WeatherRate
     }
   })
-  .reduce((acc, curr) => (acc[curr.id] = curr, acc), {})
+  .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})
 fs.writeFileSync(path.resolve(__dirname, '../data/territories.json'), JSON.stringify(territories))
 
 console.log('Collecting place names...')
 const placeNames = Object.values<any>(territories)
   .flatMap(territory => [territory.placeName, territory.placeName_zone, territory.placeName_region])
-  .filter((placeNameId, index, array) => array.indexOf(placeNameId, index + 1) === -1)
+  .filter((placeNameId, index, array) => placeNameId !== array[index + 1])
   .map(placeNameId => {
-    const placeName_en = PlaceName_en.data.find(({ ['#']: id }) => id === placeNameId)
-    const placeName_de = PlaceName_de.data.find(({ ['#']: id }) => id === placeNameId)
-    const placeName_fr = PlaceName_fr.data.find(({ ['#']: id }) => id === placeNameId)
-    const placeName_ja = PlaceName_ja.data.find(({ ['#']: id }) => id === placeNameId)
+    const placeName_en = PlaceName_en.data.find(({ '#': id }) => id === placeNameId)
+    const placeName_de = PlaceName_de.data.find(({ '#': id }) => id === placeNameId)
+    const placeName_fr = PlaceName_fr.data.find(({ '#': id }) => id === placeNameId)
+    const placeName_ja = PlaceName_ja.data.find(({ '#': id }) => id === placeNameId)
     return {
       id: placeNameId,
       name_en: placeName_en.Name,
@@ -45,20 +46,20 @@ const placeNames = Object.values<any>(territories)
       name_ja: placeName_ja.Name
     }
   })
-  .reduce((acc, curr) => (acc[curr.id] = curr, acc), {})
+  .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})
 fs.writeFileSync(path.resolve(__dirname, '../data/place-names.json'), JSON.stringify(placeNames))
 
 console.log('Collecting weathers...')
 const weathers = Weather_en.data
   .map(weather => {
     const weatherId = weather['#']
-    const weather_en = Weather_en.data.find(({ ['#']: id }) => id === weatherId)
-    const weather_de = Weather_de.data.find(({ ['#']: id }) => id === weatherId)
-    const weather_fr = Weather_fr.data.find(({ ['#']: id }) => id === weatherId)
-    const weather_ja = Weather_ja.data.find(({ ['#']: id }) => id === weatherId)
+    const weather_en = Weather_en.data.find(({ '#': id }) => id === weatherId)
+    const weather_de = Weather_de.data.find(({ '#': id }) => id === weatherId)
+    const weather_fr = Weather_fr.data.find(({ '#': id }) => id === weatherId)
+    const weather_ja = Weather_ja.data.find(({ '#': id }) => id === weatherId)
     return {
       id: weatherId,
-      icon: weather_en.Icon ? saintCoinach.parseIconId(weather_en.Icon) :  null,
+      icon: weather_en.Icon !== '' ? saintCoinach.parseIconId(weather_en.Icon) : null,
       name_en: weather_en.Name,
       name_de: weather_de.Name,
       name_fr: weather_fr.Name,
@@ -69,7 +70,7 @@ const weathers = Weather_en.data
       description_ja: weather_ja.Description
     }
   })
-  .reduce((acc, curr) => (acc[curr.id] = curr, acc), {})
+  .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})
 fs.writeFileSync(path.resolve(__dirname, '../data/weathers.json'), JSON.stringify(weathers))
 
 console.log('Collecting weather rates...')
@@ -79,9 +80,9 @@ const weatherRates = WeatherRate.data
       id: weatherRate['#'],
       rates: [0, 1, 2, 3, 4, 5, 6, 7]
         .map(index => [weatherRate[`Weather[${index}]`], weatherRate[`Rate[${index}]`]])
-        .filter(([weather, rate]) => weather && rate)
+        .filter(([weather, rate]) => weather !== undefined && rate !== undefined)
         .map(([weather, rate]) => [Weather_en.data.find(({ Name }) => Name === weather)['#'], rate])
     }
   })
-  .reduce((acc, curr) => (acc[curr.id] = curr, acc), {})
+  .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})
 fs.writeFileSync(path.resolve(__dirname, '../data/weather-rates.json'), JSON.stringify(weatherRates))

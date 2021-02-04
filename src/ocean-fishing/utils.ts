@@ -13,7 +13,7 @@ function memoize<T, R> (func: (arg: T) => R): (arg: T) => R {
   }
 }
 
-export function timeUntil (now: Date, then: Date, options: { t: TFunction, full?: boolean, locale?: string }) {
+export function timeUntil (now: Date, then: Date, options: { t: TFunction, full?: boolean, locale?: string }): string {
   const diff = then.getTime() - now.getTime()
   if (diff < -900000) {
     return options.t('routeInfo.enRoute')
@@ -24,17 +24,18 @@ export function timeUntil (now: Date, then: Date, options: { t: TFunction, full?
   }
 }
 
-export function getBlueFish (stopTime: StopTime) {
+export function getBlueFish (stopTime: StopTime): number | null {
   const blueFishId = maps.BLUE_FISH_MAP[stopTime[0] as Stop]
   const spreadsheetData = fishes[blueFishId].spreadsheetData
-  if (spreadsheetData.time && spreadsheetData.time.includes(stopTime[1] as Time)) {
-    return blueFishId
-  } else {
-    return null
+  if (spreadsheetData.time !== undefined) {
+    if (spreadsheetData.time.includes(stopTime[1] as Time)) {
+      return blueFishId
+    }
   }
+  return null
 }
 
-export function isBaitRequired (fishId: number, baitId: number) {
+export function isBaitRequired (fishId: number, baitId: number): boolean {
   for (const otherBaitId of Object.keys(fishes[fishId].biteTimes)) {
     if (otherBaitId === 'all' || Number(otherBaitId) === baitId || Number(otherBaitId) === 29717) {
       continue
@@ -47,23 +48,27 @@ export function isBaitRequired (fishId: number, baitId: number) {
 
 export const getBaitChain = memoize(function _getBaitChain (fishId: number): BaitChainProp[] {
   const spreadsheetData = fishes[fishId].spreadsheetData
-  if (!spreadsheetData.bait && !spreadsheetData.mooch) {
+  if (spreadsheetData.bait === undefined && spreadsheetData.mooch === undefined) {
     return [{ id: 29717 }, { id: fishId, tug: spreadsheetData.tug }] // Versatile Lure as fallback
   } else {
-    return spreadsheetData.bait
+    return spreadsheetData.bait !== undefined
       ? [{ id: spreadsheetData.bait }, { id: fishId, tug: spreadsheetData.tug }]
-      : [..._getBaitChain(spreadsheetData.mooch), { id: fishId, tug: spreadsheetData.tug }]
+      : [..._getBaitChain(spreadsheetData.mooch as number), { id: fishId, tug: spreadsheetData.tug }]
   }
 })
 
 export const getBaitGroup = memoize(
-  (fishId: number): { baits: BaitChainProp[], baitIsRequired?: boolean, intuitionFishes?: { baits: BaitChainProp[], baitIsRequired?: boolean, count: number }[] } => {
+  (fishId: number): {
+    baits: BaitChainProp[]
+    baitIsRequired?: boolean
+    intuitionFishes?: Array<{ baits: BaitChainProp[], baitIsRequired?: boolean, count: number }>
+  } => {
     const spreadsheetData = fishes[fishId].spreadsheetData
     const baitChain = getBaitChain(fishId)
     return {
       baits: baitChain,
       baitIsRequired: isBaitRequired(fishId, baitChain[0].id),
-      intuitionFishes: spreadsheetData.intuition && spreadsheetData.intuition.map(({ fishId, count }) => {
+      intuitionFishes: spreadsheetData.intuition?.map(({ fishId, count }) => {
         const baitChain = getBaitChain(fishId)
         return {
           baits: baitChain,
@@ -75,17 +80,21 @@ export const getBaitGroup = memoize(
   }
 )
 
-export function subtextDH (fishId: number) {
+export function subtextDH (fishId: number): string {
   const doubleHook = fishes[fishId].spreadsheetData.doubleHook
-  return doubleHook ? `DH: ${Array.isArray(doubleHook) ? doubleHook.join('-') : doubleHook}` : 'DH: ?'
+  return doubleHook !== undefined
+    ? `DH: ${Array.isArray(doubleHook) ? doubleHook.join('-') : doubleHook}`
+    : 'DH: ?'
 }
 
-export function subtextBiteTime (fishId: number) {
+export function subtextBiteTime (fishId: number): string {
   const biteTimeAll = fishes[fishId].biteTimes.all
-  return biteTimeAll ? `${biteTimeAll[0] === biteTimeAll[1] ? biteTimeAll[0] : biteTimeAll.join('-')}s` : '?s'
+  return biteTimeAll !== undefined
+    ? `${biteTimeAll[0] === biteTimeAll[1] ? biteTimeAll[0] : biteTimeAll.join('-')}s`
+    : '?s'
 }
 
-export function upperFirst (str: string) {
+export function upperFirst (str: string): string {
   return str[0].toUpperCase() + str.slice(1)
 }
 

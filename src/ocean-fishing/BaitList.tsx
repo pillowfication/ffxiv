@@ -15,20 +15,20 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-type Props = {
-  baitGroups: {
-    header: string,
+interface Props {
+  baitGroups: Array<{
+    header: string
     baitGroupProps: {
-      baits: Bait[],
-      baitIsRequired?: boolean,
-      intuitionFishes?: { baits: Bait[], baitIsRequired?: boolean, count: number }[],
-      subtext?: string | ((fishId: number) => string),
+      baits: Bait[]
+      baitIsRequired?: boolean
+      intuitionFishes?: Array<{ baits: Bait[], baitIsRequired?: boolean, count: number }>
+      subtext?: string | ((fishId: number) => string)
       mainOnly?: boolean
     }
-  }[]
+  }>
 }
 
-const BaitList = ({ baitGroups }: Props) => {
+const BaitList = ({ baitGroups }: Props): React.ReactElement => {
   const classes = useStyles()
 
   return (

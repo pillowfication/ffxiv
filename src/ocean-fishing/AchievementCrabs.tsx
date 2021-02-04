@@ -8,11 +8,11 @@ import BaitList from './BaitList'
 import { getStopTimes, DestTime } from './ffxiv-ocean-fishing'
 import { getBaitGroup, subtextDH } from './utils'
 
-type Props = {
+interface Props {
   route: DestTime
 }
 
-const AchievementCrabs = ({ route }: Props) => {
+const AchievementCrabs = ({ route }: Props): React.ReactElement => {
   const stopTimes = getStopTimes(route)
 
   return (

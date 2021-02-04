@@ -3,6 +3,14 @@ import { makeStyles } from '@material-ui/core/styles'
 import Tooltip from '@material-ui/core/Tooltip'
 import { useTranslation } from '../i18n'
 
+function round (n: number): number {
+  return Math.round(n * 100) / 100
+}
+
+function ct (theta: number, rho: number): string {
+  return `${round(10 + rho * Math.cos(theta))} ${round(10 + rho * Math.sin(theta))}`
+}
+
 const useStyles = makeStyles(theme => ({
   starBadge: {
     position: 'relative',
@@ -15,18 +23,16 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const StarBadge = () => {
+const StarBadge = (): React.ReactElement => {
   const classes = useStyles()
   const { t } = useTranslation('ocean-fishing')
 
   return (
-    <Tooltip placement='top' arrow title={t('requiredBait')}>
+    <Tooltip placement='top' arrow title={String(t('requiredBait'))}>
       <svg width={20} height={20} className={classes.starBadge}>
         {(() => {
           const r = 3
           const R = 7
-          const round = (n: number) => Math.round(n * 100) / 100
-          const ct = (theta: number, rho: number) => round(10 + rho * Math.cos(theta)) + ' ' + round(10 + rho * Math.sin(theta))
 
           const points: string[] = []
           for (let i = 0; i < 5; ++i) {

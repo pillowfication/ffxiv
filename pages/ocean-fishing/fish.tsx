@@ -12,7 +12,7 @@ import { fishingSpots, placeNames } from '../../src/ocean-fishing/ffxiv-ocean-fi
 import { translate } from '../../src/utils'
 import { useTranslation } from '../../src/i18n'
 
-const Fish = () => {
+const Fish = (): React.ReactElement => {
   const { t, i18n } = useTranslation('ocean-fishing')
   const [checklist, setChecklist] = useState<number[]>([])
   const [showImport, setShowImport] = useState(false)
@@ -20,7 +20,7 @@ const Fish = () => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const data = window.localStorage.getItem('ocean-fishing/checklist')
-      if (data) {
+      if (data !== null) {
         setChecklist(data.split(',').map(x => Number(x) | 0).filter(x => x))
       }
     }
@@ -30,7 +30,7 @@ const Fish = () => {
     window.localStorage.setItem('ocean-fishing/checklist', checklist.join(','))
   }, [checklist])
 
-  const toggleShowImport = () => {
+  const toggleShowImport = (): void => {
     setShowImport(!showImport)
   }
 

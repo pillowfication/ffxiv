@@ -27,7 +27,7 @@ function translateSuffix (suffix: string) {
   return `${ORDINALS[miqoteSuffixes[suffix]]} son`
 }
 
-const KeeperOfTheMoonMale = () => {
+const KeeperOfTheMoonMale = (): React.ReactElement => {
   const { t, i18n } = useTranslation('name-generator')
   const [forename, setForename] = useState('')
   const [suffix, setSuffix] = useState('')
@@ -82,7 +82,7 @@ const KeeperOfTheMoonMale = () => {
             The surname is also taken from the mother.
           </Typography>
         </Grid>
-        {name && (
+        {name.length > 0 && (
           <Grid item xs={12}>
             <MyNameIs name={name} />
           </Grid>

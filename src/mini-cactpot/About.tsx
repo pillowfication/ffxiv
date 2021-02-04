@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const About = () => {
+const About = (): React.ReactElement => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('mini-cactpot')
   const locale = i18n.language
@@ -76,14 +76,14 @@ const About = () => {
             ].map((row, index) =>
               <TableRow key={index}>
                 {row.map((col, index) =>
-                  <>
-                    <TableCell key={index} align='center'>
+                  <React.Fragment key={index}>
+                    <TableCell align='center'>
                       {col.toLocaleString(locale)}
                     </TableCell>
-                    <TableCell key={index} align='right'>
+                    <TableCell align='right'>
                       {PAYOUTS[col].toLocaleString(locale)}
                     </TableCell>
-                  </>
+                  </React.Fragment>
                 )}
               </TableRow>
             )}

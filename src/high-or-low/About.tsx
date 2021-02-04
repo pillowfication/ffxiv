@@ -4,7 +4,7 @@ import Section from '../Section'
 import { $, $$ } from '../MathJax'
 import { useTranslation } from '../i18n'
 
-const About = () => {
+const About = (): React.ReactElement => {
   const { t } = useTranslation('high-or-low')
 
   return (

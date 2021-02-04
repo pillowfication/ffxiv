@@ -3,9 +3,9 @@ import { stains } from '../data'
 
 const VALID_STAINS = Object.values(stains).filter(isValidStain)
 
-function getClosestStain (color: Color) {
+function getClosestStain (color: Color): Stain {
   let minDistance = Number.MAX_VALUE
-  let minStain: Stain = null
+  let minStain: Stain = null as any as Stain
   for (const stain of VALID_STAINS) {
     const distance = color.distanceTo(stain.color)
     if (distance < minDistance) {

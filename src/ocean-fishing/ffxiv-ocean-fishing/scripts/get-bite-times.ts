@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import csvStringify from 'csv-stringify/lib/sync'
 import oceanFishingFishingSpots from '../data/fishing-spots.json'
 import oceanFishingFishes from '../data/fishes.json'
 import oceanFishingBaits from '../data/baits.json'
@@ -15,29 +16,30 @@ const BAIT_IDS = [
   32107 // Rothlyt Mussel
 ]
 
-let DATA = []
+const DATA: any[] = []
 for (const fishingSpot of Object.keys(oceanFishingFishingSpots)) {
   DATA.push(...require(`../data/tc/spot-${fishingSpot}.json`))
 }
 
-function getBiteTime (fishId: number, baitId: number) {
+function getBiteTime (fishId: number, baitId?: number): [number, number] | null {
   const times = DATA
-    .filter(datum => datum.itemId === fishId && (!baitId || datum.baitId === baitId))
+    .filter(datum => datum.itemId === fishId && (baitId === undefined || datum.baitId === baitId))
     .sort((a, b) => a.biteTime - b.biteTime)
-  const totalOccurrences = times.reduce((acc, curr) => acc + curr.occurrences, 0)
+  const totalOccurrences = times.reduce((acc, curr) => (acc as number) + (curr.occurrences as number), 0)
 
   if (totalOccurrences < 10) {
     // Too few reports for meaningful data
     return null
   } else {
     const cutOff = Math.floor(totalOccurrences * CUTOFF)
-    let minTime: number, maxTime: number
+    let minTime: number = -1
+    let maxTime: number = -1
     for (let count = 0, index = 0; index < times.length; ++index) {
-      count += times[index].occurrences
-      if (minTime === undefined && count >= cutOff) {
+      count += times[index].occurrences as number
+      if (minTime === -1 && count >= cutOff) {
         minTime = times[index].biteTime
       }
-      if (maxTime === undefined && count >= totalOccurrences - cutOff) {
+      if (maxTime === -1 && count >= totalOccurrences - cutOff) {
         maxTime = times[index].biteTime
       }
     }
@@ -48,19 +50,20 @@ function getBiteTime (fishId: number, baitId: number) {
 const biteTimes = {}
 for (const fish of Object.values(oceanFishingFishes)) {
   const biteTimesByBait = {}
-  let minBiteTime: number, maxBiteTime: number
+  let minBiteTime = Infinity
+  let maxBiteTime = -Infinity
   BAIT_IDS.forEach(baitId => {
     const biteTime = getBiteTime(fish.id, baitId)
-    if (biteTime) {
+    if (biteTime !== null) {
       if (baitId !== 29717) { // Ignore Versatile Lure
-        minBiteTime = minBiteTime ? Math.min(minBiteTime, biteTime[0]) : biteTime[0]
-        maxBiteTime = maxBiteTime ? Math.max(maxBiteTime, biteTime[1]) : biteTime[1]
+        minBiteTime = Math.min(minBiteTime, biteTime[0])
+        maxBiteTime = Math.max(maxBiteTime, biteTime[1])
       }
       biteTimesByBait[baitId] = biteTime
     }
   })
   biteTimes[fish.id] = {
-    all: (minBiteTime && maxBiteTime && [minBiteTime, maxBiteTime]) || null,
+    all: isFinite(minBiteTime) && isFinite(maxBiteTime) ? [minBiteTime, maxBiteTime] : null,
     ...biteTimesByBait
   }
 }
@@ -71,21 +74,16 @@ fs.writeFileSync(OUTPUT, JSON.stringify(biteTimes))
 // Create CSV
 //
 
-import csvStringify from 'csv-stringify/lib/sync'
-
 const CSV_OUTPUT = path.resolve(__dirname, '../data/bite-times.csv')
 
-function _getBiteTime (fishId: number, baitId: number) {
-  return biteTimes[fishId]
-    && biteTimes[fishId][baitId]
-    && biteTimes[fishId][baitId].join('-')
-    || undefined
+function _getBiteTime (fishId: number, baitId: number): [number, number] | undefined {
+  return biteTimes[fishId]?.[baitId]?.join('-')
 }
 
 const csv = csvStringify(
   Object.values(oceanFishingFishes)
     .map(fish => Object.values(oceanFishingBaits).reduce(
-      (acc, bait) => (acc[bait.name_en] = _getBiteTime(fish.id, bait.id), acc),
+      (acc, bait) => { acc[bait.name_en] = _getBiteTime(fish.id, bait.id); return acc },
       { name: fish.name_en }
     )),
   {

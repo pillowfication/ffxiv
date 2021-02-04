@@ -24,12 +24,12 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-type Props = {
+interface Props {
   now: Date,
   onSelectRoute: (route: DestTime) => void
 }
 
-const UpcomingVoyages = ({ now, onSelectRoute }: Props) => {
+const UpcomingVoyages = ({ now, onSelectRoute }: Props): React.ReactElement => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('ocean-fishing')
   const [numRows, setNumRows] = useState(10)

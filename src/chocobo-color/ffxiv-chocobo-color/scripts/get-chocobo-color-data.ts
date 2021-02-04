@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import * as saintCoinach from '../../../saint-coinach'
 
+/* eslint-disable @typescript-eslint/naming-convention */
 const Item_en = saintCoinach.get('Item.en')
 const Item_de = saintCoinach.get('Item.de')
 const Item_fr = saintCoinach.get('Item.fr')
@@ -15,10 +16,10 @@ console.log('Collecting stains...')
 const stains = Stain_en.data
   .map(stain => {
     const stainId = stain['#']
-    const stain_en = Stain_en.data.find(({ ['#']: id }) => id === stainId)
-    const stain_de = Stain_de.data.find(({ ['#']: id }) => id === stainId)
-    const stain_fr = Stain_fr.data.find(({ ['#']: id }) => id === stainId)
-    const stain_ja = Stain_ja.data.find(({ ['#']: id }) => id === stainId)
+    const stain_en = Stain_en.data.find(({ '#': id }) => id === stainId)
+    const stain_de = Stain_de.data.find(({ '#': id }) => id === stainId)
+    const stain_fr = Stain_fr.data.find(({ '#': id }) => id === stainId)
+    const stain_ja = Stain_ja.data.find(({ '#': id }) => id === stainId)
 
     return {
       id: stainId,
@@ -35,7 +36,7 @@ const stains = Stain_en.data
       shadeIndex: stain_en['<UNKNOWN_2>']
     }
   })
-  .reduce((acc, curr) => (acc[curr.id] = curr, acc), {})
+  .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})
 fs.writeFileSync(path.resolve(__dirname, '../data/stains.json'), JSON.stringify(stains))
 
 console.log('Collecting fruits...')
@@ -46,13 +47,13 @@ const fruits = [
   8160, // Valfruit
   8161, // O'Ghomoro Berries
   8162, // Cieldalaes Pineapple
-  8163  // Han Lemon
+  8163 // Han Lemon
 ]
   .map(itemId => {
-    const item_en = Item_en.data.find(({ ['#']: id }) => id === itemId)
-    const item_de = Item_de.data.find(({ ['#']: id }) => id === itemId)
-    const item_fr = Item_fr.data.find(({ ['#']: id }) => id === itemId)
-    const item_ja = Item_ja.data.find(({ ['#']: id }) => id === itemId)
+    const item_en = Item_en.data.find(({ '#': id }) => id === itemId)
+    const item_de = Item_de.data.find(({ '#': id }) => id === itemId)
+    const item_fr = Item_fr.data.find(({ '#': id }) => id === itemId)
+    const item_ja = Item_ja.data.find(({ '#': id }) => id === itemId)
 
     return {
       id: itemId,
@@ -71,5 +72,5 @@ const fruits = [
       plural_ja: item_ja.Plural
     }
   })
-  .reduce((acc, curr) => (acc[curr.id] = curr, acc), {})
+  .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})
 fs.writeFileSync(path.resolve(__dirname, '../data/fruits.json'), JSON.stringify(fruits))

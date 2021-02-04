@@ -63,7 +63,7 @@ const ADVANCED: { [key: string]: React.FunctionComponent<{}> } = {
   [`${Clan.Hellsguard},${Gender.Female}`]: HellsguardFemale
 }
 
-function randomElement<T> (array: T[]) {
+function randomElement<T> (array: T[]): T {
   return array[Math.floor(Math.random() * array.length)]
 }
 
@@ -73,7 +73,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(1),
     [theme.breakpoints.up('md')]: {
       margin: theme.spacing(4),
-      padding: theme.spacing(2),
+      padding: theme.spacing(2)
     },
     fontSize: '1.75em',
     '& > span': {
@@ -85,7 +85,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Generator = () => {
+const Generator = (): React.ReactElement => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('name-generator')
   const [race, setRace] = useState<Race | null>(null)
@@ -94,33 +94,33 @@ const Generator = () => {
   const [results, setResults] = useState<string[]>(['Click the Generate button!'])
   const locale = i18n.language
 
-  const raceClans = race ? getClans(race) : []
-  const raceGenders = race ? getGenders(race) : []
-  const AdvancedComponent = clan && gender && ADVANCED[`${clan},${gender}`]
+  const raceClans = race !== null ? getClans(race) : []
+  const raceGenders = race !== null ? getGenders(race) : []
+  const AdvancedComponent = (clan !== null && gender !== null) ? ADVANCED[`${clan},${gender}`] : null
 
-  const handleSelectRace = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleSelectRace = (event: React.ChangeEvent<HTMLSelectElement>): void => {
     const race = event.target.value === 'none' ? null : event.target.value as Race
-    const raceClans = race && getClans(race)
-    const raceGenders = race && getGenders(race)
+    const raceClans = race !== null ? getClans(race) : []
+    const raceGenders = race !== null ? getGenders(race) : []
     setRace(race)
-    setClan(race && raceClans.length === 1 ? raceClans[0] : null)
-    setGender(race && raceGenders.length === 1 ? raceGenders[0] : null)
+    setClan(race !== null && raceClans.length === 1 ? raceClans[0] : null)
+    setGender(race !== null && raceGenders.length === 1 ? raceGenders[0] : null)
   }
-  const handleSelectClan = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleSelectClan = (event: React.ChangeEvent<HTMLSelectElement>): void => {
     const clan = event.target.value
     setClan(clan === 'none' ? null : clan as Clan)
   }
-  const handleSelectGender = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleSelectGender = (event: React.ChangeEvent<HTMLSelectElement>): void => {
     const gender = event.target.value
     setGender(gender === 'none' ? null : gender as Gender)
   }
 
-  const handleClickGenerate = () => {
-    const newResults = []
+  const handleClickGenerate = (): void => {
+    const newResults: string[] = []
     for (let i = 0; i < 10; ++i) {
-      const genRace = race || randomElement(getRaces())
-      const genClan = clan || randomElement(getClans(genRace))
-      const genGender = gender || randomElement(getGenders(genRace))
+      const genRace = race !== null ? race : randomElement(getRaces())
+      const genClan = clan !== null ? clan : randomElement(getClans(genRace))
+      const genGender = gender !== null ? gender : randomElement(getGenders(genRace))
       newResults.push(generate(genClan, genGender))
     }
     setResults(newResults)
@@ -133,7 +133,7 @@ const Generator = () => {
           <Grid item xs={12} md={3}>
             <FormControl fullWidth>
               <InputLabel>{t('race')}</InputLabel>
-              <Select value={race || 'none'} onChange={handleSelectRace}>
+              <Select value={race !== null ? race : 'none'} onChange={handleSelectRace}>
                 <MenuItem value='none'>{t('anyRace')}</MenuItem>
                 {getRaces().map(race =>
                   <MenuItem key={race} value={race}>{translate('race', race, locale)}</MenuItem>
@@ -144,7 +144,7 @@ const Generator = () => {
           <Grid item xs={12} md={3}>
             <FormControl fullWidth>
               <InputLabel>{t('clan')}</InputLabel>
-              <Select value={clan || 'none'} onChange={handleSelectClan}>
+              <Select value={clan !== null ? clan : 'none'} onChange={handleSelectClan}>
                 {raceClans.length !== 1 && <MenuItem value='none'>{t('anyClan')}</MenuItem>}
                 {raceClans.map(clan =>
                   <MenuItem key={clan} value={clan}>
@@ -157,7 +157,7 @@ const Generator = () => {
           <Grid item xs={12} md={3}>
             <FormControl fullWidth>
               <InputLabel>{t('gender')}</InputLabel>
-              <Select value={gender || 'none'} onChange={handleSelectGender}>
+              <Select value={gender !== null ? gender : 'none'} onChange={handleSelectGender}>
                 {raceGenders.length !== 1 && <MenuItem value='none'>{t('anyGender')}</MenuItem>}
                 {raceGenders.map(gender =>
                   <MenuItem key={gender} value={gender}>
@@ -175,7 +175,7 @@ const Generator = () => {
           {results.map((result, index) => <span key={index}>{result}</span>)}
         </Paper>
       </Section>
-      {AdvancedComponent && <AdvancedComponent />}
+      {AdvancedComponent !== null && <AdvancedComponent />}
     </>
   )
 }

@@ -13,7 +13,7 @@ enum CalculatorState {
   Complete
 }
 
-function toPercent (p: number, q: number) {
+function toPercent (p: number, q: number): number {
   return Math.floor(p / q * 100)
 }
 
@@ -25,7 +25,7 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const Calculator = () => {
+const Calculator = (): React.ReactElement => {
   const classes = useStyles()
   const { t } = useTranslation('high-or-low')
   const [tb1, setTb1] = useState<number | null>(null)
@@ -33,12 +33,12 @@ const Calculator = () => {
   const [me, setMe] = useState<number | null>(null)
 
   let state: CalculatorState
-  let tb1Error = tb1 && (tb1 === tb2 || tb1 === me)
-  let tb2Error = tb2 && (tb2 === tb1 || tb2 === me)
-  let meError = me && (me === tb1 || me === tb2)
-  let high: number
-  let low: number
-  let same: number
+  const tb1Error = tb1 !== null && (tb1 === tb2 || tb1 === me)
+  const tb2Error = tb2 !== null && (tb2 === tb1 || tb2 === me)
+  const meError = me !== null && (me === tb1 || me === tb2)
+  let high: number = 0
+  let low: number = 0
+  let same: number = 0
 
   if (tb1Error || tb2Error || meError) {
     state = CalculatorState.Duplicate
@@ -49,7 +49,7 @@ const Calculator = () => {
     ;({ high, low, same } = calculateHighOrLow(tb1, tb2, me))
   }
 
-  const handleClickReset = () => {
+  const handleClickReset = (): void => {
     setTb1(null)
     setTb2(null)
     setMe(null)

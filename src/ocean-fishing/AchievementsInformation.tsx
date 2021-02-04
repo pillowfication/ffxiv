@@ -9,11 +9,11 @@ import AchievementMantas from './AchievementMantas'
 import { DestTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 
-type Props = {
+interface Props {
   route: DestTime
 }
 
-const AchievementsInformation = ({ route }: Props) => {
+const AchievementsInformation = ({ route }: Props): React.ReactElement => {
   return (
     <>
       {maps.ACHIEVEMENTS_MAP[route].map(achievement => {

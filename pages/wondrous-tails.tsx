@@ -3,7 +3,7 @@ import Page from '../src/Page'
 import Calculator from '../src/wondrous-tails/Calculator'
 import { useTranslation } from '../src/i18n'
 
-const WondrousTails = () => {
+const WondrousTails = (): React.ReactElement => {
   const { t } = useTranslation('wondrous-tails')
 
   return (

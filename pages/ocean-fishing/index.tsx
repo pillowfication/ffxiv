@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const OceanFishing = () => {
+const OceanFishing = (): React.ReactElement => {
   const classes = useStyles()
   const { t } = useTranslation('ocean-fishing')
   const [now, setNow] = useState<Date>(new Date())
@@ -48,7 +48,7 @@ const OceanFishing = () => {
 
     if (typeof window !== 'undefined') {
       const data = window.localStorage.getItem('ocean-fishing/checklist')
-      if (data) {
+      if (data !== null) {
         setChecklist(data.split(',').map(x => Number(x) | 0).filter(x => x))
       }
     }
@@ -82,7 +82,7 @@ const OceanFishing = () => {
           </div>
         </Section>
         <UpcomingVoyages now={now} onSelectRoute={setSelectedRoute} />
-        {selectedRoute && (
+        {selectedRoute !== null && (
           <>
             <RouteInformation now={now} route={selectedRoute} />
             <AchievementsInformation route={selectedRoute} />

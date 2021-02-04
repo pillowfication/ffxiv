@@ -49,20 +49,21 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-function displayBell (seed: number) {
+function displayBell (seed: number): string {
   switch (seed % 3) {
     case 0: return '00:00'
     case 1: return '08:00'
     case 2: return '16:00'
+    default: return '??:??'
   }
 }
 
-type Props = {
-  now: Date,
-  forecast: { prevWeather: Weather, currWeather: Weather, seed: number, date: Date }[]
+interface Props {
+  now: Date
+  forecast: Array<{ prevWeather: Weather, currWeather: Weather, seed: number, date: Date }>
 }
 
-const Forecaster = ({ now, forecast }: Props) => {
+const Forecaster = ({ now, forecast }: Props): React.ReactElement => {
   const classes = useStyles()
 
   return (

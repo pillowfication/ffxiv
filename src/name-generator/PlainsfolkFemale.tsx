@@ -9,7 +9,7 @@ import { translate, Clan, Gender } from './ffxiv-name-generator'
 import { upperFirst, formatName } from './ffxiv-name-generator/src/utils'
 import { useTranslation } from '../i18n'
 
-const PlainsfolkFemale = () => {
+const PlainsfolkFemale = (): React.ReactElement => {
   const { t, i18n } = useTranslation('name-generator')
   const [phonemeA, setPhonemeA] = useState('')
   const [phonemeB, setPhonemeB] = useState('')
@@ -49,7 +49,7 @@ const PlainsfolkFemale = () => {
             The <b>A</b> and <b>B</b> phonemes are one syllable.
           </Typography>
         </Grid>
-        {name && (
+        {name.length > 0 && (
           <Grid item xs={12}>
             <MyNameIs name={name} />
           </Grid>

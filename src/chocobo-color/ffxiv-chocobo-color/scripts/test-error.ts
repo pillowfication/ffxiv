@@ -9,26 +9,26 @@ class Vector {
     this.z = z
   }
 
-  dist (v: Vector) {
+  dist (v: Vector): number {
     return Math.hypot(this.x - v.x, this.y - v.y, this.z - v.z)
   }
 }
 
 const RESOLUTION = 100
 const VECTORS = [
-  new Vector( 0,  0,  0),
+  new Vector(0, 0, 0),
   new Vector(-1, -1, -1),
-  new Vector(-1, -1,  1),
-  new Vector(-1,  1, -1),
-  new Vector(-1,  1,  1),
-  new Vector( 1, -1, -1),
-  new Vector( 1, -1,  1),
-  new Vector( 1,  1, -1),
-  new Vector( 1,  1,  1)
+  new Vector(-1, -1, 1),
+  new Vector(-1, 1, -1),
+  new Vector(-1, 1, 1),
+  new Vector(1, -1, -1),
+  new Vector(1, -1, 1),
+  new Vector(1, 1, -1),
+  new Vector(1, 1, 1)
 ]
 
 let errorBound = 0
-let errorVec = null
+let errorVec: Vector = null as any as Vector
 
 for (let i = 0; i <= RESOLUTION; ++i) {
   const x = i * 2 / RESOLUTION - 1

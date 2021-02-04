@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const SeaWolfFemale = () => {
+const SeaWolfFemale = (): React.ReactElement => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('name-generator')
   const [forenameWord1, setForenameWord1] = useState('')
@@ -140,7 +140,7 @@ const SeaWolfFemale = () => {
             Although both “Thota” and “Wyn” mean “Daughter”, “Thota” is used exclusively for forenames, and “Wyn” is exclusively for surnames.
           </Typography>
         </Grid>
-        {name && (
+        {name.length > 0 && (
           <Grid item xs={12}>
             <MyNameIs name={name} />
           </Grid>

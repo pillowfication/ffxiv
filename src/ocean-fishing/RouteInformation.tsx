@@ -47,12 +47,12 @@ enum FishFilter {
   All
 }
 
-type Props = {
+interface Props {
   now: Date,
   route: DestTime
 }
 
-const RouteInformation = ({ now, route }: Props) => {
+const RouteInformation = ({ now, route }: Props): React.ReactElement => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('ocean-fishing')
   const [fishFilter, setFishFilter] = useState(FishFilter.Intuition)

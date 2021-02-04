@@ -10,7 +10,7 @@ import { upperFirst } from './ffxiv-name-generator/src/utils'
 import miqoteTribes from './ffxiv-name-generator/data/miqote-tribes.json'
 import { useTranslation } from '../i18n'
 
-const SeekersOfTheSunFemale = () => {
+const SeekersOfTheSunFemale = (): React.ReactElement => {
   const { t, i18n } = useTranslation('name-generator')
   const [forename, setForename] = useState('')
   const [tribe, setTribe] = useState('')
@@ -64,7 +64,7 @@ const SeekersOfTheSunFemale = () => {
             The female’s surname is taken from the breeding male who sired her.
           </Typography>
         </Grid>
-        {name && (
+        {name.length > 0 && (
           <Grid item xs={12}>
             <MyNameIs name={name} />
           </Grid>

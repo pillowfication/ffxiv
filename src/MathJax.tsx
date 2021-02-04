@@ -1,12 +1,12 @@
-declare var MathJax: any
-
 import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import NoSsr from '@material-ui/core/NoSsr'
 import Highlight from './Highlight'
 
+declare const MathJax: any
+
 let calledRender = false
-function queueRenderMath () {
+function queueRenderMath (): void {
   if (typeof MathJax !== 'undefined' && !calledRender) {
     calledRender = true
     setTimeout(() => {
@@ -29,36 +29,41 @@ const useStyles = makeStyles(theme => ({
     maxWidth: '100%',
     overflowX: 'auto',
     fontSize: '1.125em'
-  },
-  mathJaxInline: {
   }
 }))
 
-type Props = {
-  math: string,
+interface Props {
+  math: string
   displayMode?: boolean
 }
 
-const MathJaxComponent = ({ math, displayMode }: Props) => {
+const MathJaxComponent = ({ math, displayMode = false }: Props): React.ReactElement => {
   const classes = useStyles()
 
   useEffect(queueRenderMath, [math, displayMode])
 
   if (typeof MathJax === 'undefined') {
     return displayMode
-      // @ts-ignore
+      // @ts-expect-error
       ? <Highlight language='latex' className={classes.noMathJaxBlock}>{`\\[${math}\\]`}</Highlight>
       : <span className={classes.noMathJaxInline}>{`\\(${math}\\)`}</span>
   } else {
     return displayMode
       ? <div className={classes.mathJaxBlock}>{`\\[${math}\\]`}</div>
-      : <span className={classes.mathJaxInline}>{`\\(${math}\\)`}</span>
+      : <span>{`\\(${math}\\)`}</span>
   }
 }
 
 export default MathJaxComponent
 
-export const $ = (math: string) => <NoSsr><MathJaxComponent math={math} /></NoSsr>
-export const $$ = (math: string) => <NoSsr><MathJaxComponent math={math} displayMode /></NoSsr>
+export const $ = (math: string): React.ReactElement => (
+  <NoSsr><MathJaxComponent math={math} /></NoSsr>
+)
 
-export const mathJaxRequire = (module: string) => <div style={{ display: 'none' }}><MathJaxComponent math={`\\require{${module}}`} /></div>
+export const $$ = (math: string): React.ReactElement => (
+  <NoSsr><MathJaxComponent math={math} displayMode /></NoSsr>
+)
+
+export const mathJaxRequire = (module: string): React.ReactElement => (
+  <NoSsr><div style={{ display: 'none' }}><MathJaxComponent math={`\\require{${module}}`} /></div></NoSsr>
+)

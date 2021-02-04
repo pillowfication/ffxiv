@@ -4,37 +4,37 @@ import _weathers from './weathers.json'
 import _weatherRates from './weather-rates.json'
 import _partition from './partition.json'
 
-export type Territory = {
-  id: number,
-  placeName: number,
-  placeName_zone: number,
-  placeName_region: number,
+export interface Territory {
+  id: number
+  placeName: number
+  placeName_zone: number
+  placeName_region: number
   weatherRate: number
 }
 
-export type PlaceName = {
-  id: number,
-  name_en: string,
-  name_de: string,
-  name_fr: string,
+export interface PlaceName {
+  id: number
+  name_en: string
+  name_de: string
+  name_fr: string
   name_ja: string
 }
 
-export type Weather = {
-  id: number,
-  icon?: number,
-  name_en: string,
-  name_de: string,
-  name_fr: string,
-  name_ja: string,
-  description_en: string,
-  description_de: string,
-  description_fr: string,
+export interface Weather {
+  id: number
+  icon: number | null
+  name_en: string
+  name_de: string
+  name_fr: string
+  name_ja: string
+  description_en: string
+  description_de: string
+  description_fr: string
   description_ja: string
 }
 
-export type WeatherRate = {
-  id: number,
+export interface WeatherRate {
+  id: number
   rates: number[][]
 }
 

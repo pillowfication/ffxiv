@@ -1,7 +1,7 @@
 import CACHE from './gists/cache.json'
 // const CACHE = []
 
-export const PAYOUTS = {
+export const PAYOUTS: Record<number, number> = {
   6: 10000,
   7: 36,
   8: 720,
@@ -23,7 +23,7 @@ export const PAYOUTS = {
   24: 3600
 }
 
-export const LINES = [
+export const LINES: Array<[number, number, number]> = [
   [6, 7, 8],
   [3, 4, 5],
   [0, 1, 2],
@@ -38,7 +38,7 @@ function memoize<A extends any[], R> (func: (...args: A) => R, createKey: (...ar
   const cache = {}
   return function (...args: A): R {
     const key: string = createKey.apply(null, args)
-    if (cache[key]) {
+    if (cache[key] !== undefined) {
       return cache[key]
     } else {
       return (cache[key] = func.apply(null, args))
@@ -51,7 +51,7 @@ const calcHiddenSums = memoize(
     if (count === 0) {
       return [0]
     } else if (count === 1) {
-      return hidden
+      return [...hidden]
     } else if (count === hidden.length) {
       let sum = 0
       for (const digit of hidden) {
@@ -61,33 +61,35 @@ const calcHiddenSums = memoize(
     } else {
       const lastIndex = hidden.length - 1
       const lastDigit = hidden[lastIndex]
-      return calcHiddenSums(hidden.slice(0, lastIndex), count - 1).map(x => x + lastDigit)
-        .concat(calcHiddenSums(hidden.slice(0, lastIndex), count))
+      return [
+        ...calcHiddenSums(hidden.slice(0, lastIndex), count - 1).map(sum => sum + lastDigit),
+        ...calcHiddenSums(hidden.slice(0, lastIndex), count)
+      ]
     }
   },
-  (hidden: number[], count: number) => hidden + '|' + count
+  (hidden: number[], count: number) => `${hidden.join(',')}|${count}`
 )
 
 const calcLineEV = memoize(
-  (grid: number[], lineIndex: number, hidden: number[]): number => {
+  (grid: Array<number | null>, lineIndex: number, hidden: number[]): number => {
     let revealed = 0
     let revealedSum = 0
 
     for (const i of LINES[lineIndex]) {
-      if (grid[i]) {
+      if (grid[i] !== null) {
         ++revealed
-        revealedSum += grid[i]
+        revealedSum += grid[i] as number
       }
     }
 
     const hiddenSums = calcHiddenSums(hidden, 3 - revealed)
     return hiddenSums.reduce((ev, hiddenSum) => ev + PAYOUTS[revealedSum + hiddenSum], 0) / hiddenSums.length
   },
-  (grid: number[], lineIndex: number, hidden: number[]) => grid + '|' + lineIndex + '|' + hidden
+  (grid: Array<number | null>, lineIndex: number, hidden: number[]) => `${grid.join(',')}|${lineIndex}|${hidden.join(',')}`
 )
 
 const calcCellEV = memoize(
-  (grid: number[], cell: number, hidden: number[]): number => {
+  (grid: Array<number | null>, cell: number, hidden: number[]): number => {
     let ev = 0
     for (let i = 0; i < hidden.length; ++i) {
       const digit = hidden[i]
@@ -99,41 +101,41 @@ const calcCellEV = memoize(
     }
     return ev / hidden.length
   },
-  (grid: number[], cell: number, hidden: number[]) => grid + '|' + cell + '|' + hidden
+  (grid: Array<number | null>, cell: number, hidden: number[]) => `${grid.join(',')}|${cell}|${hidden.join(',')}`
 )
 
 const calcGridEV = memoize(
-  (grid: number[], hidden: number[]): number => {
+  (grid: Array<number | null>, hidden: number[]): number => {
     let revealed = 0
     for (const cell of grid) {
-      if (cell) {
+      if (cell !== null) {
         ++revealed
       }
     }
 
     if (revealed < 4) {
-      let maxCellEV = Number.MIN_SAFE_INTEGER
+      let maxCellEV = -Infinity
       for (let i = 0; i < 9; ++i) {
-        if (!grid[i]) {
+        if (grid[i] === null) {
           maxCellEV = Math.max(maxCellEV, calcCellEV(grid, i, hidden))
         }
       }
       return maxCellEV
     } else {
-      let maxLineEV = Number.MIN_SAFE_INTEGER
+      let maxLineEV = -Infinity
       for (let i = 0; i < LINES.length; ++i) {
         maxLineEV = Math.max(maxLineEV, calcLineEV(grid, i, hidden))
       }
       return maxLineEV
     }
   },
-  (grid: number[], hidden: number[]) => grid + '|' + hidden
+  (grid: Array<number | null>, hidden: number[]) => `${grid.join(',')}|${hidden.join(',')}`
 )
 
-export function validateGrid (grid: number[]): { type: string, cells?: number[] } {
+export function validateGrid (grid: Array<number | null>): { type: 'EMPTY' | 'TOO MANY' | 'DUPLICATES', cells?: number[] } | null {
   let enteredCount = 0
-  const seenValues = {}
-  const duplicateCells = []
+  const seenValues: Record<number, number | true> = {}
+  const duplicateCells: number[] = []
 
   for (let i = 0; i < 9; ++i) {
     const value = grid[i]
@@ -141,7 +143,7 @@ export function validateGrid (grid: number[]): { type: string, cells?: number[] 
       ++enteredCount
       const seenAt = seenValues[value]
       if (seenAt != null) {
-        duplicateCells.push(seenAt)
+        duplicateCells.push(seenAt as number)
         duplicateCells.push(i)
         seenValues[value] = true
       } else if (seenAt !== undefined) {
@@ -156,12 +158,12 @@ export function validateGrid (grid: number[]): { type: string, cells?: number[] 
     return { type: 'EMPTY' }
   }
   if (enteredCount > 4) {
-    const enteredCells = []
-    for (const cellIndex in grid) {
-      if (grid[cellIndex]) {
+    const enteredCells: number[] = []
+    grid.forEach((_, cellIndex) => {
+      if (grid[cellIndex] !== null) {
         enteredCells.push(cellIndex)
       }
-    }
+    })
     return { type: 'TOO MANY', cells: enteredCells }
   }
   if (duplicateCells.length > 0) {
@@ -170,18 +172,27 @@ export function validateGrid (grid: number[]): { type: string, cells?: number[] 
   return null
 }
 
-export function getSuggestion (grid: number[], _disableCache?: boolean) {
-  const hidden = []
+export function getSuggestion (grid: Array<number | null>):
+{
+  type: 'CELL'
+  maxCellEV: number
+  maxCellLocations: number[]
+} | {
+  type: 'LINE'
+  maxLineEV: number
+  maxLineIds: number[]
+} {
+  const hidden: number[] = []
   for (let i = 1; i <= 9; ++i) {
-    if (grid.indexOf(i) === -1) {
+    if (!grid.includes(i)) {
       hidden.push(i)
     }
   }
   const revealed = 9 - hidden.length
 
-  if (revealed === 1 && !_disableCache) {
+  if (revealed === 1) {
     const index = grid.findIndex(digit => digit !== null)
-    const cached = CACHE[index * 9 + grid[index] - 1]
+    const cached = CACHE[index * 9 + (grid[index] as number) - 1]
     return {
       type: 'CELL',
       maxCellEV: cached.v,
@@ -190,10 +201,10 @@ export function getSuggestion (grid: number[], _disableCache?: boolean) {
   }
 
   if (revealed < 4) {
-    let maxCellEV = Number.MIN_SAFE_INTEGER
-    let maxCellLocations: number[]
+    let maxCellEV = -Infinity
+    let maxCellLocations: number[] = []
     for (let i = 0; i < 9; ++i) {
-      if (!grid[i]) {
+      if (grid[i] === null) {
         const cellEV = calcCellEV(grid, i, hidden)
         if (cellEV > maxCellEV) {
           maxCellEV = cellEV
@@ -209,8 +220,8 @@ export function getSuggestion (grid: number[], _disableCache?: boolean) {
       maxCellLocations
     }
   } else {
-    let maxLineEV = Number.MIN_SAFE_INTEGER
-    let maxLineIds: number[]
+    let maxLineEV = -Infinity
+    let maxLineIds: number[] = []
     for (let i = 0; i < LINES.length; ++i) {
       const lineEV = calcLineEV(grid, i, hidden)
       if (lineEV > maxLineEV) {

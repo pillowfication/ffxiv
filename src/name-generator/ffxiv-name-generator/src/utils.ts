@@ -5,7 +5,7 @@ import fr from '../locales/fr.json'
 import ja from '../locales/ja.json'
 const LOCALES = { en, de, fr, ja }
 
-export function randomElement<T> (...arrays: T[][]) {
+export function randomElement<T> (...arrays: T[][]): T | undefined {
   if (arrays.length === 0) {
     return undefined
   } else if (arrays.length === 1) {
@@ -24,27 +24,27 @@ export function randomElement<T> (...arrays: T[][]) {
   }
 }
 
-export function upperFirst (string?: string) {
-  if (!string) return ''
+export function upperFirst (string: string): string {
   string = string.replace(/[^a-z'-]/ig, '')
+  if (string.length === 0) return ''
   return string[0].toUpperCase() + string.slice(1).toLowerCase()
 }
 
-export function formatName (forename: string, surname: string) {
+export function formatName (forename: string, surname: string): string {
   return (upperFirst(forename) + ' ' + upperFirst(surname)).trim()
 }
 
-export function conjugateRoegadyn (word: string, grammar: 'A' | 'N') {
+export function conjugateRoegadyn (word: string, grammar: 'A' | 'N'): string {
   word = upperFirst(word.replace(/\s+/g, ''))
   const entry = roegadynDictionary[word]
 
   // If this word does not appear in the dictionary, leave it alone
-  if (!entry) {
+  if (entry === undefined) {
     return word
   }
 
   // If this word has the conjugation listed, use it
-  if (entry.derivatives && entry.derivatives[grammar]) {
+  if (entry.derivatives?.[grammar] !== undefined) {
     return entry.derivatives[grammar]
   }
 
@@ -72,7 +72,7 @@ export function conjugateRoegadyn (word: string, grammar: 'A' | 'N') {
   return word
 }
 
-export function combineRoegadyn (...words: string[]) {
+export function combineRoegadyn (...words: string[]): string {
   return upperFirst(
     words.map((word, index) => {
       if (index === 0) return word
@@ -87,6 +87,7 @@ export function combineRoegadyn (...words: string[]) {
   )
 }
 
-export function translate (type: 'race' | 'clan' | 'gender', id: string, locale: string = 'en') {
-  return (LOCALES[locale] && LOCALES[locale][type][id]) || `{${type}.${id}}`
+export function translate (type: 'race' | 'clan' | 'gender', id: string, locale: string = 'en'): string {
+  const translation = LOCALES[locale]?.[type][id]
+  return translation !== undefined ? translation : `{${type}.${id}}`
 }

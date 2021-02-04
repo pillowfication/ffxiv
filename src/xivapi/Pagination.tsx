@@ -10,22 +10,22 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-type Props = {
-  url: string,
-  data: any,
+interface Props {
+  url: string
+  data: any
   onChangeUrl: (url: string) => void
 }
 
-const Pagination = ({ url, data, onChangeUrl }: Props) => {
+const Pagination = ({ url, data, onChangeUrl }: Props): React.ReactElement | null => {
   const classes = useStyles()
 
-  const handleChangePage = (_: any, page: number) => {
+  const handleChangePage = (_: any, page: number): void => {
     const parsedUrl = new URL(url, 'https://xivapi.com')
     parsedUrl.searchParams.set('page', String(page))
     onChangeUrl(`${parsedUrl.pathname}?${parsedUrl.searchParams.toString()}`)
   }
 
-  if (!data || !data.Pagination) {
+  if (data?.Pagination == null) {
     return null
   } else {
     const pagination = data.Pagination

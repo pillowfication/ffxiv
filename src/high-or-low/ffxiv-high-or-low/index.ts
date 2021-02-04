@@ -6,7 +6,7 @@ function choose2 (arr: number[]): number[] {
   return [...slice.map(x => x + arr[0]), ...choose2(slice)]
 }
 
-function calculateHighOrLow (tb1: number, tb2: number, me: number) {
+function calculateHighOrLow (tb1: number, tb2: number, me: number): { high: number, low: number, same: number } {
   const hiddenCards = [1, 2, 3, 4, 5, 6, 7, 8, 9].filter(card =>
     card !== tb1 && card !== tb2 && card !== me
   )
@@ -22,11 +22,7 @@ function calculateHighOrLow (tb1: number, tb2: number, me: number) {
     }
   }
 
-  return {
-    high,
-    low,
-    same
-  }
+  return { high, low, same }
 }
 
 export default calculateHighOrLow

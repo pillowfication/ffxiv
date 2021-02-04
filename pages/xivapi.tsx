@@ -20,33 +20,35 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const XIVAPI = () => {
+const Xivapi = (): React.ReactElement => {
   const classes = useStyles()
   const { t } = useTranslation('xivapi')
   const [url, setUrl] = useQueryState('url', { history: 'push' })
   const [inputUrl, setInputUrl] = useState('')
 
   useEffect(() => {
-    if (!url) {
+    if (url === null) {
       setUrl('/content')
     }
   }, [])
 
   useEffect(() => {
-    setInputUrl(url)
+    if (url !== null) {
+      setInputUrl(url)
+    }
   }, [url])
 
-  const handleInputUrl = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputUrl = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setInputUrl(event.target.value)
   }
 
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>): void => {
     if (event.key === 'Enter') {
       setUrl(inputUrl)
     }
   }
 
-  const handleClickGo = () => {
+  const handleClickGo = (): void => {
     setUrl(inputUrl)
   }
 
@@ -61,7 +63,7 @@ const XIVAPI = () => {
               InputProps={{
                 startAdornment: <InputAdornment position='start'>https://xivapi.com</InputAdornment>
               }}
-              value={inputUrl || ''}
+              value={inputUrl !== null ? inputUrl : ''}
               onChange={handleInputUrl}
               onKeyPress={handleKeyPress}
               className={classes.input}
@@ -70,7 +72,9 @@ const XIVAPI = () => {
           </Grid>
           <Grid item xs={12}>
             <NoSsr>
-              {url && <Results url={url} onChangeUrl={setUrl} />}
+              {url !== null && (
+                <Results url={url} onChangeUrl={setUrl} />
+              )}
             </NoSsr>
           </Grid>
         </Grid>
@@ -79,8 +83,8 @@ const XIVAPI = () => {
   )
 }
 
-XIVAPI.getInitialProps = async () => ({
+Xivapi.getInitialProps = async () => ({
   namespacesRequired: ['common', 'xivapi']
 })
 
-export default XIVAPI
+export default Xivapi

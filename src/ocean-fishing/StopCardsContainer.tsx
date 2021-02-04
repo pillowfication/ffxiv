@@ -1,11 +1,11 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
 
-type Props = {
+interface Props {
   children?: React.ReactNode
 }
 
-const StopCardsContainer = ({ children }: Props) => {
+const StopCardsContainer = ({ children }: Props): React.ReactElement => {
   return (
     <Grid container spacing={2}>
       {children}

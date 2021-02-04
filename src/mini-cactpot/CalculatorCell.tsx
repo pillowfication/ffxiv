@@ -30,17 +30,17 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-type Props = {
-  value?: number,
-  suggested?: boolean,
-  error?: boolean,
-  onInputDigit?: (digit: number) => void
+interface Props {
+  value: number | null
+  suggested?: boolean
+  error?: boolean
+  onInputDigit: (digit: number | null) => void
 }
 
-const CalculatorCell = ({ value, suggested, error, onInputDigit = () => {} }: Props) => {
+const CalculatorCell = ({ value, suggested = false, error = false, onInputDigit }: Props): React.ReactElement => {
   const classes = useStyles()
 
-  const handleInputDigit = (event: React.KeyboardEvent) => {
+  const handleInputDigit = (event: React.KeyboardEvent): void => {
     const key = event.key
     if (key === 'Backspace' || key === 'Delete') {
       onInputDigit(null)
@@ -59,7 +59,7 @@ const CalculatorCell = ({ value, suggested, error, onInputDigit = () => {} }: Pr
       InputProps={{ className: clsx(classes.cell, suggested && classes.suggested, error && classes.error) }}
       inputProps={{ className: classes.cellInput }}
       onKeyDown={handleInputDigit}
-      value={value || ''}
+      value={value !== null ? value : ''}
     />
   )
 }

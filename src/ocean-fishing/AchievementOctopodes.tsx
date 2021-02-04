@@ -11,11 +11,11 @@ import { getStopTimes, DestTime } from './ffxiv-ocean-fishing'
 import { getBaitGroup, subtextDH } from './utils'
 import octopodesMacro from './macros/octopodes.ffmacro'
 
-type Props = {
+interface Props {
   route: DestTime
 }
 
-const AchievementOctopodes = ({ route }: Props) => {
+const AchievementOctopodes = ({ route }: Props): React.ReactElement => {
   const stopTimes = getStopTimes(route)
 
   return (

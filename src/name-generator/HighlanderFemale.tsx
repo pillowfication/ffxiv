@@ -9,7 +9,7 @@ import { translate, Clan, Gender } from './ffxiv-name-generator'
 import { formatName } from './ffxiv-name-generator/src/utils'
 import { useTranslation } from '../i18n'
 
-const HighlanderFemale = () => {
+const HighlanderFemale = (): React.ReactElement => {
   const { t, i18n } = useTranslation('name-generator')
   const [forename, setForename] = useState('')
   const [surname, setSurname] = useState('')
@@ -47,7 +47,7 @@ const HighlanderFemale = () => {
             As a warring clan, surnames are often violent nicknames earned during battle.
           </Typography>
         </Grid>
-        {name && (
+        {name.length > 0 && (
           <Grid item xs={12}>
             <MyNameIs name={name} />
           </Grid>

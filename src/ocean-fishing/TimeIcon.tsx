@@ -6,6 +6,14 @@ import { useTranslation } from '../i18n'
 
 const ICON_SIZE = 32
 
+function round (n: number): number {
+  return Math.round(n * 100) / 100
+}
+
+function ct (theta: number, rho: number): string {
+  return `${round(10 + rho * Math.cos(theta))} ${round(10 + rho * Math.sin(theta))}`
+}
+
 const useStyles = makeStyles(theme => ({
   timeIcon: {
     display: 'inline-block',
@@ -19,26 +27,24 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-type Props = {
+interface Props {
   time: Time
 }
 
-const TimeIcon = ({ time }: Props) => {
+const TimeIcon = ({ time }: Props): React.ReactElement => {
   const classes = useStyles()
   const { t } = useTranslation('ocean-fishing')
 
   switch (time) {
     case 'D':
       return (
-        <Tooltip arrow placement='top' title={t('time.day')}>
+        <Tooltip arrow placement='top' title={String(t('time.day'))}>
           <svg width={ICON_SIZE} height={ICON_SIZE} className={classes.timeIcon}>
             <circle cx={ICON_SIZE / 2} cy={ICON_SIZE / 2} r={ICON_SIZE / 4} />
             {(() => {
               const delta = 0.22
               const r = 11
               const R = 15
-              const round = (n: number) => Math.round(n * 100) / 100
-              const ct = (theta: number, rho: number) => round(ICON_SIZE / 2 + rho * Math.cos(theta)) + ' ' + round(ICON_SIZE / 2 + rho * Math.sin(theta))
 
               const rays: React.ReactNode[] = []
               for (let i = 0; i < 8; ++i) {
@@ -54,7 +60,7 @@ const TimeIcon = ({ time }: Props) => {
       )
     case 'S':
       return (
-        <Tooltip arrow placement='top' title={t('time.sunset')}>
+        <Tooltip arrow placement='top' title={String(t('time.sunset'))}>
           <svg width={ICON_SIZE} height={ICON_SIZE} className={classes.timeIcon}>
             <path d='M 29 22 A 10.4 10.4 0 1 0 10 22 Z' />
             <path d='M 2 28 L 2 24 L 30 24 L 30 28 Z' />
@@ -63,7 +69,7 @@ const TimeIcon = ({ time }: Props) => {
       )
     case 'N':
       return (
-        <Tooltip arrow placement='top' title={t('time.night')}>
+        <Tooltip arrow placement='top' title={String(t('time.night'))}>
           <svg width={ICON_SIZE} height={ICON_SIZE} className={classes.timeIcon}>
             <path d='M 14 3 A 12 12 0 1 1 3 18 A 9 9 0 1 0 14 3 Z' />
           </svg>

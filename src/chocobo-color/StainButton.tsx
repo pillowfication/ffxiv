@@ -28,28 +28,36 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-type Props = {
-  stain?: Stain,
-  color?: Color,
-  inline?: boolean,
-  selected?: boolean,
-  onClick?: () => void,
+interface Props {
+  stain?: Stain
+  color?: Color
+  inline?: boolean
+  selected?: boolean
+  onClick?: () => void
   className?: string
 }
 
-const StainButton = ({ stain, color, inline, selected, onClick, className }: Props) => {
+const StainButton = ({ stain, color, inline = false, selected = false, onClick, className }: Props): React.ReactElement => {
   const classes = useStyles()
   const { i18n } = useTranslation()
   const locale = i18n.language
-  const stainColor = stain ? stain.color : color
-  const title = stain ? translate(locale, stain, 'name') : `(${color.R}, ${color.G}, ${color.B})`
+  const stainColor = (stain !== undefined ? stain.color : color) as any as Color
+  const title = stain !== undefined
+    ? translate(locale, stain, 'name')
+    : `(${String(color?.R)}, ${String(color?.G)}, ${String(color?.B)})`
 
   return (
     <Tooltip placement='top' arrow title={title}>
       <Paper
         component='span'
         square
-        className={clsx(classes.stainButton, inline && classes.inline, selected && classes.selected, onClick && classes.clickable, className)}
+        className={clsx(
+          classes.stainButton,
+          inline && classes.inline,
+          selected && classes.selected,
+          onClick !== undefined && classes.clickable,
+          className
+        )}
         style={{ backgroundColor: `rgb(${stainColor.R},${stainColor.G},${stainColor.B})` }}
         onClick={onClick}
       />

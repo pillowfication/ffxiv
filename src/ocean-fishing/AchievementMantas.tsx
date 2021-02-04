@@ -9,11 +9,11 @@ import Tug from './Tug'
 import { getStopTimes, DestTime } from './ffxiv-ocean-fishing'
 import { getBaitGroup, subtextDH } from './utils'
 
-type Props = {
+interface Props {
   route: DestTime
 }
 
-const AchievementMantas = ({ route }: Props) => {
+const AchievementMantas = ({ route }: Props): React.ReactElement => {
   const stopTimes = getStopTimes(route)
 
   return (

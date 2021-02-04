@@ -12,7 +12,7 @@ const ICONS = Object.keys(fruits).map(Number).sort((a, b) => a - b)
 const canvas = createCanvas(ICONS.length * ICON_SIZE, ICON_SIZE)
 const ctx = canvas.getContext('2d')
 
-;(async () => {
+await (async () => {
   for (let i = 0; i < ICONS.length; ++i) {
     const img = await loadImage(saintCoinach.getIcon(fruits[ICONS[i]].icon).buffer)
     ctx.drawImage(img, i * ICON_SIZE, 0)

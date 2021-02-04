@@ -34,11 +34,11 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-type Props = {
+interface Props {
   stopTimes: [StopTime, StopTime, StopTime]
 }
 
-const RouteInformationAll = ({ stopTimes }: Props) => {
+const RouteInformationAll = ({ stopTimes }: Props): React.ReactElement => {
   const classes = useStyles()
   const { i18n } = useTranslation('ocean-fishing')
   const [tab, setTab] = useState(0)
@@ -48,7 +48,7 @@ const RouteInformationAll = ({ stopTimes }: Props) => {
     setTab(0)
   }, [stopTimes.join(',')])
 
-  const handleChangeTab = (_: any, value: number) => {
+  const handleChangeTab = (_: any, value: number): void => {
     setTab(value)
   }
 

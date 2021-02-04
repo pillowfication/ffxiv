@@ -16,13 +16,13 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-type Props = {
+interface Props {
   index: number,
   stopTime: StopTime,
   children?: React.ReactNode
 }
 
-const StopCard = ({ index, stopTime, children }: Props) => {
+const StopCard = ({ index, stopTime, children }: Props): React.ReactElement => {
   const classes = useStyles()
   const { i18n } = useTranslation()
   const locale = i18n.language

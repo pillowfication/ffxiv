@@ -11,102 +11,102 @@ import lodestoneData from './lodestone-data.json'
 import { Time } from '../src/types'
 import { Weather } from '../../../skywatcher/ffxiv-skywatcher/src/types'
 
-export type FishingSpot = {
-  id: number,
-  placeName_main: number,
-  placeName_sub: number,
-  placeName: number,
-  fishes: number[],
+export interface FishingSpot {
+  id: number
+  placeName_main: number
+  placeName_sub: number
+  placeName: number
+  fishes: number[]
   order: number
 }
 
-export type PlaceName = {
-  id: number,
-  name_en: string,
-  name_de: string,
-  name_fr: string,
-  name_ja: string,
-  name_noArticle_en: string,
-  name_noArticle_de: string,
-  name_noArticle_fr: string,
+export interface PlaceName {
+  id: number
+  name_en: string
+  name_de: string
+  name_fr: string
+  name_ja: string
+  name_noArticle_en: string
+  name_noArticle_de: string
+  name_noArticle_fr: string
   name_noArticle_ja: string
 }
 
-export type SpreadsheetData = {
-  bait?: number,
-  points?: number,
-  doubleHook?: number | [number, number],
-  mooch?: number,
-  tug?: 1 | 2 | 3,
-  time?: Time[],
-  weathers?: { type: 'ALL' } | { type: 'OK', list: Weather[] } | { type: 'NOT OK', list: Weather[] },
-  stars?: number,
-  contentBonus?: number,
-  intuition?: { fishId: number, count: number }[]
+export interface SpreadsheetData {
+  bait?: number
+  points?: number
+  doubleHook?: number | [number, number]
+  mooch?: number
+  tug?: 1 | 2 | 3
+  time?: Time[]
+  weathers?: { type: 'ALL' } | { type: 'OK', list: Weather[] } | { type: 'NOT OK', list: Weather[] }
+  stars?: number
+  contentBonus?: number
+  intuition?: Array<{ fishId: number, count: number }>
 }
 
-export type LodestoneData = {
-  item: string,
-  icon_sm: string,
-  icon_md: string,
+export interface LodestoneData {
+  item: string
+  icon_sm: string
+  icon_md: string
   icon_lg: string
 }
 
-export type OceanFish = {
-  id: number,
-  icon: number,
-  name_en: string,
-  name_de: string,
-  name_fr: string,
-  name_ja: string,
-  description_en: string,
-  description_de: string,
-  description_fr: string,
-  description_ja: string,
-  contentBonus: number,
+export interface OceanFish {
+  id: number
+  icon: number
+  name_en: string
+  name_de: string
+  name_fr: string
+  name_ja: string
+  description_en: string
+  description_de: string
+  description_fr: string
+  description_ja: string
+  contentBonus: number
   biteTimes: {
-    [key: number]: [number, number],
+    [key: number]: [number, number]
     all?: [number, number]
-  },
-  spreadsheetData: SpreadsheetData,
+  }
+  spreadsheetData: SpreadsheetData
   lodestoneData?: LodestoneData
 }
 
-export type Bait = {
-  id: number,
-  icon: number,
-  name_en: string,
-  name_de: string,
-  name_fr: string,
+export interface Bait {
+  id: number
+  icon: number
+  name_en: string
+  name_de: string
+  name_fr: string
   name_ja: string
 }
 
-export type ContentBonus = {
-  id: number,
-  icon: number,
-  objective_en: string,
-  objective_de: string,
-  objective_fr: string,
-  objective_ja: string,
-  requirement_en: string,
-  requirement_de: string,
-  requirement_fr: string,
-  requirement_ja: string,
-  bonus: number,
+export interface ContentBonus {
+  id: number
+  icon: number
+  objective_en: string
+  objective_de: string
+  objective_fr: string
+  objective_ja: string
+  requirement_en: string
+  requirement_de: string
+  requirement_fr: string
+  requirement_ja: string
+  bonus: number
   order: number
 }
 
 export type Achievement = {
-  id: number,
-  icon: number,
-  name_en: string,
-  name_de: string,
-  name_fr: string,
-  name_ja: string,
-  description_en: string,
-  description_de: string,
-  description_fr: string,
-  description_ja: string,
+  id: number
+  icon: number
+  name_en: string
+  name_de: string
+  name_fr: string
+  name_ja: string
+  description_en: string
+  description_de: string
+  description_fr: string
+  description_ja: string
   order: number
 }
 

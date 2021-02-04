@@ -10,12 +10,12 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-type Props = {
-  rotate: number,
+interface Props {
+  rotate: number
   suggested?: boolean
 }
 
-const CalculatorLineIndicator = ({ rotate, suggested }: Props) => {
+const CalculatorLineIndicator = ({ rotate, suggested = false }: Props): React.ReactElement => {
   const classes = useStyles({ rotate })
 
   return (

@@ -30,16 +30,16 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-type Props = {
+interface Props {
   solution: {
-    fromStain: Stain,
-    toStain: Stain,
-    fruits: Fruit[],
+    fromStain: Stain
+    toStain: Stain
+    fruits: Fruit[]
     resultantColor: Color
   }
 }
 
-const Solution = ({ solution }: Props) => {
+const Solution = ({ solution }: Props): React.ReactElement => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('chocobo-color')
   const locale = i18n.language

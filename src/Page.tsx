@@ -6,15 +6,15 @@ import Typography from '@material-ui/core/Typography'
 import Footer from '../src/Footer'
 import { useTranslation } from '../src/i18n'
 
-type Props = {
-  title?: string,
-  description?: string,
-  seo?: object,
-  og?: object,
+interface Props {
+  title?: string
+  description?: string
+  seo?: object
+  og?: object
   children?: React.ReactNode
 }
 
-const Page = ({ title, description, seo = {}, og = {}, children }: Props) => {
+const Page = ({ title, description, seo = {}, og = {}, children }: Props): React.ReactElement => {
   const router = useRouter()
   const { i18n } = useTranslation('common')
 

@@ -13,7 +13,7 @@ const TIMES_SEQUENCE: Record<Time, [Time, Time, Time]> = {
   N: ['D', 'S', 'N']
 }
 
-export default function getStopTimes (destTime: DestTime) {
+export default function getStopTimes (destTime: DestTime): [StopTime, StopTime, StopTime] {
   const stops = STOPS_SEQUENCE[destTime[0] as Dest]
   const times = TIMES_SEQUENCE[destTime[1] as Time]
   return [stops[0] + times[0], stops[1] + times[1], stops[2] + times[2]] as [StopTime, StopTime, StopTime]

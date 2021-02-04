@@ -9,7 +9,7 @@ export type NextLinkProps =
   | (Omit<MuiLinkProps, 'href' | 'classes'> & Pick<LinkProps, 'href' | 'as' | 'prefetch'>)
   | HTMLAnchorElement
 
-const NextLink = ({ href, as, prefetch, ...props }: LinkProps, ref: LinkRef) => (
+const NextLink = ({ href, as, prefetch, ...props }: LinkProps, ref: LinkRef): React.ReactElement => (
   <i18n.Link href={href} as={as} prefetch={prefetch} passHref>
     <MuiLink ref={ref} {...props} />
   </i18n.Link>

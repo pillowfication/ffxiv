@@ -34,19 +34,19 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Calculator = () => {
+const Calculator = (): React.ReactElement => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('mini-cactpot')
-  const [grid, setGrid] = useState<number[]>(Array(9).fill(null))
+  const [grid, setGrid] = useState<Array<number | null>>(Array(9).fill(null))
   const locale = i18n.language
 
-  const handleInputDigit = (cellIndex: number, digit: number) => {
+  const handleInputDigit = (cellIndex: number, digit: number | null): void => {
     const newGrid = grid.slice()
     newGrid[cellIndex] = digit
     setGrid(newGrid)
   }
 
-  const handleClickReset = () => {
+  const handleClickReset = (): void => {
     setGrid(Array(9).fill(null))
   }
 
@@ -55,12 +55,14 @@ const Calculator = () => {
   const error = validateGrid(grid)
   let suggestion: any
 
-  if (error) {
+  if (error !== null) {
     switch (error.type) {
       case 'TOO MANY':
       case 'DUPLICATES':
-        for (const cellIndex of error.cells) {
-          errorCells[cellIndex] = true
+        if (error.cells !== undefined) {
+          for (const cellIndex of error.cells) {
+            errorCells[cellIndex] = true
+          }
         }
         break
     }
@@ -81,8 +83,8 @@ const Calculator = () => {
     }
   }
 
-  function isLineSuggested (lineId: number) {
-    return suggestion && suggestion.type === 'LINE' && suggestion.maxLineIds.includes(lineId)
+  function isLineSuggested (lineId: number): boolean {
+    return suggestion !== undefined && suggestion.type === 'LINE' && suggestion.maxLineIds.includes(lineId)
   }
 
   return (
@@ -130,7 +132,7 @@ const Calculator = () => {
         <Grid item xs={12} className={classes.gridGrow}>
           <div className={classes.suggestion}>
             {(() => {
-              if (error) {
+              if (error !== null) {
                 switch (error.type) {
                   case 'EMPTY':
                     return <Typography paragraph>{t('state.selectFirstCell')}</Typography>

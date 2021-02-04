@@ -53,27 +53,27 @@ const GENERATORS: Record<Clan, { [key in Gender]: () => string }> = {
   },
   [Clan.Plainsfolk]: {
     [Gender.Male]: () => {
-      const phonemeA = randomElement(names.LalafellPlainsfolkFirstNameStart)
-      const phonemeB = randomElement(names.LalafellPlainsfolkEndOfNames)
-      const phonemeC = randomElement(names.LalafellPlainsfolkLastNameStart)
+      const phonemeA = randomElement(names.LalafellPlainsfolkFirstNameStart) as string
+      const phonemeB = randomElement(names.LalafellPlainsfolkEndOfNames) as string
+      const phonemeC = randomElement(names.LalafellPlainsfolkLastNameStart) as string
       return formatName(phonemeA + phonemeB, phonemeC + phonemeB)
     },
     [Gender.Female]: () => {
-      const phonemeA = randomElement(names.LalafellPlainsfolkFirstNameStart)
-      const phonemeB = randomElement(names.LalafellPlainsfolkEndOfNames)
+      const phonemeA = randomElement(names.LalafellPlainsfolkFirstNameStart) as string
+      const phonemeB = randomElement(names.LalafellPlainsfolkEndOfNames) as string
       return formatName(phonemeA + phonemeB + phonemeB, phonemeA + phonemeB)
     }
   },
   [Clan.Dunesfolk]: {
     [Gender.Male]: () => {
-      const phonemeAA = randomElement(names.LalafellDunesfolkMale)
-      const phonemeB = randomElement(names.LalafellDunesfolkMaleLastName)
-      const phonemeCC = randomElement(names.LalafellDunesfolkMale)
+      const phonemeAA = randomElement(names.LalafellDunesfolkMale) as string
+      const phonemeB = randomElement(names.LalafellDunesfolkMaleLastName) as string
+      const phonemeCC = randomElement(names.LalafellDunesfolkMale) as string
       return formatName(phonemeAA + phonemeB, phonemeCC + phonemeB)
     },
     [Gender.Female]: () => {
-      const phonemeA = randomElement(names.LalafellDunesfolkFemale)
-      const phonemeB = randomElement(names.LalafellDunesfolkFemaleLastName)
+      const phonemeA = randomElement(names.LalafellDunesfolkFemale) as string
+      const phonemeB = randomElement(names.LalafellDunesfolkFemaleLastName) as string
       return formatName(phonemeA + phonemeA + phonemeB, phonemeA + phonemeB)
     }
   },
@@ -191,6 +191,6 @@ const GENERATORS: Record<Clan, { [key in Gender]: () => string }> = {
   }
 }
 
-export default function generate (clan: Clan, gender: Gender) {
+export default function generate (clan: Clan, gender: Gender): string {
   return GENERATORS[clan][gender]()
 }

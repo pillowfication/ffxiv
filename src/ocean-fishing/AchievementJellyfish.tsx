@@ -11,11 +11,11 @@ import { getStopTimes, DestTime } from './ffxiv-ocean-fishing'
 import { getBaitGroup, subtextDH } from './utils'
 import jellyfishMacro from './macros/jellyfish.ffmacro'
 
-type Props = {
+interface Props {
   route: DestTime
 }
 
-const AchievementJellyfish = ({ route }: Props) => {
+const AchievementJellyfish = ({ route }: Props): React.ReactElement => {
   const stopTimes = getStopTimes(route)
 
   return (

@@ -38,11 +38,11 @@ function pick<T> (array: T[], count: number): T[][] {
   return Array.from(Array(count)).flatMap((_, index) => _pick(array, index + 1))
 }
 
-function maximum<T> (array: T[], predicate: (elem: T) => number) {
+function maximum<T> (array: T[], predicate: (elem: T) => number): { elem: T, val: number } {
   let maxVal = -Infinity
-  let maxElem: T
+  let maxElem: T = null as any as T
   for (const elem of array) {
-    let val = predicate(elem)
+    const val = predicate(elem)
     if (val > maxVal) {
       maxVal = val
       maxElem = elem
@@ -51,18 +51,18 @@ function maximum<T> (array: T[], predicate: (elem: T) => number) {
   return { elem: maxElem, val: maxVal }
 }
 
-export function isValidStain (stain: Stain) {
+export function isValidStain (stain: Stain): boolean {
   return stain.shade >= 2 && stain.shade <= 9 && stain.id <= 85
 }
 
-export function calculateFruitsDistance (fromColor: Color, toColor: Color, lookahead = 1) {
+export function calculateFruitsDistance (fromColor: Color, toColor: Color, lookahead = 1): { fruits: Fruit[], color: Color, distance: number } {
   const fruits: Fruit[] = []
   let currentColor = fromColor
   let currentDistance = fromColor.distanceTo(toColor)
 
   while (true) {
     const best = maximum(
-      pick(Object.keys(fruitValues).map(Number) as Fruit[], lookahead),
+      pick(Object.keys(fruitValues).map(key => Number(key) as Fruit), lookahead),
       fruits => -fruits.reduce((acc, curr) => acc.add(fruitValues[curr]), currentColor).distanceTo(toColor)
     )
     if (-best.val >= currentDistance) {
@@ -79,13 +79,13 @@ export function calculateFruitsDistance (fromColor: Color, toColor: Color, looka
   }
 }
 
-export function calculateFruitsMatrix (fromColor: Color, toColor: Color) {
+export function calculateFruitsMatrix (fromColor: Color, toColor: Color): { fruits: Fruit[], color: Color, distance: number } {
   const difference = fromColor.differenceFrom(toColor)
   const fR = -(difference.G + difference.B) / 10
   const fG = -(difference.R + difference.B) / 10
   const fB = -(difference.R + difference.G) / 10
 
-  const fruitCounts: [Fruit, number][] = [
+  const fruitCounts: Array<[Fruit, number]> = [
     [Fruit.XelphatolApple, fR > 0 ? Math.round(fR) : 0],
     [Fruit.MamookPear, fG > 0 ? Math.round(fG) : 0],
     [Fruit.OGhomoroBerries, fB > 0 ? Math.round(fB) : 0],
@@ -118,9 +118,11 @@ export function calculateFruitsMatrix (fromColor: Color, toColor: Color) {
 
 const cache: Record<string, { fruits: Fruit[], color: Color, distance: number }> = {}
 
-export function calculateFruits (fromStain: Stain, toStain: Stain) {
+export function calculateFruits (fromStain: Stain, toStain: Stain): { fruits: Fruit[], color: Color, distance: number } {
   const key = `${fromStain.id},${toStain.id}`
-  if (cache[key]) return cache[key]
+  if (cache[key] !== undefined) {
+    return cache[key]
+  }
 
   const solution = calculateFruitsDistance(fromStain.color, toStain.color, 3)
 
@@ -140,6 +142,7 @@ export function calculateFruits (fromStain: Stain, toStain: Stain) {
   return (cache[key] = solution)
 }
 
-export function translate (type: 'shade', id: string, locale: string = 'en') {
-  return (LOCALES[locale] && LOCALES[locale][type][id]) || `{${type}.${id}}`
+export function translate (type: 'shade', id: string, locale: string = 'en'): string {
+  const translation = LOCALES?.[locale][type][id]
+  return translation !== null ? translation : `{${type}.${id}}`
 }

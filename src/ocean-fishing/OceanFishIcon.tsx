@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => {
     },
     iconContainer: {
       width: ({ size }: { size: number }) => size * 1.2,
-      height: ({ size }: { size: number }) => size * 1.2,
+      height: ({ size }: { size: number }) => size * 1.2
     },
     oceanFishIcon: {
       position: 'absolute' as 'absolute',
@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => {
       left: 0,
       width: ({ size }: { size: number }) => size * 1.2,
       height: ({ size }: { size: number }) => size * 1.1,
-      backgroundImage: 'url("/images/ocean-fishing/item-cover.png")',
+      backgroundImage: 'url("/images/ocean-fishing/item-cover.png")'
     },
     achievementCover: {
       position: 'absolute' as 'absolute',
@@ -71,27 +71,27 @@ const useStyles = makeStyles(theme => {
   return styles
 })
 
-type Props = {
-  type: 'fish' | 'bait' | 'achievement' | 'content-bonus',
-  id: number,
-  size?: number,
-  Badge?: React.ReactNode,
+interface Props {
+  type: 'fish' | 'bait' | 'achievement' | 'content-bonus'
+  id: number
+  size?: number
+  badge?: React.ReactNode
   className?: string
 }
 
-const OceanFishIcon = ({ type, id, size = 40, Badge, className }: Props) => {
+const OceanFishIcon = ({ type, id, size = 40, badge, className }: Props): React.ReactElement => {
   const classes = useStyles({ size })
   const { i18n } = useTranslation()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const locale = i18n.language
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    if (type === 'fish' && !anchorEl) {
+  const handleClick = (event: React.MouseEvent<HTMLElement>): void => {
+    if (type === 'fish' && anchorEl === null) {
       setAnchorEl(event.currentTarget)
     }
   }
 
-  const handleClickAway = () => {
+  const handleClickAway = (): void => {
     setAnchorEl(null)
   }
 
@@ -117,7 +117,9 @@ const OceanFishIcon = ({ type, id, size = 40, Badge, className }: Props) => {
             {type === 'achievement' && <div className={classes.achievementCover} />}
           </div>
         </Tooltip>
-        {Badge && <div className={classes.badge}>{Badge}</div>}
+        {badge !== undefined && (
+          <div className={classes.badge}>{badge}</div>
+        )}
       </div>
       {type === 'fish' && (
         <Popper anchorEl={anchorEl} open={Boolean(anchorEl)} placement='bottom-start'>

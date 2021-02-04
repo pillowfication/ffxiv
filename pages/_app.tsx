@@ -18,18 +18,18 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-type Props = {
-  Component: React.ComponentClass,
+interface Props {
+  Component: React.ComponentClass
   pageProps?: object
 }
 
-const App = ({ Component, pageProps }: Props) => {
+const App = ({ Component, pageProps }: Props): React.ReactElement => {
   const classes = useStyles()
   const router = useRouter()
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
 
   useEffect(() => {
-    const handleRouteChange = (url: string) => {
+    const handleRouteChange = (url: string): void => {
       gtag.pageview(url)
     }
     router.events.on('routeChangeComplete', handleRouteChange)
@@ -40,9 +40,7 @@ const App = ({ Component, pageProps }: Props) => {
 
   useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side')
-    if (jssStyles) {
-      jssStyles.parentElement.removeChild(jssStyles)
-    }
+    jssStyles?.parentElement?.removeChild(jssStyles)
   }, [])
 
   return (

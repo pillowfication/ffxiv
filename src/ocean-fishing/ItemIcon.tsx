@@ -38,11 +38,11 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-type Props = {
+interface Props {
   src: string
 }
 
-const ItemIcon = ({ src }: Props) => {
+const ItemIcon = ({ src }: Props): React.ReactElement => {
   const classes = useStyles()
 
   return (

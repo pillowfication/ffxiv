@@ -3,13 +3,13 @@ import FishTable from './FishTable'
 import { Stop, Time, StopTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 
-type Props = {
-  tab: number,
-  index: number,
+interface Props {
+  tab: number
+  index: number
   stopTime: StopTime
 }
 
-function FishPanel ({ tab, index, stopTime }: Props) {
+const FishPanel = ({ tab, index, stopTime }: Props): React.ReactElement => {
   const fishingSpotId: number = maps.STOP_MAP[stopTime[0] as Stop]
   return (
     <div hidden={tab !== index}>

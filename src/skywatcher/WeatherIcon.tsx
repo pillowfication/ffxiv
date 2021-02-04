@@ -28,12 +28,12 @@ const useStyles = makeStyles(() => {
   return styles
 })
 
-type Props = {
-  weather: Weather,
+interface Props {
+  weather: Weather
   showLabel?: boolean
 }
 
-const WeatherIcon = ({ weather, showLabel = false }: Props) => {
+const WeatherIcon = ({ weather, showLabel = false }: Props): React.ReactElement => {
   const classes = useStyles()
   const { i18n } = useTranslation()
   const locale = i18n.language

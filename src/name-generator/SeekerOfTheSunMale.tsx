@@ -10,7 +10,7 @@ import { upperFirst } from './ffxiv-name-generator/src/utils'
 import miqoteTribes from './ffxiv-name-generator/data/miqote-tribes.json'
 import { useTranslation } from '../i18n'
 
-const SeekersOfTheSunMale = () => {
+const SeekersOfTheSunMale = (): React.ReactElement => {
   const { t, i18n } = useTranslation('name-generator')
   const [forename, setForename] = useState('')
   const [tribe, setTribe] = useState('')
@@ -64,7 +64,7 @@ const SeekersOfTheSunMale = () => {
             Males do not have surnames, as they are considered origins of new families, and will instead take on “Tia” or “Nunh” denoting their position within the tribe. All are born as tia and may challenge a tribe nunh to battle. If the tia is victorious, he takes the nunh’s title and position as tribe breeding male. A ratio of one nunh per fifty females is average. A tia may also become a nunh by leaving to start his own tribe.
           </Typography>
         </Grid>
-        {name && (
+        {name.length > 0 && (
           <Grid item xs={12}>
             <MyNameIs name={name} />
           </Grid>

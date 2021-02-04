@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const _404 = () => {
+const _404 = (): React.ReactElement => {
   const classes = useStyles()
 
   return (

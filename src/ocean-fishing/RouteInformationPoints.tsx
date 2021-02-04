@@ -18,20 +18,20 @@ export function getPointsFishes (stopTime: StopTime): number[] {
   const time = stopTime[1] as Time
 
   // Find all fish that exceed the threshold, while keeping track of the highest value fish(es)
-  let highestPointsFishes: { fishId: number, points: number }[] = []
+  let highestPointsFishes: Array<{ fishId: number, points: number }> = []
   const thresholdPointsFishes = spectralFishingSpot.fishes.filter(fishId => {
     const spreadsheetData = fishes[fishId].spreadsheetData
 
     // Check to see if this fish is catchable
-    if (spreadsheetData.time && !spreadsheetData.time.includes(time)) {
+    if (spreadsheetData.time !== undefined && !spreadsheetData.time.includes(time)) {
       return false
 
     // Ignore blue fish so that the highest non-blue fish will be found
-    } else if (spreadsheetData.intuition) {
+    } else if (spreadsheetData.intuition !== undefined) {
       return false
 
     // Not enough known data on this fish
-    } else if (!spreadsheetData.points || !spreadsheetData.doubleHook) {
+    } else if (spreadsheetData.points === undefined || spreadsheetData.doubleHook === undefined) {
       return false
 
     // Check what this fish is worth
@@ -59,11 +59,11 @@ export function getPointsFishes (stopTime: StopTime): number[] {
   }
 }
 
-type Props = {
+interface Props {
   stopTimes: [StopTime, StopTime, StopTime]
 }
 
-const RouteInformationPoints = ({ stopTimes }: Props) => {
+const RouteInformationPoints = ({ stopTimes }: Props): React.ReactElement => {
   const { i18n } = useTranslation('ocean-fishing')
   const locale = i18n.language
 
@@ -79,21 +79,24 @@ const RouteInformationPoints = ({ stopTimes }: Props) => {
                 ...getPointsFishes(stopTime),
                 getBlueFish(stopTime)
               ]
-                .filter(x => x)
-                .map((fishId, index) => {
+                .filter(fishId => fishId !== null)
+                .map((fishId: number, index) => {
                   const spreadsheetData = fishes[fishId].spreadsheetData
+                  const dh = spreadsheetData.doubleHook !== undefined
+                    ? Array.isArray(spreadsheetData.doubleHook) ? spreadsheetData.doubleHook.join('-') : spreadsheetData.doubleHook
+                    : '?'
+                  const points = spreadsheetData.doubleHook !== undefined && spreadsheetData.points !== undefined
+                    ? (Array.isArray(spreadsheetData.doubleHook) ? spreadsheetData.doubleHook[1] : spreadsheetData.doubleHook) * spreadsheetData.points
+                    : '?'
                   return {
-                  header: translate(locale, fishes[fishId], 'name'),
-                  baitGroupProps: {
-                    ...getBaitGroup(fishId),
-                    subtext: index === 0 ? '' : (
-                      `DH: ×${Array.isArray(spreadsheetData.doubleHook) ? spreadsheetData.doubleHook.join('-') : spreadsheetData.doubleHook}` +
-                      ` = ${(Array.isArray(spreadsheetData.doubleHook) ? spreadsheetData.doubleHook[1] : spreadsheetData.doubleHook) * spreadsheetData.points}`
-                    ),
-                    mainOnly: true
+                    header: translate(locale, fishes[fishId], 'name'),
+                    baitGroupProps: {
+                      ...getBaitGroup(fishId),
+                      subtext: index === 0 ? '' : `DH: ×${dh} = ${points}`,
+                      mainOnly: true
+                    }
                   }
-                }
-              })
+                })
             } />
           </CardContent>
         </StopCard>

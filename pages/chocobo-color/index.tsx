@@ -6,7 +6,7 @@ import Link from '../../src/Link'
 import Calculator from '../../src/chocobo-color/Calculator'
 import { useTranslation } from '../../src/i18n'
 
-const ChocoboColor = () => {
+const ChocoboColor = (): React.ReactElement => {
   const { t } = useTranslation('chocobo-color')
 
   return (

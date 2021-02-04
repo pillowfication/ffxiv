@@ -4,6 +4,9 @@ import fetch from 'node-fetch'
 import oceanFishingFishingSpots from '../data/fishing-spots.json'
 import oceanFishingBaits from '../data/baits.json'
 
+// @ts-expect-error
+import BEARER_TOKEN from './tc-bearer-token.json'
+
 const BAIT_IDS = [
   ...Object.keys(oceanFishingBaits).map(Number),
   29722, // Ghoul Barracuda
@@ -12,10 +15,7 @@ const BAIT_IDS = [
   32107 // Rothlyt Mussel
 ]
 
-// @ts-ignore
-import BEARER_TOKEN from './tc-bearer-token.json'
-
-async function getTCData (spotId: number, baitId: number) {
+async function getTCData (spotId: number, baitId: number): Promise<any> {
   const res = await fetch(
     'https://us-central1-ffxivteamcraft.cloudfunctions.net/gubal-proxy',
     {
@@ -36,12 +36,13 @@ async function getTCData (spotId: number, baitId: number) {
   )
 
   const json = await res.json()
-  json.data.biteTimes = json.data.biteTimes.map((datum: any) => ({
-    itemId: datum.itemId,
-    baitId: datum.baitId,
-    biteTime: datum.biteTime,
-    occurrences: datum.occurences // Rename this variable...
-  }))
+  json.data.biteTimes = json.data.biteTimes
+    .map((datum: any) => ({
+      itemId: datum.itemId,
+      baitId: datum.baitId,
+      biteTime: datum.biteTime,
+      occurrences: datum.occurences // Rename this variable...
+    }))
 
   // Aggregate data
   for (let i = 0; i < json.data.biteTimes.length; ++i) {
@@ -49,7 +50,7 @@ async function getTCData (spotId: number, baitId: number) {
     for (let j = i + 1; j < json.data.biteTimes.length; ++j) {
       const check = json.data.biteTimes[j]
       if (curr.itemId === check.itemId && curr.baitId === check.baitId && curr.biteTime === check.biteTime) {
-        curr.occurrences += check.occurrences
+        (curr.occurrences as number) += check.occurrences as number
         json.data.biteTimes.splice(j--, 1)
       }
     }
@@ -58,9 +59,9 @@ async function getTCData (spotId: number, baitId: number) {
   return json.data.biteTimes
 }
 
-;(async () => {
+await (async () => {
   for (const fishingSpot of Object.keys(oceanFishingFishingSpots).map(Number)) {
-    const allData = []
+    const allData: any[] = []
     for (const baitId of BAIT_IDS) {
       console.log('Fetching:', { spot: fishingSpot, baitId })
       allData.push(...await getTCData(fishingSpot, baitId))

@@ -25,18 +25,18 @@ import { getBaitGroup, subtextBiteTime } from './utils'
 import { translate } from '../utils'
 import { useTranslation } from '../i18n'
 
-function getImgUrl (fish: OceanFish) {
-  if (fish.lodestoneData) {
+function getImgUrl (fish: OceanFish): string {
+  if (fish.lodestoneData !== undefined) {
     return `https://img.finalfantasyxiv.com/lds/pc/global/images/itemicon/${fish.lodestoneData.icon_lg.slice(0, 2)}/${fish.lodestoneData.icon_lg}.png`
   } else {
     // Fallback to XIVAPI's icons
-    return `https://xivapi.com/i/${('000000' + (fish.icon - (fish.icon % 1000))).slice(-6)}/${('000000' + fish.icon).slice(-6)}.png`
+    return `https://xivapi.com/i/${`000000${fish.icon - (fish.icon % 1000)}`.slice(-6)}/${`000000${fish.icon}`.slice(-6)}.png`
   }
 }
 
 const useStyles = makeStyles(theme => ({
   container: {
-    width: 400,
+    width: 400
   },
   header: {
     padding: theme.spacing(2),
@@ -55,19 +55,19 @@ const useStyles = makeStyles(theme => ({
     transform: 'rotate(0deg)',
     marginLeft: 'auto',
     transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
+      duration: theme.transitions.duration.shortest
+    })
   },
   expandOpen: {
-    transform: 'rotate(180deg)',
+    transform: 'rotate(180deg)'
   }
 }))
 
-type Props = {
+interface Props {
   fishId: number
 }
 
-const OceanFishPopper = ({ fishId }: Props) => {
+const OceanFishPopper = ({ fishId }: Props): React.ReactElement => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('ocean-fishing')
   const [expanded, setExpanded] = React.useState(false)
@@ -75,7 +75,9 @@ const OceanFishPopper = ({ fishId }: Props) => {
   const spreadsheetData = fish.spreadsheetData
   const locale = i18n.language
 
-  const handleClickExpand = () => { setExpanded(!expanded) }
+  const handleClickExpand = (): void => {
+    setExpanded(!expanded)
+  }
 
   return (
     <Box boxShadow={8}>
@@ -86,7 +88,9 @@ const OceanFishPopper = ({ fishId }: Props) => {
           titleTypographyProps={{ variant: 'h6', paragraph: true, className: classes.title }}
           subheader={(
             <div>
-              {fish.lodestoneData && <div><Link href={`https://na.finalfantasyxiv.com/lodestone/playguide/db/item/${fish.lodestoneData.item}/`}>Lodestone</Link></div>}
+              {fish.lodestoneData !== undefined && (
+                <div><Link href={`https://na.finalfantasyxiv.com/lodestone/playguide/db/item/${fish.lodestoneData.item}/`}>Lodestone</Link></div>
+              )}
               <div><Link href={`https://ffxivteamcraft.com/db/${locale}/item/${fishId}`}>Teamcraft</Link></div>
             </div>
           )}
@@ -104,7 +108,7 @@ const OceanFishPopper = ({ fishId }: Props) => {
                   {t('fishInfo.rating')}
                 </TableCell>
                 <TableCell align='center'>
-                  {spreadsheetData.stars ? '★'.repeat(spreadsheetData.stars) : '?'}
+                  {spreadsheetData.stars !== undefined ? '★'.repeat(spreadsheetData.stars) : '?'}
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -112,7 +116,7 @@ const OceanFishPopper = ({ fishId }: Props) => {
                   {t('fishInfo.points')}
                 </TableCell>
                 <TableCell align='center'>
-                  {spreadsheetData.points ? spreadsheetData.points : '?'}
+                  {spreadsheetData.points !== undefined ? spreadsheetData.points : '?'}
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -120,7 +124,9 @@ const OceanFishPopper = ({ fishId }: Props) => {
                   {t('fishInfo.doubleHook')}
                 </TableCell>
                 <TableCell align='center'>
-                  {spreadsheetData.doubleHook ? (Array.isArray(spreadsheetData.doubleHook) ? spreadsheetData.doubleHook.join('-') : spreadsheetData.doubleHook) : '?'}
+                  {spreadsheetData.doubleHook !== undefined
+                    ? (Array.isArray(spreadsheetData.doubleHook) ? spreadsheetData.doubleHook.join('-') : spreadsheetData.doubleHook)
+                    : '?'}
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -128,7 +134,7 @@ const OceanFishPopper = ({ fishId }: Props) => {
                   {t('fishInfo.weather')}
                 </TableCell>
                 <TableCell align='center'>
-                  {spreadsheetData.weathers
+                  {spreadsheetData.weathers !== undefined
                     ? (() => {
                         switch (spreadsheetData.weathers.type) {
                           case 'ALL':
@@ -156,7 +162,9 @@ const OceanFishPopper = ({ fishId }: Props) => {
                   {t('fishInfo.timeOfDay')}
                 </TableCell>
                 <TableCell align='center'>
-                  {spreadsheetData.time ? (spreadsheetData.time.length === 3 ? 'Any' : spreadsheetData.time.map(time => <TimeIcon key={time} time={time} />)) : '?'}
+                  {spreadsheetData.time !== undefined
+                    ? spreadsheetData.time.length === 3 ? 'Any' : spreadsheetData.time.map(time => <TimeIcon key={time} time={time} />)
+                    : '?'}
                 </TableCell>
               </TableRow>
             </TableBody>

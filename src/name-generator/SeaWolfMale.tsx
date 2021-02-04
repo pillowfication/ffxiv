@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const SeaWolfMale = () => {
+const SeaWolfMale = (): React.ReactElement => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('name-generator')
   const [forenameWord1, setForenameWord1] = useState('')
@@ -124,7 +124,7 @@ const SeaWolfMale = () => {
             The surname is made from the father’s name with “Syn” (Son) added to the end.<br />E.g. “Lyngmhol<b>syn</b>” = “Lyng” (Long) + “Mhol” (Eft) + “Syn” (Son)
           </Typography>
         </Grid>
-        {name && (
+        {name.length > 0 && (
           <Grid item xs={12}>
             <MyNameIs name={name} />
           </Grid>

@@ -37,7 +37,7 @@ const DISTANCE_SOLUTION: Fruit[] = [
   8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8157, 8159, 8159, 8159, 8159, 8159, 8161, 8159, 8161, 8159, 8161, 8159, 8161, 8159, 8161, 8159, 8161, 8159, 8161, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8159, 8161, 8157, 8161, 8161, 8161, 8161, 8161
 ]
 
-function formatDiff (val: number, locale = 'en') {
+function formatDiff (val: number, locale = 'en'): string {
   return val >= 0 ? '+' + val.toLocaleString(locale) : val.toLocaleString(locale)
 }
 
@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
     width: 'initial',
     margin: theme.spacing(0, 'auto')
   },
-  RGB: {
+  rgb: {
     padding: `${theme.spacing(1, 4)} !important`
   },
   positive: {
@@ -72,11 +72,11 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const ClampedTable = () => {
+const ClampedTable = (): React.ReactElement => {
   const classes = useStyles()
   const [showClamping, setShowClamping] = useState(false)
 
-  const handleClickToggleClamping = () => {
+  const handleClickToggleClamping = (): void => {
     setShowClamping(!showClamping)
   }
 
@@ -94,7 +94,7 @@ const ClampedTable = () => {
           </TableHead>
           <TableBody>
             {(() => {
-              const rows = []
+              const rows: React.ReactElement[] = []
               const length = Math.max(MATRIX_SOLUTION.length, DISTANCE_SOLUTION.length)
               let currentColorMatrix = stains[1].color
               let currentColorDistance = stains[1].color
@@ -117,25 +117,25 @@ const ClampedTable = () => {
               for (let index = 0; index < length; ++index) {
                 const matrixFruit = MATRIX_SOLUTION[index]
                 const distanceFruit = DISTANCE_SOLUTION[index]
-                if (matrixFruit) {
+                if (matrixFruit !== undefined) {
                   currentColorMatrix = currentColorMatrix.add(fruitValues[matrixFruit])
                 }
-                if (distanceFruit) {
+                if (distanceFruit !== undefined) {
                   currentColorDistance = currentColorDistance.add(fruitValues[distanceFruit])
                 }
 
                 rows.push(
                   <TableRow key={index}>
-                    <TableCell align='center'>{matrixFruit && <FruitIcon fruit={matrixFruit} size={0.8} />}</TableCell>
-                    <TableCell align='center'>{matrixFruit && $(`${currentColorMatrix.R}`)}</TableCell>
-                    <TableCell align='center'>{matrixFruit && $(`${currentColorMatrix.G}`)}</TableCell>
-                    <TableCell align='center'>{matrixFruit && $(`${currentColorMatrix.B}`)}</TableCell>
-                    <TableCell>{matrixFruit && <StainButton inline color={currentColorMatrix} />}</TableCell>
-                    <TableCell align='center'>{distanceFruit && <FruitIcon fruit={distanceFruit} size={0.8} />}</TableCell>
-                    <TableCell align='center'>{distanceFruit && $(`${currentColorDistance.R}`)}</TableCell>
-                    <TableCell align='center'>{distanceFruit && $(`${currentColorDistance.G}`)}</TableCell>
-                    <TableCell align='center'>{distanceFruit && $(`${currentColorDistance.B}`)}</TableCell>
-                    <TableCell>{distanceFruit && <StainButton inline color={currentColorDistance} />}</TableCell>
+                    <TableCell align='center'>{matrixFruit !== undefined && <FruitIcon fruit={matrixFruit} size={0.8} />}</TableCell>
+                    <TableCell align='center'>{matrixFruit !== undefined && $(`${currentColorMatrix.R}`)}</TableCell>
+                    <TableCell align='center'>{matrixFruit !== undefined && $(`${currentColorMatrix.G}`)}</TableCell>
+                    <TableCell align='center'>{matrixFruit !== undefined && $(`${currentColorMatrix.B}`)}</TableCell>
+                    <TableCell>{matrixFruit !== undefined && <StainButton inline color={currentColorMatrix} />}</TableCell>
+                    <TableCell align='center'>{distanceFruit !== undefined && <FruitIcon fruit={distanceFruit} size={0.8} />}</TableCell>
+                    <TableCell align='center'>{distanceFruit !== undefined && $(`${currentColorDistance.R}`)}</TableCell>
+                    <TableCell align='center'>{distanceFruit !== undefined && $(`${currentColorDistance.G}`)}</TableCell>
+                    <TableCell align='center'>{distanceFruit !== undefined && $(`${currentColorDistance.B}`)}</TableCell>
+                    <TableCell>{distanceFruit !== undefined && <StainButton inline color={currentColorDistance} />}</TableCell>
                   </TableRow>
                 )
               }
@@ -150,7 +150,7 @@ const ClampedTable = () => {
   )
 }
 
-const About = () => {
+const About = (): React.ReactElement => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('chocobo-color')
   const locale = i18n.language
@@ -189,19 +189,19 @@ const About = () => {
                           <TableCell><FruitIcon fruit={fruit} /> {translate(locale, fruits[fruit], 'name')}</TableCell>
                           <TableCell
                             align='center'
-                            className={clsx(classes.RGB, R > 0 ? classes.positive : R < 0 ? classes.negative : undefined)}
+                            className={clsx(classes.rgb, R > 0 ? classes.positive : R < 0 ? classes.negative : undefined)}
                           >
                             {$(formatDiff(R))}
                           </TableCell>
                           <TableCell
                             align='center'
-                            className={clsx(classes.RGB, G > 0 ? classes.positive : G < 0 ? classes.negative : undefined)}
+                            className={clsx(classes.rgb, G > 0 ? classes.positive : G < 0 ? classes.negative : undefined)}
                           >
                             {$(formatDiff(G))}
                           </TableCell>
                           <TableCell
                             align='center'
-                            className={clsx(classes.RGB, B > 0 ? classes.positive : B < 0 ? classes.negative : undefined)}
+                            className={clsx(classes.rgb, B > 0 ? classes.positive : B < 0 ? classes.negative : undefined)}
                           >
                             {$(formatDiff(B))}
                           </TableCell>
@@ -488,37 +488,37 @@ while (true) {
                 <TableRow>
                   <TableCell component='th' scope='row' align='center'>Current color</TableCell>
                   <TableCell align='center'>{translate(locale, stains[37], 'name')}<br />{$('(250, 198, 43)')}</TableCell>
-                  <TableCell align='center'><StainButton stain={stains[37]} className={null} /></TableCell>
+                  <TableCell align='center'><StainButton stain={stains[37]} /></TableCell>
                   <TableCell align='center'>{translate(locale, stains[57], 'name')}<br />{$('(150, 189, 185)')}</TableCell>
-                  <TableCell align='center'><StainButton stain={stains[57]} className={null} /></TableCell>
+                  <TableCell align='center'><StainButton stain={stains[57]} /></TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell component='th' scope='row' align='center'>Desired color</TableCell>
                   <TableCell align='center'>{translate(locale, stains[79], 'name')}<br />{$('(50, 44, 59)')}</TableCell>
-                  <TableCell align='center'><StainButton stain={stains[79]} className={null} /></TableCell>
+                  <TableCell align='center'><StainButton stain={stains[79]} /></TableCell>
                   <TableCell align='center'>{translate(locale, stains[79], 'name')}<br />{$('(50, 44, 59)')}</TableCell>
-                  <TableCell align='center'><StainButton stain={stains[79]} className={null} /></TableCell>
+                  <TableCell align='center'><StainButton stain={stains[79]} /></TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell component='th' scope='row' align='center'>Closest solution</TableCell>
                   <TableCell align='center'>{$('(55, 43, 58)')}</TableCell>
-                  <TableCell align='center'><StainButton color={new Color(55, 43, 58)} className={null} /></TableCell>
+                  <TableCell align='center'><StainButton color={new Color(55, 43, 58)} /></TableCell>
                   <TableCell align='center'>{$('(55, 44, 60)')}</TableCell>
-                  <TableCell align='center'><StainButton color={new Color(55, 44, 60)} className={null} /></TableCell>
+                  <TableCell align='center'><StainButton color={new Color(55, 44, 60)} /></TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell component='th' scope='row' align='center'>Resultant color</TableCell>
                   <TableCell align='center'>{translate(locale, stains[81], 'name')}<br />{$('(59, 42, 61)')}</TableCell>
-                  <TableCell align='center'><StainButton stain={stains[81]} className={null} /></TableCell>
+                  <TableCell align='center'><StainButton stain={stains[81]} /></TableCell>
                   <TableCell align='center'>{translate(locale, stains[81], 'name')}<br />{$('(59, 42, 61)')}</TableCell>
-                  <TableCell align='center'><StainButton stain={stains[81]} className={null} /></TableCell>
+                  <TableCell align='center'><StainButton stain={stains[81]} /></TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell component='th' scope='row' align='center'>Adjusted solution</TableCell>
                   <TableCell align='center'>Remove 1× <FruitIcon fruit={Fruit.XelphatolApple} /><br />{$('(50, 48, 63)')}</TableCell>
-                  <TableCell align='center'><StainButton color={new Color(50, 48, 63)} className={null} /></TableCell>
+                  <TableCell align='center'><StainButton color={new Color(50, 48, 63)} /></TableCell>
                   <TableCell align='center'>Add 1× <FruitIcon fruit={Fruit.MamookPear} /><br />{$('(50, 49, 55)')}</TableCell>
-                  <TableCell align='center'><StainButton color={new Color(50, 49, 55)} className={null} /></TableCell>
+                  <TableCell align='center'><StainButton color={new Color(50, 49, 55)} /></TableCell>
                 </TableRow>
               </TableBody>
             </Table>

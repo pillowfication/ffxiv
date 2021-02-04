@@ -4,7 +4,7 @@ import Generator from '../src/name-generator/Generator'
 import About from '../src/name-generator/About'
 import { useTranslation } from '../src/i18n'
 
-const NameGenerator = () => {
+const NameGenerator = (): React.ReactElement => {
   const { t } = useTranslation('name-generator')
 
   return (

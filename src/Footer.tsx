@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Footer = () => {
+const Footer = (): React.ReactElement => {
   const classes = useStyles()
 
   return (

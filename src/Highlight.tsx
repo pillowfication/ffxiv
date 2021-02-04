@@ -16,12 +16,12 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-type Props = {
+interface Props {
   language: string
-  children: React.ReactNode,
+  children: React.ReactNode
 }
 
-const Highlight = ({ language, children }: Props) => {
+const Highlight = ({ language, children }: Props): React.ReactElement => {
   const classes = useStyles()
   const theme = useTheme()
   const themeCss = theme.palette.type === 'dark' ? 'atom-one-dark' : 'github'

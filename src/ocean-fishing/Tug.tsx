@@ -28,32 +28,32 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-type Props = {
-  strength: 1 | 2 | 3,
-  size?: 'small' | 'normal',
+interface Props {
+  strength: 1 | 2 | 3
+  size?: 'small' | 'normal'
   className?: string
 }
 
-const Tug = ({ strength, size = 'normal', className }: Props) => {
+const Tug = ({ strength, size = 'normal', className }: Props): React.ReactElement => {
   const classes = useStyles()
   const { t } = useTranslation('ocean-fishing')
 
   switch (strength) {
     case 1:
       return (
-        <Tooltip arrow placement='top' title={t('tug.light')}>
+        <Tooltip arrow placement='top' title={String(t('tug.light'))}>
           <span className={clsx(classes.tug, size === 'small' && classes.small, classes.light, className)}>!</span>
         </Tooltip>
       )
     case 2:
       return (
-        <Tooltip arrow placement='top' title={t('tug.medium')}>
+        <Tooltip arrow placement='top' title={String(t('tug.medium'))}>
           <span className={clsx(classes.tug, size === 'small' && classes.small, classes.medium, className)}>!!</span>
         </Tooltip>
       )
     case 3:
       return (
-        <Tooltip arrow placement='top' title={t('tug.heavy')}>
+        <Tooltip arrow placement='top' title={String(t('tug.heavy'))}>
           <span className={clsx(classes.tug, size === 'small' && classes.small, classes.heavy, className)}>!!!</span>
         </Tooltip>
       )

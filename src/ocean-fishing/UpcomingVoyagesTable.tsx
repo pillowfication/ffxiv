@@ -13,9 +13,8 @@ import OceanFishIcon from './OceanFishIcon'
 import { fishingSpots, placeNames } from './ffxiv-ocean-fishing/data'
 import { getStopTimes, calculateVoyages, Dest, Time, DestTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
-import { toTimeString } from '../utils'
 import { getBlueFish, timeUntil, upperFirst } from './utils'
-import { translate } from '../utils'
+import { toTimeString, translate } from '../utils'
 import { useTranslation } from '../i18n'
 
 const DATE_FORMAT: Intl.DateTimeFormatOptions = { month: '2-digit', day: '2-digit' }
@@ -62,14 +61,14 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-type Props = {
-  now: Date,
-  numRows: number,
-  filter?: DestTime[],
-  onSelectRoute?: (route: DestTime) => void
+interface Props {
+  now: Date
+  numRows: number
+  filter?: DestTime[]
+  onSelectRoute: (route: DestTime) => void
 }
 
-const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute }: Props) => {
+const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute }: Props): React.ReactElement => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('ocean-fishing')
   const [hover, setHover] = useState<DestTime | null>(null)
@@ -97,7 +96,7 @@ const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute }: Props) =>
                 <TableRow
                   key={date.getTime()}
                   hover
-                  className={clsx(!filter && hover === destTime && classes.hoverRow)}
+                  className={clsx(filter === undefined && hover === destTime && classes.hoverRow)}
                   onMouseOver={setHover.bind(null, destTime)}
                   onClick={onSelectRoute.bind(null, destTime)}
                 >
@@ -122,7 +121,7 @@ const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute }: Props) =>
                     )}
                     {getStopTimes(destTime).map(stopTime => {
                       const blueFishId = getBlueFish(stopTime)
-                      return blueFishId && <OceanFishIcon key={blueFishId} type='fish' id={blueFishId} />
+                      return blueFishId !== null && <OceanFishIcon key={blueFishId} type='fish' id={blueFishId} />
                     })}
                   </TableCell>
                 </TableRow>

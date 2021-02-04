@@ -64,7 +64,7 @@ export const ACHIEVEMENTS_MAP: Record<DestTime, number[]> = {
 }
 
 // This should be automated later...
-export const FILTER_MAP: Record<string, DestTime[]> = <any>{
+export const FILTER_MAP: Record<string, DestTime[]> = {
   B: ['BD', 'BN', 'BS'],
   N: ['ND', 'NN', 'NS'],
   R: ['RD', 'RN', 'RS'],

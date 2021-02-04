@@ -5,12 +5,13 @@ import Paper from '@material-ui/core/Paper'
 import Pagination from './Pagination'
 import renderJSON from './render-json'
 
-const CACHE: { key: string, value: any }[] = []
+const CACHE: Array<{ key: string, value: any }> = []
 
-function getCached (key: string) {
+function getCached (key: string): any {
   return CACHE.find(item => item.key === key)
 }
-function addCached (key: string, value: any) {
+
+function addCached (key: string, value: any): void {
   CACHE.push({ key, value })
   if (CACHE.length > 100) {
     CACHE.shift()
@@ -26,18 +27,18 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-type Props = {
-  url: string,
-  onChangeUrl?: (url: string) => void
+interface Props {
+  url: string
+  onChangeUrl: (url: string) => void
 }
 
-const Results = ({ url, onChangeUrl }: Props) => {
+const Results = ({ url, onChangeUrl }: Props): React.ReactElement => {
   const classes = useStyles()
   const [data, setData] = useState<any>(null)
 
   useEffect(() => {
     const cached = getCached(url)
-    if (cached) {
+    if (cached !== undefined) {
       setData(cached.value)
     } else {
       // Use Suspense to avoid race thinggy
@@ -57,7 +58,7 @@ const Results = ({ url, onChangeUrl }: Props) => {
     <>
       <Pagination url={url} data={data} onChangeUrl={onChangeUrl} />
         <Paper className={classes.results}>
-          {data ? renderJSON(data, { depth: 0, onChangeUrl, _isContent: url === '/content' || url === '/Content' }) : 'Loading...'}
+          {data !== null ? renderJSON(data, { depth: 0, onChangeUrl, _isContent: url === '/content' || url === '/Content' }) : 'Loading...'}
         </Paper>
       <Pagination url={url} data={data} onChangeUrl={onChangeUrl} />
     </>

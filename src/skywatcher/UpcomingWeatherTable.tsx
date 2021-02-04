@@ -64,14 +64,14 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-type Props = {
-  now: Date,
-  places: { place: Place, weatherRateIndex: number }[],
-  showLabels?: boolean,
+interface Props {
+  now: Date
+  places: Array<{ place: Place, weatherRateIndex: number }>
+  showLabels?: boolean
   showLocalTime?: boolean
 }
 
-const UpcomingWeatherTable = ({ now, places, showLabels, showLocalTime }: Props) => {
+const UpcomingWeatherTable = ({ now, places, showLabels = false, showLocalTime = false }: Props): React.ReactElement => {
   const classes = useStyles()
   const { i18n } = useTranslation()
   const currentSeed = getSeed(now)

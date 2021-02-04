@@ -16,7 +16,7 @@ const ctx = canvas.getContext('2d')
   for (let index = 0; index < ICONS.length; ++index) {
     const weather = ICONS[index]
 
-    if (weather.icon) {
+    if (weather.icon !== null) {
       const img = await loadImage(saintCoinach.getIcon(weather.icon).buffer)
       ctx.drawImage(img, index * ICON_SIZE, 0)
     }
@@ -28,4 +28,4 @@ const ctx = canvas.getContext('2d')
     fs.writeFileSync(OUTPUT_MAP, JSON.stringify(ICONS.map(weather => weather.id)))
     console.log('Done!')
   })
-})()
+})().then(null, null)

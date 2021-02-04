@@ -49,11 +49,11 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-type Props = {
+interface Props {
   fruits: Fruit[]
 }
 
-const FruitsList = ({ fruits: fruitIds }: Props) => {
+const FruitsList = ({ fruits: fruitIds }: Props): React.ReactElement => {
   const classes = useStyles()
   const { i18n } = useTranslation('chocobo-color')
   const [checklist, setChecklist] = useState<Record<number, boolean>>({})
@@ -63,7 +63,7 @@ const FruitsList = ({ fruits: fruitIds }: Props) => {
     setChecklist({})
   }, [fruitIds])
 
-  const handleClickItem = (index: number) => {
+  const handleClickItem = (index: number): void => {
     setChecklist({ ...checklist, [index]: !checklist[index] })
   }
 

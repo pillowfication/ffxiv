@@ -8,7 +8,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(1),
     [theme.breakpoints.up('md')]: {
       margin: theme.spacing(4),
-      padding: theme.spacing(2),
+      padding: theme.spacing(2)
     },
     fontSize: '1.75em',
     '& > span': {
@@ -20,11 +20,11 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-type Props = {
+interface Props {
   name: string
 }
 
-const MyNameIs = ({ name }: Props) => {
+const MyNameIs = ({ name }: Props): React.ReactElement => {
   const classes = useStyles()
 
   return (

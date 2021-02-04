@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const About = () => {
+const About = (): React.ReactElement => {
   const classes = useStyles()
   const { t } = useTranslation('ocean-fishing')
 

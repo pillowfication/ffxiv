@@ -50,12 +50,12 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-type Props = {
-  spots: number[],
+interface Props {
+  spots: number[]
   time?: 'D' | 'S' | 'N'
 }
 
-const FishTable = ({ spots, time }: Props) => {
+const FishTable = ({ spots, time }: Props): React.ReactElement => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('ocean-fishing')
   const locale = i18n.language
@@ -88,7 +88,7 @@ const FishTable = ({ spots, time }: Props) => {
                     <TableRow
                       key={fishId}
                       hover
-                      className={clsx(time && spreadsheetData.time && spreadsheetData.time.indexOf(time) === -1 && classes.disabled)}
+                      className={clsx(time !== undefined && spreadsheetData.time !== undefined && !spreadsheetData.time.includes(time) && classes.disabled)}
                     >
                       <TableCell align='center'>
                         <ChecklistCheckmark fishId={fish.id} />
@@ -98,11 +98,12 @@ const FishTable = ({ spots, time }: Props) => {
                       </TableCell>
                       <TableCell>
                         <div><Typography>{translate(locale, fish, 'name')}</Typography></div>
-                        {spreadsheetData.stars &&
-                          <div className={classes.stars}>{'★'.repeat(spreadsheetData.stars)}</div>}
+                        {spreadsheetData.stars !== undefined && (
+                          <div className={classes.stars}>{'★'.repeat(spreadsheetData.stars)}</div>
+                        )}
                       </TableCell>
                       <TableCell align='center' className={classes.baitCell}>
-                        {spreadsheetData.intuition && (
+                        {spreadsheetData.intuition !== undefined && (
                           <>
                             {spreadsheetData.intuition.map(({ fishId, count }, index) =>
                               <React.Fragment key={fishId}>
@@ -115,42 +116,44 @@ const FishTable = ({ spots, time }: Props) => {
                             <img src='/images/ocean-fishing/fishers-intuition.png' className={classes.intuition} />
                           </>
                         )}
-                        {spreadsheetData.bait && (
+                        {spreadsheetData.bait !== undefined && (
                           <OceanFishIcon
                             type='bait'
                             id={spreadsheetData.bait}
-                            Badge={isBaitRequired(fishId, spreadsheetData.bait) && <StarBadge />}
+                            badge={isBaitRequired(fishId, spreadsheetData.bait) && <StarBadge />}
                           />
                         )}
-                        {spreadsheetData.bait && spreadsheetData.mooch && 'or'}
-                        {spreadsheetData.mooch && <OceanFishIcon type='fish' id={spreadsheetData.mooch} />}
+                        {spreadsheetData.bait !== undefined && spreadsheetData.mooch !== undefined && 'or'}
+                        {spreadsheetData.mooch !== undefined && (
+                          <OceanFishIcon type='fish' id={spreadsheetData.mooch} />
+                        )}
                       </TableCell>
                       <TableCell align='center'>
-                        {spreadsheetData.tug && (
+                        {spreadsheetData.tug !== undefined && (
                           <Tug strength={spreadsheetData.tug} className={classes.tug} />
                         )}
                       </TableCell>
                       <TableCell align='center'>
-                        {fish.biteTimes.all && (
+                        {fish.biteTimes.all !== undefined && (
                           <Typography>{fish.biteTimes.all[0] === fish.biteTimes.all[1] ? fish.biteTimes.all[0] : fish.biteTimes.all.join('-')}</Typography>
                         )}
                       </TableCell>
                       <TableCell align='center'>
-                        {spreadsheetData.points && (
+                        {spreadsheetData.points !== undefined && (
                           <Typography>{spreadsheetData.points}</Typography>
                         )}
                       </TableCell>
                       <TableCell align='center'>
-                        {spreadsheetData.doubleHook && (
+                        {spreadsheetData.doubleHook !== undefined && (
                           <Typography>{Array.isArray(spreadsheetData.doubleHook) ? spreadsheetData.doubleHook.join('-') : spreadsheetData.doubleHook}</Typography>
                         )}
                       </TableCell>
                       <TableCell align='center'>
                         {(() => {
                           if (isSpectral) {
-                            return spreadsheetData.time.length === 3 ? 'Any' : spreadsheetData.time && spreadsheetData.time.map(time => <TimeIcon key={time} time={time} />)
+                            return spreadsheetData.time?.length === 3 ? 'Any' : spreadsheetData.time?.map(time => <TimeIcon key={time} time={time} />)
                           } else {
-                            if (!spreadsheetData.weathers) return null
+                            if (spreadsheetData.weathers === undefined) return null
                             switch (spreadsheetData.weathers.type) {
                               case 'ALL':
                                 return 'Any'
@@ -172,7 +175,7 @@ const FishTable = ({ spots, time }: Props) => {
                         })()}
                       </TableCell>
                       <TableCell align='center'>
-                        {fish.contentBonus && (
+                        {fish.contentBonus !== undefined && (
                           <OceanFishIcon type='content-bonus' id={fish.contentBonus} size={30} />
                         )}
                       </TableCell>

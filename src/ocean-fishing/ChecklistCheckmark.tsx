@@ -17,17 +17,17 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-type Props = {
+interface Props {
   fishId: number
 }
 
-const ChecklistCheckmark = ({ fishId }: Props) => {
+const ChecklistCheckmark = ({ fishId }: Props): React.ReactElement => {
   const classes = useStyles()
 
   return (
     <ChecklistContext.Consumer>
       {({ checklist, setChecklist }) => {
-        const toggleFish = (fishId: number) => {
+        const toggleFish = (fishId: number): void => {
           if (checklist.includes(fishId)) {
             const copy = checklist.slice()
             copy.splice(copy.findIndex(id => id === fishId), 1)

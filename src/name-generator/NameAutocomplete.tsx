@@ -2,13 +2,13 @@ import React from 'react'
 import TextField from '@material-ui/core/TextField'
 import Autocomplete from '@material-ui/lab/Autocomplete'
 
-type Props = {
-  options: string[],
+interface Props {
+  options: string[]
   sort?: (a: string, b: string) => number
   getOptionLabel?: (option: string) => string
-  value: string,
-  onChange: (value: string) => void,
-  label?: string,
+  value: string
+  onChange: (value: string) => void
+  label?: string
   placeholder?: string
 }
 
@@ -20,18 +20,18 @@ const NameAutocomplete = ({
   onChange,
   label = 'Label',
   placeholder = 'Placeholder'
-}: Props) => {
-  const handleChangeAutocomplete = (_: any, value: string) => {
-    onChange(value || '')
+}: Props): React.ReactElement => {
+  const handleChangeAutocomplete = (_: any, value: string | null): void => {
+    onChange(value !== null ? value : '')
   }
-  const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(event.target.value || '')
+  const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    onChange(event.target.value)
   }
 
   return (
     <Autocomplete
       freeSolo
-      options={options.sort(sort).filter((name, index, array) => array.indexOf(name, index + 1) === -1)}
+      options={options.sort(sort).filter((name, index, array) => name !== array[index + 1])}
       getOptionLabel={getOptionLabel}
       value={value}
       inputValue={value}

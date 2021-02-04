@@ -22,11 +22,11 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-type Props = {
+interface Props {
   state: string
 }
 
-const MiniGrid = ({ state }: Props) => {
+const MiniGrid = ({ state }: Props): React.ReactElement => {
   const classes = useStyles()
 
   return (
@@ -52,4 +52,4 @@ const MiniGrid = ({ state }: Props) => {
   )
 }
 
-export default MiniGrid
+export default React.memo(MiniGrid)

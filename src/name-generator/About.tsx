@@ -32,9 +32,9 @@ const CONVENTION_LINKS: Record<Race, string> = {
   [Race.Viera]: 'https://forum.square-enix.com/ffxiv/threads/398565-Viera-Naming-Conventions?p=5091421&viewfull=1#post5091421'
 }
 
-function combinations (...arrays: any[][]) {
+function combinations (...arrays: any[][]): number {
   return arrays
-    .map(array => array.filter((name, index) => array.indexOf(name, index + 1) === -1))
+    .map(array => array.filter((name, index) => name !== array[index + 1]))
     .reduce((acc, curr) => acc * curr.length, 1)
 }
 
@@ -89,18 +89,18 @@ const STATISTICS: Record<Clan, Record<Gender, number>> = {
   },
   [Clan.Helions]: {
     [Gender.Male]: combinations(names.HrothgarHellionsFirstName, names.HrothgarHellionsLastName),
-    [Gender.Female]: undefined
+    [Gender.Female]: 0
   },
   [Clan.TheLost]: {
     [Gender.Male]: combinations(names.HrothgarLostFirstName, names.HrothgarLostLastName),
-    [Gender.Female]: undefined
+    [Gender.Female]: 0
   },
   [Clan.Rava]: {
-    [Gender.Male]: undefined,
+    [Gender.Male]: 0,
     [Gender.Female]: combinations(names.VieraFirstName, names.VieraRavaLastName)
   },
   [Clan.Veena]: {
-    [Gender.Male]: undefined,
+    [Gender.Male]: 0,
     [Gender.Female]: combinations(names.VieraFirstName, names.VieraVeenaLastName)
   }
 }
@@ -123,7 +123,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const About = () => {
+const About = (): React.ReactElement => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('name-generator')
   const locale = i18n.language
@@ -152,7 +152,7 @@ const About = () => {
           </TableHead>
           <TableBody>
             {getRaces().map(race => {
-              const rows = []
+              const rows: React.ReactElement[] = []
               const clans = getClans(race)
               const genders = getGenders(race)
 

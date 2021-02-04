@@ -30,9 +30,9 @@ import {
 } from './ffxiv-skywatcher'
 import { useTranslation } from '../i18n'
 
-type PlaceOption = {
-  region: Place,
-  place: Place,
+interface PlaceOption {
+  region: Place
+  place: Place
   weatherRateIndex: number
 }
 const PLACE_OPTIONS: PlaceOption[] = []
@@ -44,7 +44,7 @@ for (const region of getRegions()) {
   }
 }
 
-function removeTags (markdown: string) {
+function removeTags (markdown: string): string {
   return markdown.replace(/<\/?.+?>/g, '')
 }
 
@@ -64,26 +64,27 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-type Props = {
+interface Props {
   now: Date
 }
 
-const Forecaster = ({ now }: Props) => {
+const Forecaster = ({ now }: Props): React.ReactElement => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('skywatcher')
   const [placeOption, setPlaceOption] = useState<PlaceOption | null>(null)
   const [transitionWeather, setTransitionWeather] = useState<Weather | null>(null)
   const [targetWeather, setTargetWeather] = useState<Weather | null>(null)
   const [times, setTimes] = useState({ 0: true, 8: true, 16: true })
-  const possibleWeathers = placeOption && getPossibleWeathers(placeOption.place, placeOption.weatherRateIndex)
+
+  const possibleWeathers = placeOption !== null ? getPossibleWeathers(placeOption.place, placeOption.weatherRateIndex) : null
   const hasTime = times[0] || times[8] || times[16]
-  const forecast = (placeOption && hasTime) &&
-    forecastWeathers(
+  const forecast = (placeOption !== null && hasTime)
+    ? forecastWeathers(
       placeOption.place,
       placeOption.weatherRateIndex,
       (prevWeather, currWeather, seed) => {
-        if (transitionWeather && transitionWeather !== prevWeather) return false
-        if (targetWeather && targetWeather !== currWeather) return false
+        if (transitionWeather !== null && transitionWeather !== prevWeather) return false
+        if (targetWeather !== null && targetWeather !== currWeather) return false
         if (!times[0] && seed % 3 === 0) return false
         if (!times[8] && seed % 3 === 1) return false
         if (!times[16] && seed % 3 === 2) return false
@@ -91,23 +92,24 @@ const Forecaster = ({ now }: Props) => {
       },
       getSeed(now)
     )
+    : null
   const locale = i18n.language
 
-  const handleSelectPlace = (_: any, placeOption: PlaceOption) => {
+  const handleSelectPlace = (_: any, placeOption: PlaceOption): void => {
     setPlaceOption(placeOption)
     setTransitionWeather(null)
     setTargetWeather(null)
   }
 
-  const handleSelectTransitionWeather = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleSelectTransitionWeather = (event: React.ChangeEvent<HTMLSelectElement>): void => {
     setTransitionWeather(event.target.value === 'none' ? null : (+event.target.value as Weather))
   }
 
-  const handleSelectTargetWeather = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleSelectTargetWeather = (event: React.ChangeEvent<HTMLSelectElement>): void => {
     setTargetWeather(event.target.value === 'none' ? null : (+event.target.value as Weather))
   }
 
-  const handleSelectTimes = (timeSlot: 0 | 8 | 16) => {
+  const handleSelectTimes = (timeSlot: 0 | 8 | 16): void => {
     setTimes({ ...times, [timeSlot]: !times[timeSlot] })
   }
 
@@ -129,15 +131,13 @@ const Forecaster = ({ now }: Props) => {
           <FormControl fullWidth className={classes.transitionWeather}>
             <InputLabel>{t('transitionWeather')}</InputLabel>
             <Select
-              value={transitionWeather || 'none'}
-              disabled={!placeOption}
+              value={transitionWeather !== null ? transitionWeather : 'none'}
+              disabled={placeOption === null}
               onChange={handleSelectTransitionWeather}
             >
-              <MenuItem value='none'>{t(possibleWeathers ? 'anyWeather' : 'selectPlaceFirst')}</MenuItem>
-              {possibleWeathers && (
-                possibleWeathers.map(weather =>
-                  <MenuItem key={weather} value={weather}>{translateWeather(weather, locale)}</MenuItem>
-                )
+              <MenuItem value='none'>{t(possibleWeathers !== null ? 'anyWeather' : 'selectPlaceFirst')}</MenuItem>
+              {possibleWeathers?.map(weather =>
+                <MenuItem key={weather} value={weather}>{translateWeather(weather, locale)}</MenuItem>
               )}
             </Select>
           </FormControl>
@@ -145,15 +145,13 @@ const Forecaster = ({ now }: Props) => {
           <FormControl fullWidth>
             <InputLabel>{t('targetWeather')}</InputLabel>
             <Select
-              value={targetWeather || 'none'}
-              disabled={!placeOption}
+              value={targetWeather !== null ? targetWeather : 'none'}
+              disabled={placeOption === null}
               onChange={handleSelectTargetWeather}
             >
-              <MenuItem value='none'>{t(possibleWeathers ? 'anyWeather' : 'selectPlaceFirst')}</MenuItem>
-              {possibleWeathers && (
-                possibleWeathers.map(weather =>
-                  <MenuItem key={weather} value={weather}>{translateWeather(weather, locale)}</MenuItem>
-                )
+              <MenuItem value='none'>{t(possibleWeathers !== null ? 'anyWeather' : 'selectPlaceFirst')}</MenuItem>
+              {possibleWeathers?.map(weather =>
+                <MenuItem key={weather} value={weather}>{translateWeather(weather, locale)}</MenuItem>
               )}
             </Select>
           </FormControl>
@@ -177,12 +175,12 @@ const Forecaster = ({ now }: Props) => {
             </FormGroup>
           </FormControl>
         </Grid>
-        {placeOption && !hasTime && (
+        {placeOption !== null && !hasTime && (
           <Grid item xs={12}>
             <Alert variant='outlined' severity='error'>{t('noTimeSelected')}</Alert>
           </Grid>
         )}
-        {forecast && (
+        {forecast !== null && (
           <Grid item xs={12}>
             <NoSsr>
               <ForecasterTable now={now} forecast={forecast} />

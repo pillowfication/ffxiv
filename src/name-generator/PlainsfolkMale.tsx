@@ -9,7 +9,7 @@ import { translate, Clan, Gender } from './ffxiv-name-generator'
 import { upperFirst, formatName } from './ffxiv-name-generator/src/utils'
 import { useTranslation } from '../i18n'
 
-const PlainsfolkMale = () => {
+const PlainsfolkMale = (): React.ReactElement => {
   const { t, i18n } = useTranslation('name-generator')
   const [phonemeA, setPhonemeA] = useState('')
   const [phonemeB, setPhonemeB] = useState('')
@@ -59,7 +59,7 @@ const PlainsfolkMale = () => {
             The <b>A</b> and <b>C</b> phonemes do not have to rhyme, and the <b>A</b>, <b>B</b>, and <b>C</b> phonemes are usually limited to one or two syllables.
           </Typography>
         </Grid>
-        {name && (
+        {name.length > 0 && (
           <Grid item xs={12}>
             <MyNameIs name={name} />
           </Grid>

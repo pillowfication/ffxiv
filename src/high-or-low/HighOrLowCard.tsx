@@ -30,17 +30,17 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-type Props = {
-  value?: number,
-  disabled?: boolean,
-  error?: boolean,
-  onInputDigit?: (digit: number) => void
+interface Props {
+  value?: number | null
+  disabled?: boolean
+  error?: boolean
+  onInputDigit?: (digit: number | null) => void
 }
 
-const HighOrLowCard = ({ value, disabled, error, onInputDigit = () => {} }: Props) => {
+const HighOrLowCard = ({ value, disabled = false, error, onInputDigit = () => {} }: Props): React.ReactElement => {
   const classes = useStyles()
 
-  const handleInputDigit = (event: React.KeyboardEvent) => {
+  const handleInputDigit = (event: React.KeyboardEvent): void => {
     const key = event.key
     if (key === 'Backspace' || key === 'Delete') {
       onInputDigit(null)
@@ -60,7 +60,7 @@ const HighOrLowCard = ({ value, disabled, error, onInputDigit = () => {} }: Prop
       InputProps={{ className: clsx(classes.card, disabled && classes.disabled) }}
       inputProps={{ className: classes.cardInput }}
       onKeyDown={handleInputDigit}
-      value={disabled ? '?' : (value || '')}
+      value={disabled ? '?' : (value != null ? value : '')} // eslint-disable-line no-extra-boolean-cast
     />
   )
 }

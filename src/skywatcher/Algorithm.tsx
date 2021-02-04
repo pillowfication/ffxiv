@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Algorithm = () => {
+const Algorithm = (): React.ReactElement => {
   const classes = useStyles()
   const { t } = useTranslation('skywatcher')
 

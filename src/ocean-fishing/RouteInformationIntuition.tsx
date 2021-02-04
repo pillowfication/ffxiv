@@ -10,11 +10,11 @@ import { getBlueFish, getBaitGroup } from './utils'
 import { translate } from '../utils'
 import { useTranslation } from '../i18n'
 
-type Props = {
+interface Props {
   stopTimes: [StopTime, StopTime, StopTime]
 }
 
-const RouteInformationIntuition = ({ stopTimes }: Props) => {
+const RouteInformationIntuition = ({ stopTimes }: Props): React.ReactElement => {
   const { i18n } = useTranslation('ocean-fishing')
   const locale = i18n.language
 
@@ -29,8 +29,8 @@ const RouteInformationIntuition = ({ stopTimes }: Props) => {
                 maps.GREEN_FISH_MAP[stopTime[0] as Stop],
                 getBlueFish(stopTime)
               ]
-                .filter(x => x)
-                .map(fishId => ({
+                .filter(fishId => fishId !== null)
+                .map((fishId: number) => ({
                   header: translate(locale, fishes[fishId], 'name'),
                   baitGroupProps: getBaitGroup(fishId)
                 }))

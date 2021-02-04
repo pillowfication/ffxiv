@@ -29,7 +29,7 @@ const LANGUAGES = {
 }
 
 function getLanguage (locale: string): string {
-  return LANGUAGES[locale] || (locale || '').toUpperCase()
+  return LANGUAGES[locale] !== undefined ? LANGUAGES[locale] : locale.toUpperCase()
 }
 
 const useStyles = makeStyles(theme => ({
@@ -53,12 +53,12 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-type Props = {
-  theme: 'light' | 'dark',
+interface Props {
+  theme: 'light' | 'dark'
   setTheme: (theme: 'light' | 'dark') => void
 }
 
-const Header = ({ theme, setTheme }: Props) => {
+const Header = ({ theme, setTheme }: Props): React.ReactElement => {
   const classes = useStyles()
   const { i18n } = useTranslation('common')
   const [languageAnchorEl, setLanguageAnchorEl] = useState<HTMLElement | null>(null)
@@ -73,16 +73,20 @@ const Header = ({ theme, setTheme }: Props) => {
     window.localStorage.setItem('theme', theme)
   }, [theme])
 
-  const handleClickLanguage = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClickLanguage = (event: React.MouseEvent<HTMLButtonElement>): void => {
     setLanguageAnchorEl(event.currentTarget)
   }
 
-  const handleSelectLanguage = (locale?: string) => {
+  const handleSelectLanguage = (locale?: string): void => {
     setLanguageAnchorEl(null)
-    locale && i18n.changeLanguage(locale)
+    if (locale !== undefined) {
+      i18n.changeLanguage(locale)
+        .then(() => {})
+        .catch(() => {})
+    }
   }
 
-  const handleChangeTheme = () => {
+  const handleChangeTheme = (): void => {
     setTheme(theme === 'light' ? 'dark' : 'light')
   }
 
@@ -143,7 +147,7 @@ const Header = ({ theme, setTheme }: Props) => {
                 onClose={handleSelectLanguage.bind(null, null)}
               >
                 {
-                  // @ts-ignore
+                  // @ts-expect-error
                   [i18n.options.defaultLanguage, ...i18n.options.otherLanguages].map(locale =>
                     <MenuItem key={locale} onClick={handleSelectLanguage.bind(null, locale)}>{getLanguage(locale)}</MenuItem>
                   )

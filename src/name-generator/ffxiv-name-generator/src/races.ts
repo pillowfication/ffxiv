@@ -22,15 +22,15 @@ const CLANS: Record<Race, Clan[]> = {
   [Race.Viera]: [Clan.Rava, Clan.Veena]
 }
 
-export function getRaces () {
+export function getRaces (): Race[] {
   return RACES
 }
 
-export function getClans (race: Race) {
+export function getClans (race: Race): Clan[] {
   return CLANS[race]
 }
 
-export function getGenders (race: Race) {
+export function getGenders (race: Race): Gender[] {
   switch (race) {
     case Race.Hrothgar: return [Gender.Male]
     case Race.Viera: return [Gender.Female]

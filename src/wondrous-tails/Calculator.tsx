@@ -58,30 +58,30 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-function toPercent (val: number) {
+function toPercent (val: number): React.ReactElement {
   return <Typography>{(val * 100).toFixed(1) + '%'}</Typography>
 }
 
-function toDeviationPercent (val: number) {
+function toDeviationPercent (val: number): React.ReactElement {
   const string = (val >= 0 ? '+' : '') + (val * 100).toFixed(1) + '%'
   const color = val > 0 ? 'green' : val < 0 ? 'red' : undefined
   return <Typography style={{ color }}>{string}</Typography>
 }
 
-const Calculator = () => {
+const Calculator = (): React.ReactElement => {
   const classes = useStyles()
   const { t } = useTranslation('wondrous-tails')
-  const [board, setBoard] = useState(Array(16).fill(false))
+  const [board, setBoard] = useState<boolean[]>(Array(16).fill(false))
   const { lines1, lines2, lines3, total } = calculateProbabilities(board)
   const filledCells = board.filter((x) => x).length
 
-  const toggleCell = (index: number) => {
+  const toggleCell = (index: number): void => {
     const newBoard = board.slice()
     newBoard[index] = !board[index]
     setBoard(newBoard)
   }
 
-  const handleClickReset = () => {
+  const handleClickReset = (): void => {
     setBoard(Array(16).fill(false))
   }
 
@@ -92,18 +92,30 @@ const Calculator = () => {
           <TableContainer>
             <table className={classes.cellsContainer}>
               <tbody>
-                {[[0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15]].map((row, rowIndex) =>
-                  <tr key={rowIndex}>
-                    {row.map((cellIndex) =>
-                      <td key={cellIndex}>
-                        <CalculatorCell
-                          selected={board[cellIndex]}
-                          onSelect={toggleCell.bind(null, cellIndex)}
-                        />
-                      </td>
-                    )}
-                  </tr>
-                )}
+                <tr>
+                  <td><CalculatorCell selected={board[0]} onSelect={toggleCell.bind(null, 0)} /></td>
+                  <td><CalculatorCell selected={board[1]} onSelect={toggleCell.bind(null, 1)} /></td>
+                  <td><CalculatorCell selected={board[2]} onSelect={toggleCell.bind(null, 2)} /></td>
+                  <td><CalculatorCell selected={board[3]} onSelect={toggleCell.bind(null, 3)} /></td>
+                </tr>
+                <tr>
+                  <td><CalculatorCell selected={board[4]} onSelect={toggleCell.bind(null, 4)} /></td>
+                  <td><CalculatorCell selected={board[5]} onSelect={toggleCell.bind(null, 5)} /></td>
+                  <td><CalculatorCell selected={board[6]} onSelect={toggleCell.bind(null, 6)} /></td>
+                  <td><CalculatorCell selected={board[7]} onSelect={toggleCell.bind(null, 7)} /></td>
+                </tr>
+                <tr>
+                  <td><CalculatorCell selected={board[8]} onSelect={toggleCell.bind(null, 8)} /></td>
+                  <td><CalculatorCell selected={board[9]} onSelect={toggleCell.bind(null, 9)} /></td>
+                  <td><CalculatorCell selected={board[10]} onSelect={toggleCell.bind(null, 10)} /></td>
+                  <td><CalculatorCell selected={board[11]} onSelect={toggleCell.bind(null, 11)} /></td>
+                </tr>
+                <tr>
+                  <td><CalculatorCell selected={board[12]} onSelect={toggleCell.bind(null, 12)} /></td>
+                  <td><CalculatorCell selected={board[13]} onSelect={toggleCell.bind(null, 13)} /></td>
+                  <td><CalculatorCell selected={board[14]} onSelect={toggleCell.bind(null, 14)} /></td>
+                  <td><CalculatorCell selected={board[15]} onSelect={toggleCell.bind(null, 15)} /></td>
+                </tr>
               </tbody>
             </table>
           </TableContainer>

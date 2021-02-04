@@ -13,7 +13,7 @@ function splitPhoneme (phoneme: string) {
   return phoneme.slice(0, phoneme.length / 2)
 }
 
-const DunesfolkMale = () => {
+const DunesfolkMale = (): React.ReactElement => {
   const { t, i18n } = useTranslation('name-generator')
   const [phonemeA, setPhonemeA] = useState('')
   const [phonemeB, setPhonemeB] = useState('')
@@ -63,7 +63,7 @@ const DunesfolkMale = () => {
             The <b>A</b> and <b>C</b> phonemes are one syllable, and the <b>B</b> phoneme is two.
           </Typography>
         </Grid>
-        {name && (
+        {name.length > 0 && (
           <Grid item xs={12}>
             <MyNameIs name={name} />
           </Grid>

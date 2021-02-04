@@ -59,13 +59,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-type IndexSectionProps = {
-  url: string,
-  title: string,
+interface IndexSectionProps {
+  url: string
+  title: string
   children?: React.ReactNode
 }
 
-const IndexSection = ({ url, title, children }: IndexSectionProps) => {
+const IndexSection = ({ url, title, children }: IndexSectionProps): React.ReactElement => {
   return (
     <>
       <dt>
@@ -82,7 +82,7 @@ const IndexSection = ({ url, title, children }: IndexSectionProps) => {
   )
 }
 
-const Index = () => {
+const Index = (): React.ReactElement => {
   const classes = useStyles()
   const router = useRouter()
   const { t, i18n } = useTranslation('index')

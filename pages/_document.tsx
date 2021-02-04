@@ -4,20 +4,22 @@ import { ServerStyleSheets } from '@material-ui/core/styles'
 import { GA_TRACKING_ID } from '../src/gtag'
 
 class MyDocument extends Document {
-  render () {
+  render (): React.ReactElement {
     return (
       <Html lang='en'>
         <Head>
           <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Open+Sans&display=swap' />
           <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
-          <script dangerouslySetInnerHTML={{__html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_TRACKING_ID}', {
-              page_path: window.location.pathname,
-            });
-          `}} />
+          <script dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_TRACKING_ID}', {
+                page_path: window.location.pathname,
+              });
+            `.trim()
+          }} />
         </Head>
         <body>
           <Main />

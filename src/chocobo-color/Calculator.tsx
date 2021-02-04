@@ -57,7 +57,7 @@ const SHADES_MAP: Record<number, { shade: Shade, color: Color }> = {
 
 const VALID_STAINS = Object.values(stains)
   .filter(isValidStain)
-  .sort((a, b) => a.shade - b.shade || a.shadeIndex - b.shadeIndex)
+  .sort((a, b) => a.shade !== b.shade ? a.shade - b.shade : a.shadeIndex - b.shadeIndex)
 
 const useStyles = makeStyles(theme => ({
   transitionArrow: {
@@ -77,7 +77,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Calculator = () => {
+const Calculator = (): React.ReactElement => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('chocobo-color')
   const [currentStain, setCurrentStain] = useState(stains[36]) // Desert Yellow
@@ -85,23 +85,30 @@ const Calculator = () => {
   const [solution, setSolution] = useState<{ fromStain: Stain, toStain: Stain, fruits: Fruit[], resultantColor: Color } | null>(null)
   const locale = i18n.language
 
-  const handleInputCurrentStain = (_: any, stain: Stain) => {
-    stain && setCurrentStain(stain)
+  const handleInputCurrentStain = (_: any, stain: Stain | null): void => {
+    if (stain !== null) {
+      setCurrentStain(stain)
+    }
   }
 
-  const handleInputTargetStain = (_: any, stain: Stain) => {
-    stain && setTargetStain(stain)
+  const handleInputTargetStain = (_: any, stain: Stain | null): void => {
+    if (stain !== null) {
+      setTargetStain(stain)
+    }
   }
 
-  const handleSelectShade = (shadeId: number) => {
-    setTargetStain(VALID_STAINS.find(stain => stain.shade === shadeId))
+  const handleSelectShade = (shadeId: number): void => {
+    const stain = VALID_STAINS.find(stain => stain.shade === shadeId)
+    if (stain !== undefined) {
+      setTargetStain(stain)
+    }
   }
 
-  const handleSelectStain = (stain: Stain) => {
+  const handleSelectStain = (stain: Stain): void => {
     setTargetStain(stain)
   }
 
-  const handleClickCalculate = () => {
+  const handleClickCalculate = (): void => {
     const solution = calculateFruits(currentStain, targetStain)
     setSolution({
       fromStain: currentStain,
@@ -170,7 +177,9 @@ const Calculator = () => {
             {t('calculate')}
           </Button>
         </Grid>
-        {solution && <Solution solution={solution} />}
+        {solution !== null && (
+          <Solution solution={solution} />
+        )}
       </Grid>
     </Section>
   )

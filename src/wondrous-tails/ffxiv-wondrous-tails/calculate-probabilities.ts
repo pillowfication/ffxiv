@@ -1,4 +1,4 @@
-const LINES = [
+const LINES: Array<[number, number, number, number]> = [
   [0, 1, 2, 3],
   [4, 5, 6, 7],
   [8, 9, 10, 11],
@@ -11,7 +11,7 @@ const LINES = [
   [3, 6, 9, 12]
 ]
 
-function countLines (board: boolean[]) {
+function countLines (board: boolean[]): number {
   let count = 0
   for (const line of LINES) {
     if (board[line[0]] && board[line[1]] && board[line[2]] && board[line[3]]) {
@@ -34,7 +34,7 @@ function choose (set: number[], count: number): number[][] {
   }
 }
 
-export default function calculateProbabilities (board: boolean[]) {
+export default function calculateProbabilities (board: boolean[]): { lines1: number, lines2: number, lines3: number, total: number } {
   const emptyIndices = Array(16).fill(undefined).map((_, index) => index).filter(index => !board[index])
   const possibleBoards = choose(emptyIndices, Math.max(emptyIndices.length - 7, 0)).map(empties => {
     const newBoard = board.slice()

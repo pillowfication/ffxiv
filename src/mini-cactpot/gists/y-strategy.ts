@@ -34,7 +34,7 @@ function getPermutations (digits: number): number[][] {
   if (digits === 1) {
     return [[1]]
   } else {
-    const permutations = []
+    const permutations: number[][] = []
     const subPermutations = getPermutations(digits - 1)
     for (const subPerm of subPermutations) {
       for (let index = 0; index < digits; ++index) {

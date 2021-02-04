@@ -17,15 +17,15 @@ function getTimeSensitiveFishes (stopTime: StopTime): number[] {
 
   return spectralFishingSpot.fishes.filter(fishId => {
     const { time: spreadsheetTime } = fishes[fishId].spreadsheetData
-    return spreadsheetTime && spreadsheetTime.length !== 3 && spreadsheetTime.includes(time)
+    return spreadsheetTime !== undefined && spreadsheetTime.length !== 3 && spreadsheetTime.includes(time)
   })
 }
 
-type Props = {
+interface Props {
   stopTimes: [StopTime, StopTime, StopTime]
 }
 
-const RouteInformationTimeSensitive = ({ stopTimes }: Props) => {
+const RouteInformationTimeSensitive = ({ stopTimes }: Props): React.ReactElement => {
   const { i18n } = useTranslation('ocean-fishing')
   const locale = i18n.language
 
@@ -39,7 +39,6 @@ const RouteInformationTimeSensitive = ({ stopTimes }: Props) => {
                 maps.SPECTRAL_FISH_MAP[stopTime[0] as Stop],
                 ...getTimeSensitiveFishes(stopTime)
               ]
-                .filter(x => x)
                 .map(fishId => ({
                   header: translate(locale, fishes[fishId], 'name'),
                   baitGroupProps: getBaitGroup(fishId)

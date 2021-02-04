@@ -29,11 +29,11 @@ const FISHING_SPOTS = [
 
 const data = {}
 
-;(async () => {
+await (async () => {
   for (const fishingSpot of FISHING_SPOTS) {
     // Find the cell contain the `fishingSpot` text
     data[fishingSpot] = []
-    let tr = $('table.waffle tr').filter((_, elem) => $(elem).text().indexOf(fishingSpot) >= 0).eq(0)
+    let tr = $('table.waffle tr').filter((_, elem) => $(elem).text().includes(fishingSpot)).eq(0)
     tr = tr.next()
 
     // Loop over the 10 rows after it
@@ -58,17 +58,17 @@ const data = {}
     }
   }
 
-  function isBlue (elem: Cheerio) {
+  function isBlue (elem: Cheerio): boolean {
     // These are the classNames of blue cells indicating desynth baits
     for (const className of ['s36', 's45', 's46', 's73']) {
-      if (elem.hasClass(className)) {
+      if (elem.hasClass(className) as boolean) {
         return true
       }
     }
     return false
   }
 
-  function parsePoints (str: string) {
+  function parsePoints (str: string): number | null {
     if (/^\d+$/.test(str)) {
       return Number(str)
     }
@@ -76,7 +76,7 @@ const data = {}
     return null
   }
 
-  function parseDoubleHook (str: string) {
+  function parseDoubleHook (str: string): number | number[] | null {
     if (/^\d+$/.test(str)) {
       return Number(str)
     }
@@ -84,20 +84,20 @@ const data = {}
       return str.split(' or ').map(Number)
     }
     if (/^\d+ Assumed$/.test(str)) {
-      return Number(str.match(/\d+/)[0])
+      return Number((str.match(/\d+/) as RegExpMatchArray)[0])
     }
     console.log('UNKNOWN DOUBLE HOOK:', str)
     return null
   }
 
-  function parseMooch (str: string) {
+  function parseMooch (str: string): string | null {
     if (!/^mooch bait$/i.test(str)) {
-      return str || null
+      return str !== '' ? str : null
     }
     return null
   }
 
-  function parseTug (str: string) {
+  function parseTug (str: string): number | null {
     if (/^!+$/.test(str)) {
       return str.length
     }
@@ -105,7 +105,7 @@ const data = {}
     return null
   }
 
-  function parseTime (str: string) {
+  function parseTime (str: string): string | null {
     if (/^all$/i.test(str)) {
       return 'DSN'
     }
@@ -122,8 +122,8 @@ const data = {}
     return null
   }
 
-  function parseWeathers (str: string) {
-    if (!str) {
+  function parseWeathers (str: string): { type: 'ALL' } | { type: 'OK', list: string[] } | { type: 'NOT OK', list: string[] } | null {
+    if (str === '') {
       return null
     }
     if (/^all$/i.test(str)) {
@@ -132,13 +132,13 @@ const data = {}
     if (/^(restricted|not all), [a-z/]+ OK$/i.test(str)) {
       return {
         type: 'OK',
-        list: parseWeatherNames(str.match(/^(?:restricted|not all), ([a-z /]+) OK$/i)[1].split('/'))
+        list: parseWeatherNames((str.match(/^(?:restricted|not all), ([a-z /]+) OK$/i) as RegExpMatchArray)[1].split('/')) as string[]
       }
     }
     if (/^restricted from [a-z /]+$/i.test(str)) {
       return {
         type: 'NOT OK',
-        list: parseWeatherNames(str.match(/^restricted from ([a-z /]+)$/i)[1].split('/'))
+        list: parseWeatherNames((str.match(/^restricted from ([a-z /]+)$/i) as RegExpMatchArray)[1].split('/')) as string[]
       }
     }
     if (/^restricted \(likely just from clear\)$/i.test(str)) {
@@ -147,18 +147,18 @@ const data = {}
         list: ['ClearSkies']
       }
     }
-    if (str.indexOf('/') !== -1) {
+    if (str.includes('/')) {
       return {
         type: 'OK',
-        list: parseWeatherNames(str.split('/'))
+        list: parseWeatherNames(str.split('/')) as string[]
       }
     }
     console.log('UNKNOWN WEATHERS:', str)
     return null
   }
 
-  function parseWeatherNames (weathers: string[]) {
-    const map: [string, string[]][] = [
+  function parseWeatherNames (weathers: string[]): Array<string | null> {
+    const map: Array<[string, string[]]> = [
       ['Blizzards', ['blizzard']],
       ['ClearSkies', ['clear']],
       ['Clouds', ['clouds']],
@@ -185,7 +185,7 @@ const data = {}
     }).filter(x => x)
   }
 
-  function parseStars (str: string) {
+  function parseStars (str: string): number | null {
     if (/^\d+$/.test(str)) {
       return Number(str)
     }

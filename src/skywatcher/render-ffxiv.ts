@@ -8,8 +8,15 @@ const TAGS_MAP: Record<string, string> = {
 
 export default function renderFfxiv (markdown: string): React.ReactNode {
   return reactStringReplace(markdown, /(<Emphasis>[\s\S]*?<\/Emphasis>)/g, (match, index) => {
-    if (!match) return match
-    const [, tag, content] = match.match(/^<(.+?)>([\s\S]*?)<\/\1>$/)
-    return React.createElement(TAGS_MAP[tag] || React.Fragment, { key: index }, content) // Recurse here if needed
+    if (match === null) {
+      return match
+    } else {
+      const [, tag, content] = match.match(/^<(.+?)>([\s\S]*?)<\/\1>$/) as RegExpMatchArray
+      return React.createElement(
+        TAGS_MAP[tag] !== undefined ? TAGS_MAP[tag] : React.Fragment,
+        { key: index },
+        content // Recurse here if needed
+      )
+    }
   })
 }

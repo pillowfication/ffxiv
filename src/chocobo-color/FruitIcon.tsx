@@ -12,17 +12,17 @@ const useStyles = makeStyles(() => {
     iconContainer: {
       display: 'inline-block',
       position: 'relative' as 'relative',
-      width: ({ size }) => 48 * size,
-      height: ({ size }) => 48 * size,
+      width: ({ size }: { size: number }) => 48 * size,
+      height: ({ size }: { size: number }) => 48 * size,
       verticalAlign: 'middle',
-      transform: ({ size }) => `scale(${size})`
+      transform: ({ size }: { size: number }) => `scale(${size})`
     },
     fruitIcon: {
       position: 'absolute' as 'absolute',
-      top: ({ size }) => 2 * size,
-      left: ({ size }) => 4 * size,
-      width: ({ size }) => 40 * size,
-      height: ({ size }) => 40 * size,
+      top: ({ size }: { size: number }) => 2 * size,
+      left: ({ size }: { size: number }) => 4 * size,
+      width: ({ size }: { size: number }) => 40 * size,
+      height: ({ size }: { size: number }) => 40 * size,
       backgroundImage: 'url("/images/chocobo-color/fruits-icons.png")',
       backgroundSize: `${ICONS_MAP.length * 100}% 100%`
     },
@@ -30,10 +30,10 @@ const useStyles = makeStyles(() => {
       position: 'absolute' as 'absolute',
       top: 0,
       left: 0,
-      width: ({ size }) => 48 * size,
-      height: ({ size }) => 48 * size,
+      width: ({ size }: { size: number }) => 48 * size,
+      height: ({ size }: { size: number }) => 48 * size,
       backgroundImage: 'url("/images/chocobo-color/item-cover.png")',
-      backgroundSize: '100% 100%',
+      backgroundSize: '100% 100%'
     }
   }
 
@@ -45,13 +45,13 @@ const useStyles = makeStyles(() => {
   return styles
 })
 
-type Props = {
-  fruit: number,
-  size?: number,
+interface Props {
+  fruit: number
+  size?: number
   className?: string
 }
 
-const FruitIcon = ({ fruit, size = 1, className }: Props) => {
+const FruitIcon = ({ fruit, size = 1, className }: Props): React.ReactElement => {
   const classes = useStyles(({ size }))
   const { i18n } = useTranslation()
   const locale = i18n.language

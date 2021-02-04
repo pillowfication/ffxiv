@@ -4,7 +4,7 @@ import Calculator from '../src/mini-cactpot/Calculator'
 import About from '../src/mini-cactpot/About'
 import { useTranslation } from '../src/i18n'
 
-const MiniCactpot = () => {
+const MiniCactpot = (): React.ReactElement => {
   const { t } = useTranslation('mini-cactpot')
   return (
     <Page title={t('_title')} description={t('_description')}>

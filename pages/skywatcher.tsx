@@ -8,7 +8,7 @@ import Algorithm from '../src/skywatcher/Algorithm'
 import { formatTime } from '../src/utils'
 import { useTranslation } from '../src/i18n'
 
-const Skywatcher = () => {
+const Skywatcher = (): React.ReactElement => {
   const { t } = useTranslation('skywatcher')
   const [now, setNow] = useState(new Date())
 

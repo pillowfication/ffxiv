@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const GlobalStyles = () => {
+const GlobalStyles = (): null => {
   useStyles()
   return null
 }

@@ -22,12 +22,12 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-type Props = {
-  selected?: boolean,
-  onSelect?: () => void
+interface Props {
+  selected?: boolean
+  onSelect: () => void
 }
 
-const CalculatorCell = ({ selected, onSelect = () => {} }: Props) => {
+const CalculatorCell = ({ selected = false, onSelect }: Props): React.ReactElement => {
   const classes = useStyles()
 
   return (
@@ -37,6 +37,5 @@ const CalculatorCell = ({ selected, onSelect = () => {} }: Props) => {
     />
   )
 }
-
 
 export default CalculatorCell

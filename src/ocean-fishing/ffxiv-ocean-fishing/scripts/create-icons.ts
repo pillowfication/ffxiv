@@ -18,17 +18,17 @@ const OUTPUT_MAP = path.resolve(__dirname, '../data/icons-map.json')
 //   Baits
 //   Achievements
 //   Content Bonuses
-const ICONS: { type: string, id: number, icon: number }[][] = []
+const ICONS: Array<Array<{ type: string, id: number, icon: number }>> = []
 
-function chunk (array: any[], chunkSize = 10) {
-  return array.reduce((acc, curr, index) => {
+function chunk<T> (array: T[], chunkSize = 10): T[][] {
+  return array.reduce<T[][]>((acc, curr, index) => {
     const chunkIndex = Math.floor(index / chunkSize)
-    ;(acc[chunkIndex] || (acc[chunkIndex] = [])).push(curr)
+    ;(acc[chunkIndex] !== undefined ? acc[chunkIndex] : (acc[chunkIndex] = [])).push(curr)
     return acc
   }, [])
 }
 
-function getValuesSorted<T> (object: Record<any, T>, property: string) {
+function getValuesSorted<T> (object: Record<any, T>, property: string): T[] {
   return Object.values(object).sort((a, b) => a[property] - b[property])
 }
 
@@ -62,7 +62,7 @@ const ICON_SIZE = 40
 const canvas = createCanvas(ICON_COLS * ICON_SIZE, ICON_ROWS * ICON_SIZE)
 const ctx = canvas.getContext('2d')
 
-;(async () => {
+await (async () => {
   // Draw the icons
   for (let row = 0; row < ICON_ROWS; ++row) {
     for (let col = 0; col < ICONS[row].length; ++col) {

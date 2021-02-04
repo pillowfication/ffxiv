@@ -79,7 +79,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-function getOverrides (contentBonusId: number) {
+function getOverrides (contentBonusId: number): number[] {
   switch (contentBonusId) {
     case 2: return [1]
     case 6: return [5]
@@ -89,7 +89,7 @@ function getOverrides (contentBonusId: number) {
   }
 }
 
-function getOverriddenBy (contentBonusId: number) {
+function getOverriddenBy (contentBonusId: number): number[] {
   switch (contentBonusId) {
     case 1: return [2]
     case 5: return [6]
@@ -99,22 +99,22 @@ function getOverriddenBy (contentBonusId: number) {
   }
 }
 
-function cleanObjective (objective: string) {
+function cleanObjective (objective: string): string {
   return objective.replace(/<[^<>]*?\/>/g, '')
 }
 
-function cleanRequirement (requirement: string) {
+function cleanRequirement (requirement: string): string {
   const str = requirement.replace(/^(Requirement:|Bedingung:|Condition :|達成条件：)/, '').trim()
   return str[0].toUpperCase() + str.slice(1)
 }
 
-type CalculatorRowProps = {
-  reward: string,
-  requiredPoints: number,
+interface CalculatorRowProps {
+  reward: string
+  requiredPoints: number
   totalBonus: number
 }
 
-const CalculatorRow = ({ reward, requiredPoints, totalBonus }: CalculatorRowProps) => {
+const CalculatorRow = ({ reward, requiredPoints, totalBonus }: CalculatorRowProps): React.ReactElement => {
   const classes = useStyles()
   const { i18n } = useTranslation('ocean-fishing')
   const locale = i18n.language
@@ -137,7 +137,7 @@ const CalculatorRow = ({ reward, requiredPoints, totalBonus }: CalculatorRowProp
   )
 }
 
-const Bonuses = () => {
+const Bonuses = (): React.ReactElement => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('ocean-fishing')
   const [basePoints, setBasePoints] = useState(5000)
@@ -165,8 +165,8 @@ const Bonuses = () => {
     })
   const totalBonus = filteredContentBonuses.reduce((acc, curr) => acc + curr.bonus - 100, 0) + 100
 
-  const handleClickChecked = (contentBonusId: number) => {
-    const newChecked = { ...checked, [contentBonusId]: !checked[contentBonusId]}
+  const handleClickChecked = (contentBonusId: number): void => {
+    const newChecked = { ...checked, [contentBonusId]: !checked[contentBonusId] }
     if (newChecked[contentBonusId]) {
       getOverrides(contentBonusId).forEach(contentBonus => { newChecked[contentBonus] = true })
     } else {
@@ -175,7 +175,7 @@ const Bonuses = () => {
     setChecked(newChecked)
   }
 
-  const handleInputBasePoints = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputBasePoints = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setBasePoints(Math.max(0, Number(event.target.value)))
   }
 
