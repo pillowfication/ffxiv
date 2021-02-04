@@ -57,7 +57,7 @@ const fruits = [
 
     return {
       id: itemId,
-      icon: saintCoinach.parseIconId(item_en.Icon),
+      icon: +item_en.Icon,
       name_en: item_en.Name,
       name_de: item_de.Name,
       name_fr: item_fr.Name,

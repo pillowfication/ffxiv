@@ -52,7 +52,7 @@ function maximum<T> (array: T[], predicate: (elem: T) => number): { elem: T, val
 }
 
 export function isValidStain (stain: Stain): boolean {
-  return stain.shade >= 2 && stain.shade <= 9 && stain.id <= 85
+  return stain.id !== 0 && stain.shade >= 2 && stain.shade <= 9 && stain.id <= 85
 }
 
 export function calculateFruitsDistance (fromColor: Color, toColor: Color, lookahead = 1): { fruits: Fruit[], color: Color, distance: number } {

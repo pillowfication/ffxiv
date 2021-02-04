@@ -27,8 +27,8 @@ const VECTORS = [
   new Vector(1, 1, 1)
 ]
 
-let errorBound = 0
-let errorVec: Vector = null as any as Vector
+let errorBound = -Infinity
+let errorVec: Vector = new Vector(0, 0, 0)
 
 for (let i = 0; i <= RESOLUTION; ++i) {
   const x = i * 2 / RESOLUTION - 1

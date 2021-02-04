@@ -22,12 +22,11 @@ function parseValues (types: Record<string, string>, datum: Record<string, any>)
     } else if (/^bit&\d+$/.test(type)) {
       datum[key] = (value === 'True')
     } else if (type === 'Color') {
-      const [, A, R, G, B] = value.match(/Color \[A=(\d+), R=(\d+), G=(\d+), B=(\d+)\]/)
+      const color = Number(value)
       datum[key] = {
-        A: Number(A),
-        R: Number(R),
-        G: Number(G),
-        B: Number(B)
+        R: (color & 0xFF0000) >> 16,
+        G: (color & 0x00FF00) >> 8,
+        B: (color & 0x0000FF) >> 0
       }
     }
   }

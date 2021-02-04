@@ -54,6 +54,12 @@ export interface Stain {
   shadeIndex: number
 }
 
+for (const stain of Object.values(_stains)) {
+  stain.color = new Color(stain.color.R, stain.color.G, stain.color.B)
+}
+
+export const stains = _stains as any as Record<number, Stain>
+
 export interface Fruit {
   id: number
   icon: number
@@ -71,9 +77,4 @@ export interface Fruit {
   plural_ja: string
 }
 
-for (const stain of Object.values(_stains)) {
-  stain.color = new Color(stain.color.R, stain.color.G, stain.color.B)
-}
-
-export const stains = _stains as any as Record<number, Stain>
 export const fruits = _fruits as Record<number, Fruit>
