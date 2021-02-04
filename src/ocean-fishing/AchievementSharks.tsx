@@ -7,6 +7,7 @@ import StopCard from './StopCard'
 import BaitList from './BaitList'
 import Tug from './Tug'
 import { getStopTimes, DestTime } from './ffxiv-ocean-fishing'
+import { fishes } from './ffxiv-ocean-fishing/data'
 import { getBaitGroup, subtextDH } from './utils'
 
 interface Props {
@@ -24,16 +25,16 @@ const AchievementSharks = ({ route }: Props): React.ReactElement => {
             <BaitList
               baitGroups={[{
                 header: 'IC; DH–IC–DH post-spectral',
-                baitGroupProps: { ...getBaitGroup(28942), subtext: subtextDH }
+                baitGroupProps: { ...getBaitGroup(fishes[28942]), subtext: subtextDH }
               }, {
                 header: 'IC–DH',
-                baitGroupProps: { ...getBaitGroup(29750), subtext: subtextDH }
+                baitGroupProps: { ...getBaitGroup(fishes[29750]), subtext: subtextDH }
               }, {
                 header: 'No buffs',
-                baitGroupProps: { ...getBaitGroup(29751), subtext: subtextDH }
+                baitGroupProps: { ...getBaitGroup(fishes[29751]), subtext: subtextDH }
               }, {
                 header: 'DH–IC–DH',
-                baitGroupProps: { ...getBaitGroup(29782), subtext: subtextDH }
+                baitGroupProps: { ...getBaitGroup(fishes[29782]), subtext: subtextDH }
               }]}
             />
           </CardContent>
@@ -70,13 +71,13 @@ const AchievementSharks = ({ route }: Props): React.ReactElement => {
             <BaitList
               baitGroups={[{
                 header: 'IC–DH; DH–IC–DH post-spectral',
-                baitGroupProps: { ...getBaitGroup(29735), subtext: subtextDH }
+                baitGroupProps: { ...getBaitGroup(fishes[29735]), subtext: subtextDH }
               }, {
                 header: 'No buffs',
-                baitGroupProps: { ...getBaitGroup(29767), subtext: subtextDH }
+                baitGroupProps: { ...getBaitGroup(fishes[29767]), subtext: subtextDH }
               }, {
                 header: 'DH–IC–DH',
-                baitGroupProps: { ...getBaitGroup(29770), subtext: subtextDH }
+                baitGroupProps: { ...getBaitGroup(fishes[29770]), subtext: subtextDH }
               }]}
             />
           </CardContent>

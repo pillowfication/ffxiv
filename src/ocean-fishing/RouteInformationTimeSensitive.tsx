@@ -3,21 +3,21 @@ import CardContent from '@material-ui/core/CardContent'
 import StopCardsContainer from './StopCardsContainer'
 import StopCard from './StopCard'
 import BaitList from './BaitList'
-import { fishingSpots, fishes } from './ffxiv-ocean-fishing/data'
+import { fishingSpots, Fish } from './ffxiv-ocean-fishing/data'
 import { Stop, Time, StopTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 import { getBaitGroup } from './utils'
 import { translate } from '../utils'
 import { useTranslation } from '../i18n'
 
-function getTimeSensitiveFishes (stopTime: StopTime): number[] {
-  const fishingSpotId = maps.STOP_MAP[stopTime[0] as Stop]
-  const spectralFishingSpot = fishingSpots[fishingSpotId + 1]
+function getTimeSensitiveFishes (stopTime: StopTime): Fish[] {
+  const fishingSpot = maps.STOP_MAP[stopTime[0] as Stop]
+  const spectralFishingSpot = fishingSpots[fishingSpot.id + 1]
   const time = stopTime[1] as Time
 
-  return spectralFishingSpot.fishes.filter(fishId => {
-    const { time: spreadsheetTime } = fishes[fishId].spreadsheetData
-    return spreadsheetTime !== undefined && spreadsheetTime.length !== 3 && spreadsheetTime.includes(time)
+  return spectralFishingSpot.fishes.filter(fish => {
+    const { time: fishTime } = fish.spreadsheetData
+    return fishTime !== null && fishTime.length < 3 && fishTime.includes(time)
   })
 }
 
@@ -39,9 +39,9 @@ const RouteInformationTimeSensitive = ({ stopTimes }: Props): React.ReactElement
                 maps.SPECTRAL_FISH_MAP[stopTime[0] as Stop],
                 ...getTimeSensitiveFishes(stopTime)
               ]
-                .map(fishId => ({
-                  header: translate(locale, fishes[fishId], 'name'),
-                  baitGroupProps: getBaitGroup(fishId)
+                .map(fish => ({
+                  header: translate(locale, fish, 'name'),
+                  baitGroupProps: getBaitGroup(fish)
                 }))
             } />
           </CardContent>

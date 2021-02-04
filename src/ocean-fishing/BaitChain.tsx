@@ -5,6 +5,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import OceanFishIcon from './OceanFishIcon'
 import Tug from './Tug'
 import StarBadge from './StarBadge'
+import { Fish, Bait } from './ffxiv-ocean-fishing/data'
 
 const useStyles = makeStyles(theme => ({
   baitChain: {
@@ -27,15 +28,19 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export interface Bait {
-  id: number
-  tug?: 1 | 2 | 3
+export interface BaitLink {
+  bait: Bait
+}
+
+export interface FishLink {
+  fish: Fish
+  tug: 1 | 2 | 3 | null
 }
 
 interface Props {
-  baits: Bait[]
+  baits: Array<BaitLink | FishLink>
   baitIsRequired?: boolean
-  subtext?: string | ((fishId: number) => string)
+  subtext?: string | ((fish: Fish) => string)
 }
 
 const BaitChain = ({ baits, baitIsRequired = false, subtext }: Props): React.ReactElement => {
@@ -43,21 +48,34 @@ const BaitChain = ({ baits, baitIsRequired = false, subtext }: Props): React.Rea
 
   return (
     <div className={classes.baitChain}>
-      {baits.map(({ id, tug }, index) =>
-        <React.Fragment key={id}>
-          <div className={classes.bait}>
-            {index === 0
-              ? <OceanFishIcon type='bait' id={id} Badge={baitIsRequired && <StarBadge />} />
-              : <OceanFishIcon type='fish' id={id} Badge={tug !== undefined && <Tug size='small' strength={tug} />} />}
-            {(subtext !== undefined && index === baits.length - 1) && (
-              <Typography className={classes.subtext} display='inline'>
-                {typeof subtext === 'string' ? subtext : subtext(id)}
-              </Typography>
-            )}
-          </div>
-          {index < baits.length - 1 && <ChevronRightIcon className={classes.chevron} />}
-        </React.Fragment>
-      )}
+      {baits.map((link, index) => {
+        if ((link as any).bait !== undefined) {
+          const { bait } = link as BaitLink
+          return (
+            <React.Fragment key={bait.id}>
+              <div className={classes.bait}>
+                <OceanFishIcon type='bait' id={bait.id} badge={baitIsRequired && <StarBadge />} />
+              </div>
+              <ChevronRightIcon className={classes.chevron} />
+            </React.Fragment>
+          )
+        } else {
+          const { fish, tug } = link as FishLink
+          return (
+            <React.Fragment key={fish.id}>
+              <div className={classes.bait}>
+                <OceanFishIcon type='fish' id={fish.id} badge={tug !== null && <Tug size='small' strength={tug} />} />
+                {(subtext !== undefined && index === baits.length - 1) && (
+                  <Typography className={classes.subtext} display='inline'>
+                    {typeof subtext === 'string' ? subtext : subtext(fish)}
+                  </Typography>
+                )}
+              </div>
+              {index < baits.length - 1 && <ChevronRightIcon className={classes.chevron} />}
+            </React.Fragment>
+          )
+        }
+      })}
     </div>
   )
 }

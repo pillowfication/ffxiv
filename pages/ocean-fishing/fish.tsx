@@ -8,7 +8,7 @@ import Page from '../../src/Page'
 import Section from '../../src/Section'
 import ImportFishes from '../../src/ocean-fishing/ImportFishes'
 import FishTable from '../../src/ocean-fishing/FishTable'
-import { fishingSpots, placeNames } from '../../src/ocean-fishing/ffxiv-ocean-fishing/data'
+import { fishingSpots } from '../../src/ocean-fishing/ffxiv-ocean-fishing/data'
 import { translate } from '../../src/utils'
 import { useTranslation } from '../../src/i18n'
 
@@ -52,10 +52,11 @@ const Fish = (): React.ReactElement => {
           </Section>
         </Collapse>
         {Object.values(fishingSpots)
-          .sort((a, b) => a.id - b.id)
+          .filter(fishingSpot => fishingSpot.id !== 0)
+          .sort((a, b) => a.order - b.order)
           .map(fishingSpot =>
-            <Section key={fishingSpot.id} title={translate(i18n.language, placeNames[fishingSpot.placeName], 'name')}>
-              <FishTable spots={[fishingSpot.id]} />
+            <Section key={fishingSpot.id} title={translate(i18n.language, fishingSpot.placeName, 'name')}>
+              <FishTable fishingSpots={[fishingSpot]} />
             </Section>
           )}
       </ChecklistContext.Provider>

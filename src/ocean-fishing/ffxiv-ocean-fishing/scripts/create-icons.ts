@@ -34,23 +34,25 @@ function getValuesSorted<T> (object: Record<any, T>, property: string): T[] {
 
 // Add fishes
 for (const fishingSpot of getValuesSorted(fishingSpots, 'order')) {
-  ICONS.push(fishingSpot.fishes.map(fishId => (
-    { type: 'fish', id: fishId, icon: fishes[fishId].icon }
-  )))
+  if (fishingSpot.id !== 0) {
+    ICONS.push((fishingSpot.fishes as number[]).map(fishId => ( // eslint-disable-line @typescript-eslint/no-unnecessary-type-assertion
+      { type: 'fish', id: fishId, icon: fishes[fishId].icon }
+    )))
+  }
 }
 
 // Add baits
-ICONS.push(...chunk(getValuesSorted(baits, 'id').map(bait => (
+ICONS.push(...chunk(getValuesSorted(baits, 'id').filter(({ icon }) => icon !== 0).map(bait => (
   { type: 'bait', id: bait.id, icon: bait.icon }
 ))))
 
 // Add achievements
-ICONS.push(...chunk(getValuesSorted(achievements, 'order').map(achievement => (
+ICONS.push(...chunk(getValuesSorted(achievements, 'order').filter(({ icon }) => icon !== 0).map(achievement => (
   { type: 'achievement', id: achievement.id, icon: achievement.icon }
 ))))
 
 // Add content bonuses
-ICONS.push(...chunk(getValuesSorted(contentBonuses, 'order').map(contentBonus => (
+ICONS.push(...chunk(getValuesSorted(contentBonuses, 'order').filter(({ icon }) => icon !== 0).map(contentBonus => (
   { type: 'content-bonus', id: contentBonus.id, icon: contentBonus.icon }
 ))))
 
@@ -62,13 +64,15 @@ const ICON_SIZE = 40
 const canvas = createCanvas(ICON_COLS * ICON_SIZE, ICON_ROWS * ICON_SIZE)
 const ctx = canvas.getContext('2d')
 
-await (async () => {
+;(async () => {
   // Draw the icons
   for (let row = 0; row < ICON_ROWS; ++row) {
     for (let col = 0; col < ICONS[row].length; ++col) {
-      const cell = ICONS[row][col]
-      const img = await loadImage(saintCoinach.getIcon(cell.icon).buffer)
-      ctx.drawImage(img, col * ICON_SIZE, row * ICON_SIZE)
+      const icon = ICONS[row][col].icon
+      if (icon !== 0) {
+        const img = await loadImage(saintCoinach.getIcon(icon).buffer)
+        ctx.drawImage(img, col * ICON_SIZE, row * ICON_SIZE)
+      }
     }
   }
 
@@ -80,4 +84,4 @@ await (async () => {
     ))
     console.log('Done!')
   })
-})()
+})().then(null, null)

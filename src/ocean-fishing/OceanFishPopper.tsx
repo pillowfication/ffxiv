@@ -20,13 +20,13 @@ import TimeIcon from './TimeIcon'
 import BaitGroup from './BaitGroup'
 import ChecklistCheckmark from './ChecklistCheckmark'
 import WeatherIcon from '../skywatcher/WeatherIcon'
-import { fishes, OceanFish } from './ffxiv-ocean-fishing/data'
+import { Fish } from './ffxiv-ocean-fishing/data'
 import { getBaitGroup, subtextBiteTime } from './utils'
 import { translate } from '../utils'
 import { useTranslation } from '../i18n'
 
-function getImgUrl (fish: OceanFish): string {
-  if (fish.lodestoneData !== undefined) {
+function getImgUrl (fish: Fish): string {
+  if (fish.lodestoneData !== null) {
     return `https://img.finalfantasyxiv.com/lds/pc/global/images/itemicon/${fish.lodestoneData.icon_lg.slice(0, 2)}/${fish.lodestoneData.icon_lg}.png`
   } else {
     // Fallback to XIVAPI's icons
@@ -64,14 +64,13 @@ const useStyles = makeStyles(theme => ({
 }))
 
 interface Props {
-  fishId: number
+  fish: Fish
 }
 
-const OceanFishPopper = ({ fishId }: Props): React.ReactElement => {
+const OceanFishPopper = ({ fish }: Props): React.ReactElement => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('ocean-fishing')
   const [expanded, setExpanded] = React.useState(false)
-  const fish = fishes[fishId]
   const spreadsheetData = fish.spreadsheetData
   const locale = i18n.language
 
@@ -88,17 +87,17 @@ const OceanFishPopper = ({ fishId }: Props): React.ReactElement => {
           titleTypographyProps={{ variant: 'h6', paragraph: true, className: classes.title }}
           subheader={(
             <div>
-              {fish.lodestoneData !== undefined && (
+              {fish.lodestoneData !== null && (
                 <div><Link href={`https://na.finalfantasyxiv.com/lodestone/playguide/db/item/${fish.lodestoneData.item}/`}>Lodestone</Link></div>
               )}
-              <div><Link href={`https://ffxivteamcraft.com/db/${locale}/item/${fishId}`}>Teamcraft</Link></div>
+              <div><Link href={`https://ffxivteamcraft.com/db/${locale}/item/${fish.id}`}>Teamcraft</Link></div>
             </div>
           )}
-          action={<ChecklistCheckmark fishId={fishId} />}
+          action={<ChecklistCheckmark fishId={fish.id} />}
           className={classes.header}
         />
         <CardContent className={classes.content}>
-          <BaitGroup {...getBaitGroup(fishId)} subtext={subtextBiteTime} />
+          <BaitGroup {...getBaitGroup(fish)} subtext={subtextBiteTime} />
         </CardContent>
         <CardContent className={classes.content}>
           <Table size='small'>
@@ -108,7 +107,7 @@ const OceanFishPopper = ({ fishId }: Props): React.ReactElement => {
                   {t('fishInfo.rating')}
                 </TableCell>
                 <TableCell align='center'>
-                  {spreadsheetData.stars !== undefined ? '★'.repeat(spreadsheetData.stars) : '?'}
+                  {spreadsheetData.stars !== null ? '★'.repeat(spreadsheetData.stars) : '?'}
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -116,7 +115,7 @@ const OceanFishPopper = ({ fishId }: Props): React.ReactElement => {
                   {t('fishInfo.points')}
                 </TableCell>
                 <TableCell align='center'>
-                  {spreadsheetData.points !== undefined ? spreadsheetData.points : '?'}
+                  {spreadsheetData.points !== null ? spreadsheetData.points : '?'}
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -124,7 +123,7 @@ const OceanFishPopper = ({ fishId }: Props): React.ReactElement => {
                   {t('fishInfo.doubleHook')}
                 </TableCell>
                 <TableCell align='center'>
-                  {spreadsheetData.doubleHook !== undefined
+                  {spreadsheetData.doubleHook !== null
                     ? (Array.isArray(spreadsheetData.doubleHook) ? spreadsheetData.doubleHook.join('-') : spreadsheetData.doubleHook)
                     : '?'}
                 </TableCell>
@@ -134,7 +133,7 @@ const OceanFishPopper = ({ fishId }: Props): React.ReactElement => {
                   {t('fishInfo.weather')}
                 </TableCell>
                 <TableCell align='center'>
-                  {spreadsheetData.weathers !== undefined
+                  {spreadsheetData.weathers !== null
                     ? (() => {
                         switch (spreadsheetData.weathers.type) {
                           case 'ALL':
@@ -162,7 +161,7 @@ const OceanFishPopper = ({ fishId }: Props): React.ReactElement => {
                   {t('fishInfo.timeOfDay')}
                 </TableCell>
                 <TableCell align='center'>
-                  {spreadsheetData.time !== undefined
+                  {spreadsheetData.time !== null
                     ? spreadsheetData.time.length === 3 ? 'Any' : spreadsheetData.time.map(time => <TimeIcon key={time} time={time} />)
                     : '?'}
                 </TableCell>

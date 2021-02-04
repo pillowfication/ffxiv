@@ -39,11 +39,15 @@ async function getLodestoneData (query: string): Promise<any> {
   return data
 }
 
-await (async () => {
+;(async () => {
   const lodestoneData = {}
   for (const fish of Object.values(oceanFishingFishes)) {
-    lodestoneData[fish.id] = await getLodestoneData(fish.name_en)
+    if (fish.id === 0) {
+      lodestoneData[fish.id] = null
+    } else {
+      lodestoneData[fish.id] = await getLodestoneData(fish.name_en)
+    }
   }
 
   fs.writeFileSync(OUTPUT, JSON.stringify(lodestoneData))
-})()
+})().then(null, null)

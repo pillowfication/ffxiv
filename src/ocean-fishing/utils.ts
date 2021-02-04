@@ -1,16 +1,17 @@
 import { timeUntil as genericTimeUntil } from '../utils'
-import { fishes } from './ffxiv-ocean-fishing/data'
+import { baits, Fish, Bait } from './ffxiv-ocean-fishing/data'
 import { Stop, Time, StopTime } from './ffxiv-ocean-fishing'
-import { Bait as BaitChainProp } from './BaitChain'
+import { BaitLink, FishLink } from './BaitChain'
 import * as maps from './maps'
 import { TFunction } from 'next-i18next'
 
 function memoize<T, R> (func: (arg: T) => R): (arg: T) => R {
-  const cache: { [key: string]: R } = {}
-  return (arg: T) => {
-    const key = String(arg)
-    return cache[key] !== undefined ? cache[key] : (cache[key] = func(arg))
-  }
+  // const cache: { [key: string]: R } = {}
+  // return (arg: T) => {
+  //   const key = String(arg)
+  //   return cache[key] !== undefined ? cache[key] : (cache[key] = func(arg))
+  // }
+  return func
 }
 
 export function timeUntil (now: Date, then: Date, options: { t: TFunction, full?: boolean, locale?: string }): string {
@@ -24,20 +25,20 @@ export function timeUntil (now: Date, then: Date, options: { t: TFunction, full?
   }
 }
 
-export function getBlueFish (stopTime: StopTime): number | null {
-  const blueFishId = maps.BLUE_FISH_MAP[stopTime[0] as Stop]
-  const spreadsheetData = fishes[blueFishId].spreadsheetData
-  if (spreadsheetData.time !== undefined) {
+export function getBlueFish (stopTime: StopTime): Fish | null {
+  const blueFish = maps.BLUE_FISH_MAP[stopTime[0] as Stop]
+  const spreadsheetData = blueFish.spreadsheetData
+  if (spreadsheetData.time !== null) {
     if (spreadsheetData.time.includes(stopTime[1] as Time)) {
-      return blueFishId
+      return blueFish
     }
   }
   return null
 }
 
-export function isBaitRequired (fishId: number, baitId: number): boolean {
-  for (const otherBaitId of Object.keys(fishes[fishId].biteTimes)) {
-    if (otherBaitId === 'all' || Number(otherBaitId) === baitId || Number(otherBaitId) === 29717) {
+export function isBaitRequired (fish: Fish, bait: Bait): boolean {
+  for (const otherBaitId of Object.keys(fish.biteTimes)) {
+    if (otherBaitId === 'all' || +otherBaitId === bait.id || +otherBaitId === 29717) {
       continue
     } else {
       return false
@@ -46,56 +47,60 @@ export function isBaitRequired (fishId: number, baitId: number): boolean {
   return true
 }
 
-export const getBaitChain = memoize(function _getBaitChain (fishId: number): BaitChainProp[] {
-  const spreadsheetData = fishes[fishId].spreadsheetData
-  if (spreadsheetData.bait === undefined && spreadsheetData.mooch === undefined) {
-    return [{ id: 29717 }, { id: fishId, tug: spreadsheetData.tug }] // Versatile Lure as fallback
+export const getBaitChain = memoize(function _getBaitChain (fish: Fish): Array<BaitLink | FishLink> {
+  const { bait, mooch, tug } = fish.spreadsheetData
+  if (bait === null && mooch === null) {
+    return [{ bait: baits[29717] }, { fish, tug }] // Versatile Lure as fallback
   } else {
-    return spreadsheetData.bait !== undefined
-      ? [{ id: spreadsheetData.bait }, { id: fishId, tug: spreadsheetData.tug }]
-      : [..._getBaitChain(spreadsheetData.mooch as number), { id: fishId, tug: spreadsheetData.tug }]
+    return bait !== null ? [{ bait }, { fish, tug }] : [..._getBaitChain(mooch as Fish), { fish, tug }]
   }
 })
 
 export const getBaitGroup = memoize(
-  (fishId: number): {
-    baits: BaitChainProp[]
-    baitIsRequired?: boolean
-    intuitionFishes?: Array<{ baits: BaitChainProp[], baitIsRequired?: boolean, count: number }>
+  (fish: Fish): {
+    baits: Array<BaitLink | FishLink>
+    baitIsRequired: boolean
+    intuitionFishes?: Array<{ baits: Array<BaitLink | FishLink>, baitIsRequired: boolean, count: number }>
   } => {
-    const spreadsheetData = fishes[fishId].spreadsheetData
-    const baitChain = getBaitChain(fishId)
+    const { intuition } = fish.spreadsheetData
+    const baitChain = getBaitChain(fish)
     return {
       baits: baitChain,
-      baitIsRequired: isBaitRequired(fishId, baitChain[0].id),
-      intuitionFishes: spreadsheetData.intuition?.map(({ fishId, count }) => {
-        const baitChain = getBaitChain(fishId)
-        return {
-          baits: baitChain,
-          baitIsRequired: isBaitRequired(fishId, baitChain[0].id),
-          count
-        }
-      })
+      baitIsRequired: isBaitRequired(fish, (baitChain[0] as BaitLink).bait),
+      intuitionFishes: intuition !== null
+        ? intuition.map(({ fish, count }) => {
+          const baitChain = getBaitChain(fish)
+          return {
+            baits: baitChain,
+            baitIsRequired: isBaitRequired(fish, (baitChain[0] as BaitLink).bait),
+            count
+          }
+        })
+        : undefined
     }
   }
 )
 
-export function subtextDH (fishId: number): string {
-  const doubleHook = fishes[fishId].spreadsheetData.doubleHook
-  return doubleHook !== undefined
+export function subtextDH (fish: Fish): string {
+  const doubleHook = fish.spreadsheetData.doubleHook
+  return doubleHook !== null
     ? `DH: ${Array.isArray(doubleHook) ? doubleHook.join('-') : doubleHook}`
     : 'DH: ?'
 }
 
-export function subtextBiteTime (fishId: number): string {
-  const biteTimeAll = fishes[fishId].biteTimes.all
-  return biteTimeAll !== undefined
+export function subtextBiteTime (fish: Fish): string {
+  const biteTimeAll = fish.biteTimes.all
+  return biteTimeAll !== null
     ? `${biteTimeAll[0] === biteTimeAll[1] ? biteTimeAll[0] : biteTimeAll.join('-')}s`
     : '?s'
 }
 
 export function upperFirst (str: string): string {
-  return str[0].toUpperCase() + str.slice(1)
+  if (str.length === 0) {
+    return str
+  } else {
+    return str[0].toUpperCase() + str.slice(1)
+  }
 }
 
 // export function getBlindDHRanges (fishId: number, baitId: number, time: Time) {

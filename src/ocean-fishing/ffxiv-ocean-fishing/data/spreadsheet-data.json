@@ -395,6 +395,7 @@
     },
     {
       "name": "Gladius",
+      "bait": null,
       "points": 49,
       "doubleHook": 2,
       "mooch": "Ghoul Barracuda",
@@ -457,6 +458,7 @@
     },
     {
       "name": "Great Grandmarlin",
+      "bait": null,
       "points": 127,
       "doubleHook": 2,
       "mooch": "Hi-aetherlouse",
@@ -521,6 +523,7 @@
     },
     {
       "name": "Aetheric Seadragon",
+      "bait": null,
       "points": 245,
       "doubleHook": 2,
       "mooch": "Hi-aetherlouse",
@@ -546,6 +549,7 @@
     },
     {
       "name": "Roguesaurus",
+      "bait": null,
       "points": 345,
       "doubleHook": 2,
       "mooch": "Hi-aetherlouse",
@@ -678,6 +682,7 @@
     },
     {
       "name": "Elder Dinichthys",
+      "bait": null,
       "points": 52,
       "doubleHook": 2,
       "mooch": "Tossed Dagger",
@@ -1960,6 +1965,7 @@
     },
     {
       "name": "Trollfish",
+      "bait": null,
       "points": 202,
       "doubleHook": 2,
       "mooch": "Rothlyt Mussel",
@@ -2011,6 +2017,7 @@
     },
     {
       "name": "Placodus",
+      "bait": null,
       "points": 500,
       "doubleHook": 1,
       "mooch": "Rothlyt Mussel",

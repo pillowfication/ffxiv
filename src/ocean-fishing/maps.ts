@@ -1,15 +1,23 @@
 import React from 'react'
 import TimeIcon from './TimeIcon'
 import { Stop, Time, DestTime } from './ffxiv-ocean-fishing'
+import {
+  fishingSpots,
+  fishes,
+  achievements,
+  FishingSpot,
+  Fish,
+  Achievement
+} from './ffxiv-ocean-fishing/data'
 
-export const STOP_MAP: Record<Stop, number> = {
-  B: 248,
-  C: 246,
-  G: 237,
-  N: 243,
-  R: 241,
-  S: 239,
-  T: 250
+export const STOP_MAP: Record<Stop, FishingSpot> = {
+  B: fishingSpots[248],
+  C: fishingSpots[246],
+  G: fishingSpots[237],
+  N: fishingSpots[243],
+  R: fishingSpots[241],
+  S: fishingSpots[239],
+  T: fishingSpots[250]
 }
 
 export const TIME_MAP: Record<Time, React.ReactNode> = {
@@ -18,48 +26,48 @@ export const TIME_MAP: Record<Time, React.ReactNode> = {
   S: React.createElement(TimeIcon, { time: 'S' })
 }
 
-export const SPECTRAL_FISH_MAP: Record<Stop, number> = {
-  B: 32083,
-  C: 32063,
-  G: 29784,
-  N: 29786,
-  R: 29787,
-  S: 29785,
-  T: 32103
+export const SPECTRAL_FISH_MAP: Record<Stop, Fish> = {
+  B: fishes[32083],
+  C: fishes[32063],
+  G: fishes[29784],
+  N: fishes[29786],
+  R: fishes[29787],
+  S: fishes[29785],
+  T: fishes[32103]
 }
 
-export const GREEN_FISH_MAP: Record<Stop, number> = {
-  B: 32084,
-  C: 32064,
-  G: 29744,
-  N: 29747,
-  R: 29746,
-  S: 29745,
-  T: 32104
+export const GREEN_FISH_MAP: Record<Stop, Fish> = {
+  B: fishes[32084],
+  C: fishes[32064],
+  G: fishes[29744],
+  N: fishes[29747],
+  R: fishes[29746],
+  S: fishes[29745],
+  T: fishes[32104]
 }
 
-export const BLUE_FISH_MAP: Record<Stop, number> = {
-  B: 32094,
-  C: 32074,
-  G: 29788,
-  N: 29791,
-  R: 29790,
-  S: 29789,
-  T: 32114
+export const BLUE_FISH_MAP: Record<Stop, Fish> = {
+  B: fishes[32094],
+  C: fishes[32074],
+  G: fishes[29788],
+  N: fishes[29791],
+  R: fishes[29790],
+  S: fishes[29789],
+  T: fishes[32114]
 }
 
-export const ACHIEVEMENTS_MAP: Record<DestTime, number[]> = {
-  BD: [2755],
-  BN: [2756],
+export const ACHIEVEMENTS_MAP: Record<DestTime, Achievement[]> = {
+  BD: [achievements[2755]],
+  BN: [achievements[2756]],
   BS: [],
   ND: [],
-  NN: [2563],
-  NS: [2566],
-  RD: [2564],
-  RN: [2565],
+  NN: [achievements[2563]],
+  NS: [achievements[2566]],
+  RD: [achievements[2564]],
+  RN: [achievements[2565]],
   RS: [],
-  TD: [2754, 2756],
-  TN: [2754],
+  TD: [achievements[2754], achievements[2756]],
+  TN: [achievements[2754]],
   TS: []
 }
 

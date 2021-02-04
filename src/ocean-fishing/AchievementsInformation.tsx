@@ -17,14 +17,14 @@ const AchievementsInformation = ({ route }: Props): React.ReactElement => {
   return (
     <>
       {maps.ACHIEVEMENTS_MAP[route].map(achievement => {
-        switch (achievement) {
-          case 2563: return <AchievementOctopodes key={achievement} route={route} />
-          case 2564: return <AchievementSharks key={achievement} route={route} />
-          case 2565: return <AchievementJellyfish key={achievement} route={route} />
-          case 2566: return <AchievementSeadragons key={achievement} route={route} />
-          case 2754: return <AchievementBalloons key={achievement} route={route} />
-          case 2755: return <AchievementCrabs key={achievement} route={route} />
-          case 2756: return <AchievementMantas key={achievement} route={route} />
+        switch (achievement.id) {
+          case 2563: return <AchievementOctopodes key={achievement.id} route={route} />
+          case 2564: return <AchievementSharks key={achievement.id} route={route} />
+          case 2565: return <AchievementJellyfish key={achievement.id} route={route} />
+          case 2566: return <AchievementSeadragons key={achievement.id} route={route} />
+          case 2754: return <AchievementBalloons key={achievement.id} route={route} />
+          case 2755: return <AchievementCrabs key={achievement.id} route={route} />
+          case 2756: return <AchievementMantas key={achievement.id} route={route} />
           default: return null
         }
       })}

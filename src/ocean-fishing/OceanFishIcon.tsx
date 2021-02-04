@@ -125,7 +125,7 @@ const OceanFishIcon = ({ type, id, size = 40, badge, className }: Props): React.
         <Popper anchorEl={anchorEl} open={Boolean(anchorEl)} placement='bottom-start'>
           <ClickAwayListener onClickAway={handleClickAway}>
             <div>
-              <OceanFishPopper fishId={id} />
+              <OceanFishPopper fish={fishes[id]} />
             </div>
           </ClickAwayListener>
         </Popper>

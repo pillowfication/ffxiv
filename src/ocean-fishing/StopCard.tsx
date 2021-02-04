@@ -4,7 +4,6 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
-import { fishingSpots, placeNames } from './ffxiv-ocean-fishing/data'
 import { Stop, Time, StopTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 import { translate } from '../utils'
@@ -17,8 +16,8 @@ const useStyles = makeStyles(() => ({
 }))
 
 interface Props {
-  index: number,
-  stopTime: StopTime,
+  index: number
+  stopTime: StopTime
   children?: React.ReactNode
 }
 
@@ -33,7 +32,7 @@ const StopCard = ({ index, stopTime, children }: Props): React.ReactElement => {
         <CardHeader
           title={
             <Typography variant='h6'>
-              {index + 1}. {translate(locale, placeNames[fishingSpots[maps.STOP_MAP[stopTime[0] as Stop]].placeName_sub], 'name')} {maps.TIME_MAP[stopTime[1] as Time]}
+              {index + 1}. {translate(locale, maps.STOP_MAP[stopTime[0] as Stop].placeName_sub, 'name')} {maps.TIME_MAP[stopTime[1] as Time]}
             </Typography>
           }
           disableTypography

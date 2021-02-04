@@ -7,6 +7,7 @@ import StopCard from './StopCard'
 import BaitList from './BaitList'
 import Tug from './Tug'
 import { getStopTimes, DestTime } from './ffxiv-ocean-fishing'
+import { fishes } from './ffxiv-ocean-fishing/data'
 import { getBaitGroup, subtextDH } from './utils'
 
 interface Props {
@@ -24,10 +25,10 @@ const AchievementMantas = ({ route }: Props): React.ReactElement => {
             <BaitList
               baitGroups={[{
                 header: 'DH; DH–IC–DH post-spectral at 11-21s',
-                baitGroupProps: { ...getBaitGroup(32058), subtext: subtextDH }
+                baitGroupProps: { ...getBaitGroup(fishes[32058]), subtext: subtextDH }
               }, {
                 header: 'DH at <3s',
-                baitGroupProps: { ...getBaitGroup(32070), subtext: subtextDH }
+                baitGroupProps: { ...getBaitGroup(fishes[32070]), subtext: subtextDH }
               }]}
             />
           </CardContent>
@@ -66,7 +67,7 @@ const AchievementMantas = ({ route }: Props): React.ReactElement => {
                       <BaitList
                         baitGroups={[{
                           header: 'DH at ≥5s',
-                          baitGroupProps: { ...getBaitGroup(32087), subtext: subtextDH }
+                          baitGroupProps: { ...getBaitGroup(fishes[32087]), subtext: subtextDH }
                         }]}
                       />
                     </CardContent>
@@ -85,7 +86,7 @@ const AchievementMantas = ({ route }: Props): React.ReactElement => {
                       <BaitList
                         baitGroups={[{
                           header: 'DH at ≥5s',
-                          baitGroupProps: { ...getBaitGroup(32111), subtext: subtextDH }
+                          baitGroupProps: { ...getBaitGroup(fishes[32111]), subtext: subtextDH }
                         }]}
                       />
                     </CardContent>

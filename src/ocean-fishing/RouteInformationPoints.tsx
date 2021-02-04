@@ -3,7 +3,7 @@ import CardContent from '@material-ui/core/CardContent'
 import StopCardsContainer from './StopCardsContainer'
 import StopCard from './StopCard'
 import BaitList from './BaitList'
-import { fishingSpots, fishes } from './ffxiv-ocean-fishing/data'
+import { fishingSpots, Fish } from './ffxiv-ocean-fishing/data'
 import { Stop, Time, StopTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 import { getBlueFish, getBaitGroup } from './utils'
@@ -12,38 +12,37 @@ import { useTranslation } from '../i18n'
 
 const POINTS_THRESHOLD = 400
 
-export function getPointsFishes (stopTime: StopTime): number[] {
-  const fishingSpotId = maps.STOP_MAP[stopTime[0] as Stop]
-  const spectralFishingSpot = fishingSpots[fishingSpotId + 1]
+export function getPointsFishes (stopTime: StopTime): Fish[] {
+  const fishingSpot = maps.STOP_MAP[stopTime[0] as Stop]
+  const spectralFishingSpot = fishingSpots[fishingSpot.id + 1]
   const time = stopTime[1] as Time
 
   // Find all fish that exceed the threshold, while keeping track of the highest value fish(es)
-  let highestPointsFishes: Array<{ fishId: number, points: number }> = []
-  const thresholdPointsFishes = spectralFishingSpot.fishes.filter(fishId => {
-    const spreadsheetData = fishes[fishId].spreadsheetData
+  let highestPointsFishes: Array<{ fish: Fish, points: number }> = []
+  const thresholdPointsFishes = spectralFishingSpot.fishes.filter(fish => {
+    const { points, doubleHook, time: fishTime, intuition } = fish.spreadsheetData
 
     // Check to see if this fish is catchable
-    if (spreadsheetData.time !== undefined && !spreadsheetData.time.includes(time)) {
+    if (fishTime !== null && !fishTime.includes(time)) {
       return false
 
     // Ignore blue fish so that the highest non-blue fish will be found
-    } else if (spreadsheetData.intuition !== undefined) {
+    } else if (intuition !== null) {
       return false
 
     // Not enough known data on this fish
-    } else if (spreadsheetData.points === undefined || spreadsheetData.doubleHook === undefined) {
+    } else if (points === null || doubleHook === null) {
       return false
 
     // Check what this fish is worth
     } else {
-      const { doubleHook, points } = spreadsheetData
       const maxPoints = (Array.isArray(doubleHook) ? doubleHook[1] : doubleHook) * points
       if (highestPointsFishes.length === 0) {
-        highestPointsFishes.push({ fishId, points: maxPoints })
+        highestPointsFishes.push({ fish, points: maxPoints })
       } else if (maxPoints === highestPointsFishes[0].points) {
-        highestPointsFishes.push({ fishId, points: maxPoints })
+        highestPointsFishes.push({ fish, points: maxPoints })
       } else if (maxPoints > highestPointsFishes[0].points) {
-        highestPointsFishes = [{ fishId, points: maxPoints }]
+        highestPointsFishes = [{ fish, points: maxPoints }]
       }
       return maxPoints >= POINTS_THRESHOLD
     }
@@ -55,7 +54,7 @@ export function getPointsFishes (stopTime: StopTime): number[] {
 
   // Otherwise, return whatever the best non-blue fish are
   } else {
-    return highestPointsFishes.map(({ fishId }) => fishId)
+    return highestPointsFishes.map(({ fish }) => fish)
   }
 }
 
@@ -79,20 +78,20 @@ const RouteInformationPoints = ({ stopTimes }: Props): React.ReactElement => {
                 ...getPointsFishes(stopTime),
                 getBlueFish(stopTime)
               ]
-                .filter(fishId => fishId !== null)
-                .map((fishId: number, index) => {
-                  const spreadsheetData = fishes[fishId].spreadsheetData
-                  const dh = spreadsheetData.doubleHook !== undefined
-                    ? Array.isArray(spreadsheetData.doubleHook) ? spreadsheetData.doubleHook.join('-') : spreadsheetData.doubleHook
+                .filter(fish => fish !== null)
+                .map((fish: Fish, index) => {
+                  const { points, doubleHook } = fish.spreadsheetData
+                  const doubleHookString = doubleHook !== null
+                    ? Array.isArray(doubleHook) ? doubleHook.join('-') : doubleHook
                     : '?'
-                  const points = spreadsheetData.doubleHook !== undefined && spreadsheetData.points !== undefined
-                    ? (Array.isArray(spreadsheetData.doubleHook) ? spreadsheetData.doubleHook[1] : spreadsheetData.doubleHook) * spreadsheetData.points
+                  const pointsString = doubleHook !== null && points !== null
+                    ? (Array.isArray(doubleHook) ? doubleHook[1] : doubleHook) * points
                     : '?'
                   return {
-                    header: translate(locale, fishes[fishId], 'name'),
+                    header: translate(locale, fish, 'name'),
                     baitGroupProps: {
-                      ...getBaitGroup(fishId),
-                      subtext: index === 0 ? '' : `DH: ×${dh} = ${points}`,
+                      ...getBaitGroup(fish),
+                      subtext: index === 0 ? '' : `DH: ×${doubleHookString} = ${pointsString}`,
                       mainOnly: true
                     }
                   }

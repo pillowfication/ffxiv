@@ -8,6 +8,7 @@ const Achievement_de = saintCoinach.get('Achievement.de')
 const Achievement_fr = saintCoinach.get('Achievement.fr')
 const Achievement_ja = saintCoinach.get('Achievement.ja')
 const FishingSpot_en = saintCoinach.get('FishingSpot.en')
+const FishParameter_en = saintCoinach.get('FishParameter.en')
 const IKDContentBonus_en = saintCoinach.get('IKDContentBonus.en')
 const IKDContentBonus_de = saintCoinach.get('IKDContentBonus.de')
 const IKDContentBonus_fr = saintCoinach.get('IKDContentBonus.fr')
@@ -23,29 +24,27 @@ const PlaceName_fr = saintCoinach.get('PlaceName.fr')
 const PlaceName_ja = saintCoinach.get('PlaceName.ja')
 
 console.log('Collecting ocean fishing spots...')
-const oceanFishingSpots = FishingSpot_en.data
-  .filter(({ 'PlaceName{Main}': PlaceName_Main }) => PlaceName_Main === 'The High Seas')
+const fishingSpots = FishingSpot_en.data
+  .filter(fishingSpot => fishingSpot['#'] === 0 || +fishingSpot['PlaceName{Main}'] === 3443) // The High Seas
   .map(fishingSpot => {
     return {
       id: fishingSpot['#'],
-      placeName_main: PlaceName_en.data.find(({ Name }) => Name === fishingSpot['PlaceName{Main}'])['#'],
-      placeName_sub: PlaceName_en.data.find(({ Name }) => Name === fishingSpot['PlaceName{Sub}'])['#'],
-      placeName: PlaceName_en.data.find(({ Name }) => Name === fishingSpot.PlaceName)['#'],
+      placeName_main: +fishingSpot['PlaceName{Main}'],
+      placeName_sub: +fishingSpot['PlaceName{Sub}'],
+      placeName: +fishingSpot.PlaceName,
       fishes: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-        .map(index => fishingSpot[`Item[${index}]`])
-        .filter(itemName => itemName)
-        .map(itemName => Item_en.data.find(({ Name }) => Name === itemName)['#']),
+        .map(index => +fishingSpot[`Item[${index}]`])
+        .filter(itemId => itemId !== 0),
       order: fishingSpot.Order
     }
   })
   .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})
-fs.writeFileSync(path.resolve(__dirname, '../data/fishing-spots.json'), JSON.stringify(oceanFishingSpots))
+fs.writeFileSync(path.resolve(__dirname, '../data/fishing-spots.json'), JSON.stringify(fishingSpots))
 
 console.log('Collecting place names...')
-const placeNames = Object.values<any>(oceanFishingSpots)
-  .flatMap(fishingSpot => {
-    return [fishingSpot.placeName_main, fishingSpot.placeName_sub, fishingSpot.placeName]
-  })
+const placeNames = Object.values<any>(fishingSpots)
+  .flatMap(fishingSpot => [fishingSpot.placeName_main, fishingSpot.placeName_sub, fishingSpot.placeName])
+  .concat([0])
   .filter((value, index, array) => !array.includes(value, index + 1))
   .map(placeNameId => {
     const placeName_en = PlaceName_en.data.find(({ '#': id }) => id === placeNameId)
@@ -71,7 +70,8 @@ fs.writeFileSync(path.resolve(__dirname, '../data/place-names.json'), JSON.strin
 console.log('Collecting ocean fishes...')
 const oceanFishes = IKDFishParam.data
   .map(ikdFishParam => {
-    const itemId = Item_en.data.find(({ Name }) => Name === ikdFishParam.Fish)['#']
+    const fishParameterId = +ikdFishParam.Fish
+    const itemId = +FishParameter_en.data.find(({ '#': id }) => id === fishParameterId).Item
     const item_en = Item_en.data.find(({ '#': id }) => id === itemId)
     const item_de = Item_de.data.find(({ '#': id }) => id === itemId)
     const item_fr = Item_fr.data.find(({ '#': id }) => id === itemId)
@@ -79,7 +79,7 @@ const oceanFishes = IKDFishParam.data
 
     return {
       id: itemId,
-      icon: saintCoinach.parseIconId(item_en.Icon),
+      icon: +item_en.Icon,
       name_en: item_en.Name,
       name_de: item_de.Name,
       name_fr: item_fr.Name,
@@ -88,15 +88,7 @@ const oceanFishes = IKDFishParam.data
       description_de: item_de.Description,
       description_fr: item_fr.Description,
       description_ja: item_ja.Description,
-      contentBonus: (() => {
-        if (ikdFishParam.IKDContentBonus != null) {
-          return IKDContentBonus_en.data.find(({ Objective }) => Objective === ikdFishParam.IKDContentBonus)['#']
-        } else if (ikdFishParam['Unknown[5-4]'] === 22) {
-          return 22
-        } else {
-          return null
-        }
-      })()
+      contentBonus: +ikdFishParam.IKDContentBonus !== 0 ? +ikdFishParam.IKDContentBonus : +ikdFishParam['Unknown[5-4]']
     }
   })
   .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})
@@ -104,6 +96,7 @@ fs.writeFileSync(path.resolve(__dirname, '../data/fishes.json'), JSON.stringify(
 
 console.log('Collecting baits...')
 const baits = [
+  0,
   2587, // Pill Bug
   2591, // Rat Tail
   2603, // Glowworm
@@ -123,7 +116,7 @@ const baits = [
 
     return {
       id: itemId,
-      icon: saintCoinach.parseIconId(item_en.Icon),
+      icon: +item_en.Icon,
       name_en: item_en.Name,
       name_de: item_de.Name,
       name_fr: item_fr.Name,
@@ -144,7 +137,7 @@ const contentBonuses = IKDContentBonus_en.data
 
     return {
       id: ikdContentBonusId,
-      icon: saintCoinach.parseIconId(ikdContentBonus_en.Image),
+      icon: +ikdContentBonus_en.Image,
       objective_en: ikdContentBonus_en.Objective,
       objective_de: ikdContentBonus_de.Objective,
       objective_fr: ikdContentBonus_fr.Objective,
@@ -165,7 +158,7 @@ function range (start: number, end: number): number[] {
 }
 
 console.log('Collecting ocean fishing achievements...')
-const oceanFishingAchievements = [...range(2553, 2566), ...range(2748, 2759)]
+const oceanFishingAchievements = [0, ...range(2553, 2566), ...range(2748, 2759)]
   .map(achievementId => {
     const achievement_en = Achievement_en.data.find(({ '#': id }) => id === achievementId)
     const achievement_de = Achievement_de.data.find(({ '#': id }) => id === achievementId)
@@ -174,7 +167,7 @@ const oceanFishingAchievements = [...range(2553, 2566), ...range(2748, 2759)]
 
     return {
       id: achievementId,
-      icon: saintCoinach.parseIconId(achievement_en.Icon),
+      icon: +achievement_en.Icon,
       name_en: achievement_en.Name,
       name_de: achievement_de.Name,
       name_fr: achievement_fr.Name,

@@ -23,7 +23,7 @@ import { useTranslation } from '../../src/i18n'
 
 const CONTENT_BONUSES = Object.values(contentBonuses)
   .sort((a, b) => a.order - b.order)
-  .filter(contentBonus => !/Target number adjusted for party size/.test(contentBonus.requirement_en))
+  .filter(contentBonus => contentBonus.id !== 0 && !contentBonus.requirement_en.includes('Target number adjusted for party size'))
 
 const useStyles = makeStyles(theme => ({
   contentBonusesTable: {

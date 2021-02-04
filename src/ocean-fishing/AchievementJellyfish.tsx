@@ -8,6 +8,7 @@ import StopCard from './StopCard'
 import BaitList from './BaitList'
 import Tug from './Tug'
 import { getStopTimes, DestTime } from './ffxiv-ocean-fishing'
+import { fishes } from './ffxiv-ocean-fishing/data'
 import { getBaitGroup, subtextDH } from './utils'
 import jellyfishMacro from './macros/jellyfish.ffmacro'
 
@@ -33,10 +34,10 @@ const AchievementJellyfish = ({ route }: Props): React.ReactElement => {
             <BaitList
               baitGroups={[{
                 header: 'DH at <5s',
-                baitGroupProps: { ...getBaitGroup(29739), subtext: subtextDH }
+                baitGroupProps: { ...getBaitGroup(fishes[29739]), subtext: subtextDH }
               }, {
                 header: 'IC–DH at 4-7s',
-                baitGroupProps: { ...getBaitGroup(29757), subtext: subtextDH }
+                baitGroupProps: { ...getBaitGroup(fishes[29757]), subtext: subtextDH }
               }]}
             />
           </CardContent>
@@ -59,7 +60,7 @@ const AchievementJellyfish = ({ route }: Props): React.ReactElement => {
             <BaitList
               baitGroups={[{
                 header: 'DH–IC–DH at 6-10s',
-                baitGroupProps: { ...getBaitGroup(29762), subtext: subtextDH }
+                baitGroupProps: { ...getBaitGroup(fishes[29762]), subtext: subtextDH }
               }]}
             />
           </CardContent>

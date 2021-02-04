@@ -1,15 +1,15 @@
 import fs from 'fs'
 import path from 'path'
 import csvStringify from 'csv-stringify/lib/sync'
-import oceanFishingFishingSpots from '../data/fishing-spots.json'
-import oceanFishingFishes from '../data/fishes.json'
-import oceanFishingBaits from '../data/baits.json'
+import fishingSpots from '../data/fishing-spots.json'
+import fishes from '../data/fishes.json'
+import baits from '../data/baits.json'
 
 const CUTOFF = 0.02
 const OUTPUT = path.resolve(__dirname, '../data/bite-times.json')
 
 const BAIT_IDS = [
-  ...Object.keys(oceanFishingBaits).map(Number),
+  ...Object.keys(baits).map(Number).filter(baitId => baitId !== 0),
   29722, // Ghoul Barracuda
   29761, // Hi-aetherlouse
   29718, // Tossed Dagger
@@ -17,8 +17,10 @@ const BAIT_IDS = [
 ]
 
 const DATA: any[] = []
-for (const fishingSpot of Object.keys(oceanFishingFishingSpots)) {
-  DATA.push(...require(`../data/tc/spot-${fishingSpot}.json`))
+for (const fishingSpot of Object.values(fishingSpots)) {
+  if (fishingSpot.id !== 0) {
+    DATA.push(...require(`../data/tc/spot-${fishingSpot.id}.json`))
+  }
 }
 
 function getBiteTime (fishId: number, baitId?: number): [number, number] | null {
@@ -48,7 +50,7 @@ function getBiteTime (fishId: number, baitId?: number): [number, number] | null 
 }
 
 const biteTimes = {}
-for (const fish of Object.values(oceanFishingFishes)) {
+for (const fish of Object.values(fishes)) {
   const biteTimesByBait = {}
   let minBiteTime = Infinity
   let maxBiteTime = -Infinity
@@ -81,14 +83,14 @@ function _getBiteTime (fishId: number, baitId: number): [number, number] | undef
 }
 
 const csv = csvStringify(
-  Object.values(oceanFishingFishes)
-    .map(fish => Object.values(oceanFishingBaits).reduce(
+  Object.values(fishes)
+    .map(fish => Object.values(baits).reduce(
       (acc, bait) => { acc[bait.name_en] = _getBiteTime(fish.id, bait.id); return acc },
       { name: fish.name_en }
     )),
   {
     header: true,
-    columns: ['name', ...Object.values(oceanFishingBaits).map(bait => bait.name_en)]
+    columns: ['name', ...Object.values(baits).map(bait => bait.name_en)]
   }
 )
 fs.writeFileSync(CSV_OUTPUT, csv)

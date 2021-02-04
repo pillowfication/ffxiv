@@ -7,6 +7,7 @@ import StopCardsContainer from './StopCardsContainer'
 import StopCard from './StopCard'
 import BaitList from './BaitList'
 import { getStopTimes, DestTime } from './ffxiv-ocean-fishing'
+import { fishes } from './ffxiv-ocean-fishing/data'
 import { getBaitGroup, subtextDH } from './utils'
 import seadragonsMacro from './macros/seadragons.ffmacro'
 
@@ -25,10 +26,10 @@ const AchievementSeadragons = ({ route }: Props): React.ReactElement => {
             <BaitList
               baitGroups={[{
                 header: 'IC–DH at 8-20s',
-                baitGroupProps: { ...getBaitGroup(29740), subtext: subtextDH }
+                baitGroupProps: { ...getBaitGroup(fishes[29740]), subtext: subtextDH }
               }, {
                 header: 'No buffs',
-                baitGroupProps: { ...getBaitGroup(29763), subtext: subtextDH }
+                baitGroupProps: { ...getBaitGroup(fishes[29763]), subtext: subtextDH }
               }]}
             />
           </CardContent>
@@ -61,7 +62,7 @@ const AchievementSeadragons = ({ route }: Props): React.ReactElement => {
             <BaitList
               baitGroups={[{
                 header: 'IC–DH at 6-10s',
-                baitGroupProps: { ...getBaitGroup(29764), subtext: subtextDH }
+                baitGroupProps: { ...getBaitGroup(fishes[29764]), subtext: subtextDH }
               }]}
             />
           </CardContent>

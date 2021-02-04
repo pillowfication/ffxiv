@@ -29,7 +29,7 @@ const FISHING_SPOTS = [
 
 const data = {}
 
-await (async () => {
+;(async () => {
   for (const fishingSpot of FISHING_SPOTS) {
     // Find the cell contain the `fishingSpot` text
     data[fishingSpot] = []
@@ -194,4 +194,4 @@ await (async () => {
   }
 
   fs.writeFileSync(OUTPUT, JSON.stringify(data, null, 2))
-})()
+})().then(null, null)

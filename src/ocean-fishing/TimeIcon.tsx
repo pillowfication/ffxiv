@@ -11,7 +11,7 @@ function round (n: number): number {
 }
 
 function ct (theta: number, rho: number): string {
-  return `${round(10 + rho * Math.cos(theta))} ${round(10 + rho * Math.sin(theta))}`
+  return `${round(ICON_SIZE / 2 + rho * Math.cos(theta))} ${round(ICON_SIZE / 2 + rho * Math.sin(theta))}`
 }
 
 const useStyles = makeStyles(theme => ({

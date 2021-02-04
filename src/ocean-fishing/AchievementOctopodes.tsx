@@ -8,6 +8,7 @@ import StopCard from './StopCard'
 import BaitList from './BaitList'
 import Tug from './Tug'
 import { getStopTimes, DestTime } from './ffxiv-ocean-fishing'
+import { fishes } from './ffxiv-ocean-fishing/data'
 import { getBaitGroup, subtextDH } from './utils'
 import octopodesMacro from './macros/octopodes.ffmacro'
 
@@ -36,10 +37,10 @@ const AchievementOctopodes = ({ route }: Props): React.ReactElement => {
             <BaitList
               baitGroups={[{
                 header: 'IC–DH at 16-26s',
-                baitGroupProps: { ...getBaitGroup(29734), subtext: subtextDH }
+                baitGroupProps: { ...getBaitGroup(fishes[29734]), subtext: subtextDH }
               }, {
                 header: 'DH–IC–DH at <3s',
-                baitGroupProps: { ...getBaitGroup(29766), subtext: subtextDH }
+                baitGroupProps: { ...getBaitGroup(fishes[29766]), subtext: subtextDH }
               }]}
             />
           </CardContent>
@@ -62,7 +63,7 @@ const AchievementOctopodes = ({ route }: Props): React.ReactElement => {
             <BaitList
               baitGroups={[{
                 header: 'DH–IC–DH at ≥5s',
-                baitGroupProps: { ...getBaitGroup(29773), subtext: subtextDH }
+                baitGroupProps: { ...getBaitGroup(fishes[29773]), subtext: subtextDH }
               }]}
             />
           </CardContent>

@@ -2,7 +2,8 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import BaitGroup from './BaitGroup'
-import { Bait } from './BaitChain'
+import { BaitLink, FishLink } from './BaitChain'
+import { Fish } from './ffxiv-ocean-fishing/data'
 
 const useStyles = makeStyles(theme => ({
   baitList: {
@@ -19,10 +20,10 @@ interface Props {
   baitGroups: Array<{
     header: string
     baitGroupProps: {
-      baits: Bait[]
+      baits: Array<BaitLink | FishLink>
       baitIsRequired?: boolean
-      intuitionFishes?: Array<{ baits: Bait[], baitIsRequired?: boolean, count: number }>
-      subtext?: string | ((fishId: number) => string)
+      intuitionFishes?: Array<{ baits: Array<BaitLink | FishLink>, baitIsRequired?: boolean, count: number }>
+      subtext?: string | ((fish: Fish) => string)
       mainOnly?: boolean
     }
   }>

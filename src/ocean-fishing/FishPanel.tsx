@@ -1,6 +1,7 @@
 import React from 'react'
 import FishTable from './FishTable'
 import { Stop, Time, StopTime } from './ffxiv-ocean-fishing'
+import { fishingSpots } from './ffxiv-ocean-fishing/data'
 import * as maps from './maps'
 
 interface Props {
@@ -10,12 +11,12 @@ interface Props {
 }
 
 const FishPanel = ({ tab, index, stopTime }: Props): React.ReactElement => {
-  const fishingSpotId: number = maps.STOP_MAP[stopTime[0] as Stop]
+  const fishingSpot = maps.STOP_MAP[stopTime[0] as Stop]
   return (
     <div hidden={tab !== index}>
       {tab === index && (
         <FishTable
-          spots={[fishingSpotId, fishingSpotId + 1]}
+          fishingSpots={[fishingSpot, fishingSpots[fishingSpot.id + 1]]}
           time={stopTime[1] as Time}
         />
       )}

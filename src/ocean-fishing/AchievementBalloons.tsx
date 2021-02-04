@@ -7,6 +7,7 @@ import StopCard from './StopCard'
 import BaitList from './BaitList'
 import Tug from './Tug'
 import { getStopTimes, DestTime } from './ffxiv-ocean-fishing'
+import { fishes } from './ffxiv-ocean-fishing/data'
 import { getBaitGroup, subtextDH } from './utils'
 
 interface Props {
@@ -24,10 +25,10 @@ const AchievementBalloons = ({ route }: Props): React.ReactElement => {
             <BaitList
               baitGroups={[{
                 header: 'IC–DH at 5-9s',
-                baitGroupProps: { ...getBaitGroup(32057), subtext: subtextDH }
+                baitGroupProps: { ...getBaitGroup(fishes[32057]), subtext: subtextDH }
               }, {
                 header: 'DH at <3s',
-                baitGroupProps: { ...getBaitGroup(32066), subtext: subtextDH }
+                baitGroupProps: { ...getBaitGroup(fishes[32066]), subtext: subtextDH }
               }]}
             />
           </CardContent>
@@ -47,10 +48,10 @@ const AchievementBalloons = ({ route }: Props): React.ReactElement => {
             <BaitList
               baitGroups={[{
                 header: 'IC–DH at 10-16s',
-                baitGroupProps: { ...getBaitGroup(29732), subtext: subtextDH }
+                baitGroupProps: { ...getBaitGroup(fishes[29732]), subtext: subtextDH }
               }, {
                 header: 'IC–DH at 2-7s',
-                baitGroupProps: { ...getBaitGroup(29768), subtext: subtextDH }
+                baitGroupProps: { ...getBaitGroup(fishes[29768]), subtext: subtextDH }
               }]}
             />
           </CardContent>
@@ -73,16 +74,16 @@ const AchievementBalloons = ({ route }: Props): React.ReactElement => {
             <BaitList
               baitGroups={[{
                 header: 'No buffs at 2-5s',
-                baitGroupProps: { ...getBaitGroup(32095), subtext: subtextDH }
+                baitGroupProps: { ...getBaitGroup(fishes[32095]), subtext: subtextDH }
               }, {
                 header: 'DH at ≥11s',
-                baitGroupProps: { ...getBaitGroup(32098), subtext: subtextDH }
+                baitGroupProps: { ...getBaitGroup(fishes[32098]), subtext: subtextDH }
               }, {
                 header: 'IC–DH at <3s',
-                baitGroupProps: { ...getBaitGroup(32105), subtext: subtextDH }
+                baitGroupProps: { ...getBaitGroup(fishes[32105]), subtext: subtextDH }
               }, {
                 header: 'IC–DH at 3-5s',
-                baitGroupProps: { ...getBaitGroup(32109), subtext: subtextDH }
+                baitGroupProps: { ...getBaitGroup(fishes[32109]), subtext: subtextDH }
               }]}
             />
           </CardContent>

@@ -10,7 +10,6 @@ import TableBody from '@material-ui/core/TableBody'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import OceanFishIcon from './OceanFishIcon'
-import { fishingSpots, placeNames } from './ffxiv-ocean-fishing/data'
 import { getStopTimes, calculateVoyages, Dest, Time, DestTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 import { getBlueFish, timeUntil, upperFirst } from './utils'
@@ -110,18 +109,18 @@ const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute }: Props): R
                     <Typography className={classes.timeUntil}>{timeUntil(now, date, { t, locale: locale })}</Typography>
                   </TableCell>
                   <TableCell align='right'>
-                    <Typography>{upperFirst(translate(locale, placeNames[fishingSpots[maps.STOP_MAP[destTime[0] as Dest]].placeName_sub], 'name_noArticle', 'name'))}</Typography>
+                    <Typography>{upperFirst(translate(locale, maps.STOP_MAP[destTime[0] as Dest].placeName_sub, 'name_noArticle', 'name'))}</Typography>
                   </TableCell>
                   <TableCell className={classes.timeCell}>
                     {maps.TIME_MAP[destTime[1] as Time]}
                   </TableCell>
                   <TableCell className={classes.objectivesCell}>
-                    {maps.ACHIEVEMENTS_MAP[destTime].map((achievement: number) =>
-                      <OceanFishIcon key={achievement} type='achievement' id={achievement} />
+                    {maps.ACHIEVEMENTS_MAP[destTime].map(achievement =>
+                      <OceanFishIcon key={achievement.id} type='achievement' id={achievement.id} />
                     )}
                     {getStopTimes(destTime).map(stopTime => {
-                      const blueFishId = getBlueFish(stopTime)
-                      return blueFishId !== null && <OceanFishIcon key={blueFishId} type='fish' id={blueFishId} />
+                      const blueFish = getBlueFish(stopTime)
+                      return blueFish !== null && <OceanFishIcon key={blueFish.id} type='fish' id={blueFish.id} />
                     })}
                   </TableCell>
                 </TableRow>

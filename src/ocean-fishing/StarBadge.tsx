@@ -3,12 +3,14 @@ import { makeStyles } from '@material-ui/core/styles'
 import Tooltip from '@material-ui/core/Tooltip'
 import { useTranslation } from '../i18n'
 
+const ICON_SIZE = 20
+
 function round (n: number): number {
   return Math.round(n * 100) / 100
 }
 
 function ct (theta: number, rho: number): string {
-  return `${round(10 + rho * Math.cos(theta))} ${round(10 + rho * Math.sin(theta))}`
+  return `${round(ICON_SIZE / 2 + rho * Math.cos(theta))} ${round(ICON_SIZE / 2 + rho * Math.sin(theta))}`
 }
 
 const useStyles = makeStyles(theme => ({
@@ -29,7 +31,7 @@ const StarBadge = (): React.ReactElement => {
 
   return (
     <Tooltip placement='top' arrow title={String(t('requiredBait'))}>
-      <svg width={20} height={20} className={classes.starBadge}>
+      <svg width={ICON_SIZE} height={ICON_SIZE} className={classes.starBadge}>
         {(() => {
           const r = 3
           const R = 7

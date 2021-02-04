@@ -3,18 +3,18 @@ import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Section from '../Section'
 import OceanFishIcon from './OceanFishIcon'
-import { achievements, contentBonuses } from './ffxiv-ocean-fishing/data'
+import { achievements, contentBonuses, ContentBonus } from './ffxiv-ocean-fishing/data'
 import { translate } from '../utils'
 import { useTranslation } from '../i18n'
 
-const contentBonusMap: Record<number, number> = {
-  2563: 13,
-  2564: 14,
-  2565: 15,
-  2566: 16,
-  2754: 20,
-  2755: 21,
-  2756: 22
+const contentBonusMap: Record<number, ContentBonus> = {
+  2563: contentBonuses[13],
+  2564: contentBonuses[14],
+  2565: contentBonuses[15],
+  2566: contentBonuses[16],
+  2754: contentBonuses[20],
+  2755: contentBonuses[21],
+  2756: contentBonuses[22]
 }
 
 function cleanRequirement (requirement: string): string {
@@ -53,7 +53,7 @@ const AchievementInformation = ({ achievement, children }: Props): React.ReactEl
           {translate(locale, achievements[achievement], 'name')}
           <OceanFishIcon type='achievement' id={achievement} className={classes.achievementIcon} />
           <Typography display='inline' className={classes.subtitle}>
-            {cleanRequirement(translate(locale, contentBonuses[contentBonusMap[achievement]], 'requirement'))}
+            {cleanRequirement(translate(locale, contentBonusMap[achievement], 'requirement'))}
           </Typography>
         </>
       }

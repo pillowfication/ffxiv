@@ -1,7 +1,8 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
-import BaitChain, { Bait } from './BaitChain'
+import BaitChain, { BaitLink, FishLink } from './BaitChain'
+import { Fish } from './ffxiv-ocean-fishing/data'
 
 const useStyles = makeStyles(theme => ({
   intuitionFishes: {
@@ -16,14 +17,14 @@ const useStyles = makeStyles(theme => ({
 }))
 
 interface Props {
-  baits: Bait[]
+  baits: Array<BaitLink | FishLink>
   baitIsRequired?: boolean
-  intuitionFishes?: Array<{ baits: Bait[], baitIsRequired?: boolean, count: number }>
-  subtext?: string | ((fishId: number) => string)
+  intuitionFishes?: Array<{ baits: Array<BaitLink | FishLink>, baitIsRequired?: boolean, count: number }>
+  subtext?: string | ((fish: Fish) => string)
   mainOnly?: boolean
 }
 
-const BaitGroup = ({ baits, baitIsRequired, intuitionFishes, subtext, mainOnly = false }: Props): React.ReactElement => {
+const BaitGroup = ({ baits, baitIsRequired = false, intuitionFishes, subtext, mainOnly = false }: Props): React.ReactElement => {
   const classes = useStyles()
 
   return (
@@ -34,7 +35,7 @@ const BaitGroup = ({ baits, baitIsRequired, intuitionFishes, subtext, mainOnly =
           {intuitionFishes.map(({ baits, baitIsRequired, count }, index) =>
             <li key={index}>
               <Typography className={classes.count} display='inline'>{count}×</Typography>
-              <BaitChain baits={baits} baitIsRequired={baitIsRequired} subtext={mainOnly ? subtext : undefined} />
+              <BaitChain baits={baits} baitIsRequired={baitIsRequired} subtext={mainOnly ? undefined : subtext} />
             </li>
           )}
         </ul>

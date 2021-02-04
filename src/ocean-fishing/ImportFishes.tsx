@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   },
   buttons: {
     '& button': {
-      margin: theme.spacing(1, 2, 0, 0)
+      margin: theme.spacing(2, 2, 0, 0)
     }
   }
 }))
@@ -91,7 +91,7 @@ const ImportFishes = ({ checklist, setChecklist }: Props): React.ReactElement =>
           onChange={handleInputImportData}
           InputProps={{ className: classes.textField }}
         />
-        {message !== undefined && (
+        {message !== null && (
           <Alert variant='outlined' severity={message?.type}>{message?.message}</Alert>
         )}
         <div className={classes.buttons}>

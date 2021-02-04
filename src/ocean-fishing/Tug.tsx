@@ -1,6 +1,7 @@
 import React from 'react'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
 import Tooltip from '@material-ui/core/Tooltip'
 import { useTranslation } from '../i18n'
 
@@ -42,19 +43,19 @@ const Tug = ({ strength, size = 'normal', className }: Props): React.ReactElemen
     case 1:
       return (
         <Tooltip arrow placement='top' title={String(t('tug.light'))}>
-          <span className={clsx(classes.tug, size === 'small' && classes.small, classes.light, className)}>!</span>
+          <Paper component='span' className={clsx(classes.tug, size === 'small' && classes.small, classes.light, className)}>!</Paper>
         </Tooltip>
       )
     case 2:
       return (
         <Tooltip arrow placement='top' title={String(t('tug.medium'))}>
-          <span className={clsx(classes.tug, size === 'small' && classes.small, classes.medium, className)}>!!</span>
+          <Paper component='span' className={clsx(classes.tug, size === 'small' && classes.small, classes.medium, className)}>!!</Paper>
         </Tooltip>
       )
     case 3:
       return (
         <Tooltip arrow placement='top' title={String(t('tug.heavy'))}>
-          <span className={clsx(classes.tug, size === 'small' && classes.small, classes.heavy, className)}>!!!</span>
+          <Paper component='span' className={clsx(classes.tug, size === 'small' && classes.small, classes.heavy, className)}>!!!</Paper>
         </Tooltip>
       )
   }

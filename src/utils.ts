@@ -38,7 +38,7 @@ export function translate (locale: string, obj: any, ...keys: string[]): string 
   }
   for (const key of keys) {
     const keyLocale = `${key}_${locale}`
-    if (obj[keyLocale] !== undefined) return obj[keyLocale]
+    if (obj[keyLocale] !== undefined && obj[keyLocale] !== '') return obj[keyLocale]
   }
   return `{[Object].${keys.join(',')}}`
 }
