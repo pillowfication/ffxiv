@@ -11,7 +11,7 @@ import TableCell from '@material-ui/core/TableCell'
 import WeatherIcon from './WeatherIcon'
 import renderFfxiv from './render-ffxiv'
 import { getSeed, getHashes, getWeather, translatePlace, Place } from './ffxiv-skywatcher'
-import { formatTime } from '../utils'
+import { formatTime, formatTimeUtc } from '../utils'
 import { useTranslation } from '../i18n'
 
 const WEATHER_CELL_WIDTH = 75
@@ -92,18 +92,18 @@ const UpcomingWeatherTable = ({ now, places, showLabels = false, showLocalTime =
                   {showLocalTime
                     ? index === 1
                       ? <>
-                          {formatTime(new Date(now.getTime() * (1440 / 70)))} ET
+                          {formatTimeUtc(new Date(now.getTime() * (1440 / 70)))} ET
                           <br />
                           {formatTime(now)} LT
                         </>
                       : <>
-                          {formatTime(eorzeanTime)} ET
+                          {formatTimeUtc(eorzeanTime)} ET
                           <br />
                           {formatTime(localTime)} LT
                         </>
                     : index === 1
-                      ? formatTime(new Date(now.getTime() * (1440 / 70)))
-                      : formatTime(eorzeanTime)
+                      ? formatTimeUtc(new Date(now.getTime() * (1440 / 70)))
+                      : formatTimeUtc(eorzeanTime)
                   }
                 </TableCell>
               )

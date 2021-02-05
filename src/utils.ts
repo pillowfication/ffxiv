@@ -8,6 +8,10 @@ export function paddedZero (n: number): string {
 }
 
 export function formatTime (date: Date): string {
+  return `${paddedZero(date.getHours())}:${paddedZero(date.getMinutes())}`
+}
+
+export function formatTimeUtc (date: Date): string {
   return `${paddedZero(date.getUTCHours())}:${paddedZero(date.getUTCMinutes())}`
 }
 
