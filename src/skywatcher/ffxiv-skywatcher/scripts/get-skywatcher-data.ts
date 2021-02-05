@@ -20,9 +20,9 @@ const territories = TerritoryType.data
   .map(territory => {
     return {
       id: territory['#'],
-      placeName: PlaceName_en.data.find(({ Name }) => Name === territory.PlaceName)['#'],
-      placeName_zone: PlaceName_en.data.find(({ Name }) => Name === territory['PlaceName{Zone}'])['#'],
-      placeName_region: PlaceName_en.data.find(({ Name }) => Name === territory['PlaceName{Region}'])['#'],
+      placeName: +territory.PlaceName,
+      placeName_zone: +territory['PlaceName{Zone}'],
+      placeName_region: +territory['PlaceName{Region}'],
       weatherRate: territory.WeatherRate
     }
   })
@@ -59,7 +59,7 @@ const weathers = Weather_en.data
     const weather_ja = Weather_ja.data.find(({ '#': id }) => id === weatherId)
     return {
       id: weatherId,
-      icon: weather_en.Icon !== '' ? saintCoinach.parseIconId(weather_en.Icon) : null,
+      icon: +weather_en.Icon,
       name_en: weather_en.Name,
       name_de: weather_de.Name,
       name_fr: weather_fr.Name,
@@ -79,9 +79,8 @@ const weatherRates = WeatherRate.data
     return {
       id: weatherRate['#'],
       rates: [0, 1, 2, 3, 4, 5, 6, 7]
-        .map(index => [weatherRate[`Weather[${index}]`], weatherRate[`Rate[${index}]`]])
-        .filter(([weather, rate]) => weather !== undefined && rate !== undefined)
-        .map(([weather, rate]) => [Weather_en.data.find(({ Name }) => Name === weather)['#'], rate])
+        .map(index => [+weatherRate[`Weather[${index}]`], weatherRate[`Rate[${index}]`]])
+        .filter(([weather, rate]) => weather !== 0 && rate !== 0)
     }
   })
   .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})

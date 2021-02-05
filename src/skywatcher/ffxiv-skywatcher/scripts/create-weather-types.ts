@@ -43,3 +43,5 @@ Object.values(weathers)
     fs.appendFileSync(OUTPUT, `  ${key}${count > 1 ? `_${count}` : ''} = ${weather.id}${index < array.length - 1 ? ',' : ''}\n`)
   })
 fs.appendFileSync(OUTPUT, '}\n')
+
+console.log('Done!')

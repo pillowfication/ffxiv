@@ -44,7 +44,7 @@ export function getWeather (place: Place, weatherRateIndex = 0, hash = hashSeed(
   let cumChance = 0
   for (const [weather, chance] of rates) {
     if ((cumChance += chance) > hash) {
-      return weather
+      return weather.id
     }
   }
   return Weather.DEFAULT
@@ -56,7 +56,7 @@ export function getWeatherRates (place: Place): number[] {
 
 export function getPossibleWeathers (place: Place, weatherRateIndex = 0): Weather[] {
   const rates = weatherRates[partition.weatherRates[place][weatherRateIndex]].rates
-  return rates.map(([weather]) => weather)
+  return rates.map(([weather]) => weather.id)
     .sort((a, b) => a - b)
     .filter((weather, index, array) => weather !== array[index + 1])
 }
