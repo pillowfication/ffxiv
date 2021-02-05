@@ -4,12 +4,12 @@ import Typography from '@material-ui/core/Typography'
 import Section from '../Section'
 import NameAutocomplete from './NameAutocomplete'
 import MyNameIs from './MyNameIs'
-import names from './ffxiv-name-generator/data/chara-make-names.json'
+import { charaMakeNames } from './ffxiv-name-generator/data'
 import { translate, Clan, Gender } from './ffxiv-name-generator'
 import { upperFirst, formatName } from './ffxiv-name-generator/src/utils'
 import { useTranslation } from '../i18n'
 
-function splitPhoneme (phoneme: string) {
+function splitPhoneme (phoneme: string): string {
   return phoneme.slice(0, phoneme.length / 2)
 }
 
@@ -28,7 +28,7 @@ const DunesfolkMale = (): React.ReactElement => {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <NameAutocomplete
-                options={names.LalafellDunesfolkMale.map(splitPhoneme)}
+                options={charaMakeNames.lalafell_dunesfolk_male.map(splitPhoneme)}
                 value={phonemeA}
                 onChange={setPhonemeA}
                 label={t('phoneme', { label: 'A' })}
@@ -37,7 +37,7 @@ const DunesfolkMale = (): React.ReactElement => {
             </Grid>
             <Grid item xs={12}>
               <NameAutocomplete
-                options={names.LalafellDunesfolkMaleLastName.map(upperFirst)}
+                options={charaMakeNames.lalafell_dunesfolk_male_lastName.map(upperFirst)}
                 value={phonemeB}
                 onChange={setPhonemeB}
                 label={t('phoneme', { label: 'B' })}
@@ -46,7 +46,7 @@ const DunesfolkMale = (): React.ReactElement => {
             </Grid>
             <Grid item xs={12}>
               <NameAutocomplete
-                options={names.LalafellDunesfolkMale.map(splitPhoneme)}
+                options={charaMakeNames.lalafell_dunesfolk_male.map(splitPhoneme)}
                 value={phonemeC}
                 onChange={setPhonemeC}
                 label={t('phoneme', { label: 'C' })}

@@ -14,7 +14,7 @@ const charaMakeNames = Object.keys(CharaMakeName_en.keys)
   .map(key => ({ key, values: CharaMakeName_en.data.map(datum => datum[key]).filter(datum => datum) }))
   .reduce((acc, { key, values }) => {
     if (key !== '#') {
-      acc[key.replace(/[^a-zA-Z]+/g, '')] = values
+      acc[key.replace(/[^a-zA-Z]+/g, '')] = (values as string[]).sort()
     }
     return acc
   }, {})

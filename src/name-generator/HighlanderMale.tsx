@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography'
 import Section from '../Section'
 import NameAutocomplete from './NameAutocomplete'
 import MyNameIs from './MyNameIs'
-import names from './ffxiv-name-generator/data/chara-make-names.json'
+import { charaMakeNames } from './ffxiv-name-generator/data'
 import { translate, Clan, Gender } from './ffxiv-name-generator'
 import { formatName } from './ffxiv-name-generator/src/utils'
 import { useTranslation } from '../i18n'
@@ -21,7 +21,7 @@ const HighlanderMale = (): React.ReactElement => {
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <NameAutocomplete
-            options={names.HyurHighlanderMale}
+            options={charaMakeNames.hyur_highlander_male}
             value={forename}
             onChange={setForename}
             label={t('forename')}
@@ -35,7 +35,7 @@ const HighlanderMale = (): React.ReactElement => {
         </Grid>
         <Grid item xs={12} md={6}>
           <NameAutocomplete
-            options={names.HyurHighlanderLastName}
+            options={charaMakeNames.hyur_highlander_lastName}
             value={surname}
             onChange={setSurname}
             label={t('surname')}

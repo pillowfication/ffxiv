@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography'
 import Section from '../Section'
 import NameAutocomplete from './NameAutocomplete'
 import MyNameIs from './MyNameIs'
-import roegadynDictionary from './ffxiv-name-generator/data/roegadyn-dictionary.json'
+import { roegadynDictionary } from './ffxiv-name-generator/data'
 import { translate, Clan, Gender } from './ffxiv-name-generator'
 import { formatName, conjugateRoegadyn, combineRoegadyn } from './ffxiv-name-generator/src/utils'
 import { useTranslation } from '../i18n'
@@ -26,14 +26,15 @@ const useStyles = makeStyles(theme => ({
 
 const SeaWolfMale = (): React.ReactElement => {
   const classes = useStyles()
-  const { t, i18n } = useTranslation('name-generator')
+  const { i18n } = useTranslation('name-generator')
   const [forenameWord1, setForenameWord1] = useState('')
   const [forenameWord2, setForenameWord2] = useState('')
   const [surnameWord1, setSurnameWord1] = useState('')
   const [surnameWord2, setSurnameWord2] = useState('')
   const forename = combineRoegadyn(conjugateRoegadyn(forenameWord1, 'A'), conjugateRoegadyn(forenameWord2, 'N'))
-  const surname = (surnameWord1 || surnameWord2) &&
-    combineRoegadyn(conjugateRoegadyn(surnameWord1, 'A'), conjugateRoegadyn(surnameWord2, 'N'), 'Syn')
+  const surname = (surnameWord1 !== '' || surnameWord2 !== '')
+    ? combineRoegadyn(conjugateRoegadyn(surnameWord1, 'A'), conjugateRoegadyn(surnameWord2, 'N'), 'Syn')
+    : ''
   const name = formatName(forename, surname)
   const locale = i18n.language
 
@@ -47,7 +48,7 @@ const SeaWolfMale = (): React.ReactElement => {
                 options={WORDS}
                 getOptionLabel={word => {
                   const entry = roegadynDictionary[word]
-                  return entry ? `${word} (${entry.grammar}, ${entry.definition_en})` : word
+                  return entry !== undefined ? `${word} (${entry.grammar}, ${entry.definition_en})` : word
                 }}
                 value={forenameWord1}
                 onChange={setForenameWord1}
@@ -60,7 +61,7 @@ const SeaWolfMale = (): React.ReactElement => {
                 options={WORDS}
                 getOptionLabel={word => {
                   const entry = roegadynDictionary[word]
-                  return entry ? `${word} (${entry.grammar}, ${entry.definition_en})` : word
+                  return entry !== undefined ? `${word} (${entry.grammar}, ${entry.definition_en})` : word
                 }}
                 value={forenameWord2}
                 onChange={setForenameWord2}
@@ -96,7 +97,7 @@ const SeaWolfMale = (): React.ReactElement => {
                 options={WORDS}
                 getOptionLabel={word => {
                   const entry = roegadynDictionary[word]
-                  return entry ? `${word} (${entry.grammar}, ${entry.definition_en})` : word
+                  return entry !== undefined ? `${word} (${entry.grammar}, ${entry.definition_en})` : word
                 }}
                 value={surnameWord1}
                 onChange={setSurnameWord1}
@@ -109,7 +110,7 @@ const SeaWolfMale = (): React.ReactElement => {
                 options={WORDS}
                 getOptionLabel={word => {
                   const entry = roegadynDictionary[word]
-                  return entry ? `${word} (${entry.grammar}, ${entry.definition_en})` : word
+                  return entry !== undefined ? `${word} (${entry.grammar}, ${entry.definition_en})` : word
                 }}
                 value={surnameWord2}
                 onChange={setSurnameWord2}

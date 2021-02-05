@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography'
 import Section from '../Section'
 import NameAutocomplete from './NameAutocomplete'
 import MyNameIs from './MyNameIs'
-import names from './ffxiv-name-generator/data/chara-make-names.json'
+import { charaMakeNames } from './ffxiv-name-generator/data'
 import { translate, Clan, Gender } from './ffxiv-name-generator'
 import { upperFirst, formatName } from './ffxiv-name-generator/src/utils'
 import { useTranslation } from '../i18n'
@@ -23,7 +23,7 @@ const DunesfolkFemale = (): React.ReactElement => {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <NameAutocomplete
-                options={names.LalafellDunesfolkFemale}
+                options={charaMakeNames.lalafell_dunesfolk_female}
                 value={phonemeA}
                 onChange={setPhonemeA}
                 label={t('phoneme', { label: 'A' })}
@@ -32,7 +32,7 @@ const DunesfolkFemale = (): React.ReactElement => {
             </Grid>
             <Grid item xs={12}>
               <NameAutocomplete
-                options={names.LalafellDunesfolkFemaleLastName.map(upperFirst)}
+                options={charaMakeNames.lalafell_dunesfolk_female_lastName.map(upperFirst)}
                 value={phonemeB}
                 onChange={setPhonemeB}
                 label={t('phoneme', { label: 'B' })}

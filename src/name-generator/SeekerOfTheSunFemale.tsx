@@ -4,10 +4,9 @@ import Typography from '@material-ui/core/Typography'
 import Section from '../Section'
 import NameAutocomplete from './NameAutocomplete'
 import MyNameIs from './MyNameIs'
-import names from './ffxiv-name-generator/data/chara-make-names.json'
+import { charaMakeNames, miqoteTribes } from './ffxiv-name-generator/data'
 import { translate, Clan, Gender } from './ffxiv-name-generator'
 import { upperFirst } from './ffxiv-name-generator/src/utils'
-import miqoteTribes from './ffxiv-name-generator/data/miqote-tribes.json'
 import { useTranslation } from '../i18n'
 
 const SeekersOfTheSunFemale = (): React.ReactElement => {
@@ -23,7 +22,7 @@ const SeekersOfTheSunFemale = (): React.ReactElement => {
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <NameAutocomplete
-            options={names.MiqoteSunFemale.map(name => upperFirst(name.replace(/^.*'/, '')))}
+            options={charaMakeNames.miqote_seekerOfTheSun_female.map(name => upperFirst(name.replace(/^.*'/, '')))}
             value={forename}
             onChange={setForename}
             label={t('forename')}
@@ -52,7 +51,7 @@ const SeekersOfTheSunFemale = (): React.ReactElement => {
         </Grid>
         <Grid item xs={12} md={6}>
           <NameAutocomplete
-            options={names.MiqoteSunFemaleLastName}
+            options={charaMakeNames.miqote_seekerOfTheSun_female_lastName}
             value={surname}
             onChange={setSurname}
             label={t('surname')}

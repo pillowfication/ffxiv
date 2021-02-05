@@ -4,13 +4,12 @@ import Typography from '@material-ui/core/Typography'
 import Section from '../Section'
 import NameAutocomplete from './NameAutocomplete'
 import MyNameIs from './MyNameIs'
-import names from './ffxiv-name-generator/data/chara-make-names.json'
+import { charaMakeNames, miqoteSuffixes } from './ffxiv-name-generator/data'
 import { translate, Clan, Gender } from './ffxiv-name-generator'
 import { upperFirst, formatName } from './ffxiv-name-generator/src/utils'
-import miqoteSuffixes from './ffxiv-name-generator/data/miqote-suffixes.json'
 import { useTranslation } from '../i18n'
 
-const ORDINALS = {
+const ORDINALS: Record<number, string> = {
   1: 'first',
   2: 'second',
   3: 'third',
@@ -23,7 +22,7 @@ const ORDINALS = {
   10: 'tenth'
 }
 
-function translateSuffix (suffix: string) {
+function translateSuffix (suffix: string): string {
   return `${ORDINALS[miqoteSuffixes[suffix]]} son`
 }
 
@@ -40,7 +39,7 @@ const KeeperOfTheMoonMale = (): React.ReactElement => {
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <NameAutocomplete
-            options={names.MiqoteMoonMale.map(name => upperFirst(name.replace(/'.*$/, '')))}
+            options={charaMakeNames.miqote_keeperOfTheMoon_male.map(name => upperFirst(name.replace(/'.*$/, '')))}
             value={forename}
             onChange={setForename}
             label={t('forename')}
@@ -70,7 +69,7 @@ const KeeperOfTheMoonMale = (): React.ReactElement => {
         </Grid>
         <Grid item xs={12} md={6}>
           <NameAutocomplete
-            options={names.MiqoteMoonLastname}
+            options={charaMakeNames.miqote_keeperOfTheMoon_lastName}
             value={surname}
             onChange={setSurname}
             label={t('surname')}

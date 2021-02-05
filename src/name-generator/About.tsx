@@ -9,7 +9,7 @@ import TableBody from '@material-ui/core/TableBody'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import Section from '../Section'
-import names from './ffxiv-name-generator/data/chara-make-names.json'
+import { charaMakeNames } from './ffxiv-name-generator/data'
 import {
   getRaces,
   getClans,
@@ -40,68 +40,68 @@ function combinations (...arrays: any[][]): number {
 
 const STATISTICS: Record<Clan, Record<Gender, number>> = {
   [Clan.Midlander]: {
-    [Gender.Male]: combinations(names.HyurMidlanderMale, names.HyurMidlanderLastName),
-    [Gender.Female]: combinations(names.HyurMidlanderFemale, names.HyurMidlanderLastName)
+    [Gender.Male]: combinations(charaMakeNames.hyur_midlander_male, charaMakeNames.hyur_midlander_lastName),
+    [Gender.Female]: combinations(charaMakeNames.hyur_midlander_female, charaMakeNames.hyur_midlander_lastName)
   },
   [Clan.Highlander]: {
-    [Gender.Male]: combinations(names.HyurHighlanderMale, names.HyurHighlanderLastName),
-    [Gender.Female]: combinations(names.HyurHighlanderFemale, names.HyurHighlanderLastName)
+    [Gender.Male]: combinations(charaMakeNames.hyur_highlander_male, charaMakeNames.hyur_highlander_lastName),
+    [Gender.Female]: combinations(charaMakeNames.hyur_highlander_female, charaMakeNames.hyur_highlander_lastName)
   },
   [Clan.Wildwood]: {
-    [Gender.Male]: combinations(names.ElezenMale, names.ElezenWildwoodLastName),
-    [Gender.Female]: combinations(names.ElezenFemale, names.ElezenWildwoodLastName)
+    [Gender.Male]: combinations(charaMakeNames.elezen_male, charaMakeNames.elezen_wildwood_lastName),
+    [Gender.Female]: combinations(charaMakeNames.elezen_female, charaMakeNames.elezen_wildwood_lastName)
   },
   [Clan.Duskwight]: {
-    [Gender.Male]: combinations(names.ElezenMale, names.ElezenDuskwightLastName),
-    [Gender.Female]: combinations(names.ElezenFemale, names.ElezenDuskwightLastName)
+    [Gender.Male]: combinations(charaMakeNames.elezen_male, charaMakeNames.elezen_duskwight_lastName),
+    [Gender.Female]: combinations(charaMakeNames.elezen_female, charaMakeNames.elezen_duskwight_lastName)
   },
   [Clan.Plainsfolk]: {
-    [Gender.Male]: combinations(names.LalafellPlainsfolkFirstNameStart, names.LalafellPlainsfolkEndOfNames, names.LalafellPlainsfolkLastNameStart),
-    [Gender.Female]: combinations(names.LalafellPlainsfolkFirstNameStart, names.LalafellPlainsfolkEndOfNames)
+    [Gender.Male]: combinations(charaMakeNames.lalafell_plainsfolk_firstNameStart, charaMakeNames.lalafell_plainsfolk_endOfNames, charaMakeNames.lalafell_plainsfolk_lastNameStart),
+    [Gender.Female]: combinations(charaMakeNames.lalafell_plainsfolk_firstNameStart, charaMakeNames.lalafell_plainsfolk_endOfNames)
   },
   [Clan.Dunesfolk]: {
-    [Gender.Male]: combinations(names.LalafellDunesfolkMale, names.LalafellDunesfolkMaleLastName, names.LalafellDunesfolkMale),
-    [Gender.Female]: combinations(names.LalafellDunesfolkFemale, names.LalafellDunesfolkFemaleLastName)
+    [Gender.Male]: combinations(charaMakeNames.lalafell_dunesfolk_male, charaMakeNames.lalafell_dunesfolk_male_lastName, charaMakeNames.lalafell_dunesfolk_male),
+    [Gender.Female]: combinations(charaMakeNames.lalafell_dunesfolk_female, charaMakeNames.lalafell_dunesfolk_female_lastName)
   },
   [Clan.SeekerOfTheSun]: {
-    [Gender.Male]: combinations(names.MiqoteSunMale, names.MiqoteSunMaleLastName),
-    [Gender.Female]: combinations(names.MiqoteSunFemale, names.MiqoteSunFemaleLastName)
+    [Gender.Male]: combinations(charaMakeNames.miqote_seekerOfTheSun_male, charaMakeNames.miqote_seekerOfTheSun_male_lastName),
+    [Gender.Female]: combinations(charaMakeNames.miqote_seekerOfTheSun_female, charaMakeNames.miqote_seekerOfTheSun_female_lastName)
   },
   [Clan.KeeperOfTheMoon]: {
-    [Gender.Male]: combinations(names.MiqoteMoonMale, names.MiqoteMoonLastname),
-    [Gender.Female]: combinations(names.MiqoteMoonFemale, names.MiqoteMoonLastname)
+    [Gender.Male]: combinations(charaMakeNames.miqote_keeperOfTheMoon_male, charaMakeNames.miqote_keeperOfTheMoon_lastName),
+    [Gender.Female]: combinations(charaMakeNames.miqote_keeperOfTheMoon_female, charaMakeNames.miqote_keeperOfTheMoon_lastName)
   },
   [Clan.SeaWolf]: {
-    [Gender.Male]: combinations(names.RoegadynSeaWolfMale, names.RoegadynSeaWolfMaleLastName),
-    [Gender.Female]: combinations(names.RoegadynSeaWolfFemale, names.RoegadynSeaWolfFemaleLastName)
+    [Gender.Male]: combinations(charaMakeNames.roegadyn_seaWolf_male, charaMakeNames.roegadyn_seaWolf_male_lastName),
+    [Gender.Female]: combinations(charaMakeNames.roegadyn_seaWolf_female, charaMakeNames.roegadyn_seaWolf_female_lastName)
   },
   [Clan.Hellsguard]: {
-    [Gender.Male]: combinations(names.RoegadynHellsguardFirstName, names.RoegadynHellsguardMaleLastName),
-    [Gender.Female]: combinations(names.RoegadynHellsguardFirstName, names.RoegadynHellsguardFemaleLastName)
+    [Gender.Male]: combinations(charaMakeNames.roegadyn_hellsguard_firstName, charaMakeNames.roegadyn_hellsguard_male_lastName),
+    [Gender.Female]: combinations(charaMakeNames.roegadyn_hellsguard_firstName, charaMakeNames.roegadyn_hellsguard_female_lastName)
   },
   [Clan.Raen]: {
-    [Gender.Male]: combinations(names.AuRaRaenMale, names.AuRaRaenLastName),
-    [Gender.Female]: combinations(names.AuRaRaenFemale, names.AuRaRaenLastName)
+    [Gender.Male]: combinations(charaMakeNames.auRa_raen_male, charaMakeNames.auRa_raen_lastName),
+    [Gender.Female]: combinations(charaMakeNames.auRa_raen_female, charaMakeNames.auRa_raen_lastName)
   },
   [Clan.Xaela]: {
-    [Gender.Male]: combinations(names.AuRaXaelaMale, names.AuRaXaelaLastName),
-    [Gender.Female]: combinations(names.AuRaXaelaFemale, names.AuRaXaelaLastName)
+    [Gender.Male]: combinations(charaMakeNames.auRa_xaela_male, charaMakeNames.auRa_xaela_lastName),
+    [Gender.Female]: combinations(charaMakeNames.auRa_xaela_female, charaMakeNames.auRa_xaela_lastName)
   },
   [Clan.Helions]: {
-    [Gender.Male]: combinations(names.HrothgarHellionsFirstName, names.HrothgarHellionsLastName),
+    [Gender.Male]: combinations(charaMakeNames.hrothgar_helions_firstName, charaMakeNames.hrothgar_helions_lastName),
     [Gender.Female]: 0
   },
   [Clan.TheLost]: {
-    [Gender.Male]: combinations(names.HrothgarLostFirstName, names.HrothgarLostLastName),
+    [Gender.Male]: combinations(charaMakeNames.hrothgar_theLost_firstName, charaMakeNames.hrothgar_theLost_lastName),
     [Gender.Female]: 0
   },
   [Clan.Rava]: {
     [Gender.Male]: 0,
-    [Gender.Female]: combinations(names.VieraFirstName, names.VieraRavaLastName)
+    [Gender.Female]: combinations(charaMakeNames.viera_firstName, charaMakeNames.viera_rava_lastName)
   },
   [Clan.Veena]: {
     [Gender.Male]: 0,
-    [Gender.Female]: combinations(names.VieraFirstName, names.VieraVeenaLastName)
+    [Gender.Female]: combinations(charaMakeNames.viera_firstName, charaMakeNames.viera_veena_lastName)
   }
 }
 

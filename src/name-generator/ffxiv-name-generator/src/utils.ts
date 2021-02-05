@@ -5,10 +5,8 @@ import fr from '../locales/fr.json'
 import ja from '../locales/ja.json'
 const LOCALES = { en, de, fr, ja }
 
-export function randomElement<T> (...arrays: T[][]): T | undefined {
-  if (arrays.length === 0) {
-    return undefined
-  } else if (arrays.length === 1) {
+export function randomElement<T> (...arrays: T[][]): T {
+  if (arrays.length === 1) {
     return arrays[0][Math.floor(Math.random() * arrays[0].length)]
   } else {
     const totalElements = arrays.reduce((acc, curr) => acc + curr.length, 0)
@@ -22,6 +20,7 @@ export function randomElement<T> (...arrays: T[][]): T | undefined {
       }
     }
   }
+  return arrays[0][0]
 }
 
 export function upperFirst (string: string): string {
