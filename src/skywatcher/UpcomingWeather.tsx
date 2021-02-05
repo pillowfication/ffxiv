@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useQueryState } from 'next-usequerystate'
 import { makeStyles } from '@material-ui/core/styles'
 import NoSsr from '@material-ui/core/NoSsr'
 import Typography from '@material-ui/core/Typography'
@@ -38,10 +37,7 @@ interface Props {
 const UpcomingWeather = ({ now }: Props): React.ReactElement => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('skywatcher')
-  const [filter, setFilter] = useQueryState<Place | null>(
-    'filter',
-    { parse: query => query !== '' && REGIONS.includes(Number(query)) ? Number(query) as Place : null }
-  )
+  const [filter, setFilter] = useState<Place | null>(null)
   const [showLabels, setShowLabels] = useState(true)
   const [showLocalTime, setShowLocalTime] = useState(false)
   const [showAllPlaces, setShowAllPlaces] = useState(false)
