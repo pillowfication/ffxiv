@@ -204,12 +204,11 @@ const Map = (): React.ReactElement => {
                     key={starMonster.id}
                     position={toLatLong([starMonster.x, starMonster.y])}
                     icon={new Icon({
-                      iconUrl: '/images/bozja/icon-60580.png',
+                      iconUrl: '/images/bozja/icon-61804.png',
                       iconSize: [ICON_SIZE, ICON_SIZE]
                     })}
                   >
                     <Tooltip
-                      permanent
                       direction='top'
                       offset={[0, -10]}
                       className={classes.tooltip}
