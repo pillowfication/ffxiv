@@ -70,3 +70,13 @@ export function getIcon (id: number): { path: string, buffer: Buffer } {
 
   return { path: file, buffer }
 }
+
+// This function is whack for now
+// export function getMap (mapId: string): { path: string, buffer: Buffer } {
+//   const [id, index] = mapId.split('/')
+//
+//   const file = path.join(SAINT_COINACH_FOLDER, VERSION, 'ui/map', folder, fileName + '.png')
+//   const buffer = fs.readFileSync(file)
+//
+//   return { path: file, buffer }
+// }

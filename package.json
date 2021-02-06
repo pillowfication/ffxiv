@@ -29,6 +29,7 @@
     "date-fns": "^2.16.1",
     "file-loader": "^6.2.0",
     "highlight.js": "^10.5.0",
+    "leaflet": "^1.7.1",
     "next": "^10.0.6",
     "next-i18next": "^7.0.1",
     "next-seo": "^4.18.0",
@@ -38,10 +39,13 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-highlight.js": "^1.0.7",
+    "react-leaflet": "^3.1.0",
     "react-string-replace": "^0.4.4",
     "url-loader": "^4.1.1"
   },
   "devDependencies": {
+    "@types/leaflet": "^1.5.21",
+    "@types/react-leaflet": "^2.5.2",
     "@typescript-eslint/eslint-plugin": "^4.14.2",
     "canvas": "^2.6.1",
     "cheerio": "^1.0.0-rc.5",

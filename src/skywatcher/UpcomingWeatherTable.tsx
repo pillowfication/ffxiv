@@ -69,13 +69,22 @@ interface Props {
   places: Array<{ place: Place, weatherRateIndex: number }>
   showLabels?: boolean
   showLocalTime?: boolean
+  count?: number
+  hidePlaceName?: boolean
 }
 
-const UpcomingWeatherTable = ({ now, places, showLabels = false, showLocalTime = false }: Props): React.ReactElement => {
+const UpcomingWeatherTable = ({
+  now,
+  places,
+  showLabels = false,
+  showLocalTime = false,
+  count = 10,
+  hidePlaceName = false
+}: Props): React.ReactElement => {
   const classes = useStyles()
   const { i18n } = useTranslation()
   const currentSeed = getSeed(now)
-  const hashes = getHashes(currentSeed - 1, 10)
+  const hashes = getHashes(currentSeed - 1, count)
   const locale = i18n.language
 
   return (
@@ -83,7 +92,7 @@ const UpcomingWeatherTable = ({ now, places, showLabels = false, showLocalTime =
       <Table size='small' className={classes.weatherTable}>
         <TableHead>
           <TableRow>
-            <TableCell />
+            {!hidePlaceName && <TableCell />}
             {hashes.map((_, index) => {
               const eorzeanTime = new Date((currentSeed - 1 + index) * 28800000)
               const localTime = new Date(eorzeanTime.getTime() / (1440 / 70))
@@ -113,9 +122,11 @@ const UpcomingWeatherTable = ({ now, places, showLabels = false, showLocalTime =
         <TableBody>
           {places.map(({ place, weatherRateIndex }) =>
             <TableRow key={`${place}-${weatherRateIndex}`} hover>
-              <TableCell component='th' scope='row' className={classes.regionCell}>
-                <Typography>{renderFfxiv(translatePlace(place, locale))}{weatherRateIndex > 0 && ` (alt. ${weatherRateIndex})`}</Typography>
-              </TableCell>
+              {!hidePlaceName && (
+                <TableCell component='th' scope='row' className={classes.regionCell}>
+                  <Typography>{renderFfxiv(translatePlace(place, locale))}{weatherRateIndex > 0 && ` (alt. ${weatherRateIndex})`}</Typography>
+                </TableCell>
+              )}
               {hashes.map((hash, index) =>
                 <TableCell
                   key={index}
