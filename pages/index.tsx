@@ -120,6 +120,7 @@ const Index = (): React.ReactElement => {
       <Section>
         <dl className={classes.links}>
           {[
+            { key: 'bozja', url: '/bozja' },
             { key: 'chocoboColor', url: '/chocobo-color' },
             { key: 'highOrLow', url: '/high-or-low' },
             { key: 'miniCactpot', url: '/mini-cactpot' },
@@ -128,11 +129,14 @@ const Index = (): React.ReactElement => {
             { key: 'skywatcher', url: '/skywatcher' },
             { key: 'wondrousTails', url: '/wondrous-tails' },
             { key: 'xivapi', url: '/xivapi' }
-          ].map(({ key, url }) => (
-            <IndexSection key={key} url={url} title={t(`${key}.title`)}>
-              {t(`${key}.description`)}
-            </IndexSection>
-          ))}
+          ]
+            .map(({ key, url }) => ({ key, url, title: t(`${key}.title`) }))
+            .sort((a, b) => a.title.localeCompare(b.title))
+            .map(({ key, url, title }) => (
+              <IndexSection key={key} url={url} title={title}>
+                {t(`${key}.description`)}
+              </IndexSection>
+            ))}
         </dl>
       </Section>
       <Footer />

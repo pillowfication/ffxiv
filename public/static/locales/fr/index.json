@@ -1,12 +1,16 @@
 {
   "_title": "Lulu’s Tools",
   "_description": "A bunch of FFXIV-related stuff I try making.",
+  "bozja": {
+    "title": "Front sud de Bozja",
+    "description": "Interactive map for the Bozjan Southern Front."
+  },
   "chocoboColor": {
     "title": "Couleur de Chocobo",
     "description": "Calculator for changing your chocobo’s color."
   },
   "highOrLow": {
-    "title": "“Plus ou moins”",
+    "title": "Plus ou moins",
     "description": "Calculator for the guessing game “High or Low” played against Tista-Bie in Eulmore."
   },
   "miniCactpot": {
