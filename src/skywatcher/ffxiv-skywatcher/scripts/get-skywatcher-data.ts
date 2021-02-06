@@ -8,10 +8,12 @@ const PlaceName_en = saintCoinach.get('PlaceName.en')
 const PlaceName_de = saintCoinach.get('PlaceName.de')
 const PlaceName_fr = saintCoinach.get('PlaceName.fr')
 const PlaceName_ja = saintCoinach.get('PlaceName.ja')
+const PlaceName_ko = saintCoinach.get('PlaceName', 'ko')
 const Weather_en = saintCoinach.get('Weather.en')
 const Weather_de = saintCoinach.get('Weather.de')
 const Weather_fr = saintCoinach.get('Weather.fr')
 const Weather_ja = saintCoinach.get('Weather.ja')
+const Weather_ko = saintCoinach.get('Weather', 'ko')
 const WeatherRate = saintCoinach.get('WeatherRate')
 
 console.log('Collecting territories...')
@@ -38,12 +40,14 @@ const placeNames = Object.values<any>(territories)
     const placeName_de = PlaceName_de.data.find(({ '#': id }) => id === placeNameId)
     const placeName_fr = PlaceName_fr.data.find(({ '#': id }) => id === placeNameId)
     const placeName_ja = PlaceName_ja.data.find(({ '#': id }) => id === placeNameId)
+    const placeName_ko = PlaceName_ko.data.find(({ '#': id }) => id === placeNameId)
     return {
       id: placeNameId,
       name_en: placeName_en.Name,
       name_de: placeName_de.Name,
       name_fr: placeName_fr.Name,
-      name_ja: placeName_ja.Name
+      name_ja: placeName_ja.Name,
+      name_ko: placeName_ko.Name
     }
   })
   .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})
@@ -57,6 +61,7 @@ const weathers = Weather_en.data
     const weather_de = Weather_de.data.find(({ '#': id }) => id === weatherId)
     const weather_fr = Weather_fr.data.find(({ '#': id }) => id === weatherId)
     const weather_ja = Weather_ja.data.find(({ '#': id }) => id === weatherId)
+    const weather_ko = Weather_ko.data.find(({ '#': id }) => id === weatherId)
     return {
       id: weatherId,
       icon: +weather_en.Icon,
@@ -64,10 +69,12 @@ const weathers = Weather_en.data
       name_de: weather_de.Name,
       name_fr: weather_fr.Name,
       name_ja: weather_ja.Name,
+      name_ko: weather_ko.Name,
       description_en: weather_en.Description,
       description_de: weather_de.Description,
       description_fr: weather_fr.Description,
-      description_ja: weather_ja.Description
+      description_ja: weather_ja.Description,
+      description_ko: weather_ko.Description
     }
   })
   .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})

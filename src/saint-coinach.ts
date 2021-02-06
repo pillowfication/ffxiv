@@ -5,6 +5,7 @@ import csvParse from 'csv-parse/lib/sync'
 // What to do about this...
 const SAINT_COINACH_FOLDER = 'C:\\Users\\Pillowfication\\ws\\SaintCoinach.Cmd-master-b930-8ab7d24'
 const VERSION = '2021.01.28.0000.0000'
+const SAINT_COINACH_KO = 'C:\\Users\\Pillowfication\\ws\\ffxiv-datamining-ko'
 
 function mapKeys (keys: Record<string, string>, datum: {}): Record<string, string> {
   const mappedDatum = {}
@@ -33,8 +34,11 @@ function parseValues (types: Record<string, string>, datum: Record<string, any>)
   return datum
 }
 
-export function get (key: string): { keys: Record<string, string>, types: Record<string, string>, data: any[] } {
-  const file = path.join(SAINT_COINACH_FOLDER, VERSION, 'raw-exd-all', `${key}.csv`)
+export function get (key: string, folder?: 'ko'): { keys: Record<string, string>, types: Record<string, string>, data: any[] } {
+  let file = path.join(SAINT_COINACH_FOLDER, VERSION, 'raw-exd-all', `${key}.csv`)
+  if (folder === 'ko') {
+    file = path.join(SAINT_COINACH_KO, 'csv', `${key}.csv`)
+  }
   console.log('Reading file', file)
 
   const buffer = fs.readFileSync(file)
@@ -80,3 +84,23 @@ export function getIcon (id: number): { path: string, buffer: Buffer } {
 //
 //   return { path: file, buffer }
 // }
+
+class Crawler {
+  data: any
+
+  constructor (csv: any, id: number) {
+    this.data = csv.data.find(({ '#': csvId }) => csvId === id)
+  }
+
+  to (key: string, csv: any): Crawler {
+    return new Crawler(csv, Number(this.data[key]))
+  }
+
+  get (): any {
+    return this.data
+  }
+}
+
+export function crawl (csv: any, id: number): Crawler {
+  return new Crawler(csv, id)
+}

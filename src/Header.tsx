@@ -25,7 +25,8 @@ const LANGUAGES = {
   en: 'English',
   de: 'Deutsch',
   fr: 'Français',
-  ja: '日本語'
+  ja: '日本語',
+  ko: '한국어'
 }
 
 function getLanguage (locale: string): string {

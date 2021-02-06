@@ -8,6 +8,7 @@ const CharaMakeName_en = saintCoinach.get('CharaMakeName.en')
 // const CharaMakeName_de = saintCoinach.get('CharaMakeName.de')
 // const CharaMakeName_fr = saintCoinach.get('CharaMakeName.fr')
 // const CharaMakeName_ja = saintCoinach.get('CharaMakeName.ja')
+// const CharaMakeName_ko = saintCoinach.get('CharaMakeName', 'ko')
 
 console.log('Collecting names...')
 const charaMakeNames = Object.keys(CharaMakeName_en.keys)

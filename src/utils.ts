@@ -1,7 +1,7 @@
 import { format, formatDistanceStrict } from 'date-fns'
-import { de, fr, ja } from 'date-fns/locale'
+import { de, fr, ja, ko } from 'date-fns/locale'
 
-const DATE_LOCALES = { en: undefined, de, fr, ja }
+const DATE_LOCALES = { en: undefined, de, fr, ja, ko }
 
 export function paddedZero (n: number): string {
   return n > 9 ? String(n) : `0${n}`
@@ -44,5 +44,11 @@ export function translate (locale: string, obj: any, ...keys: string[]): string 
     const keyLocale = `${key}_${locale}`
     if (obj[keyLocale] !== undefined && obj[keyLocale] !== '') return obj[keyLocale]
   }
+
+  // Fallback to 'en'
+  if (locale !== 'en') {
+    return translate('en', obj, ...keys)
+  }
+
   return `{[Object].${keys.join(',')}}`
 }

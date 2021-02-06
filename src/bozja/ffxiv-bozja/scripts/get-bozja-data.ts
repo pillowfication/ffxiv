@@ -26,14 +26,17 @@ const bozja = {
   placeName_de: PlaceName_de.data.find(({ '#': id }) => id === +BozjaMap.PlaceName).Name,
   placeName_fr: PlaceName_fr.data.find(({ '#': id }) => id === +BozjaMap.PlaceName).Name,
   placeName_ja: PlaceName_ja.data.find(({ '#': id }) => id === +BozjaMap.PlaceName).Name,
+  placeName_ko: PlaceName_en.data.find(({ '#': id }) => id === +BozjaMap.PlaceName).Name, // Fallback to en
   placeName_sub_en: PlaceName_en.data.find(({ '#': id }) => id === +BozjaMap['PlaceName{Sub}']).Name,
   placeName_sub_de: PlaceName_de.data.find(({ '#': id }) => id === +BozjaMap['PlaceName{Sub}']).Name,
   placeName_sub_fr: PlaceName_fr.data.find(({ '#': id }) => id === +BozjaMap['PlaceName{Sub}']).Name,
   placeName_sub_ja: PlaceName_ja.data.find(({ '#': id }) => id === +BozjaMap['PlaceName{Sub}']).Name,
+  placeName_sub_ko: PlaceName_en.data.find(({ '#': id }) => id === +BozjaMap['PlaceName{Sub}']).Name, // Fallback to en
   placeName_region_en: PlaceName_en.data.find(({ '#': id }) => id === +BozjaMap['PlaceName{Region}']).Name,
   placeName_region_de: PlaceName_de.data.find(({ '#': id }) => id === +BozjaMap['PlaceName{Region}']).Name,
   placeName_region_fr: PlaceName_fr.data.find(({ '#': id }) => id === +BozjaMap['PlaceName{Region}']).Name,
   placeName_region_ja: PlaceName_ja.data.find(({ '#': id }) => id === +BozjaMap['PlaceName{Region}']).Name,
+  placeName_region_ko: PlaceName_en.data.find(({ '#': id }) => id === +BozjaMap['PlaceName{Region}']).Name, // Fallback to en
   mapMarkers: MapMarker.data
     .filter(mapMarker => Math.floor(mapMarker['#']) === BozjaMap.MapMarkerRange)
     .map(mapMarker => ({
@@ -45,6 +48,7 @@ const bozja = {
       placeName_subtext_de: PlaceName_de.data.find(({ '#': id }) => id === +mapMarker['PlaceName{Subtext}']).Name,
       placeName_subtext_fr: PlaceName_fr.data.find(({ '#': id }) => id === +mapMarker['PlaceName{Subtext}']).Name,
       placeName_subtext_ja: PlaceName_ja.data.find(({ '#': id }) => id === +mapMarker['PlaceName{Subtext}']).Name,
+      placeName_subtext_ko: PlaceName_en.data.find(({ '#': id }) => id === +mapMarker['PlaceName{Subtext}']).Name, // Fallback to en
       subtextOrientation: mapMarker.SubtextOrientation
     })),
   starMonsters: myData.star_monsters
@@ -54,6 +58,7 @@ const bozja = {
       name_de: BNpcName_de.data.find(({ '#': id }) => id === starMonster.id).Singular,
       name_fr: BNpcName_fr.data.find(({ '#': id }) => id === starMonster.id).Singular,
       name_ja: BNpcName_ja.data.find(({ '#': id }) => id === starMonster.id).Singular,
+      name_ko: BNpcName_en.data.find(({ '#': id }) => id === starMonster.id).Singular, // Fallback to en
       x: starMonster.coords[0],
       y: starMonster.coords[1]
     })),
@@ -64,6 +69,7 @@ const bozja = {
       name_de: BNpcName_de.data.find(({ '#': id }) => id === myData.sprites[spriteType].id).Singular,
       name_fr: BNpcName_fr.data.find(({ '#': id }) => id === myData.sprites[spriteType].id).Singular,
       name_ja: BNpcName_ja.data.find(({ '#': id }) => id === myData.sprites[spriteType].id).Singular,
+      name_ko: BNpcName_en.data.find(({ '#': id }) => id === myData.sprites[spriteType].id).Singular, // Fallback to en
       locations: myData.sprites[spriteType].locations.map((location: any) => ({
         level: location.level,
         x: location.coords[0],

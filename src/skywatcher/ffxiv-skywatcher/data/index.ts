@@ -27,6 +27,7 @@ export interface PlaceName {
   name_de: string
   name_fr: string
   name_ja: string
+  name_ko: string
 }
 
 export const placeNames = _placeNames as Record<number, PlaceName>
@@ -38,10 +39,12 @@ export interface Weather {
   name_de: string
   name_fr: string
   name_ja: string
+  name_ko: string
   description_en: string
   description_de: string
   description_fr: string
   description_ja: string
+  description_ko: string
 }
 
 export const weathers = _weathers as Record<number, Weather>

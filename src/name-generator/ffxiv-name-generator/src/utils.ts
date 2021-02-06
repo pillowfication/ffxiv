@@ -3,7 +3,8 @@ import en from '../locales/en.json'
 import de from '../locales/de.json'
 import fr from '../locales/fr.json'
 import ja from '../locales/ja.json'
-const LOCALES = { en, de, fr, ja }
+import ko from '../locales/ko.json'
+const LOCALES = { en, de, fr, ja, ko }
 
 export function randomElement<T> (...arrays: T[][]): T {
   if (arrays.length === 1) {

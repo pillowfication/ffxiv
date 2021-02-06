@@ -2,19 +2,19 @@
   "_title": "Lulu’s Tools",
   "_description": "A bunch of FFXIV-related stuff I try making.",
   "bozja": {
-    "title": "Front sud de Bozja",
+    "title": "Bozjan Southern Front",
     "description": "Interactive map for the Bozjan Southern Front."
   },
   "chocoboColor": {
-    "title": "Couleur de Chocobo",
+    "title": "초코보 색",
     "description": "Calculator for changing your chocobo’s color."
   },
   "highOrLow": {
-    "title": "Plus ou moins",
+    "title": "하이 앤 로우",
     "description": "Calculator for the guessing game “High or Low” played against Tista-Bie in Eulmore."
   },
   "miniCactpot": {
-    "title": "Mini Cactpot",
+    "title": "일일 복권",
     "description": "Calculator for the Mini Cactpot lottery."
   },
   "nameGenerator": {
@@ -22,15 +22,15 @@
     "description": "FFXIV random name generator for all the races."
   },
   "oceanFishing": {
-    "title": "Pêche en mer",
+    "title": "바다 낚시",
     "description": "Schedule for upcoming ocean fishing voyages with information on blue fish, achievements, and more."
   },
   "skywatcher": {
-    "title": "Météorologue",
+    "title": "일기예보사",
     "description": "Schedule for weather in Eorzea and forecaster for upcoming weather patterns."
   },
   "wondrousTails": {
-    "title": "Aventures imaginaires de Khloe",
+    "title": "쿠로의 공상 수첩",
     "description": "Calculator for the Wondrous Tails mini-game."
   },
   "xivapi": {

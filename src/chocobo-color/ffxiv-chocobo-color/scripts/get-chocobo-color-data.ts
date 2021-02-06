@@ -7,10 +7,12 @@ const Item_en = saintCoinach.get('Item.en')
 const Item_de = saintCoinach.get('Item.de')
 const Item_fr = saintCoinach.get('Item.fr')
 const Item_ja = saintCoinach.get('Item.ja')
+const Item_ko = saintCoinach.get('Item', 'ko')
 const Stain_en = saintCoinach.get('Stain.en')
 const Stain_de = saintCoinach.get('Stain.de')
 const Stain_fr = saintCoinach.get('Stain.fr')
 const Stain_ja = saintCoinach.get('Stain.ja')
+const Stain_ko = saintCoinach.get('Stain', 'ko')
 
 console.log('Collecting stains...')
 const stains = Stain_en.data
@@ -20,6 +22,7 @@ const stains = Stain_en.data
     const stain_de = Stain_de.data.find(({ '#': id }) => id === stainId)
     const stain_fr = Stain_fr.data.find(({ '#': id }) => id === stainId)
     const stain_ja = Stain_ja.data.find(({ '#': id }) => id === stainId)
+    const stain_ko = Stain_ko.data.find(({ '#': id }) => id === stainId)
 
     return {
       id: stainId,
@@ -32,6 +35,7 @@ const stains = Stain_en.data
       name_de: stain_de.Name,
       name_fr: stain_fr.Name,
       name_ja: stain_ja.Name,
+      name_ko: stain_ko.Name,
       shade: stain_en.Shade,
       shadeIndex: stain_en['<UNKNOWN_2>']
     }
@@ -54,6 +58,7 @@ const fruits = [
     const item_de = Item_de.data.find(({ '#': id }) => id === itemId)
     const item_fr = Item_fr.data.find(({ '#': id }) => id === itemId)
     const item_ja = Item_ja.data.find(({ '#': id }) => id === itemId)
+    const item_ko = Item_ko.data.find(({ '#': id }) => id === itemId)
 
     return {
       id: itemId,
@@ -62,14 +67,17 @@ const fruits = [
       name_de: item_de.Name,
       name_fr: item_fr.Name,
       name_ja: item_ja.Name,
+      name_ko: item_ko.Name,
       singular_en: item_en.Singular,
       singular_de: item_de.Singular,
       singular_fr: item_fr.Singular,
       singular_ja: item_ja.Singular,
+      singular_ko: item_ko.Singular,
       plural_en: item_en.Plural,
       plural_de: item_de.Plural,
       plural_fr: item_fr.Plural,
-      plural_ja: item_ja.Plural
+      plural_ja: item_ja.Plural,
+      plural_ko: item_ko.Plural
     }
   })
   .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})

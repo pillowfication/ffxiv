@@ -63,9 +63,11 @@ function getSpriteIcon (spriteType: SpriteType): number {
 }
 
 function formatMonster (label: string, locale: string): string {
+  // TODO: weird bracket stuffs in German
   switch (locale) {
     case 'en':
     case 'de':
+    case 'ko': // For fallback
       return label.split(' ').map(word => {
         if (['of', 'des'].includes(word)) {
           return word
