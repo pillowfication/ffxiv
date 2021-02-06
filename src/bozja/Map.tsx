@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Head from 'next/head'
 import { Icon, CRS } from 'leaflet'
@@ -117,10 +117,15 @@ const useStyles = makeStyles(theme => ({
 const Map = (): React.ReactElement => {
   const classes = useStyles()
   const { i18n } = useTranslation()
-  const [showMapLabels, setShowMapLabels] = useState(true)
+  const [showMapLabels, setShowMapLabels] = useState(false)
   const [showStarMonsters, setShowStarMonsters] = useState(false)
   const [showSprites, setShowSprites] = useState(false)
   const locale = i18n.language
+
+  useEffect(() => {
+    // Fixes offset markers on initial load for some reason
+    setTimeout(() => { setShowMapLabels(true) }, 0)
+  }, [])
 
   const handleToggleMapLabels = (): void => { setShowMapLabels(!showMapLabels) }
   const handleToggleStarMonsters = (): void => { setShowStarMonsters(!showStarMonsters) }
