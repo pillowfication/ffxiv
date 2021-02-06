@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import * as saintCoinach from '../../../saint-coinach'
+import myData from '../data/my-data.json'
 
 /* eslint-disable @typescript-eslint/naming-convention */
 const Map = saintCoinach.get('Map')
@@ -9,6 +10,10 @@ const PlaceName_en = saintCoinach.get('PlaceName.en')
 const PlaceName_de = saintCoinach.get('PlaceName.de')
 const PlaceName_fr = saintCoinach.get('PlaceName.fr')
 const PlaceName_ja = saintCoinach.get('PlaceName.ja')
+const BNpcName_en = saintCoinach.get('BNpcName.en')
+const BNpcName_de = saintCoinach.get('BNpcName.de')
+const BNpcName_fr = saintCoinach.get('BNpcName.fr')
+const BNpcName_ja = saintCoinach.get('BNpcName.ja')
 
 const BozjaMap = Map.data.find(({ '#': id }) => id === 606)
 
@@ -40,6 +45,16 @@ const bozja = {
       placeName_subtext_fr: PlaceName_fr.data.find(({ '#': id }) => id === +mapMarker['PlaceName{Subtext}']).Name,
       placeName_subtext_ja: PlaceName_ja.data.find(({ '#': id }) => id === +mapMarker['PlaceName{Subtext}']).Name,
       subtextOrientation: mapMarker.SubtextOrientation
+    })),
+  starMonsters: myData.star_monsters
+    .map(starMonster => ({
+      id: starMonster.id,
+      name_en: BNpcName_en.data.find(({ '#': id }) => id === starMonster.id).Singular,
+      name_de: BNpcName_de.data.find(({ '#': id }) => id === starMonster.id).Singular,
+      name_fr: BNpcName_fr.data.find(({ '#': id }) => id === starMonster.id).Singular,
+      name_ja: BNpcName_ja.data.find(({ '#': id }) => id === starMonster.id).Singular,
+      x: starMonster.x,
+      y: starMonster.y
     }))
 }
 
