@@ -37,6 +37,7 @@ const bozja = {
   mapMarkers: MapMarker.data
     .filter(mapMarker => Math.floor(mapMarker['#']) === BozjaMap.MapMarkerRange)
     .map(mapMarker => ({
+      id: isFinite(+String(mapMarker['#']).split('.')[1]) ? +String(mapMarker['#']).split('.')[1] : 0,
       x: mapMarker.X,
       y: mapMarker.Y,
       icon: +mapMarker.Icon,
