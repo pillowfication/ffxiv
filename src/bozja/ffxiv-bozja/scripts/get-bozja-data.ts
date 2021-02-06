@@ -53,9 +53,24 @@ const bozja = {
       name_de: BNpcName_de.data.find(({ '#': id }) => id === starMonster.id).Singular,
       name_fr: BNpcName_fr.data.find(({ '#': id }) => id === starMonster.id).Singular,
       name_ja: BNpcName_ja.data.find(({ '#': id }) => id === starMonster.id).Singular,
-      x: starMonster.x,
-      y: starMonster.y
-    }))
+      x: starMonster.coords[0],
+      y: starMonster.coords[1]
+    })),
+  sprites: Object.keys(myData.sprites).reduce((acc, spriteType) => {
+    acc[spriteType] = {
+      id: myData.sprites[spriteType].id,
+      name_en: BNpcName_en.data.find(({ '#': id }) => id === myData.sprites[spriteType].id).Singular,
+      name_de: BNpcName_de.data.find(({ '#': id }) => id === myData.sprites[spriteType].id).Singular,
+      name_fr: BNpcName_fr.data.find(({ '#': id }) => id === myData.sprites[spriteType].id).Singular,
+      name_ja: BNpcName_ja.data.find(({ '#': id }) => id === myData.sprites[spriteType].id).Singular,
+      locations: myData.sprites[spriteType].locations.map((location: any) => ({
+        level: location.level,
+        x: location.coords[0],
+        y: location.coords[1]
+      }))
+    }
+    return acc
+  }, {})
 }
 
 fs.writeFileSync(path.resolve(__dirname, '../data/bozja.json'), JSON.stringify(bozja))

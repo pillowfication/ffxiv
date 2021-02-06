@@ -14,6 +14,8 @@ import bozja from './ffxiv-bozja/data/bozja.json'
 import { useTranslation } from '../i18n'
 import { translate } from '../utils'
 
+type SpriteType = 'wind' | 'earth' | 'lightning' | 'water'
+
 function toCoords ([x, y]: [number, number]): [number, number] {
   const scale = bozja.sizeFactor / 100
   const cX = (x + bozja.offsetX) * scale
@@ -26,6 +28,26 @@ function toCoords ([x, y]: [number, number]): [number, number] {
 
 function toLatLong ([x, y]: [number, number]): [number, number] {
   return [43 - y, x]
+}
+
+function toRoman (num: number): string {
+  switch (num) {
+    case 1: return 'I'
+    case 2: return 'II'
+    case 3: return 'III'
+    case 4: return 'IV'
+    case 5: return 'V'
+    default: return '?'
+  }
+}
+
+function getSpriteIcon (spriteType: SpriteType): number {
+  switch (spriteType) {
+    case 'wind': return 60659
+    case 'earth': return 60660
+    case 'lightning': return 60661
+    case 'water': return 60662
+  }
 }
 
 const useStyles = makeStyles(theme => ({
@@ -41,6 +63,7 @@ const useStyles = makeStyles(theme => ({
     background: 'none',
     border: 'none',
     boxShadow: 'none',
+    padding: theme.spacing(1, 1.5),
     color: 'white',
     fontSize: '1.33em',
     textShadow: '0 0 3px black, 0 0 3px black, 0 0 3px black, 0 0 3px black',
@@ -65,10 +88,12 @@ const Map = (): React.ReactElement => {
   const { i18n } = useTranslation()
   const [showMapLabels, setShowMapLabels] = useState(true)
   const [showStarMonsters, setShowStarMonsters] = useState(false)
+  const [showSprites, setShowSprites] = useState(false)
   const locale = i18n.language
 
   const handleToggleMapLabels = (): void => { setShowMapLabels(!showMapLabels) }
   const handleToggleStarMonsters = (): void => { setShowStarMonsters(!showStarMonsters) }
+  const handleToggleSprites = (): void => { setShowSprites(!showSprites) }
 
   return (
     <Section>
@@ -76,23 +101,29 @@ const Map = (): React.ReactElement => {
         <link href='/static/leaflet.css' rel='stylesheet' key='leaflet'/>
       </Head>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={3}>
           <FormControl component='fieldset'>
             <FormGroup>
               <FormControlLabel
                 control={<Checkbox checked={showMapLabels} onChange={handleToggleMapLabels} />}
-                label='Show map labels'
+                label='Map labels'
               />
             </FormGroup>
             <FormGroup>
               <FormControlLabel
                 control={<Checkbox checked={showStarMonsters} onChange={handleToggleStarMonsters} />}
-                label='Show ★-rank monsters'
+                label='★-rank monsters'
+              />
+            </FormGroup>
+            <FormGroup>
+              <FormControlLabel
+                control={<Checkbox checked={showSprites} onChange={handleToggleSprites} />}
+                label='Sprites'
               />
             </FormGroup>
           </FormControl>
         </Grid>
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12} md={9}>
           <Paper>
             <MapContainer
               bounds={[[1, 1], [42, 42]]}
@@ -146,6 +177,25 @@ const Map = (): React.ReactElement => {
                     {translate(locale, starMonster, 'name')}
                   </Tooltip>
                 </Marker>
+              )}
+              {showSprites && (['wind', 'water', 'lightning', 'earth'] as SpriteType[]).flatMap(spriteType =>
+                bozja.sprites[spriteType].locations.map((location: { level: number, x: number, y: number }) =>
+                  <Marker
+                    key={`${spriteType}-${location.level}`}
+                    position={toLatLong([location.x, location.y])}
+                    icon={new Icon({
+                      iconUrl: `/images/bozja/icon-${getSpriteIcon(spriteType)}.png`,
+                      iconSize: [32, 32]
+                    })}
+                  >
+                    <Tooltip
+                      permanent
+                      className={classes.tooltip}
+                    >
+                      {toRoman(location.level)}
+                    </Tooltip>
+                  </Marker>
+                )
               )}
             </MapContainer>
           </Paper>
