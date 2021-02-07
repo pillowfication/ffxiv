@@ -50,6 +50,8 @@ export interface Stain {
   name_de: string
   name_fr: string
   name_ja: string
+  name_cn: string
+  name_ko: string
   shade: number
   shadeIndex: number
 }
@@ -67,14 +69,20 @@ export interface Fruit {
   name_de: string
   name_fr: string
   name_ja: string
+  name_cn: string
+  name_ko: string
   singular_en: string
   singular_de: string
   singular_fr: string
   singular_ja: string
+  singular_cn: string
+  singular_ko: string
   plural_en: string
   plural_de: string
   plural_fr: string
   plural_ja: string
+  plural_cn: string
+  plural_ko: string
 }
 
 export const fruits = _fruits as Record<number, Fruit>

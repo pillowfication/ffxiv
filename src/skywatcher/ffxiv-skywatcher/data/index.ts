@@ -27,6 +27,7 @@ export interface PlaceName {
   name_de: string
   name_fr: string
   name_ja: string
+  name_cn: string
   name_ko: string
 }
 
@@ -39,11 +40,13 @@ export interface Weather {
   name_de: string
   name_fr: string
   name_ja: string
+  name_cn: string
   name_ko: string
   description_en: string
   description_de: string
   description_fr: string
   description_ja: string
+  description_cn: string
   description_ko: string
 }
 

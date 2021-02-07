@@ -1,0 +1,14 @@
+{
+  "_title": "陆行鸟颜色",
+  "_description": "Calculator for changing your chocobo’s color.",
+  "calculator": "Calculator",
+  "currentStain": "Current color",
+  "targetStain": "Desired color",
+  "calculate": "Calculate",
+  "fruitsNeeded": "Fruits needed",
+  "fruitsOrder": "Feeding order",
+  "noFruits": "No fruits needed",
+  "aboutPage": {
+    "_title": "About"
+  }
+}

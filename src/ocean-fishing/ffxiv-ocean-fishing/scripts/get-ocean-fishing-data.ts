@@ -7,6 +7,7 @@ const Achievement_en = sc.requireCsv('Achievement', 'en')
 const Achievement_de = sc.requireCsv('Achievement', 'de')
 const Achievement_fr = sc.requireCsv('Achievement', 'fr')
 const Achievement_ja = sc.requireCsv('Achievement', 'ja')
+const Achievement_cn = sc.requireCsv('Achievement', 'cn')
 const Achievement_ko = sc.requireCsv('Achievement', 'ko')
 const FishingSpot_en = sc.requireCsv('FishingSpot', 'en')
 const FishParameter_en = sc.requireCsv('FishParameter', 'en')
@@ -14,17 +15,20 @@ const IKDContentBonus_en = sc.requireCsv('IKDContentBonus', 'en')
 const IKDContentBonus_de = sc.requireCsv('IKDContentBonus', 'de')
 const IKDContentBonus_fr = sc.requireCsv('IKDContentBonus', 'fr')
 const IKDContentBonus_ja = sc.requireCsv('IKDContentBonus', 'ja')
+const IKDContentBonus_cn = sc.requireCsv('IKDContentBonus', 'cn')
 const IKDContentBonus_ko = sc.requireCsv('IKDContentBonus', 'ko')
 const IKDFishParam = sc.requireCsv('IKDFishParam')
 const Item_en = sc.requireCsv('Item', 'en')
 const Item_de = sc.requireCsv('Item', 'de')
 const Item_fr = sc.requireCsv('Item', 'fr')
 const Item_ja = sc.requireCsv('Item', 'ja')
+const Item_cn = sc.requireCsv('Item', 'cn')
 const Item_ko = sc.requireCsv('Item', 'ko')
 const PlaceName_en = sc.requireCsv('PlaceName', 'en')
 const PlaceName_de = sc.requireCsv('PlaceName', 'de')
 const PlaceName_fr = sc.requireCsv('PlaceName', 'fr')
 const PlaceName_ja = sc.requireCsv('PlaceName', 'ja')
+const PlaceName_cn = sc.requireCsv('PlaceName', 'cn')
 const PlaceName_ko = sc.requireCsv('PlaceName', 'ko')
 
 console.log('Collecting ocean fishing spots...')
@@ -54,6 +58,7 @@ const placeNames = Object.values<any>(fishingSpots)
     const placeName_de = PlaceName_de.get(placeNameId)
     const placeName_fr = PlaceName_fr.get(placeNameId)
     const placeName_ja = PlaceName_ja.get(placeNameId)
+    const placeName_cn = PlaceName_cn.get(placeNameId)
     const placeName_ko = PlaceName_ko.get(placeNameId)
     return {
       id: placeNameId,
@@ -61,11 +66,13 @@ const placeNames = Object.values<any>(fishingSpots)
       name_de: placeName_de.Name,
       name_fr: placeName_fr.Name,
       name_ja: placeName_ja.Name,
+      name_cn: placeName_cn !== undefined ? placeName_cn.Name : '',
       name_ko: placeName_ko !== undefined ? placeName_ko.Name : '',
       name_noArticle_en: placeName_en['Name{NoArticle}'],
       name_noArticle_de: placeName_de['Name{NoArticle}'],
       name_noArticle_fr: placeName_fr['Name{NoArticle}'],
       name_noArticle_ja: placeName_ja['Name{NoArticle}'],
+      name_noArticle_cn: placeName_cn !== undefined ? placeName_cn['Name{NoArticle}'] : '',
       name_noArticle_ko: placeName_ko !== undefined ? placeName_ko['Name{NoArticle}'] : ''
     }
   })
@@ -81,6 +88,7 @@ const oceanFishes = IKDFishParam.data
     const item_de = Item_de.get(itemId)
     const item_fr = Item_fr.get(itemId)
     const item_ja = Item_ja.get(itemId)
+    const item_cn = Item_cn.get(itemId)
     const item_ko = Item_ko.get(itemId)
     return {
       id: itemId,
@@ -89,11 +97,13 @@ const oceanFishes = IKDFishParam.data
       name_de: item_de.Name,
       name_fr: item_fr.Name,
       name_ja: item_ja.Name,
+      name_cn: item_cn.Name,
       name_ko: item_ko.Name,
       description_en: item_en.Description,
       description_de: item_de.Description,
       description_fr: item_fr.Description,
       description_ja: item_ja.Description,
+      description_cn: item_cn.Description,
       description_ko: item_ko.Description,
       contentBonus: +ikdFishParam.IKDContentBonus !== 0 ? +ikdFishParam.IKDContentBonus : +ikdFishParam['Unknown[5-4]']
     }
@@ -120,6 +130,7 @@ const baits = [
     const item_de = Item_de.get(itemId)
     const item_fr = Item_fr.get(itemId)
     const item_ja = Item_ja.get(itemId)
+    const item_cn = Item_cn.get(itemId)
     const item_ko = Item_ko.get(itemId)
     return {
       id: itemId,
@@ -128,6 +139,7 @@ const baits = [
       name_de: item_de.Name,
       name_fr: item_fr.Name,
       name_ja: item_ja.Name,
+      name_cn: item_cn.Name,
       name_ko: item_ko.Name
     }
   })
@@ -142,6 +154,7 @@ const contentBonuses = IKDContentBonus_en.data
     const ikdContentBonus_de = IKDContentBonus_de.get(ikdContentBonusId)
     const ikdContentBonus_fr = IKDContentBonus_fr.get(ikdContentBonusId)
     const ikdContentBonus_ja = IKDContentBonus_ja.get(ikdContentBonusId)
+    const ikdContentBonus_cn = IKDContentBonus_cn.get(ikdContentBonusId)
     const ikdContentBonus_ko = IKDContentBonus_ko.get(ikdContentBonusId)
     return {
       id: ikdContentBonusId,
@@ -150,11 +163,13 @@ const contentBonuses = IKDContentBonus_en.data
       objective_de: ikdContentBonus_de.Objective,
       objective_fr: ikdContentBonus_fr.Objective,
       objective_ja: ikdContentBonus_ja.Objective,
+      objective_cn: ikdContentBonus_cn !== undefined ? ikdContentBonus_cn.Objective : '',
       objective_ko: ikdContentBonus_ko !== undefined ? ikdContentBonus_ko.Objective : '',
       requirement_en: ikdContentBonus_en.Requirement,
       requirement_de: ikdContentBonus_de.Requirement,
       requirement_fr: ikdContentBonus_fr.Requirement,
       requirement_ja: ikdContentBonus_ja.Requirement,
+      requirement_cn: ikdContentBonus_cn !== undefined ? ikdContentBonus_cn.Requirement : '',
       requirement_ko: ikdContentBonus_ko !== undefined ? ikdContentBonus_ko.Requirement : '',
       bonus: ikdContentBonus_en['<UNKNOWN_2>'],
       order: ikdContentBonus_en.Order
@@ -174,6 +189,7 @@ const oceanFishingAchievements = [0, ...range(2553, 2566), ...range(2748, 2759)]
     const achievement_de = Achievement_de.get(achievementId)
     const achievement_fr = Achievement_fr.get(achievementId)
     const achievement_ja = Achievement_ja.get(achievementId)
+    const achievement_cn = Achievement_cn.get(achievementId)
     const achievement_ko = Achievement_ko.get(achievementId)
     return {
       id: achievementId,
@@ -182,11 +198,13 @@ const oceanFishingAchievements = [0, ...range(2553, 2566), ...range(2748, 2759)]
       name_de: achievement_de.Name,
       name_fr: achievement_fr.Name,
       name_ja: achievement_ja.Name,
+      name_cn: achievement_cn !== undefined ? achievement_cn.Name : '',
       name_ko: achievement_ko !== undefined ? achievement_ko.Name : '',
       description_en: achievement_en.Description,
       description_de: achievement_de.Description,
       description_fr: achievement_fr.Description,
       description_ja: achievement_ja.Description,
+      description_cn: achievement_cn !== undefined ? achievement_cn.Description : '',
       description_ko: achievement_ko !== undefined ? achievement_ko.Description : '',
       order: achievement_en.Order
     }

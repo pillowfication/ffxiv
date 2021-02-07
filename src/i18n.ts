@@ -4,7 +4,7 @@ import config from 'next/config'
 
 const i18n = new NextI18Next({
   defaultLanguage: 'en',
-  otherLanguages: ['de', 'fr', 'ja', 'ko'],
+  otherLanguages: ['de', 'fr', 'ja', 'cn', 'ko'],
   localeSubpaths: config().publicRuntimeConfig.localeSubpaths,
   localePath: path.resolve('./public/static/locales')
 })

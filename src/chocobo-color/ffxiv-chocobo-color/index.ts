@@ -3,8 +3,9 @@ import en from './locales/en.json'
 import de from './locales/de.json'
 import fr from './locales/fr.json'
 import ja from './locales/ja.json'
+import cn from './locales/cn.json'
 import ko from './locales/ko.json'
-const LOCALES = { en, de, fr, ja, ko }
+const LOCALES = { en, de, fr, ja, cn, ko }
 
 export { Color, Shade }
 export type { Stain, FruitInfo }

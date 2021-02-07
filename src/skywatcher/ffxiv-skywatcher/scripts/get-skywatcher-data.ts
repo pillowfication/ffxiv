@@ -8,11 +8,13 @@ const PlaceName_en = sc.requireCsv('PlaceName', 'en')
 const PlaceName_de = sc.requireCsv('PlaceName', 'de')
 const PlaceName_fr = sc.requireCsv('PlaceName', 'fr')
 const PlaceName_ja = sc.requireCsv('PlaceName', 'ja')
+const PlaceName_cn = sc.requireCsv('PlaceName', 'cn')
 const PlaceName_ko = sc.requireCsv('PlaceName', 'ko')
 const Weather_en = sc.requireCsv('Weather', 'en')
 const Weather_de = sc.requireCsv('Weather', 'de')
 const Weather_fr = sc.requireCsv('Weather', 'fr')
 const Weather_ja = sc.requireCsv('Weather', 'ja')
+const Weather_cn = sc.requireCsv('Weather', 'cn')
 const Weather_ko = sc.requireCsv('Weather', 'ko')
 const WeatherRate = sc.requireCsv('WeatherRate')
 
@@ -40,6 +42,7 @@ const placeNames = Object.values<any>(territories)
     const placeName_de = PlaceName_de.get(placeNameId)
     const placeName_fr = PlaceName_fr.get(placeNameId)
     const placeName_ja = PlaceName_ja.get(placeNameId)
+    const placeName_cn = PlaceName_cn.get(placeNameId)
     const placeName_ko = PlaceName_ko.get(placeNameId)
     return {
       id: placeNameId,
@@ -47,6 +50,7 @@ const placeNames = Object.values<any>(territories)
       name_de: placeName_de.Name,
       name_fr: placeName_fr.Name,
       name_ja: placeName_ja.Name,
+      name_cn: placeName_cn.Name,
       name_ko: placeName_ko.Name
     }
   })
@@ -61,6 +65,7 @@ const weathers = Weather_en.data
     const weather_de = Weather_de.get(weatherId)
     const weather_fr = Weather_fr.get(weatherId)
     const weather_ja = Weather_ja.get(weatherId)
+    const weather_cn = Weather_cn.get(weatherId)
     const weather_ko = Weather_ko.get(weatherId)
     return {
       id: weatherId,
@@ -69,11 +74,13 @@ const weathers = Weather_en.data
       name_de: weather_de.Name,
       name_fr: weather_fr.Name,
       name_ja: weather_ja.Name,
+      name_cn: weather_cn.Name,
       name_ko: weather_ko.Name,
       description_en: weather_en.Description,
       description_de: weather_de.Description,
       description_fr: weather_fr.Description,
       description_ja: weather_ja.Description,
+      description_cn: weather_cn.Description,
       description_ko: weather_ko.Description
     }
   })

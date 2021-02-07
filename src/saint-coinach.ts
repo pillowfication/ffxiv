@@ -4,6 +4,7 @@ import csvParse from 'csv-parse/lib/sync'
 
 // What to do about this...
 const SAINT_COINACH_FOLDER = 'C:\\Users\\Pillowfication\\ws\\SaintCoinach.Cmd-master-b930-8ab7d24\\2021.01.28.0000.0000'
+const SAINT_COINACH_CN = 'C:\\Users\\Pillowfication\\ws\\ffxiv-datamining-cn'
 const SAINT_COINACH_KO = 'C:\\Users\\Pillowfication\\ws\\ffxiv-datamining-ko'
 
 function mapKeys (keys: Record<string, string>, datum: {}): Record<string, string> {
@@ -55,7 +56,7 @@ class SaintCoinachCsv {
   }
 }
 
-export function requireCsv (key: string, locale?: 'en' | 'fr' | 'de' | 'ja' | 'ko'): SaintCoinachCsv {
+export function requireCsv (key: string, locale?: 'en' | 'fr' | 'de' | 'ja' | 'cn' | 'ko'): SaintCoinachCsv {
   let file: string
   switch (locale) {
     case 'en':
@@ -63,6 +64,9 @@ export function requireCsv (key: string, locale?: 'en' | 'fr' | 'de' | 'ja' | 'k
     case 'de':
     case 'ja':
       file = path.join(SAINT_COINACH_FOLDER, 'raw-exd-all', `${key}.${locale}.csv`)
+      break
+    case 'cn':
+      file = path.join(SAINT_COINACH_CN, `${key}.csv`)
       break
     case 'ko':
       file = path.join(SAINT_COINACH_KO, 'csv', `${key}.csv`)

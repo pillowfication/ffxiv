@@ -53,10 +53,14 @@ export interface PlaceName {
   name_de: string
   name_fr: string
   name_ja: string
+  name_cn: string
+  name_ko: string
   name_noArticle_en: string
   name_noArticle_de: string
   name_noArticle_fr: string
   name_noArticle_ja: string
+  name_noArticle_cn: string
+  name_noArticle_ko: string
 }
 
 export const placeNames = _placeNames as Record<number, PlaceName>
@@ -68,10 +72,14 @@ export interface Fish {
   name_de: string
   name_fr: string
   name_ja: string
+  name_cn: string
+  name_ko: string
   description_en: string
   description_de: string
   description_fr: string
   description_ja: string
+  description_cn: string
+  description_ko: string
   contentBonus: ContentBonus | null
   biteTimes: {
     [key: number]: [number, number]
@@ -162,6 +170,8 @@ export interface Bait {
   name_de: string
   name_fr: string
   name_ja: string
+  name_cn: string
+  name_ko: string
 }
 
 export const baits = _baits as Record<number, Bait>
@@ -173,10 +183,14 @@ export interface ContentBonus {
   objective_de: string
   objective_fr: string
   objective_ja: string
+  objective_cn: string
+  objective_ko: string
   requirement_en: string
   requirement_de: string
   requirement_fr: string
   requirement_ja: string
+  requirement_cn: string
+  requirement_ko: string
   bonus: number
   order: number
 }
@@ -190,10 +204,14 @@ export interface Achievement {
   name_de: string
   name_fr: string
   name_ja: string
+  name_cn: string
+  name_ko: string
   description_en: string
   description_de: string
   description_fr: string
   description_ja: string
+  description_cn: string
+  description_ko: string
   order: number
 }
 

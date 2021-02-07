@@ -26,6 +26,7 @@ const LANGUAGES = {
   de: 'Deutsch',
   fr: 'Français',
   ja: '日本語',
+  cn: '中文',
   ko: '한국어'
 }
 

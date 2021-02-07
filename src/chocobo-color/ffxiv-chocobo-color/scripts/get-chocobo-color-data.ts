@@ -7,11 +7,13 @@ const Item_en = sc.requireCsv('Item', 'en')
 const Item_de = sc.requireCsv('Item', 'de')
 const Item_fr = sc.requireCsv('Item', 'fr')
 const Item_ja = sc.requireCsv('Item', 'ja')
+const Item_cn = sc.requireCsv('Item', 'cn')
 const Item_ko = sc.requireCsv('Item', 'ko')
 const Stain_en = sc.requireCsv('Stain', 'en')
 const Stain_de = sc.requireCsv('Stain', 'de')
 const Stain_fr = sc.requireCsv('Stain', 'fr')
 const Stain_ja = sc.requireCsv('Stain', 'ja')
+const Stain_cn = sc.requireCsv('Stain', 'cn')
 const Stain_ko = sc.requireCsv('Stain', 'ko')
 
 console.log('Collecting stains...')
@@ -22,6 +24,7 @@ const stains = Stain_en.data
     const stain_de = Stain_de.get(stainId)
     const stain_fr = Stain_fr.get(stainId)
     const stain_ja = Stain_ja.get(stainId)
+    const stain_cn = Stain_cn.get(stainId)
     const stain_ko = Stain_ko.get(stainId)
     return {
       id: stainId,
@@ -34,6 +37,7 @@ const stains = Stain_en.data
       name_de: stain_de.Name,
       name_fr: stain_fr.Name,
       name_ja: stain_ja.Name,
+      name_cn: stain_cn.Name,
       name_ko: stain_ko.Name,
       shade: stain_en.Shade,
       shadeIndex: stain_en['<UNKNOWN_2>']
@@ -57,6 +61,7 @@ const fruits = [
     const item_de = Item_de.get(itemId)
     const item_fr = Item_fr.get(itemId)
     const item_ja = Item_ja.get(itemId)
+    const item_cn = Item_cn.get(itemId)
     const item_ko = Item_ko.get(itemId)
     return {
       id: itemId,
@@ -65,16 +70,19 @@ const fruits = [
       name_de: item_de.Name,
       name_fr: item_fr.Name,
       name_ja: item_ja.Name,
+      name_cn: item_cn.Name,
       name_ko: item_ko.Name,
       singular_en: item_en.Singular,
       singular_de: item_de.Singular,
       singular_fr: item_fr.Singular,
       singular_ja: item_ja.Singular,
+      singular_cn: item_cn.Singular,
       singular_ko: item_ko.Singular,
       plural_en: item_en.Plural,
       plural_de: item_de.Plural,
       plural_fr: item_fr.Plural,
       plural_ja: item_ja.Plural,
+      plural_cn: item_cn.Plural,
       plural_ko: item_ko.Plural
     }
   })

@@ -1,0 +1,34 @@
+{
+  "race": {
+    "hyur": "人族",
+    "elezen": "精灵族",
+    "lalafell": "拉拉菲尔族",
+    "miqote": "猫魅族",
+    "roegadyn": "鲁加族",
+    "auRa": "敖龙族",
+    "hrothgar": "硌狮族",
+    "viera": "维埃拉族"
+  },
+  "clan": {
+    "midlander": "中原之民",
+    "highlander": "高地之民",
+    "wildwood": "森林之民",
+    "duskwight": "黑影之民",
+    "plainsfolk": "平原之民",
+    "dunesfolk": "沙漠之民",
+    "seekerOfTheSun": "逐日之民",
+    "keeperOfTheMoon": "护月之民",
+    "seaWolf": "北洋之民",
+    "hellsguard": "红焰之民",
+    "raen": "晨曦之民",
+    "xaela": "暮晖之民",
+    "helions": "掠日之民",
+    "theLost": "迷踪之民",
+    "rava": "密林之民",
+    "veena": "山林之民"
+  },
+  "gender": {
+    "male": "男性",
+    "female": "女性"
+  }
+}

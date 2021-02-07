@@ -4,6 +4,7 @@ const localeSubpaths = {
   de: 'de',
   fr: 'fr',
   ja: 'ja',
+  cn: 'cn',
   ko: 'ko'
 }
 
