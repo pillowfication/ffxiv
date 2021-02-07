@@ -10,6 +10,7 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
 import WeatherIcon from './WeatherIcon'
 import { Weather } from './ffxiv-skywatcher'
 import { toTimeString, timeUntil } from '../utils'
+import { useTranslation } from '../i18n'
 
 const DATE_FORMAT = { month: '2-digit', day: '2-digit' }
 const WEATHER_CELL_WIDTH = 75
@@ -65,6 +66,8 @@ interface Props {
 
 const Forecaster = ({ now, forecast }: Props): React.ReactElement => {
   const classes = useStyles()
+  const { i18n } = useTranslation('ocean-fishing')
+  const locale = i18n.language
 
   return (
     <TableContainer>
@@ -74,19 +77,17 @@ const Forecaster = ({ now, forecast }: Props): React.ReactElement => {
             let previousDate: string
 
             return forecast.map(({ prevWeather, currWeather, seed, date }, index) => {
-              const dateString = date.toLocaleDateString(undefined, DATE_FORMAT)
-              const timeString = toTimeString(date, { padded: true })
-
+              const dateString = date.toLocaleDateString(locale, DATE_FORMAT)
               return (
                 <TableRow key={index} hover>
                   <TableCell className={classes.dateCell} align='right'>
                     <Typography>{previousDate !== (previousDate = dateString) && dateString}</Typography>
                   </TableCell>
                   <TableCell className={classes.dateCell}>
-                    <Typography>{timeString}</Typography>
+                    <Typography>{toTimeString(date, { padded: true, locale })}</Typography>
                   </TableCell>
                   <TableCell className={classes.forecastCell}>
-                    <Typography>{timeUntil(now, date)}</Typography>
+                    <Typography>{timeUntil(now, date, { locale })}</Typography>
                   </TableCell>
                   <TableCell align='right' className={classes.bellCell}>
                     <Typography>{displayBell(seed - 1)}</Typography>

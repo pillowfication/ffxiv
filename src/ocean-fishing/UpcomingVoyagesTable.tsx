@@ -89,8 +89,6 @@ const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute }: Props): R
             let previousDate: string
             return upcomingVoyages.map(({ date, destTime }) => {
               const dateString = date.toLocaleDateString(locale, DATE_FORMAT)
-              const timeString = toTimeString(date, { padded: true, locale })
-
               return (
                 <TableRow
                   key={date.getTime()}
@@ -103,10 +101,10 @@ const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute }: Props): R
                     {previousDate !== (previousDate = dateString) && <Typography>{dateString}</Typography>}
                   </TableCell>
                   <TableCell>
-                    <Typography>{timeString}</Typography>
+                    <Typography>{toTimeString(date, { padded: true, locale })}</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography className={classes.timeUntil}>{timeUntil(now, date, { t, locale: locale })}</Typography>
+                    <Typography className={classes.timeUntil}>{timeUntil(now, date, { t, locale })}</Typography>
                   </TableCell>
                   <TableCell align='right'>
                     <Typography>{upperFirst(translate(locale, maps.STOP_MAP[destTime[0] as Dest].placeName_sub, 'name_noArticle', 'name'))}</Typography>

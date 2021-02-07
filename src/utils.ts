@@ -20,9 +20,9 @@ export function formatTimeUtc (date: Date): string {
 }
 
 export function toTimeString (now: Date, options: { padded?: boolean, locale?: string } = {}): string {
-  const { padded, locale = 'en' } = options
+  const { padded = false, locale = 'en' } = options
   const timeString = format(now, locale === 'en' ? 'hh:mm a' : 'HH:mm', { locale: DATE_LOCALES[locale] })
-  return timeString.replace(/^0/, padded !== undefined && padded ? ' ' : '')
+  return timeString.replace(/^0/, padded ? ' ' : '')
 }
 
 export function timeUntil (now: Date, then: Date, options: { full?: boolean, locale?: string } = {}): string {
