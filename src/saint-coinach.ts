@@ -3,8 +3,7 @@ import path from 'path'
 import csvParse from 'csv-parse/lib/sync'
 
 // What to do about this...
-const SAINT_COINACH_FOLDER = 'C:\\Users\\Pillowfication\\ws\\SaintCoinach.Cmd-master-b930-8ab7d24'
-const VERSION = '2021.01.28.0000.0000'
+const SAINT_COINACH_FOLDER = 'C:\\Users\\Pillowfication\\ws\\SaintCoinach.Cmd-master-b930-8ab7d24\\2021.01.28.0000.0000'
 const SAINT_COINACH_KO = 'C:\\Users\\Pillowfication\\ws\\ffxiv-datamining-ko'
 
 function mapKeys (keys: Record<string, string>, datum: {}): Record<string, string> {
@@ -34,22 +33,45 @@ function parseValues (types: Record<string, string>, datum: Record<string, any>)
   return datum
 }
 
-export function get (key: string, folder?: 'ko'): { keys: Record<string, string>, types: Record<string, string>, data: any[] } {
-  let file = path.join(SAINT_COINACH_FOLDER, VERSION, 'raw-exd-all', `${key}.csv`)
-  if (folder === 'ko') {
-    file = path.join(SAINT_COINACH_KO, 'csv', `${key}.csv`)
+class SaintCoinachCsv {
+  keys: Record<string, string>
+  types: Record<string, string>
+  data: any[]
+
+  constructor (file: string) {
+    console.log('Reading file', file)
+
+    const buffer = fs.readFileSync(file)
+    const csv = csvParse(buffer.toString(), { columns: true })
+    const [_keys, _types, ..._data] = csv
+
+    this.keys = mapKeys(_keys, _keys)
+    this.types = mapKeys(_keys, _types)
+    this.data = _data.map((datum: any) => parseValues(this.types, mapKeys(_keys, datum))) as any[]
   }
-  console.log('Reading file', file)
 
-  const buffer = fs.readFileSync(file)
-  const csv = csvParse(buffer.toString(), { columns: true })
-  const [_keys, _types, ..._data] = csv
+  get (id: number): any {
+    return this.data.find(({ '#': csvId }) => csvId === id)
+  }
+}
 
-  const keys = mapKeys(_keys, _keys)
-  const types = mapKeys(_keys, _types)
-  const data = _data.map((datum: any) => parseValues(types, mapKeys(_keys, datum))) as any[]
-
-  return { keys, types, data }
+export function requireCsv (key: string, locale?: 'en' | 'fr' | 'de' | 'ja' | 'ko'): SaintCoinachCsv {
+  let file: string
+  switch (locale) {
+    case 'en':
+    case 'fr':
+    case 'de':
+    case 'ja':
+      file = path.join(SAINT_COINACH_FOLDER, 'raw-exd-all', `${key}.${locale}.csv`)
+      break
+    case 'ko':
+      file = path.join(SAINT_COINACH_KO, 'csv', `${key}.csv`)
+      break
+    case undefined:
+      file = path.join(SAINT_COINACH_FOLDER, 'raw-exd-all', `${key}.csv`)
+      break
+  }
+  return new SaintCoinachCsv(file)
 }
 
 function padZeroes (id: number): string {
@@ -69,7 +91,7 @@ export function getIcon (id: number): { path: string, buffer: Buffer } {
   const folder = padZeroes(id - (id % 1000))
   const fileName = padZeroes(id)
 
-  const file = path.join(SAINT_COINACH_FOLDER, VERSION, 'ui/icon', folder, fileName + '.png')
+  const file = path.join(SAINT_COINACH_FOLDER, 'ui/icon', folder, fileName + '.png')
   const buffer = fs.readFileSync(file)
 
   return { path: file, buffer }
@@ -79,7 +101,7 @@ export function getIcon (id: number): { path: string, buffer: Buffer } {
 // export function getMap (mapId: string): { path: string, buffer: Buffer } {
 //   const [id, index] = mapId.split('/')
 //
-//   const file = path.join(SAINT_COINACH_FOLDER, VERSION, 'ui/map', folder, fileName + '.png')
+//   const file = path.join(SAINT_COINACH_FOLDER, 'ui/map', folder, fileName + '.png')
 //   const buffer = fs.readFileSync(file)
 //
 //   return { path: file, buffer }

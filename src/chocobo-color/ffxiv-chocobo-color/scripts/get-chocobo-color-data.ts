@@ -1,29 +1,28 @@
 import fs from 'fs'
 import path from 'path'
-import * as saintCoinach from '../../../saint-coinach'
+import * as sc from '../../../saint-coinach'
 
 /* eslint-disable @typescript-eslint/naming-convention */
-const Item_en = saintCoinach.get('Item.en')
-const Item_de = saintCoinach.get('Item.de')
-const Item_fr = saintCoinach.get('Item.fr')
-const Item_ja = saintCoinach.get('Item.ja')
-const Item_ko = saintCoinach.get('Item', 'ko')
-const Stain_en = saintCoinach.get('Stain.en')
-const Stain_de = saintCoinach.get('Stain.de')
-const Stain_fr = saintCoinach.get('Stain.fr')
-const Stain_ja = saintCoinach.get('Stain.ja')
-const Stain_ko = saintCoinach.get('Stain', 'ko')
+const Item_en = sc.requireCsv('Item', 'en')
+const Item_de = sc.requireCsv('Item', 'de')
+const Item_fr = sc.requireCsv('Item', 'fr')
+const Item_ja = sc.requireCsv('Item', 'ja')
+const Item_ko = sc.requireCsv('Item', 'ko')
+const Stain_en = sc.requireCsv('Stain', 'en')
+const Stain_de = sc.requireCsv('Stain', 'de')
+const Stain_fr = sc.requireCsv('Stain', 'fr')
+const Stain_ja = sc.requireCsv('Stain', 'ja')
+const Stain_ko = sc.requireCsv('Stain', 'ko')
 
 console.log('Collecting stains...')
 const stains = Stain_en.data
   .map(stain => {
     const stainId = stain['#']
-    const stain_en = Stain_en.data.find(({ '#': id }) => id === stainId)
-    const stain_de = Stain_de.data.find(({ '#': id }) => id === stainId)
-    const stain_fr = Stain_fr.data.find(({ '#': id }) => id === stainId)
-    const stain_ja = Stain_ja.data.find(({ '#': id }) => id === stainId)
-    const stain_ko = Stain_ko.data.find(({ '#': id }) => id === stainId)
-
+    const stain_en = Stain_en.get(stainId)
+    const stain_de = Stain_de.get(stainId)
+    const stain_fr = Stain_fr.get(stainId)
+    const stain_ja = Stain_ja.get(stainId)
+    const stain_ko = Stain_ko.get(stainId)
     return {
       id: stainId,
       color: {
@@ -54,12 +53,11 @@ const fruits = [
   8163 // Han Lemon
 ]
   .map(itemId => {
-    const item_en = Item_en.data.find(({ '#': id }) => id === itemId)
-    const item_de = Item_de.data.find(({ '#': id }) => id === itemId)
-    const item_fr = Item_fr.data.find(({ '#': id }) => id === itemId)
-    const item_ja = Item_ja.data.find(({ '#': id }) => id === itemId)
-    const item_ko = Item_ko.data.find(({ '#': id }) => id === itemId)
-
+    const item_en = Item_en.get(itemId)
+    const item_de = Item_de.get(itemId)
+    const item_fr = Item_fr.get(itemId)
+    const item_ja = Item_ja.get(itemId)
+    const item_ko = Item_ko.get(itemId)
     return {
       id: itemId,
       icon: +item_en.Icon,
@@ -82,3 +80,5 @@ const fruits = [
   })
   .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})
 fs.writeFileSync(path.resolve(__dirname, '../data/fruits.json'), JSON.stringify(fruits))
+
+console.log('Done!')

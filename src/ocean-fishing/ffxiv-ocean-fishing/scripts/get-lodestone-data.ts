@@ -50,4 +50,6 @@ async function getLodestoneData (query: string): Promise<any> {
   }
 
   fs.writeFileSync(OUTPUT, JSON.stringify(lodestoneData))
+
+  console.log('Done!')
 })().then(null, null)

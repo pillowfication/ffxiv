@@ -8,13 +8,13 @@ import baits from '../data/baits.json'
 const CUTOFF = 0.02
 const OUTPUT = path.resolve(__dirname, '../data/bite-times.json')
 
-const BAIT_IDS = [
-  ...Object.keys(baits).map(Number).filter(baitId => baitId !== 0),
-  29722, // Ghoul Barracuda
-  29761, // Hi-aetherlouse
-  29718, // Tossed Dagger
-  32107 // Rothlyt Mussel
-]
+const BAIT_IDS = Object.keys(baits).map(Number).filter(baitId => baitId !== 0)
+  .concat([
+    29722, // Ghoul Barracuda
+    29761, // Hi-aetherlouse
+    29718, // Tossed Dagger
+    32107 // Rothlyt Mussel
+  ])
 
 const DATA: any[] = []
 for (const fishingSpot of Object.values(fishingSpots)) {
@@ -49,6 +49,7 @@ function getBiteTime (fishId: number, baitId?: number): [number, number] | null 
   }
 }
 
+console.log('Computing bite times...')
 const biteTimes = {}
 for (const fish of Object.values(fishes)) {
   const biteTimesByBait = {}
@@ -72,16 +73,14 @@ for (const fish of Object.values(fishes)) {
 
 fs.writeFileSync(OUTPUT, JSON.stringify(biteTimes))
 
-//
 // Create CSV
-//
-
 const CSV_OUTPUT = path.resolve(__dirname, '../data/bite-times.csv')
 
 function _getBiteTime (fishId: number, baitId: number): [number, number] | undefined {
   return biteTimes[fishId]?.[baitId]?.join('-')
 }
 
+console.log('Writing to csv...')
 const csv = csvStringify(
   Object.values(fishes)
     .map(fish => Object.values(baits).reduce(
@@ -94,3 +93,5 @@ const csv = csvStringify(
   }
 )
 fs.writeFileSync(CSV_OUTPUT, csv)
+
+console.log('Done!')

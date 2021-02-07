@@ -1,20 +1,20 @@
 import fs from 'fs'
 import path from 'path'
-import * as saintCoinach from '../../../saint-coinach'
+import * as sc from '../../../saint-coinach'
 
 /* eslint-disable @typescript-eslint/naming-convention */
-const TerritoryType = saintCoinach.get('TerritoryType')
-const PlaceName_en = saintCoinach.get('PlaceName.en')
-const PlaceName_de = saintCoinach.get('PlaceName.de')
-const PlaceName_fr = saintCoinach.get('PlaceName.fr')
-const PlaceName_ja = saintCoinach.get('PlaceName.ja')
-const PlaceName_ko = saintCoinach.get('PlaceName', 'ko')
-const Weather_en = saintCoinach.get('Weather.en')
-const Weather_de = saintCoinach.get('Weather.de')
-const Weather_fr = saintCoinach.get('Weather.fr')
-const Weather_ja = saintCoinach.get('Weather.ja')
-const Weather_ko = saintCoinach.get('Weather', 'ko')
-const WeatherRate = saintCoinach.get('WeatherRate')
+const TerritoryType = sc.requireCsv('TerritoryType')
+const PlaceName_en = sc.requireCsv('PlaceName', 'en')
+const PlaceName_de = sc.requireCsv('PlaceName', 'de')
+const PlaceName_fr = sc.requireCsv('PlaceName', 'fr')
+const PlaceName_ja = sc.requireCsv('PlaceName', 'ja')
+const PlaceName_ko = sc.requireCsv('PlaceName', 'ko')
+const Weather_en = sc.requireCsv('Weather', 'en')
+const Weather_de = sc.requireCsv('Weather', 'de')
+const Weather_fr = sc.requireCsv('Weather', 'fr')
+const Weather_ja = sc.requireCsv('Weather', 'ja')
+const Weather_ko = sc.requireCsv('Weather', 'ko')
+const WeatherRate = sc.requireCsv('WeatherRate')
 
 console.log('Collecting territories...')
 const territories = TerritoryType.data
@@ -36,11 +36,11 @@ const placeNames = Object.values<any>(territories)
   .flatMap(territory => [territory.placeName, territory.placeName_zone, territory.placeName_region])
   .filter((placeNameId, index, array) => placeNameId !== array[index + 1])
   .map(placeNameId => {
-    const placeName_en = PlaceName_en.data.find(({ '#': id }) => id === placeNameId)
-    const placeName_de = PlaceName_de.data.find(({ '#': id }) => id === placeNameId)
-    const placeName_fr = PlaceName_fr.data.find(({ '#': id }) => id === placeNameId)
-    const placeName_ja = PlaceName_ja.data.find(({ '#': id }) => id === placeNameId)
-    const placeName_ko = PlaceName_ko.data.find(({ '#': id }) => id === placeNameId)
+    const placeName_en = PlaceName_en.get(placeNameId)
+    const placeName_de = PlaceName_de.get(placeNameId)
+    const placeName_fr = PlaceName_fr.get(placeNameId)
+    const placeName_ja = PlaceName_ja.get(placeNameId)
+    const placeName_ko = PlaceName_ko.get(placeNameId)
     return {
       id: placeNameId,
       name_en: placeName_en.Name,
@@ -57,11 +57,11 @@ console.log('Collecting weathers...')
 const weathers = Weather_en.data
   .map(weather => {
     const weatherId = weather['#']
-    const weather_en = Weather_en.data.find(({ '#': id }) => id === weatherId)
-    const weather_de = Weather_de.data.find(({ '#': id }) => id === weatherId)
-    const weather_fr = Weather_fr.data.find(({ '#': id }) => id === weatherId)
-    const weather_ja = Weather_ja.data.find(({ '#': id }) => id === weatherId)
-    const weather_ko = Weather_ko.data.find(({ '#': id }) => id === weatherId)
+    const weather_en = Weather_en.get(weatherId)
+    const weather_de = Weather_de.get(weatherId)
+    const weather_fr = Weather_fr.get(weatherId)
+    const weather_ja = Weather_ja.get(weatherId)
+    const weather_ko = Weather_ko.get(weatherId)
     return {
       id: weatherId,
       icon: +weather_en.Icon,
@@ -92,3 +92,5 @@ const weatherRates = WeatherRate.data
   })
   .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})
 fs.writeFileSync(path.resolve(__dirname, '../data/weather-rates.json'), JSON.stringify(weatherRates))
+
+console.log('Done!')

@@ -21,3 +21,5 @@ for (const territory of Object.values(territories)) {
 }
 
 fs.writeFileSync(OUTPUT, JSON.stringify({ placeNames, weatherRates }))
+
+console.log('Done!')

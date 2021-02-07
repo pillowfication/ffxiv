@@ -4,16 +4,16 @@ import fetch from 'node-fetch'
 import oceanFishingFishingSpots from '../data/fishing-spots.json'
 import oceanFishingBaits from '../data/baits.json'
 
-// @ts-expect-error
-import BEARER_TOKEN from './tc-bearer-token.json'
+const BEARER_TOKEN = require('./tc-bearer-token.json') // eslint-disable-line @typescript-eslint/no-var-requires
 
-const BAIT_IDS = [
-  ...Object.keys(oceanFishingBaits).map(Number),
-  29722, // Ghoul Barracuda
-  29761, // Hi-aetherlouse
-  29718, // Tossed Dagger
-  32107 // Rothlyt Mussel
-]
+const BAIT_IDS = Object.keys(oceanFishingBaits).map(Number)
+  .concat([
+    29722, // Ghoul Barracuda
+    29761, // Hi-aetherlouse
+    29718, // Tossed Dagger
+    32107 // Rothlyt Mussel
+  ])
+const FISHING_SPOTS = Object.keys(oceanFishingFishingSpots).map(Number)
 
 async function getTCData (spotId: number, baitId: number): Promise<any> {
   const res = await fetch(
@@ -59,13 +59,19 @@ async function getTCData (spotId: number, baitId: number): Promise<any> {
   return json.data.biteTimes
 }
 
-await (async () => {
-  for (const fishingSpot of Object.keys(oceanFishingFishingSpots).map(Number)) {
+;(async () => {
+  for (const fishingSpot of FISHING_SPOTS) {
     const allData: any[] = []
     for (const baitId of BAIT_IDS) {
-      console.log('Fetching:', { spot: fishingSpot, baitId })
-      allData.push(...await getTCData(fishingSpot, baitId))
+      if (fishingSpot === 0 || baitId === 0) {
+        continue
+      } else {
+        console.log('Fetching:', { spot: fishingSpot, baitId })
+        allData.push(...await getTCData(fishingSpot, baitId))
+      }
     }
     fs.writeFileSync(path.resolve(__dirname, `../data/tc/spot-${fishingSpot}.json`), JSON.stringify(allData))
   }
-})()
+
+  console.log('Done!')
+})().then(null, null)

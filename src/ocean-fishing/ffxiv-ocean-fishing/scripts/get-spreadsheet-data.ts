@@ -42,6 +42,23 @@ const data = {}
       data[fishingSpot].push({
         name: tr.find('td:nth-child(3)').text().trim(),
         bait: (() => {
+          if ([
+            'Aetheric Seadragon',
+            'Coral Manta',
+            'Elasmosaurus',
+            'Elder Dinichthys',
+            'Gladius',
+            'Great Grandmarlin',
+            'Hafgufa',
+            'Placodus',
+            'Roguesaurus',
+            'Seafaring Toad',
+            'Sothis',
+            'Stonescale',
+            'Trollfish'
+          ].includes(tr.find('td:nth-child(3)').text().trim())) {
+            return null
+          }
           if (isBlue(tr.find('td:nth-child(4)'))) return 'Ragworm'
           if (isBlue(tr.find('td:nth-child(5)'))) return 'Krill'
           if (isBlue(tr.find('td:nth-child(6)'))) return 'Plump Worm'
@@ -194,4 +211,6 @@ const data = {}
   }
 
   fs.writeFileSync(OUTPUT, JSON.stringify(data, null, 2))
+
+  console.log('Done!')
 })().then(null, null)

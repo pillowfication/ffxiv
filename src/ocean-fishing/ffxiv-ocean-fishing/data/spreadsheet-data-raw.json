@@ -272,6 +272,7 @@
     },
     {
       "name": "Sothis",
+      "bait": null,
       "points": 500,
       "doubleHook": 1,
       "mooch": null,
@@ -392,6 +393,7 @@
     },
     {
       "name": "Gladius",
+      "bait": null,
       "points": 49,
       "doubleHook": 2,
       "mooch": "Ghoul Barracuda",
@@ -448,6 +450,7 @@
     },
     {
       "name": "Great Grandmarlin",
+      "bait": null,
       "points": 127,
       "doubleHook": 2,
       "mooch": "Hi-aetherlouse",
@@ -512,6 +515,7 @@
     },
     {
       "name": "Aetheric Seadragon",
+      "bait": null,
       "points": 245,
       "doubleHook": 2,
       "mooch": "Hi-aetherlouse",
@@ -537,6 +541,7 @@
     },
     {
       "name": "Roguesaurus",
+      "bait": null,
       "points": 345,
       "doubleHook": 2,
       "mooch": "Hi-aetherlouse",
@@ -549,6 +554,7 @@
     },
     {
       "name": "Coral Manta",
+      "bait": null,
       "points": 500,
       "doubleHook": 1,
       "mooch": null,
@@ -665,6 +671,7 @@
     },
     {
       "name": "Elder Dinichthys",
+      "bait": null,
       "points": 52,
       "doubleHook": 2,
       "mooch": "Tossed Dagger",
@@ -823,6 +830,7 @@
     },
     {
       "name": "Elasmosaurus",
+      "bait": null,
       "points": 500,
       "doubleHook": 1,
       "mooch": null,
@@ -1099,6 +1107,7 @@
     },
     {
       "name": "Stonescale",
+      "bait": null,
       "points": 500,
       "doubleHook": 1,
       "mooch": null,
@@ -1350,6 +1359,7 @@
     },
     {
       "name": "Hafgufa",
+      "bait": null,
       "points": 500,
       "doubleHook": 1,
       "mooch": null,
@@ -1599,6 +1609,7 @@
     },
     {
       "name": "Seafaring Toad",
+      "bait": null,
       "points": 500,
       "doubleHook": 1,
       "mooch": null,
@@ -1807,6 +1818,7 @@
     },
     {
       "name": "Trollfish",
+      "bait": null,
       "points": 202,
       "doubleHook": 2,
       "mooch": "Rothlyt Mussel",
@@ -1850,6 +1862,7 @@
     },
     {
       "name": "Placodus",
+      "bait": null,
       "points": 500,
       "doubleHook": 1,
       "mooch": "Rothlyt Mussel",
