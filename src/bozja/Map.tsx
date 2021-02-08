@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Head from 'next/head'
 import { Icon, CRS } from 'leaflet'
 import { MapContainer, ImageOverlay, Pane, Marker, Tooltip } from 'react-leaflet'
@@ -85,7 +85,6 @@ function formatMonster (label: string, locale: string): string {
 const useStyles = makeStyles(theme => ({
   container: {
     width: '100%',
-    height: 0,
     paddingBottom: '100%',
     margin: theme.spacing(0, 'auto'),
     border: '1px solid black',
@@ -129,6 +128,12 @@ const Map = (): React.ReactElement => {
     setTimeout(() => { setShowMapLabels(true) }, 0)
   }, [])
 
+  // Force a mount/unmount whenever the theme type changes
+  // Bypasses the Map's immutability
+  const theme = useTheme()
+  const [key, setKey] = useState(0)
+  useEffect(() => { setKey(key + 1) }, [theme.palette.type])
+
   const handleToggleMapLabels = (): void => { setShowMapLabels(!showMapLabels) }
   const handleToggleStarMonsters = (): void => { setShowStarMonsters(!showStarMonsters) }
   const handleToggleSprites = (): void => { setShowSprites(!showSprites) }
@@ -162,7 +167,7 @@ const Map = (): React.ReactElement => {
           </FormControl>
         </Grid>
         <Grid item xs={12} md={9}>
-          <Paper>
+          <Paper key={key}>
             <MapContainer
               bounds={[[1, 1], [42, 42]]}
               maxBounds={[[1, 1], [42, 42]]}

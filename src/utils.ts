@@ -30,10 +30,11 @@ export function timeUntil (now: Date, then: Date, options: { full?: boolean, loc
   const diffString = formatDistanceStrict(then, now, { addSuffix: true, locale: DATE_LOCALES[locale] })
   if (full !== undefined && full) {
     switch (locale) {
+      case 'en': return `${diffString} at ${format(then, 'h:mm a', { locale: DATE_LOCALES[locale] })}`
       case 'de': return `${diffString} um ${format(then, 'H:mm', { locale: DATE_LOCALES[locale] })}`
       case 'fr': return `${diffString} à ${format(then, 'H:mm', { locale: DATE_LOCALES[locale] })}`
       case 'ja': return `${diffString} at ${format(then, 'H:mm', { locale: DATE_LOCALES[locale] })}`
-      default: return `${diffString} at ${format(then, 'h:mm a', { locale: DATE_LOCALES[locale] })}`
+      default: return `${diffString} at ${format(then, 'H:mm', { locale: DATE_LOCALES[locale] })}`
     }
   } else {
     return diffString
