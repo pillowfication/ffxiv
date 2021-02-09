@@ -26,9 +26,9 @@ export function toTimeString (now: Date, options: { padded?: boolean, locale?: s
 }
 
 export function timeUntil (now: Date, then: Date, options: { full?: boolean, locale?: string } = {}): string {
-  const { full, locale = 'en' } = options
+  const { full = false, locale = 'en' } = options
   const diffString = formatDistanceStrict(then, now, { addSuffix: true, locale: DATE_LOCALES[locale] })
-  if (full !== undefined && full) {
+  if (full) {
     switch (locale) {
       case 'en': return `${diffString} at ${format(then, 'h:mm a', { locale: DATE_LOCALES[locale] })}`
       case 'de': return `${diffString} um ${format(then, 'H:mm', { locale: DATE_LOCALES[locale] })}`

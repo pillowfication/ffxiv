@@ -253,7 +253,7 @@ function calculate (fromColor: Color, toColor: Color): Fruit[] {
           </Highlight>
         </Box>
         <Typography paragraph>
-          This algorithm has several shortcomings, but performs decently well and serves as the basis to the actual algorithm I used. The biggest issue is that the algorithm tends to stop early. Suppose the target color is {$('\\operatorname{RGB}(100, 100, 100)')}, and the current color is {$('\\operatorname{RGB}(105, 105, 105)')}. The current distance is {$('\\sqrt{75}')} and eating any fruit will cause this distance to jump up to {$('\\sqrt{100}')} or {$('\\sqrt{200}')}, so the algorithm terminates. But feeding the 3 fruits {translate(locale, fruits[Fruit.XelphatolApple], 'name')}, {translate(locale, fruits[Fruit.MamookPear], 'name')}, and {translate(locale, fruits[Fruit.OGhomoroBerries], 'name')} would land exactly on the target color.
+          This algorithm has several shortcomings, but performs decently well and serves as the basis to the actual algorithm used. The biggest issue is that the algorithm tends to stop early. Suppose the target color is {$('\\operatorname{RGB}(100, 100, 100)')}, and the current color is {$('\\operatorname{RGB}(105, 105, 105)')}. The current distance is {$('\\sqrt{75}')} and eating any fruit will cause this distance to jump up to {$('\\sqrt{100}')} or {$('\\sqrt{200}')}, so the algorithm terminates. But feeding the 3 fruits {translate(locale, fruits[Fruit.XelphatolApple], 'name')}, {translate(locale, fruits[Fruit.MamookPear], 'name')}, and {translate(locale, fruits[Fruit.OGhomoroBerries], 'name')} would land exactly on the target color.
         </Typography>
       </Section>
       <Section title='Matrix Algorithm'>
@@ -285,7 +285,7 @@ function calculate (fromColor: Color, toColor: Color): Fruit[] {
           \\end{array}
         `)}
         <Typography paragraph>
-          where {$('R, G, B')} is the difference {$('\\text{DesiredColor} - \\text{CurrentColor}')}. This does not take into account clamping, which can be avoided almost always anyways. It gives only the number of fruits required, which is then ordered to hopefully avoid clamping. I did this by repeatedly picking fruits that minimize the distance to {$('\\operatorname{RGB}(127.5, 127.5, 127.5)')} using the <MuiLink href='https://en.wikipedia.org/wiki/Uniform_norm'>uniform norm</MuiLink>.
+          where {$('R, G, B')} is the difference {$('\\text{DesiredColor} - \\text{CurrentColor}')}. This does not take into account clamping, which can be avoided almost always. It gives only the number of fruits required, which is then ordered to hopefully avoid clamping. I did this by repeatedly picking fruits that minimize the distance to {$('\\operatorname{RGB}(127.5, 127.5, 127.5)')} using the <MuiLink href='https://en.wikipedia.org/wiki/Uniform_norm'>uniform norm</MuiLink>.
         </Typography>
         <Typography paragraph>
           Since the {$('D, V, C')} fruits are “opposites” of the {$('X, M, O')} fruits, we can drop the {$('D, V, C')} variables by removing the nonnegativity constraints on {$('X, M, O')}. This transforms the problem into the standard linear equation
@@ -353,10 +353,10 @@ while (true) {
       </Section>
       <Section title='Optimality'>
         <Typography paragraph>
-          Fortunately, a lookahead of {$('L = 3')} is enough to guarantee that our algorithm terminates with a color as close to the target color as possible (ignoring clamping). By feeding 2 fruits, any individual RGB value can be adjusted by {$('\\pm10')} while leaving the other two values unaffected. This means that the color we end up at cannot have coordinates that differ from the target color’s by more than {$('5')}. The same must be true of the optimal solution.
+          Fortunately, a lookahead of {$('L = 3')} is enough to guarantee that the algorithm terminates with a color as close to the target color as possible (ignoring clamping). By feeding 2 fruits, any individual RGB value can be adjusted by {$('\\pm10')} while leaving the other two values unaffected. This means that the color the algorithm ends up at cannot have coordinates that differ from the target color’s by more than {$('5')}. The same must be true of the optimal solution.
         </Typography>
         <Typography paragraph>
-          Let the solution our algorithm returns be {$('\\operatorname{RGB(r, g, b)}')}. Focusing only on the red component, the optimal solution must have a red component of {$('r-5')}, {$('r')}, or {$('r+5')}. Now we consider the 27 points:
+          Let the solution the algorithm returns be {$('\\operatorname{RGB(r, g, b)}')}. Focusing only on the red component, the optimal solution must have a red component of {$('r-5')}, {$('r')}, or {$('r+5')}. Now consider the 27 points:
         </Typography>
         <Box mb={2}>
           <TableContainer>
@@ -433,7 +433,7 @@ while (true) {
           </TableContainer>
         </Box>
         <Typography paragraph>
-          One of these points is the optimal solution, and all the points marked as red are impossible to reach due to parity. Starting at {$('(r, g, b)')}, we must show that our algorithm considers all the green points with a lookahead of {$('L = 3')}. By symmetry, there are only 3 cases needed to be checked.
+          One of these points is the optimal solution, and all the points marked as red are impossible to reach due to parity (see the Error section below). Starting at {$('(r, g, b)')}, we must show that the algorithm considers all the green points with a lookahead of {$('L = 3')}. By symmetry, there are only 3 cases that need to be checked.
         </Typography>
         <Box mb={2}>
           <TableContainer>
@@ -462,7 +462,7 @@ while (true) {
           </TableContainer>
         </Box>
         <Typography paragraph>
-          Thus the algorithm is optimal.
+          Thus the algorithm is optimal, in the sense that it returns the closest possible color without clamping.
         </Typography>
       </Section>
       <Section title='Error'>
@@ -500,7 +500,7 @@ while (true) {
                   <TableCell align='center'><StainButton stain={stains[79]} /></TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell component='th' scope='row' align='center'>Closest solution</TableCell>
+                  <TableCell component='th' scope='row' align='center'>“Optimal” solution</TableCell>
                   <TableCell align='center'>{$('(55, 43, 58)')}</TableCell>
                   <TableCell align='center'><StainButton color={new Color(55, 43, 58)} /></TableCell>
                   <TableCell align='center'>{$('(55, 44, 60)')}</TableCell>

@@ -18,6 +18,7 @@ import Page from '../../src/Page'
 import Section from '../../src/Section'
 import OceanFishIcon from '../../src/ocean-fishing/OceanFishIcon'
 import { contentBonuses, achievements } from '../../src/ocean-fishing/ffxiv-ocean-fishing/data'
+import { cleanObjective, cleanRequirement } from '../../src/ocean-fishing/utils'
 import { translate } from '../../src/utils'
 import { useTranslation } from '../../src/i18n'
 
@@ -97,15 +98,6 @@ function getOverriddenBy (contentBonusId: number): number[] {
     case 18: return [19]
     default: return []
   }
-}
-
-function cleanObjective (objective: string): string {
-  return objective.replace(/<[^<>]*?\/>/g, '')
-}
-
-function cleanRequirement (requirement: string): string {
-  const str = requirement.replace(/^(Requirement:|Bedingung:|Condition :|達成条件：|达成条件：|달성 조건: )/, '').trim()
-  return str[0].toUpperCase() + str.slice(1)
 }
 
 interface CalculatorRowProps {

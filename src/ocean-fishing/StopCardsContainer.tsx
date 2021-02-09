@@ -1,4 +1,5 @@
 import React from 'react'
+import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 
 interface Props {
@@ -7,9 +8,11 @@ interface Props {
 
 const StopCardsContainer = ({ children }: Props): React.ReactElement => {
   return (
-    <Grid container spacing={2}>
-      {children}
-    </Grid>
+    <Box mb={2}>
+      <Grid container spacing={2}>
+        {children}
+      </Grid>
+    </Box>
   )
 }
 

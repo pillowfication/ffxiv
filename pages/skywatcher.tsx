@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import NoSsr from '@material-ui/core/NoSsr'
 import Typography from '@material-ui/core/Typography'
 import Page from '../src/Page'
+import Section from '../src/Section'
 import UpcomingWeather from '../src/skywatcher/UpcomingWeather'
 import Forecaster from '../src/skywatcher/Forecaster'
 import Algorithm from '../src/skywatcher/Algorithm'
@@ -29,20 +30,22 @@ const Skywatcher = (): React.ReactElement => {
 
   return (
     <Page title={t('_title')} description={t('_description')}>
-      <Typography paragraph>
-        The time in Eorzea is <b><NoSsr>{formatTime(new Date(now.getTime() * (1440 / 70)))}</NoSsr></b>.
-      </Typography>
-      <ul>
-        <Typography component='li'>
-          Some places have multiple possible weather rates depending on certain conditions. For example, Amh Araeng will always be Everlasting Light until a certain point in the MSQ.
+      <Section>
+        <Typography paragraph>
+          The time in Eorzea is <b><NoSsr>{formatTime(new Date(now.getTime() * (1440 / 70)))}</NoSsr></b>.
         </Typography>
-        <Typography component='li'>
-          Certain special weathers such as Tension will replace the predicted weather depending on certain conditions.
-        </Typography>
-        <Typography component='li'>
-          The weathers associated with The <em>Endeavor</em> only apply to cutscenes and have no apparent correlation with the weathers experienced during the voyage.
-        </Typography>
-      </ul>
+        <ul>
+          <Typography component='li'>
+            Some places have multiple possible weather rates depending on certain conditions. For example, Amh Araeng will always be Everlasting Light until a certain point in the MSQ.
+          </Typography>
+          <Typography component='li'>
+            Certain special weathers such as Tension will replace the predicted weather depending on certain conditions.
+          </Typography>
+          <Typography component='li'>
+            The weathers associated with The <em>Endeavor</em> only apply to cutscenes and have no apparent correlation with the weathers experienced during the voyage.
+          </Typography>
+        </ul>
+      </Section>
       <Forecaster now={now} />
       <UpcomingWeather now={now} />
       <Algorithm />

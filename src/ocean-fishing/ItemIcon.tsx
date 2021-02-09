@@ -27,7 +27,7 @@ const useStyles = makeStyles(() => ({
     height: 128
   },
   itemCover: {
-    position: 'absolute' as 'absolute',
+    position: 'absolute',
     top: 0,
     left: 0,
     width: 152,

@@ -40,12 +40,11 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.type === 'dark' ? '#111111' : '#DDDDDD',
     opacity: 0.5
   },
-  checkMark: {
-    opacity: 0.4
+  checkUnchecked: {
+    opacity: 0.33
   },
-  checkMarkChecked: {
-    opacity: 1,
-    color: 'green'
+  checkChecked: {
+    color: theme.palette.success.main
   }
 }))
 
@@ -83,7 +82,7 @@ const FruitsList = ({ fruits: fruitIds }: Props): React.ReactElement => {
             <FruitIcon fruit={fruit} size={0.9} />
             <Typography className={classes.fruitName}>{translate(locale, fruits[fruit], 'name')}</Typography>
             <ListItemSecondaryAction>
-              <CheckIcon className={clsx(classes.checkMark, checklist[index] && classes.checkMarkChecked)} />
+              <CheckIcon className={checklist[index] ? classes.checkChecked : classes.checkUnchecked} />
             </ListItemSecondaryAction>
           </ListItem>
         ))}

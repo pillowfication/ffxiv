@@ -5,15 +5,15 @@ import IconButton from '@material-ui/core/IconButton'
 import CheckIcon from '@material-ui/icons/Check'
 import { ChecklistContext } from '../../pages/ocean-fishing/index'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   check: {
     padding: 10
   },
   unchecked: {
-    opacity: 0.4
+    opacity: 0.33
   },
   checked: {
-    color: 'green'
+    color: theme.palette.success.main
   }
 }))
 

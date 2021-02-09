@@ -5,13 +5,12 @@ import { BaitLink, FishLink } from './BaitChain'
 import * as maps from './maps'
 import { TFunction } from 'next-i18next'
 
-function memoize<T, R> (func: (arg: T) => R): (arg: T) => R {
-  // const cache: { [key: string]: R } = {}
-  // return (arg: T) => {
-  //   const key = String(arg)
-  //   return cache[key] !== undefined ? cache[key] : (cache[key] = func(arg))
-  // }
-  return func
+function memoize<T, R> (func: (arg: T) => R, getKey: (arg: T) => string): (arg: T) => R {
+  const cache: { [key: string]: R } = {}
+  return (arg: T) => {
+    const key = getKey(arg)
+    return cache[key] !== undefined ? cache[key] : (cache[key] = func(arg))
+  }
 }
 
 export function timeUntil (now: Date, then: Date, options: { t: TFunction, full?: boolean, locale?: string }): string {
@@ -21,7 +20,7 @@ export function timeUntil (now: Date, then: Date, options: { t: TFunction, full?
   } else if (diff < 0) {
     return options.t('routeInfo.boardingNow')
   } else {
-    return genericTimeUntil(now, then, { full: options.full, locale: options.locale })
+    return genericTimeUntil(now, then, options)
   }
 }
 
@@ -47,14 +46,17 @@ export function isBaitRequired (fish: Fish, bait: Bait): boolean {
   return true
 }
 
-export const getBaitChain = memoize(function _getBaitChain (fish: Fish): Array<BaitLink | FishLink> {
-  const { bait, mooch, tug } = fish.spreadsheetData
-  if (bait === null && mooch === null) {
-    return [{ bait: baits[29717] }, { fish, tug }] // Versatile Lure as fallback
-  } else {
-    return bait !== null ? [{ bait }, { fish, tug }] : [..._getBaitChain(mooch as Fish), { fish, tug }]
-  }
-})
+export const getBaitChain = memoize(
+  function _getBaitChain (fish: Fish): Array<BaitLink | FishLink> {
+    const { bait, mooch, tug } = fish.spreadsheetData
+    if (bait === null && mooch === null) {
+      return [{ bait: baits[29717] }, { fish, tug }] // Versatile Lure as fallback
+    } else {
+      return bait !== null ? [{ bait }, { fish, tug }] : [..._getBaitChain(mooch as Fish), { fish, tug }]
+    }
+  },
+  (fish: Fish) => String(fish.id)
+)
 
 export const getBaitGroup = memoize(
   (fish: Fish): {
@@ -78,7 +80,8 @@ export const getBaitGroup = memoize(
         })
         : undefined
     }
-  }
+  },
+  (fish: Fish) => String(fish.id)
 )
 
 export function subtextDH (fish: Fish): string {
@@ -96,11 +99,15 @@ export function subtextBiteTime (fish: Fish): string {
 }
 
 export function upperFirst (str: string): string {
-  if (str.length === 0) {
-    return str
-  } else {
-    return str[0].toUpperCase() + str.slice(1)
-  }
+  return str.length === 0 ? '' : str[0].toUpperCase() + str.slice(1)
+}
+
+export function cleanObjective (objective: string): string {
+  return objective.replace(/<[^<>]*?\/>/g, '')
+}
+
+export function cleanRequirement (requirement: string): string {
+  return upperFirst(requirement.replace(/^(Requirement:|Bedingung:|Condition :|達成条件：|达成条件：|달성 조건: )/, '').trim())
 }
 
 // export function getBlindDHRanges (fishId: number, baitId: number, time: Time) {

@@ -26,15 +26,18 @@ const useStyles = makeStyles(theme => ({
       padding: 0
     }
   },
+  fishName: {
+    lineHeight: 1.25
+  },
   stars: {
-    marginTop: '-0.3em',
+    marginTop: '-0.125em',
     opacity: 0.8
   },
-  count: {
-    verticalAlign: 'middle'
-  },
   baitCell: {
-    whiteSpace: 'nowrap'
+    whiteSpace: 'nowrap',
+    '& > *': {
+      verticalAlign: 'middle'
+    }
   },
   intuition: {
     position: 'relative',
@@ -95,7 +98,7 @@ const FishTable = ({ fishingSpots, time }: Props): React.ReactElement => {
                         <OceanFishIcon type='fish' id={fish.id} />
                       </TableCell>
                       <TableCell>
-                        <div><Typography>{translate(locale, fish, 'name')}</Typography></div>
+                        <div><Typography className={classes.fishName}>{translate(locale, fish, 'name')}</Typography></div>
                         {spreadsheetData.stars !== null && (
                           <div className={classes.stars}>{'★'.repeat(spreadsheetData.stars)}</div>
                         )}
@@ -105,7 +108,7 @@ const FishTable = ({ fishingSpots, time }: Props): React.ReactElement => {
                           <>
                             {spreadsheetData.intuition.map(({ fish, count }, index) =>
                               <React.Fragment key={fish.id}>
-                                <Typography className={classes.count} display='inline'>
+                                <Typography display='inline'>
                                   {index === 0 ? `${count}×` : `, ${count}×`}
                                 </Typography>
                                 <OceanFishIcon type='fish' id={fish.id} />

@@ -12,7 +12,7 @@ import { useTranslation } from '../i18n'
 
 const POINTS_THRESHOLD = 400
 
-export function getPointsFishes (stopTime: StopTime): Fish[] {
+function getPointsFishes (stopTime: StopTime): Fish[] {
   const fishingSpot = maps.STOP_MAP[stopTime[0] as Stop]
   const spectralFishingSpot = fishingSpots[fishingSpot.id + 1]
   const time = stopTime[1] as Time

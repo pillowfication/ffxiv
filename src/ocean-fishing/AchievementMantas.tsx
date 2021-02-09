@@ -58,51 +58,45 @@ const AchievementMantas = ({ route }: Props): React.ReactElement => {
           </CardContent>
         </StopCard>
         <StopCard index={2} stopTime={stopTimes[2]}>
-          {(() => {
-            switch (stopTimes[2]) {
-              case 'BN':
-                return (
-                  <>
-                    <CardContent>
-                      <BaitList
-                        baitGroups={[{
-                          header: 'DH at ≥5s',
-                          baitGroupProps: { ...getBaitGroup(fishes[32087]), subtext: subtextDH }
-                        }]}
-                      />
-                    </CardContent>
-                    <CardContent>
-                      <Typography variant='overline'>Spectral</Typography>
-                      <Typography paragraph>
-                        Reel any <Tug strength={2} />. Beatific Visions and Gory Tuna go away at 5s. Use IC–DH if it’s all you need, instead of hoping for more blind DHs.
-                      </Typography>
-                    </CardContent>
-                  </>
-                )
-              case 'TD':
-                return (
-                  <>
-                    <CardContent>
-                      <BaitList
-                        baitGroups={[{
-                          header: 'DH at ≥5s',
-                          baitGroupProps: { ...getBaitGroup(fishes[32111]), subtext: subtextDH }
-                        }]}
-                      />
-                    </CardContent>
-                    <CardContent>
-                      <Typography variant='overline'>Spectral</Typography>
-                      <Typography paragraph>
-                        Reel any <Tug strength={2} />. Smooth Jaguars go away at 5s. Use IC–DH if it’s all you need, instead of hoping for more blind DHs.
-                      </Typography>
-                      <Typography variant='body2' paragraph>
-                        Note: It is not worth mooching Rothlyt Mussels for Panoptes if you happen to catch one. Recast instead.
-                      </Typography>
-                    </CardContent>
-                  </>
-                )
-            }
-          })()}
+          {stopTimes[2] === 'BN' && (
+            <>
+              <CardContent>
+                <BaitList
+                  baitGroups={[{
+                    header: 'DH at ≥5s',
+                    baitGroupProps: { ...getBaitGroup(fishes[32087]), subtext: subtextDH }
+                  }]}
+                />
+              </CardContent>
+              <CardContent>
+                <Typography variant='overline'>Spectral</Typography>
+                <Typography paragraph>
+                  Reel any <Tug strength={2} />. Beatific Visions and Gory Tuna go away at 5s. Use IC–DH if it’s all you need, instead of hoping for more blind DHs.
+                </Typography>
+              </CardContent>
+            </>
+          )}
+          {stopTimes[2] === 'TD' && (
+            <>
+              <CardContent>
+                <BaitList
+                  baitGroups={[{
+                    header: 'DH at ≥5s',
+                    baitGroupProps: { ...getBaitGroup(fishes[32111]), subtext: subtextDH }
+                  }]}
+                />
+              </CardContent>
+              <CardContent>
+                <Typography variant='overline'>Spectral</Typography>
+                <Typography paragraph>
+                  Reel any <Tug strength={2} />. Smooth Jaguars go away at 5s. Use IC–DH if it’s all you need, instead of hoping for more blind DHs.
+                </Typography>
+                <Typography variant='body2' paragraph>
+                  Note: It is not worth mooching Rothlyt Mussels for Panoptes if you happen to catch one. Recast instead.
+                </Typography>
+              </CardContent>
+            </>
+          )}
         </StopCard>
       </StopCardsContainer>
     </AchievementInformation>

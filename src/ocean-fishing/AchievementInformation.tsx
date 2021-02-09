@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography'
 import Section from '../Section'
 import OceanFishIcon from './OceanFishIcon'
 import { achievements, contentBonuses, ContentBonus } from './ffxiv-ocean-fishing/data'
+import { cleanRequirement } from './utils'
 import { translate } from '../utils'
 import { useTranslation } from '../i18n'
 
@@ -15,11 +16,6 @@ const contentBonusMap: Record<number, ContentBonus> = {
   2754: contentBonuses[20],
   2755: contentBonuses[21],
   2756: contentBonuses[22]
-}
-
-function cleanRequirement (requirement: string): string {
-  const str = requirement.replace(/^(Requirement:|Bedingung:|Condition :|達成条件：)/, '').trim()
-  return str[0].toUpperCase() + str.slice(1)
 }
 
 const useStyles = makeStyles(theme => ({
