@@ -104,7 +104,7 @@ function cleanObjective (objective: string): string {
 }
 
 function cleanRequirement (requirement: string): string {
-  const str = requirement.replace(/^(Requirement:|Bedingung:|Condition :|達成条件：)/, '').trim()
+  const str = requirement.replace(/^(Requirement:|Bedingung:|Condition :|達成条件：|达成条件：|달성 조건: )/, '').trim()
   return str[0].toUpperCase() + str.slice(1)
 }
 
