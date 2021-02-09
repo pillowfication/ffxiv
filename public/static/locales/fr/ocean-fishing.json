@@ -14,9 +14,9 @@
   "fish": "Poisson",
   "requiredBait": "Appât requis",
   "aboutPage": {
-    "_title": "Apropos de",
-    "data": "Data",
-    "algorithm": "Algorithm"
+    "_title": "À propos",
+    "data": "Donnée",
+    "algorithm": "Algorithme"
   },
   "fishPage": {
     "_title": "Poisson"

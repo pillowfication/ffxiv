@@ -14,15 +14,15 @@
   "fish": "魚",
   "requiredBait": "Required bait",
   "aboutPage": {
-    "_title": "About",
-    "data": "Data",
-    "algorithm": "Algorithm"
+    "_title": "ついて",
+    "data": "データ",
+    "algorithm": "アルゴリズム"
   },
   "fishPage": {
     "_title": "魚"
   },
   "bonusesPage": {
-    "_title": "Bonuses",
+    "_title": "ボーナス",
     "objective": "Objective",
     "requirement": "Requirement",
     "bonus": "Bonus",

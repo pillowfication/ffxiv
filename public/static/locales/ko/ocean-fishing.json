@@ -14,15 +14,15 @@
   "fish": "Fish",
   "requiredBait": "Required bait",
   "aboutPage": {
-    "_title": "About",
-    "data": "Data",
-    "algorithm": "Algorithm"
+    "_title": "정보",
+    "data": "자료",
+    "algorithm": "알고리즘"
   },
   "fishPage": {
-    "_title": "Fish"
+    "_title": "물고기"
   },
   "bonusesPage": {
-    "_title": "Bonuses",
+    "_title": "보너스",
     "objective": "Objective",
     "requirement": "Requirement",
     "bonus": "Bonus",

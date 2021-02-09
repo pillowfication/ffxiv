@@ -117,7 +117,7 @@ const useStyles = makeStyles(theme => ({
 
 const Map = (): React.ReactElement => {
   const classes = useStyles()
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation('bozja')
   const [showMapLabels, setShowMapLabels] = useState(false)
   const [showStarMonsters, setShowStarMonsters] = useState(false)
   const [showSprites, setShowSprites] = useState(false)
@@ -149,19 +149,19 @@ const Map = (): React.ReactElement => {
             <FormGroup>
               <FormControlLabel
                 control={<Checkbox checked={showMapLabels} onChange={handleToggleMapLabels} />}
-                label='Map labels'
+                label={t('mapLabels')}
               />
             </FormGroup>
             <FormGroup>
               <FormControlLabel
                 control={<Checkbox checked={showStarMonsters} onChange={handleToggleStarMonsters} />}
-                label='Star-rank monsters'
+                label={t('starMonsters')}
               />
             </FormGroup>
             <FormGroup>
               <FormControlLabel
                 control={<Checkbox checked={showSprites} onChange={handleToggleSprites} />}
-                label='Sprites'
+                label={t('sprites')}
               />
             </FormGroup>
           </FormControl>

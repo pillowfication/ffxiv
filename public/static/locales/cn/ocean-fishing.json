@@ -14,19 +14,19 @@
   "fish": "Fish",
   "requiredBait": "Required bait",
   "aboutPage": {
-    "_title": "About",
-    "data": "Data",
-    "algorithm": "Algorithm"
+    "_title": "关于",
+    "data": "数据",
+    "algorithm": "算法"
   },
   "fishPage": {
-    "_title": "Fish"
+    "_title": "鱼"
   },
   "bonusesPage": {
-    "_title": "Bonuses",
+    "_title": "奖金",
     "objective": "Objective",
     "requirement": "Requirement",
     "bonus": "Bonus",
-    "calculator": "Calculator",
+    "calculator": "计算器",
     "basePoints": "Base Points"
   },
   "routeInfo": {

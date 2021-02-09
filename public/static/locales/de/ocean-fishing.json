@@ -14,15 +14,15 @@
   "fish": "Fisch",
   "requiredBait": "Required bait",
   "aboutPage": {
-    "_title": "About",
-    "data": "Data",
-    "algorithm": "Algorithm"
+    "_title": "Über",
+    "data": "Daten",
+    "algorithm": "Algorithmus"
   },
   "fishPage": {
     "_title": "Fisch"
   },
   "bonusesPage": {
-    "_title": "Bonuses",
+    "_title": "Boni",
     "objective": "Objective",
     "requirement": "Requirement",
     "bonus": "Bonus",
@@ -53,8 +53,8 @@
     "night": "Nachtzeit"
   },
   "tug": {
-    "light": "Schwacher Zug",
-    "medium": "Starker Zug",
-    "heavy": "Extremer Zug"
+    "light": "Schwachem Zug",
+    "medium": "Starkem Zug",
+    "heavy": "Extremem Zug"
   }
 }
