@@ -34,7 +34,7 @@ function parseValues (types: Record<string, string>, datum: Record<string, any>)
   return datum
 }
 
-class SaintCoinachCsv {
+export class SaintCoinachCsv {
   keys: Record<string, string>
   types: Record<string, string>
   data: any[]

@@ -30,6 +30,12 @@ const PlaceName_fr = sc.requireCsv('PlaceName', 'fr')
 const PlaceName_ja = sc.requireCsv('PlaceName', 'ja')
 const PlaceName_cn = sc.requireCsv('PlaceName', 'cn')
 const PlaceName_ko = sc.requireCsv('PlaceName', 'ko')
+const Title_en = sc.requireCsv('Title', 'en')
+const Title_de = sc.requireCsv('Title', 'de')
+const Title_fr = sc.requireCsv('Title', 'fr')
+const Title_ja = sc.requireCsv('Title', 'ja')
+const Title_cn = sc.requireCsv('Title', 'cn')
+const Title_ko = sc.requireCsv('Title', 'ko')
 
 console.log('Collecting ocean fishing spots...')
 const fishingSpots = FishingSpot_en.data
@@ -183,6 +189,16 @@ function range (start: number, end: number): number[] {
 }
 
 console.log('Collecting ocean fishing achievements...')
+function getReward (achievement: any, Title: sc.SaintCoinachCsv, Item: sc.SaintCoinachCsv): string {
+  if (+achievement.Title !== 0) {
+    return Title.get(+achievement.Title).Masculine
+  } else if (+achievement.Item !== 0) {
+    return Item.get(+achievement.Item).Name
+  } else {
+    return ''
+  }
+}
+
 const oceanFishingAchievements = [0, ...range(2553, 2566), ...range(2748, 2759)]
   .map(achievementId => {
     const achievement_en = Achievement_en.get(achievementId)
@@ -206,6 +222,12 @@ const oceanFishingAchievements = [0, ...range(2553, 2566), ...range(2748, 2759)]
       description_ja: achievement_ja.Description,
       description_cn: achievement_cn !== undefined ? achievement_cn.Description : '',
       description_ko: achievement_ko !== undefined ? achievement_ko.Description : '',
+      reward_en: getReward(achievement_en, Title_en, Item_en),
+      reward_de: getReward(achievement_de, Title_de, Item_de),
+      reward_fr: getReward(achievement_fr, Title_fr, Item_fr),
+      reward_ja: getReward(achievement_ja, Title_ja, Item_ja),
+      reward_cn: achievement_cn !== undefined ? getReward(achievement_cn, Title_cn, Item_cn) : '',
+      reward_ko: achievement_ko !== undefined ? getReward(achievement_ko, Title_ko, Item_ko) : '',
       order: achievement_en.Order
     }
   })

@@ -212,6 +212,12 @@ export interface Achievement {
   description_ja: string
   description_cn: string
   description_ko: string
+  reward_en: string
+  reward_de: string
+  reward_fr: string
+  reward_ja: string
+  reward_cn: string
+  reward_ko: string
   order: number
 }
 

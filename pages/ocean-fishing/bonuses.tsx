@@ -17,7 +17,7 @@ import CheckIcon from '@material-ui/icons/Check'
 import Page from '../../src/Page'
 import Section from '../../src/Section'
 import OceanFishIcon from '../../src/ocean-fishing/OceanFishIcon'
-import { contentBonuses } from '../../src/ocean-fishing/ffxiv-ocean-fishing/data'
+import { contentBonuses, achievements } from '../../src/ocean-fishing/ffxiv-ocean-fishing/data'
 import { translate } from '../../src/utils'
 import { useTranslation } from '../../src/i18n'
 
@@ -109,12 +109,12 @@ function cleanRequirement (requirement: string): string {
 }
 
 interface CalculatorRowProps {
-  reward: string
+  achievement: number
   requiredPoints: number
   totalBonus: number
 }
 
-const CalculatorRow = ({ reward, requiredPoints, totalBonus }: CalculatorRowProps): React.ReactElement => {
+const CalculatorRow = ({ achievement, requiredPoints, totalBonus }: CalculatorRowProps): React.ReactElement => {
   const classes = useStyles()
   const { i18n } = useTranslation('ocean-fishing')
   const locale = i18n.language
@@ -123,7 +123,7 @@ const CalculatorRow = ({ reward, requiredPoints, totalBonus }: CalculatorRowProp
     <>
       <Grid item xs={8}>
         <div className={classes.calculatorGoal}>
-          <Typography className={classes.reward}>{reward}</Typography>&nbsp;
+          <Typography className={classes.reward}>{translate(locale, achievements[achievement], 'reward')}</Typography>&nbsp;
           <Typography component='div' align='right' className={classes.bigger}>
             {Math.ceil(requiredPoints / totalBonus * 100).toLocaleString(locale)}
             <Box display='inline' ml={2}><Typography display='inline'>×{totalBonus}%</Typography></Box>
@@ -255,10 +255,10 @@ const Bonuses = (): React.ReactElement => {
               <Grid item xs={12}>
                 <Box m={2} />
               </Grid>
-              <CalculatorRow reward='The Major-General' requiredPoints={5000} totalBonus={totalBonus} />
-              <CalculatorRow reward='Hybodus' requiredPoints={10000} totalBonus={totalBonus} />
-              <CalculatorRow reward='“Ocean Fisher”' requiredPoints={16000} totalBonus={totalBonus} />
-              <CalculatorRow reward='“Master of the Sea”' requiredPoints={20000} totalBonus={totalBonus} />
+              <CalculatorRow achievement={2560} requiredPoints={5000} totalBonus={totalBonus} />
+              <CalculatorRow achievement={2561} requiredPoints={10000} totalBonus={totalBonus} />
+              <CalculatorRow achievement={2562} requiredPoints={16000} totalBonus={totalBonus} />
+              <CalculatorRow achievement={2759} requiredPoints={20000} totalBonus={totalBonus} />
             </Grid>
           </Grid>
         </Grid>
