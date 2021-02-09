@@ -8,7 +8,7 @@
     "repeatedDigits": "Cells cannot repeat digits.",
     "tooManyDigits": "Too many cells have been filled."
   },
-  "expectedValue": "Expected value",
+  "expectedValue": "期望值",
   "reset": "Reset",
   "about": "关于"
 }
