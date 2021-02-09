@@ -10,7 +10,7 @@ import FruitIcon from './FruitIcon'
 import FruitsList from './FruitsList'
 import { calculateFruits, Stain, Color, Fruit } from './ffxiv-chocobo-color'
 import { stains, fruits } from './ffxiv-chocobo-color/data'
-import { translate } from '../utils'
+import translate from '../translate'
 import { useTranslation } from '../i18n'
 
 const useStyles = makeStyles(theme => ({

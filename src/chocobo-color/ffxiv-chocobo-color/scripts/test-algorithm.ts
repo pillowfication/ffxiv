@@ -23,7 +23,7 @@ for (const fromStain of VALID_STAINS) {
     const solution = calculateFruits(fromStain, toStain)
     const closestStain = getClosestStain(solution.color)
     if (closestStain.id !== toStain.id) {
-      console.log(`${fromStain.name_en} --> ${toStain.name_en},  (${solution.color.R}, ${solution.color.G}, ${solution.color.B}) ${closestStain.name_en}`)
+      console.log(`${fromStain.name.en} --> ${toStain.name.en},  (${solution.color.R}, ${solution.color.G}, ${solution.color.B}) ${closestStain.name.en}`)
     }
   }
 }

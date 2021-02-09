@@ -9,7 +9,7 @@ import Section from '../../src/Section'
 import ImportFishes from '../../src/ocean-fishing/ImportFishes'
 import FishTable from '../../src/ocean-fishing/FishTable'
 import { fishingSpots } from '../../src/ocean-fishing/ffxiv-ocean-fishing/data'
-import { translate } from '../../src/utils'
+import translate from '../../src/translate'
 import { useTranslation } from '../../src/i18n'
 
 const Fish = (): React.ReactElement => {

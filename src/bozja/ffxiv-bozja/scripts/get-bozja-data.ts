@@ -26,24 +26,30 @@ const bozja = {
   sizeFactor: BozjaMap.SizeFactor,
   offsetX: BozjaMap['Offset{X}'],
   offsetY: BozjaMap['Offset{Y}'],
-  placeName_en: PlaceName_en.get(+BozjaMap.PlaceName).Name,
-  placeName_de: PlaceName_de.get(+BozjaMap.PlaceName).Name,
-  placeName_fr: PlaceName_fr.get(+BozjaMap.PlaceName).Name,
-  placeName_ja: PlaceName_ja.get(+BozjaMap.PlaceName).Name,
-  placeName_cn: PlaceName_cn.get(+BozjaMap.PlaceName).Name,
-  placeName_ko: PlaceName_ko.get(+BozjaMap.PlaceName).Name,
-  placeName_sub_en: PlaceName_en.get(+BozjaMap['PlaceName{Sub}']).Name,
-  placeName_sub_de: PlaceName_de.get(+BozjaMap['PlaceName{Sub}']).Name,
-  placeName_sub_fr: PlaceName_fr.get(+BozjaMap['PlaceName{Sub}']).Name,
-  placeName_sub_ja: PlaceName_ja.get(+BozjaMap['PlaceName{Sub}']).Name,
-  placeName_sub_cn: PlaceName_cn.get(+BozjaMap['PlaceName{Sub}']).Name,
-  placeName_sub_ko: PlaceName_ko.get(+BozjaMap['PlaceName{Sub}']).Name,
-  placeName_region_en: PlaceName_en.get(+BozjaMap['PlaceName{Region}']).Name,
-  placeName_region_de: PlaceName_de.get(+BozjaMap['PlaceName{Region}']).Name,
-  placeName_region_fr: PlaceName_fr.get(+BozjaMap['PlaceName{Region}']).Name,
-  placeName_region_ja: PlaceName_ja.get(+BozjaMap['PlaceName{Region}']).Name,
-  placeName_region_cn: PlaceName_cn.get(+BozjaMap['PlaceName{Region}']).Name,
-  placeName_region_ko: PlaceName_ko.get(+BozjaMap['PlaceName{Region}']).Name,
+  placeName: {
+    en: PlaceName_en.get(+BozjaMap.PlaceName).Name,
+    de: PlaceName_de.get(+BozjaMap.PlaceName).Name,
+    fr: PlaceName_fr.get(+BozjaMap.PlaceName).Name,
+    ja: PlaceName_ja.get(+BozjaMap.PlaceName).Name,
+    cn: PlaceName_cn.get(+BozjaMap.PlaceName).Name,
+    ko: PlaceName_ko.get(+BozjaMap.PlaceName).Name
+  },
+  placeName_sub: {
+    en: PlaceName_en.get(+BozjaMap['PlaceName{Sub}']).Name,
+    de: PlaceName_de.get(+BozjaMap['PlaceName{Sub}']).Name,
+    fr: PlaceName_fr.get(+BozjaMap['PlaceName{Sub}']).Name,
+    ja: PlaceName_ja.get(+BozjaMap['PlaceName{Sub}']).Name,
+    cn: PlaceName_cn.get(+BozjaMap['PlaceName{Sub}']).Name,
+    ko: PlaceName_ko.get(+BozjaMap['PlaceName{Sub}']).Name
+  },
+  placeName_region: {
+    en: PlaceName_en.get(+BozjaMap['PlaceName{Region}']).Name,
+    de: PlaceName_de.get(+BozjaMap['PlaceName{Region}']).Name,
+    fr: PlaceName_fr.get(+BozjaMap['PlaceName{Region}']).Name,
+    ja: PlaceName_ja.get(+BozjaMap['PlaceName{Region}']).Name,
+    cn: PlaceName_cn.get(+BozjaMap['PlaceName{Region}']).Name,
+    ko: PlaceName_ko.get(+BozjaMap['PlaceName{Region}']).Name
+  },
   mapMarkers: MapMarker.data
     .filter(mapMarker => Math.floor(mapMarker['#']) === BozjaMap.MapMarkerRange)
     .map(mapMarker => ({
@@ -51,12 +57,14 @@ const bozja = {
       x: mapMarker.X,
       y: mapMarker.Y,
       icon: +mapMarker.Icon,
-      placeName_subtext_en: PlaceName_en.get(+mapMarker['PlaceName{Subtext}']).Name,
-      placeName_subtext_de: PlaceName_de.get(+mapMarker['PlaceName{Subtext}']).Name,
-      placeName_subtext_fr: PlaceName_fr.get(+mapMarker['PlaceName{Subtext}']).Name,
-      placeName_subtext_ja: PlaceName_ja.get(+mapMarker['PlaceName{Subtext}']).Name,
-      placeName_subtext_cn: PlaceName_cn.get(+mapMarker['PlaceName{Subtext}']).Name,
-      placeName_subtext_ko: PlaceName_ko.get(+mapMarker['PlaceName{Subtext}']).Name,
+      placeName_subtext: {
+        en: PlaceName_en.get(+mapMarker['PlaceName{Subtext}']).Name,
+        de: PlaceName_de.get(+mapMarker['PlaceName{Subtext}']).Name,
+        fr: PlaceName_fr.get(+mapMarker['PlaceName{Subtext}']).Name,
+        ja: PlaceName_ja.get(+mapMarker['PlaceName{Subtext}']).Name,
+        cn: PlaceName_cn.get(+mapMarker['PlaceName{Subtext}']).Name,
+        ko: PlaceName_ko.get(+mapMarker['PlaceName{Subtext}']).Name
+      },
       subtextOrientation: mapMarker.SubtextOrientation
     })),
   starMonsters: myData.star_monsters
@@ -64,22 +72,26 @@ const bozja = {
       id: starMonster.id,
       x: starMonster.coords[0],
       y: starMonster.coords[1],
-      name_en: BNpcName_en.get(starMonster.id).Singular,
-      name_de: BNpcName_de.get(starMonster.id).Singular,
-      name_fr: BNpcName_fr.get(starMonster.id).Singular,
-      name_ja: BNpcName_ja.get(starMonster.id).Singular,
-      name_cn: BNpcName_cn.get(starMonster.id).Singular,
-      name_ko: BNpcName_ko.get(starMonster.id).Singular
+      name: {
+        en: BNpcName_en.get(starMonster.id).Singular,
+        de: BNpcName_de.get(starMonster.id).Singular,
+        fr: BNpcName_fr.get(starMonster.id).Singular,
+        ja: BNpcName_ja.get(starMonster.id).Singular,
+        cn: BNpcName_cn.get(starMonster.id).Singular,
+        ko: BNpcName_ko.get(starMonster.id).Singular
+      }
     })),
   sprites: Object.entries(myData.sprites).reduce((acc, [spriteType, spriteData]) => {
     acc[spriteType] = {
       id: spriteData.id,
-      name_en: BNpcName_en.get(spriteData.id).Singular,
-      name_de: BNpcName_de.get(spriteData.id).Singular,
-      name_fr: BNpcName_fr.get(spriteData.id).Singular,
-      name_ja: BNpcName_ja.get(spriteData.id).Singular,
-      name_cn: BNpcName_cn.get(spriteData.id).Singular,
-      name_ko: BNpcName_ko.get(spriteData.id).Singular,
+      name: {
+        en: BNpcName_en.get(spriteData.id).Singular,
+        de: BNpcName_de.get(spriteData.id).Singular,
+        fr: BNpcName_fr.get(spriteData.id).Singular,
+        ja: BNpcName_ja.get(spriteData.id).Singular,
+        cn: BNpcName_cn.get(spriteData.id).Singular,
+        ko: BNpcName_ko.get(spriteData.id).Singular
+      },
       locations: spriteData.locations.map((location: any) => ({
         level: location.level,
         x: location.coords[0],

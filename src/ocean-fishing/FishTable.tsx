@@ -16,7 +16,7 @@ import ChecklistCheckmark from './ChecklistCheckmark'
 import WeatherIcon from '../skywatcher/WeatherIcon'
 import { FishingSpot } from './ffxiv-ocean-fishing/data'
 import { isBaitRequired } from './utils'
-import { translate } from '../utils'
+import translate from '../translate'
 import { useTranslation } from '../i18n'
 
 const useStyles = makeStyles(theme => ({
@@ -67,7 +67,7 @@ const FishTable = ({ fishingSpots, time }: Props): React.ReactElement => {
     <TableContainer>
       <Table size='small' className={classes.table}>
         {fishingSpots.map(fishingSpot => {
-          const isSpectral = /spectral/i.test(fishingSpot.placeName.name_en)
+          const isSpectral = /spectral/i.test(fishingSpot.placeName.name.en)
           return (
             <React.Fragment key={fishingSpot.id}>
               <TableHead>

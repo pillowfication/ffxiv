@@ -22,7 +22,7 @@ import ChecklistCheckmark from './ChecklistCheckmark'
 import WeatherIcon from '../skywatcher/WeatherIcon'
 import { Fish } from './ffxiv-ocean-fishing/data'
 import { getBaitGroup, subtextBiteTime } from './utils'
-import { translate } from '../utils'
+import translate from '../translate'
 import { useTranslation } from '../i18n'
 
 function getImgUrl (fish: Fish): string {

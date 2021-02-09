@@ -11,8 +11,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/Checkbox'
 import Section from '../Section'
 import bozja from './ffxiv-bozja/data/bozja.json'
+import translate from '../translate'
 import { useTranslation } from '../i18n'
-import { translate } from '../utils'
 
 type SpriteType = 'wind' | 'earth' | 'lightning' | 'water'
 
@@ -192,7 +192,7 @@ const Map = (): React.ReactElement => {
                         iconSize: [32, 32]
                       })}
                     >
-                      {showMapLabels && mapMarker.placeName_subtext_en !== '' && (
+                      {showMapLabels && (
                         <Tooltip
                           permanent
                           direction={getDirection(mapMarker.subtextOrientation)}

@@ -12,7 +12,7 @@ import RouteInformationAll from './RouteInformationAll'
 import { calculateVoyages, getStopTimes, Dest, Time, DestTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 import { timeUntil, upperFirst } from './utils'
-import { translate } from '../utils'
+import translate from '../translate'
 import { useTranslation } from '../i18n'
 
 const useStyles = makeStyles(theme => ({
@@ -71,7 +71,7 @@ const RouteInformation = ({ now, route }: Props): React.ReactElement => {
             {upperFirst(translate(locale, maps.STOP_MAP[route[0] as Dest].placeName_sub, 'name_noArticle', 'name'))}
             <span className={classes.headerTime}>{maps.TIME_MAP[route[1] as Time]}</span>
             <Typography display='inline' className={classes.headerSub}>
-              {timeUntil(now, next, { t, full: true, locale: locale })}
+              {timeUntil(now, next, { t, full: true, locale })}
             </Typography>
           </Grid>
           <Grid item xs={12} md={4}>

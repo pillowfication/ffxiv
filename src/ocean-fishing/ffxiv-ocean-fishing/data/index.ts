@@ -10,11 +10,12 @@ import lodestoneData from './lodestone-data.json'
 
 import { Time } from '../src/types'
 import { Weather } from '../../../skywatcher/ffxiv-skywatcher/src/types'
+import { Translatable } from '../../../translate'
 
 const baitMap: Record<string, number> = Object.values(_baits)
-  .reduce((acc, curr) => { acc[curr.name_en] = curr; return acc }, {})
+  .reduce((acc, curr) => { acc[curr.name.en] = curr; return acc }, {})
 const fishMap: Record<string, number> = Object.values(_fishes)
-  .reduce((acc, curr) => { acc[curr.name_en] = curr; return acc }, {})
+  .reduce((acc, curr) => { acc[curr.name.en] = curr; return acc }, {})
 const spreadsheetMap: Record<string, any> = Object.values<any>(spreadsheetData)
   .flatMap(x => x)
   .reduce((acc, curr) => { acc[curr.name] = curr; return acc }, {})
@@ -49,18 +50,8 @@ export const fishingSpots = _fishingSpots as any as Record<number, FishingSpot>
 
 export interface PlaceName {
   id: number
-  name_en: string
-  name_de: string
-  name_fr: string
-  name_ja: string
-  name_cn: string
-  name_ko: string
-  name_noArticle_en: string
-  name_noArticle_de: string
-  name_noArticle_fr: string
-  name_noArticle_ja: string
-  name_noArticle_cn: string
-  name_noArticle_ko: string
+  name: Translatable
+  name_noArticle: Translatable
 }
 
 export const placeNames = _placeNames as Record<number, PlaceName>
@@ -68,18 +59,8 @@ export const placeNames = _placeNames as Record<number, PlaceName>
 export interface Fish {
   id: number
   icon: number
-  name_en: string
-  name_de: string
-  name_fr: string
-  name_ja: string
-  name_cn: string
-  name_ko: string
-  description_en: string
-  description_de: string
-  description_fr: string
-  description_ja: string
-  description_cn: string
-  description_ko: string
+  name: Translatable
+  description: Translatable
   contentBonus: ContentBonus | null
   biteTimes: {
     [key: number]: [number, number]
@@ -128,7 +109,7 @@ for (const fish of Object.values<any>(_fishes)) {
       intuition: null
     }
   } else {
-    const spreadsheetData = getMapped(spreadsheetMap, fish.name_en)
+    const spreadsheetData = getMapped(spreadsheetMap, fish.name.en)
     fish.spreadsheetData = {
       bait: getMapped(baitMap, spreadsheetData.bait),
       points: spreadsheetData.points,
@@ -166,12 +147,7 @@ export const fishes = _fishes as any as Record<number, Fish>
 export interface Bait {
   id: number
   icon: number
-  name_en: string
-  name_de: string
-  name_fr: string
-  name_ja: string
-  name_cn: string
-  name_ko: string
+  name: Translatable
 }
 
 export const baits = _baits as Record<number, Bait>
@@ -179,18 +155,8 @@ export const baits = _baits as Record<number, Bait>
 export interface ContentBonus {
   id: number
   icon: number
-  objective_en: string
-  objective_de: string
-  objective_fr: string
-  objective_ja: string
-  objective_cn: string
-  objective_ko: string
-  requirement_en: string
-  requirement_de: string
-  requirement_fr: string
-  requirement_ja: string
-  requirement_cn: string
-  requirement_ko: string
+  objective: Translatable
+  requirement: Translatable
   bonus: number
   order: number
 }
@@ -200,24 +166,9 @@ export const contentBonuses = _contentBonuses as Record<number, ContentBonus>
 export interface Achievement {
   id: number
   icon: number
-  name_en: string
-  name_de: string
-  name_fr: string
-  name_ja: string
-  name_cn: string
-  name_ko: string
-  description_en: string
-  description_de: string
-  description_fr: string
-  description_ja: string
-  description_cn: string
-  description_ko: string
-  reward_en: string
-  reward_de: string
-  reward_fr: string
-  reward_ja: string
-  reward_cn: string
-  reward_ko: string
+  name: Translatable
+  description: Translatable
+  reward: Translatable
   order: number
 }
 

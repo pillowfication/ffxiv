@@ -22,7 +22,7 @@ import FruitIcon from '../../src/chocobo-color/FruitIcon'
 import StainButton from '../../src/chocobo-color/StainButton'
 import { stains, fruits } from '../../src/chocobo-color/ffxiv-chocobo-color/data'
 import { fruitValues, Fruit, Color } from '../../src/chocobo-color/ffxiv-chocobo-color'
-import { translate } from '../../src/utils'
+import translate from '../../src/translate'
 import { useTranslation } from '../../src/i18n'
 
 // const MATRIX_SOLUTION = calculateFruitsMatrix(stains[1].color, stains[6].color).fruits

@@ -13,7 +13,8 @@ import OceanFishIcon from './OceanFishIcon'
 import { getStopTimes, calculateVoyages, calculateVoyagesOld, Dest, Time, DestTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 import { getBlueFish, timeUntil, upperFirst } from './utils'
-import { toTimeString, translate } from '../utils'
+import { toTimeString } from '../utils'
+import translate from '../translate'
 import { useTranslation } from '../i18n'
 
 const DATE_FORMAT: Intl.DateTimeFormatOptions = { month: '2-digit', day: '2-digit' }

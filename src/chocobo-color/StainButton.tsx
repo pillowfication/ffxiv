@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Tooltip from '@material-ui/core/Tooltip'
-import { translate } from '../utils'
+import translate from '../translate'
 import { Stain, Color } from './ffxiv-chocobo-color'
 import { useTranslation } from '../i18n'
 

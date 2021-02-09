@@ -46,12 +46,14 @@ const placeNames = Object.values<any>(territories)
     const placeName_ko = PlaceName_ko.get(placeNameId)
     return {
       id: placeNameId,
-      name_en: placeName_en.Name,
-      name_de: placeName_de.Name,
-      name_fr: placeName_fr.Name,
-      name_ja: placeName_ja.Name,
-      name_cn: placeName_cn.Name,
-      name_ko: placeName_ko.Name
+      name: {
+        en: placeName_en.Name,
+        de: placeName_de.Name,
+        fr: placeName_fr.Name,
+        ja: placeName_ja.Name,
+        cn: placeName_cn.Name,
+        ko: placeName_ko.Name
+      }
     }
   })
   .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})
@@ -70,18 +72,22 @@ const weathers = Weather_en.data
     return {
       id: weatherId,
       icon: +weather_en.Icon,
-      name_en: weather_en.Name,
-      name_de: weather_de.Name,
-      name_fr: weather_fr.Name,
-      name_ja: weather_ja.Name,
-      name_cn: weather_cn.Name,
-      name_ko: weather_ko.Name,
-      description_en: weather_en.Description,
-      description_de: weather_de.Description,
-      description_fr: weather_fr.Description,
-      description_ja: weather_ja.Description,
-      description_cn: weather_cn.Description,
-      description_ko: weather_ko.Description
+      name: {
+        en: weather_en.Name,
+        de: weather_de.Name,
+        fr: weather_fr.Name,
+        ja: weather_ja.Name,
+        cn: weather_cn.Name,
+        ko: weather_ko.Name
+      },
+      description: {
+        en: weather_en.Description,
+        de: weather_de.Description,
+        fr: weather_fr.Description,
+        ja: weather_ja.Description,
+        cn: weather_cn.Description,
+        ko: weather_ko.Description
+      }
     }
   })
   .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})

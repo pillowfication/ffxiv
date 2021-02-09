@@ -5,7 +5,7 @@ import Section from '../Section'
 import OceanFishIcon from './OceanFishIcon'
 import { achievements, contentBonuses, ContentBonus } from './ffxiv-ocean-fishing/data'
 import { cleanRequirement } from './utils'
-import { translate } from '../utils'
+import translate from '../translate'
 import { useTranslation } from '../i18n'
 
 const contentBonusMap: Record<number, ContentBonus> = {

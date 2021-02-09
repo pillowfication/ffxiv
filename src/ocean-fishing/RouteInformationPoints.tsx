@@ -7,7 +7,7 @@ import { fishingSpots, Fish } from './ffxiv-ocean-fishing/data'
 import { Stop, Time, StopTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 import { getBlueFish, getBaitGroup } from './utils'
-import { translate } from '../utils'
+import translate from '../translate'
 import { useTranslation } from '../i18n'
 
 const POINTS_THRESHOLD = 400

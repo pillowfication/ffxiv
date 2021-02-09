@@ -10,7 +10,7 @@ import CheckIcon from '@material-ui/icons/Check'
 import FruitIcon from './FruitIcon'
 import { Fruit } from './ffxiv-chocobo-color'
 import { fruits } from './ffxiv-chocobo-color/data'
-import { translate } from '../utils'
+import translate from '../translate'
 import { useTranslation } from '../i18n'
 
 const useStyles = makeStyles(theme => ({

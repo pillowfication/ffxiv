@@ -19,7 +19,7 @@ import { fishingSpots, fishes, achievements } from './ffxiv-ocean-fishing/data'
 import { calculateVoyages, calculateVoyagesOld, DestTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 import { upperFirst } from './utils'
-import { translate } from '../utils'
+import translate from '../translate'
 import { useTranslation } from '../i18n'
 
 const useStyles = makeStyles(theme => ({

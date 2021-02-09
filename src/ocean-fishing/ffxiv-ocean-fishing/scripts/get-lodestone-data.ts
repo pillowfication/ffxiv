@@ -45,7 +45,7 @@ async function getLodestoneData (query: string): Promise<any> {
     if (fish.id === 0) {
       lodestoneData[fish.id] = null
     } else {
-      lodestoneData[fish.id] = await getLodestoneData(fish.name_en)
+      lodestoneData[fish.id] = await getLodestoneData(fish.name.en)
     }
   }
 

@@ -84,12 +84,12 @@ console.log('Writing to csv...')
 const csv = csvStringify(
   Object.values(fishes)
     .map(fish => Object.values(baits).reduce(
-      (acc, bait) => { acc[bait.name_en] = _getBiteTime(fish.id, bait.id); return acc },
-      { name: fish.name_en }
+      (acc, bait) => { acc[bait.name.en] = _getBiteTime(fish.id, bait.id); return acc },
+      { name: fish.name.en }
     )),
   {
     header: true,
-    columns: ['name', ...Object.values(baits).map(bait => bait.name_en)]
+    columns: ['name', ...Object.values(baits).map(bait => bait.name.en)]
   }
 )
 fs.writeFileSync(CSV_OUTPUT, csv)

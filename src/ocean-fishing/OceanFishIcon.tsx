@@ -7,7 +7,7 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import OceanFishPopper from './OceanFishPopper'
 import { fishes, baits, achievements, contentBonuses } from './ffxiv-ocean-fishing/data'
 import ICONS_MAP from './ffxiv-ocean-fishing/data/icons-map.json'
-import { translate } from '../utils'
+import translate from '../translate'
 import { useTranslation } from '../i18n'
 
 const ICON_ROWS = ICONS_MAP.length
@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => {
   const styles = {
     container: {
       display: 'inline-block',
-      position: 'relative' as 'relative',
+      position: 'relative' as const,
       margin: theme.spacing(0.1),
       verticalAlign: 'middle'
     },
@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => {
       height: ({ size }: { size: number }) => size * 1.2
     },
     oceanFishIcon: {
-      position: 'absolute' as 'absolute',
+      position: 'absolute' as const,
       top: ({ size }: { size: number }) => size * 0.1,
       left: ({ size }: { size: number }) => size * 0.1,
       width: ({ size }: { size: number }) => size,
@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => {
       backgroundSize: `${ICON_COLS * 100}% ${ICON_ROWS * 100}%`
     },
     itemCover: {
-      position: 'absolute' as 'absolute',
+      position: 'absolute' as const,
       top: ({ size }: { size: number }) => size * 0.05,
       left: 0,
       width: ({ size }: { size: number }) => size * 1.2,
@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => {
       backgroundImage: 'url("/images/ocean-fishing/item-cover.png")'
     },
     achievementCover: {
-      position: 'absolute' as 'absolute',
+      position: 'absolute' as const,
       top: 0,
       left: 0,
       width: ({ size }: { size: number }) => size * 1.2,
@@ -54,7 +54,7 @@ const useStyles = makeStyles(theme => {
       cursor: 'pointer'
     },
     badge: {
-      position: 'absolute' as 'absolute',
+      position: 'absolute' as const,
       top: -5,
       left: '100%',
       marginLeft: -10

@@ -1,6 +1,8 @@
 import _stains from './stains.json'
 import _fruits from './fruits.json'
 
+import { Translatable } from '../../../translate'
+
 function clampRGB (value: number): number {
   return value < 0 ? 0 : value > 255 ? 255 : value
 }
@@ -46,12 +48,7 @@ export enum Shade {
 export interface Stain {
   id: number
   color: Color
-  name_en: string
-  name_de: string
-  name_fr: string
-  name_ja: string
-  name_cn: string
-  name_ko: string
+  name: Translatable
   shade: number
   shadeIndex: number
 }
@@ -65,24 +62,9 @@ export const stains = _stains as any as Record<number, Stain>
 export interface Fruit {
   id: number
   icon: number
-  name_en: string
-  name_de: string
-  name_fr: string
-  name_ja: string
-  name_cn: string
-  name_ko: string
-  singular_en: string
-  singular_de: string
-  singular_fr: string
-  singular_ja: string
-  singular_cn: string
-  singular_ko: string
-  plural_en: string
-  plural_de: string
-  plural_fr: string
-  plural_ja: string
-  plural_cn: string
-  plural_ko: string
+  name: Translatable
+  singular: Translatable
+  plural: Translatable
 }
 
 export const fruits = _fruits as Record<number, Fruit>

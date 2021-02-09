@@ -40,20 +40,3 @@ export function timeUntil (now: Date, then: Date, options: { full?: boolean, loc
     return diffString
   }
 }
-
-export function translate (locale: string, obj: any, ...keys: string[]): string {
-  if (obj == null) {
-    return `{${JSON.stringify(obj)}}`
-  }
-  for (const key of keys) {
-    const keyLocale = `${key}_${locale}`
-    if (obj[keyLocale] !== undefined && obj[keyLocale] !== '') return obj[keyLocale]
-  }
-
-  // Fallback to 'en'
-  if (locale !== 'en') {
-    return translate('en', obj, ...keys)
-  }
-
-  return `{[Object].${keys.join(',')}}`
-}

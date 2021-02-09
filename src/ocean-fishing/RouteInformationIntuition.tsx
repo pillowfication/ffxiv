@@ -7,7 +7,7 @@ import { Fish } from './ffxiv-ocean-fishing/data'
 import { Stop, StopTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 import { getBlueFish, getBaitGroup } from './utils'
-import { translate } from '../utils'
+import translate from '../translate'
 import { useTranslation } from '../i18n'
 
 interface Props {

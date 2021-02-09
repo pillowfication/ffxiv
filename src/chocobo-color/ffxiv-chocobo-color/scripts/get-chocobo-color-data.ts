@@ -33,12 +33,14 @@ const stains = Stain_en.data
         G: stain_en.Color.G,
         B: stain_en.Color.B
       },
-      name_en: stain_en.Name,
-      name_de: stain_de.Name,
-      name_fr: stain_fr.Name,
-      name_ja: stain_ja.Name,
-      name_cn: stain_cn.Name,
-      name_ko: stain_ko.Name,
+      name: {
+        en: stain_en.Name,
+        de: stain_de.Name,
+        fr: stain_fr.Name,
+        ja: stain_ja.Name,
+        cn: stain_cn.Name,
+        ko: stain_ko.Name
+      },
       shade: stain_en.Shade,
       shadeIndex: stain_en['<UNKNOWN_2>']
     }
@@ -66,24 +68,30 @@ const fruits = [
     return {
       id: itemId,
       icon: +item_en.Icon,
-      name_en: item_en.Name,
-      name_de: item_de.Name,
-      name_fr: item_fr.Name,
-      name_ja: item_ja.Name,
-      name_cn: item_cn.Name,
-      name_ko: item_ko.Name,
-      singular_en: item_en.Singular,
-      singular_de: item_de.Singular,
-      singular_fr: item_fr.Singular,
-      singular_ja: item_ja.Singular,
-      singular_cn: item_cn.Singular,
-      singular_ko: item_ko.Singular,
-      plural_en: item_en.Plural,
-      plural_de: item_de.Plural,
-      plural_fr: item_fr.Plural,
-      plural_ja: item_ja.Plural,
-      plural_cn: item_cn.Plural,
-      plural_ko: item_ko.Plural
+      name: {
+        en: item_en.Name,
+        de: item_de.Name,
+        fr: item_fr.Name,
+        ja: item_ja.Name,
+        cn: item_cn.Name,
+        ko: item_ko.Name
+      },
+      singular: {
+        en: item_en.Singular,
+        de: item_de.Singular,
+        fr: item_fr.Singular,
+        ja: item_ja.Singular,
+        cn: item_cn.Singular,
+        ko: item_ko.Singular
+      },
+      plural: {
+        en: item_en.Plural,
+        de: item_de.Plural,
+        fr: item_fr.Plural,
+        ja: item_ja.Plural,
+        cn: item_cn.Plural,
+        ko: item_ko.Plural
+      }
     }
   })
   .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})

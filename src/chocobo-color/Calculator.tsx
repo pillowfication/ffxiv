@@ -21,7 +21,7 @@ import {
   Fruit
 } from './ffxiv-chocobo-color'
 import { stains } from './ffxiv-chocobo-color/data'
-import { translate } from '../utils'
+import translate from '../translate'
 import { useTranslation } from '../i18n'
 
 const SHADES_MAP: Record<number, { shade: Shade, color: Color }> = {

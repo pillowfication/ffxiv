@@ -4,6 +4,8 @@ import _weathers from './weathers.json'
 import _weatherRates from './weather-rates.json'
 import _partition from './partition.json'
 
+import { Translatable } from '../../../translate'
+
 export interface Territory {
   id: number
   placeName: PlaceName
@@ -23,12 +25,7 @@ export const territories = _territories as any as Record<number, Territory>
 
 export interface PlaceName {
   id: number
-  name_en: string
-  name_de: string
-  name_fr: string
-  name_ja: string
-  name_cn: string
-  name_ko: string
+  name: Translatable
 }
 
 export const placeNames = _placeNames as Record<number, PlaceName>
@@ -36,18 +33,8 @@ export const placeNames = _placeNames as Record<number, PlaceName>
 export interface Weather {
   id: number
   icon: number | null
-  name_en: string
-  name_de: string
-  name_fr: string
-  name_ja: string
-  name_cn: string
-  name_ko: string
-  description_en: string
-  description_de: string
-  description_fr: string
-  description_ja: string
-  description_cn: string
-  description_ko: string
+  name: Translatable
+  description: Translatable
 }
 
 export const weathers = _weathers as Record<number, Weather>

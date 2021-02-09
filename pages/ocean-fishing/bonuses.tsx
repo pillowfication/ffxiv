@@ -19,12 +19,12 @@ import Section from '../../src/Section'
 import OceanFishIcon from '../../src/ocean-fishing/OceanFishIcon'
 import { contentBonuses, achievements } from '../../src/ocean-fishing/ffxiv-ocean-fishing/data'
 import { cleanObjective, cleanRequirement } from '../../src/ocean-fishing/utils'
-import { translate } from '../../src/utils'
+import translate from '../../src/translate'
 import { useTranslation } from '../../src/i18n'
 
 const CONTENT_BONUSES = Object.values(contentBonuses)
   .sort((a, b) => a.order - b.order)
-  .filter(contentBonus => contentBonus.id !== 0 && !contentBonus.requirement_en.includes('Target number adjusted for party size'))
+  .filter(contentBonus => contentBonus.id !== 0 && !contentBonus.requirement.en.includes('Target number adjusted for party size'))
 
 const useStyles = makeStyles(theme => ({
   contentBonusesTable: {

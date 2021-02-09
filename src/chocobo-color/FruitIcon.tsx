@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Tooltip from '@material-ui/core/Tooltip'
 import { fruits } from './ffxiv-chocobo-color/data'
 import ICONS_MAP from './ffxiv-chocobo-color/data/fruits-icons-map.json'
-import { translate } from '../utils'
+import translate from '../translate'
 import { useTranslation } from '../i18n'
 
 const useStyles = makeStyles(() => {
