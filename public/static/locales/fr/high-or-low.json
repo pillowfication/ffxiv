@@ -8,6 +8,6 @@
     "low": "You are Low ({{chance}}%)",
     "same": "You are High or Low ({{chance}}%)"
   },
-  "reset": "Reset",
+  "reset": "Redémarrer",
   "about": "À propos"
 }

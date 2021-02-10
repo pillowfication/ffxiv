@@ -8,7 +8,7 @@
     "repeatedDigits": "Cells cannot repeat digits.",
     "tooManyDigits": "Too many cells have been filled."
   },
-  "expectedValue": "Expected value",
+  "expectedValue": "기댓값",
   "reset": "Reset",
   "about": "정보"
 }
