@@ -156,7 +156,7 @@ const About = (): React.ReactElement => {
   const locale = i18n.language
 
   return (
-    <Page title={`${t('_title')} - ${t('aboutPage._title')}`}>
+    <Page title={[t('_title'), t('aboutPage._title')]}>
       <Section>
         <Typography paragraph>
           Your chocobo’s plumage can be modified by feeding it 6 possible fruits. Each fruit changes the chocobo’s RGB values according to the following table:

@@ -37,7 +37,7 @@ const About = (): React.ReactElement => {
   const { t } = useTranslation('ocean-fishing')
 
   return (
-    <Page title={`${t('_title')} - ${t('aboutPage._title')}`}>
+    <Page title={[t('_title'), t('aboutPage._title')]}>
       {mathJaxRequire('cancel')}
       <Section title={t('aboutPage.data')}>
         <Typography paragraph>

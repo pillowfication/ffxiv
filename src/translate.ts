@@ -16,5 +16,5 @@ export default function translate<T, K extends keyof { [P in keyof T as T[P] ext
     return translate('en', obj, ...keys)
   }
 
-  return `{[Object].${keys.join(',')}}`
+  return `{${keys.join(',')}}`
 }

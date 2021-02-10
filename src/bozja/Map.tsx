@@ -192,7 +192,7 @@ const Map = (): React.ReactElement => {
                         iconSize: [32, 32]
                       })}
                     >
-                      {showMapLabels && (
+                      {showMapLabels && mapMarker.placeName_subtext.en !== '' && (
                         <Tooltip
                           permanent
                           direction={getDirection(mapMarker.subtextOrientation)}

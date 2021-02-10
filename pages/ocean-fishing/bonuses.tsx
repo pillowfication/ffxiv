@@ -172,7 +172,7 @@ const Bonuses = (): React.ReactElement => {
   }
 
   return (
-    <Page title={`${t('_title')} - ${t('bonusesPage._title')}`}>
+    <Page title={[t('_title'), t('bonusesPage._title')]}>
       <Section>
         <TableContainer>
           <Table className={classes.contentBonusesTable}>

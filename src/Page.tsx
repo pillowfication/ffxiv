@@ -7,7 +7,7 @@ import Footer from '../src/Footer'
 import { useTranslation } from '../src/i18n'
 
 interface Props {
-  title?: string
+  title: string | string[]
   description?: string
   seo?: object
   og?: object
@@ -17,19 +17,21 @@ interface Props {
 const Page = ({ title, description, seo = {}, og = {}, children }: Props): React.ReactElement => {
   const router = useRouter()
   const { i18n } = useTranslation('common')
+  const path = typeof title === 'string' ? title : title.join(' | ')
+  const tail = typeof title === 'string' ? title : title[title.length - 1]
 
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>{path}</title>
       </Head>
       <NextSeo
-        title={title}
+        title={path}
         description={description}
         canonical={`https://ffxiv.pf-n.co${router.asPath}`}
         openGraph={{
           url: `https://ffxiv.pf-n.co${router.asPath}`,
-          title,
+          title: path,
           description,
           locale: i18n.language,
           site_name: 'Lulu’s Tools',
@@ -37,7 +39,7 @@ const Page = ({ title, description, seo = {}, og = {}, children }: Props): React
         }}
         {...seo}
       />
-      <Typography variant='h1' gutterBottom>{title}</Typography>
+      <Typography variant='h1' gutterBottom>{tail}</Typography>
       {children}
       <Footer />
     </>

@@ -35,7 +35,7 @@ const Fish = (): React.ReactElement => {
   }
 
   return (
-    <Page title={`${t('_title')} - ${t('fishPage._title')}`}>
+    <Page title={[t('_title'), t('fishPage._title')]}>
       <ChecklistContext.Provider value={{ checklist, setChecklist }}>
         <Section>
           <Typography paragraph>
