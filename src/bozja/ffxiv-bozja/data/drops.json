@@ -62,7 +62,7 @@
       "loot": "preparation",
       "count": 1,
       "rate": 100,
-      "condition": "gales"
+      "condition": "wind"
     },
     {
       "name": "Bozjan geshunpest",

@@ -5,11 +5,53 @@ import TableHead from '@material-ui/core/TableHead'
 import TableBody from '@material-ui/core/TableBody'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
+import RankIcon from './RankIcon'
 import Section from '../Section'
+import WeatherIcon from '../skywatcher/WeatherIcon'
+import { Weather } from '../skywatcher/ffxiv-skywatcher/src/types'
 import { formatMonster } from './utils'
 import bozja from './ffxiv-bozja/data/bozja.json'
+import { upperFirst } from '../utils'
 import translate from '../translate'
 import { useTranslation } from '../i18n'
+
+const conditionMap: Record<string, React.ReactFragment> = {
+  dust: <WeatherIcon weather={Weather.DustStorms} />,
+  rain: <WeatherIcon weather={Weather.Rain} />,
+  thunder: <WeatherIcon weather={Weather.Thunder} />,
+  wind: <WeatherIcon weather={Weather.Wind} />,
+  night: 'Night'
+}
+
+function cleanFragment (name: string): string {
+  return upperFirst(name.replace(/^(Forgotten Fragment of |Unbegutachteter Frontsplitter (der|des) |Éclat oublié non identifié (de |d')|未鑑定ロストシャード:)/, ''))
+}
+
+function parseActions (description: string, locale: string): React.ReactElement | React.ReactElement[] {
+  let actions: string[] | undefined
+  switch (locale) {
+    case 'en':
+    case 'cn': // Fallback
+    case 'ko': // Fallback
+      actions = description.match(/Potential memories contained: (.*)$/)?.[1].split(', ')
+      break
+    case 'de':
+      actions = description.match(/Kann folgende Verschollene Kommandos enthalten: (.*)$/)?.[1].split(', ')
+      break
+    case 'fr':
+      actions = description.match(/Son identification peut octroyer (.*?)\./)?.[1].split(/(?:, | ou )/)
+      break
+    case 'ja':
+      actions = description.match(/鑑定結果候補:(.*)$/)?.[1].split('／')
+      break
+  }
+
+  if (actions === undefined) {
+    return <div style={{ whiteSpace: 'pre-wrap' }}>{description}</div>
+  } else {
+    return actions.map((action, index) => <div key={index}>{action}</div>)
+  }
+}
 
 const DropsTable = (): React.ReactElement => {
   const { i18n } = useTranslation('bozja')
@@ -23,7 +65,8 @@ const DropsTable = (): React.ReactElement => {
             <React.Fragment key={zone}>
               <TableHead>
                 <TableRow>
-                  <TableCell align='center'>Loot</TableCell>
+                  <TableCell align='center'>Fragment</TableCell>
+                  <TableCell align='center'>Actions</TableCell>
                   <TableCell align='center'>Count</TableCell>
                   <TableCell align='center'>Rate</TableCell>
                   <TableCell align='center'>Monster</TableCell>
@@ -38,16 +81,32 @@ const DropsTable = (): React.ReactElement => {
                   .map(loot =>
                     (bozja.drops[zone] as any[])
                       .filter(datum => datum.loot === loot)
-                      .sort((a, b) => a.monster - b.monster)
+                      .sort((a, b) => {
+                        const aR = a.rank === 'S' ? 6 : a.rank
+                        const bR = b.rank === 'S' ? 6 : b.rank
+                        return aR === bR ? a.monster - b.monster : aR - bR
+                      })
                       .map((datum, index, array) =>
                         <TableRow key={index}>
                           {index === 0 && (
-                            <TableCell rowSpan={array.length} align='center'>{translate(locale, bozja.items[loot], 'name')}</TableCell>
+                            <>
+                              <TableCell rowSpan={array.length} align='center'>
+                                {cleanFragment(translate(locale, bozja.items[loot], 'name'))}
+                              </TableCell>
+                              <TableCell rowSpan={array.length}>
+                                {loot !== 31135 && (
+                                  parseActions(translate(locale, bozja.items[loot], 'description'), locale)
+                                )}
+                              </TableCell>
+                            </>
                           )}
                           <TableCell align='center'>×{datum.count}</TableCell>
                           <TableCell align='center'>{datum.rate}%</TableCell>
-                          <TableCell align='center'>{formatMonster(translate(locale, datum, 'name'), locale)}</TableCell>
-                          <TableCell align='center'>{datum.condition}</TableCell>
+                          <TableCell>
+                            <RankIcon rank={datum.rank} />
+                            {formatMonster(translate(locale, datum, 'name'), locale)}
+                          </TableCell>
+                          <TableCell align='center'>{conditionMap[datum.condition]}</TableCell>
                         </TableRow>
                       )
                   )}

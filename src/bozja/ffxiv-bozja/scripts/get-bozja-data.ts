@@ -149,6 +149,7 @@ const bozja = {
           cn: BNpcName_cn.get(monsterId).Singular,
           ko: BNpcName_ko.get(monsterId).Singular
         },
+        rank: datum.rank,
         loot: lootId,
         count: datum.count,
         rate: datum.rate,
