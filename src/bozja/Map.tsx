@@ -10,6 +10,7 @@ import FormGroup from '@material-ui/core/FormGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/Checkbox'
 import Section from '../Section'
+import { formatMonster } from './utils'
 import bozja from './ffxiv-bozja/data/bozja.json'
 import translate from '../translate'
 import { useTranslation } from '../i18n'
@@ -59,26 +60,6 @@ function getSpriteIcon (spriteType: SpriteType): number {
     case 'earth': return 60660
     case 'lightning': return 60661
     case 'water': return 60662
-  }
-}
-
-function formatMonster (label: string, locale: string): string {
-  // TODO: weird bracket stuffs in German
-  switch (locale) {
-    case 'en':
-    case 'de':
-    case 'ko': // For fallback
-      return label.split(' ').map(word => {
-        if (['of', 'des'].includes(word)) {
-          return word
-        } else {
-          return word[0].toUpperCase() + word.slice(1)
-        }
-      }).join(' ')
-    case 'fr':
-      return label[0].toUpperCase() + label.slice(1)
-    default:
-      return label
   }
 }
 
@@ -173,7 +154,7 @@ const Map = (): React.ReactElement => {
               maxBounds={[[1, 1], [42, 42]]}
               attributionControl={false}
               crs={CRS.Simple}
-              zoomSnap={0.1}
+              zoomSnap={0}
               className={classes.container}
             >
               <ImageOverlay

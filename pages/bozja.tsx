@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic'
 import Page from '../src/Page'
 import { useTranslation } from '../src/i18n'
 import UpcomingWeathers from '../src/bozja/UpcomingWeathers'
+import DropsTable from '../src/bozja/DropsTable'
 
 const Map = dynamic(
   async () => await import('../src/bozja/Map'),
@@ -16,6 +17,7 @@ const Bozja = (): React.ReactElement => {
     <Page title={t('_title')} description={t('_description')}>
       <UpcomingWeathers />
       <Map />
+      <DropsTable />
     </Page>
   )
 }

@@ -40,3 +40,7 @@ export function timeUntil (now: Date, then: Date, options: { full?: boolean, loc
     return diffString
   }
 }
+
+export function upperFirst (string: string): string {
+  return string[0].toUpperCase() + string.slice(1)
+}
