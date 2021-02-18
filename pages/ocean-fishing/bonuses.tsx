@@ -39,10 +39,10 @@ const useStyles = makeStyles(theme => ({
     padding: 10
   },
   unchecked: {
-    opacity: 0.4
+    opacity: 0.33
   },
   checked: {
-    color: 'green'
+    color: theme.palette.success.main
   },
   bonusContainer: {
     margin: theme.spacing(2, 0),
