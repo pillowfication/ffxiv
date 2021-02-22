@@ -1,6 +1,6 @@
 {
   "_title": "オーシャンフィッシング",
-  "_description": "Schedule for upcoming ocean fishing voyages with information on blue fish, achievements, and more.",
+  "_description": "運行表および伝説魚やアチーブメントに関する情報など",
   "upcomingVoyages": "運行表",
   "numberOfRows": "表示する行数",
   "filterRoute": "行き先の絞り込み",
@@ -12,33 +12,33 @@
   "showPointsFish": "表示：高得点の魚",
   "showAllFish": "表示：すべての魚",
   "fish": "魚",
-  "requiredBait": "Required bait",
+  "requiredBait": "必須釣り餌",
   "aboutPage": {
-    "_title": "ついて",
+    "_title": "概要",
     "data": "データ",
     "algorithm": "アルゴリズム"
   },
   "fishPage": {
-    "_title": "魚"
+    "_title": "魚類"
   },
   "bonusesPage": {
     "_title": "ボーナス",
-    "objective": "Objective",
-    "requirement": "Requirement",
-    "bonus": "Bonus",
-    "calculator": "Calculator",
-    "basePoints": "Base Points"
+    "objective": "目標",
+    "requirement": "達成条件",
+    "bonus": "ボーナス",
+    "calculator": "合計釣果点の計算",
+    "basePoints": "基本釣果点"
   },
   "routeInfo": {
     "time": "受付開始時間",
     "route": "行き先",
     "objectives": "狙い目",
     "boardingNow": "乗船受付中",
-    "enRoute": "出航中"
+    "enRoute": "出港中"
   },
   "fishInfo": {
     "bait": "釣り餌",
-    "rating": "Rating",
+    "rating": "ランク",
     "tug": "引き",
     "biteTime": "食い付き時間",
     "points": "釣果点",
