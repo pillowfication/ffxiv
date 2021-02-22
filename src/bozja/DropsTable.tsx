@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Paper from '@material-ui/core/Paper'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
 import TableContainer from '@material-ui/core/TableContainer'
 import Table from '@material-ui/core/Table'
 import TableHead from '@material-ui/core/TableHead'
@@ -55,66 +58,74 @@ function parseActions (description: string, locale: string): React.ReactElement 
 
 const DropsTable = (): React.ReactElement => {
   const { i18n } = useTranslation('bozja')
+  const [tab, setTab] = useState(0)
   const locale = i18n.language
+
+  const handleChangeTab = (_: any, value: number): void => {
+    setTab(value)
+  }
 
   return (
     <Section>
-      <TableContainer>
-        <Table size='small'>
-          {['zone1', 'zone2', 'zone3'].map(zone =>
-            <React.Fragment key={zone}>
-              <TableHead>
-                <TableRow>
-                  <TableCell align='center'>Fragment</TableCell>
-                  <TableCell align='center'>Actions</TableCell>
-                  <TableCell align='center'>Count</TableCell>
-                  <TableCell align='center'>Rate</TableCell>
-                  <TableCell align='center'>Monster</TableCell>
-                  <TableCell align='center'>Conditions</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {(bozja.drops[zone] as any[])
-                  .map(datum => datum.loot)
-                  .sort((a, b) => a - b)
-                  .filter((loot, index, array) => loot !== array[index + 1])
-                  .map(loot =>
-                    (bozja.drops[zone] as any[])
-                      .filter(datum => datum.loot === loot)
-                      .sort((a, b) => {
-                        const aR = a.rank === 'S' ? 6 : a.rank
-                        const bR = b.rank === 'S' ? 6 : b.rank
-                        return aR === bR ? a.monster - b.monster : aR - bR
-                      })
-                      .map((datum, index, array) =>
-                        <TableRow key={index}>
-                          {index === 0 && (
-                            <>
-                              <TableCell rowSpan={array.length} align='center'>
-                                {cleanFragment(translate(locale, bozja.items[loot], 'name'))}
-                              </TableCell>
-                              <TableCell rowSpan={array.length}>
-                                {loot !== 31135 && (
-                                  parseActions(translate(locale, bozja.items[loot], 'description'), locale)
-                                )}
-                              </TableCell>
-                            </>
-                          )}
-                          <TableCell align='center'>×{datum.count}</TableCell>
-                          <TableCell align='center'>{datum.rate}%</TableCell>
-                          <TableCell>
-                            <RankIcon rank={datum.rank} />
-                            {formatMonster(translate(locale, datum, 'name'), locale)}
-                          </TableCell>
-                          <TableCell align='center'>{conditionMap[datum.condition]}</TableCell>
-                        </TableRow>
-                      )
-                  )}
-              </TableBody>
-            </React.Fragment>
-          )}
-        </Table>
-      </TableContainer>
+      <Paper>
+        <Tabs variant='fullWidth' value={tab} onChange={handleChangeTab}>
+          <Tab label='1. Southern Zone' />
+          <Tab label='2. Central Zone' />
+          <Tab label='3. Northern Zone' />
+        </Tabs>
+        <TableContainer>
+          <Table size='small'>
+            <TableHead>
+              <TableRow>
+                <TableCell align='center'>Fragment</TableCell>
+                <TableCell align='center'>Actions</TableCell>
+                <TableCell align='center'>Count</TableCell>
+                <TableCell align='center'>Rate</TableCell>
+                <TableCell align='center'>Monster</TableCell>
+                <TableCell align='center'>Conditions</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {(bozja.drops[`zone${tab + 1}`] as any[])
+                .map(datum => datum.loot)
+                .sort((a, b) => a - b)
+                .filter((loot, index, array) => loot !== array[index + 1])
+                .map(loot =>
+                  (bozja.drops[`zone${tab + 1}`] as any[])
+                    .filter(datum => datum.loot === loot)
+                    .sort((a, b) => {
+                      const aR = a.rank === 'S' ? 6 : a.rank
+                      const bR = b.rank === 'S' ? 6 : b.rank
+                      return aR === bR ? a.monster - b.monster : aR - bR
+                    })
+                    .map((datum, index, array) =>
+                      <TableRow key={index}>
+                        {index === 0 && (
+                          <>
+                            <TableCell rowSpan={array.length} align='center'>
+                              {cleanFragment(translate(locale, bozja.items[loot], 'name'))}
+                            </TableCell>
+                            <TableCell rowSpan={array.length}>
+                              {loot !== 31135 && (
+                                parseActions(translate(locale, bozja.items[loot], 'description'), locale)
+                              )}
+                            </TableCell>
+                          </>
+                        )}
+                        <TableCell align='center'>×{datum.count}</TableCell>
+                        <TableCell align='center'>{datum.rate}%</TableCell>
+                        <TableCell>
+                          <RankIcon rank={datum.rank} />
+                          {formatMonster(translate(locale, datum, 'name'), locale)}
+                        </TableCell>
+                        <TableCell align='center'>{conditionMap[datum.condition]}</TableCell>
+                      </TableRow>
+                    )
+                )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Paper>
     </Section>
   )
 }
