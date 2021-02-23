@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
@@ -8,16 +8,49 @@ import TableHead from '@material-ui/core/TableHead'
 import TableBody from '@material-ui/core/TableBody'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
+import Select from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem'
 import OceanFishIcon from './OceanFishIcon'
 import TimeIcon from './TimeIcon'
 import Tug from './Tug'
 import StarBadge from './StarBadge'
 import ChecklistCheckmark from './ChecklistCheckmark'
 import WeatherIcon from '../skywatcher/WeatherIcon'
-import { FishingSpot } from './ffxiv-ocean-fishing/data'
+import { fishes, baits, FishingSpot } from './ffxiv-ocean-fishing/data'
 import { isBaitRequired } from './utils'
 import translate from '../translate'
 import { useTranslation } from '../i18n'
+
+const BAIT_IDS = [
+  29714,
+  29715,
+  29716,
+  29717,
+  2587,
+  2591,
+  2603,
+  2613,
+  2619,
+  27590,
+  29722,
+  29761,
+  29718,
+  32107
+]
+
+function getValidBaits (fishingSpots: FishingSpot[]): number[] {
+  return BAIT_IDS
+    .filter(baitId => {
+      for (const fishingSpot of fishingSpots) {
+        for (const fish of fishingSpot.fishes) {
+          if (fish.biteTimes[baitId] != null) {
+            return true
+          }
+        }
+      }
+      return false
+    })
+}
 
 const useStyles = makeStyles(theme => ({
   table: {
@@ -32,6 +65,16 @@ const useStyles = makeStyles(theme => ({
   stars: {
     marginTop: '-0.125em',
     opacity: 0.8
+  },
+  baitSelect: {
+    margin: theme.spacing(0.25, 1),
+    '& > div:first-child': {
+      padding: theme.spacing(0.33, 0.67),
+      fontSize: 'initial'
+    },
+    '& > svg': {
+      display: 'none'
+    }
   },
   baitCell: {
     whiteSpace: 'nowrap',
@@ -61,7 +104,13 @@ interface Props {
 const FishTable = ({ fishingSpots, time }: Props): React.ReactElement => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('ocean-fishing')
+  const [bait, setBait] = useState<number | 'all'>('all')
   const locale = i18n.language
+
+  const handleSelectBait = (event: React.ChangeEvent<HTMLSelectElement>): void => {
+    const baitId = event.target.value === 'all' ? 'all' : +event.target.value
+    setBait(baitId)
+  }
 
   return (
     <TableContainer>
@@ -75,7 +124,20 @@ const FishTable = ({ fishingSpots, time }: Props): React.ReactElement => {
                   <TableCell colSpan={3} align='center'>{t('fish')}</TableCell>
                   <TableCell align='center'>{t('fishInfo.bait')}</TableCell>
                   <TableCell align='center'>{t('fishInfo.tug')}</TableCell>
-                  <TableCell align='center'>{t('fishInfo.biteTime')}</TableCell>
+                  <TableCell align='center'>
+                    {t('fishInfo.biteTime')}:
+                    <Select
+                      variant='outlined'
+                      value={bait !== null ? bait : 'all'}
+                      onChange={handleSelectBait}
+                      className={classes.baitSelect}
+                    >
+                    <MenuItem value='all'>{t('fishInfo.allBaits')}</MenuItem>
+                      {getValidBaits(fishingSpots).map(baitId =>
+                        <MenuItem value={baitId}>{translate(locale, baits[baitId] || fishes[baitId], 'name')}</MenuItem>
+                      )}
+                    </Select>
+                  </TableCell>
                   <TableCell align='center'>{t('fishInfo.points')}</TableCell>
                   <TableCell align='center'>{t('fishInfo.doubleHook')}</TableCell>
                   <TableCell align='center'>{t(`fishInfo.${isSpectral ? 'timeOfDay' : 'weather'}`)}</TableCell>
@@ -135,8 +197,8 @@ const FishTable = ({ fishingSpots, time }: Props): React.ReactElement => {
                         )}
                       </TableCell>
                       <TableCell align='center'>
-                        {fish.biteTimes.all !== null && (
-                          <Typography>{fish.biteTimes.all[0] === fish.biteTimes.all[1] ? fish.biteTimes.all[0] : fish.biteTimes.all.join('-')}</Typography>
+                        {fish.biteTimes[bait] !== null && (
+                          <Typography>{fish.biteTimes[bait]?.[0] === fish.biteTimes[bait]?.[1] ? fish.biteTimes[bait]?.[0] : fish.biteTimes[bait]?.join('-')}</Typography>
                         )}
                       </TableCell>
                       <TableCell align='center'>

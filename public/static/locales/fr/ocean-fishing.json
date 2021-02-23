@@ -38,6 +38,7 @@
   },
   "fishInfo": {
     "bait": "Appât",
+    "allBaits": "All baits",
     "rating": "Rang",
     "tug": "Tire",
     "biteTime": "Temps à morsure",

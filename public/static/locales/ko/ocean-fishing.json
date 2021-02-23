@@ -38,6 +38,7 @@
   },
   "fishInfo": {
     "bait": "Bait",
+    "allBaits": "All baits",
     "rating": "Rating",
     "tug": "Tug",
     "biteTime": "Bite Time",

@@ -38,6 +38,7 @@
   },
   "fishInfo": {
     "bait": "Köder",
+    "allBaits": "All baits",
     "rating": "Rating",
     "tug": "Zug",
     "biteTime": "Hakenzeit",

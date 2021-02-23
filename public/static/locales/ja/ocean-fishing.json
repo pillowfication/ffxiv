@@ -38,6 +38,7 @@
   },
   "fishInfo": {
     "bait": "釣り餌",
+    "allBaits": "All baits",
     "rating": "ランク",
     "tug": "引き",
     "biteTime": "食い付き時間",
