@@ -175,7 +175,7 @@ const Generator = (): React.ReactElement => {
           {results.map((result, index) => <span key={index}>{result}</span>)}
         </Paper>
       </Section>
-      {AdvancedComponent !== null && <AdvancedComponent />}
+      {AdvancedComponent != null && <AdvancedComponent />}
     </>
   )
 }
