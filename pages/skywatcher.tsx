@@ -6,7 +6,7 @@ import Section from '../src/Section'
 import UpcomingWeather from '../src/skywatcher/UpcomingWeather'
 import Forecaster from '../src/skywatcher/Forecaster'
 import Algorithm from '../src/skywatcher/Algorithm'
-import { formatTime } from '../src/utils'
+import { formatTimeUtc } from '../src/utils'
 import { useTranslation } from '../src/i18n'
 
 const Skywatcher = (): React.ReactElement => {
@@ -32,7 +32,7 @@ const Skywatcher = (): React.ReactElement => {
     <Page title={t('_title')} description={t('_description')}>
       <Section>
         <Typography paragraph>
-          The time in Eorzea is <b><NoSsr>{formatTime(new Date(now.getTime() * (1440 / 70)))}</NoSsr></b>.
+          The time in Eorzea is <b><NoSsr>{formatTimeUtc(new Date(now.getTime() * (1440 / 70)))}</NoSsr></b>.
         </Typography>
         <ul>
           <Typography component='li'>
