@@ -3,9 +3,9 @@ import path from 'path'
 import csvParse from 'csv-parse/lib/sync'
 
 // What to do about this...
-const SAINT_COINACH_FOLDER = 'C:\\Users\\Pillowfication\\ws\\SaintCoinach.Cmd-master-b930-8ab7d24\\2021.01.28.0000.0000'
-const SAINT_COINACH_CN = 'C:\\Users\\Pillowfication\\ws\\ffxiv-datamining-cn'
-const SAINT_COINACH_KO = 'C:\\Users\\Pillowfication\\ws\\ffxiv-datamining-ko'
+const SAINT_COINACH_FOLDER = 'C:\\Users\\Pillowfication\\ws\\ffxiv\\datamining\\SaintCoinach.Cmd-fix-missing-sheets-b971-6b07a3c\\2021.04.21.0000.0000'
+const SAINT_COINACH_CN = 'C:\\Users\\Pillowfication\\ws\\ffxiv\\datamining\\ffxiv-datamining-cn'
+const SAINT_COINACH_KO = 'C:\\Users\\Pillowfication\\ws\\ffxiv\\datamining\\ffxiv-datamining-ko'
 
 function mapKeys (keys: Record<string, string>, datum: {}): Record<string, string> {
   const mappedDatum = {}

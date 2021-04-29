@@ -90,7 +90,7 @@ export interface LodestoneData {
 }
 
 for (const fish of Object.values<any>(_fishes)) {
-  fish.contentBonus = fish.contentBonus !== 0 ? _contentBonuses[fish.contentBonus] : null
+  fish.contentBonus = fish.contentBonus !== null ? _contentBonuses[fish.contentBonus] : null
 
   // Attach bite times
   fish.biteTimes = _biteTimes[fish.id]

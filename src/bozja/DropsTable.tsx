@@ -26,16 +26,29 @@ const conditionMap: Record<string, React.ReactFragment> = {
   night: 'Night'
 }
 
-function cleanFragment (name: string): string {
-  return upperFirst(name.replace(/^(Forgotten Fragment of |Unbegutachteter Frontsplitter (der|des) |Éclat oublié non identifié (de |d')|未鑑定ロストシャード:)/, ''))
+function cleanFragment (name: string, locale: string): string {
+  switch (locale) {
+    case 'en':
+      return upperFirst(name.replace(/^Forgotten Fragment of /, ''))
+    case 'de':
+      return upperFirst(name.replace(/^Unbegutachteter Frontsplitter (der|des) /, ''))
+    case 'fr':
+      return upperFirst(name.replace(/^Éclat oublié non identifié (de |d')/, ''))
+    case 'ja':
+      return name.replace(/^未鑑定ロストシャード:/, '')
+    case 'cn':
+      return (name.match(/未鉴定的(.*)失传碎晶/)?.[1] as string) ?? name
+    case 'ko':
+      return name.replace(/^미감정 로스트 샤드: /, '')
+    default:
+      return name
+  }
 }
 
 function parseActions (description: string, locale: string): React.ReactElement | React.ReactElement[] {
   let actions: string[] | undefined
   switch (locale) {
     case 'en':
-    case 'cn': // Fallback
-    case 'ko': // Fallback
       actions = description.match(/Potential memories contained: (.*)$/)?.[1].split(', ')
       break
     case 'de':
@@ -46,6 +59,12 @@ function parseActions (description: string, locale: string): React.ReactElement 
       break
     case 'ja':
       actions = description.match(/鑑定結果候補:(.*)$/)?.[1].split('／')
+      break
+    case 'cn':
+      actions = description.match(/鉴定结果预测：(.*)/)?.[1].split('/')
+      break
+    case 'ko':
+      actions = description.match(/감정 결과 후보: (.*)/)?.[1].split('/')
       break
   }
 
@@ -80,7 +99,6 @@ const DropsTable = (): React.ReactElement => {
                 <TableCell align='center'>Fragment</TableCell>
                 <TableCell align='center'>Actions</TableCell>
                 <TableCell align='center'>Count</TableCell>
-                <TableCell align='center'>Rate</TableCell>
                 <TableCell align='center'>Monster</TableCell>
                 <TableCell align='center'>Conditions</TableCell>
               </TableRow>
@@ -103,7 +121,7 @@ const DropsTable = (): React.ReactElement => {
                         {index === 0 && (
                           <>
                             <TableCell rowSpan={array.length} align='center'>
-                              {cleanFragment(translate(locale, bozja.items[loot], 'name'))}
+                              {cleanFragment(translate(locale, bozja.items[loot], 'name'), locale)}
                             </TableCell>
                             <TableCell rowSpan={array.length}>
                               {loot !== 31135 && (
@@ -112,8 +130,7 @@ const DropsTable = (): React.ReactElement => {
                             </TableCell>
                           </>
                         )}
-                        <TableCell align='center'>×{datum.count}</TableCell>
-                        <TableCell align='center'>{datum.rate}%</TableCell>
+                        <TableCell align='center'>×{datum.count.toLocaleString(locale)}</TableCell>
                         <TableCell>
                           <RankIcon rank={datum.rank} />
                           {formatMonster(translate(locale, datum, 'name'), locale)}

@@ -95,7 +95,7 @@ const UpcomingVoyages = ({ now, onSelectRoute }: Props): React.ReactElement => {
               <NoSsr>
                 <Tooltip
                   placement='top'
-                  title={<Typography>Select this for clients without the newest routes yet</Typography>}
+                  title={<Typography>Select this for clients without the newest routes yet (KO clients)</Typography>}
                 >
                     <FormControlLabel
                       control={<Checkbox checked={useOld === true} onChange={handleToggleUseOld} className={classes.checkbox} />}

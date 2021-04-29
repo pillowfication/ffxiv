@@ -106,7 +106,11 @@ const Map = (): React.ReactElement => {
 
   useEffect(() => {
     // Fixes offset markers on initial load for some reason
-    setTimeout(() => { setShowMapLabels(true) }, 0)
+    setTimeout(() => {
+      setShowMapLabels(true)
+      setShowStarMonsters(true)
+      setShowSprites(true)
+    }, 0)
   }, [])
 
   // Force a mount/unmount whenever the theme type changes

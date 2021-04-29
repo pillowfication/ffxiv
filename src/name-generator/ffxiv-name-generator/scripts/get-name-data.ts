@@ -12,6 +12,7 @@ const CharaMakeName_ko = sc.requireCsv('CharaMakeName', 'ko')
 
 // Check that there are no differences between the languages
 // If there are, I will have to change everything
+// TODO: CN and KO clients have name data now D:
 CharaMakeName_en.data.forEach((charaMakeName_en, index) => {
   const others = {
     de: CharaMakeName_de.data[index],
