@@ -36,7 +36,7 @@ const OceanFishing = (): React.ReactElement => {
   const { t } = useTranslation('ocean-fishing')
   const [now, setNow] = useState<Date>(new Date())
   const [selectedRoute, setSelectedRoute] = useState<DestTime | null>(null) // This is initialized when UpcomingVoyages is mounted
-  const [checklist, setChecklist] = useState<number[]>([])
+  const [checklist, setChecklist] = useState<number[] | null>(null)
 
   useEffect(() => {
     let interval: NodeJS.Timeout
@@ -50,6 +50,8 @@ const OceanFishing = (): React.ReactElement => {
       const data = window.localStorage.getItem('ocean-fishing/checklist')
       if (data !== null) {
         setChecklist(data.split(',').map(x => Number(x) | 0).filter(x => x))
+      } else {
+        setChecklist([])
       }
     }
 
@@ -59,12 +61,14 @@ const OceanFishing = (): React.ReactElement => {
   }, [])
 
   useEffect(() => {
-    window.localStorage.setItem('ocean-fishing/checklist', checklist.join(','))
+    if (checklist !== null) {
+      window.localStorage.setItem('ocean-fishing/checklist', checklist.join(','))
+    }
   }, [checklist])
 
   return (
     <Page title={t('_title')} description={t('_description')}>
-      <ChecklistContext.Provider value={{ checklist, setChecklist }}>
+      <ChecklistContext.Provider value={{ checklist: checklist ?? [], setChecklist }}>
         <Section>
           <Typography paragraph>
             Data are taken from the <MuiLink href='https://docs.google.com/spreadsheets/d/1brCfvmSdYl7RcY9lkgm_ds8uaFqq7qaxOOz-5BfHuuk/edit?usp=sharing'>Ocean Fishing Spreadsheet</MuiLink> managed by S’yahn Tia. Bite times are from <MuiLink href='https://ffxivteamcraft.com/'>Teamcraft</MuiLink> when available. For questions/comments/corrections, please visit the <MuiLink href='https://discord.gg/AnFaDpN'>Fisherman’s Horizon Discord</MuiLink> or message Lulu Pillow@Adamantoise or Pillowfication#0538.

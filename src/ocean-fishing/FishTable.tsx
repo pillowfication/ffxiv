@@ -238,7 +238,6 @@ const FishTable = ({ fishingSpots, time }: Props): React.ReactElement => {
                         })()}
                       </TableCell>
                       <TableCell align='center'>
-                        {console.log(fish)}
                         {fish.contentBonus !== null && (
                           <OceanFishIcon type='content-bonus' id={fish.contentBonus.id} size={30} />
                         )}

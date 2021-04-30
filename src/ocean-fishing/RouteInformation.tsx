@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Section from '../Section'
 import Grid from '@material-ui/core/Grid'
@@ -40,10 +40,10 @@ const useStyles = makeStyles(theme => ({
 }))
 
 enum FishFilter {
-  Intuition,
-  TimeSensitive,
-  Points,
-  All
+  Intuition = 'intuition',
+  TimeSensitive = 'time-sensitive',
+  Points = 'points',
+  All = 'all'
 }
 
 interface Props {
@@ -54,10 +54,26 @@ interface Props {
 const RouteInformation = ({ now, route }: Props): React.ReactElement => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('ocean-fishing')
-  const [fishFilter, setFishFilter] = useState(FishFilter.Intuition)
+  const [fishFilter, setFishFilter] = useState<FishFilter | null>(null)
   const stopTimes = getStopTimes(route)
   const next = calculateVoyages(now, 1, [route])[0].date
   const locale = i18n.language
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const data = window.localStorage.getItem('ocean-fishing/route-information-filter')
+      if (data !== null) {
+        const key = Object.keys(FishFilter).find(key => FishFilter[key] === data)
+        setFishFilter(key !== undefined ? FishFilter[key] : FishFilter.Intuition)
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    if (fishFilter !== null) {
+      window.localStorage.setItem('ocean-fishing/route-information-filter', fishFilter)
+    }
+  }, [fishFilter])
 
   const handleSelectFishFilter = (event: React.ChangeEvent<{ value: FishFilter }>): void => {
     setFishFilter(event.target.value)
@@ -76,7 +92,7 @@ const RouteInformation = ({ now, route }: Props): React.ReactElement => {
           </Grid>
           <Grid item xs={12} md={4}>
             <div className={classes.fishFilterSelect}>
-              <Select value={fishFilter} onChange={handleSelectFishFilter}>
+              <Select value={fishFilter ?? FishFilter.Intuition} onChange={handleSelectFishFilter}>
                 <MenuItem value={FishFilter.Intuition}>{t('showIntuitionFish')}</MenuItem>
                 <MenuItem value={FishFilter.TimeSensitive}>{t('showTimeFish')}</MenuItem>
                 <MenuItem value={FishFilter.Points}>{t('showPointsFish')}</MenuItem>
