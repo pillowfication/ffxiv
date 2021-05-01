@@ -12,7 +12,7 @@ import { Weather } from './ffxiv-skywatcher'
 import { toTimeString, timeUntil } from '../utils'
 import { useTranslation } from '../i18n'
 
-const DATE_FORMAT = { month: '2-digit', day: '2-digit' }
+const DATE_FORMAT = { month: '2-digit' as const, day: '2-digit' as const }
 const WEATHER_CELL_WIDTH = 75
 
 const useStyles = makeStyles(theme => ({

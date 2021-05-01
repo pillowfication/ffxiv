@@ -77,16 +77,16 @@ const weathers = Weather_en.data
         de: weather_de.Name,
         fr: weather_fr.Name,
         ja: weather_ja.Name,
-        cn: weather_cn?.Name,
-        ko: weather_ko?.Name
+        cn: weather_cn?.Name ?? '',
+        ko: weather_ko?.Name ?? ''
       },
       description: {
         en: weather_en.Description,
         de: weather_de.Description,
         fr: weather_fr.Description,
         ja: weather_ja.Description,
-        cn: weather_cn?.Description,
-        ko: weather_ko?.Description
+        cn: weather_cn?.Description ?? '',
+        ko: weather_ko?.Description ?? ''
       }
     }
   })
