@@ -73,6 +73,9 @@ const OceanFishing = (): React.ReactElement => {
           <Typography paragraph>
             Data are taken from the <MuiLink href='https://docs.google.com/spreadsheets/d/1brCfvmSdYl7RcY9lkgm_ds8uaFqq7qaxOOz-5BfHuuk/edit?usp=sharing'>Ocean Fishing Spreadsheet</MuiLink> managed by S’yahn Tia. Bite times are from <MuiLink href='https://ffxivteamcraft.com/'>Teamcraft</MuiLink> when available. For questions/comments/corrections, please visit the <MuiLink href='https://discord.gg/AnFaDpN'>Fisherman’s Horizon Discord</MuiLink> or message Lulu Pillow@Adamantoise or Pillowfication#0538.
           </Typography>
+          <Typography paragraph>
+            I’ve also made a Chrome Extension for adding ocean fishes to the <Link href='https://ff14fish.carbuncleplushy.com/'>Carbuncle Plushy FFX|V Fish Tracker App</Link> available on the <Link href='https://chrome.google.com/webstore/detail/add-ocean-fish-to-ff14-fi/oihefgmncbnicjmcdccjflagboaidenh'>Chrome Web Store</Link>.
+          </Typography>
           <div className={classes.buttons}>
             <Button component={Link} variant='contained' href='/ocean-fishing/about'>
               <Typography>{t('aboutPage._title')}</Typography>
