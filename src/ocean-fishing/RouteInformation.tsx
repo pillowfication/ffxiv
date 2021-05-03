@@ -104,7 +104,7 @@ const RouteInformation = ({ now, route }: Props): React.ReactElement => {
       }
     >
       {(() => {
-        switch (fishFilter) {
+        switch (fishFilter ?? FishFilter.Intuition) {
           case FishFilter.Intuition:
             return <RouteInformationIntuition stopTimes={stopTimes} />
           case FishFilter.TimeSensitive:

@@ -134,7 +134,7 @@ const FishTable = ({ fishingSpots, time }: Props): React.ReactElement => {
                     >
                     <MenuItem value='all'>{t('fishInfo.allBaits')}</MenuItem>
                       {getValidBaits(fishingSpots).map(baitId =>
-                        <MenuItem value={baitId}>{translate(locale, baits[baitId] || fishes[baitId], 'name')}</MenuItem>
+                        <MenuItem key={baitId} value={baitId}>{translate(locale, baits[baitId] || fishes[baitId], 'name')}</MenuItem>
                       )}
                     </Select>
                   </TableCell>
