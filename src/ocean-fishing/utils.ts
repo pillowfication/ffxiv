@@ -5,12 +5,14 @@ import { BaitLink, FishLink } from './BaitChain'
 import * as maps from './maps'
 import { TFunction } from 'next-i18next'
 
-function memoize<T, R> (func: (arg: T) => R, getKey: (arg: T) => string): (arg: T) => R {
+function memoize<T, R> (func: (arg: T) => R, getKey: (arg: T) => string): { (arg: T): R, cache: { [key: string]: R } } {
   const cache: { [key: string]: R } = {}
-  return (arg: T) => {
+  const _func = (arg: T): R => {
     const key = getKey(arg)
     return cache[key] !== undefined ? cache[key] : (cache[key] = func(arg))
   }
+  _func.cache = cache
+  return _func
 }
 
 export function timeUntil (now: Date, then: Date, options: { t: TFunction, full?: boolean, locale?: string }): string {
@@ -83,6 +85,11 @@ export const getBaitGroup = memoize(
   },
   (fish: Fish) => String(fish.id)
 )
+
+if (typeof window !== 'undefined') {
+  (window as any).BaitCache1 = getBaitChain.cache
+  ;(window as any).BaitCache2 = getBaitGroup.cache
+}
 
 export function subtextDH (fish: Fish): string {
   const doubleHook = fish.spreadsheetData.doubleHook
