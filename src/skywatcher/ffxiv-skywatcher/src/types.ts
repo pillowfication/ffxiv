@@ -76,6 +76,7 @@ export enum Place {
   TheOuterCoil = 1302,
   TheWhorleater = 1334,
   TheStrikingTree = 1363,
+  CarteneauFlatsBorderlandRuins = 1374,
   HullbreakerIsle = 1377,
   AkhAfahAmphitheatre = 1399,
   TheBurningHeart = 1409,
@@ -185,7 +186,8 @@ export enum Place {
   GreatGlacier = 3487,
   TheHeroesGauntlet = 3511,
   BozjanSouthernFront = 3534,
-  TheSeatOfSacrifice = 3568
+  TheSeatOfSacrifice = 3568,
+  Zadnor = 3662
 }
 
 export enum Weather {

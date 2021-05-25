@@ -51,8 +51,8 @@ const placeNames = Object.values<any>(territories)
         de: placeName_de.Name,
         fr: placeName_fr.Name,
         ja: placeName_ja.Name,
-        cn: placeName_cn.Name,
-        ko: placeName_ko.Name
+        cn: placeName_cn?.Name ?? '',
+        ko: placeName_ko?.Name ?? ''
       }
     }
   })
