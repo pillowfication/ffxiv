@@ -128,7 +128,8 @@ const Index = (): React.ReactElement => {
             { key: 'oceanFishing', url: '/ocean-fishing' },
             { key: 'skywatcher', url: '/skywatcher' },
             { key: 'wondrousTails', url: '/wondrous-tails' },
-            { key: 'xivapi', url: '/xivapi' }
+            { key: 'xivapi', url: '/xivapi' },
+            { key: 'zadnor', url: '/zadnor' }
           ]
             .map(({ key, url }) => ({ key, url, title: t(`${key}.title`) }))
             .sort((a, b) => a.title.localeCompare(b.title))

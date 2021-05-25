@@ -36,5 +36,9 @@
   "xivapi": {
     "title": "XIVAPI",
     "description": "An interface for browsing the XIVAPI."
+  },
+  "zadnor": {
+    "title": "Zadnor",
+    "description": "Interactive map for Zadnor."
   }
 }

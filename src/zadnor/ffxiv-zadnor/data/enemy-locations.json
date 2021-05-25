@@ -1,0 +1,43 @@
+{
+  "star_monsters": [
+    {
+      "_name": "Stratogryph",
+      "id": 10137,
+      "coords": [17.4, 38.9]
+    },
+    {
+      "_name": "Aglaophotis",
+      "id": 10152,
+      "coords": [9.2, 29.6]
+    }
+  ],
+  "sprites": {
+    "lightning": {
+      "id": 10126,
+      "locations": [
+        {
+          "level": 3,
+          "coords": [11.4, 8.1]
+        }
+      ]
+    },
+    "water": {
+      "id": 10127,
+      "locations": [
+        {
+          "level": 3,
+          "coords": [30.6, 38.0]
+        }
+      ]
+    },
+    "ice": {
+      "id": 10128,
+      "locations": [
+        {
+          "level": 5,
+          "coords": [23.9, 15.7]
+        }
+      ]
+    }
+  }
+}
