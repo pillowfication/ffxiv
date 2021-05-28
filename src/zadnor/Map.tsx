@@ -15,7 +15,7 @@ import zadnor from './ffxiv-zadnor/data/zadnor.json'
 import translate from '../translate'
 import { useTranslation } from '../i18n'
 
-type SpriteType = 'lightning' | 'water' | 'ice'
+type SpriteType = 'ice' | 'wind' | 'lightning' | 'water'
 
 const ICON_SIZE = 32
 
@@ -56,9 +56,10 @@ function toRoman (num: number): string {
 
 function getSpriteIcon (spriteType: SpriteType): number {
   switch (spriteType) {
+    case 'ice': return 60658
+    case 'wind': return 60659
     case 'lightning': return 60661
     case 'water': return 60662
-    case 'ice': return 60658
   }
 }
 
@@ -182,7 +183,8 @@ const Map = (): React.ReactElement => {
                           direction={getDirection(mapMarker.subtextOrientation)}
                           className={classes.tooltipBare}
                         >
-                          {translate(locale, mapMarker, 'placeName_subtext')}
+                          {translate(locale, mapMarker, 'placeName_subtext')
+                            .replace(/<.*?>/g, '')}
                         </Tooltip>
                       )}
                     </Marker>
@@ -210,7 +212,7 @@ const Map = (): React.ReactElement => {
                 )
               )}
               {showSprites && (
-                (['lightning', 'water', 'ice'] as SpriteType[]).flatMap(spriteType =>
+                (['ice', 'wind', 'lightning', 'water'] as SpriteType[]).flatMap(spriteType =>
                   zadnor.sprites[spriteType].locations.map((location: { level: number, x: number, y: number }) =>
                     <Marker
                       key={`${spriteType}-${location.level}`}
