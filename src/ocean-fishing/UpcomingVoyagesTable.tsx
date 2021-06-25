@@ -88,6 +88,16 @@ const UpcomingVoyagesTable = ({ now, numRows, useOld = false, filter, onSelectRo
         </TableHead>
         <TableBody onMouseOut={setHover.bind(null, null)}>
           {(() => {
+            if (upcomingVoyages.length === 0) {
+              return (
+                <TableRow>
+                  <TableCell colSpan={6} align='center'>
+                    <Typography>No voyages found. You should check the filters.</Typography>
+                  </TableCell>
+                </TableRow>
+              )
+            }
+
             let previousDate: string
             return upcomingVoyages.map(({ date, destTime }) => {
               const dateString = date.toLocaleDateString(locale, DATE_FORMAT)

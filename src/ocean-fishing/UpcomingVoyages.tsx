@@ -43,6 +43,22 @@ interface Props {
   onSelectRoute: (route: DestTime) => void
 }
 
+function getFilter (filter: string | null): DestTime[] | undefined {
+  if (filter === null) {
+    return undefined
+  } else if (maps.FILTER_MAP[filter]) {
+    return maps.FILTER_MAP[filter]
+  } else {
+    return (filter.split(',')
+      .filter(destTime =>
+        destTime.length === 2 &&
+        'BNRT'.includes(destTime[0]) &&
+        'DSN'.includes(destTime[1]
+      )) as DestTime[]
+    )
+  }
+}
+
 const UpcomingVoyages = ({ now, onSelectRoute }: Props): React.ReactElement => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('ocean-fishing')
@@ -51,14 +67,16 @@ const UpcomingVoyages = ({ now, onSelectRoute }: Props): React.ReactElement => {
     'old',
     { parse: query => query === 'true' ? true : null }
   )
-  const [filter, setFilter] = useQueryState<string | null>(
-    'filter',
-    { parse: query => maps.FILTER_MAP[query] !== undefined ? query : null }
-  )
+  const [filter, setFilter] = useQueryState<string | null>('filter')
+  const _filter = getFilter(filter)
+  const isCustomFilter = filter !== null && maps.FILTER_MAP[filter] === undefined
+  const calculate = useOld ? calculateVoyagesOld : calculateVoyages
   const locale = i18n.language
 
   useEffect(() => {
-    onSelectRoute((useOld === true ? calculateVoyagesOld : calculateVoyages)(now, 1, filter !== null ? maps.FILTER_MAP[filter] : undefined)[0].destTime)
+    onSelectRoute(
+      calculate(now, 1, _filter && _filter.length > 0 ? _filter : undefined)[0].destTime
+    )
   }, [filter])
 
   const handleToggleUseOld = (): void => {
@@ -97,10 +115,10 @@ const UpcomingVoyages = ({ now, onSelectRoute }: Props): React.ReactElement => {
                   placement='top'
                   title={<Typography>Select this for clients without the newest routes yet (KO clients)</Typography>}
                 >
-                    <FormControlLabel
-                      control={<Checkbox checked={useOld === true} onChange={handleToggleUseOld} className={classes.checkbox} />}
-                      label='Use old routes'
-                    />
+                  <FormControlLabel
+                    control={<Checkbox checked={useOld === true} onChange={handleToggleUseOld} className={classes.checkbox} />}
+                    label='Use old routes'
+                  />
                 </Tooltip>
               </NoSsr>
             </div>
@@ -126,10 +144,13 @@ const UpcomingVoyages = ({ now, onSelectRoute }: Props): React.ReactElement => {
             <InputLabel>{t('filterRoute')}</InputLabel>
             <NoSsr>
               <Select
-                value={filter !== null ? filter : 'none'}
+                value={filter !== null ? isCustomFilter ? 'custom' : filter : 'none'}
                 onChange={handleSelectFilter}
               >
                 <MenuItem value='none'>{t('noFilter')}</MenuItem>
+                {isCustomFilter && (
+                  <MenuItem value='custom' disabled><i>Custom Filter</i></MenuItem>
+                )}
                 <ListSubheader disableSticky className={classes.listSubheader}>{t('blueFish')}</ListSubheader>
                 <MenuItem value='sothis'>{translate(locale, fishes[29788], 'name')}</MenuItem>
                 <MenuItem value='coral_manta'>{translate(locale, fishes[29789], 'name')}</MenuItem>
@@ -182,7 +203,7 @@ const UpcomingVoyages = ({ now, onSelectRoute }: Props): React.ReactElement => {
               now={now}
               numRows={numRows}
               useOld={useOld === true}
-              filter={filter !== null ? maps.FILTER_MAP[filter] : undefined}
+              filter={_filter}
               onSelectRoute={onSelectRoute}
             />
           </NoSsr>
