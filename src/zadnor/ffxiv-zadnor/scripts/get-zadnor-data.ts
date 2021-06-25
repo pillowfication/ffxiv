@@ -163,10 +163,8 @@ const zadnor = {
 fs.writeFileSync(path.resolve(__dirname, '../data/zadnor.json'), JSON.stringify(zadnor))
 
 // Until I figure out how to get map names from ids
-const SAINT_COINACH_FOLDER = path.resolve(__dirname, '../../../../datamining/SaintCoinach.Cmd-master-b976-ce45678/2021.05.18.0000.0000')
-
 fs.copyFileSync(
-  path.join(SAINT_COINACH_FOLDER, 'ui/map', 'n4b/n4b6 - Zadnor.png'),
+  path.join(sc.FOLDER, 'ui/map', 'n4b/n4b6 - Zadnor.png'),
   path.resolve(__dirname, '../data/zadnor.png')
 )
 

@@ -30,7 +30,7 @@ async function getLodestoneData (query: string): Promise<any> {
     return null
   }
 
-  $ = cheerio.load(JSON.parse((await get(`https://img.finalfantasyxiv.com/lds/pc/tooltip/1619513542/na/item/${data.item as string}.js`)).match(/^eorzeadb\.pushup\((.+)\)$/)[1]).html)
+  $ = cheerio.load(JSON.parse((await get(`https://img.finalfantasyxiv.com/lds/pc/tooltip/1624342308/na/item/${data.item as string}.js`)).match(/^eorzeadb\.pushup\((.+)\)$/)[1]).html)
   data.icon_md = $('.db-tooltip__item__icon img').eq(0).attr('src')?.match(/\/([^/]+)\.png/)?.[1]
 
   $ = cheerio.load(await get(`https://na.finalfantasyxiv.com/lodestone/playguide/db/item/${data.item as string}/`))
