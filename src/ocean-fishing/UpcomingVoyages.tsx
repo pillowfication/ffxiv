@@ -113,7 +113,7 @@ const UpcomingVoyages = ({ now, onSelectRoute }: Props): React.ReactElement => {
               >
                 <MenuItem value='none'>{t('noFilter')}</MenuItem>
                 {isCustomFilter && (
-                  <MenuItem value='custom' disabled><i>Custom Filter</i></MenuItem>
+                  <MenuItem value='custom' disabled>Custom Filter: {_filter && _filter.length > 0 ? _filter.join(', ') : '(none)'}</MenuItem>
                 )}
                 <ListSubheader disableSticky className={classes.listSubheader}>{t('blueFish')}</ListSubheader>
                 <MenuItem value='sothis'>{translate(locale, fishes[29788], 'name')}</MenuItem>
