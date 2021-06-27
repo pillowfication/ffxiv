@@ -13,6 +13,9 @@ const useStyles = makeStyles(theme => ({
     '& > li:not(:last-child)': {
       paddingBottom: theme.spacing(1)
     }
+  },
+  hr: {
+    borderColor: theme.palette.divider
   }
 }))
 
@@ -36,7 +39,7 @@ const BaitList = ({ baitGroups }: Props): React.ReactElement => {
     <ul className={classes.baitList}>
       {baitGroups.map((baitGroup, index) => {
         if (baitGroup === 'hr') {
-          return <li key={index}><hr /></li>
+          return <li key={index}><hr className={classes.hr} /></li>
         } else {
           const { header, baitGroupProps } = baitGroup
           return (
