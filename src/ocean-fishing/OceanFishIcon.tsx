@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => {
       top: ({ size }: { size: number }) => size * 0.05,
       left: 0,
       width: ({ size }: { size: number }) => size * 1.2,
-      height: ({ size }: { size: number }) => size * 1.1,
+      height: ({ size }: { size: number }) => size * 1.2,
       backgroundImage: 'url("/images/ocean-fishing/item-cover.png")',
       backgroundSize: '100% 100%'
     },
