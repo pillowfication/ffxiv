@@ -10,7 +10,7 @@ import TableBody from '@material-ui/core/TableBody'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import OceanFishIcon from './OceanFishIcon'
-import { getStopTimes, calculateVoyages, calculateVoyagesOld, Dest, Time, DestTime } from './ffxiv-ocean-fishing'
+import { getStopTimes, calculateVoyages, Dest, Time, DestTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 import { getBlueFish, timeUntil, upperFirst } from './utils'
 import { toTimeString } from '../utils'
@@ -64,16 +64,15 @@ const useStyles = makeStyles(theme => ({
 interface Props {
   now: Date
   numRows: number
-  useOld?: boolean
   filter?: DestTime[]
   onSelectRoute: (route: DestTime) => void
 }
 
-const UpcomingVoyagesTable = ({ now, numRows, useOld = false, filter, onSelectRoute }: Props): React.ReactElement => {
+const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute }: Props): React.ReactElement => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('ocean-fishing')
   const [hover, setHover] = useState<DestTime | null>(null)
-  const upcomingVoyages = (useOld ? calculateVoyagesOld : calculateVoyages)(now, Math.min(Math.max(numRows, 1), 50), filter)
+  const upcomingVoyages = calculateVoyages(now, Math.min(Math.max(numRows, 1), 50), filter)
   const locale = i18n.language
 
   return (
