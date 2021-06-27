@@ -75,24 +75,29 @@ const RouteInformationPoints = ({ stopTimes }: Props): React.ReactElement => {
               [
                 maps.SPECTRAL_FISH_MAP[stopTime[0] as Stop],
                 maps.GREEN_FISH_MAP[stopTime[0] as Stop],
+                'hr' as const,
                 ...getPointsFishes(stopTime),
                 getBlueFish(stopTime)
               ]
                 .filter(fish => fish !== null)
-                .map((fish: Fish, index) => {
-                  const { points, doubleHook } = fish.spreadsheetData
-                  const doubleHookString = doubleHook !== null
-                    ? Array.isArray(doubleHook) ? doubleHook.join('-') : doubleHook
-                    : '?'
-                  const pointsString = doubleHook !== null && points !== null
-                    ? (Array.isArray(doubleHook) ? doubleHook[1] : doubleHook) * points
-                    : '?'
-                  return {
-                    header: translate(locale, fish, 'name'),
-                    baitGroupProps: {
-                      ...getBaitGroup(fish),
-                      subtext: index === 0 ? '' : `DH: ×${doubleHookString} = ${pointsString}`,
-                      mainOnly: true
+                .map((fish: Fish | 'hr', index) => {
+                  if (fish === 'hr') {
+                    return 'hr'
+                  } else {
+                    const { points, doubleHook } = fish.spreadsheetData
+                    const doubleHookString = doubleHook !== null
+                      ? Array.isArray(doubleHook) ? doubleHook.join('-') : doubleHook
+                      : '?'
+                    const pointsString = doubleHook !== null && points !== null
+                      ? (Array.isArray(doubleHook) ? doubleHook[1] : doubleHook) * points
+                      : '?'
+                    return {
+                      header: translate(locale, fish, 'name'),
+                      baitGroupProps: {
+                        ...getBaitGroup(fish),
+                        subtext: index === 0 ? '' : `DH: ×${doubleHookString} = ${pointsString}`,
+                        mainOnly: true
+                      }
                     }
                   }
                 })

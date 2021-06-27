@@ -26,7 +26,7 @@ interface Props {
       subtext?: string | ((fish: Fish) => string)
       mainOnly?: boolean
     }
-  }>
+  } | 'hr'>
 }
 
 const BaitList = ({ baitGroups }: Props): React.ReactElement => {
@@ -34,12 +34,19 @@ const BaitList = ({ baitGroups }: Props): React.ReactElement => {
 
   return (
     <ul className={classes.baitList}>
-      {baitGroups.map(({ header, baitGroupProps }, index) =>
-        <li key={index}>
-          <Typography gutterBottom>{header}</Typography>
-          <BaitGroup {...baitGroupProps} />
-        </li>
-      )}
+      {baitGroups.map((baitGroup, index) => {
+        if (baitGroup === 'hr') {
+          return <li key={index}><hr /></li>
+        } else {
+          const { header, baitGroupProps } = baitGroup
+          return (
+            <li key={index}>
+              <Typography gutterBottom>{header}</Typography>
+              <BaitGroup {...baitGroupProps} />
+            </li>
+          )
+        }
+      })}
     </ul>
   )
 }
