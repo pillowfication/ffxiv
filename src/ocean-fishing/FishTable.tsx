@@ -53,6 +53,9 @@ function getValidBaits (fishingSpots: FishingSpot[]): number[] {
 }
 
 const useStyles = makeStyles(theme => ({
+  tableContainer: {
+    overflowY: 'hidden' // This is a mysterious issue appearing inconsistently only on Chrome
+  },
   table: {
     '& td': {
       fontSize: '0.9em',
@@ -113,7 +116,7 @@ const FishTable = ({ fishingSpots, time }: Props): React.ReactElement => {
   }
 
   return (
-    <TableContainer>
+    <TableContainer className={classes.tableContainer}>
       <Table size='small' className={classes.table}>
         {fishingSpots.map(fishingSpot => {
           const isSpectral = /spectral/i.test(fishingSpot.placeName.name.en)
