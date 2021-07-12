@@ -95,6 +95,7 @@ for (const fish of Object.values<any>(_fishes)) {
 
   // Attach bite times
   fish.biteTimes = _biteTimes[fish.id]
+  delete fish.biteTimes.bestBait
 
   // Attach spreadsheet data
   if (fish.id === 0) {
