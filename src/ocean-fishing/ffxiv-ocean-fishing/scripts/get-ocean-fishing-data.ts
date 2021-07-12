@@ -73,16 +73,16 @@ const placeNames = Object.values<any>(fishingSpots)
         de: placeName_de.Name,
         fr: placeName_fr.Name,
         ja: placeName_ja.Name,
-        cn: placeName_cn !== undefined ? placeName_cn.Name : '',
-        ko: placeName_ko !== undefined ? placeName_ko.Name : ''
+        cn: placeName_cn.Name,
+        ko: placeName_ko.Name
       },
       name_noArticle: {
         en: placeName_en['Name{NoArticle}'],
         de: placeName_de['Name{NoArticle}'],
         fr: placeName_fr['Name{NoArticle}'],
         ja: placeName_ja['Name{NoArticle}'],
-        cn: placeName_cn !== undefined ? placeName_cn['Name{NoArticle}'] : '',
-        ko: placeName_ko !== undefined ? placeName_ko['Name{NoArticle}'] : ''
+        cn: placeName_cn['Name{NoArticle}'],
+        ko: placeName_ko['Name{NoArticle}']
       }
     }
   })
@@ -180,16 +180,16 @@ const contentBonuses = IKDContentBonus_en.data
         de: ikdContentBonus_de.Objective,
         fr: ikdContentBonus_fr.Objective,
         ja: ikdContentBonus_ja.Objective,
-        cn: ikdContentBonus_cn !== undefined ? ikdContentBonus_cn.Objective : '',
-        ko: ikdContentBonus_ko !== undefined ? ikdContentBonus_ko.Objective : ''
+        cn: ikdContentBonus_cn.Objective,
+        ko: ikdContentBonus_ko.Objective
       },
       requirement: {
         en: ikdContentBonus_en.Requirement,
         de: ikdContentBonus_de.Requirement,
         fr: ikdContentBonus_fr.Requirement,
         ja: ikdContentBonus_ja.Requirement,
-        cn: ikdContentBonus_cn !== undefined ? ikdContentBonus_cn.Requirement : '',
-        ko: ikdContentBonus_ko !== undefined ? ikdContentBonus_ko.Requirement : ''
+        cn: ikdContentBonus_cn.Requirement,
+        ko: ikdContentBonus_ko.Requirement
       },
       bonus: ikdContentBonus_en['<UNKNOWN_2>'],
       order: ikdContentBonus_en.Order
@@ -229,24 +229,24 @@ const oceanFishingAchievements = [0, ...range(2553, 2566), ...range(2748, 2759)]
         de: achievement_de.Name,
         fr: achievement_fr.Name,
         ja: achievement_ja.Name,
-        cn: achievement_cn !== undefined ? achievement_cn.Name : '',
-        ko: achievement_ko !== undefined ? achievement_ko.Name : ''
+        cn: achievement_cn.Name,
+        ko: achievement_ko.Name
       },
       description: {
         en: achievement_en.Description,
         de: achievement_de.Description,
         fr: achievement_fr.Description,
         ja: achievement_ja.Description,
-        cn: achievement_cn !== undefined ? achievement_cn.Description : '',
-        ko: achievement_ko !== undefined ? achievement_ko.Description : ''
+        cn: achievement_cn.Description,
+        ko: achievement_ko.Description
       },
       reward: {
         en: getReward(achievement_en, Title_en, Item_en),
         de: getReward(achievement_de, Title_de, Item_de),
         fr: getReward(achievement_fr, Title_fr, Item_fr),
         ja: getReward(achievement_ja, Title_ja, Item_ja),
-        cn: achievement_cn !== undefined ? getReward(achievement_cn, Title_cn, Item_cn) : '',
-        ko: achievement_ko !== undefined ? getReward(achievement_ko, Title_ko, Item_ko) : ''
+        cn: getReward(achievement_cn, Title_cn, Item_cn),
+        ko: getReward(achievement_ko, Title_ko, Item_ko)
       },
       order: achievement_en.Order
     }

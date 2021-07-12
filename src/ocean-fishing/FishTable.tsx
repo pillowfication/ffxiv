@@ -179,14 +179,14 @@ const FishTable = ({ fishingSpots, time }: Props): React.ReactElement => {
                             <img src='/images/ocean-fishing/fishers-intuition.png' className={classes.intuition} />
                           </>
                         )}
-                        {spreadsheetData.bait !== null && (
+                        {spreadsheetData.bestBait !== null && (
                           <OceanFishIcon
                             type='bait'
-                            id={spreadsheetData.bait.id}
-                            badge={isBaitRequired(fish, spreadsheetData.bait) && <StarBadge />}
+                            id={spreadsheetData.bestBait.id}
+                            badge={isBaitRequired(fish, spreadsheetData.bestBait) && <StarBadge />}
                           />
                         )}
-                        {spreadsheetData.bait !== null && spreadsheetData.mooch !== null && 'or'}
+                        {spreadsheetData.bestBait !== null && spreadsheetData.mooch !== null && 'or'}
                         {spreadsheetData.mooch !== null && (
                           <OceanFishIcon type='fish' id={spreadsheetData.mooch.id} />
                         )}

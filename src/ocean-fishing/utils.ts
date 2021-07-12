@@ -1,5 +1,5 @@
 import { timeUntil as genericTimeUntil } from '../utils'
-import { baits, Fish, Bait } from './ffxiv-ocean-fishing/data'
+import { baits, fishes, Fish, Bait } from './ffxiv-ocean-fishing/data'
 import { Stop, Time, StopTime } from './ffxiv-ocean-fishing'
 import { BaitLink, FishLink } from './BaitChain'
 import * as maps from './maps'
@@ -9,6 +9,7 @@ function memoize<T, R> (func: (arg: T) => R, getKey: (arg: T) => string): { (arg
   const cache: { [key: string]: R } = {}
   const _func = (arg: T): R => {
     const key = getKey(arg)
+    const cache = _func.cache
     return cache[key] !== undefined ? cache[key] : (cache[key] = func(arg))
   }
   _func.cache = cache
@@ -50,7 +51,7 @@ export function isBaitRequired (fish: Fish, bait: Bait): boolean {
 
 export const getBaitChain = memoize(
   function _getBaitChain (fish: Fish): Array<BaitLink | FishLink> {
-    const { bait, mooch, tug } = fish.spreadsheetData
+    const { bestBait: bait, mooch, tug } = fish.spreadsheetData
     if (bait === null && mooch === null) {
       return [{ bait: baits[29717] }, { fish, tug }] // Versatile Lure as fallback
     } else {
@@ -85,6 +86,48 @@ export const getBaitGroup = memoize(
   },
   (fish: Fish) => String(fish.id)
 )
+
+// See https://discord.com/channels/327124808217395200/679407580430467092/864238268514041917
+getBaitGroup.cache = {
+  // Stonescale
+  29790: {
+    baits: getBaitChain(fishes[29790]),
+    baitIsRequired: true,
+    intuitionFishes: [{
+      baits: [{ bait: baits[2591] }, { fish: fishes[29769], tug: 2 }],
+      baitIsRequired: false,
+      count: 1
+    }, {
+      baits: [{ bait: baits[29714] }, { fish: fishes[29768], tug: 1 }],
+      baitIsRequired: false,
+      count: 1
+    }]
+  },
+  // Hafgufa
+  32074: {
+    baits: getBaitChain(fishes[32074]),
+    baitIsRequired: true,
+    intuitionFishes: [{
+      baits: [{ bait: baits[29716] }, { fish: fishes[32070], tug: 3 }],
+      baitIsRequired: false,
+      count: 2
+    }, {
+      baits: [{ bait: baits[27590] }, { fish: fishes[32067], tug: 2 }],
+      baitIsRequired: false,
+      count: 1
+    }]
+  },
+  // Seafaring Toad
+  32094: {
+    baits: getBaitChain(fishes[32094]),
+    baitIsRequired: true,
+    intuitionFishes: [{
+      baits: [{ bait: baits[2587] }, { fish: fishes[32089], tug: 2 }],
+      baitIsRequired: false,
+      count: 3
+    }]
+  }
+}
 
 if (typeof window !== 'undefined') {
   (window as any).BaitCache1 = getBaitChain.cache

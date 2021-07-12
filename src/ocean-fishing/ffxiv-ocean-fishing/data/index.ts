@@ -71,7 +71,8 @@ export interface Fish {
 }
 
 export interface SpreadsheetData {
-  bait: Bait | null
+  desynthesisBait: Bait | null
+  bestBait: Bait | null
   points: number | null
   doubleHook: number | [number, number] | null
   mooch: Fish | null
@@ -98,7 +99,8 @@ for (const fish of Object.values<any>(_fishes)) {
   // Attach spreadsheet data
   if (fish.id === 0) {
     fish.spreadsheetData = {
-      bait: null,
+      desynthesisBait: null,
+      bestBait: null,
       points: null,
       doubleHook: null,
       mooch: null,
@@ -111,7 +113,8 @@ for (const fish of Object.values<any>(_fishes)) {
   } else {
     const spreadsheetData = getMapped(spreadsheetMap, fish.name.en)
     fish.spreadsheetData = {
-      bait: getMapped(baitMap, spreadsheetData.bait),
+      desynthesisBait: getMapped(baitMap, spreadsheetData.desynthesisBait),
+      bestBait: getMapped(baitMap, spreadsheetData.bestBait),
       points: spreadsheetData.points,
       doubleHook: spreadsheetData.doubleHook,
       mooch: getMapped(fishMap, spreadsheetData.mooch),

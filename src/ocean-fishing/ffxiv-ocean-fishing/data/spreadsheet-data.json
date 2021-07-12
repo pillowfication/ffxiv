@@ -2,7 +2,8 @@
   "Outer Galadion Bay": [
     {
       "name": "Galadion Goby",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 10,
       "doubleHook": 2,
       "mooch": null,
@@ -15,7 +16,8 @@
     },
     {
       "name": "Galadion Chovy",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 11,
       "doubleHook": 2,
       "mooch": null,
@@ -28,7 +30,8 @@
     },
     {
       "name": "Leopard Eel",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 14,
       "doubleHook": 2,
       "mooch": null,
@@ -45,7 +48,8 @@
     },
     {
       "name": "Jasperhead",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 40,
       "doubleHook": 2,
       "mooch": null,
@@ -62,7 +66,8 @@
     },
     {
       "name": "Tarnished Shark",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 34,
       "doubleHook": 2,
       "mooch": null,
@@ -78,7 +83,8 @@
     },
     {
       "name": "Rosy Bream",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 34,
       "doubleHook": [3, 4],
       "mooch": null,
@@ -91,7 +97,8 @@
     },
     {
       "name": "Cyan Octopus",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 59,
       "doubleHook": 4,
       "mooch": null,
@@ -104,7 +111,8 @@
     },
     {
       "name": "Heavenswimmer",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 50,
       "doubleHook": 2,
       "mooch": null,
@@ -117,7 +125,8 @@
     },
     {
       "name": "Spectral Megalodon",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 100,
       "doubleHook": 1,
       "mooch": null,
@@ -133,7 +142,8 @@
     },
     {
       "name": "Drunkfish",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 253,
       "doubleHook": 1,
       "mooch": null,
@@ -154,7 +164,8 @@
   "Galadion Spectral Current": [
     {
       "name": "Merman's Mane",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 94,
       "doubleHook": 4,
       "mooch": null,
@@ -167,7 +178,8 @@
     },
     {
       "name": "Heavenskey",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 67,
       "doubleHook": 2,
       "mooch": null,
@@ -180,7 +192,8 @@
     },
     {
       "name": "Ghost Shark",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 78,
       "doubleHook": 4,
       "mooch": null,
@@ -193,7 +206,8 @@
     },
     {
       "name": "Fishmonger",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 78,
       "doubleHook": 2,
       "mooch": null,
@@ -206,7 +220,8 @@
     },
     {
       "name": "Navigator's Print",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 71,
       "doubleHook": 2,
       "mooch": null,
@@ -219,7 +234,8 @@
     },
     {
       "name": "Casket Oyster",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 222,
       "doubleHook": 2,
       "mooch": null,
@@ -232,7 +248,8 @@
     },
     {
       "name": "Quicksilver Blade",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 213,
       "doubleHook": 2,
       "mooch": null,
@@ -245,7 +262,8 @@
     },
     {
       "name": "Funnel Shark",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 213,
       "doubleHook": 4,
       "mooch": null,
@@ -258,7 +276,8 @@
     },
     {
       "name": "Nimble Dancer",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 444,
       "doubleHook": 2,
       "mooch": null,
@@ -271,7 +290,8 @@
     },
     {
       "name": "Sothis",
-      "bait": "Glowworm",
+      "desynthesisBait": "Glowworm",
+      "bestBait": "Glowworm",
       "points": 500,
       "doubleHook": 1,
       "mooch": null,
@@ -296,7 +316,8 @@
   "The Southern Strait of Merlthor": [
     {
       "name": "Ghoul Barracuda",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 10,
       "doubleHook": 2,
       "mooch": null,
@@ -313,7 +334,8 @@
     },
     {
       "name": "La Noscean Jelly",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 10,
       "doubleHook": [3, 4],
       "mooch": null,
@@ -326,7 +348,8 @@
     },
     {
       "name": "Sunfly",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 10,
       "doubleHook": 2,
       "mooch": null,
@@ -339,7 +362,8 @@
     },
     {
       "name": "Marine Bomb",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 27,
       "doubleHook": 2,
       "mooch": null,
@@ -352,7 +376,8 @@
     },
     {
       "name": "Shaggy Seadragon",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 35,
       "doubleHook": 4,
       "mooch": null,
@@ -369,7 +394,8 @@
     },
     {
       "name": "Momora Mora",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 22,
       "doubleHook": 2,
       "mooch": "Ghoul Barracuda",
@@ -382,7 +408,8 @@
     },
     {
       "name": "Merlthor Butterfly",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 51,
       "doubleHook": 2,
       "mooch": null,
@@ -395,7 +422,8 @@
     },
     {
       "name": "Gladius",
-      "bait": null,
+      "desynthesisBait": null,
+      "bestBait": null,
       "points": 49,
       "doubleHook": 2,
       "mooch": "Ghoul Barracuda",
@@ -408,7 +436,8 @@
     },
     {
       "name": "Spectral Discus",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 100,
       "doubleHook": 1,
       "mooch": null,
@@ -424,7 +453,8 @@
     },
     {
       "name": "Little Leviathan",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 204,
       "doubleHook": 1,
       "mooch": null,
@@ -445,7 +475,8 @@
   "Southern Merlthor Spectral Current": [
     {
       "name": "Sea Nettle",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 156,
       "doubleHook": 4,
       "mooch": null,
@@ -458,7 +489,8 @@
     },
     {
       "name": "Great Grandmarlin",
-      "bait": null,
+      "desynthesisBait": null,
+      "bestBait": null,
       "points": 127,
       "doubleHook": 2,
       "mooch": "Hi-aetherlouse",
@@ -471,7 +503,8 @@
     },
     {
       "name": "Shipwreck's Sail",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 59,
       "doubleHook": 2,
       "mooch": "Hi-aetherlouse",
@@ -484,7 +517,8 @@
     },
     {
       "name": "Charlatan Survivor",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 69,
       "doubleHook": 2,
       "mooch": null,
@@ -497,7 +531,8 @@
     },
     {
       "name": "Hi-aetherlouse",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Ragworm",
       "points": 65,
       "doubleHook": 2,
       "mooch": null,
@@ -510,7 +545,8 @@
     },
     {
       "name": "Azeyma's Sleeve",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 69,
       "doubleHook": 2,
       "mooch": null,
@@ -523,7 +559,8 @@
     },
     {
       "name": "Aetheric Seadragon",
-      "bait": null,
+      "desynthesisBait": null,
+      "bestBait": null,
       "points": 245,
       "doubleHook": 2,
       "mooch": "Hi-aetherlouse",
@@ -536,7 +573,8 @@
     },
     {
       "name": "Mythril Sovereign",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 196,
       "doubleHook": 2,
       "mooch": null,
@@ -549,7 +587,8 @@
     },
     {
       "name": "Roguesaurus",
-      "bait": null,
+      "desynthesisBait": null,
+      "bestBait": null,
       "points": 345,
       "doubleHook": 2,
       "mooch": "Hi-aetherlouse",
@@ -562,7 +601,8 @@
     },
     {
       "name": "Coral Manta",
-      "bait": "Shrimp Cage Feeder",
+      "desynthesisBait": "Shrimp Cage Feeder",
+      "bestBait": "Shrimp Cage Feeder",
       "points": 500,
       "doubleHook": 1,
       "mooch": null,
@@ -583,7 +623,8 @@
   "The Northern Strait of Merlthor": [
     {
       "name": "Floefish",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 13,
       "doubleHook": 2,
       "mooch": null,
@@ -600,7 +641,8 @@
     },
     {
       "name": "Megasquid",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 11,
       "doubleHook": 2,
       "mooch": null,
@@ -613,7 +655,8 @@
     },
     {
       "name": "Oschon's Stone",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 11,
       "doubleHook": 2,
       "mooch": "Tossed Dagger",
@@ -626,7 +669,8 @@
     },
     {
       "name": "Tossed Dagger",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 27,
       "doubleHook": 2,
       "mooch": null,
@@ -639,7 +683,8 @@
     },
     {
       "name": "Tripod Fish",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 43,
       "doubleHook": 2,
       "mooch": null,
@@ -656,7 +701,8 @@
     },
     {
       "name": "Net Crawler",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 36,
       "doubleHook": 2,
       "mooch": null,
@@ -669,7 +715,8 @@
     },
     {
       "name": "Merlthor Lobster",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 45,
       "doubleHook": 2,
       "mooch": null,
@@ -682,7 +729,8 @@
     },
     {
       "name": "Elder Dinichthys",
-      "bait": null,
+      "desynthesisBait": null,
+      "bestBait": null,
       "points": 52,
       "doubleHook": 2,
       "mooch": "Tossed Dagger",
@@ -695,7 +743,8 @@
     },
     {
       "name": "Spectral Sea Bo",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 100,
       "doubleHook": 1,
       "mooch": null,
@@ -711,7 +760,8 @@
     },
     {
       "name": "Shooting Star",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 226,
       "doubleHook": 1,
       "mooch": null,
@@ -732,7 +782,8 @@
   "Northern Merlthor Spectral Current": [
     {
       "name": "Hammerclaw",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 69,
       "doubleHook": 2,
       "mooch": null,
@@ -745,7 +796,8 @@
     },
     {
       "name": "Coccosteus",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 79,
       "doubleHook": 2,
       "mooch": null,
@@ -758,7 +810,8 @@
     },
     {
       "name": "Bartholomew the Chopper",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 221,
       "doubleHook": 4,
       "mooch": null,
@@ -771,7 +824,8 @@
     },
     {
       "name": "Prowler",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 79,
       "doubleHook": 2,
       "mooch": null,
@@ -784,7 +838,8 @@
     },
     {
       "name": "Mopbeard",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 198,
       "doubleHook": 4,
       "mooch": null,
@@ -797,7 +852,8 @@
     },
     {
       "name": "Wild Urchin",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 79,
       "doubleHook": 2,
       "mooch": null,
@@ -810,7 +866,8 @@
     },
     {
       "name": "Gugrusaurus",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 79,
       "doubleHook": [3, 4],
       "mooch": null,
@@ -823,7 +880,8 @@
     },
     {
       "name": "Coral Seadragon",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 189,
       "doubleHook": 4,
       "mooch": null,
@@ -836,7 +894,8 @@
     },
     {
       "name": "The Fallen One",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 374,
       "doubleHook": 2,
       "mooch": null,
@@ -849,7 +908,8 @@
     },
     {
       "name": "Elasmosaurus",
-      "bait": "Heavy Steel Jig",
+      "desynthesisBait": "Heavy Steel Jig",
+      "bestBait": "Heavy Steel Jig",
       "points": 500,
       "doubleHook": 1,
       "mooch": null,
@@ -870,7 +930,8 @@
   "Open Rhotano Sea": [
     {
       "name": "Rhotano Wahoo",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 13,
       "doubleHook": 2,
       "mooch": null,
@@ -886,7 +947,8 @@
     },
     {
       "name": "Rhotano Sardine",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 10,
       "doubleHook": 2,
       "mooch": null,
@@ -899,7 +961,8 @@
     },
     {
       "name": "Deep Plaice",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 15,
       "doubleHook": 2,
       "mooch": null,
@@ -916,7 +979,8 @@
     },
     {
       "name": "Crimson Monkfish",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 32,
       "doubleHook": 4,
       "mooch": null,
@@ -929,7 +993,8 @@
     },
     {
       "name": "Chrome Hammerhead",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 32,
       "doubleHook": 4,
       "mooch": null,
@@ -942,7 +1007,8 @@
     },
     {
       "name": "Ogre Eel",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 38,
       "doubleHook": 2,
       "mooch": null,
@@ -959,7 +1025,8 @@
     },
     {
       "name": "Dark Nautilus",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 46,
       "doubleHook": 2,
       "mooch": null,
@@ -972,7 +1039,8 @@
     },
     {
       "name": "Lampfish",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 47,
       "doubleHook": 2,
       "mooch": null,
@@ -985,7 +1053,8 @@
     },
     {
       "name": "Spectral Bass",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 100,
       "doubleHook": 1,
       "mooch": null,
@@ -1001,7 +1070,8 @@
     },
     {
       "name": "Sabaton",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 204,
       "doubleHook": 1,
       "mooch": null,
@@ -1022,7 +1092,8 @@
   "Rhotano Spectral Current": [
     {
       "name": "Aronnax",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 95,
       "doubleHook": 2,
       "mooch": null,
@@ -1035,7 +1106,8 @@
     },
     {
       "name": "Sweeper",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 216,
       "doubleHook": 2,
       "mooch": null,
@@ -1048,7 +1120,8 @@
     },
     {
       "name": "Silencer",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 89,
       "doubleHook": 4,
       "mooch": null,
@@ -1061,7 +1134,8 @@
     },
     {
       "name": "Deep-sea Eel",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 81,
       "doubleHook": 2,
       "mooch": null,
@@ -1074,7 +1148,8 @@
     },
     {
       "name": "Executioner",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 216,
       "doubleHook": 4,
       "mooch": null,
@@ -1087,7 +1162,8 @@
     },
     {
       "name": "Floating Saucer",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 222,
       "doubleHook": 4,
       "mooch": null,
@@ -1100,7 +1176,8 @@
     },
     {
       "name": "True Barramundi",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 95,
       "doubleHook": 2,
       "mooch": null,
@@ -1113,7 +1190,8 @@
     },
     {
       "name": "Prodigal Son",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 95,
       "doubleHook": 2,
       "mooch": null,
@@ -1126,7 +1204,8 @@
     },
     {
       "name": "Slipsnail",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 246,
       "doubleHook": 2,
       "mooch": null,
@@ -1139,7 +1218,8 @@
     },
     {
       "name": "Stonescale",
-      "bait": "Rat Tail",
+      "desynthesisBait": "Rat Tail",
+      "bestBait": "Rat Tail",
       "points": 500,
       "doubleHook": 1,
       "mooch": null,
@@ -1164,7 +1244,8 @@
   "Cieldalaes Margin": [
     {
       "name": "Tortoiseshell Crab",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 10,
       "doubleHook": 2,
       "mooch": null,
@@ -1177,7 +1258,8 @@
     },
     {
       "name": "Lady's Cameo",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 15,
       "doubleHook": 2,
       "mooch": null,
@@ -1194,7 +1276,8 @@
     },
     {
       "name": "Metallic Boxfish",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 9,
       "doubleHook": 2,
       "mooch": null,
@@ -1207,7 +1290,8 @@
     },
     {
       "name": "Goobbue Ray",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 33,
       "doubleHook": 2,
       "mooch": null,
@@ -1220,7 +1304,8 @@
     },
     {
       "name": "Watermoura",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 41,
       "doubleHook": 2,
       "mooch": null,
@@ -1236,7 +1321,8 @@
     },
     {
       "name": "King Cobrafish",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 39,
       "doubleHook": 2,
       "mooch": null,
@@ -1253,7 +1339,8 @@
     },
     {
       "name": "Mamahi-mahi",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 58,
       "doubleHook": 2,
       "mooch": null,
@@ -1266,7 +1353,8 @@
     },
     {
       "name": "Lavandin Remora",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 52,
       "doubleHook": 2,
       "mooch": null,
@@ -1279,7 +1367,8 @@
     },
     {
       "name": "Spectral Butterfly",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 100,
       "doubleHook": 1,
       "mooch": null,
@@ -1295,7 +1384,8 @@
     },
     {
       "name": "Cieldalaes Geode",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 246,
       "doubleHook": 1,
       "mooch": null,
@@ -1316,7 +1406,8 @@
   "Cieldalaes Spectral Current": [
     {
       "name": "Titanshell Crab",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 84,
       "doubleHook": 4,
       "mooch": null,
@@ -1329,7 +1420,8 @@
     },
     {
       "name": "Mythril Boxfish",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 64,
       "doubleHook": 4,
       "mooch": null,
@@ -1342,7 +1434,8 @@
     },
     {
       "name": "Mistbeard's Cup",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 84,
       "doubleHook": 2,
       "mooch": null,
@@ -1355,7 +1448,8 @@
     },
     {
       "name": "Anomalocaris Saron",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 84,
       "doubleHook": 2,
       "mooch": null,
@@ -1368,7 +1462,8 @@
     },
     {
       "name": "Flaming Eel",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 198,
       "doubleHook": 2,
       "mooch": null,
@@ -1381,7 +1476,8 @@
     },
     {
       "name": "Jetborne Manta",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 75,
       "doubleHook": 4,
       "mooch": null,
@@ -1394,7 +1490,8 @@
     },
     {
       "name": "Devil's Sting",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 201,
       "doubleHook": 2,
       "mooch": null,
@@ -1407,7 +1504,8 @@
     },
     {
       "name": "Callichthyid",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 178,
       "doubleHook": 2,
       "mooch": null,
@@ -1420,7 +1518,8 @@
     },
     {
       "name": "Meandering Mora",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 283,
       "doubleHook": 2,
       "mooch": null,
@@ -1433,7 +1532,8 @@
     },
     {
       "name": "Hafgufa",
-      "bait": "Squid Strip",
+      "desynthesisBait": "Squid Strip",
+      "bestBait": "Squid Strip",
       "points": 500,
       "doubleHook": 1,
       "mooch": null,
@@ -1458,7 +1558,8 @@
   "Open Bloodbrine Sea": [
     {
       "name": "Thaliak Crab",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 9,
       "doubleHook": 2,
       "mooch": null,
@@ -1471,7 +1572,8 @@
     },
     {
       "name": "Star of the Destroyer",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 14,
       "doubleHook": 2,
       "mooch": null,
@@ -1488,7 +1590,8 @@
     },
     {
       "name": "True Scad",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 8,
       "doubleHook": 2,
       "mooch": null,
@@ -1501,7 +1604,8 @@
     },
     {
       "name": "Blooded Wrasse",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 35,
       "doubleHook": 2,
       "mooch": null,
@@ -1517,7 +1621,8 @@
     },
     {
       "name": "Bloodpolish Crab",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 28,
       "doubleHook": 4,
       "mooch": null,
@@ -1530,7 +1635,8 @@
     },
     {
       "name": "Blue Stitcher",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 30,
       "doubleHook": 2,
       "mooch": null,
@@ -1547,7 +1653,8 @@
     },
     {
       "name": "Bloodfresh Tuna",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 43,
       "doubleHook": 2,
       "mooch": null,
@@ -1560,7 +1667,8 @@
     },
     {
       "name": "Sunken Mask",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 49,
       "doubleHook": 2,
       "mooch": null,
@@ -1573,7 +1681,8 @@
     },
     {
       "name": "Spectral Eel",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 100,
       "doubleHook": 1,
       "mooch": null,
@@ -1589,7 +1698,8 @@
     },
     {
       "name": "Bareface",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 326,
       "doubleHook": 1,
       "mooch": null,
@@ -1610,7 +1720,8 @@
   "Bloodbrine Spectral Current": [
     {
       "name": "Oracular Crab",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 102,
       "doubleHook": 4,
       "mooch": null,
@@ -1623,7 +1734,8 @@
     },
     {
       "name": "Dravanian Bream",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 77,
       "doubleHook": 2,
       "mooch": null,
@@ -1636,7 +1748,8 @@
     },
     {
       "name": "Skaldminni",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 102,
       "doubleHook": 4,
       "mooch": null,
@@ -1649,7 +1762,8 @@
     },
     {
       "name": "Serrated Clam",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 74,
       "doubleHook": 2,
       "mooch": null,
@@ -1662,7 +1776,8 @@
     },
     {
       "name": "Beatific Vision",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 77,
       "doubleHook": 4,
       "mooch": null,
@@ -1675,7 +1790,8 @@
     },
     {
       "name": "Exterminator",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 255,
       "doubleHook": 4,
       "mooch": null,
@@ -1688,7 +1804,8 @@
     },
     {
       "name": "Gory Tuna",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 92,
       "doubleHook": 2,
       "mooch": null,
@@ -1701,7 +1818,8 @@
     },
     {
       "name": "Ticinepomis",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 92,
       "doubleHook": 2,
       "mooch": null,
@@ -1714,7 +1832,8 @@
     },
     {
       "name": "Quartz Hammerhead",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 460,
       "doubleHook": 2,
       "mooch": null,
@@ -1727,7 +1846,8 @@
     },
     {
       "name": "Seafaring Toad",
-      "bait": "Pill Bug",
+      "desynthesisBait": "Pill Bug",
+      "bestBait": "Pill Bug",
       "points": 500,
       "doubleHook": 1,
       "mooch": null,
@@ -1748,7 +1868,8 @@
   "Outer Rothlyt Sound": [
     {
       "name": "Crow Puffer",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 10,
       "doubleHook": 2,
       "mooch": null,
@@ -1761,7 +1882,8 @@
     },
     {
       "name": "Rothlyt Kelp",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 10,
       "doubleHook": [3, 4],
       "mooch": null,
@@ -1774,7 +1896,8 @@
     },
     {
       "name": "Living Lantern",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 13,
       "doubleHook": 2,
       "mooch": null,
@@ -1791,7 +1914,8 @@
     },
     {
       "name": "Honeycomb Fish",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 29,
       "doubleHook": 4,
       "mooch": null,
@@ -1804,7 +1928,8 @@
     },
     {
       "name": "Godsbed",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 29,
       "doubleHook": 2,
       "mooch": null,
@@ -1821,7 +1946,8 @@
     },
     {
       "name": "Lansquenet",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 36,
       "doubleHook": 2,
       "mooch": null,
@@ -1837,7 +1963,8 @@
     },
     {
       "name": "Thavnairian Shark",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 44,
       "doubleHook": 2,
       "mooch": null,
@@ -1850,7 +1977,8 @@
     },
     {
       "name": "Nephrite Eel",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 44,
       "doubleHook": 2,
       "mooch": null,
@@ -1863,7 +1991,8 @@
     },
     {
       "name": "Spectresaur",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 100,
       "doubleHook": 1,
       "mooch": null,
@@ -1879,7 +2008,8 @@
     },
     {
       "name": "Ginkgo Fin",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 238,
       "doubleHook": 1,
       "mooch": null,
@@ -1900,7 +2030,8 @@
   "Rothlyt Spectral Current": [
     {
       "name": "Garum Jug",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 107,
       "doubleHook": 4,
       "mooch": null,
@@ -1913,7 +2044,8 @@
     },
     {
       "name": "Smooth Jaguar",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 70,
       "doubleHook": 2,
       "mooch": "Rothlyt Mussel",
@@ -1926,7 +2058,8 @@
     },
     {
       "name": "Rothlyt Mussel",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 72,
       "doubleHook": 2,
       "mooch": null,
@@ -1939,7 +2072,8 @@
     },
     {
       "name": "Levi Elver",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 75,
       "doubleHook": 2,
       "mooch": "Rothlyt Mussel",
@@ -1952,7 +2086,8 @@
     },
     {
       "name": "Pearl Bombfish",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 237,
       "doubleHook": 4,
       "mooch": null,
@@ -1965,7 +2100,8 @@
     },
     {
       "name": "Trollfish",
-      "bait": null,
+      "desynthesisBait": null,
+      "bestBait": null,
       "points": 202,
       "doubleHook": 2,
       "mooch": "Rothlyt Mussel",
@@ -1978,7 +2114,8 @@
     },
     {
       "name": "Panoptes",
-      "bait": "Plump Worm",
+      "desynthesisBait": "Plump Worm",
+      "bestBait": "Plump Worm",
       "points": 125,
       "doubleHook": 4,
       "mooch": "Rothlyt Mussel",
@@ -1991,7 +2128,8 @@
     },
     {
       "name": "Crepe Sole",
-      "bait": "Ragworm",
+      "desynthesisBait": "Ragworm",
+      "bestBait": "Ragworm",
       "points": 72,
       "doubleHook": 2,
       "mooch": null,
@@ -2004,7 +2142,8 @@
     },
     {
       "name": "Knifejaw",
-      "bait": "Krill",
+      "desynthesisBait": "Krill",
+      "bestBait": "Krill",
       "points": 465,
       "doubleHook": 2,
       "mooch": null,
@@ -2017,7 +2156,8 @@
     },
     {
       "name": "Placodus",
-      "bait": null,
+      "desynthesisBait": null,
+      "bestBait": null,
       "points": 500,
       "doubleHook": 1,
       "mooch": "Rothlyt Mussel",
