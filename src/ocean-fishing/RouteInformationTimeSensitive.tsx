@@ -31,22 +31,31 @@ const RouteInformationTimeSensitive = ({ stopTimes }: Props): React.ReactElement
 
   return (
     <StopCardsContainer>
-      {stopTimes.map((stopTime, index) =>
-        <StopCard key={stopTime} index={index} stopTime={stopTime}>
-          <CardContent>
-            <BaitList baitGroups={
-              [
-                maps.SPECTRAL_FISH_MAP[stopTime[0] as Stop],
-                ...getTimeSensitiveFishes(stopTime)
-              ]
-                .map(fish => ({
-                  header: translate(locale, fish, 'name'),
-                  baitGroupProps: getBaitGroup(fish)
-                }))
-            } />
-          </CardContent>
-        </StopCard>
-      )}
+      {stopTimes.map((stopTime, index) => {
+        const fishes: Array<Fish | 'hr'> = [
+          maps.SPECTRAL_FISH_MAP[stopTime[0] as Stop]
+        ]
+
+        const timeFishes = getTimeSensitiveFishes(stopTime)
+        if (timeFishes.length > 0) {
+          fishes.push('hr', ...timeFishes)
+        }
+
+        return (
+          <StopCard key={stopTime} index={index} stopTime={stopTime}>
+            <CardContent>
+              <BaitList baitGroups={fishes.map(fish =>
+                fish === 'hr'
+                  ? 'hr'
+                  : {
+                    header: translate(locale, fish, 'name'),
+                    baitGroupProps: getBaitGroup(fish)
+                  }
+              )} />
+            </CardContent>
+          </StopCard>
+        )
+      })}
     </StopCardsContainer>
   )
 }

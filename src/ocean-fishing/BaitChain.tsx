@@ -41,9 +41,10 @@ interface Props {
   baits: Array<BaitLink | FishLink>
   baitIsRequired?: boolean
   subtext?: string | ((fish: Fish) => string)
+  small?: boolean
 }
 
-const BaitChain = ({ baits, baitIsRequired = false, subtext }: Props): React.ReactElement => {
+const BaitChain = ({ baits, baitIsRequired = false, subtext, small }: Props): React.ReactElement => {
   const classes = useStyles()
 
   return (
@@ -54,7 +55,7 @@ const BaitChain = ({ baits, baitIsRequired = false, subtext }: Props): React.Rea
           return (
             <React.Fragment key={bait.id}>
               <div className={classes.bait}>
-                <OceanFishIcon type='bait' id={bait.id} badge={baitIsRequired && <StarBadge />} />
+                <OceanFishIcon type='bait' id={bait.id} size={small ? 34 : 40} badge={baitIsRequired && <StarBadge />} />
               </div>
               <ChevronRightIcon className={classes.chevron} />
             </React.Fragment>
@@ -64,7 +65,7 @@ const BaitChain = ({ baits, baitIsRequired = false, subtext }: Props): React.Rea
           return (
             <React.Fragment key={fish.id}>
               <div className={classes.bait}>
-                <OceanFishIcon type='fish' id={fish.id} badge={tug !== null && <Tug size='small' strength={tug} />} />
+                <OceanFishIcon type='fish' id={fish.id} size={small ? 34 : 40} badge={tug !== null && <Tug size='small' strength={tug} />} />
                 {(subtext !== undefined && index === baits.length - 1) && (
                   <Typography className={classes.subtext} display='inline'>
                     {typeof subtext === 'string' ? subtext : subtext(fish)}

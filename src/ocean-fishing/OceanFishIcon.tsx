@@ -39,8 +39,9 @@ const useStyles = makeStyles(theme => {
       top: ({ size }: { size: number }) => size * 0.05,
       left: 0,
       width: ({ size }: { size: number }) => size * 1.2,
-      height: ({ size }: { size: number }) => size * 1.1,
-      backgroundImage: 'url("/images/ocean-fishing/item-cover.png")'
+      height: ({ size }: { size: number }) => size * 1.2,
+      backgroundImage: 'url("/images/ocean-fishing/item-cover.png")',
+      backgroundSize: '100% 100%'
     },
     achievementCover: {
       position: 'absolute' as const,
@@ -48,7 +49,8 @@ const useStyles = makeStyles(theme => {
       left: 0,
       width: ({ size }: { size: number }) => size * 1.2,
       height: ({ size }: { size: number }) => size * 1.2,
-      backgroundImage: 'url("/images/ocean-fishing/achievement-cover.png")'
+      backgroundImage: 'url("/images/ocean-fishing/achievement-cover.png")',
+      backgroundSize: '100% 100%'
     },
     hasPopper: {
       cursor: 'pointer'

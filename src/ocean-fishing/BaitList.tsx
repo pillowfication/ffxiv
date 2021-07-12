@@ -13,6 +13,9 @@ const useStyles = makeStyles(theme => ({
     '& > li:not(:last-child)': {
       paddingBottom: theme.spacing(1)
     }
+  },
+  hr: {
+    borderColor: theme.palette.divider
   }
 }))
 
@@ -26,7 +29,7 @@ interface Props {
       subtext?: string | ((fish: Fish) => string)
       mainOnly?: boolean
     }
-  }>
+  } | 'hr'>
 }
 
 const BaitList = ({ baitGroups }: Props): React.ReactElement => {
@@ -34,12 +37,19 @@ const BaitList = ({ baitGroups }: Props): React.ReactElement => {
 
   return (
     <ul className={classes.baitList}>
-      {baitGroups.map(({ header, baitGroupProps }, index) =>
-        <li key={index}>
-          <Typography gutterBottom>{header}</Typography>
-          <BaitGroup {...baitGroupProps} />
-        </li>
-      )}
+      {baitGroups.map((baitGroup, index) => {
+        if (baitGroup === 'hr') {
+          return <li key={index}><hr className={classes.hr} /></li>
+        } else {
+          const { header, baitGroupProps } = baitGroup
+          return (
+            <li key={index}>
+              <Typography gutterBottom>{header}</Typography>
+              <BaitGroup {...baitGroupProps} />
+            </li>
+          )
+        }
+      })}
     </ul>
   )
 }
