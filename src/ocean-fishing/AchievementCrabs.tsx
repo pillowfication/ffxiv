@@ -85,7 +85,7 @@ const AchievementCrabs = ({ route }: Props): React.ReactElement => {
             </Typography>
             <Typography variant='overline'>Spectral</Typography>
             <Typography paragraph>
-              Can blind DH Exterminators at ≥4s.
+              Can blind DH Exterminators at ≥5s.
             </Typography>
           </CardContent>
         </StopCard>
