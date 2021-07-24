@@ -14,7 +14,7 @@ import UpcomingVoyagesTable from './UpcomingVoyagesTable'
 import { fishingSpots, fishes, achievements } from './ffxiv-ocean-fishing/data'
 import { calculateVoyages, DestTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
-import { upperFirst } from './utils'
+import { upperFirst, isUncaughtRoute } from './utils'
 import translate from '../translate'
 import { useTranslation } from '../i18n'
 
@@ -34,34 +34,42 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-interface Props {
-  now: Date
-  onSelectRoute: (route: DestTime) => void
-}
-
-function getFilter (filter: string | null): DestTime[] | undefined {
+// `filter` is one of
+//  - `null` for no filter
+//  - a key in maps.FILTER_MAP for some predefined filter
+//  - 'uncaught' for a dynamic filter for uncaught fish
+//  - comma separated list of DestTimes
+function getFilter (filter: string | null, checklist?: number[]): DestTime[] | undefined {
   if (filter === null) {
     return undefined
   } else if (maps.FILTER_MAP[filter]) {
     return maps.FILTER_MAP[filter]
+  } else if (filter === 'uncaught') {
+    return (['BD', 'BS', 'BN', 'ND', 'NS', 'NN', 'RD', 'RS', 'RN', 'TD', 'TS', 'TN'] as DestTime[])
+      .filter((destTime) => isUncaughtRoute(destTime, checklist ?? []))
   } else {
-    return (filter.split(',')
+    return filter.split(',')
       .filter(destTime =>
         destTime.length === 2 &&
-        'BNRT'.includes(destTime[0]) &&
-        'DSN'.includes(destTime[1]
-      )) as DestTime[]
-    )
+          'BNRT'.includes(destTime[0]) &&
+          'DSN'.includes(destTime[1])
+      ) as DestTime[]
   }
 }
 
-const UpcomingVoyages = ({ now, onSelectRoute }: Props): React.ReactElement => {
+interface Props {
+  now: Date
+  onSelectRoute: (route: DestTime) => void,
+  checklist: number[]
+}
+
+const UpcomingVoyages = ({ now, onSelectRoute, checklist }: Props): React.ReactElement => {
   const classes = useStyles()
   const { t, i18n } = useTranslation('ocean-fishing')
   const [numRows, setNumRows] = useState(10)
   const [filter, setFilter] = useQueryState<string | null>('filter')
-  const _filter = getFilter(filter)
-  const isCustomFilter = filter !== null && maps.FILTER_MAP[filter] === undefined
+  const _filter = getFilter(filter, checklist)
+  const isCustomFilter = filter !== null && filter !== 'uncaught' && maps.FILTER_MAP[filter] === undefined
   const locale = i18n.language
 
   useEffect(() => {
@@ -112,6 +120,7 @@ const UpcomingVoyages = ({ now, onSelectRoute }: Props): React.ReactElement => {
                 onChange={handleSelectFilter}
               >
                 <MenuItem value='none'>{t('noFilter')}</MenuItem>
+                <MenuItem value='uncaught'>Uncaught Fish</MenuItem>
                 {isCustomFilter && (
                   <MenuItem value='custom' disabled>Custom Filter: {_filter && _filter.length > 0 ? _filter.join(', ') : '(none)'}</MenuItem>
                 )}

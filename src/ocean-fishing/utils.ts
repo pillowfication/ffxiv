@@ -1,6 +1,6 @@
 import { timeUntil as genericTimeUntil } from '../utils'
-import { baits, fishes, Fish, Bait } from './ffxiv-ocean-fishing/data'
-import { Stop, Time, StopTime } from './ffxiv-ocean-fishing'
+import { fishingSpots, baits, fishes, Fish, Bait } from './ffxiv-ocean-fishing/data'
+import { getStopTimes, Stop, Time, StopTime, DestTime } from './ffxiv-ocean-fishing'
 import { BaitLink, FishLink } from './BaitChain'
 import * as maps from './maps'
 import { TFunction } from 'next-i18next'
@@ -130,8 +130,10 @@ getBaitGroup.cache = {
 }
 
 if (typeof window !== 'undefined') {
-  (window as any).BaitCache1 = getBaitChain.cache
-  ;(window as any).BaitCache2 = getBaitGroup.cache
+  Object.assign(window, {
+    BaitCache1: getBaitChain.cache,
+    BaitCache2: getBaitGroup.cache
+  })
 }
 
 export function subtextDH (fish: Fish): string {
@@ -160,47 +162,23 @@ export function cleanRequirement (requirement: string): string {
   return upperFirst(requirement.replace(/^(Requirement:|Bedingung:|Condition :|達成条件：|达成条件：|달성 조건: )/, '').trim())
 }
 
-// export function getBlindDHRanges (fishId: number, baitId: number, time: Time) {
-//   const spreadsheetData = fishes[fishId].spreadsheetData
-//   if (time && spreadsheetData.time && spreadsheetData.time.indexOf(time) === -1) return null
-//   if (!fishes[fishId].biteTimes[baitId]) return null
-//
-//   const blindDHRanges = [fishes[fishId].biteTimes[baitId]]
-//   const fishingSpot = Object.values(fishingSpots).find(fishingSpot => fishingSpot.fishes.includes(fishId))
-//   for (const otherFishId of fishingSpot.fishes) {
-//     if (otherFishId === fishId) continue
-//     const otherSpreadsheetData = fishes[otherFishId].spreadsheetData
-//
-//     if (otherSpreadsheetData.tug !== spreadsheetData.tug) continue
-//     if (time && otherSpreadsheetData.time && otherSpreadsheetData.time.indexOf(time) === -1) continue
-//     if (!fishes[otherFishId].biteTimes[baitId]) continue
-//     const otherRange = fishes[otherFishId].biteTimes[baitId]
-//
-//     for (let i = 0; i < blindDHRanges.length;) {
-//       const currentRange = blindDHRanges[i]
-//       if (otherRange[1] < currentRange[0] || otherRange[0] > currentRange[1]) {
-//         // No overlap
-//         ++i
-//       } else if (otherRange[0] <= currentRange[0] && otherRange[1] >= currentRange[1]) {
-//         // Full overlap
-//         blindDHRanges.splice(i, 1)
-//       } else if (otherRange[0] > currentRange[0] && otherRange[1] < currentRange[1]) {
-//         // Splits currentRange into 2
-//         blindDHRanges.splice(i, 1, [currentRange[0], otherRange[0] - 1], [otherRange[1] + 1, currentRange[1]])
-//         i += 2
-//       } else {
-//         // Partial overlap
-//         if (currentRange[0] < otherRange[0] && otherRange[0] < currentRange[1]) {
-//           blindDHRanges.splice(i++, 1, [currentRange[0], otherRange[0] - 1])
-//         } else if (currentRange[0] < otherRange[1] && otherRange[1] < currentRange[1]) {
-//           blindDHRanges.splice(i++, 1, [otherRange[1] + 1, currentRange[1]])
-//         } else {
-//           console.error('This should never happen')
-//           i++
-//         }
-//       }
-//     }
-//   }
-//
-//   return blindDHRanges
-// }
+export function isUncaughtRoute (destTime: DestTime, checklist: number[]) {
+  for (const stopTime of getStopTimes(destTime)) {
+    const nonSpectralFishingSpot = maps.STOP_MAP[stopTime[0] as Stop]
+    for (const fish of nonSpectralFishingSpot.fishes) {
+      if (!checklist.includes(fish.id)) {
+        return true
+      }
+    }
+    const spectralFishingSpot = fishingSpots[nonSpectralFishingSpot.id + 1]
+    for (const fish of spectralFishingSpot.fishes) {
+      if (fish.spreadsheetData.time !== null && !fish.spreadsheetData.time.includes(stopTime[1] as Time)) {
+        continue
+      }
+      if (!checklist.includes(fish.id)) {
+        return true
+      }
+    }
+  }
+  return false
+}
