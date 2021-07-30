@@ -9,6 +9,7 @@ import Section from '../../src/Section'
 import Link from '../../src/Link'
 import Highlight from '../../src/Highlight'
 import { mathJaxRequire, $$ } from '../../src/MathJax'
+import NavigationBar from '../../src/ocean-fishing/NavigationBar'
 import { useTranslation } from '../../src/i18n'
 
 const useStyles = makeStyles(theme => ({
@@ -39,6 +40,7 @@ const About = (): React.ReactElement => {
   return (
     <Page title={[t('_title'), t('aboutPage._title')]}>
       {mathJaxRequire('cancel')}
+      <NavigationBar page='/about' />
       <Section title={t('aboutPage.data')}>
         <Typography paragraph>
           Data are taken from the <MuiLink href='https://docs.google.com/spreadsheets/d/1brCfvmSdYl7RcY9lkgm_ds8uaFqq7qaxOOz-5BfHuuk/edit?usp=sharing'>Ocean Fishing Spreadsheet</MuiLink> managed by S’yahn Tia. To report errors, please visit the <MuiLink href='https://discord.gg/AnFaDpN'>Fisherman’s Horizon Discord</MuiLink> or message Lulu Pillow@Adamantoise or Pillowfication#0538.

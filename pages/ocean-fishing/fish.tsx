@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button'
 import { ChecklistContext } from './index'
 import Page from '../../src/Page'
 import Section from '../../src/Section'
+import NavigationBar from '../../src/ocean-fishing/NavigationBar'
 import ImportFishes from '../../src/ocean-fishing/ImportFishes'
 import FishTable from '../../src/ocean-fishing/FishTable'
 import { fishingSpots } from '../../src/ocean-fishing/ffxiv-ocean-fishing/data'
@@ -36,13 +37,11 @@ const Fish = (): React.ReactElement => {
 
   return (
     <Page title={[t('_title'), t('fishPage._title')]}>
+      <NavigationBar page='/fish' />
       <ChecklistContext.Provider value={{ checklist, setChecklist }}>
         <Section>
           <Typography paragraph>
             Data are taken from the <Link href='https://docs.google.com/spreadsheets/d/1brCfvmSdYl7RcY9lkgm_ds8uaFqq7qaxOOz-5BfHuuk/edit?usp=sharing'>Ocean Fishing Spreadsheet</Link> managed by S’yahn Tia. Bite times are from <Link href='https://ffxivteamcraft.com/'>Teamcraft</Link> when available. For questions/comments/corrections, please visit the <Link href='https://discord.gg/AnFaDpN'>Fisherman’s Horizon Discord</Link> or message Lulu Pillow@Adamantoise or Pillowfication#0538.
-          </Typography>
-          <Typography paragraph>
-            I’ve also made a Chrome Extension for adding ocean fishes to the <Link href='https://ff14fish.carbuncleplushy.com/'>Carbuncle Plushy FFX|V Fish Tracker App</Link> available on the <Link href='https://chrome.google.com/webstore/detail/add-ocean-fish-to-ff14-fi/oihefgmncbnicjmcdccjflagboaidenh'>Chrome Web Store</Link>.
           </Typography>
           <Button variant='contained' onClick={toggleShowImport}>Import Fishes</Button>
         </Section>

@@ -16,6 +16,7 @@ import IconButton from '@material-ui/core/IconButton'
 import CheckIcon from '@material-ui/icons/Check'
 import Page from '../../src/Page'
 import Section from '../../src/Section'
+import NavigationBar from '../../src/ocean-fishing/NavigationBar'
 import OceanFishIcon from '../../src/ocean-fishing/OceanFishIcon'
 import { contentBonuses, achievements } from '../../src/ocean-fishing/ffxiv-ocean-fishing/data'
 import { cleanObjective, cleanRequirement } from '../../src/ocean-fishing/utils'
@@ -173,6 +174,7 @@ const Bonuses = (): React.ReactElement => {
 
   return (
     <Page title={[t('_title'), t('bonusesPage._title')]}>
+      <NavigationBar page='/bonuses' />
       <Section>
         <TableContainer>
           <Table className={classes.contentBonusesTable}>

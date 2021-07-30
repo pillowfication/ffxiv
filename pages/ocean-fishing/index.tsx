@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import MuiLink from '@material-ui/core/Link'
-import Button from '@material-ui/core/Button'
 import Link from '../../src/Link'
 import Page from '../../src/Page'
 import Section from '../../src/Section'
+import NavigationBar from '../../src/ocean-fishing/NavigationBar'
 import UpcomingVoyages from '../../src/ocean-fishing/UpcomingVoyages'
 import RouteInformation from '../../src/ocean-fishing/RouteInformation'
 import AchievementsInformation from '../../src/ocean-fishing/AchievementsInformation'
@@ -16,23 +15,7 @@ export const ChecklistContext = React.createContext<{ checklist: number[], setCh
   { checklist: [], setChecklist: () => {} }
 )
 
-const useStyles = makeStyles(theme => ({
-  buttons: {
-    textAlign: 'center',
-    marginBottom: theme.spacing(2),
-    '& > *': {
-      margin: theme.spacing(1),
-      color: theme.palette.text.primary,
-      textTransform: 'none',
-      '&:hover': {
-        textDecoration: 'none'
-      }
-    }
-  }
-}))
-
 const OceanFishing = (): React.ReactElement => {
-  const classes = useStyles()
   const { t } = useTranslation('ocean-fishing')
   const [now, setNow] = useState<Date>(new Date())
   const [selectedRoute, setSelectedRoute] = useState<DestTime | null>(null) // This is initialized when UpcomingVoyages is mounted
@@ -68,6 +51,7 @@ const OceanFishing = (): React.ReactElement => {
 
   return (
     <Page title={t('_title')} description={t('_description')}>
+      <NavigationBar page='/' />
       <ChecklistContext.Provider value={{ checklist: checklist ?? [], setChecklist }}>
         <Section>
           <Typography paragraph>
@@ -76,17 +60,6 @@ const OceanFishing = (): React.ReactElement => {
           <Typography paragraph>
             I’ve also made a Chrome Extension for adding ocean fishes to the <Link href='https://ff14fish.carbuncleplushy.com/'>Carbuncle Plushy FFX|V Fish Tracker App</Link> available on the <Link href='https://chrome.google.com/webstore/detail/add-ocean-fish-to-ff14-fi/oihefgmncbnicjmcdccjflagboaidenh'>Chrome Web Store</Link>.
           </Typography>
-          <div className={classes.buttons}>
-            <Button component={Link} variant='contained' href='/ocean-fishing/about'>
-              <Typography>{t('aboutPage._title')}</Typography>
-            </Button>
-            <Button component={Link} variant='contained' href='/ocean-fishing/fish'>
-              <Typography>{t('fishPage._title')}</Typography>
-            </Button>
-            <Button component={Link} variant='contained' href='/ocean-fishing/bonuses'>
-              <Typography>{t('bonusesPage._title')}</Typography>
-            </Button>
-          </div>
         </Section>
         <UpcomingVoyages now={now} onSelectRoute={setSelectedRoute} checklist={checklist ?? []} />
         {selectedRoute !== null && (
