@@ -12,12 +12,11 @@ import Switch from '@material-ui/core/Switch'
 import Tooltip from '@material-ui/core/Tooltip'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
-import HomeIcon from '@material-ui/icons/Home'
-import GitHubIcon from '@material-ui/icons/GitHub'
 import TranslateIcon from '@material-ui/icons/Translate'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import Brightness2Icon from '@material-ui/icons/Brightness2'
-import Brightness5Icon from '@material-ui/icons/Brightness5'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome, faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import Link from './Link'
 import { useTranslation } from './i18n'
 
@@ -43,9 +42,6 @@ const useStyles = makeStyles(theme => ({
       color: '#ffffff',
       textTransform: 'none'
     }
-  },
-  homeIcon: {
-    marginRight: theme.spacing(1)
   },
   languageButton: {
     marginRight: theme.spacing(2)
@@ -107,7 +103,9 @@ const Header = ({ theme, setTheme }: Props): React.ReactElement => {
                   underline='none'
                   href='/'
                 >
-                  <HomeIcon className={classes.homeIcon} />
+                  <Box mr={1}>
+                    <FontAwesomeIcon icon={faHome} size='lg' />
+                  </Box>
                   <Typography>Lulu’s Tools</Typography>
                 </Button>
               </Tooltip>
@@ -123,7 +121,7 @@ const Header = ({ theme, setTheme }: Props): React.ReactElement => {
                     disableElevation
                     href='https://github.com/pillowfication/ffxiv'
                   >
-                    <GitHubIcon />
+                    <FontAwesomeIcon icon={faGithub} size='lg' />
                   </Button>
                 </Tooltip>
               </Box>
@@ -156,14 +154,11 @@ const Header = ({ theme, setTheme }: Props): React.ReactElement => {
                 }
               </Menu>
               <Box display={{ xs: 'none', md: 'inline-block' }}>
-                <Brightness5Icon className={classes.brightnessIcon} />
+                <FontAwesomeIcon icon={faSun} size='lg' />
               </Box>
-              <Switch
-                checked={theme === 'dark'}
-                onChange={handleChangeTheme}
-              />
+              <Switch checked={theme === 'dark'} onChange={handleChangeTheme} />
               <Box display={{ xs: 'none', md: 'inline-block' }}>
-                <Brightness2Icon className={classes.brightnessIcon} />
+                <FontAwesomeIcon icon={faMoon} size='lg' />
               </Box>
             </Toolbar>
           </Grid>

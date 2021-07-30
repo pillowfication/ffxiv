@@ -2,21 +2,27 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import Button from '@material-ui/core/Button'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome, faQuestionCircle, faFish, faStar } from '@fortawesome/free-solid-svg-icons'
 import Link from '../../src/Link'
 
 const PAGES = [{
-  url: '/',
+  url: '/' as const,
+  icon: faHome,
   name: 'Index'
 }, {
-  url: '/about',
+  url: '/about' as const,
+  icon: faQuestionCircle,
   name: 'About'
 }, {
-  url: '/fish',
+  url: '/fish' as const,
+  icon: faFish,
   name: 'Fish'
 }, {
-  url: '/bonuses',
+  url: '/bonuses' as const,
+  icon: faStar,
   name: 'Bonuses'
-}] as const
+}]
 
 interface Props {
   page: typeof PAGES[number]['url']
@@ -33,6 +39,18 @@ const useStyles = makeStyles((theme) => ({
         textDecoration: 'none'
       }
     }
+  },
+  icon: {
+    [theme.breakpoints.down('xs')]: {
+      margin: theme.spacing(1, 0),
+      fontSize: '1.5em'
+    }
+  },
+  text: {
+    marginLeft: theme.spacing(1),
+    [theme.breakpoints.down('xs')]: {
+      display: 'none'
+    }
   }
 }))
 
@@ -42,14 +60,15 @@ const AchievementsInformation = ({ page }: Props): React.ReactElement => {
   return (
     <div className={classes.navigation}>
       <ButtonGroup>
-        {PAGES.map(({ url, name }) =>
+        {PAGES.map(({ url, icon, name }) =>
           <Button
             key={url}
             component={Link}
             href={`/ocean-fishing${url}`}
             disabled={url === page}
           >
-            {name}
+            <FontAwesomeIcon icon={icon} fixedWidth className={classes.icon} />
+            <span className={classes.text}>{name}</span>
           </Button>
         )}
       </ButtonGroup>

@@ -1,7 +1,8 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
-import ChevronRightIcon from '@material-ui/icons/ChevronRight'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import OceanFishIcon from './OceanFishIcon'
 import Tug from './Tug'
 import StarBadge from './StarBadge'
@@ -19,8 +20,8 @@ const useStyles = makeStyles(theme => ({
   chevron: {
     position: 'relative',
     verticalAlign: 'middle',
-    marginLeft: '-0.15em',
-    marginRight: '-0.15em'
+    margin: theme.spacing(0, 0.5),
+    color: theme.palette.type === 'light' ? theme.palette.grey[700] : theme.palette.grey[400]
   },
   subtext: {
     verticalAlign: 'middle',
@@ -57,7 +58,7 @@ const BaitChain = ({ baits, baitIsRequired = false, subtext, small }: Props): Re
               <div className={classes.bait}>
                 <OceanFishIcon type='bait' id={bait.id} size={small ? 34 : 40} badge={baitIsRequired && <StarBadge />} />
               </div>
-              <ChevronRightIcon className={classes.chevron} />
+              <FontAwesomeIcon icon={faChevronRight} className={classes.chevron} />
             </React.Fragment>
           )
         } else {
@@ -72,7 +73,9 @@ const BaitChain = ({ baits, baitIsRequired = false, subtext, small }: Props): Re
                   </Typography>
                 )}
               </div>
-              {index < baits.length - 1 && <ChevronRightIcon className={classes.chevron} />}
+              {index < baits.length - 1 && (
+                <FontAwesomeIcon icon={faChevronRight} className={classes.chevron} />
+              )}
             </React.Fragment>
           )
         }
