@@ -56,7 +56,12 @@ const BaitChain = ({ baits, baitIsRequired = false, subtext, small }: Props): Re
           return (
             <React.Fragment key={bait.id}>
               <div className={classes.bait}>
-                <OceanFishIcon type='bait' id={bait.id} size={small ? 34 : 40} badge={baitIsRequired && <StarBadge />} />
+                <OceanFishIcon
+                  type='bait'
+                  id={bait.id}
+                  size={small ? 34 : 40}
+                  badge={baitIsRequired && <StarBadge />}
+                />
               </div>
               <FontAwesomeIcon icon={faChevronRight} className={classes.chevron} />
             </React.Fragment>
@@ -66,7 +71,12 @@ const BaitChain = ({ baits, baitIsRequired = false, subtext, small }: Props): Re
           return (
             <React.Fragment key={fish.id}>
               <div className={classes.bait}>
-                <OceanFishIcon type='fish' id={fish.id} size={small ? 34 : 40} badge={tug !== null && <Tug size='small' strength={tug} />} />
+                <OceanFishIcon
+                  type='fish'
+                  id={fish.id}
+                  size={small ? 34 : 40}
+                  badge={tug !== null && <Tug size='small' strength={tug} />}
+                />
                 {(subtext !== undefined && index === baits.length - 1) && (
                   <Typography className={classes.subtext} display='inline'>
                     {typeof subtext === 'string' ? subtext : subtext(fish)}

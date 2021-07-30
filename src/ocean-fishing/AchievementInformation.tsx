@@ -21,7 +21,10 @@ const contentBonusMap: Record<number, ContentBonus> = {
 const useStyles = makeStyles(theme => ({
   achievementIcon: {
     marginLeft: theme.spacing(1.5),
-    verticalAlign: 'sub'
+    verticalAlign: 'sub',
+    [theme.breakpoints.down('md')]: {
+      display: 'none'
+    }
   },
   subtitle: {
     marginLeft: theme.spacing(2),

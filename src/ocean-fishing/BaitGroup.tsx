@@ -29,13 +29,24 @@ const BaitGroup = ({ baits, baitIsRequired = false, intuitionFishes, subtext, ma
 
   return (
     <>
-      <BaitChain baits={baits} baitIsRequired={baitIsRequired} subtext={subtext} />
+      <BaitChain
+        baits={baits}
+        baitIsRequired={baitIsRequired}
+        subtext={subtext}
+      />
       {intuitionFishes !== undefined && (
         <ul className={classes.intuitionFishes}>
           {intuitionFishes.map(({ baits, baitIsRequired, count }, index) =>
             <li key={index}>
-              <Typography className={classes.count} display='inline'>{count}×</Typography>
-              <BaitChain small baits={baits} baitIsRequired={baitIsRequired} subtext={mainOnly ? undefined : subtext} />
+              <Typography className={classes.count} display='inline'>
+                {count}×
+              </Typography>
+              <BaitChain
+                small
+                baits={baits}
+                baitIsRequired={baitIsRequired}
+                subtext={mainOnly ? undefined : subtext}
+              />
             </li>
           )}
         </ul>
