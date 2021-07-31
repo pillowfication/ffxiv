@@ -5,36 +5,38 @@ import Button from '@material-ui/core/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faQuestionCircle, faFish, faStar } from '@fortawesome/free-solid-svg-icons'
 import Link from '../../src/Link'
+import { useTranslation } from '../i18n'
 
 const PAGES = [{
   url: '/' as const,
   icon: faHome,
-  name: 'Index'
+  name: '_title'
 }, {
   url: '/about' as const,
   icon: faQuestionCircle,
-  name: 'About'
+  name: 'aboutPage._title'
 }, {
   url: '/fish' as const,
   icon: faFish,
-  name: 'Fish'
+  name: 'fishPage._title'
 }, {
   url: '/bonuses' as const,
   icon: faStar,
-  name: 'Bonuses'
+  name: 'bonusesPage._title'
 }]
 
 interface Props {
   page: typeof PAGES[number]['url']
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   navigation: {
     marginBottom: theme.spacing(2),
     textAlign: 'center',
     '& a': {
       color: theme.palette.text.primary,
       textTransform: 'none',
+      borderRightColor: `${theme.palette.type === 'light' ? theme.palette.grey[500] : theme.palette.grey[700]} !important`,
       '&:hover': {
         textDecoration: 'none'
       }
@@ -56,10 +58,11 @@ const useStyles = makeStyles((theme) => ({
 
 const AchievementsInformation = ({ page }: Props): React.ReactElement => {
   const classes = useStyles()
+  const { t } = useTranslation('ocean-fishing')
 
   return (
-    <div className={classes.navigation}>
-      <ButtonGroup>
+    <nav className={classes.navigation}>
+      <ButtonGroup variant='contained'>
         {PAGES.map(({ url, icon, name }) =>
           <Button
             key={url}
@@ -68,11 +71,11 @@ const AchievementsInformation = ({ page }: Props): React.ReactElement => {
             disabled={url === page}
           >
             <FontAwesomeIcon icon={icon} fixedWidth className={classes.icon} />
-            <span className={classes.text}>{name}</span>
+            <span className={classes.text}>{t(name)}</span>
           </Button>
         )}
       </ButtonGroup>
-    </div>
+    </nav>
   )
 }
 
