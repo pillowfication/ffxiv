@@ -39,26 +39,28 @@ const Tug = ({ strength, size = 'normal', className }: Props): React.ReactElemen
   const classes = useStyles()
   const { t } = useTranslation('ocean-fishing')
 
+  /* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
   switch (strength) {
     case 1:
       return (
-        <Tooltip arrow placement='top' title={String(t('tug.light'))}>
+        <Tooltip arrow placement='top' title={t('tug.light') as string}>
           <Paper component='span' className={clsx(classes.tug, size === 'small' && classes.small, classes.light, className)}>!</Paper>
         </Tooltip>
       )
     case 2:
       return (
-        <Tooltip arrow placement='top' title={String(t('tug.medium'))}>
+        <Tooltip arrow placement='top' title={t('tug.medium') as string}>
           <Paper component='span' className={clsx(classes.tug, size === 'small' && classes.small, classes.medium, className)}>!!</Paper>
         </Tooltip>
       )
     case 3:
       return (
-        <Tooltip arrow placement='top' title={String(t('tug.heavy'))}>
+        <Tooltip arrow placement='top' title={t('tug.heavy') as string}>
           <Paper component='span' className={clsx(classes.tug, size === 'small' && classes.small, classes.heavy, className)}>!!!</Paper>
         </Tooltip>
       )
   }
+  /* eslint-enable @typescript-eslint/no-unnecessary-type-assertion */
 }
 
 export default React.memo(Tug)

@@ -119,7 +119,15 @@ const oceanFishes = IKDFishParam.data
         cn: item_cn.Description,
         ko: item_ko.Description
       },
-      contentBonus: +ikdFishParam.IKDContentBonus !== 0 ? +ikdFishParam.IKDContentBonus : +ikdFishParam['Unknown[5-4]']
+      contentBonus: (() => {
+        if (+ikdFishParam['<UNKNOWN_2>'] === 22) {
+          return 22 // Manta bug
+        } else if (+ikdFishParam.IKDContentBonus !== 0) {
+          return +ikdFishParam.IKDContentBonus
+        } else {
+          return null
+        }
+      })()
     }
   })
   .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})
