@@ -1,9 +1,9 @@
-import { createMuiTheme } from '@material-ui/core/styles'
-import { lighten, fade } from '@material-ui/core/styles/colorManipulator'
+import { createTheme } from '@material-ui/core/styles'
+import { lighten, alpha } from '@material-ui/core/styles/colorManipulator'
 
 const PRIMARY_COLOR = '#0f3d87'
 
-export const lightTheme = createMuiTheme({
+export const lightTheme = createTheme({
   palette: {
     type: 'light',
     primary: {
@@ -15,7 +15,7 @@ export const lightTheme = createMuiTheme({
       default: '#f8f9fa'
     },
     action: {
-      hover: fade(PRIMARY_COLOR, 0.15)
+      hover: alpha(PRIMARY_COLOR, 0.15)
     }
   },
   typography: {
@@ -57,7 +57,7 @@ export const lightTheme = createMuiTheme({
   }
 })
 
-export const darkTheme = createMuiTheme({
+export const darkTheme = createTheme({
   palette: {
     type: 'dark',
     primary: {
