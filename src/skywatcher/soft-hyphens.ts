@@ -20,6 +20,9 @@ const WITH_HYPHENS: Record<string, string> = {
   'Everlasting Light': `Ever${SHY}lasting Light`,
   Termination: `Termi${SHY}nation`,
   Irradiance: `Irradi${SHY}ance`,
+  'Astromagnetic Storm': `Astro${SHY}magnetic Storm`,
+  Pandæmonium: `Pandæ${SHY}monium`,
+
   Wolkenbruch: `Wolken${SHY}bruch`,
   Schneesturm: `Schnee${SHY}sturm`,
   Unheimlich: `Unheim${SHY}lich`,
@@ -51,6 +54,14 @@ const WITH_HYPHENS: Record<string, string> = {
   Wetterleuchten: `Wetter${SHY}leuch${SHY}ten`,
   Flammensturm: `Flammen${SHY}sturm`,
   Phantomströmung: `Phantom${SHY}strömung`,
+  Mondstaubig: `Mond${SHY}stau${SHY}big`,
+  Magnetsturm: `Magnet${SHY}sturm`,
+  Erinnerungsturbulenzen: `Erin${SHY}nerung${SHY}sturbu${SHY}lenzen`,
+  Sternenregen: `Ster${SHY}nen${SHY}regen`,
+  Polarisierend: `Polari${SHY}sierend`,
+  Eschatologie: `Escha${SHY}tologie`,
+  Verzweifelnd: `Verzwei${SHY}felnd`,
+
   Brouillard: `Brouil${SHY}lard`,
   'Pluie torrentielle': `Pluie torren${SHY}tielle`,
   Désespérance: `Déses${SHY}pérance`,
@@ -65,7 +76,9 @@ const WITH_HYPHENS: Record<string, string> = {
   Fantasmagorique: `Fantas${SHY}mago${SHY}rique`,
   'Turbulences ombrales': `Turbu${SHY}lences ombrales`,
   Apocalypse: `Apoca${SHY}lypse`,
-  Rayonnement: `Rayon${SHY}nement`
+  Rayonnement: `Rayon${SHY}nement`,
+  Astromagnétique: `Astro${SHY}magnétique`,
+  Eschatologique: `Escha${SHY}tolo${SHY}gique`
 }
 
 export default function softHyphens (str: string): string {
