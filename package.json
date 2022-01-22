@@ -39,7 +39,7 @@
     "next-i18next": "^7.0.1",
     "next-seo": "^4.24.0",
     "next-usequerystate": "^1.4.0-beta.5",
-    "node-fetch": "^3.1.0",
+    "node-fetch": "^3.1.1",
     "raw-loader": "^4.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
