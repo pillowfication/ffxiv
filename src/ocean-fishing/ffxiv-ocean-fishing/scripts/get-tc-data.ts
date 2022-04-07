@@ -4,8 +4,6 @@ import fetch from 'node-fetch'
 import oceanFishingFishingSpots from '../data/fishing-spots.json'
 import oceanFishingBaits from '../data/baits.json'
 
-const BEARER_TOKEN = require('./tc-bearer-token.json') // eslint-disable-line @typescript-eslint/no-var-requires
-
 const BAIT_IDS = Object.keys(oceanFishingBaits).map(Number)
   .concat([
     29722, // Ghoul Barracuda
@@ -16,31 +14,35 @@ const BAIT_IDS = Object.keys(oceanFishingBaits).map(Number)
 const FISHING_SPOTS = Object.keys(oceanFishingFishingSpots).map(Number)
 
 async function getTCBiteTimes (spotId: number, baitId: number): Promise<any> {
-  const res = await fetch(
-    'https://us-central1-ffxivteamcraft.cloudfunctions.net/gubal-proxy',
-    {
-      headers: {
-        accept: 'application/json, text/plain, */*',
-        'accept-language': 'en-US,en',
-        authorization: BEARER_TOKEN,
-        'cache-control': 'no-cache',
-        'content-type': 'application/json',
-        pragma: 'no-cache',
-        'sec-fetch-dest': 'empty',
-        'sec-fetch-mode': 'cors',
-        'sec-fetch-site': 'cross-site'
-      },
-      body: `{"operationName":"BiteTimesPerFishPerSpotPerBaitQuery","variables":{"spotId":${spotId},"baitId":${baitId}},"query":"query BiteTimesPerFishPerSpotPerBaitQuery($fishId: Int, $spotId: Int, $baitId: Int) {\\n  biteTimes: bite_time_per_fish_per_spot_per_bait(where: {spot: {_eq: $spotId}, itemId: {_eq: $fishId}, baitId: {_eq: $baitId}, biteTime: {_gt: 1}, occurences: {_gte: 1}}) {\\n    itemId\\n    spot\\n    baitId\\n    biteTime\\n    occurences\\n    __typename\\n  }\\n}\\n"}`,
-      method: 'POST'
-    }
-  )
+  const res = await fetch('https://gubal.hasura.app/v1/graphql', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      operationName: 'BiteTimesPerFishPerSpotPerBaitQuery',
+      variables: { spotId, baitId },
+      query: `
+        query BiteTimesPerFishPerSpotPerBaitQuery($fishId: Int, $spotId: Int, $baitId: Int) {
+          biteTimes: bite_time_per_fish_per_spot_per_bait(
+            where: { spot: { _eq: $spotId }, itemId: { _eq: $fishId }, baitId: { _eq: $baitId }, flooredBiteTime: { _gt: 1, _lt: 600 }, occurences: { _gte: 3 } }
+          ) {
+            itemId
+            baitId
+            flooredBiteTime
+            occurences
+          }
+        }
+      `
+    })
+  })
 
   const json = await res.json()
   json.data.biteTimes = json.data.biteTimes
     .map((datum: any) => ({
       itemId: datum.itemId,
       baitId: datum.baitId,
-      biteTime: datum.biteTime,
+      biteTime: datum.flooredBiteTime,
       occurrences: datum.occurences // Rename this variable...
     }))
 
@@ -60,24 +62,37 @@ async function getTCBiteTimes (spotId: number, baitId: number): Promise<any> {
 }
 
 async function getTCBaitPercentages (spotId: number): Promise<any> {
-  const res = await fetch(
-    'https://us-central1-ffxivteamcraft.cloudfunctions.net/gubal-proxy',
-    {
-      headers: {
-        accept: 'application/json, text/plain, */*',
-        'accept-language': 'en-US,en',
-        authorization: BEARER_TOKEN,
-        'cache-control': 'no-cache',
-        'content-type': 'application/json',
-        pragma: 'no-cache',
-        'sec-fetch-dest': 'empty',
-        'sec-fetch-mode': 'cors',
-        'sec-fetch-site': 'cross-site'
-      },
-      body: `{"operationName":"BaitsPerFishPerSpotQuery","variables":{"spotId":${spotId}},"query":"query BaitsPerFishPerSpotQuery($fishId: Int, $spotId: Int) {\\n  baits: baits_per_fish_per_spot(where: {spot: {_eq: $spotId}, itemId: {_eq: $fishId}, occurences: {_gt: 1}}) {\\n    itemId\\n    spot\\n    baitId\\n    occurences\\n    __typename\\n  }\\n  mooches: baits_per_fish_per_spot(where: {spot: {_eq: $spotId}, baitId: {_eq: $fishId}, occurences: {_gt: 1}}) {\\n    itemId\\n    spot\\n    baitId\\n    __typename\\n  }\\n}\\n"}`,
-      method: 'POST'
-    }
-  )
+  const res = await fetch('https://gubal.hasura.app/v1/graphql', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      operationName: 'BaitsPerFishPerSpotQuery',
+      variables: { spotId },
+      query: `
+        query BaitsPerFishPerSpotQuery($fishId: Int, $spotId: Int, $misses: Int) {
+          baits: baits_per_fish_per_spot(
+            where: { spot: { _eq: $spotId }, itemId: { _eq: $fishId }, occurences: { _gt: 1 } }
+          ) {
+            itemId
+            spot
+            baitId
+            occurences
+          }
+          ${/*
+          mooches: baits_per_fish_per_spot(
+            where: { spot: { _eq: $spotId }, baitId: { _eq: $fishId }, occurences: { _gt: 1 } }
+          ) {
+            itemId
+            spot
+            baitId
+          }
+          */''}
+        }
+      `
+    })
+  })
 
   const json = await res.json()
   json.data.baits = json.data.baits

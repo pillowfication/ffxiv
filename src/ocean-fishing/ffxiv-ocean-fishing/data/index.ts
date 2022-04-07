@@ -25,7 +25,7 @@ function getMapped<T> (map: Record<string, T>, name: string | null): T | null {
     return null
   }
   if (map[name] === undefined) {
-    throw new Error(`Could not find '${name}'`)
+    throw new Error(`Could not find '${name}' in ${JSON.stringify(map)}`)
   }
   return map[name]
 }
@@ -71,12 +71,13 @@ export interface Fish {
 }
 
 export interface SpreadsheetData {
-  desynthesisBait: Bait | null
-  bestBait: Bait | null
+  bait: Bait | null
   points: number | null
   doubleHook: number | [number, number] | null
+  tripleHook: number | [number, number] | null
   mooch: Fish | null
   tug: 1 | 2 | 3 | null
+  hookset: 'Precision' | 'Powerful' | null
   time: Time[] | null
   weathers: { type: 'ALL' } | { type: 'OK', list: Weather[] } | { type: 'NOT OK', list: Weather[] } | null
   stars: number | null
@@ -100,12 +101,13 @@ for (const fish of Object.values<any>(_fishes)) {
   // Attach spreadsheet data
   if (fish.id === 0) {
     fish.spreadsheetData = {
-      desynthesisBait: null,
-      bestBait: null,
+      bait: null,
       points: null,
       doubleHook: null,
+      tripleHook: null,
       mooch: null,
       tug: null,
+      hookset: null,
       time: null,
       weathers: null,
       stars: null,
@@ -114,12 +116,13 @@ for (const fish of Object.values<any>(_fishes)) {
   } else {
     const spreadsheetData = getMapped(spreadsheetMap, fish.name.en)
     fish.spreadsheetData = {
-      desynthesisBait: getMapped(baitMap, spreadsheetData.desynthesisBait),
-      bestBait: getMapped(baitMap, spreadsheetData.bestBait),
+      bait: getMapped(baitMap, spreadsheetData.bait),
       points: spreadsheetData.points,
       doubleHook: spreadsheetData.doubleHook,
+      tripleHook: spreadsheetData.tripleHook,
       mooch: getMapped(fishMap, spreadsheetData.mooch),
       tug: spreadsheetData.tug,
+      hookset: spreadsheetData.hookset,
       time: spreadsheetData.time !== null ? spreadsheetData.time.split('') : null,
       weathers: spreadsheetData.weathers !== null
         ? (() => {

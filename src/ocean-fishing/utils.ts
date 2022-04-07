@@ -51,7 +51,7 @@ export function isBaitRequired (fish: Fish, bait: Bait): boolean {
 
 export const getBaitChain = memoize(
   function _getBaitChain (fish: Fish): Array<BaitLink | FishLink> {
-    const { bestBait: bait, mooch, tug } = fish.spreadsheetData
+    const { bait, mooch, tug } = fish.spreadsheetData
     if (bait === null && mooch === null) {
       return [{ bait: baits[29717] }, { fish, tug }] // Versatile Lure as fallback
     } else {
@@ -162,7 +162,7 @@ export function cleanRequirement (requirement: string): string {
   return upperFirst(requirement.replace(/^(Requirement:|Bedingung:|Condition :|達成条件：|达成条件：|달성 조건: )/, '').trim())
 }
 
-export function isUncaughtRoute (destTime: DestTime, checklist: number[]) {
+export function isUncaughtRoute (destTime: DestTime, checklist: number[]): boolean {
   for (const stopTime of getStopTimes(destTime)) {
     const nonSpectralFishingSpot = maps.STOP_MAP[stopTime[0] as Stop]
     for (const fish of nonSpectralFishingSpot.fishes) {

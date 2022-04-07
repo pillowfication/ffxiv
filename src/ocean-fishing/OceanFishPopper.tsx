@@ -48,6 +48,11 @@ const useStyles = makeStyles(theme => ({
   content: {
     padding: theme.spacing(0, 2, 2)
   },
+  table: {
+    '& td': {
+      padding: theme.spacing(0.33, 2)
+    }
+  },
   description: {
     whiteSpace: 'pre-line'
   },
@@ -100,7 +105,7 @@ const OceanFishPopper = ({ fish }: Props): React.ReactElement => {
           <BaitGroup {...getBaitGroup(fish)} subtext={subtextBiteTime} />
         </CardContent>
         <CardContent className={classes.content}>
-          <Table size='small'>
+          <Table size='small' className={classes.table}>
             <TableBody>
               <TableRow>
                 <TableCell variant='head'>
@@ -125,6 +130,16 @@ const OceanFishPopper = ({ fish }: Props): React.ReactElement => {
                 <TableCell align='center'>
                   {spreadsheetData.doubleHook !== null
                     ? (Array.isArray(spreadsheetData.doubleHook) ? spreadsheetData.doubleHook.join('-') : spreadsheetData.doubleHook)
+                    : '?'}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell variant='head'>
+                  {t('fishInfo.tripleHook')}
+                </TableCell>
+                <TableCell align='center'>
+                  {spreadsheetData.tripleHook !== null
+                    ? (Array.isArray(spreadsheetData.tripleHook) ? spreadsheetData.tripleHook.join('-') : spreadsheetData.tripleHook)
                     : '?'}
                 </TableCell>
               </TableRow>

@@ -41,7 +41,7 @@ const Fish = (): React.ReactElement => {
       <ChecklistContext.Provider value={{ checklist, setChecklist }}>
         <Section>
           <Typography paragraph>
-            Data are taken from the <Link href='https://docs.google.com/spreadsheets/d/1brCfvmSdYl7RcY9lkgm_ds8uaFqq7qaxOOz-5BfHuuk/edit?usp=sharing'>Ocean Fishing Spreadsheet</Link> managed by S’yahn Tia. Bite times are from <Link href='https://ffxivteamcraft.com/'>Teamcraft</Link> when available. For questions/comments/corrections, please visit the <Link href='https://discord.gg/AnFaDpN'>Fisherman’s Horizon Discord</Link> or message Lulu Pillow@Adamantoise or Pillowfication#0538.
+            Data are taken from the <Link href='https://docs.google.com/spreadsheets/d/1R0Nt8Ye7EAQtU8CXF1XRRj67iaFpUk1BXeDgt6abxsQ/edit#gid=149797934'>Ocean Fishing Spreadsheet</Link> managed by Tyo’to Tayuun. Bite times are from <Link href='https://ffxivteamcraft.com/'>Teamcraft</Link>. For questions/comments/corrections, please visit the <Link href='https://discord.gg/AnFaDpN'>Fisherman’s Horizon Discord</Link> or message Lulu Pillow@Adamantoise or Pillowfication#0538.
           </Typography>
           <Button variant='contained' onClick={toggleShowImport}>Import Fishes</Button>
         </Section>

@@ -1,11 +1,11 @@
 import fs from 'fs'
 import path from 'path'
 import { stringify as csvStringify } from 'csv-stringify/sync'
+import { boxplot } from '@sgratzl/boxplots'
 import fishingSpots from '../data/fishing-spots.json'
 import fishes from '../data/fishes.json'
 import baits from '../data/baits.json'
 
-const CUTOFF = 0.02
 const OUTPUT = path.resolve(__dirname, '../data/bite-times.json')
 
 const BAIT_IDS = Object.keys(baits).map(Number).filter(baitId => baitId !== 0)
@@ -40,19 +40,10 @@ function getBiteTime (fishId: number, baitId?: number): [number, number] | null 
     // Too few reports for meaningful data
     return null
   } else {
-    const cutOff = Math.floor(totalOccurrences * CUTOFF)
-    let minTime: number = -1
-    let maxTime: number = -1
-    for (let count = 0, index = 0; index < times.length; ++index) {
-      count += times[index].occurrences as number
-      if (minTime === -1 && count >= cutOff) {
-        minTime = times[index].biteTime
-      }
-      if (maxTime === -1 && count >= totalOccurrences - cutOff) {
-        maxTime = times[index].biteTime
-      }
-    }
-    return [minTime, maxTime]
+    // This mimics how TC displays biteTime data
+    // I don't see any better way to input occurrences into the boxplot method
+    const boxplotStats = boxplot(times.map((datum: any) => Array(datum.occurrences).fill(datum.biteTime)).flat())
+    return [boxplotStats.whiskerLow, boxplotStats.whiskerHigh]
   }
 }
 
@@ -168,12 +159,10 @@ const baits = require('./data/baits.json')
 const fishes = require('./data/fishes.json')
 const biteTimes = require('./data/bite-times.json')
 const spreadsheetData = require('./data/spreadsheet-data.json')
-
 for (const datum of Object.values(spreadsheetData).flat()) {
   const oldBait = datum.desynthesisBait
   const fishId = Object.values(fishes).find(fish => fish.name.en === datum.name).id
   const newBait = biteTimes[fishId].bestBait ? baits[biteTimes[fishId].bestBait].name.en : null
-
   if (oldBait !== newBait) {
     console.log(`${datum.name}: ${oldBait} -> ${newBait}`)
   }

@@ -182,14 +182,14 @@ const FishTable = ({ fishingSpots, time }: Props): React.ReactElement => {
                             <img src='/images/ocean-fishing/fishers-intuition.png' className={classes.intuition} />
                           </>
                         )}
-                        {spreadsheetData.bestBait !== null && (
+                        {spreadsheetData.bait !== null && (
                           <OceanFishIcon
                             type='bait'
-                            id={spreadsheetData.bestBait.id}
-                            badge={isBaitRequired(fish, spreadsheetData.bestBait) && <StarBadge />}
+                            id={spreadsheetData.bait.id}
+                            badge={isBaitRequired(fish, spreadsheetData.bait) && <StarBadge />}
                           />
                         )}
-                        {spreadsheetData.bestBait !== null && spreadsheetData.mooch !== null && 'or'}
+                        {spreadsheetData.bait !== null && spreadsheetData.mooch !== null && 'or'}
                         {spreadsheetData.mooch !== null && (
                           <OceanFishIcon type='fish' id={spreadsheetData.mooch.id} />
                         )}
@@ -210,8 +210,13 @@ const FishTable = ({ fishingSpots, time }: Props): React.ReactElement => {
                         )}
                       </TableCell>
                       <TableCell align='center'>
-                        {spreadsheetData.doubleHook !== undefined && (
-                          <Typography>{Array.isArray(spreadsheetData.doubleHook) ? spreadsheetData.doubleHook.join('-') : spreadsheetData.doubleHook}</Typography>
+                        {spreadsheetData.doubleHook !== null && (
+                          <Typography>
+                            {Array.isArray(spreadsheetData.doubleHook) ? spreadsheetData.doubleHook.join('-') : spreadsheetData.doubleHook}
+                            {spreadsheetData.tripleHook !== null && (
+                              <>&emsp;({Array.isArray(spreadsheetData.tripleHook) ? spreadsheetData.tripleHook.join('-') : spreadsheetData.tripleHook})</>
+                            )}
+                          </Typography>
                         )}
                       </TableCell>
                       <TableCell align='center'>

@@ -8,26 +8,11 @@ import Page from '../../src/Page'
 import Section from '../../src/Section'
 import Link from '../../src/Link'
 import Highlight from '../../src/Highlight'
-import { mathJaxRequire, $$ } from '../../src/MathJax'
+import { mathJaxRequire, $, $$ } from '../../src/MathJax'
 import NavigationBar from '../../src/ocean-fishing/NavigationBar'
 import { useTranslation } from '../../src/i18n'
 
 const useStyles = makeStyles(theme => ({
-  nestedList: {
-    listStyleType: 'none',
-    counterReset: 'counter',
-    '& li': {
-      position: 'relative',
-      marginTop: theme.spacing(0.5),
-      marginBottom: theme.spacing(0.5),
-      '&::before': {
-        position: 'absolute',
-        left: '-2em',
-        content: 'counters(counter, ".") "."',
-        counterIncrement: 'counter'
-      }
-    }
-  },
   code: {
     padding: theme.spacing(0.2, 1)
   }
@@ -43,32 +28,24 @@ const About = (): React.ReactElement => {
       <NavigationBar page='/about' />
       <Section title={t('aboutPage.data')}>
         <Typography paragraph>
-          Data are taken from the <MuiLink href='https://docs.google.com/spreadsheets/d/1brCfvmSdYl7RcY9lkgm_ds8uaFqq7qaxOOz-5BfHuuk/edit?usp=sharing'>Ocean Fishing Spreadsheet</MuiLink> managed by S’yahn Tia. To report errors, please visit the <MuiLink href='https://discord.gg/AnFaDpN'>Fisherman’s Horizon Discord</MuiLink> or message Lulu Pillow@Adamantoise or Pillowfication#0538.
+          Data are taken from the <MuiLink href='https://docs.google.com/spreadsheets/d/1R0Nt8Ye7EAQtU8CXF1XRRj67iaFpUk1BXeDgt6abxsQ/edit#gid=149797934'>Ocean Fishing Spreadsheet</MuiLink> managed by Tyo’to Tayuun. To report errors, please visit the <MuiLink href='https://discord.gg/AnFaDpN'>Fisherman’s Horizon Discord</MuiLink> or message Lulu Pillow@Adamantoise or Pillowfication#0538.
         </Typography>
         <Typography paragraph>
-          Bite times are periodically fetched from <MuiLink href='https://ffxivteamcraft.com/'>Teamcraft</MuiLink> and cleaned up with the following process:
+          Bite times are periodically fetched from <MuiLink href='https://ffxivteamcraft.com/'>Teamcraft</MuiLink>. Teamcraft defines the minimum and maximum bite times to be the whiskers of a typical boxplot. This means
         </Typography>
-        <ol className={classes.nestedList}>
+        <ol>
           <Typography component='li'>
-            For each of the 14 fishing spots (non spectral and spectral) and for each of the 15 baits (mooches included), fetch all reports at the specified fishing spot with the specified bait.
+            Compute quartiles using the type-7 algorithm detailed in <MuiLink href='https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/quantile'>R’s quantile method</MuiLink>.
           </Typography>
           <Typography component='li'>
-            For each fish-bait combination, calculate the bite time range from the reports.
-            <ol className={classes.nestedList}>
-              <Typography component='li'>
-                If there are fewer than 10 total reports, do not calculate the bite time range. (This tends to remove reports where fish are caught with the baits that should be impossible, or blue fish where too few reports are recorded)
-              </Typography>
-              <Typography component='li'>
-                Otherwise, remove the top 5% and the bottom 5% of the reports. The minimum and maximum of the remaining reports is used as the bite time range. (This tends to remove outliers, like <MuiLink href='https://media.discordapp.net/attachments/593471315319717888/797807850562912256/unknown.png'>Godsbed taking 18 hours to catch</MuiLink>)
-              </Typography>
-            </ol>
-          </Typography>
-          <Typography component='li'>
-            For each fish, calculate the bite time range for all baits, excluding Versatile Lure.
+            Removing samples more than {$('1.5 \\times \\text{IQR}')} from the median.
           </Typography>
         </ol>
         <Typography paragraph>
-          The bite times shown on the <Link href='/ocean-fishing'>Ocean Fishing page</Link> are the bite time ranges for all baits. The bite time ranges for all baits can currently be found at <MuiLink href='https://github.com/pillowfication/ffxiv/blob/master/src/ocean-fishing/ffxiv-ocean-fishing/data/bite-times.csv'>bite-times.csv</MuiLink>.
+          The default bite times shown on the <Link href='/ocean-fishing'>Ocean Fishing page</Link> are the bite time ranges over all baits, excluding Versatile Lure. While this works fairly well, it can still be inaccurate, and most prescribed strategies will use player-tested timings.
+        </Typography>
+        <Typography paragraph>
+          Bait percentages are also fetched from Teamcraft and are usually used as the suggested bait, unless the bait causes a drastic increase in bite times. Usually the best bait is the fish’s desynthesis bait, and nonstandard ocean fishing baits are avoided, unless the goal is Fisher’s Intuition. Specific cases were further detailed in the <MuiLink href='https://discord.com/channels/327124808217395200/679407580430467092/864238268514041917'>Discord</MuiLink>.
         </Typography>
         <Typography paragraph>
           All my data and the code I used are available on <MuiLink href='https://github.com/pillowfication/ffxiv/tree/master/src/ocean-fishing/ffxiv-ocean-fishing'>GitHub</MuiLink>.
