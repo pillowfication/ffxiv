@@ -28,7 +28,7 @@ const Xivapi = (): React.ReactElement => {
 
   useEffect(() => {
     if (url === null) {
-      setUrl('/content')
+      void setUrl('/content')
     }
   }, [])
 
@@ -44,12 +44,12 @@ const Xivapi = (): React.ReactElement => {
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>): void => {
     if (event.key === 'Enter') {
-      setUrl(inputUrl)
+      void setUrl(inputUrl)
     }
   }
 
   const handleClickGo = (): void => {
-    setUrl(inputUrl)
+    void setUrl(inputUrl)
   }
 
   return (
@@ -73,7 +73,7 @@ const Xivapi = (): React.ReactElement => {
           <Grid item xs={12}>
             <NoSsr>
               {url !== null && (
-                <Results url={url} onChangeUrl={setUrl} />
+                <Results url={url} onChangeUrl={(...args) => { void setUrl(...args) }} />
               )}
             </NoSsr>
           </Grid>

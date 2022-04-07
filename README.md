@@ -14,7 +14,7 @@ Just a site so I can learn new frameworks and stuff.
 
   1. Download [SaintCoinach.Cmd](https://github.com/xivapi/SaintCoinach/releases) to `ffxiv/datamining`
   2. Execute `SaintCoinach.Cmd.exe "D:\\SquareEnix\\FINAL FANTASY XIV - A Realm Reborn"` then `allrawexd` (also `maps` and `ui`)
-  3. Download the CN and KO repositories to `ffxiv/datamining`
+  3. Download the CN and KO repositories to `ffxiv/datamining` (`git pull`)
     - https://github.com/thewakingsands/ffxiv-datamining-cn
     - https://github.com/Ra-Workspace/ffxiv-datamining-ko
   4. Execute whatever scripts I wrote that grab data

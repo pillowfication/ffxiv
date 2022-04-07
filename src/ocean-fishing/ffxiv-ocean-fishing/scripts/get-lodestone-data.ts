@@ -30,7 +30,7 @@ async function get (url: string): Promise<any> {
  *   - an optional `?n[patch-number]` is appended as a cache buster
  *   - e.g.: https://img.finalfantasyxiv.com/lds/pc/global/images/itemicon/ab/abcdefg1234.png?n5.57
  */
-async function getLodestoneData (query: string): Promise<any> {
+async function getLodestoneData (query: string, dataVersion: number): Promise<any> {
   // The first step is to make a general search for the item on Lodestone.
   // This gives a list of results, and we select the first one whose item name matches the query.
   // The query options represent
@@ -59,10 +59,7 @@ async function getLodestoneData (query: string): Promise<any> {
 
   // After the item id is found, we can grab look for `icon_md`.
   // This icon is seen in the hover tooltip that is handled by https://na.finalfantasyxiv.com/lodestone/special/fankit/tooltip/.
-  // This requires knowing the Eorzea DB data version seen at https://img.finalfantasyxiv.com/lds/pc/global/js/eorzeadb/version.js
-  // (TODO: I should just scrape this version number instead of manually updating it)
-  const DATA_VERSION = 1624342308
-  $ = cheerio.load(JSON.parse((await get(`https://img.finalfantasyxiv.com/lds/pc/tooltip/${DATA_VERSION}/na/item/${data.item as string}.js`)).match(/^eorzeadb\.pushup\((.+)\)$/)[1]).html)
+  $ = cheerio.load(JSON.parse((await get(`https://img.finalfantasyxiv.com/lds/pc/tooltip/${dataVersion}/na/item/${data.item as string}.js`)).match(/^eorzeadb\.pushup\((.+)\)$/)[1]).html)
   data.icon_md = $('.db-tooltip__item__icon img').eq(0).attr('src')?.match(/\/([^/]+)\.png/)?.[1]
 
   // Then `icon_lg` can be found by visiting the item's page
@@ -73,12 +70,23 @@ async function getLodestoneData (query: string): Promise<any> {
 }
 
 ;(async () => {
+  // Get the Eorzea DB data version
+  console.log('Fetching Eorzea DB version...')
+  const versionJs = await fetch('https://img.finalfantasyxiv.com/lds/pc/global/js/eorzeadb/version.js')
+    .then(async response => await response.text())
+  const versionMatch = versionJs.match(/"data":(\d+)/)
+  if (versionMatch == null) {
+    console.error(versionJs)
+    throw new Error('Could not find Eorzea DB version')
+  }
+  const DATA_VERSION = Number(versionMatch[1])
+
   const lodestoneData = {}
   for (const fish of Object.values(oceanFishingFishes)) {
     if (fish.id === 0) {
       lodestoneData[fish.id] = null
     } else {
-      lodestoneData[fish.id] = await getLodestoneData(fish.name.en)
+      lodestoneData[fish.id] = await getLodestoneData(fish.name.en, DATA_VERSION)
     }
   }
 

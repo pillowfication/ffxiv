@@ -228,7 +228,7 @@ const Bonuses = (): React.ReactElement => {
           }
           <Typography className={classes.bigger}>&nbsp;= {totalBonus - 100}%</Typography>
         </div>
-        <Grid container justify='center'>
+        <Grid container justifyContent='center'>
           <Grid item xs={12} md={8}>
             <Grid container spacing={2} alignItems='flex-end'>
               <Grid item xs={8}>

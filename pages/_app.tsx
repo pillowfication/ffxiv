@@ -11,6 +11,10 @@ import { lightTheme, darkTheme } from '../src/themes'
 import * as gtag from '../src/gtag'
 import i18n from '../src/i18n'
 
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+config.autoAddCss = false
+
 const useStyles = makeStyles(() => ({
   main: {
     paddingTop: '4rem',

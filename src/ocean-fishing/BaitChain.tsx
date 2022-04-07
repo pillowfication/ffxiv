@@ -18,6 +18,7 @@ const useStyles = makeStyles(theme => ({
     display: 'inline-block'
   },
   chevron: {
+    fontSize: '16px',
     position: 'relative',
     verticalAlign: 'middle',
     margin: theme.spacing(0, 0.5),
@@ -59,7 +60,7 @@ const BaitChain = ({ baits, baitIsRequired = false, subtext, small }: Props): Re
                 <OceanFishIcon
                   type='bait'
                   id={bait.id}
-                  size={small ? 34 : 40}
+                  size={small === true ? 34 : 40}
                   badge={baitIsRequired && <StarBadge />}
                 />
               </div>
@@ -74,7 +75,7 @@ const BaitChain = ({ baits, baitIsRequired = false, subtext, small }: Props): Re
                 <OceanFishIcon
                   type='fish'
                   id={fish.id}
-                  size={small ? 34 : 40}
+                  size={small === true ? 34 : 40}
                   badge={tug !== null && <Tug size='small' strength={tug} />}
                 />
                 {(subtext !== undefined && index === baits.length - 1) && (
@@ -84,7 +85,7 @@ const BaitChain = ({ baits, baitIsRequired = false, subtext, small }: Props): Re
                 )}
               </div>
               {index < baits.length - 1 && (
-                <FontAwesomeIcon icon={faChevronRight} className={classes.chevron} />
+                <FontAwesomeIcon icon={faChevronRight} />
               )}
             </React.Fragment>
           )

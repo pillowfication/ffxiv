@@ -1,9 +1,9 @@
 import fs from 'fs'
 import path from 'path'
-import csvParse from 'csv-parse/lib/sync'
+import { parse as csvParse } from 'csv-parse/sync'
 
 // What to do about this...
-const SAINT_COINACH_FOLDER = 'C:\\Users\\Pillowfication\\ws\\ffxiv\\datamining\\SaintCoinach.Cmd\\2021.12.24.0000.0000'
+const SAINT_COINACH_FOLDER = 'C:\\Users\\Pillowfication\\ws\\ffxiv\\datamining\\SaintCoinach.Cmd\\2022.03.01.0000.0000'
 const SAINT_COINACH_CN = 'C:\\Users\\Pillowfication\\ws\\ffxiv\\datamining\\ffxiv-datamining-cn'
 const SAINT_COINACH_KO = 'C:\\Users\\Pillowfication\\ws\\ffxiv\\datamining\\ffxiv-datamining-ko'
 

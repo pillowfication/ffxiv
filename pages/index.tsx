@@ -1,6 +1,6 @@
 import React from 'react'
 import { useRouter } from 'next/router'
-import { makeStyles, fade } from '@material-ui/core/styles'
+import { makeStyles, alpha } from '@material-ui/core/styles'
 import { NextSeo } from 'next-seo'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
@@ -33,8 +33,8 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '48px',
     textAlign: 'center',
     backgroundColor: theme.palette.type === 'light'
-      ? fade(theme.palette.primary.main, 0.2)
-      : fade(theme.palette.primary.dark, 0.5),
+      ? alpha(theme.palette.primary.main, 0.2)
+      : alpha(theme.palette.primary.dark, 0.5),
     [theme.breakpoints.down('sm')]: {
       width: '15rem',
       height: '15rem'

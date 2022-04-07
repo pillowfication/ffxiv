@@ -42,11 +42,11 @@ const useStyles = makeStyles(theme => ({
 function getFilter (filter: string | null, checklist?: number[]): DestTime[] | undefined {
   if (filter === null) {
     return undefined
-  } else if (maps.FILTER_MAP[filter]) {
+  } else if (filter in maps.FILTER_MAP) {
     return maps.FILTER_MAP[filter]
   } else if (filter === 'uncaught') {
     return (['BD', 'BS', 'BN', 'ND', 'NS', 'NN', 'RD', 'RS', 'RN', 'TD', 'TS', 'TN'] as DestTime[])
-      .filter((destTime) => isUncaughtRoute(destTime, checklist ?? []))
+      .filter(destTime => isUncaughtRoute(destTime, checklist ?? []))
   } else {
     return filter.split(',')
       .filter(destTime =>
@@ -59,7 +59,7 @@ function getFilter (filter: string | null, checklist?: number[]): DestTime[] | u
 
 interface Props {
   now: Date
-  onSelectRoute: (route: DestTime) => void,
+  onSelectRoute: (route: DestTime) => void
   checklist: number[]
 }
 
@@ -67,14 +67,14 @@ const UpcomingVoyages = ({ now, onSelectRoute, checklist }: Props): React.ReactE
   const classes = useStyles()
   const { t, i18n } = useTranslation('ocean-fishing')
   const [numRows, setNumRows] = useState(10)
-  const [filter, setFilter] = useQueryState<string | null>('filter')
+  const [filter, setFilter] = useQueryState('filter')
   const _filter = getFilter(filter, checklist)
   const isCustomFilter = filter !== null && filter !== 'uncaught' && maps.FILTER_MAP[filter] === undefined
   const locale = i18n.language
 
   useEffect(() => {
     onSelectRoute(
-      calculateVoyages(now, 1, _filter && _filter.length > 0 ? _filter : undefined)[0].destTime
+      calculateVoyages(now, 1, _filter !== undefined && _filter.length > 0 ? _filter : undefined)[0].destTime
     )
   }, [filter])
 
@@ -122,7 +122,7 @@ const UpcomingVoyages = ({ now, onSelectRoute, checklist }: Props): React.ReactE
                 <MenuItem value='none'>{t('noFilter')}</MenuItem>
                 <MenuItem value='uncaught'>Uncaught Fish</MenuItem>
                 {isCustomFilter && (
-                  <MenuItem value='custom' disabled>Custom Filter: {_filter && _filter.length > 0 ? _filter.join(', ') : '(none)'}</MenuItem>
+                  <MenuItem value='custom' disabled>Custom Filter: {_filter != null && _filter.length > 0 ? _filter.join(', ') : '(none)'}</MenuItem>
                 )}
                 <ListSubheader disableSticky className={classes.listSubheader}>{t('blueFish')}</ListSubheader>
                 <MenuItem value='sothis'>{translate(locale, fishes[29788], 'name')}</MenuItem>

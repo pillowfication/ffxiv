@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 const { nextI18NextRewrites } = require('next-i18next/rewrites')
 
 const localeSubpaths = {
@@ -34,6 +35,19 @@ module.exports = {
         loader: 'raw-loader'
       }]
     })
+
+    config.plugins.push(
+      new webpack.NormalModuleReplacementPlugin(/node:/, (resource) => {
+        const mod = resource.request.replace(/^node:/, '')
+        switch (mod) {
+          case 'buffer':
+            resource.request = 'buffer'
+            break
+          default:
+            throw new Error(`Not found ${mod}`)
+        }
+      })
+    )
 
     return config
   },

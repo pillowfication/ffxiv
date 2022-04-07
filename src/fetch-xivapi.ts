@@ -1,5 +1,3 @@
-import fetch from 'node-fetch'
-
 const XIVAPI = 'https://xivapi.com'
 
 export default async function fetchXIVAPI (endpoint: string, qs?: Record<string, string>): Promise<any> {

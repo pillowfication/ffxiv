@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import csvStringify from 'csv-stringify/lib/sync'
+import { stringify as csvStringify } from 'csv-stringify/sync'
 import fishingSpots from '../data/fishing-spots.json'
 import fishes from '../data/fishes.json'
 import baits from '../data/baits.json'
