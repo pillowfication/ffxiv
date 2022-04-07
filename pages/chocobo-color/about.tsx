@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
-import { fade } from '@material-ui/core/styles/colorManipulator'
+import { alpha } from '@material-ui/core/styles/colorManipulator'
 import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 import MuiLink from '@material-ui/core/Link'
@@ -54,13 +54,13 @@ const useStyles = makeStyles(theme => ({
   },
   positive: {
     backgroundColor: theme.palette.type === 'dark'
-      ? fade(theme.palette.success.main, 0.15)
-      : fade(theme.palette.success.main, 0.25)
+      ? alpha(theme.palette.success.main, 0.15)
+      : alpha(theme.palette.success.main, 0.25)
   },
   negative: {
     backgroundColor: theme.palette.type === 'dark'
-      ? fade(theme.palette.error.main, 0.15)
-      : fade(theme.palette.error.main, 0.25)
+      ? alpha(theme.palette.error.main, 0.15)
+      : alpha(theme.palette.error.main, 0.25)
   },
   clampTable: {
     width: 'initial',
@@ -214,7 +214,7 @@ const About = (): React.ReactElement => {
           </TableContainer>
         </Box>
         <Typography paragraph>
-          RGB values can never exceed {$('250')} or go below {$('0')}. If eating a fruit will cause a value to go beyond the valid range, it will be clamped. The RGB values of possible colors are known, and the problem is how to determine what sequence of fruits will get from one color to another. Unfortunately, not all RGB values are possible since the fruits always change values in increments of {$('5')} (ignoring clamping). The goal is to reach certain RGB values such that the closest possible color is the desired color. Distance here is measured using the <MuiLink href='https://en.wikipedia.org/wiki/Euclidean_distance'>Euclidean norm</MuiLink>.
+          RGB values can never exceed {$('250')} or go below {$('0')}. If eating a fruit will cause a value to go beyond the valid range, it will be clamped. The RGB values of possible colors are known, and the problem is how to determine what sequence of fruits will get from one color to another. Unfortunately, not all RGB values are possible since the fruits always change values in increments of {$('5')} (ignoring clamping). The goal is to reach certain RGB values such that the closest possible color is the desired color. Distance here is measured using the <MuiLink href='https://en.wikipedia.org/wiki/Euclidean_distance'>Euclidean norm</MuiLink> (assuming this is what FFXIV uses).
         </Typography>
         {$$('\\lVert \\text{Color} \\rVert = \\sqrt{\\text{Color.R}^2 + \\text{Color.G}^2 + \\text{Color.B}^2}')}
       </Section>
@@ -225,27 +225,28 @@ const About = (): React.ReactElement => {
         <Box mb={2}>
           <Highlight language='typescript'>
             {`
-function calculate (fromColor: Color, toColor: Color): Fruit[] {
+function calculate (startColor: Color, endColor: Color): Fruit[] {
   const solution: Fruit[] = []
-  let currentColor = fromColor
-  let currentDistance = fromColor.distanceTo(toColor)
+  let currentColor = startColor
+  let currentDistance = startColor.distanceTo(endColor)
 
   while (true) {
     // Find the best fruit
     const fruitsSorted = fruits.sort((fruitA, fruitB) =>
-      currentColor.add(fruitA).distanceTo(toColor) - currentColor.add(fruitB).distanceTo(toColor)
+      currentColor.add(fruitA).distanceTo(endColor) -
+      currentColor.add(fruitB).distanceTo(endColor)
     )
     const bestFruit = fruitsSorted[0]
 
     // If this fruit doesn't get us closer, stop
-    if (currentColor.add(bestFruit).distanceTo(toColor) >= currentDistance) {
+    if (currentColor.add(bestFruit).distanceTo(endColor) >= currentDistance) {
       return fruits
 
     // Otherwise, add it to the list and continue
     } else {
       fruits.push(bestFruit)
       currentColor = currentColor.add(bestFruit)
-      currentDistance = currentColor.distanceTo(toColor)
+      currentDistance = currentColor.distanceTo(endColor)
     }
   }
 }
@@ -285,7 +286,7 @@ function calculate (fromColor: Color, toColor: Color): Fruit[] {
           \\end{array}
         `)}
         <Typography paragraph>
-          where {$('R, G, B')} is the difference {$('\\text{DesiredColor} - \\text{CurrentColor}')}. This does not take into account clamping, which can be avoided almost always. It gives only the number of fruits required, which is then ordered to hopefully avoid clamping. I did this by repeatedly picking fruits that minimize the distance to {$('\\operatorname{RGB}(127.5, 127.5, 127.5)')} using the <MuiLink href='https://en.wikipedia.org/wiki/Uniform_norm'>uniform norm</MuiLink>.
+          where {$('R, G, B')} is the difference {$('\\text{DesiredColor} - \\text{CurrentColor}')}. This does not take into account clamping, which can be avoided almost always. It gives only the number of fruits required, which is then ordered to hopefully avoid clamping. I did this by repeatedly picking fruits that minimize the distance to {$('\\operatorname{RGB}(\\frac{256}{2}, \\frac{256}{2}, \\frac{256}{2})')} using the <MuiLink href='https://en.wikipedia.org/wiki/Uniform_norm'>uniform norm</MuiLink>.
         </Typography>
         <Typography paragraph>
           Since the {$('D, V, C')} fruits are “opposites” of the {$('X, M, O')} fruits, we can drop the {$('D, V, C')} variables by removing the nonnegativity constraints on {$('X, M, O')}. This transforms the problem into the standard linear equation
@@ -305,7 +306,7 @@ function calculate (fromColor: Color, toColor: Color): Fruit[] {
           \\end{pmatrix},
         `)}
         <Typography paragraph>
-          with a negative value of {$('X')} corresponding to a positive value of {$('D')}, etc. To turn the solutions into integers, I round them (this doesn’t always give the closest color, and that problem is the <MuiLink href='https://en.wikipedia.org/wiki/Lattice_problem#Closest_vector_problem_(CVP)'>closest vector problem</MuiLink>). This algorithm can outperform the first algorithm in situations where the first algorithm would terminate early.
+          with a negative value of {$('X')} corresponding instead to a positive value of {$('D')}, etc. To turn the solutions into integers, I round them. (This doesn’t always give the closest color, and that problem is the <MuiLink href='https://en.wikipedia.org/wiki/Lattice_problem#Closest_vector_problem_(CVP)'>closest vector problem</MuiLink>. The lattice is “nice” enough though, and since I don’t end up using this strategy, I don’t bother optimizing it.) This algorithm can outperform the first algorithm in situations where the first algorithm would terminate early.
         </Typography>
       </Section>
       <Section title='Lookahead'>
@@ -316,16 +317,20 @@ function calculate (fromColor: Color, toColor: Color): Fruit[] {
           <Typography component='li'>Compute all possible fruit combinations up to a length of {$('L')}</Typography>
           <Typography component='li'>Let {$('F')} be the fruit combination that lands closest to the target color</Typography>
           <Typography component='li'>If {$('F')} contains no fruits, then stop (no path gets closer)</Typography>
-          <Typography component='li'>Add the first fruit in {$('F')} to the solution and repeat</Typography>
+          <Typography component='li'>Otherwise, add the first fruit in {$('F')} to the solution and repeat</Typography>
         </ol>
         <Box mb={2}>
           <Highlight language='typescript'>
             {`
 while (true) {
   // Find the best path
-  const pathsSorted = computePaths(lookahead).sort((pathA, pathB) =>
-    currentColor.addPath(pathA).distanceTo(toColor) - currentColor.addPath(pathB).distanceTo(toColor)
+  const allPaths = computePaths(lookahead)
+  const pathsSorted = allPaths.sort((pathA, pathB) =>
+    currentColor.addPath(pathA).distanceTo(endColor) -
+    currentColor.addPath(pathB).distanceTo(endColor)
   )
+
+  // This assumes a stable sort so that the empty path is prioritized
   const bestPath = pathsSorted[0]
 
   // If no paths get us closer, stop
@@ -337,7 +342,7 @@ while (true) {
     const bestFruit = bestPath[0]
     fruits.push(bestFruit)
     currentColor = currentColor.add(bestFruit)
-    currentDistance = currentColor.distanceTo(toColor)
+    currentDistance = currentColor.distanceTo(endColor)
   }
 }
             `.trim()}
@@ -470,13 +475,18 @@ while (true) {
           The algorithm can get us pretty close to the desired color, but it’s not always possible to be exact. The two closest possible colors a chocobo can be are {translate(locale, stains[79], 'name')} <StainButton inline stain={stains[79]} /> and {translate(locale, stains[81], 'name')} <StainButton inline stain={stains[81]} />. These two have a distance of {$('9.434')}, so if we can guarantee an error of less than {$('9.434 / 2 = 4.717')}, then the desired color will always be the closest color, but this is impossible to guarantee.
         </Typography>
         <Typography paragraph>
-          Feeding a fruit will always change the parity of the RGB values, i.e. odd → even or even → odd. If the target color is {$('\\operatorname{RGB}(100, 100, 100)')} with all even values, and the current color is {$('\\operatorname{RGB}(100, 100, 105)')} with 1 odd value, no sequence of fruits can get closer (ignoring clamping). Thus the maximum error is bounded below by {$('5')}, and we cannot guarantee that the closest color is the desired color. The maximum error is actually about {$('5\\sqrt{5}/2 \\approx 5.59')} given by the vector {$('(5, 2.5, 0)')}.
+          Feeding a fruit will always change the parity of the RGB values, i.e. odd → even or even → odd. If the target color is {$('\\operatorname{RGB}(100, 100, 100)')} with all even values, and the current color is {$('\\operatorname{RGB}(100, 100, 105)')} with 1 odd value, no sequence of fruits can get closer (ignoring clamping). Thus the maximum error is bounded below by {$('5')}, and we cannot guarantee that the closest color is the desired color. The maximum error is actually {$('5\\sqrt{5}/2 \\approx 5.59')} given by the vector {$('(5, 2.5, 0)')}.
         </Typography>
         <Typography paragraph>
           A possible solution is to instead aim for some color that is near the desired color and far from other nearby colors, maximizing the likelihood that we end up at the desired color. The hope is that our final color ends up inside the <MuiLink href='https://en.wikipedia.org/wiki/Voronoi_diagram'>Voronoi cell</MuiLink> of the desired color, so a sensible target would be the centroid of this region. In 2D, this may look like
         </Typography>
         <Box mb={2} textAlign='center'>
-          <img src='/images/chocobo-color/voronoi-diagram.png' className={classes.image} />
+          <figure>
+            <img src='/images/chocobo-color/voronoi-diagram.png' className={classes.image} />
+            <figcaption>
+              <Typography variant='caption'>The dots are colors we want to achieve, and the crosses are alternative targets.</Typography>
+            </figcaption>
+          </figure>
         </Box>
         <Typography paragraph>
           This would allow more room for error, but I decided computing these targets would be too much work. As long as the algorithm gets as close to the desired color as possible (ignoring clamping), it’s sufficient. There are only two color combinations where the closest color does not lead to the desired color, and those have hardcoded solutions for now.
