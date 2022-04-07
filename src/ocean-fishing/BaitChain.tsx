@@ -85,7 +85,7 @@ const BaitChain = ({ baits, baitIsRequired = false, subtext, small }: Props): Re
                 )}
               </div>
               {index < baits.length - 1 && (
-                <FontAwesomeIcon icon={faChevronRight} />
+                <FontAwesomeIcon icon={faChevronRight} className={classes.chevron} />
               )}
             </React.Fragment>
           )
