@@ -1,7 +1,7 @@
 import React from 'react'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
-import { fade } from '@material-ui/core/styles/colorManipulator'
+import { alpha } from '@material-ui/core/styles/colorManipulator'
 import TextField from '@material-ui/core/TextField'
 
 const useStyles = makeStyles(theme => ({
@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: '3em'
   },
   disabled: {
-    backgroundColor: fade(theme.palette.primary.main, 0.15),
+    backgroundColor: alpha(theme.palette.primary.main, 0.15),
     '& $cardInput': {
       fontSize: '2em'
     }

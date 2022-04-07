@@ -10,7 +10,7 @@ export default async function fetchXIVAPI (endpoint: string, qs?: Record<string,
     }
   }
 
-  const response = await fetch(url)
+  const response = await fetch(url.toString())
   const json = await response.json()
 
   return json

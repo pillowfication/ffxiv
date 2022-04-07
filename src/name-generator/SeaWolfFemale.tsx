@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { makeStyles, fade } from '@material-ui/core/styles'
+import { makeStyles, alpha } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Section from '../Section'
@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   rules: {
     borderLeftWidth: '2px',
     borderLeftStyle: 'solid',
-    borderLeftColor: fade(theme.palette.text.secondary, 0.5),
+    borderLeftColor: alpha(theme.palette.text.secondary, 0.5),
     paddingLeft: theme.spacing(2),
     '& > dd:not(:last-child)': {
       marginBottom: theme.spacing(1)

@@ -1,7 +1,7 @@
 import React from 'react'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
-import { fade } from '@material-ui/core/styles/colorManipulator'
+import { alpha } from '@material-ui/core/styles/colorManipulator'
 
 const useStyles = makeStyles(theme => ({
   cell: {
@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     cursor: 'pointer'
   },
   selected: {
-    backgroundColor: fade(theme.palette.primary.main, theme.palette.type === 'dark' ? 0.8 : 0.6)
+    backgroundColor: alpha(theme.palette.primary.main, theme.palette.type === 'dark' ? 0.8 : 0.6)
   }
 }))
 

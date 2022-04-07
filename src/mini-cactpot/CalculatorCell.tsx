@@ -1,7 +1,7 @@
 import React from 'react'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
-import { fade } from '@material-ui/core/styles/colorManipulator'
+import { alpha } from '@material-ui/core/styles/colorManipulator'
 import TextField from '@material-ui/core/TextField'
 
 const useStyles = makeStyles(theme => ({
@@ -23,10 +23,10 @@ const useStyles = makeStyles(theme => ({
     }
   },
   suggested: {
-    backgroundColor: fade(theme.palette.primary.main, 0.2)
+    backgroundColor: alpha(theme.palette.primary.main, 0.2)
   },
   error: {
-    backgroundColor: fade(theme.palette.error.main, 0.25)
+    backgroundColor: alpha(theme.palette.error.main, 0.25)
   }
 }))
 

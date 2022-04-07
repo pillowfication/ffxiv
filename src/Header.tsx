@@ -91,7 +91,7 @@ const Header = ({ theme, setTheme }: Props): React.ReactElement => {
   return (
     <AppBar position='fixed'>
       <Container maxWidth='lg'>
-        <Grid container justify='space-between' alignItems='center'>
+        <Grid container justifyContent='space-between' alignItems='center'>
           <Grid item>
             <Toolbar disableGutters className={classes.toolbar}>
               <Tooltip title='Go home' enterDelay={300}>
