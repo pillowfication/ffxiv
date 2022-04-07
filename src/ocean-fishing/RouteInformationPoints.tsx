@@ -10,7 +10,7 @@ import { getBlueFish, getBaitGroup } from './utils'
 import translate from '../translate'
 import { useTranslation } from '../i18n'
 
-const POINTS_THRESHOLD = 400
+const POINTS_THRESHOLD = 700
 
 function getPointsFishes (stopTime: StopTime): Fish[] {
   const fishingSpot = maps.STOP_MAP[stopTime[0] as Stop]
@@ -20,7 +20,7 @@ function getPointsFishes (stopTime: StopTime): Fish[] {
   // Find all fish that exceed the threshold, while keeping track of the highest value fish(es)
   let highestPointsFishes: Array<{ fish: Fish, points: number }> = []
   const thresholdPointsFishes = spectralFishingSpot.fishes.filter(fish => {
-    const { points, doubleHook, time: fishTime, intuition } = fish.spreadsheetData
+    const { points, tripleHook, time: fishTime, intuition } = fish.spreadsheetData
 
     // Check to see if this fish is catchable
     if (fishTime !== null && !fishTime.includes(time)) {
@@ -31,12 +31,12 @@ function getPointsFishes (stopTime: StopTime): Fish[] {
       return false
 
     // Not enough known data on this fish
-    } else if (points === null || doubleHook === null) {
+    } else if (points === null || tripleHook === null) {
       return false
 
     // Check what this fish is worth
     } else {
-      const maxPoints = (Array.isArray(doubleHook) ? doubleHook[1] : doubleHook) * points
+      const maxPoints = (Array.isArray(tripleHook) ? tripleHook[1] : tripleHook) * points
       if (highestPointsFishes.length === 0) {
         highestPointsFishes.push({ fish, points: maxPoints })
       } else if (maxPoints === highestPointsFishes[0].points) {
@@ -84,18 +84,18 @@ const RouteInformationPoints = ({ stopTimes }: Props): React.ReactElement => {
                   if (fish === 'hr') {
                     return 'hr'
                   } else {
-                    const { points, doubleHook } = fish.spreadsheetData
-                    const doubleHookString = doubleHook !== null
-                      ? Array.isArray(doubleHook) ? doubleHook.join('-') : doubleHook
+                    const { points, tripleHook } = fish.spreadsheetData
+                    const tripleHookString = tripleHook !== null
+                      ? Array.isArray(tripleHook) ? tripleHook.join('-') : tripleHook
                       : '?'
-                    const pointsString = doubleHook !== null && points !== null
-                      ? (Array.isArray(doubleHook) ? doubleHook[1] : doubleHook) * points
+                    const pointsString = tripleHook !== null && points !== null
+                      ? (Array.isArray(tripleHook) ? tripleHook[1] : tripleHook) * points
                       : '?'
                     return {
                       header: translate(locale, fish, 'name'),
                       baitGroupProps: {
                         ...getBaitGroup(fish),
-                        subtext: index === 0 ? '' : `DH: ×${doubleHookString} = ${pointsString}`,
+                        subtext: index === 0 ? '' : `TH: ×${tripleHookString} = ${pointsString}`,
                         mainOnly: true
                       }
                     }
