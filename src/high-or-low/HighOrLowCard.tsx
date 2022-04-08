@@ -54,6 +54,7 @@ const HighOrLowCard = ({ value, disabled = false, error, onInputDigit = () => {}
 
   return (
     <TextField
+      type='tel'
       variant='outlined'
       disabled={disabled}
       error={error}

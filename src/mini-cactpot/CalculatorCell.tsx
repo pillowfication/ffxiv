@@ -54,6 +54,7 @@ const CalculatorCell = ({ value, suggested = false, error = false, onInputDigit 
 
   return (
     <TextField
+      type='tel'
       variant='outlined'
       error={error}
       InputProps={{ className: clsx(classes.cell, suggested && classes.suggested, error && classes.error) }}
