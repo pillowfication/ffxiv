@@ -1,6 +1,6 @@
 /micon Cast
 /ac Cast
 <wait.5>
-/echo 5 - Recast! <se.4>
+/echo 5 - Recast <se.4>
 <wait.2>
-/echo 7 - Saucer! <se.3>
+/echo 6 - Saucer! <se.3>

@@ -56,10 +56,10 @@ const AchievementSharks = ({ route }: Props): React.ReactElement => {
         <StopCard index={1} stopTime={stopTimes[1]}>
           <CardContent>
             <Typography paragraph>
-              No sharks here.
+              No sharks here. Collect some Angler’s Art!
             </Typography>
             <Typography paragraph>
-              Try for Coral Manta?<br />(but save GP)
+              Try for Coral Manta?
             </Typography>
             <Typography paragraph>
               You may opt for no spectral here for an extended one in the next zone.

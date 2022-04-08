@@ -25,7 +25,7 @@ const AchievementSeadragons = ({ route }: Props): React.ReactElement => {
           <CardContent>
             <BaitList
               baitGroups={[{
-                header: 'IC–DH at 8-20s',
+                header: 'IC–DH at 9-16s',
                 baitGroupProps: { ...getBaitGroup(fishes[29740]), subtext: subtextDH }
               }, {
                 header: 'No buffs',
@@ -39,7 +39,7 @@ const AchievementSeadragons = ({ route }: Props): React.ReactElement => {
               Clouds and Fog weather will remove Shaggy Seadragons.
             </Typography>
             <Typography variant='body2' paragraph>
-              Note: with Ragworm, blind DH at 8-15s might be possible
+              Note: with Ragworm, blind DH at 10-16s is possible.
             </Typography>
             <Typography variant='overline'>Spectral</Typography>
             <Typography paragraph>
@@ -50,7 +50,7 @@ const AchievementSeadragons = ({ route }: Props): React.ReactElement => {
         <StopCard index={1} stopTime={stopTimes[1]}>
           <CardContent>
             <Typography paragraph>
-              No seadragons here.
+              No seadragons here. Collect some Angler’s Art!
             </Typography>
             <Typography paragraph>
               You may opt for no spectral here for an extended one in the next zone.
@@ -61,7 +61,7 @@ const AchievementSeadragons = ({ route }: Props): React.ReactElement => {
           <CardContent>
             <BaitList
               baitGroups={[{
-                header: 'IC–DH at 6-10s',
+                header: 'DH–IC–DH at ≥7s',
                 baitGroupProps: { ...getBaitGroup(fishes[29764]), subtext: subtextDH }
               }]}
             />
@@ -69,7 +69,7 @@ const AchievementSeadragons = ({ route }: Props): React.ReactElement => {
           <CardContent>
             <Typography variant='overline'>Spectral</Typography>
             <Typography paragraph>
-              It’s possible to blind DH at ≥6s.
+              You can go for the safer IC–DH instead.
             </Typography>
           </CardContent>
         </StopCard>

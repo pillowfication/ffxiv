@@ -48,9 +48,9 @@ const RouteInformationTimeSensitive = ({ stopTimes }: Props): React.ReactElement
                 fish === 'hr'
                   ? 'hr'
                   : {
-                    header: translate(locale, fish, 'name'),
-                    baitGroupProps: getBaitGroup(fish)
-                  }
+                      header: translate(locale, fish, 'name'),
+                      baitGroupProps: getBaitGroup(fish)
+                    }
               )} />
             </CardContent>
           </StopCard>

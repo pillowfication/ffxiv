@@ -25,7 +25,7 @@ const AchievementOctopodes = ({ route }: Props): React.ReactElement => {
         <StopCard index={0} stopTime={stopTimes[0]}>
           <CardContent>
             <Typography paragraph>
-              No octopodes here.
+              No octopodes here. Collect some Angler’s Art!
             </Typography>
             <Typography paragraph>
               You may opt for no spectral here for an extended one in the next zone.
@@ -36,10 +36,10 @@ const AchievementOctopodes = ({ route }: Props): React.ReactElement => {
           <CardContent>
             <BaitList
               baitGroups={[{
-                header: 'IC–DH at 16-26s',
+                header: 'IC–DH at 17-28s',
                 baitGroupProps: { ...getBaitGroup(fishes[29734]), subtext: subtextDH }
               }, {
-                header: 'DH–IC–DH at <3s',
+                header: 'DH at <3s',
                 baitGroupProps: { ...getBaitGroup(fishes[29766]), subtext: subtextDH }
               }]}
             />
@@ -47,14 +47,11 @@ const AchievementOctopodes = ({ route }: Props): React.ReactElement => {
           <CardContent>
             <Typography variant='overline'>Non-spectral</Typography>
             <Typography paragraph>
-              Can blind DH the Cyan Octopodes at 24s, or at 16s with a SS’d Jasperhead. Clouds/Fog weather will also remove Jasperheads.
-            </Typography>
-            <Typography variant='body2' paragraph>
-              Note: with Krill, blind DH at 19-26s might be possible
+              Can blind DH the Cyan Octopodes at ≥20s, or at ≥12s with a SS’d Jasperhead. Clouds/Fog weather will also remove Jasperheads.
             </Typography>
             <Typography variant='overline'>Spectral</Typography>
             <Typography paragraph>
-              Only the instant <Tug strength={2} /> is Merman’s Mane.
+              Only the instant <Tug strength={2} /> is Merman’s Mane. Use IC–DH if running out of time.
             </Typography>
           </CardContent>
         </StopCard>

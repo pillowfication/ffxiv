@@ -1,6 +1,9 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
+import Link from '@material-ui/core/Link'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 import Section from '../Section'
 import OceanFishIcon from './OceanFishIcon'
 import { achievements, contentBonuses, ContentBonus } from './ffxiv-ocean-fishing/data'
@@ -16,6 +19,15 @@ const contentBonusMap: Record<number, ContentBonus> = {
   2754: contentBonuses[20],
   2755: contentBonuses[21],
   2756: contentBonuses[22]
+}
+const teamcraftUrlMap: Record<number, string> = {
+  2563: 'https://guides.ffxivteamcraft.com/guide/ocean-fishing-bonus-achievements#octopus-travelers',
+  2564: 'https://guides.ffxivteamcraft.com/guide/ocean-fishing-bonus-achievements#maritime-dragonslayers',
+  2565: 'https://guides.ffxivteamcraft.com/guide/ocean-fishing-bonus-achievements#jelled-together',
+  2566: 'https://guides.ffxivteamcraft.com/guide/ocean-fishing-bonus-achievements#maritime-dragonslayers',
+  2754: 'https://guides.ffxivteamcraft.com/guide/ocean-fishing-bonus-achievements#balloon-catchers',
+  2755: 'https://guides.ffxivteamcraft.com/guide/ocean-fishing-bonus-achievements#crab-boat-crew',
+  2756: 'https://guides.ffxivteamcraft.com/guide/ocean-fishing-bonus-achievements#sticking-it-to-the-manta'
 }
 
 const useStyles = makeStyles(theme => ({
@@ -53,6 +65,7 @@ const AchievementInformation = ({ achievement, children }: Props): React.ReactEl
           <OceanFishIcon type='achievement' id={achievement} className={classes.achievementIcon} />
           <Typography display='inline' className={classes.subtitle}>
             {cleanRequirement(translate(locale, contentBonusMap[achievement], 'requirement'))}
+            &nbsp;<Link href={teamcraftUrlMap[achievement]}><FontAwesomeIcon icon={faArrowUpRightFromSquare} /></Link>
           </Typography>
         </>
       }

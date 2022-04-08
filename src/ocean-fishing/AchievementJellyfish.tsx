@@ -25,7 +25,7 @@ const AchievementJellyfish = ({ route }: Props): React.ReactElement => {
         <StopCard index={0} stopTime={stopTimes[0]}>
           <CardContent>
             <Typography paragraph>
-              No jellyfish here.
+              No jellyfish here. Collect some Angler’s Art!
             </Typography>
           </CardContent>
         </StopCard>
@@ -36,14 +36,14 @@ const AchievementJellyfish = ({ route }: Props): React.ReactElement => {
                 header: 'DH at <5s',
                 baitGroupProps: { ...getBaitGroup(fishes[29739]), subtext: subtextDH }
               }, {
-                header: 'IC–DH at 4-7s',
+                header: 'IC–DH at ≥4s',
                 baitGroupProps: { ...getBaitGroup(fishes[29757]), subtext: subtextDH }
               }]}
             />
           </CardContent>
           <CardContent>
             <Typography paragraph>
-              You may opt for no spectral here for an extended one in the next zone.
+              Spectral current is <b>bad</b>. You may opt for no spectral here for an extended one in the next zone.
             </Typography>
             <Typography variant='overline'>Non-spectral</Typography>
             <Typography paragraph>
@@ -59,7 +59,7 @@ const AchievementJellyfish = ({ route }: Props): React.ReactElement => {
           <CardContent>
             <BaitList
               baitGroups={[{
-                header: 'DH–IC–DH at 6-10s',
+                header: 'DH–IC–DH at ≥6s',
                 baitGroupProps: { ...getBaitGroup(fishes[29762]), subtext: subtextDH }
               }]}
             />

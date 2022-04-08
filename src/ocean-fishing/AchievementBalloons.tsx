@@ -24,7 +24,7 @@ const AchievementBalloons = ({ route }: Props): React.ReactElement => {
           <CardContent>
             <BaitList
               baitGroups={[{
-                header: 'IC–DH at 5-9s',
+                header: 'IC–DH at 5-11s',
                 baitGroupProps: { ...getBaitGroup(fishes[32057]), subtext: subtextDH }
               }, {
                 header: 'DH at <3s',
@@ -47,10 +47,10 @@ const AchievementBalloons = ({ route }: Props): React.ReactElement => {
           <CardContent>
             <BaitList
               baitGroups={[{
-                header: 'IC–DH at 10-16s',
+                header: 'IC–DH at 12-16s',
                 baitGroupProps: { ...getBaitGroup(fishes[29732]), subtext: subtextDH }
               }, {
-                header: 'IC–DH at 2-7s',
+                header: 'IC–DH at ≥3s',
                 baitGroupProps: { ...getBaitGroup(fishes[29768]), subtext: subtextDH }
               }]}
             />
@@ -61,7 +61,7 @@ const AchievementBalloons = ({ route }: Props): React.ReactElement => {
             </Typography>
             <Typography variant='overline'>Non-spectral</Typography>
             <Typography paragraph>
-              Lampfish is possibly a blind DH at 10-14s.
+              Lampfish is possibly a blind DH, but it is usually not worth trying.
             </Typography>
             <Typography variant='overline'>Spectral</Typography>
             <Typography paragraph>
@@ -73,10 +73,10 @@ const AchievementBalloons = ({ route }: Props): React.ReactElement => {
           <CardContent>
             <BaitList
               baitGroups={[{
-                header: 'No buffs at 2-5s',
+                header: 'No buffs at 3-6s',
                 baitGroupProps: { ...getBaitGroup(fishes[32095]), subtext: subtextDH }
               }, {
-                header: 'DH at ≥11s',
+                header: 'DH at ≥14s',
                 baitGroupProps: { ...getBaitGroup(fishes[32098]), subtext: subtextDH }
               }, {
                 header: 'IC–DH at <3s',

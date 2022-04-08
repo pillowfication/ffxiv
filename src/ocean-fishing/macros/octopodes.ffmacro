@@ -2,13 +2,11 @@
 /ac Cast
 <wait.3>
 /echo 3 - Not Mane! <se.1>
-<wait.1>
-/echo 4 - Mopbeard! <se.2>
+<wait.2>
+/echo 5 - Mopbeard! <se.2>
 <wait.12>
-/echo 16 - Cyan? <se.3>
+/echo 17 - Cyan? <se.3>
 <wait.3>
-/echo 19 - Not Eel! <se.3>
-<wait.6>
-/echo 24 - Not Jasperhead! <se.3>
-<wait.4>
+/echo 20 - Not Jasperhead! <se.3>
+<wait.9>
 /echo 29 - Recast! <se.4>
