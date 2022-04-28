@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import NextApp from 'next/app'
-import Head from 'next/head'
+import NextApp, { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
-import { ThemeProvider, makeStyles } from '@material-ui/core/styles'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import Container from '@material-ui/core/Container'
-import GlobalStyles from '../src/GlobalStyles'
+import Head from 'next/head'
+import { ThemeProvider } from '@mui/material/styles'
+import CssBaseline from '@mui/material/CssBaseline'
+import { CacheProvider, EmotionCache } from '@emotion/react'
+import Container from '@mui/material/Container'
+import createEmotionCache from '../src/create-emotion-cache'
 import Header from '../src/Header'
+import Footer from '../src/Footer'
 import { lightTheme, darkTheme } from '../src/themes'
 import * as gtag from '../src/gtag'
 import i18n from '../src/i18n'
@@ -15,20 +17,18 @@ import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
 
-const useStyles = makeStyles(() => ({
-  main: {
-    paddingTop: '4rem',
-    paddingBottom: '6rem'
-  }
-}))
+const clientSideEmotionCache = createEmotionCache()
 
-interface Props {
-  Component: React.ComponentClass
-  pageProps?: object
+interface Props extends AppProps {
+  emotionCache?: EmotionCache
 }
 
-const App = ({ Component, pageProps }: Props): React.ReactElement => {
-  const classes = useStyles()
+const App = (props: Props): React.ReactElement => {
+  const {
+    Component,
+    emotionCache = clientSideEmotionCache,
+    pageProps
+  } = props
   const router = useRouter()
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
 
@@ -42,27 +42,21 @@ const App = ({ Component, pageProps }: Props): React.ReactElement => {
     }
   }, [router.events])
 
-  useEffect(() => {
-    const jssStyles = document.querySelector('#jss-server-side')
-    jssStyles?.parentElement?.removeChild(jssStyles)
-  }, [])
-
   return (
-    <>
+    <CacheProvider value={emotionCache}>
       <Head>
         <title>Lulu’s FFXIV Tools</title>
         <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width' />
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_HTML' />
       </Head>
       <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
         <CssBaseline />
-        <GlobalStyles />
         <Header theme={theme} setTheme={setTheme} />
-        <Container maxWidth='lg' className={classes.main} component='main'>
+        <Container maxWidth='lg' component='main'>
           <Component {...pageProps} />
         </Container>
+        <Footer />
       </ThemeProvider>
-    </>
+    </CacheProvider>
   )
 }
 

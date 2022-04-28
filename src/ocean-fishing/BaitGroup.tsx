@@ -1,20 +1,8 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
 import BaitChain, { BaitLink, FishLink } from './BaitChain'
 import { Fish } from './ffxiv-ocean-fishing/data'
-
-const useStyles = makeStyles(theme => ({
-  intuitionFishes: {
-    listStyleType: 'none',
-    margin: 0,
-    paddingLeft: theme.spacing(1)
-  },
-  count: {
-    verticalAlign: 'middle',
-    marginRight: theme.spacing(1)
-  }
-}))
 
 interface Props {
   baits: Array<BaitLink | FishLink>
@@ -24,32 +12,32 @@ interface Props {
   mainOnly?: boolean
 }
 
-const BaitGroup = ({ baits, baitIsRequired = false, intuitionFishes, subtext, mainOnly = false }: Props): React.ReactElement => {
-  const classes = useStyles()
+const BaitGroup = (props: Props): React.ReactElement => {
+  const {
+    baits,
+    baitIsRequired = false,
+    intuitionFishes,
+    subtext,
+    mainOnly = false
+  } = props
 
   return (
     <>
-      <BaitChain
-        baits={baits}
-        baitIsRequired={baitIsRequired}
-        subtext={subtext}
-      />
+      <BaitChain baits={baits} baitIsRequired={baitIsRequired} subtext={subtext} />
       {intuitionFishes !== undefined && (
-        <ul className={classes.intuitionFishes}>
-          {intuitionFishes.map(({ baits, baitIsRequired, count }, index) =>
-            <li key={index}>
-              <Typography className={classes.count} display='inline'>
-                {count}×
-              </Typography>
+        <Box component='ul' sx={{ listStyleType: 'none', pl: 1 }}>
+          {intuitionFishes.map(({ baits, baitIsRequired, count }, index) => (
+            <Box component='li' key={index} sx={{ '& > *': { verticalAlign: 'middle' } }}>
+              <Typography display='inline'>{count}×&nbsp;</Typography>
               <BaitChain
                 small
                 baits={baits}
                 baitIsRequired={baitIsRequired}
                 subtext={mainOnly ? undefined : subtext}
               />
-            </li>
-          )}
-        </ul>
+            </Box>
+          ))}
+        </Box>
       )}
     </>
   )

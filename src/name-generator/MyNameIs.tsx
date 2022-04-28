@@ -1,35 +1,20 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Paper from '@material-ui/core/Paper'
-
-const useStyles = makeStyles(theme => ({
-  myNameIs: {
-    margin: theme.spacing(2, 0),
-    padding: theme.spacing(1),
-    [theme.breakpoints.up('md')]: {
-      margin: theme.spacing(4),
-      padding: theme.spacing(2)
-    },
-    fontSize: '1.75em',
-    '& > span': {
-      display: 'block',
-      margin: theme.spacing(1),
-      textAlign: 'center',
-      whiteSpace: 'nowrap'
-    }
-  }
-}))
+import Paper from '@mui/material/Paper'
 
 interface Props {
-  name: string
+  name: string | string[]
 }
 
 const MyNameIs = ({ name }: Props): React.ReactElement => {
-  const classes = useStyles()
-
   return (
-    <Paper variant='outlined' className={classes.myNameIs}>
-      <span>{name}</span>
+    <Paper variant='outlined' sx={{
+      m: { xs: 2, md: 4 },
+      p: { xs: 1, md: 2 },
+      fontSize: '1.75em',
+      textAlign: 'center',
+      whiteSpace: 'nowrap'
+    }}>
+      {(Array.isArray(name) ? name : [name]).map(name => <div>{name}</div>)}
     </Paper>
   )
 }

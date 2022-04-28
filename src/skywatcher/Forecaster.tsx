@@ -1,19 +1,19 @@
 import React, { useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import NoSsr from '@material-ui/core/NoSsr'
-import Grid from '@material-ui/core/Grid'
-import FormGroup from '@material-ui/core/FormGroup'
-import FormLabel from '@material-ui/core/FormLabel'
-import FormControl from '@material-ui/core/FormControl'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import InputLabel from '@material-ui/core/InputLabel'
-import TextField from '@material-ui/core/TextField'
-import Select from '@material-ui/core/Select'
-import Checkbox from '@material-ui/core/Checkbox'
-import MenuItem from '@material-ui/core/MenuItem'
-import Alert from '@material-ui/lab/Alert'
-import Autocomplete from '@material-ui/lab/Autocomplete'
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
+import NoSsr from '@mui/material/NoSsr'
+import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
+import FormGroup from '@mui/material/FormGroup'
+import FormLabel from '@mui/material/FormLabel'
+import FormControl from '@mui/material/FormControl'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import InputLabel from '@mui/material/InputLabel'
+import TextField from '@mui/material/TextField'
+import Select, { SelectChangeEvent } from '@mui/material/Select'
+import Checkbox from '@mui/material/Checkbox'
+import MenuItem from '@mui/material/MenuItem'
+import Alert from '@mui/material/Alert'
+import Autocomplete from '@mui/material/Autocomplete'
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
 import Section from '../Section'
 import ForecasterTable from './ForecasterTable'
 import {
@@ -48,28 +48,11 @@ function removeTags (markdown: string): string {
   return markdown.replace(/<\/?.+?>/g, '')
 }
 
-const useStyles = makeStyles(theme => ({
-  transitionWeather: {
-    [theme.breakpoints.down('sm')]: {
-      marginBottom: theme.spacing(2)
-    }
-  },
-  transitionArrow: {
-    display: 'block',
-    margin: theme.spacing(0.5, 'auto'),
-    fontSize: '2em',
-    [theme.breakpoints.down('sm')]: {
-      display: 'none'
-    }
-  }
-}))
-
 interface Props {
   now: Date
 }
 
 const Forecaster = ({ now }: Props): React.ReactElement => {
-  const classes = useStyles()
   const { t, i18n } = useTranslation('skywatcher')
   const [placeOption, setPlaceOption] = useState<PlaceOption | null>(null)
   const [transitionWeather, setTransitionWeather] = useState<Weather | null>(null)
@@ -95,20 +78,17 @@ const Forecaster = ({ now }: Props): React.ReactElement => {
     : null
   const locale = i18n.language
 
-  const handleSelectPlace = (_: any, placeOption: PlaceOption): void => {
+  const handleSelectPlace = (_: any, placeOption: PlaceOption | null): void => {
     setPlaceOption(placeOption)
     setTransitionWeather(null)
     setTargetWeather(null)
   }
-
-  const handleSelectTransitionWeather = (event: React.ChangeEvent<HTMLSelectElement>): void => {
+  const handleSelectTransitionWeather = (event: SelectChangeEvent<Weather | 'none'>): void => {
     setTransitionWeather(event.target.value === 'none' ? null : (+event.target.value as Weather))
   }
-
-  const handleSelectTargetWeather = (event: React.ChangeEvent<HTMLSelectElement>): void => {
+  const handleSelectTargetWeather = (event: SelectChangeEvent<Weather | 'none'>): void => {
     setTargetWeather(event.target.value === 'none' ? null : (+event.target.value as Weather))
   }
-
   const handleSelectTimes = (timeSlot: 0 | 8 | 16): void => {
     setTimes({ ...times, [timeSlot]: !times[timeSlot] })
   }
@@ -119,16 +99,25 @@ const Forecaster = ({ now }: Props): React.ReactElement => {
         <Grid item xs={12} md={4}>
           <Autocomplete
             options={PLACE_OPTIONS}
-            groupBy={({ region }) => translatePlace(region, locale)}
-            getOptionLabel={({ place, weatherRateIndex }) => removeTags(translatePlace(place, locale)) + (weatherRateIndex > 0 ? ` (alt. ${weatherRateIndex})` : '')}
-            renderInput={params => <TextField {...params} label={t('place')} placeholder={t('selectPlace')} InputLabelProps={{ shrink: true }} />}
+            groupBy={({ region }) =>
+              translatePlace(region, locale)}
+            getOptionLabel={({ place, weatherRateIndex }) =>
+              removeTags(translatePlace(place, locale)) + (weatherRateIndex > 0 ? ` (alt. ${weatherRateIndex})` : '')}
+            renderInput={params =>
+              <TextField
+                {...params}
+                variant='standard'
+                label={t('place')}
+                placeholder={t('selectPlace')}
+                InputLabelProps={{ shrink: true }}
+              />
+            }
             value={placeOption}
-            getOptionSelected={(option, value) => option.place === value.place && option.weatherRateIndex === value.weatherRateIndex}
             onChange={handleSelectPlace}
           />
         </Grid>
         <Grid item xs={12} md={4}>
-          <FormControl fullWidth className={classes.transitionWeather}>
+          <FormControl variant='standard' fullWidth>
             <InputLabel>{t('transitionWeather')}</InputLabel>
             <Select
               value={transitionWeather !== null ? transitionWeather : 'none'}
@@ -137,12 +126,14 @@ const Forecaster = ({ now }: Props): React.ReactElement => {
             >
               <MenuItem value='none'>{t(possibleWeathers !== null ? 'anyWeather' : 'selectPlaceFirst')}</MenuItem>
               {possibleWeathers?.map(weather =>
-                <MenuItem key={weather} value={weather}>{translateWeather(weather, locale)}</MenuItem>
+                <MenuItem key={weather} value={String(weather)}>{translateWeather(weather, locale)}</MenuItem>
               )}
             </Select>
           </FormControl>
-          <ArrowDownwardIcon className={classes.transitionArrow} />
-          <FormControl fullWidth>
+          <Box textAlign='center' p={1}>
+            <ArrowDownwardIcon />
+          </Box>
+          <FormControl variant='standard' fullWidth>
             <InputLabel>{t('targetWeather')}</InputLabel>
             <Select
               value={targetWeather !== null ? targetWeather : 'none'}

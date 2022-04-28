@@ -1,5 +1,5 @@
 import React from 'react'
-import CardContent from '@material-ui/core/CardContent'
+import CardContent from '@mui/material/CardContent'
 import StopCardsContainer from './StopCardsContainer'
 import StopCard from './StopCard'
 import BaitList from './BaitList'

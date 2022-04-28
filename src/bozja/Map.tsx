@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Head from 'next/head'
 import { Icon, CRS } from 'leaflet'
 import { MapContainer, ImageOverlay, Pane, Marker, Tooltip } from 'react-leaflet'
-import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
-import FormControl from '@material-ui/core/FormControl'
-import FormGroup from '@material-ui/core/FormGroup'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Checkbox from '@material-ui/core/Checkbox'
+import Grid from '@mui/material/Grid'
+import Paper from '@mui/material/Paper'
+import FormControl from '@mui/material/FormControl'
+import FormGroup from '@mui/material/FormGroup'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Checkbox from '@mui/material/Checkbox'
 import Section from '../Section'
 import { formatMonster } from './utils'
 import bozja from './ffxiv-bozja/data/bozja.json'
@@ -63,41 +62,40 @@ function getSpriteIcon (spriteType: SpriteType): number {
   }
 }
 
-const useStyles = makeStyles(theme => ({
-  container: {
-    width: '100%',
-    paddingBottom: '100%',
-    margin: theme.spacing(0, 'auto'),
-    border: '1px solid black',
-    overflow: 'hidden'
-  },
-  tooltipBare: {
-    background: 'none',
-    border: 'none',
-    boxShadow: 'none',
-    padding: theme.spacing(1, 1.5),
-    color: 'white',
-    fontSize: '1.25em',
-    textShadow: '0 0 3px black, 0 0 3px black, 0 0 3px black, 0 0 3px black',
-    '&::before, &::after': {
-      display: 'none'
-    }
-  },
-  tooltip: {
-    background: 'rgba(0, 0, 0, 0.75)',
-    border: 'none',
-    boxShadow: 'none',
-    padding: theme.spacing(0, 1),
-    color: 'white',
-    fontSize: '1.25em',
-    '&::before, &::after': {
-      display: 'none'
-    }
-  }
-}))
+// const useStyles = makeStyles(theme => ({
+//   container: {
+//     width: '100%',
+//     paddingBottom: '100%',
+//     margin: theme.spacing(0, 'auto'),
+//     border: '1px solid black',
+//     overflow: 'hidden'
+//   },
+//   tooltipBare: {
+//     background: 'none',
+//     border: 'none',
+//     boxShadow: 'none',
+//     padding: theme.spacing(1, 1.5),
+//     color: 'white',
+//     fontSize: '1.25em',
+//     textShadow: '0 0 3px black, 0 0 3px black, 0 0 3px black, 0 0 3px black',
+//     '&::before, &::after': {
+//       display: 'none'
+//     }
+//   },
+//   tooltip: {
+//     background: 'rgba(0, 0, 0, 0.75)',
+//     border: 'none',
+//     boxShadow: 'none',
+//     padding: theme.spacing(0, 1),
+//     color: 'white',
+//     fontSize: '1.25em',
+//     '&::before, &::after': {
+//       display: 'none'
+//     }
+//   }
+// }))
 
 const Map = (): React.ReactElement => {
-  const classes = useStyles()
   const { t, i18n } = useTranslation('bozja')
   const [showMapLabels, setShowMapLabels] = useState(false)
   const [showStarMonsters, setShowStarMonsters] = useState(false)
@@ -115,9 +113,9 @@ const Map = (): React.ReactElement => {
 
   // Force a mount/unmount whenever the theme type changes
   // Bypasses the Map's immutability
-  const theme = useTheme()
-  const [key, setKey] = useState(0)
-  useEffect(() => { setKey(key + 1) }, [theme.palette.type])
+  // const theme = useTheme()
+  // const [key, setKey] = useState(0)
+  // useEffect(() => { setKey(key + 1) }, [theme.palette.type])
 
   const handleToggleMapLabels = (): void => { setShowMapLabels(!showMapLabels) }
   const handleToggleStarMonsters = (): void => { setShowStarMonsters(!showStarMonsters) }
@@ -152,14 +150,14 @@ const Map = (): React.ReactElement => {
           </FormControl>
         </Grid>
         <Grid item xs={12} md={9}>
-          <Paper key={key}>
+          <Paper>
             <MapContainer
               bounds={[[1, 1], [42, 42]]}
               maxBounds={[[1, 1], [42, 42]]}
               attributionControl={false}
               crs={CRS.Simple}
               zoomSnap={0}
-              className={classes.container}
+              className={'classes.container'}
             >
               <ImageOverlay
                 bounds={[[1, 1], [42, 42]]}
@@ -181,7 +179,7 @@ const Map = (): React.ReactElement => {
                         <Tooltip
                           permanent
                           direction={getDirection(mapMarker.subtextOrientation)}
-                          className={classes.tooltipBare}
+                          className={'classes.tooltipBare'}
                         >
                           {translate(locale, mapMarker, 'placeName_subtext')}
                         </Tooltip>
@@ -203,7 +201,7 @@ const Map = (): React.ReactElement => {
                     <Tooltip
                       direction='top'
                       offset={[0, -10]}
-                      className={classes.tooltip}
+                      className={'classes.tooltip'}
                     >
                       {formatMonster(translate(locale, starMonster, 'name'), locale)}
                     </Tooltip>
@@ -225,7 +223,7 @@ const Map = (): React.ReactElement => {
                         permanent
                         direction='top'
                         offset={[0, -10]}
-                        className={classes.tooltip}
+                        className={'classes.tooltip'}
                       >
                         {toRoman(location.level)}
                       </Tooltip>

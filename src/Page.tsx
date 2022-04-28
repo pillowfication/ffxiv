@@ -2,8 +2,7 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { NextSeo } from 'next-seo'
-import Typography from '@material-ui/core/Typography'
-import Footer from '../src/Footer'
+import Typography from '@mui/material/Typography'
 import { useTranslation } from '../src/i18n'
 
 interface Props {
@@ -41,7 +40,6 @@ const Page = ({ title, description, seo = {}, og = {}, children }: Props): React
       />
       <Typography variant='h1' gutterBottom>{tail}</Typography>
       {children}
-      <Footer />
     </>
   )
 }

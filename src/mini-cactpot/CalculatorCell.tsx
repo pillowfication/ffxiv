@@ -1,34 +1,6 @@
 import React from 'react'
-import clsx from 'clsx'
-import { makeStyles } from '@material-ui/core/styles'
-import { alpha } from '@material-ui/core/styles/colorManipulator'
-import TextField from '@material-ui/core/TextField'
-
-const useStyles = makeStyles(theme => ({
-  cell: {
-    width: '5em',
-    height: '5em',
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.grey[900] : theme.palette.grey[100],
-    borderRadius: 0,
-    [theme.breakpoints.up('md')]: {
-      width: '7.5em',
-      height: '7.5em'
-    }
-  },
-  cellInput: {
-    textAlign: 'center',
-    fontSize: '2em',
-    [theme.breakpoints.up('md')]: {
-      fontSize: '4em'
-    }
-  },
-  suggested: {
-    backgroundColor: alpha(theme.palette.primary.main, 0.2)
-  },
-  error: {
-    backgroundColor: alpha(theme.palette.error.main, 0.25)
-  }
-}))
+import { alpha } from '@mui/system'
+import TextField from '@mui/material/TextField'
 
 interface Props {
   value: number | null
@@ -38,8 +10,6 @@ interface Props {
 }
 
 const CalculatorCell = ({ value, suggested = false, error = false, onInputDigit }: Props): React.ReactElement => {
-  const classes = useStyles()
-
   const handleInputDigit = (event: React.KeyboardEvent): void => {
     const key = event.key
     if (key === 'Backspace' || key === 'Delete') {
@@ -57,8 +27,24 @@ const CalculatorCell = ({ value, suggested = false, error = false, onInputDigit 
       type='tel'
       variant='outlined'
       error={error}
-      InputProps={{ className: clsx(classes.cell, suggested && classes.suggested, error && classes.error) }}
-      inputProps={{ className: classes.cellInput }}
+      InputProps={{
+        sx: {
+          width: { xs: '5em', md: '7.5em' },
+          height: { xs: '5em', md: '7.5em' },
+          borderRadius: 0,
+          backgroundColor: suggested
+            ? theme => alpha(theme.palette.primary.main, 0.2)
+            : error
+              ? theme => alpha(theme.palette.error.main, 0.2)
+              : 'none'
+        }
+      }}
+      inputProps={{
+        sx: {
+          textAlign: 'center',
+          fontSize: { xs: '2em', md: '4em' }
+        }
+      }}
       onKeyDown={handleInputDigit}
       value={value !== null ? value : ''}
     />

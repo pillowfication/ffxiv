@@ -1,68 +1,25 @@
 import React from 'react'
-import clsx from 'clsx'
-import { makeStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
-import TableContainer from '@material-ui/core/TableContainer'
-import Table from '@material-ui/core/Table'
-import TableHead from '@material-ui/core/TableHead'
-import TableBody from '@material-ui/core/TableBody'
-import TableRow from '@material-ui/core/TableRow'
-import TableCell from '@material-ui/core/TableCell'
+import { alpha } from '@mui/system'
+import Typography from '@mui/material/Typography'
+import TableContainer from '@mui/material/TableContainer'
+import Table from '@mui/material/Table'
+import TableHead from '@mui/material/TableHead'
+import TableBody from '@mui/material/TableBody'
+import TableRow from '@mui/material/TableRow'
+import TableCell from '@mui/material/TableCell'
 import WeatherIcon from './WeatherIcon'
 import renderFfxiv from './render-ffxiv'
-import { getSeed, getHashes, getWeather, translatePlace, Place } from './ffxiv-skywatcher'
+import {
+  getSeed,
+  getHashes,
+  getWeather,
+  translatePlace,
+  translateWeather,
+  Place
+} from './ffxiv-skywatcher'
 import { formatTime, formatTimeUtc } from '../utils'
 import { useTranslation } from '../i18n'
-
-const WEATHER_CELL_WIDTH = 75
-
-const useStyles = makeStyles(theme => ({
-  weatherTable: {
-    overflow: 'hidden',
-    '& thead th': {
-      fontWeight: 'normal',
-      '&$current': {
-        fontWeight: 'bold'
-      }
-    },
-    ':not(:last-child) > &': {
-      marginBottom: theme.spacing(4)
-    }
-  },
-  weatherTime: {
-    textAlign: 'center',
-    paddingLeft: theme.spacing(0.5),
-    paddingRight: theme.spacing(0.5),
-    '&:last-child': {
-      paddingRight: theme.spacing(1),
-      width: WEATHER_CELL_WIDTH + theme.spacing(1.5)
-    }
-  },
-  regionCell: {
-    minWidth: 200
-  },
-  weatherCell: {
-    width: WEATHER_CELL_WIDTH + theme.spacing(1),
-    paddingLeft: theme.spacing(0.5),
-    paddingRight: theme.spacing(0.5),
-    textAlign: 'center',
-    verticalAlign: 'top',
-    lineHeight: 1,
-    '& span': {
-      display: 'inline-block',
-      width: WEATHER_CELL_WIDTH,
-      lineHeight: 1.1
-    },
-    '&:last-child': {
-      paddingRight: theme.spacing(1),
-      width: WEATHER_CELL_WIDTH + theme.spacing(1.5)
-    }
-  },
-  current: {
-    position: 'relative',
-    backgroundColor: theme.palette.action.hover
-  }
-}))
+import softHyphens from './soft-hyphens'
 
 interface Props {
   now: Date
@@ -81,15 +38,14 @@ const UpcomingWeatherTable = ({
   count = 10,
   hidePlaceName = false
 }: Props): React.ReactElement => {
-  const classes = useStyles()
   const { i18n } = useTranslation()
   const currentSeed = getSeed(now)
   const hashes = getHashes(currentSeed - 1, count)
   const locale = i18n.language
 
   return (
-    <TableContainer>
-      <Table size='small' className={classes.weatherTable}>
+    <TableContainer sx={{ mb: 2 }}>
+      <Table size='small' sx={{ '& th, & td': { p: 0.5 } }}>
         <TableHead>
           <TableRow>
             {!hidePlaceName && <TableCell />}
@@ -97,22 +53,23 @@ const UpcomingWeatherTable = ({
               const eorzeanTime = new Date((currentSeed - 1 + index) * 28800000)
               const localTime = new Date(eorzeanTime.getTime() / (1440 / 70))
               return (
-                <TableCell key={index} className={clsx(classes.weatherTime, index === 1 && classes.current)}>
+                <TableCell key={index} align='center' sx={{
+                  fontWeight: index === 1 ? 'bold' : 'normal',
+                  backgroundColor: index === 1 ? theme => alpha(theme.palette.primary.light, 0.25) : 'none'
+                }}>
                   {showLocalTime
                     ? index === 1
                       ? <>
-                          {formatTimeUtc(new Date(now.getTime() * (1440 / 70)))} ET
-                          <br />
-                          {formatTime(now)} LT
+                          <div>{formatTimeUtc(new Date(now.getTime() * (1440 / 70)))}&nbsp;ET</div>
+                          <div>{formatTime(now)}&nbsp;LT</div>
                         </>
                       : <>
-                          {formatTimeUtc(eorzeanTime)} ET
-                          <br />
-                          {formatTime(localTime)} LT
+                          <div>{formatTimeUtc(eorzeanTime)}&nbsp;ET</div>
+                          <div>{formatTime(localTime)}&nbsp;LT</div>
                         </>
                     : index === 1
-                      ? formatTimeUtc(new Date(now.getTime() * (1440 / 70)))
-                      : formatTimeUtc(eorzeanTime)
+                      ? <div>{formatTimeUtc(new Date(now.getTime() * (1440 / 70)))}</div>
+                      : <div>{formatTimeUtc(eorzeanTime)}</div>
                   }
                 </TableCell>
               )
@@ -123,18 +80,29 @@ const UpcomingWeatherTable = ({
           {places.map(({ place, weatherRateIndex }) =>
             <TableRow key={`${place}-${weatherRateIndex}`} hover>
               {!hidePlaceName && (
-                <TableCell component='th' scope='row' className={classes.regionCell}>
-                  <Typography>{renderFfxiv(translatePlace(place, locale))}{weatherRateIndex > 0 && ` (alt. ${weatherRateIndex})`}</Typography>
+                <TableCell component='th' scope='row' sx={{ minWidth: 200 }}>
+                  <Typography sx={{ ml: 1 }}>
+                    {renderFfxiv(translatePlace(place, locale))}{weatherRateIndex > 0 && ` (alt. ${weatherRateIndex})`}
+                  </Typography>
                 </TableCell>
               )}
-              {hashes.map((hash, index) =>
-                <TableCell
-                  key={index}
-                  className={clsx(classes.weatherCell, index === 1 && classes.current)}
-                >
-                  <WeatherIcon weather={getWeather(place, weatherRateIndex, hash)} showLabel={showLabels} />
-                </TableCell>
-              )}
+              {hashes.map((hash, index) => {
+                const weather = getWeather(place, weatherRateIndex, hash)
+                return (
+                  <TableCell key={index} align='center' sx={{
+                    width: 80,
+                    verticalAlign: 'top',
+                    backgroundColor: index === 1 ? theme => alpha(theme.palette.primary.light, 0.25) : 'none'
+                  }}>
+                    <WeatherIcon weather={weather} />
+                    {showLabels && (
+                      <Typography component='div' variant='caption' sx={{ lineHeight: '110%' }}>
+                        {softHyphens(translateWeather(weather, locale))}
+                      </Typography>
+                    )}
+                  </TableCell>
+                )
+              })}
             </TableRow>
           )}
         </TableBody>

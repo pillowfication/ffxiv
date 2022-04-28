@@ -1,41 +1,16 @@
 import React, { useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
 import { LINES, validateGrid, getSuggestion } from './calculate-mini-cactpot'
 import Section from '../Section'
-import Typography from '@material-ui/core/Typography'
-import Grid from '@material-ui/core/Grid'
-import TableContainer from '@material-ui/core/TableContainer'
-import Button from '@material-ui/core/Button'
+import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
+import Typography from '@mui/material/Typography'
+import TableContainer from '@mui/material/TableContainer'
+import Button from '@mui/material/Button'
 import CalculatorCell from './CalculatorCell'
 import CalculatorLineIndicator from './CalculatorLineIndicator'
 import { useTranslation } from '../i18n'
 
-const useStyles = makeStyles(theme => ({
-  gridShrink: {
-    textAlign: 'center',
-    [theme.breakpoints.up('md')]: {
-      flex: '0 0 auto'
-    }
-  },
-  gridGrow: {
-    [theme.breakpoints.up('md')]: {
-      flex: '1 1 0px'
-    }
-  },
-  cellsContainer: {
-    display: 'inline-block',
-    border: theme.palette.type === 'dark' ? '1px solid gray' : '1px solid black',
-    whiteSpace: 'nowrap'
-  },
-  suggestion: {
-    [theme.breakpoints.up('md')]: {
-      paddingTop: theme.spacing(8)
-    }
-  }
-}))
-
 const Calculator = (): React.ReactElement => {
-  const classes = useStyles()
   const { t, i18n } = useTranslation('mini-cactpot')
   const [grid, setGrid] = useState<Array<number | null>>(Array(9).fill(null))
   const locale = i18n.language
@@ -50,8 +25,8 @@ const Calculator = (): React.ReactElement => {
     setGrid(Array(9).fill(null))
   }
 
-  const errorCells = {}
-  const suggestedCells = {}
+  const errorCells: Record<number, boolean> = {}
+  const suggestedCells: Record<number, boolean> = {}
   const error = validateGrid(grid)
   let suggestion: any
 
@@ -90,9 +65,9 @@ const Calculator = (): React.ReactElement => {
   return (
     <Section>
       <Grid container spacing={4}>
-        <Grid item xs={12} className={classes.gridShrink}>
+        <Grid item xs={12} lg='auto'>
           <TableContainer>
-            <table>
+            <Box component='table' textAlign='center'>
               <tbody>
                 <tr>
                   <td><CalculatorLineIndicator rotate={45} suggested={isLineSuggested(3)} /></td>
@@ -104,18 +79,63 @@ const Calculator = (): React.ReactElement => {
                 <tr>
                   <td><CalculatorLineIndicator rotate={0} suggested={isLineSuggested(2)} /></td>
                   <td rowSpan={3} colSpan={3}>
-                    <div className={classes.cellsContainer}>
-                      <CalculatorCell value={grid[0]} suggested={suggestedCells[0]} error={errorCells[0]} onInputDigit={handleInputDigit.bind(null, 0)} />
-                      <CalculatorCell value={grid[1]} suggested={suggestedCells[1]} error={errorCells[1]} onInputDigit={handleInputDigit.bind(null, 1)} />
-                      <CalculatorCell value={grid[2]} suggested={suggestedCells[2]} error={errorCells[2]} onInputDigit={handleInputDigit.bind(null, 2)} />
+                    <div>
+                      <CalculatorCell
+                        value={grid[0]}
+                        suggested={suggestedCells[0]}
+                        error={errorCells[0]}
+                        onInputDigit={handleInputDigit.bind(null, 0)}
+                      />
+                      <CalculatorCell
+                        value={grid[1]}
+                        suggested={suggestedCells[1]}
+                        error={errorCells[1]}
+                        onInputDigit={handleInputDigit.bind(null, 1)}
+                      />
+                      <CalculatorCell
+                        value={grid[2]}
+                        suggested={suggestedCells[2]}
+                        error={errorCells[2]}
+                        onInputDigit={handleInputDigit.bind(null, 2)}
+                      />
                       <br />
-                      <CalculatorCell value={grid[3]} suggested={suggestedCells[3]} error={errorCells[3]} onInputDigit={handleInputDigit.bind(null, 3)} />
-                      <CalculatorCell value={grid[4]} suggested={suggestedCells[4]} error={errorCells[4]} onInputDigit={handleInputDigit.bind(null, 4)} />
-                      <CalculatorCell value={grid[5]} suggested={suggestedCells[5]} error={errorCells[5]} onInputDigit={handleInputDigit.bind(null, 5)} />
+                      <CalculatorCell
+                        value={grid[3]}
+                        suggested={suggestedCells[3]}
+                        error={errorCells[3]}
+                        onInputDigit={handleInputDigit.bind(null, 3)}
+                      />
+                      <CalculatorCell
+                        value={grid[4]}
+                        suggested={suggestedCells[4]}
+                        error={errorCells[4]}
+                        onInputDigit={handleInputDigit.bind(null, 4)}
+                      />
+                      <CalculatorCell
+                        value={grid[5]}
+                        suggested={suggestedCells[5]}
+                        error={errorCells[5]}
+                        onInputDigit={handleInputDigit.bind(null, 5)}
+                      />
                       <br />
-                      <CalculatorCell value={grid[6]} suggested={suggestedCells[6]} error={errorCells[6]} onInputDigit={handleInputDigit.bind(null, 6)} />
-                      <CalculatorCell value={grid[7]} suggested={suggestedCells[7]} error={errorCells[7]} onInputDigit={handleInputDigit.bind(null, 7)} />
-                      <CalculatorCell value={grid[8]} suggested={suggestedCells[8]} error={errorCells[8]} onInputDigit={handleInputDigit.bind(null, 8)} />
+                      <CalculatorCell
+                        value={grid[6]}
+                        suggested={suggestedCells[6]}
+                        error={errorCells[6]}
+                        onInputDigit={handleInputDigit.bind(null, 6)}
+                      />
+                      <CalculatorCell
+                        value={grid[7]}
+                        suggested={suggestedCells[7]}
+                        error={errorCells[7]}
+                        onInputDigit={handleInputDigit.bind(null, 7)}
+                      />
+                      <CalculatorCell
+                        value={grid[8]}
+                        suggested={suggestedCells[8]}
+                        error={errorCells[8]}
+                        onInputDigit={handleInputDigit.bind(null, 8)}
+                      />
                     </div>
                   </td>
                 </tr>
@@ -126,11 +146,11 @@ const Calculator = (): React.ReactElement => {
                   <td><CalculatorLineIndicator rotate={0} suggested={isLineSuggested(0)} /></td>
                 </tr>
               </tbody>
-            </table>
+            </Box>
           </TableContainer>
         </Grid>
-        <Grid item xs={12} className={classes.gridGrow}>
-          <div className={classes.suggestion}>
+        <Grid item xs={12} lg>
+          <div>
             {(() => {
               if (error !== null) {
                 switch (error.type) {

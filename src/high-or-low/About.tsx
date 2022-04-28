@@ -1,5 +1,6 @@
 import React from 'react'
-import Typography from '@material-ui/core/Typography'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
 import Section from '../Section'
 import { $, $$ } from '../MathJax'
 import { useTranslation } from '../i18n'
@@ -15,12 +16,14 @@ const About = (): React.ReactElement => {
       <Typography paragraph>
         There is a simple way to determine if your sum is more likely to be higher or lower. Calculate the <strong>scores</strong> of you and Tista-Bie according to the following formula:
       </Typography>
-      {$$(`
-        \\begin{align}
-          \\text{Your Score} & = (\\text{Your Card}) \\times 5 + 45, \\\\
-          \\text{TB’s Score} & = (\\text{TB’s Cards}) \\times 7.
-        \\end{align}
-      `)}
+      <Box mb={2}>
+        {$$(`
+          \\begin{align}
+            \\text{Your Score} & = (\\text{Your Card}) \\times 5 + 45, \\\\
+            \\text{TB’s Score} & = (\\text{TB’s Cards}) \\times 7.
+          \\end{align}
+        `)}
+      </Box>
       <Typography paragraph>
         Then make your guess based on if your score is higher or lower than Tista-Bie’s score.
       </Typography>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
+import Grid from '@mui/material/Grid'
+import Typography from '@mui/material/Typography'
 import Section from '../Section'
 import NameAutocomplete from './NameAutocomplete'
 import MyNameIs from './MyNameIs'

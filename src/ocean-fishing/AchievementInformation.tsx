@@ -1,7 +1,6 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
-import Link from '@material-ui/core/Link'
+import Typography from '@mui/material/Typography'
+import Link from '@mui/material/Link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 import Section from '../Section'
@@ -30,22 +29,22 @@ const teamcraftUrlMap: Record<number, string> = {
   2756: 'https://guides.ffxivteamcraft.com/guide/ocean-fishing-bonus-achievements#sticking-it-to-the-manta'
 }
 
-const useStyles = makeStyles(theme => ({
-  achievementIcon: {
-    marginLeft: theme.spacing(1.5),
-    verticalAlign: 'sub',
-    [theme.breakpoints.down('md')]: {
-      display: 'none'
-    }
-  },
-  subtitle: {
-    marginLeft: theme.spacing(2),
-    [theme.breakpoints.down('md')]: {
-      marginLeft: 0,
-      display: 'block'
-    }
-  }
-}))
+// const useStyles = makeStyles(theme => ({
+//   achievementIcon: {
+//     marginLeft: theme.spacing(1.5),
+//     verticalAlign: 'sub',
+//     [theme.breakpoints.down('md')]: {
+//       display: 'none'
+//     }
+//   },
+//   subtitle: {
+//     marginLeft: theme.spacing(2),
+//     [theme.breakpoints.down('md')]: {
+//       marginLeft: 0,
+//       display: 'block'
+//     }
+//   }
+// }))
 
 interface Props {
   achievement: number
@@ -53,7 +52,6 @@ interface Props {
 }
 
 const AchievementInformation = ({ achievement, children }: Props): React.ReactElement => {
-  const classes = useStyles()
   const { i18n } = useTranslation('ocean-fishing')
   const locale = i18n.language
 
@@ -62,8 +60,8 @@ const AchievementInformation = ({ achievement, children }: Props): React.ReactEl
       title={
         <>
           {translate(locale, achievements[achievement], 'name')}
-          <OceanFishIcon type='achievement' id={achievement} className={classes.achievementIcon} />
-          <Typography display='inline' className={classes.subtitle}>
+          <OceanFishIcon type='achievement' id={achievement} className={'classes.achievementIcon'} />
+          <Typography display='inline' className={'classes.subtitle'}>
             {cleanRequirement(translate(locale, contentBonusMap[achievement], 'requirement'))}
             &nbsp;<Link href={teamcraftUrlMap[achievement]}><FontAwesomeIcon icon={faArrowUpRightFromSquare} /></Link>
           </Typography>

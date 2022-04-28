@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import Paper from '@material-ui/core/Paper'
-import Tabs from '@material-ui/core/Tabs'
-import Tab from '@material-ui/core/Tab'
-import TableContainer from '@material-ui/core/TableContainer'
-import Table from '@material-ui/core/Table'
-import TableHead from '@material-ui/core/TableHead'
-import TableBody from '@material-ui/core/TableBody'
-import TableRow from '@material-ui/core/TableRow'
-import TableCell from '@material-ui/core/TableCell'
+import Paper from '@mui/material/Paper'
+import Tabs from '@mui/material/Tabs'
+import Tab from '@mui/material/Tab'
+import TableContainer from '@mui/material/TableContainer'
+import Table from '@mui/material/Table'
+import TableHead from '@mui/material/TableHead'
+import TableBody from '@mui/material/TableBody'
+import TableRow from '@mui/material/TableRow'
+import TableCell from '@mui/material/TableCell'
 import RankIcon from './RankIcon'
 import Section from '../Section'
 import WeatherIcon from '../skywatcher/WeatherIcon'
@@ -104,12 +104,12 @@ const DropsTable = (): React.ReactElement => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {(bozja.drops[`zone${tab + 1}`] as any[])
+              {((bozja.drops as any)[`zone${tab + 1}`] as any[])
                 .map(datum => datum.loot)
                 .sort((a, b) => a - b)
                 .filter((loot, index, array) => loot !== array[index + 1])
                 .map(loot =>
-                  (bozja.drops[`zone${tab + 1}`] as any[])
+                  ((bozja.drops as any)[`zone${tab + 1}`] as any[])
                     .filter(datum => datum.loot === loot)
                     .sort((a, b) => {
                       const aR = a.rank === 'S' ? 6 : a.rank
@@ -121,11 +121,11 @@ const DropsTable = (): React.ReactElement => {
                         {index === 0 && (
                           <>
                             <TableCell rowSpan={array.length} align='center'>
-                              {cleanFragment(translate(locale, bozja.items[loot], 'name'), locale)}
+                              {cleanFragment(translate(locale, (bozja.items as any)[loot], 'name'), locale)}
                             </TableCell>
                             <TableCell rowSpan={array.length}>
                               {loot !== 31135 && (
-                                parseActions(translate(locale, bozja.items[loot], 'description'), locale)
+                                parseActions(translate(locale, (bozja.items as any)[loot], 'description'), locale)
                               )}
                             </TableCell>
                           </>

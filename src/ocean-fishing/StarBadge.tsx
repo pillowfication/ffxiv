@@ -1,6 +1,6 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Tooltip from '@material-ui/core/Tooltip'
+import Box from '@mui/material/Box'
+import Tooltip from '@mui/material/Tooltip'
 import { useTranslation } from '../i18n'
 
 const ICON_SIZE = 20
@@ -13,25 +13,25 @@ function ct (theta: number, rho: number): string {
   return `${round(ICON_SIZE / 2 + rho * Math.cos(theta))} ${round(ICON_SIZE / 2 + rho * Math.sin(theta))}`
 }
 
-const useStyles = makeStyles(theme => ({
-  starBadge: {
-    position: 'relative',
-    top: 3,
-    left: -8,
-    '& *': {
-      stroke: theme.palette.type === 'dark' ? '#616161' : '#000000',
-      fill: '#ffff00'
-    }
-  }
-}))
-
 const StarBadge = (): React.ReactElement => {
-  const classes = useStyles()
   const { t } = useTranslation('ocean-fishing')
 
   return (
     <Tooltip placement='top' arrow title={String(t('requiredBait'))}>
-      <svg width={ICON_SIZE} height={ICON_SIZE} className={classes.starBadge}>
+      <Box
+        component='svg'
+        width={ICON_SIZE}
+        height={ICON_SIZE}
+        sx={{
+          position: 'relative',
+          top: 3,
+          left: -8,
+          '& *': {
+            stroke: theme => theme.palette.mode === 'dark' ? '#616161' : '#000000',
+            fill: '#ffff00'
+          }
+        }}
+      >
         {(() => {
           const r = 3
           const R = 7
@@ -45,7 +45,7 @@ const StarBadge = (): React.ReactElement => {
 
           return <path d={`M ${points.join(' L ')} Z`} />
         })()}
-      </svg>
+      </Box>
     </Tooltip>
   )
 }

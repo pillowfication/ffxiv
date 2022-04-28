@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import NoSsr from '@material-ui/core/NoSsr'
-import Typography from '@material-ui/core/Typography'
+import NoSsr from '@mui/material/NoSsr'
+import Typography from '@mui/material/Typography'
 import Page from '../src/Page'
 import Section from '../src/Section'
 import UpcomingWeather from '../src/skywatcher/UpcomingWeather'

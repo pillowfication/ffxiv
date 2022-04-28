@@ -1,17 +1,20 @@
 import React from 'react'
-import Typography from '@material-ui/core/Typography'
+import { SxProps, Theme } from '@mui/material/styles'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
 
 interface Props {
   title?: React.ReactNode
+  sx?: SxProps<Theme>
   children?: React.ReactNode
 }
 
-const Section = ({ title, children }: Props): React.ReactElement => {
+const Section = ({ title, sx, children }: Props): React.ReactElement => {
   return (
-    <section>
+    <Box component='section' mb={4} sx={sx}>
       {title !== undefined && <Typography variant='h5' gutterBottom>{title}</Typography>}
       {children}
-    </section>
+    </Box>
   )
 }
 

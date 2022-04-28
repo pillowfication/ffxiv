@@ -1,9 +1,8 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Box from '@material-ui/core/Box'
-import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
-import MuiLink from '@material-ui/core/Link'
+import Box from '@mui/material/Box'
+import Paper from '@mui/material/Paper'
+import Typography from '@mui/material/Typography'
+import MuiLink from '@mui/material/Link'
 import Page from '../../src/Page'
 import Section from '../../src/Section'
 import Link from '../../src/Link'
@@ -12,14 +11,7 @@ import { mathJaxRequire, $, $$ } from '../../src/MathJax'
 import NavigationBar from '../../src/ocean-fishing/NavigationBar'
 import { useTranslation } from '../../src/i18n'
 
-const useStyles = makeStyles(theme => ({
-  code: {
-    padding: theme.spacing(0.2, 1)
-  }
-}))
-
 const About = (): React.ReactElement => {
-  const classes = useStyles()
   const { t } = useTranslation('ocean-fishing')
 
   return (
@@ -101,9 +93,8 @@ const About = (): React.ReactElement => {
         <Typography paragraph>
           Since there are 12 routes and 12 voyages a day, the route that is skipped will cycle through all 12 routes in 12 days. The full pattern of routes is 144 routes long.
         </Typography>
-        <Box mb={2}>
-          <Highlight language='javascript'>
-            {`
+        <Highlight language='javascript'>
+          {`
 const PATTERN = [
   'BD', 'TD', 'ND', 'RD', 'BS', 'TS', 'NS', 'RS', 'BN', 'TN', 'NN', 'RN',
   'TD', 'ND', 'RD', 'BS', 'TS', 'NS', 'RS', 'BN', 'TN', 'NN', 'RN', 'BD',
@@ -118,15 +109,13 @@ const PATTERN = [
   'NN', 'RN', 'BD', 'TD', 'ND', 'RD', 'BS', 'TS', 'NS', 'RS', 'BN', 'TN',
   'RN', 'BD', 'TD', 'ND', 'RD', 'BS', 'TS', 'NS', 'RS', 'BN', 'TN', 'NN'
 ]
-            `.trim()}
-          </Highlight>
-        </Box>
+          `.trim()}
+        </Highlight>
         <Typography paragraph>
-          To figure out the route at a given time, we need to first establish some epoch as the first voyage and determine where in <Paper component='code' variant='outlined' className={classes.code}>PATTERN</Paper> that voyage lies. All other routes will be calculated relative to that epoch. Fortunately, JST is UTC+09:00, which means a voyage lands on the <MuiLink href='https://en.wikipedia.org/wiki/Unix_time'>Unix epoch</MuiLink>. As it turns out, this voyage is index 88 in <Paper component='code' variant='outlined' className={classes.code}>PATTERN</Paper>. Altogether,
+          To figure out the route at a given time, we need to first establish some epoch as the first voyage and determine where in <Paper component='code' variant='outlined' sx={{ px: 0.5 }}>PATTERN</Paper> that voyage lies. All other routes will be calculated relative to that epoch. Fortunately, JST is UTC+09:00, which means a voyage lands on the <MuiLink href='https://en.wikipedia.org/wiki/Unix_time'>Unix epoch</MuiLink>. As it turns out, this voyage is index 88 in <Paper component='code' variant='outlined' sx={{ px: 0.5 }}>PATTERN</Paper>. Altogether,
         </Typography>
-        <Box mb={2}>
-          <Highlight language='typescript'>
-            {`
+        <Highlight language='typescript'>
+          {`
 const TWO_HOURS = 2 * 60 * 60 * 1000
 const OFFSET = 88
 
@@ -142,9 +131,8 @@ function getRoute (date: Date) {
 
   return route
 }
-            `.trim()}
-          </Highlight>
-        </Box>
+          `.trim()}
+        </Highlight>
       </Section>
     </Page>
   )

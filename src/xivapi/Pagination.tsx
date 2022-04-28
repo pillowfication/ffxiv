@@ -1,14 +1,5 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import MuiPagination from '@material-ui/lab/Pagination'
-
-const useStyles = makeStyles(theme => ({
-  pagination: {
-    display: 'flex',
-    justifyContent: 'center',
-    margin: theme.spacing(1)
-  }
-}))
+import Pagination from '@mui/material/Pagination'
 
 interface Props {
   url: string
@@ -16,9 +7,7 @@ interface Props {
   onChangeUrl: (url: string) => void
 }
 
-const Pagination = ({ url, data, onChangeUrl }: Props): React.ReactElement | null => {
-  const classes = useStyles()
-
+const XivPagination = ({ url, data, onChangeUrl }: Props): React.ReactElement | null => {
   const handleChangePage = (_: any, page: number): void => {
     const parsedUrl = new URL(url, 'https://xivapi.com')
     parsedUrl.searchParams.set('page', String(page))
@@ -30,15 +19,17 @@ const Pagination = ({ url, data, onChangeUrl }: Props): React.ReactElement | nul
   } else {
     const pagination = data.Pagination
     return (
-      <div className={classes.pagination}>
-        <MuiPagination
-          count={pagination.PageTotal}
-          defaultPage={pagination.Page}
-          onChange={handleChangePage}
-        />
-      </div>
+      <Pagination
+        count={pagination.PageTotal}
+        defaultPage={pagination.Page}
+        showFirstButton
+        showLastButton
+        siblingCount={2}
+        onChange={handleChangePage}
+        sx={{ display: 'flex', justifyContent: 'center', m: 1 }}
+      />
     )
   }
 }
 
-export default Pagination
+export default XivPagination

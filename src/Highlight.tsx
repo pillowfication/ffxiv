@@ -1,43 +1,32 @@
 import React from 'react'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
-import Head from 'next/head'
-import ReactHighlight from 'react-highlight.js'
-import Paper from '@material-ui/core/Paper'
+import { SxProps, Theme } from '@mui/material/styles'
+import Paper from '@mui/material/Paper'
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { github } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
+import javascript from 'react-syntax-highlighter/dist/cjs/languages/hljs/javascript'
+import latex from 'react-syntax-highlighter/dist/cjs/languages/hljs/latex'
+import typescript from 'react-syntax-highlighter/dist/cjs/languages/hljs/typescript'
 
-const useStyles = makeStyles(theme => ({
-  highlight: {
-    marginBottom: theme.spacing(2),
-    '& pre': {
-      margin: theme.spacing(1)
-    },
-    '& code': {
-      background: 'none'
-    }
-  }
-}))
+SyntaxHighlighter.registerLanguage('javascript', javascript)
+SyntaxHighlighter.registerLanguage('latex', latex)
+SyntaxHighlighter.registerLanguage('typescript', typescript)
 
 interface Props {
-  language: string
+  language?: string
+  sx?: SxProps<Theme>
   children: React.ReactNode
 }
 
-const Highlight = ({ language, children }: Props): React.ReactElement => {
-  const classes = useStyles()
-  const theme = useTheme()
-  const themeCss = theme.palette.type === 'dark' ? 'atom-one-dark' : 'github'
-
+const Highlight = ({ language, sx, children }: Props): React.ReactElement => {
   return (
-    <Paper variant='outlined' className={classes.highlight}>
-      <Head>
-        <link
-          key='hljs-css'
-          rel='stylesheet'
-          href={`https://highlightjs.org/static/demo/styles/${themeCss}.css`}
-        />
-      </Head>
-      <ReactHighlight language={language}>
-        {children}
-      </ReactHighlight>
+    <Paper
+      component={SyntaxHighlighter}
+      variant='outlined'
+      language={language}
+      style={github}
+      sx={sx}
+    >
+      {children}
     </Paper>
   )
 }

@@ -35,7 +35,7 @@ export const LINES: Array<[number, number, number]> = [
 ]
 
 function memoize<A extends any[], R> (func: (...args: A) => R, createKey: (...args: A) => string): (...args: A) => R {
-  const cache = {}
+  const cache: Record<string, R> = {}
   return function (...args: A): R {
     const key: string = createKey.apply(null, args)
     if (cache[key] !== undefined) {

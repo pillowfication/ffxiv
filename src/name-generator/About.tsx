@@ -1,13 +1,13 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
-import TableContainer from '@material-ui/core/TableContainer'
-import Table from '@material-ui/core/Table'
-import TableHead from '@material-ui/core/TableHead'
-import TableBody from '@material-ui/core/TableBody'
-import TableRow from '@material-ui/core/TableRow'
-import TableCell from '@material-ui/core/TableCell'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
+import TableContainer from '@mui/material/TableContainer'
+import Table from '@mui/material/Table'
+import TableHead from '@mui/material/TableHead'
+import TableBody from '@mui/material/TableBody'
+import TableRow from '@mui/material/TableRow'
+import TableCell from '@mui/material/TableCell'
 import Section from '../Section'
 import { charaMakeNames } from './ffxiv-name-generator/data'
 import {
@@ -105,26 +105,7 @@ const STATISTICS: Record<Clan, Record<Gender, number>> = {
   }
 }
 
-const useStyles = makeStyles(theme => ({
-  buttons: {
-    textAlign: 'center',
-    marginBottom: theme.spacing(2),
-    '& > *': {
-      margin: theme.spacing(1),
-      textTransform: 'none'
-    }
-  },
-  statsTable: {
-    width: 'initial',
-    margin: theme.spacing(2, 'auto'),
-    '& td': {
-      padding: `${theme.spacing(0.5, 4)} !important`
-    }
-  }
-}))
-
 const About = (): React.ReactElement => {
-  const classes = useStyles()
   const { t, i18n } = useTranslation('name-generator')
   const locale = i18n.language
 
@@ -133,15 +114,20 @@ const About = (): React.ReactElement => {
       <Typography paragraph>
         Naming conventions for the various races can be found here:
       </Typography>
-      <div className={classes.buttons}>
+      <Box sx={{ flexFlow: 'row wrap', mb: 2, textAlign: 'center' }}>
         {getRaces().map(race =>
-          <Button key={race} variant='contained' href={CONVENTION_LINKS[race]}>
+          <Button
+            key={race}
+            variant='contained'
+            href={CONVENTION_LINKS[race]}
+            sx={{ m: 0.5 }}
+          >
             <Typography>{translate('race', race, locale)}</Typography>
           </Button>
         )}
-      </div>
-      <TableContainer>
-        <Table size='small' className={classes.statsTable}>
+      </Box>
+      <TableContainer sx={{ mb: 2 }}>
+        <Table size='small' sx={{ width: 'auto', margin: '0 auto' }}>
           <TableHead>
             <TableRow>
               <TableCell align='center'>{t('race')}</TableCell>

@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
-import NoSsr from '@material-ui/core/NoSsr'
-import Typography from '@material-ui/core/Typography'
-import Box from '@material-ui/core/Box'
-import FormControl from '@material-ui/core/FormControl'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import InputLabel from '@material-ui/core/InputLabel'
-import Checkbox from '@material-ui/core/Checkbox'
-import Select from '@material-ui/core/Select'
-import MenuItem from '@material-ui/core/MenuItem'
-import Tooltip from '@material-ui/core/Tooltip'
+import NoSsr from '@mui/material/NoSsr'
+import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
+import FormControl from '@mui/material/FormControl'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import InputLabel from '@mui/material/InputLabel'
+import Checkbox from '@mui/material/Checkbox'
+import Select, { SelectChangeEvent } from '@mui/material/Select'
+import MenuItem from '@mui/material/MenuItem'
+import Tooltip from '@mui/material/Tooltip'
 import Section from '../Section'
 import UpcomingWeatherTable from './UpcomingWeatherTable'
 import {
@@ -35,11 +35,9 @@ const UpcomingWeather = ({ now }: Props): React.ReactElement => {
   const [showAllPlaces, setShowAllPlaces] = useState(false)
   const locale = i18n.language
 
-  const handleSelectFilter = (event: React.ChangeEvent<HTMLSelectElement>): void => {
-    const filter = event.target.value === 'none' ? null : (+event.target.value as Place)
-    setFilter(filter)
+  const handleSelectFilter = (event: SelectChangeEvent<'none' | Place>): void => {
+    setFilter(event.target.value === 'none' ? null : (event.target.value as Place))
   }
-
   const handleToggleLabels = (): void => { setShowLabels(!showLabels) }
   const handleToggleLocalTime = (): void => { setShowLocalTime(!showLocalTime) }
   const handleToggleShowAllPlaces = (): void => { setShowAllPlaces(!showAllPlaces) }
@@ -50,7 +48,7 @@ const UpcomingWeather = ({ now }: Props): React.ReactElement => {
         <FormControl variant='filled' fullWidth margin='dense'>
           <InputLabel>{t('selectRegion')}</InputLabel>
           <NoSsr>
-            <Select onChange={handleSelectFilter} value={filter !== null ? filter : 'none'}>
+            <Select onChange={handleSelectFilter} value={filter ?? 'none'}>
               <MenuItem value='none'>{t('showAllRegions')}</MenuItem>
               {REGIONS.map(region =>
                 <MenuItem key={region} value={region}>{translatePlace(region, locale)}</MenuItem>
@@ -59,57 +57,44 @@ const UpcomingWeather = ({ now }: Props): React.ReactElement => {
           </NoSsr>
         </FormControl>
         <FormControlLabel
-          control={
-            <Checkbox
-              checked={showLabels}
-              onChange={handleToggleLabels}
-              color='primary'
-            />
-          }
+          control={<Checkbox color='primary' checked={showLabels} onChange={handleToggleLabels} />}
           label={t('showLabels')}
         />
         <FormControlLabel
-          control={
-            <Checkbox
-              checked={showLocalTime}
-              onChange={handleToggleLocalTime}
-              color='primary'
-            />
-          }
+          control={<Checkbox color='primary' checked={showLocalTime} onChange={handleToggleLocalTime} />}
           label={t('showLocalTimes')}
         />
-        <Tooltip enterDelay={200} title={<Typography variant='caption'>Include places with only 1 possible weather</Typography>}>
+        <Tooltip
+          placement='top'
+          arrow
+          enterDelay={200}
+          disableInteractive
+          title={<Typography variant='caption'>Include places with only 1 possible weather</Typography>}
+        >
           <FormControlLabel
-            control={
-              <Checkbox
-                checked={showAllPlaces}
-                onChange={handleToggleShowAllPlaces}
-                color='primary'
-              />
-            }
+            control={<Checkbox color='primary' checked={showAllPlaces} onChange={handleToggleShowAllPlaces} />}
             label={t('showAllPlaces')}
           />
         </Tooltip>
       </Box>
       <NoSsr>
-        {(filter !== null ? [filter] : REGIONS)
-          .map(region => {
-            const places = getPlaces(region)
-              .flatMap(place => getWeatherRates(place).map((_: any, index) => ({ place, weatherRateIndex: index })))
-
-            return (
-              <Section key={region}>
-                <Typography variant='h6' gutterBottom>{translatePlace(region, locale)}</Typography>
-                <UpcomingWeatherTable
-                  now={now}
-                  places={showAllPlaces ? places : places.filter(({ place, weatherRateIndex }) => getPossibleWeathers(place, weatherRateIndex).length > 1)}
-                  showLabels={showLabels}
-                  showLocalTime={showLocalTime}
-                />
-              </Section>
-            )
-          })
-        }
+        {(filter !== null ? [filter] : REGIONS).map(region => {
+          const places = getPlaces(region)
+            .flatMap(place => getWeatherRates(place).map((_: any, index) => ({ place, weatherRateIndex: index })))
+          return (
+            <Section key={region}>
+              <Typography variant='h6'>{translatePlace(region, locale)}</Typography>
+              <UpcomingWeatherTable
+                now={now}
+                places={showAllPlaces
+                  ? places
+                  : places.filter(({ place, weatherRateIndex }) => getPossibleWeathers(place, weatherRateIndex).length > 1)}
+                showLabels={showLabels}
+                showLocalTime={showLocalTime}
+              />
+            </Section>
+          )
+        })}
       </NoSsr>
     </Section>
   )

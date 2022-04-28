@@ -1,20 +1,18 @@
 import React from 'react'
-import clsx from 'clsx'
-import { makeStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
-import Link from '@material-ui/core/Link'
-import Box from '@material-ui/core/Box'
-import Collapse from '@material-ui/core/Collapse'
-import Card from '@material-ui/core/Card'
-import CardHeader from '@material-ui/core/CardHeader'
-import CardContent from '@material-ui/core/CardContent'
-import CardActions from '@material-ui/core/CardActions'
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableRow from '@material-ui/core/TableRow'
-import TableCell from '@material-ui/core/TableCell'
-import IconButton from '@material-ui/core/IconButton'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import Typography from '@mui/material/Typography'
+import Link from '@mui/material/Link'
+import Box from '@mui/material/Box'
+import Collapse from '@mui/material/Collapse'
+import Card from '@mui/material/Card'
+import CardHeader from '@mui/material/CardHeader'
+import CardContent from '@mui/material/CardContent'
+import CardActions from '@mui/material/CardActions'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableRow from '@mui/material/TableRow'
+import TableCell from '@mui/material/TableCell'
+import IconButton from '@mui/material/IconButton'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ItemIcon from './ItemIcon'
 import TimeIcon from './TimeIcon'
 import BaitGroup from './BaitGroup'
@@ -34,46 +32,45 @@ function getImgUrl (fish: Fish): string {
   }
 }
 
-const useStyles = makeStyles(theme => ({
-  container: {
-    width: 400
-  },
-  header: {
-    padding: theme.spacing(2),
-    alignItems: 'start'
-  },
-  title: {
-    paddingTop: theme.spacing(1)
-  },
-  content: {
-    padding: theme.spacing(0, 2, 2)
-  },
-  table: {
-    '& td': {
-      padding: theme.spacing(0.33, 2)
-    }
-  },
-  description: {
-    whiteSpace: 'pre-line'
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest
-    })
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)'
-  }
-}))
+// const useStyles = makeStyles(theme => ({
+//   container: {
+//     width: 400
+//   },
+//   header: {
+//     padding: theme.spacing(2),
+//     alignItems: 'start'
+//   },
+//   title: {
+//     paddingTop: theme.spacing(1)
+//   },
+//   content: {
+//     padding: theme.spacing(0, 2, 2)
+//   },
+//   table: {
+//     '& td': {
+//       padding: theme.spacing(0.33, 2)
+//     }
+//   },
+//   description: {
+//     whiteSpace: 'pre-line'
+//   },
+//   expand: {
+//     transform: 'rotate(0deg)',
+//     marginLeft: 'auto',
+//     transition: theme.transitions.create('transform', {
+//       duration: theme.transitions.duration.shortest
+//     })
+//   },
+//   expandOpen: {
+//     transform: 'rotate(180deg)'
+//   }
+// }))
 
 interface Props {
   fish: Fish
 }
 
 const OceanFishPopper = ({ fish }: Props): React.ReactElement => {
-  const classes = useStyles()
   const { t, i18n } = useTranslation('ocean-fishing')
   const [expanded, setExpanded] = React.useState(false)
   const spreadsheetData = fish.spreadsheetData
@@ -85,11 +82,11 @@ const OceanFishPopper = ({ fish }: Props): React.ReactElement => {
 
   return (
     <Box boxShadow={8}>
-      <Card variant='outlined' className={classes.container}>
+      <Card variant='outlined' className={'classes.container'}>
         <CardHeader
           avatar={<ItemIcon src={getImgUrl(fish)} />}
           title={translate(locale, fish, 'name')}
-          titleTypographyProps={{ variant: 'h6', paragraph: true, className: classes.title }}
+          titleTypographyProps={{ variant: 'h6', paragraph: true, className: 'classes.title' }}
           subheader={(
             <div>
               {fish.lodestoneData !== null && (
@@ -99,13 +96,13 @@ const OceanFishPopper = ({ fish }: Props): React.ReactElement => {
             </div>
           )}
           action={<ChecklistCheckmark fishId={fish.id} />}
-          className={classes.header}
+          className={'classes.header'}
         />
-        <CardContent className={classes.content}>
+        <CardContent className={'classes.content'}>
           <BaitGroup {...getBaitGroup(fish)} subtext={subtextBiteTime} />
         </CardContent>
-        <CardContent className={classes.content}>
-          <Table size='small' className={classes.table}>
+        <CardContent className={'classes.content'}>
+          <Table size='small' className={'classes.table'}>
             <TableBody>
               <TableRow>
                 <TableCell variant='head'>
@@ -155,14 +152,14 @@ const OceanFishPopper = ({ fish }: Props): React.ReactElement => {
                             return 'Any'
                           case 'OK':
                             return spreadsheetData.weathers.list.map(weather =>
-                              <WeatherIcon key={weather} weather={weather} showLabel={false} />
+                              <WeatherIcon key={weather} weather={weather} />
                             )
                           case 'NOT OK':
                             return (
                               <>
                                 <span style={{ verticalAlign: 'middle' }}>Not </span>
                                 {spreadsheetData.weathers.list.map(weather =>
-                                  <WeatherIcon key={weather} weather={weather} showLabel={false} />
+                                  <WeatherIcon key={weather} weather={weather} />
                                 )}
                               </>
                             )
@@ -185,14 +182,14 @@ const OceanFishPopper = ({ fish }: Props): React.ReactElement => {
           </Table>
         </CardContent>
         <Collapse in={expanded} timeout='auto' unmountOnExit>
-          <CardContent className={classes.content}>
-            <Typography variant='body2' className={classes.description}>
+          <CardContent className={'classes.content'}>
+            <Typography variant='body2' className={'classes.description'}>
               {translate(locale, fish, 'description').replace(/\n\n+/g, '\n\n')}
             </Typography>
           </CardContent>
         </Collapse>
         <CardActions disableSpacing>
-          <IconButton onClick={handleClickExpand} className={clsx(classes.expand, expanded && classes.expandOpen)}>
+          <IconButton onClick={handleClickExpand} className={'clsx(classes.expand, expanded && classes.expandOpen)'}>
             <ExpandMoreIcon />
           </IconButton>
         </CardActions>

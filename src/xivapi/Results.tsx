@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import fetch from '../fetch-xivapi'
-import { makeStyles } from '@material-ui/core/styles'
-import Paper from '@material-ui/core/Paper'
+import Paper from '@mui/material/Paper'
 import Pagination from './Pagination'
 import renderJSON from './render-json'
 
@@ -18,22 +17,12 @@ function addCached (key: string, value: any): void {
   }
 }
 
-const useStyles = makeStyles(theme => ({
-  results: {
-    padding: theme.spacing(2, 2, 2, 4),
-    whiteSpace: 'pre-wrap',
-    fontFamily: 'monospace',
-    fontSize: '1.33em'
-  }
-}))
-
 interface Props {
   url: string
   onChangeUrl: (url: string) => void
 }
 
 const Results = ({ url, onChangeUrl }: Props): React.ReactElement => {
-  const classes = useStyles()
   const [data, setData] = useState<any>(null)
 
   useEffect(() => {
@@ -57,7 +46,11 @@ const Results = ({ url, onChangeUrl }: Props): React.ReactElement => {
   return (
     <>
       <Pagination url={url} data={data} onChangeUrl={onChangeUrl} />
-        <Paper className={classes.results}>
+        <Paper variant='outlined' sx={{
+          p: 2,
+          pl: 4,
+          fontFamily: 'monospace'
+        }}>
           {data !== null ? renderJSON(data, { depth: 0, onChangeUrl, _isContent: url === '/content' || url === '/Content' }) : 'Loading...'}
         </Paper>
       <Pagination url={url} data={data} onChangeUrl={onChangeUrl} />

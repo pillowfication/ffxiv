@@ -1,26 +1,28 @@
 import React, { useEffect, useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import NoSsr from '@material-ui/core/NoSsr'
-import Typography from '@material-ui/core/Typography'
-import Box from '@material-ui/core/Box'
-import Container from '@material-ui/core/Container'
-import Grid from '@material-ui/core/Grid'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Button from '@material-ui/core/Button'
-import Switch from '@material-ui/core/Switch'
-import Tooltip from '@material-ui/core/Tooltip'
-import Menu from '@material-ui/core/Menu'
-import MenuItem from '@material-ui/core/MenuItem'
-import TranslateIcon from '@material-ui/icons/Translate'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import NoSsr from '@mui/material/NoSsr'
+import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
+import Grid from '@mui/material/Grid'
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
+import Button from '@mui/material/Button'
+import IconButton from '@mui/material/IconButton'
+import Switch from '@mui/material/Switch'
+import Tooltip from '@mui/material/Tooltip'
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
+import HomeIcon from '@mui/icons-material/Home'
+import GitHubIcon from '@mui/icons-material/GitHub'
+import TranslateIcon from '@mui/icons-material/Translate'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import Link from './Link'
 import { useTranslation } from './i18n'
 
-const LANGUAGES = {
+const LANGUAGES: Record<string, string> = {
   en: 'English',
   de: 'Deutsch',
   fr: 'Français',
@@ -33,31 +35,12 @@ function getLanguage (locale: string): string {
   return LANGUAGES[locale] !== undefined ? LANGUAGES[locale] : locale.toUpperCase()
 }
 
-const useStyles = makeStyles(theme => ({
-  toolbar: {
-    minHeight: 0,
-    paddingTop: theme.spacing(0.5),
-    paddingBottom: theme.spacing(0.5),
-    '& a': {
-      color: '#ffffff',
-      textTransform: 'none'
-    }
-  },
-  languageButton: {
-    marginRight: theme.spacing(2)
-  },
-  brightnessIcon: {
-    verticalAlign: 'middle'
-  }
-}))
-
 interface Props {
   theme: 'light' | 'dark'
   setTheme: (theme: 'light' | 'dark') => void
 }
 
 const Header = ({ theme, setTheme }: Props): React.ReactElement => {
-  const classes = useStyles()
   const { i18n } = useTranslation('common')
   const [languageAnchorEl, setLanguageAnchorEl] = useState<HTMLElement | null>(null)
 
@@ -89,80 +72,62 @@ const Header = ({ theme, setTheme }: Props): React.ReactElement => {
   }
 
   return (
-    <AppBar position='fixed'>
+    <AppBar position='sticky' enableColorOnDark>
       <Container maxWidth='lg'>
-        <Grid container justifyContent='space-between' alignItems='center'>
-          <Grid item>
-            <Toolbar disableGutters className={classes.toolbar}>
-              <Tooltip title='Go home' enterDelay={300}>
-                <Button
-                  component={Link}
-                  variant='contained'
-                  color='primary'
-                  disableElevation
-                  underline='none'
-                  href='/'
-                >
-                  <Box mr={1}>
-                    <FontAwesomeIcon icon={faHome} size='lg' />
-                  </Box>
-                  <Typography>Lulu’s Tools</Typography>
-                </Button>
-              </Tooltip>
-            </Toolbar>
-          </Grid>
-          <Grid item>
-            <Toolbar disableGutters className={classes.toolbar}>
-              <Box display={{ xs: 'none', md: 'inline-block' }}>
-                <Tooltip title='Source code' enterDelay={300}>
-                  <Button
-                    variant='contained'
-                    color='primary'
-                    disableElevation
-                    href='https://github.com/pillowfication/ffxiv'
-                  >
-                    <FontAwesomeIcon icon={faGithub} size='lg' />
-                  </Button>
-                </Tooltip>
+        <Toolbar disableGutters variant='dense'>
+          <Tooltip title='Go home' enterDelay={300}>
+            <Button
+              component={Link}
+              variant='contained'
+              color='primary'
+              disableElevation
+              href='/'
+            >
+              <HomeIcon />
+              <Typography sx={{ ml: 1, textTransform: 'none' }}>Lulu’s Tools</Typography>
+            </Button>
+          </Tooltip>
+          <Box sx={{ flexGrow: 1 }} />
+          <Tooltip title='Source code' enterDelay={300}>
+            <Button
+              component={Link}
+              variant='contained'
+              color='primary'
+              disableElevation
+              href='https://github.com/pillowfication/ffxiv'
+            >
+              <GitHubIcon />
+            </Button>
+          </Tooltip>
+          <Tooltip title='Change language' enterDelay={300}>
+            <Button
+              variant='contained'
+              color='primary'
+              disableElevation
+              onClick={handleClickLanguage}
+            >
+              <TranslateIcon fontSize='small' />
+              <Box display={{ xs: 'none', md: 'inline-block' }} px={1} >
+                <NoSsr>{getLanguage(i18n.language)}</NoSsr>
               </Box>
-              <Tooltip title='Change language' enterDelay={300}>
-                <Button
-                  variant='contained'
-                  color='primary'
-                  disableElevation
-                  className={classes.languageButton}
-                  onClick={handleClickLanguage}
-                >
-                  <TranslateIcon fontSize='small' />
-                  <Box display={{ xs: 'none', md: 'inline-block' }} px={1} >
-                    <NoSsr>{getLanguage(i18n.language)}</NoSsr>
-                  </Box>
-                  <ExpandMoreIcon fontSize='small' />
-                </Button>
-              </Tooltip>
-              <Menu
-                anchorEl={languageAnchorEl}
-                marginThreshold={0}
-                open={Boolean(languageAnchorEl)}
-                onClose={handleSelectLanguage.bind(null, null)}
-              >
-                {
-                  // @ts-expect-error
-                  [i18n.options.defaultLanguage, ...i18n.options.otherLanguages].map(locale =>
-                    <MenuItem key={locale} onClick={handleSelectLanguage.bind(null, locale)}>{getLanguage(locale)}</MenuItem>
-                  )
-                }
-              </Menu>
-              <Box display={{ xs: 'none', md: 'inline-block' }}>
-                <FontAwesomeIcon icon={faSun} size='lg' />
-              </Box>
-              <Switch checked={theme === 'dark'} onChange={handleChangeTheme} />
-              <Box display={{ xs: 'none', md: 'inline-block' }}>
-                <FontAwesomeIcon icon={faMoon} size='lg' />
-              </Box>
-            </Toolbar>
-          </Grid>
-        </Grid>
+              <ExpandMoreIcon fontSize='small' />
+            </Button>
+          </Tooltip>
+          <Menu
+            anchorEl={languageAnchorEl}
+            marginThreshold={0}
+            open={Boolean(languageAnchorEl)}
+            onClose={handleSelectLanguage.bind(null, undefined)}
+          >
+            {
+              // @ts-expect-error
+              [i18n.options.defaultLanguage, ...i18n.options.otherLanguages].map(locale =>
+                <MenuItem key={locale} onClick={handleSelectLanguage.bind(null, locale)}>{getLanguage(locale)}</MenuItem>
+              )
+            }
+          </Menu>
+          <Switch checked={theme === 'dark'} onChange={handleChangeTheme} />
+        </Toolbar>
       </Container>
     </AppBar>
   )

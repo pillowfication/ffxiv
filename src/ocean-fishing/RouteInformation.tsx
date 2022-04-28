@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
 import Section from '../Section'
-import Grid from '@material-ui/core/Grid'
-import Select from '@material-ui/core/Select'
-import MenuItem from '@material-ui/core/MenuItem'
-import Typography from '@material-ui/core/Typography'
+import Grid from '@mui/material/Grid'
+import Select, { SelectChangeEvent } from '@mui/material/Select'
+import MenuItem from '@mui/material/MenuItem'
+import Typography from '@mui/material/Typography'
 import RouteInformationIntuition from './RouteInformationIntuition'
 import RouteInformationTimeSensitive from './RouteInformationTimeSensitive'
 import RouteInformationPoints from './RouteInformationPoints'
@@ -15,29 +14,29 @@ import { timeUntil, upperFirst } from './utils'
 import translate from '../translate'
 import { useTranslation } from '../i18n'
 
-const useStyles = makeStyles(theme => ({
-  headerSub: {
-    marginLeft: theme.spacing(2),
-    [theme.breakpoints.down('md')]: {
-      marginLeft: 0,
-      display: 'block'
-    }
-  },
-  headerTime: {
-    position: 'relative',
-    top: '-0.2em',
-    marginLeft: '0.25em'
-  },
-  fishFilterSelect: {
-    display: 'block',
-    [theme.breakpoints.up('md')]: {
-      textAlign: 'right'
-    }
-  },
-  fishTab: {
-    textTransform: 'none'
-  }
-}))
+// const useStyles = makeStyles(theme => ({
+//   headerSub: {
+//     marginLeft: theme.spacing(2),
+//     [theme.breakpoints.down('md')]: {
+//       marginLeft: 0,
+//       display: 'block'
+//     }
+//   },
+//   headerTime: {
+//     position: 'relative',
+//     top: '-0.2em',
+//     marginLeft: '0.25em'
+//   },
+//   fishFilterSelect: {
+//     display: 'block',
+//     [theme.breakpoints.up('md')]: {
+//       textAlign: 'right'
+//     }
+//   },
+//   fishTab: {
+//     textTransform: 'none'
+//   }
+// }))
 
 enum FishFilter {
   Intuition = 'intuition',
@@ -52,7 +51,6 @@ interface Props {
 }
 
 const RouteInformation = ({ now, route }: Props): React.ReactElement => {
-  const classes = useStyles()
   const { t, i18n } = useTranslation('ocean-fishing')
   const [fishFilter, setFishFilter] = useState<FishFilter | null>(null)
   const stopTimes = getStopTimes(route)
@@ -68,14 +66,13 @@ const RouteInformation = ({ now, route }: Props): React.ReactElement => {
       }
     }
   }, [])
-
   useEffect(() => {
     if (fishFilter !== null) {
       window.localStorage.setItem('ocean-fishing/route-information-filter', fishFilter)
     }
   }, [fishFilter])
 
-  const handleSelectFishFilter = (event: React.ChangeEvent<{ value: FishFilter }>): void => {
+  const handleSelectFishFilter = (event: SelectChangeEvent<{ value: FishFilter }>): void => {
     setFishFilter(event.target.value)
   }
 
@@ -85,13 +82,13 @@ const RouteInformation = ({ now, route }: Props): React.ReactElement => {
         <Grid container alignItems='flex-end'>
           <Grid item xs={12} md={8}>
             {upperFirst(translate(locale, maps.STOP_MAP[route[0] as Dest].placeName_sub, 'name_noArticle', 'name'))}
-            <span className={classes.headerTime}>{maps.TIME_MAP[route[1] as Time]}</span>
-            <Typography display='inline' className={classes.headerSub}>
+            <span className={'classes.headerTime'}>{maps.TIME_MAP[route[1] as Time]}</span>
+            <Typography display='inline' className={'classes.headerSub'}>
               {timeUntil(now, next, { t, full: true, locale })}
             </Typography>
           </Grid>
           <Grid item xs={12} md={4}>
-            <div className={classes.fishFilterSelect}>
+            <div className={'classes.fishFilterSelect'}>
               <Select value={fishFilter ?? FishFilter.Intuition} onChange={handleSelectFishFilter}>
                 <MenuItem value={FishFilter.Intuition}>{t('showIntuitionFish')}</MenuItem>
                 <MenuItem value={FishFilter.TimeSensitive}>{t('showTimeFish')}</MenuItem>

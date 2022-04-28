@@ -1,34 +1,11 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import OceanFishIcon from './OceanFishIcon'
 import Tug from './Tug'
 import StarBadge from './StarBadge'
 import { Fish, Bait } from './ffxiv-ocean-fishing/data'
-
-const useStyles = makeStyles(theme => ({
-  baitChain: {
-    display: 'inline-block',
-    verticalAlign: 'middle'
-  },
-  bait: {
-    position: 'relative',
-    display: 'inline-block'
-  },
-  chevron: {
-    fontSize: '16px',
-    position: 'relative',
-    verticalAlign: 'middle',
-    margin: theme.spacing(0, 0.5),
-    color: theme.palette.type === 'light' ? theme.palette.grey[700] : theme.palette.grey[400]
-  },
-  subtext: {
-    verticalAlign: 'middle',
-    marginLeft: theme.spacing(2)
-  }
-}))
 
 export interface BaitLink {
   bait: Bait
@@ -46,52 +23,57 @@ interface Props {
   small?: boolean
 }
 
-const BaitChain = ({ baits, baitIsRequired = false, subtext, small }: Props): React.ReactElement => {
-  const classes = useStyles()
+const BaitChain = (props: Props): React.ReactElement => {
+  const {
+    baits,
+    baitIsRequired = false,
+    subtext,
+    small = false
+  } = props
 
   return (
-    <div className={classes.baitChain}>
+    <Box sx={{ display: 'inline', '& > *': { verticalAlign: 'middle' } }}>
       {baits.map((link, index) => {
         if ((link as any).bait !== undefined) {
           const { bait } = link as BaitLink
           return (
             <React.Fragment key={bait.id}>
-              <div className={classes.bait}>
+              <Box display='inline-block'>
                 <OceanFishIcon
                   type='bait'
                   id={bait.id}
-                  size={small === true ? 34 : 40}
+                  size={small ? 34 : 40}
                   badge={baitIsRequired && <StarBadge />}
                 />
-              </div>
-              <FontAwesomeIcon icon={faChevronRight} className={classes.chevron} />
+              </Box>
+              <ChevronRightIcon sx={{ mx: -0.5 }} />
             </React.Fragment>
           )
         } else {
           const { fish, tug } = link as FishLink
           return (
             <React.Fragment key={fish.id}>
-              <div className={classes.bait}>
+              <Box display='inline-block'>
                 <OceanFishIcon
                   type='fish'
                   id={fish.id}
-                  size={small === true ? 34 : 40}
+                  size={small ? 34 : 40}
                   badge={tug !== null && <Tug size='small' strength={tug} />}
                 />
                 {(subtext !== undefined && index === baits.length - 1) && (
-                  <Typography className={classes.subtext} display='inline'>
-                    {typeof subtext === 'string' ? subtext : subtext(fish)}
+                  <Typography display='inline' ml={2}>
+                    {typeof subtext === 'function' ? subtext(fish) : subtext}
                   </Typography>
                 )}
-              </div>
+              </Box>
               {index < baits.length - 1 && (
-                <FontAwesomeIcon icon={faChevronRight} className={classes.chevron} />
+                <ChevronRightIcon sx={{ mx: -0.5 }} />
               )}
             </React.Fragment>
           )
         }
       })}
-    </div>
+    </Box>
   )
 }
 

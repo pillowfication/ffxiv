@@ -14,14 +14,12 @@ const CHOCOBO_BOUNDS: Bounds = {
   width: 135,
   height: 173
 }
-
 const SADDLE_BOUNDS: Bounds = {
   x: 148,
   y: 0,
   width: 88,
   height: 121
 }
-
 const FEET_BOUNDS: Bounds = {
   x: 151,
   y: 128,

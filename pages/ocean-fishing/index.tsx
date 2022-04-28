@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import Typography from '@material-ui/core/Typography'
-import MuiLink from '@material-ui/core/Link'
+import Typography from '@mui/material/Typography'
+import MuiLink from '@mui/material/Link'
 import Link from '../../src/Link'
 import Page from '../../src/Page'
 import Section from '../../src/Section'

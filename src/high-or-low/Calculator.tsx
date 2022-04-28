@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
 import Section from '../Section'
 import HighOrLowCard from './HighOrLowCard'
 import calculateHighOrLow from './ffxiv-high-or-low'
@@ -17,16 +17,7 @@ function toPercent (p: number, q: number): number {
   return Math.floor(p / q * 100)
 }
 
-const useStyles = makeStyles(() => ({
-  cardsContainer: {
-    textAlign: 'center',
-    whiteSpace: 'nowrap',
-    overflowX: 'auto'
-  }
-}))
-
 const Calculator = (): React.ReactElement => {
-  const classes = useStyles()
   const { t } = useTranslation('high-or-low')
   const [tb1, setTb1] = useState<number | null>(null)
   const [tb2, setTb2] = useState<number | null>(null)
@@ -57,7 +48,11 @@ const Calculator = (): React.ReactElement => {
 
   return (
     <Section>
-      <div className={classes.cardsContainer}>
+      <Box sx={{
+        textAlign: 'center',
+        whiteSpace: 'nowrap',
+        overflowX: 'auto'
+      }}>
         <HighOrLowCard value={tb1} error={tb1Error} onInputDigit={setTb1} />
         <HighOrLowCard value={tb2} error={tb2Error} onInputDigit={setTb2} />
         <HighOrLowCard disabled />
@@ -85,7 +80,7 @@ const Calculator = (): React.ReactElement => {
           }
         })()}
         <Button variant='contained' color='secondary' onClick={handleClickReset}>{t('reset')}</Button>
-      </div>
+      </Box>
     </Section>
   )
 }

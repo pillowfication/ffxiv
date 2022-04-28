@@ -1,54 +1,49 @@
 import React from 'react'
-import clsx from 'clsx'
-import { makeStyles } from '@material-ui/core/styles'
-import { alpha } from '@material-ui/core/styles/colorManipulator'
+import { alpha } from '@mui/system'
+import { Theme } from '@mui/material/styles'
+import Box from '@mui/material/Box'
+import Paper from '@mui/material/Paper'
 
-const useStyles = makeStyles(theme => ({
-  grid: {
-    display: 'inline-block',
-    margin: theme.spacing(2),
-    borderCollapse: 'collapse',
-    border: theme.palette.type === 'dark' ? '1px solid gray' : '1px solid black'
-  },
-  cell: {
-    display: 'inline-block',
-    width: '2.5em',
-    height: '2.5em',
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.grey[900] : theme.palette.grey[100],
-    border: theme.palette.type === 'dark' ? '1px solid gray' : '1px solid black'
-  },
-  selected: {
-    backgroundColor: alpha(theme.palette.primary.main, theme.palette.type === 'dark' ? 0.8 : 0.6)
-  }
-}))
+const SELECTED_COLOR = (theme: Theme): string => alpha(theme.palette.primary.main, 0.5)
 
 interface Props {
   state: string
 }
 
 const MiniGrid = ({ state }: Props): React.ReactElement => {
-  const classes = useStyles()
-
   return (
-    <table className={classes.grid}>
+    <Paper
+      component='table'
+      square
+      sx={{
+        display: 'inline-block',
+        borderCollapse: 'collapse',
+        m: 2,
+        '& td': {
+          width: '2.5em',
+          height: '2.5em',
+          border: '1px solid black'
+        }
+      }}
+    >
       <tbody>
         <tr>
-          <td className={clsx(classes.cell, state[0] === 'X' && classes.selected)} />
-          <td className={clsx(classes.cell, state[1] === 'X' && classes.selected)} />
-          <td className={clsx(classes.cell, state[2] === 'X' && classes.selected)} />
+          <Box component='td' sx={{ backgroundColor: state.charAt(0) === 'X' ? SELECTED_COLOR : 'none' }} />
+          <Box component='td' sx={{ backgroundColor: state.charAt(1) === 'X' ? SELECTED_COLOR : 'none' }} />
+          <Box component='td' sx={{ backgroundColor: state.charAt(2) === 'X' ? SELECTED_COLOR : 'none' }} />
         </tr>
         <tr>
-          <td className={clsx(classes.cell, state[3] === 'X' && classes.selected)} />
-          <td className={clsx(classes.cell, state[4] === 'X' && classes.selected)} />
-          <td className={clsx(classes.cell, state[5] === 'X' && classes.selected)} />
+          <Box component='td' sx={{ backgroundColor: state.charAt(3) === 'X' ? SELECTED_COLOR : 'none' }} />
+          <Box component='td' sx={{ backgroundColor: state.charAt(4) === 'X' ? SELECTED_COLOR : 'none' }} />
+          <Box component='td' sx={{ backgroundColor: state.charAt(5) === 'X' ? SELECTED_COLOR : 'none' }} />
         </tr>
         <tr>
-          <td className={clsx(classes.cell, state[6] === 'X' && classes.selected)} />
-          <td className={clsx(classes.cell, state[7] === 'X' && classes.selected)} />
-          <td className={clsx(classes.cell, state[8] === 'X' && classes.selected)} />
+          <Box component='td' sx={{ backgroundColor: state.charAt(6) === 'X' ? SELECTED_COLOR : 'none' }} />
+          <Box component='td' sx={{ backgroundColor: state.charAt(7) === 'X' ? SELECTED_COLOR : 'none' }} />
+          <Box component='td' sx={{ backgroundColor: state.charAt(8) === 'X' ? SELECTED_COLOR : 'none' }} />
         </tr>
       </tbody>
-    </table>
+    </Paper>
   )
 }
 

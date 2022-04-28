@@ -1,23 +1,9 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
 import BaitGroup from './BaitGroup'
 import { BaitLink, FishLink } from './BaitChain'
 import { Fish } from './ffxiv-ocean-fishing/data'
-
-const useStyles = makeStyles(theme => ({
-  baitList: {
-    listStyleType: 'none',
-    margin: 0,
-    paddingLeft: 0,
-    '& > li:not(:last-child)': {
-      paddingBottom: theme.spacing(1)
-    }
-  },
-  hr: {
-    borderColor: theme.palette.divider
-  }
-}))
 
 interface Props {
   baitGroups: Array<{
@@ -33,13 +19,13 @@ interface Props {
 }
 
 const BaitList = ({ baitGroups }: Props): React.ReactElement => {
-  const classes = useStyles()
-
   return (
-    <ul className={classes.baitList}>
+    <Box component='ul' sx={{ listStyleType: 'none', p: 0 }}>
       {baitGroups.map((baitGroup, index) => {
         if (baitGroup === 'hr') {
-          return <li key={index}><hr className={classes.hr} /></li>
+          return (
+            <li key={index}><hr /></li>
+          )
         } else {
           const { header, baitGroupProps } = baitGroup
           return (
@@ -50,7 +36,7 @@ const BaitList = ({ baitGroups }: Props): React.ReactElement => {
           )
         }
       })}
-    </ul>
+    </Box>
   )
 }
 

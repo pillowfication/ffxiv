@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
-import FormControl from '@material-ui/core/FormControl'
-import InputLabel from '@material-ui/core/InputLabel'
-import Select from '@material-ui/core/Select'
-import MenuItem from '@material-ui/core/MenuItem'
-import Button from '@material-ui/core/Button'
+import Grid from '@mui/material/Grid'
+import FormControl from '@mui/material/FormControl'
+import InputLabel from '@mui/material/InputLabel'
+import Select, { SelectChangeEvent } from '@mui/material/Select'
+import MenuItem from '@mui/material/MenuItem'
+import Button from '@mui/material/Button'
 import Section from '../Section'
+import MyNameIs from './MyNameIs'
 import MidlanderMale from './MidlanderMale'
 import MidlanderFemale from './MidlanderFemale'
 import HighlanderMale from './HighlanderMale'
@@ -67,38 +66,19 @@ function randomElement<T> (array: T[]): T {
   return array[Math.floor(Math.random() * array.length)]
 }
 
-const useStyles = makeStyles(theme => ({
-  results: {
-    margin: theme.spacing(2, 0),
-    padding: theme.spacing(1),
-    [theme.breakpoints.up('md')]: {
-      margin: theme.spacing(4),
-      padding: theme.spacing(2)
-    },
-    fontSize: '1.75em',
-    '& > span': {
-      display: 'block',
-      margin: theme.spacing(1),
-      textAlign: 'center',
-      whiteSpace: 'nowrap'
-    }
-  }
-}))
-
 const Generator = (): React.ReactElement => {
-  const classes = useStyles()
   const { t, i18n } = useTranslation('name-generator')
   const [race, setRace] = useState<Race | null>(null)
   const [clan, setClan] = useState<Clan | null>(null)
   const [gender, setGender] = useState<Gender | null>(null)
-  const [results, setResults] = useState<string[]>(['Click the Generate button!'])
+  const [results, setResults] = useState<string[] | null>(null)
   const locale = i18n.language
 
   const raceClans = race !== null ? getClans(race) : []
   const raceGenders = race !== null ? getGenders(race) : []
   const AdvancedComponent = (clan !== null && gender !== null) ? ADVANCED[`${clan},${gender}`] : null
 
-  const handleSelectRace = (event: React.ChangeEvent<HTMLSelectElement>): void => {
+  const handleSelectRace = (event: SelectChangeEvent): void => {
     const race = event.target.value === 'none' ? null : event.target.value as Race
     const raceClans = race !== null ? getClans(race) : []
     const raceGenders = race !== null ? getGenders(race) : []
@@ -106,11 +86,11 @@ const Generator = (): React.ReactElement => {
     setClan(race !== null && raceClans.length === 1 ? raceClans[0] : null)
     setGender(race !== null && raceGenders.length === 1 ? raceGenders[0] : null)
   }
-  const handleSelectClan = (event: React.ChangeEvent<HTMLSelectElement>): void => {
+  const handleSelectClan = (event: SelectChangeEvent): void => {
     const clan = event.target.value
     setClan(clan === 'none' ? null : clan as Clan)
   }
-  const handleSelectGender = (event: React.ChangeEvent<HTMLSelectElement>): void => {
+  const handleSelectGender = (event: SelectChangeEvent): void => {
     const gender = event.target.value
     setGender(gender === 'none' ? null : gender as Gender)
   }
@@ -130,8 +110,8 @@ const Generator = (): React.ReactElement => {
     <>
       <Section>
         <Grid container spacing={2}>
-          <Grid item xs={12} md={3}>
-            <FormControl fullWidth>
+          <Grid item xs={12} md={4}>
+            <FormControl variant='standard' fullWidth>
               <InputLabel>{t('race')}</InputLabel>
               <Select value={race !== null ? race : 'none'} onChange={handleSelectRace}>
                 <MenuItem value='none'>{t('anyRace')}</MenuItem>
@@ -141,8 +121,8 @@ const Generator = (): React.ReactElement => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} md={3}>
-            <FormControl fullWidth>
+          <Grid item xs={12} md={4}>
+            <FormControl variant='standard' fullWidth>
               <InputLabel>{t('clan')}</InputLabel>
               <Select value={clan !== null ? clan : 'none'} onChange={handleSelectClan}>
                 {raceClans.length !== 1 && <MenuItem value='none'>{t('anyClan')}</MenuItem>}
@@ -154,8 +134,8 @@ const Generator = (): React.ReactElement => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} md={3}>
-            <FormControl fullWidth>
+          <Grid item xs={12} md={4}>
+            <FormControl variant='standard' fullWidth>
               <InputLabel>{t('gender')}</InputLabel>
               <Select value={gender !== null ? gender : 'none'} onChange={handleSelectGender}>
                 {raceGenders.length !== 1 && <MenuItem value='none'>{t('anyGender')}</MenuItem>}
@@ -167,13 +147,11 @@ const Generator = (): React.ReactElement => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12}>
             <Button variant='contained' color='primary' fullWidth onClick={handleClickGenerate}>{t('generate')}</Button>
           </Grid>
         </Grid>
-        <Paper variant='outlined' className={classes.results}>
-          {results.map((result, index) => <span key={index}>{result}</span>)}
-        </Paper>
+        <MyNameIs name={results ?? 'Click the Generate button!'} />
       </Section>
       {AdvancedComponent != null && <AdvancedComponent />}
     </>

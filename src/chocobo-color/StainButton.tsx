@@ -1,32 +1,9 @@
 import React from 'react'
-import clsx from 'clsx'
-import { makeStyles } from '@material-ui/core/styles'
-import Paper from '@material-ui/core/Paper'
-import Tooltip from '@material-ui/core/Tooltip'
+import Paper from '@mui/material/Paper'
+import Tooltip from '@mui/material/Tooltip'
 import translate from '../translate'
 import { Stain, Color } from './ffxiv-chocobo-color'
 import { useTranslation } from '../i18n'
-
-const useStyles = makeStyles(theme => ({
-  stainButton: {
-    display: 'inline-block',
-    width: '2em',
-    height: '2em',
-    margin: theme.spacing(0.5),
-    border: '1px solid #0005'
-  },
-  clickable: {
-    cursor: 'pointer'
-  },
-  selected: {
-    border: `3px solid ${theme.palette.type === 'dark' ? theme.palette.primary.light : theme.palette.primary.main}`
-  },
-  inline: {
-    margin: 0,
-    fontSize: '0.75em',
-    verticalAlign: 'text-bottom'
-  }
-}))
 
 interface Props {
   stain?: Stain
@@ -37,8 +14,7 @@ interface Props {
   className?: string
 }
 
-const StainButton = ({ stain, color, inline = false, selected = false, onClick, className }: Props): React.ReactElement => {
-  const classes = useStyles()
+const StainButton = ({ stain, color, inline = false, selected = false, onClick }: Props): React.ReactElement => {
   const { i18n } = useTranslation()
   const locale = i18n.language
   const stainColor = (stain !== undefined ? stain.color : color) as any as Color
@@ -47,18 +23,28 @@ const StainButton = ({ stain, color, inline = false, selected = false, onClick, 
     : `(${String(color?.R)}, ${String(color?.G)}, ${String(color?.B)})`
 
   return (
-    <Tooltip placement='top' arrow title={title}>
+    <Tooltip
+      placement='top'
+      arrow
+      disableInteractive
+      title={title}
+    >
       <Paper
         component='span'
         square
-        className={clsx(
-          classes.stainButton,
-          inline && classes.inline,
-          selected && classes.selected,
-          onClick !== undefined && classes.clickable,
-          className
-        )}
-        style={{ backgroundColor: `rgb(${stainColor.R},${stainColor.G},${stainColor.B})` }}
+        sx={{
+          display: 'inline-block',
+          width: inline ? '1em' : '2em',
+          height: inline ? '1em' : '2em',
+          backgroundColor: `rgb(${stainColor.R},${stainColor.G},${stainColor.B})`,
+          borderStyle: 'solid',
+          borderWidth: selected ? 3 : 1,
+          borderColor: selected ? 'primary.main' : '#00000055',
+          m: 0.5,
+          lineHeight: '100%',
+          verticalAlign: inline ? 'text-bottom' : 'middle',
+          cursor: onClick === undefined ? undefined : 'pointer'
+        }}
         onClick={onClick}
       />
     </Tooltip>

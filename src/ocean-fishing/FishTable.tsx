@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
-import clsx from 'clsx'
-import { makeStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
-import TableContainer from '@material-ui/core/TableContainer'
-import Table from '@material-ui/core/Table'
-import TableHead from '@material-ui/core/TableHead'
-import TableBody from '@material-ui/core/TableBody'
-import TableRow from '@material-ui/core/TableRow'
-import TableCell from '@material-ui/core/TableCell'
-import Select from '@material-ui/core/Select'
-import MenuItem from '@material-ui/core/MenuItem'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import TableContainer from '@mui/material/TableContainer'
+import Table from '@mui/material/Table'
+import TableHead from '@mui/material/TableHead'
+import TableBody from '@mui/material/TableBody'
+import TableRow from '@mui/material/TableRow'
+import TableCell from '@mui/material/TableCell'
+import Select, { SelectChangeEvent } from '@mui/material/Select'
+import MenuItem from '@mui/material/MenuItem'
 import OceanFishIcon from './OceanFishIcon'
 import TimeIcon from './TimeIcon'
 import Tug from './Tug'
@@ -52,52 +51,56 @@ function getValidBaits (fishingSpots: FishingSpot[]): number[] {
     })
 }
 
-const useStyles = makeStyles(theme => ({
-  tableContainer: {
-    overflowY: 'hidden' // This is a mysterious issue appearing inconsistently only on Chrome
-  },
-  table: {
-    '& td': {
-      fontSize: '0.9em',
-      padding: 0
-    }
-  },
-  fishName: {
-    lineHeight: 1.25
-  },
-  stars: {
-    marginTop: '-0.125em',
-    opacity: 0.8
-  },
-  baitSelect: {
-    margin: theme.spacing(0.25, 1),
-    '& > div:first-child': {
-      padding: theme.spacing(0.33, 0.67),
-      fontSize: 'initial'
-    },
-    '& > svg': {
-      display: 'none'
-    }
-  },
-  baitCell: {
-    whiteSpace: 'nowrap',
-    '& > *': {
-      verticalAlign: 'middle'
-    }
-  },
-  intuition: {
-    position: 'relative',
-    verticalAlign: 'middle',
-    margin: '2px 2px 0'
-  },
-  tug: {
-    fontSize: '1.33em'
-  },
-  disabled: {
-    backgroundColor: theme.palette.type === 'dark' ? '#333333' : '#DDDDDD',
-    opacity: 0.5
-  }
-}))
+function formatDH (doubleHook: number | [number, number]): string {
+  return Array.isArray(doubleHook) ? doubleHook.join('\u2011') : String(doubleHook)
+}
+
+// const useStyles = makeStyles(theme => ({
+//   tableContainer: {
+//     overflowY: 'hidden' // This is a mysterious issue appearing inconsistently only on Chrome
+//   },
+//   table: {
+//     '& td': {
+//       fontSize: '0.9em',
+//       padding: 0
+//     }
+//   },
+//   fishName: {
+//     lineHeight: 1.25
+//   },
+//   stars: {
+//     marginTop: '-0.125em',
+//     opacity: 0.8
+//   },
+//   baitSelect: {
+//     margin: theme.spacing(0.25, 1),
+//     '& > div:first-child': {
+//       padding: theme.spacing(0.33, 0.67),
+//       fontSize: 'initial'
+//     },
+//     '& > svg': {
+//       display: 'none'
+//     }
+//   },
+//   baitCell: {
+//     whiteSpace: 'nowrap',
+//     '& > *': {
+//       verticalAlign: 'middle'
+//     }
+//   },
+//   intuition: {
+//     position: 'relative',
+//     verticalAlign: 'middle',
+//     margin: '2px 2px 0'
+//   },
+//   tug: {
+//     fontSize: '1.33em'
+//   },
+//   disabled: {
+//     backgroundColor: theme.palette.type === 'dark' ? '#333333' : '#DDDDDD',
+//     opacity: 0.5
+//   }
+// }))
 
 interface Props {
   fishingSpots: FishingSpot[]
@@ -105,19 +108,18 @@ interface Props {
 }
 
 const FishTable = ({ fishingSpots, time }: Props): React.ReactElement => {
-  const classes = useStyles()
   const { t, i18n } = useTranslation('ocean-fishing')
   const [bait, setBait] = useState<number | 'all'>('all')
   const locale = i18n.language
 
-  const handleSelectBait = (event: React.ChangeEvent<HTMLSelectElement>): void => {
+  const handleSelectBait = (event: SelectChangeEvent): void => {
     const baitId = event.target.value === 'all' ? 'all' : +event.target.value
     setBait(baitId)
   }
 
   return (
-    <TableContainer className={classes.tableContainer}>
-      <Table size='small' className={classes.table}>
+    <TableContainer sx={{ mb: 2 }}>
+      <Table size='small' sx={{ '& td': { p: 0.5 } }}>
         {fishingSpots.map(fishingSpot => {
           const isSpectral = /spectral/i.test(fishingSpot.placeName.name.en)
           return (
@@ -128,17 +130,19 @@ const FishTable = ({ fishingSpots, time }: Props): React.ReactElement => {
                   <TableCell align='center'>{t('fishInfo.bait')}</TableCell>
                   <TableCell align='center'>{t('fishInfo.tug')}</TableCell>
                   <TableCell align='center'>
-                    {t('fishInfo.biteTime')}:
+                    {t('fishInfo.biteTime')}:&nbsp;
                     <Select
-                      variant='outlined'
-                      value={bait !== null ? bait : 'all'}
+                      variant='standard'
+                      value={String(bait)}
                       onChange={handleSelectBait}
-                      className={classes.baitSelect}
+                      sx={{ '& .MuiInputBase-input': { p: 0 } }}
                     >
-                    <MenuItem value='all'>{t('fishInfo.allBaits')}</MenuItem>
-                      {getValidBaits(fishingSpots).map(baitId =>
-                        <MenuItem key={baitId} value={baitId}>{translate(locale, baits[baitId] || fishes[baitId], 'name')}</MenuItem>
-                      )}
+                      <MenuItem value='all'>{t('fishInfo.allBaits')}</MenuItem>
+                      {getValidBaits(fishingSpots).map(baitId => (
+                        <MenuItem key={baitId} value={baitId}>
+                          {translate(locale, baits[baitId] || fishes[baitId], 'name')}
+                        </MenuItem>
+                      ))}
                     </Select>
                   </TableCell>
                   <TableCell align='center'>{t('fishInfo.points')}</TableCell>
@@ -150,36 +154,34 @@ const FishTable = ({ fishingSpots, time }: Props): React.ReactElement => {
               <TableBody>
                 {fishingSpot.fishes.map(fish => {
                   const spreadsheetData = fish.spreadsheetData
+                  const isUnavailable = time !== undefined && spreadsheetData.time !== null && !spreadsheetData.time.includes(time)
                   return (
-                    <TableRow
-                      key={fish.id}
-                      hover
-                      className={clsx(time !== undefined && spreadsheetData.time !== null && !spreadsheetData.time.includes(time) && classes.disabled)}
-                    >
-                      <TableCell align='center'>
-                        <ChecklistCheckmark fishId={fish.id} />
-                      </TableCell>
+                    <TableRow key={fish.id} hover sx={{
+                      opacity: isUnavailable ? 0.5 : 1
+                    }}>
+                      <TableCell align='center'><ChecklistCheckmark fishId={fish.id} /></TableCell>
+                      <TableCell><OceanFishIcon type='fish' id={fish.id} /></TableCell>
                       <TableCell>
-                        <OceanFishIcon type='fish' id={fish.id} />
-                      </TableCell>
-                      <TableCell>
-                        <div><Typography className={classes.fishName}>{translate(locale, fish, 'name')}</Typography></div>
+                        <Typography>{translate(locale, fish, 'name')}</Typography>
                         {spreadsheetData.stars !== null && (
-                          <div className={classes.stars}>{'★'.repeat(spreadsheetData.stars)}</div>
+                          <Box sx={{ mt: '-0.125em', opacity: 0.5 }}>
+                            {'★'.repeat(spreadsheetData.stars)}
+                          </Box>
                         )}
                       </TableCell>
-                      <TableCell align='center' className={classes.baitCell}>
+                      <TableCell align='center' sx={{
+                        whiteSpace: 'nowrap',
+                        '& > *': { verticalAlign: 'middle' }
+                      }}>
                         {spreadsheetData.intuition !== null && (
                           <>
                             {spreadsheetData.intuition.map(({ fish, count }, index) =>
                               <React.Fragment key={fish.id}>
-                                <Typography display='inline'>
-                                  {index === 0 ? `${count}×` : `, ${count}×`}
-                                </Typography>
+                                <Typography display='inline'>{index === 0 ? `${count}×` : `, ${count}×`}</Typography>
                                 <OceanFishIcon type='fish' id={fish.id} />
                               </React.Fragment>
                             )}
-                            <img src='/images/ocean-fishing/fishers-intuition.png' className={classes.intuition} />
+                            <img src='/images/ocean-fishing/fishers-intuition.png' />
                           </>
                         )}
                         {spreadsheetData.bait !== null && (
@@ -196,12 +198,12 @@ const FishTable = ({ fishingSpots, time }: Props): React.ReactElement => {
                       </TableCell>
                       <TableCell align='center'>
                         {spreadsheetData.tug !== null && (
-                          <Tug strength={spreadsheetData.tug} className={classes.tug} />
+                          <Tug size='large' strength={spreadsheetData.tug} />
                         )}
                       </TableCell>
                       <TableCell align='center'>
                         {fish.biteTimes[bait] !== null && (
-                          <Typography>{fish.biteTimes[bait]?.[0] === fish.biteTimes[bait]?.[1] ? fish.biteTimes[bait]?.[0] : fish.biteTimes[bait]?.join('-')}</Typography>
+                          <Typography>{fish.biteTimes[bait]?.[0] === fish.biteTimes[bait]?.[1] ? fish.biteTimes[bait]?.[0] : fish.biteTimes[bait]?.join('\u2011')}</Typography>
                         )}
                       </TableCell>
                       <TableCell align='center'>
@@ -209,20 +211,22 @@ const FishTable = ({ fishingSpots, time }: Props): React.ReactElement => {
                           <Typography>{spreadsheetData.points}</Typography>
                         )}
                       </TableCell>
-                      <TableCell align='center'>
+                      <TableCell align='center' sx={{ whiteSpace: 'nowrap' }}>
                         {spreadsheetData.doubleHook !== null && (
                           <Typography>
-                            {Array.isArray(spreadsheetData.doubleHook) ? spreadsheetData.doubleHook.join('-') : spreadsheetData.doubleHook}
+                            {formatDH(spreadsheetData.doubleHook)}
                             {spreadsheetData.tripleHook !== null && (
-                              <>&emsp;({Array.isArray(spreadsheetData.tripleHook) ? spreadsheetData.tripleHook.join('-') : spreadsheetData.tripleHook})</>
+                              <>&emsp;({formatDH(spreadsheetData.tripleHook)})</>
                             )}
                           </Typography>
                         )}
                       </TableCell>
-                      <TableCell align='center'>
+                      <TableCell align='center' sx={{ whiteSpace: 'nowrap' }}>
                         {(() => {
                           if (isSpectral) {
-                            return spreadsheetData.time?.length === 3 ? 'Any' : spreadsheetData.time?.map(time => <TimeIcon key={time} time={time} />)
+                            return spreadsheetData.time?.length === 3
+                              ? 'Any'
+                              : spreadsheetData.time?.map(time => <TimeIcon key={time} time={time} />)
                           } else {
                             if (spreadsheetData.weathers === null) return null
                             switch (spreadsheetData.weathers.type) {
@@ -230,15 +234,15 @@ const FishTable = ({ fishingSpots, time }: Props): React.ReactElement => {
                                 return 'Any'
                               case 'OK':
                                 return spreadsheetData.weathers.list.map(weather =>
-                                  <WeatherIcon key={weather} weather={weather} showLabel={false} />
+                                  <WeatherIcon key={weather} weather={weather} />
                                 )
                               case 'NOT OK':
                                 return (
                                   <>
-                                    <span style={{ verticalAlign: 'middle' }}>Not </span>
-                                    {spreadsheetData.weathers.list.map(weather =>
-                                      <WeatherIcon key={weather} weather={weather} showLabel={false} />
-                                    )}
+                                    <Box component='span' sx={{ verticalAlign: 'middle' }}>Not&nbsp;</Box>
+                                    {spreadsheetData.weathers.list.map(weather => (
+                                      <WeatherIcon key={weather} weather={weather} />
+                                    ))}
                                   </>
                                 )
                             }
@@ -247,7 +251,7 @@ const FishTable = ({ fishingSpots, time }: Props): React.ReactElement => {
                       </TableCell>
                       <TableCell align='center'>
                         {fish.contentBonus !== null && (
-                          <OceanFishIcon type='content-bonus' id={fish.contentBonus.id} size={30} />
+                          <OceanFishIcon type='content-bonus' id={fish.contentBonus.id} size={32} />
                         )}
                       </TableCell>
                     </TableRow>

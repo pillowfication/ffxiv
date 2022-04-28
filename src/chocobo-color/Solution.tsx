@@ -1,10 +1,9 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Box from '@material-ui/core/Box'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import Alert from '@material-ui/lab/Alert'
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
+import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
+import Typography from '@mui/material/Typography'
+import Alert from '@mui/material/Alert'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import StainButton from './StainButton'
 import FruitIcon from './FruitIcon'
 import FruitsList from './FruitsList'
@@ -12,23 +11,6 @@ import { calculateFruits, Stain, Color, Fruit } from './ffxiv-chocobo-color'
 import { stains, fruits } from './ffxiv-chocobo-color/data'
 import translate from '../translate'
 import { useTranslation } from '../i18n'
-
-const useStyles = makeStyles(theme => ({
-  fruitsCount: {
-    display: 'inline-block',
-    width: '2.5em',
-    textAlign: 'right',
-    fontSize: '1.25em',
-    overflow: 'visible'
-  },
-  fruitsIcon: {
-    margin: theme.spacing(0, 1)
-  },
-  arrowForward: {
-    margin: theme.spacing(0, 1),
-    verticalAlign: 'text-bottom'
-  }
-}))
 
 interface Props {
   solution: {
@@ -40,20 +22,19 @@ interface Props {
 }
 
 const Solution = ({ solution }: Props): React.ReactElement => {
-  const classes = useStyles()
   const { t, i18n } = useTranslation('chocobo-color')
   const locale = i18n.language
 
   return (
     <>
       <Grid item xs={12} md={10} lg={8}>
-        <Box textAlign='center'>
-          <Typography>
-            {translate(locale, solution.fromStain, 'name')} <StainButton inline stain={solution.fromStain} />
-            <ArrowForwardIcon className={classes.arrowForward} />
-            {translate(locale, solution.toStain, 'name')} <StainButton inline stain={solution.toStain} />
-          </Typography>
-        </Box>
+        <Grid container alignItems='center' justifyContent='center'>
+          <StainButton inline stain={solution.fromStain} />
+          <Typography>&nbsp;{translate(locale, solution.fromStain, 'name')}</Typography>
+          <ArrowForwardIcon sx={{ mx: 1 }} />
+          <StainButton inline stain={solution.toStain} />
+          <Typography>&nbsp;{translate(locale, solution.toStain, 'name')}</Typography>
+        </Grid>
       </Grid>
       {solution.fruits.length > calculateFruits(stains[36], solution.toStain).fruits.length && (
         <Grid item xs={12} md={10} lg={8}>
@@ -71,16 +52,28 @@ const Solution = ({ solution }: Props): React.ReactElement => {
               Fruit.Valfruit,
               Fruit.CieldalaesPineapple
             ]
-              .map(fruit => ({ fruit, count: solution.fruits.filter(solFruit => solFruit === fruit).length }))
+              .map(fruit => ({
+                fruit,
+                count: solution.fruits.filter(solutionFruit => solutionFruit === fruit).length
+              }))
               .filter(({ count }) => count > 0)
               .map(({ fruit, count }) => (
                 <div key={fruit}>
-                  <Typography component='span' className={classes.fruitsCount}>{count}×</Typography>
-                  <FruitIcon fruit={fruit} className={classes.fruitsIcon} />
+                  <Typography component='span' sx={{
+                    display: 'inline-block',
+                    width: '2.5em',
+                    fontSize: '1.25em',
+                    textAlign: 'right'
+                  }}>
+                    {count}×
+                  </Typography>
+                  <Box display='inline-block' mx={1}>
+                    <FruitIcon fruit={fruit} />
+                  </Box>
                   <Typography component='span'>{translate(locale, fruits[fruit], 'name')}</Typography>
                 </div>
               ))
-          : <Typography>{t('noFruits')}</Typography>
+          : <Typography><em>{t('noFruits')}</em></Typography>
         }
       </Grid>
       {solution.fruits.length > 0 && (

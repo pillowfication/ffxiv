@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { makeStyles, alpha } from '@material-ui/core/styles'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
+import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
+import Typography from '@mui/material/Typography'
 import Section from '../Section'
 import NameAutocomplete from './NameAutocomplete'
 import MyNameIs from './MyNameIs'
@@ -12,20 +12,7 @@ import { useTranslation } from '../i18n'
 
 const WORDS = Object.keys(roegadynDictionary)
 
-const useStyles = makeStyles(theme => ({
-  rules: {
-    borderLeftWidth: '2px',
-    borderLeftStyle: 'solid',
-    borderLeftColor: alpha(theme.palette.text.secondary, 0.5),
-    paddingLeft: theme.spacing(2),
-    '& > dd:not(:last-child)': {
-      marginBottom: theme.spacing(1)
-    }
-  }
-}))
-
 const SeaWolfFemale = (): React.ReactElement => {
-  const classes = useStyles()
   const { i18n } = useTranslation('name-generator')
   const [forenameWord1, setForenameWord1] = useState('')
   const [forenameWord2, setForenameWord2] = useState('')
@@ -33,7 +20,7 @@ const SeaWolfFemale = (): React.ReactElement => {
   const [surnameWord2, setSurnameWord2] = useState('')
   const forename = combineRoegadyn(conjugateRoegadyn(forenameWord1, 'A'), conjugateRoegadyn(forenameWord2, 'N'))
   const surname = (surnameWord1 !== '' || surnameWord2 !== '')
-    ? combineRoegadyn(conjugateRoegadyn(surnameWord1, 'A'), conjugateRoegadyn(surnameWord2, 'N'), 'Syn')
+    ? combineRoegadyn(conjugateRoegadyn(surnameWord1, 'A'), conjugateRoegadyn(surnameWord2, 'N'), 'Wyn')
     : ''
   const name = formatName(forename, surname)
   const locale = i18n.language
@@ -91,14 +78,22 @@ const SeaWolfFemale = (): React.ReactElement => {
           <Typography>
             Words are conjugated according to the following rules (with exceptions):
           </Typography>
-          <dl className={classes.rules}>
+          <Box component='dl' sx={{
+            borderLeftWidth: '2px',
+            borderLeftStyle: 'solid',
+            borderLeftColor: 'text.secondary',
+            paddingLeft: 2,
+            '& > dd:not(:last-child)': {
+              mb: 1
+            }
+          }}>
             <Typography component='dt'><b>N → A</b>. To conjugate a noun to an adjective, add “‑i”.</Typography>
             <Typography component='dd'>“Ais” (Ice) + “i” = “Ais<b>i</b>” (Icy)</Typography>
             <Typography component='dt'><b>V → N</b>. To conjugate a verb to a noun, add “‑a”.</Typography>
             <Typography component='dd'>“Braen” (Break) + “a” = “Braen<b>a</b>” (Breaker)</Typography>
             <Typography component='dt'><b>V → A</b>. To conjugate a verb to an adjective, add “‑n”.</Typography>
             <Typography component='dd'>“Floer” (Lead) + “n” = “Floer<b>n</b>” (Leading)</Typography>
-          </dl>
+          </Box>
           <Typography paragraph>
             When combining words, double letters are collapsed.<br />E.g. “Rost<b>n</b>” (Rusty) + “<b>N</b>oez” (Walnut) = “Rost<b>n</b>oez” (Rusty Walnut)
           </Typography>
@@ -135,7 +130,7 @@ const SeaWolfFemale = (): React.ReactElement => {
         </Grid>
         <Grid item xs={12} md={6}>
           <Typography paragraph>
-            The surname is made from the father’s name with “Wyn” (Daughter) added to the end.<br />E.g. “Hezzfyr<b>syn</b>” = “Hezz” (Hot) + “Fyr” (Fire) + “Wyn” (Daughter)
+            The surname is made from the father’s name with “Wyn” (Daughter) added to the end.<br />E.g. “Hezzfyr<b>wyn</b>” = “Hezz” (Hot) + “Fyr” (Fire) + “Wyn” (Daughter)
           </Typography>
           <Typography paragraph>
             Although both “Thota” and “Wyn” mean “Daughter”, “Thota” is used exclusively for forenames, and “Wyn” is exclusively for surnames.

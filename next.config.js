@@ -54,5 +54,6 @@ module.exports = {
   rewrites: async () => nextI18NextRewrites(localeSubpaths),
   publicRuntimeConfig: {
     localeSubpaths
-  }
+  },
+  reactStrictMode: true
 }

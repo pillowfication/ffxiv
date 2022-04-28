@@ -1,54 +1,18 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
-import TableContainer from '@material-ui/core/TableContainer'
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableRow from '@material-ui/core/TableRow'
-import TableCell from '@material-ui/core/TableCell'
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
+import Typography from '@mui/material/Typography'
+import TableContainer from '@mui/material/TableContainer'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableRow from '@mui/material/TableRow'
+import TableCell from '@mui/material/TableCell'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import WeatherIcon from './WeatherIcon'
-import { Weather } from './ffxiv-skywatcher'
+import { translateWeather, Weather } from './ffxiv-skywatcher'
 import { toTimeString, timeUntil } from '../utils'
 import { useTranslation } from '../i18n'
+import softHyphens from './soft-hyphens'
 
 const DATE_FORMAT = { month: '2-digit' as const, day: '2-digit' as const }
-const WEATHER_CELL_WIDTH = 75
-
-const useStyles = makeStyles(theme => ({
-  dateCell: {
-    width: '150px'
-  },
-  forecastCell: {
-    whiteSpace: 'nowrap'
-  },
-  bellCell: {
-    width: 50,
-    paddingLeft: theme.spacing(0.5),
-    paddingRight: theme.spacing(0.5)
-  },
-  weatherCell: {
-    width: WEATHER_CELL_WIDTH + theme.spacing(1),
-    paddingLeft: theme.spacing(0.5),
-    paddingRight: theme.spacing(0.5),
-    verticalAlign: 'top',
-    lineHeight: 1,
-    '& span': {
-      display: 'inline-block',
-      width: WEATHER_CELL_WIDTH,
-      lineHeight: 1.1
-    },
-    '&:last-child': {
-      paddingRight: theme.spacing(5),
-      width: WEATHER_CELL_WIDTH + theme.spacing(5.5)
-    }
-  },
-  transitionCell: {
-    width: 50,
-    padding: theme.spacing(1),
-    textAlign: 'center'
-  }
-}))
 
 function displayBell (seed: number): string {
   switch (seed % 3) {
@@ -65,12 +29,11 @@ interface Props {
 }
 
 const Forecaster = ({ now, forecast }: Props): React.ReactElement => {
-  const classes = useStyles()
   const { i18n } = useTranslation('ocean-fishing')
   const locale = i18n.language
 
   return (
-    <TableContainer>
+    <TableContainer sx={{ mb: 2 }}>
       <Table size='small'>
         <TableBody>
           {(() => {
@@ -80,29 +43,35 @@ const Forecaster = ({ now, forecast }: Props): React.ReactElement => {
               const dateString = date.toLocaleDateString(locale, DATE_FORMAT)
               return (
                 <TableRow key={index} hover>
-                  <TableCell className={classes.dateCell} align='right'>
+                  <TableCell align='right' sx={{ width: 100 }}>
                     <Typography>{previousDate !== (previousDate = dateString) && dateString}</Typography>
                   </TableCell>
-                  <TableCell className={classes.dateCell}>
+                  <TableCell align='right' sx={{ width: 150 }}>
                     <Typography>{toTimeString(date, { padded: true, locale })}</Typography>
                   </TableCell>
-                  <TableCell className={classes.forecastCell}>
+                  <TableCell>
                     <Typography>{timeUntil(now, date, { locale })}</Typography>
                   </TableCell>
-                  <TableCell align='right' className={classes.bellCell}>
+                  <TableCell align='right'>
                     <Typography>{displayBell(seed - 1)}</Typography>
                   </TableCell>
-                  <TableCell align='center' className={classes.weatherCell}>
-                    <WeatherIcon weather={prevWeather} showLabel />
+                  <TableCell align='center' sx={{ width: 100, verticalAlign: 'top' }}>
+                    <WeatherIcon weather={prevWeather} />
+                    <Typography component='div' variant='caption' sx={{ lineHeight: '110%' }}>
+                      {softHyphens(translateWeather(prevWeather, locale))}
+                    </Typography>
                   </TableCell>
-                  <TableCell className={classes.transitionCell}>
+                  <TableCell align='center' sx={{ width: 0 }}>
                     <ArrowForwardIcon />
                   </TableCell>
-                  <TableCell align='right' className={classes.bellCell}>
+                  <TableCell align='right' sx={{ width: 0 }}>
                     <Typography>{displayBell(seed)}</Typography>
                   </TableCell>
-                  <TableCell align='center' className={classes.weatherCell}>
-                    <WeatherIcon weather={currWeather} showLabel />
+                  <TableCell align='center' sx={{ width: 100, verticalAlign: 'top' }}>
+                    <WeatherIcon weather={currWeather} />
+                    <Typography component='div' variant='caption' sx={{ lineHeight: '110%' }}>
+                      {softHyphens(translateWeather(currWeather, locale))}
+                    </Typography>
                   </TableCell>
                 </TableRow>
               )

@@ -1,19 +1,12 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import Card from '@material-ui/core/Card'
-import CardHeader from '@material-ui/core/CardHeader'
+import Grid from '@mui/material/Grid'
+import Typography from '@mui/material/Typography'
+import Card from '@mui/material/Card'
+import CardHeader from '@mui/material/CardHeader'
 import { Stop, Time, StopTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 import translate from '../translate'
 import { useTranslation } from '../i18n'
-
-const useStyles = makeStyles(() => ({
-  stopCard: {
-    height: '100%'
-  }
-}))
 
 interface Props {
   index: number
@@ -22,13 +15,12 @@ interface Props {
 }
 
 const StopCard = ({ index, stopTime, children }: Props): React.ReactElement => {
-  const classes = useStyles()
   const { i18n } = useTranslation()
   const locale = i18n.language
 
   return (
     <Grid item xs={12} md={4}>
-      <Card variant='outlined' className={classes.stopCard}>
+      <Card variant='outlined'>
         <CardHeader
           title={
             <Typography variant='h6'>

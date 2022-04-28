@@ -1,89 +1,17 @@
 import React from 'react'
 import { useRouter } from 'next/router'
-import { makeStyles, alpha } from '@material-ui/core/styles'
 import { NextSeo } from 'next-seo'
-import Typography from '@material-ui/core/Typography'
-import Grid from '@material-ui/core/Grid'
+import { alpha } from '@mui/system'
+import Typography from '@mui/material/Typography'
+import Stack from '@mui/material/Stack'
+import Grid from '@mui/material/Grid'
+import Box from '@mui/material/Box'
 import Section from '../src/Section'
-import Footer from '../src/Footer'
 import Link from '../src/Link'
 import Lulu from '../public/images/lulu-icon.svg'
 import { useTranslation } from '../src/i18n'
 
-const useStyles = makeStyles((theme) => ({
-  splash: {
-    marginBottom: theme.spacing(6)
-  },
-  gridShrink: {
-    [theme.breakpoints.up('md')]: {
-      flex: '0 0 auto'
-    }
-  },
-  gridGrow: {
-    [theme.breakpoints.up('md')]: {
-      flex: '1 1 0px'
-    }
-  },
-  luluContainer: {
-    width: '300px',
-    height: '400px',
-    margin: '0 auto',
-    overflow: 'hidden',
-    border: '2px solid black',
-    borderRadius: '48px',
-    textAlign: 'center',
-    backgroundColor: theme.palette.type === 'light'
-      ? alpha(theme.palette.primary.main, 0.2)
-      : alpha(theme.palette.primary.dark, 0.5),
-    [theme.breakpoints.down('sm')]: {
-      width: '15rem',
-      height: '15rem'
-    },
-    '& svg': {
-      width: '300px',
-      height: '600px',
-      [theme.breakpoints.down('sm')]: {
-        width: '12rem',
-        height: '22rem'
-      }
-    }
-  },
-  luluPillow: {
-    marginBottom: theme.spacing(4),
-    fontWeight: 'bold'
-  },
-  links: {
-    '& dd': {
-      margin: theme.spacing(0, 0, 2)
-    }
-  }
-}))
-
-interface IndexSectionProps {
-  url: string
-  title: string
-  children?: React.ReactNode
-}
-
-const IndexSection = ({ url, title, children }: IndexSectionProps): React.ReactElement => {
-  return (
-    <>
-      <dt>
-        <Link href={url}>
-          <Typography variant='h5' display='inline'>{title}</Typography>
-        </Link>
-      </dt>
-      <dd>
-        <Typography paragraph>
-          {children}
-        </Typography>
-      </dd>
-    </>
-  )
-}
-
 const Index = (): React.ReactElement => {
-  const classes = useStyles()
   const router = useRouter()
   const { t, i18n } = useTranslation('index')
 
@@ -101,24 +29,39 @@ const Index = (): React.ReactElement => {
           site_name: 'Lulu’s Tools'
         }}
       />
-      <Grid container alignItems='flex-end' spacing={4} className={classes.splash}>
-        <Grid item xs={12} className={classes.gridShrink}>
-          <div className={classes.luluContainer}>
-            <Lulu />
-          </div>
+      <Box component={Section} sx={{ mt: 2, mb: 4 }}>
+        <Grid container spacing={4} alignItems='flex-end'>
+          <Grid item xs={12} md='auto'>
+            <Box sx={{
+              width: { xs: 250, md: 300 },
+              height: { xs: 250, md: 400 },
+              overflow: 'hidden',
+              margin: '0 auto',
+              border: '2px solid black',
+              borderRadius: '40px',
+              backgroundColor: theme => alpha(theme.palette.primary.main, 0.25),
+              textAlign: 'center',
+              '& svg': {
+                width: { xs: 180, md: 300 },
+                height: { xs: 360, md: 600 }
+              }
+            }}>
+              <Lulu />
+            </Box>
+          </Grid>
+          <Grid item xs={12} md>
+            <Typography variant='h4' gutterBottom>Lulu Pillow</Typography>
+            <Typography paragraph style={{ fontSize: '1.3em' }}>
+              {t('_description')}
+            </Typography>
+            <Typography paragraph style={{ fontSize: '1.3em' }}>
+              Message Lulu Pillow<wbr />@Adamantoise or Pillowfication#0538 with questions or comments.
+            </Typography>
+          </Grid>
         </Grid>
-        <Grid item xs={12} className={classes.gridGrow}>
-          <Typography variant='h4' className={classes.luluPillow}>Lulu Pillow</Typography>
-          <Typography paragraph style={{ fontSize: '1.3em' }}>
-            {t('_description')}
-          </Typography>
-          <Typography paragraph style={{ fontSize: '1.3em' }}>
-            Message Lulu Pillow@Adamantoise or Pillowfication#0538 with questions or comments.
-          </Typography>
-        </Grid>
-      </Grid>
+      </Box>
       <Section>
-        <dl className={classes.links}>
+        <Stack component='dl' spacing={2}>
           {[
             { key: 'bozja', url: '/bozja' },
             { key: 'chocoboColor', url: '/chocobo-color' },
@@ -134,13 +77,21 @@ const Index = (): React.ReactElement => {
             .map(({ key, url }) => ({ key, url, title: t(`${key}.title`) }))
             .sort((a, b) => a.title.localeCompare(b.title))
             .map(({ key, url, title }) => (
-              <IndexSection key={key} url={url} title={title}>
-                {t(`${key}.description`)}
-              </IndexSection>
+              <div key={key}>
+                <dt>
+                  <Link href={url}>
+                    <Typography variant='h5' display='inline'>{title}</Typography>
+                  </Link>
+                </dt>
+                <Box component='dd' m={0}>
+                  <Typography>
+                    {t(`${key}.description`)}
+                  </Typography>
+                </Box>
+              </div>
             ))}
-        </dl>
+        </Stack>
       </Section>
-      <Footer />
     </>
   )
 }

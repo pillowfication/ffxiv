@@ -1,49 +1,10 @@
 import React from 'react'
-import clsx from 'clsx'
-import { makeStyles } from '@material-ui/core/styles'
-import Tooltip from '@material-ui/core/Tooltip'
+import Box from '@mui/material/Box'
+import Tooltip from '@mui/material/Tooltip'
 import { fruits } from './ffxiv-chocobo-color/data'
 import ICONS_MAP from './ffxiv-chocobo-color/data/fruits-icons-map.json'
 import translate from '../translate'
 import { useTranslation } from '../i18n'
-
-const useStyles = makeStyles(() => {
-  const styles = {
-    iconContainer: {
-      display: 'inline-block',
-      position: 'relative' as 'relative',
-      width: ({ size }: { size: number }) => 48 * size,
-      height: ({ size }: { size: number }) => 48 * size,
-      verticalAlign: 'middle',
-      transform: ({ size }: { size: number }) => `scale(${size})`
-    },
-    fruitIcon: {
-      position: 'absolute' as 'absolute',
-      top: ({ size }: { size: number }) => 2 * size,
-      left: ({ size }: { size: number }) => 4 * size,
-      width: ({ size }: { size: number }) => 40 * size,
-      height: ({ size }: { size: number }) => 40 * size,
-      backgroundImage: 'url("/images/chocobo-color/fruits-icons.png")',
-      backgroundSize: `${ICONS_MAP.length * 100}% 100%`
-    },
-    itemCover: {
-      position: 'absolute' as 'absolute',
-      top: 0,
-      left: 0,
-      width: ({ size }: { size: number }) => 48 * size,
-      height: ({ size }: { size: number }) => 48 * size,
-      backgroundImage: 'url("/images/chocobo-color/item-cover.png")',
-      backgroundSize: '100% 100%'
-    }
-  }
-
-  for (let index = 0; index < ICONS_MAP.length; ++index) {
-    styles[ICONS_MAP[index]] = {
-      backgroundPosition: `${index * -100}% 0%`
-    }
-  }
-  return styles
-})
 
 interface Props {
   fruit: number
@@ -51,18 +12,41 @@ interface Props {
   className?: string
 }
 
-const FruitIcon = ({ fruit, size = 1, className }: Props): React.ReactElement => {
-  const classes = useStyles(({ size }))
+const FruitIcon = ({ fruit, size = 1 }: Props): React.ReactElement => {
   const { i18n } = useTranslation()
   const locale = i18n.language
 
   return (
     <>
       <Tooltip arrow placement='top' title={translate(locale, fruits[fruit], 'name')}>
-        <div className={clsx(classes.iconContainer, className)}>
-          <div className={clsx(classes.fruitIcon, classes[fruit])} />
-          <div className={classes.itemCover} />
-        </div>
+        <Box sx={{
+          display: 'inline-block',
+          position: 'relative',
+          width: 48 * size,
+          height: 48 * size,
+          verticalAlign: 'middle',
+          transform: `scale(${size})`
+        }}>
+          <Box sx={{
+            position: 'absolute',
+            top: 2 * size,
+            left: 4 * size,
+            width: 40 * size,
+            height: 40 * size,
+            backgroundImage: 'url("/images/chocobo-color/fruits-icons.png")',
+            backgroundSize: `${ICONS_MAP.length * 100}% 100%`,
+            backgroundPosition: `${ICONS_MAP.indexOf(fruit) * -100}% 0%`
+          }} />
+          <Box sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: 48 * size,
+            height: 48 * size,
+            backgroundImage: 'url("/images/chocobo-color/item-cover.png")',
+            backgroundSize: '100% 100%'
+          }} />
+        </Box>
       </Tooltip>
     </>
   )
