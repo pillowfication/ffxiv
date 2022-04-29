@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'next-i18next'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
@@ -8,7 +9,6 @@ import MyNameIs from './MyNameIs'
 import { roegadynDictionary } from './ffxiv-name-generator/data'
 import { translate, Clan, Gender } from './ffxiv-name-generator'
 import { formatName, conjugateRoegadyn, combineRoegadyn } from './ffxiv-name-generator/src/utils'
-import { useTranslation } from '../i18n'
 
 const WORDS = Object.keys(roegadynDictionary)
 

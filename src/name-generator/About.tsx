@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'next-i18next'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
@@ -19,7 +20,6 @@ import {
   Clan,
   Gender
 } from './ffxiv-name-generator'
-import { useTranslation } from '../i18n'
 
 const CONVENTION_LINKS: Record<Race, string> = {
   [Race.Hyur]: 'https://forum.square-enix.com/ffxiv/threads/63112-Race-Naming-Conventions?p=1014929&viewfull=1#post1014929',

@@ -12,10 +12,10 @@ import { Time } from '../src/types'
 import { Weather } from '../../../skywatcher/ffxiv-skywatcher/src/types'
 import { Translatable } from '../../../translate'
 
-const baitMap: Record<string, number> = Object.values(_baits)
-  .reduce((acc, curr) => { acc[curr.name.en] = curr; return acc }, {})
-const fishMap: Record<string, number> = Object.values(_fishes)
-  .reduce((acc, curr) => { acc[curr.name.en] = curr; return acc }, {})
+const baitMap: Record<string, any> = Object.values(_baits)
+  .reduce<Record<string, any>>((acc, curr) => { acc[curr.name.en] = curr; return acc }, {})
+const fishMap: Record<string, any> = Object.values(_fishes)
+  .reduce<Record<string, any>>((acc, curr) => { acc[curr.name.en] = curr; return acc }, {})
 const spreadsheetMap: Record<string, any> = Object.values<any>(spreadsheetData)
   .flatMap(x => x)
   .reduce((acc, curr) => { acc[curr.name] = curr; return acc }, {})
@@ -40,10 +40,10 @@ export interface FishingSpot {
 }
 
 for (const fishingSpot of Object.values(_fishingSpots)) {
-  fishingSpot.placeName_main = _placeNames[fishingSpot.placeName_main]
-  fishingSpot.placeName_sub = _placeNames[fishingSpot.placeName_sub]
-  fishingSpot.placeName = _placeNames[fishingSpot.placeName]
-  fishingSpot.fishes = (fishingSpot.fishes as number[]).map(fishId => _fishes[fishId]) // eslint-disable-line @typescript-eslint/no-unnecessary-type-assertion
+  fishingSpot.placeName_main = (_placeNames as any)[fishingSpot.placeName_main]
+  fishingSpot.placeName_sub = (_placeNames as any)[fishingSpot.placeName_sub]
+  fishingSpot.placeName = (_placeNames as any)[fishingSpot.placeName]
+  fishingSpot.fishes = (fishingSpot.fishes as number[]).map(fishId => (_fishes as any)[fishId])
 }
 
 export const fishingSpots = _fishingSpots as any as Record<number, FishingSpot>
@@ -92,10 +92,10 @@ export interface LodestoneData {
 }
 
 for (const fish of Object.values<any>(_fishes)) {
-  fish.contentBonus = fish.contentBonus !== null ? _contentBonuses[fish.contentBonus] : null
+  fish.contentBonus = fish.contentBonus !== null ? (_contentBonuses as any)[fish.contentBonus] : null
 
   // Attach bite times
-  fish.biteTimes = _biteTimes[fish.id]
+  fish.biteTimes = (_biteTimes as any)[fish.id]
   delete fish.biteTimes.bestBait
 
   // Attach spreadsheet data
@@ -140,13 +140,13 @@ for (const fish of Object.values<any>(_fishes)) {
         : null,
       stars: spreadsheetData.stars,
       intuition: spreadsheetData.intuition != null
-        ? spreadsheetData.intuition.map(({ name, count }) => ({ fish: getMapped(fishMap, name), count }))
+        ? spreadsheetData.intuition.map(({ name, count }: any) => ({ fish: getMapped(fishMap, name), count }))
         : null
     }
   }
 
   // Attach Lodestone data
-  fish.lodestoneData = lodestoneData[fish.id]
+  fish.lodestoneData = (lodestoneData as any)[fish.id]
 }
 
 export const fishes = _fishes as any as Record<number, Fish>

@@ -39,7 +39,7 @@ const FISHING_SPOTS = [
   'Rothlyt Spectral Current'
 ]
 
-const data = {}
+const data: Record<string, any> = {}
 
 ;(async () => {
   for (const fishingSpot of FISHING_SPOTS) {

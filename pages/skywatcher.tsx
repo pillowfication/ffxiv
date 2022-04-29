@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import { GetStaticProps } from 'next'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import NoSsr from '@mui/material/NoSsr'
 import Typography from '@mui/material/Typography'
 import Page from '../src/Page'
@@ -7,7 +10,6 @@ import UpcomingWeather from '../src/skywatcher/UpcomingWeather'
 import Forecaster from '../src/skywatcher/Forecaster'
 import Algorithm from '../src/skywatcher/Algorithm'
 import { formatTimeUtc } from '../src/utils'
-import { useTranslation } from '../src/i18n'
 
 const Skywatcher = (): React.ReactElement => {
   const { t } = useTranslation('skywatcher')
@@ -53,8 +55,12 @@ const Skywatcher = (): React.ReactElement => {
   )
 }
 
-Skywatcher.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'skywatcher']
-})
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? 'en', ['common', 'skywatcher']))
+    }
+  }
+}
 
 export default Skywatcher

@@ -28,7 +28,7 @@ function chunk<T> (array: T[], chunkSize = 10): T[][] {
   }, [])
 }
 
-function getValuesSorted<T> (object: Record<any, T>, property: string): T[] {
+function getValuesSorted<T extends Record<string, any>> (object: Record<any, T>, property: string): T[] {
   return Object.values(object).sort((a, b) => a[property] - b[property])
 }
 
@@ -36,7 +36,7 @@ function getValuesSorted<T> (object: Record<any, T>, property: string): T[] {
 for (const fishingSpot of getValuesSorted(fishingSpots, 'order')) {
   if (fishingSpot.id !== 0) {
     ICONS.push((fishingSpot.fishes as number[]).map(fishId => ( // eslint-disable-line @typescript-eslint/no-unnecessary-type-assertion
-      { type: 'fish', id: fishId, icon: fishes[fishId].icon }
+      { type: 'fish', id: fishId, icon: (fishes as any)[fishId].icon }
     )))
   }
 }

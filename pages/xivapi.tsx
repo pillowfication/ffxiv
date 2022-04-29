@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import { GetStaticProps } from 'next'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useQueryState } from 'next-usequerystate'
 import NoSsr from '@mui/material/NoSsr'
 import Grid from '@mui/material/Grid'
@@ -8,7 +11,6 @@ import Button from '@mui/material/Button'
 import Page from '../src/Page'
 import Section from '../src/Section'
 import Results from '../src/xivapi/Results'
-import { useTranslation } from '../src/i18n'
 
 const Xivapi = (): React.ReactElement => {
   const { t } = useTranslation('xivapi')
@@ -69,8 +71,12 @@ const Xivapi = (): React.ReactElement => {
   )
 }
 
-Xivapi.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'xivapi']
-})
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? 'en', ['common', 'xivapi']))
+    }
+  }
+}
 
 export default Xivapi

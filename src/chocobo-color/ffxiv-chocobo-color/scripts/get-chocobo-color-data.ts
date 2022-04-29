@@ -45,7 +45,7 @@ const stains = Stain_en.data
       shadeIndex: stain_en['<UNKNOWN_2>']
     }
   })
-  .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})
+  .reduce<Record<number, any>>((acc, curr) => { acc[curr.id] = curr; return acc }, {})
 fs.writeFileSync(path.resolve(__dirname, '../data/stains.json'), JSON.stringify(stains))
 
 console.log('Collecting fruits...')
@@ -94,7 +94,7 @@ const fruits = [
       }
     }
   })
-  .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})
+  .reduce<Record<number, any>>((acc, curr) => { acc[curr.id] = curr; return acc }, {})
 fs.writeFileSync(path.resolve(__dirname, '../data/fruits.json'), JSON.stringify(fruits))
 
 console.log('Done!')

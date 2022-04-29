@@ -12,7 +12,7 @@ interface Props {
 const Section = ({ title, sx, children }: Props): React.ReactElement => {
   return (
     <Box component='section' mb={4} sx={sx}>
-      {title !== undefined && <Typography variant='h5' gutterBottom>{title}</Typography>}
+      {title !== undefined && <Typography variant='h2' gutterBottom>{title}</Typography>}
       {children}
     </Box>
   )

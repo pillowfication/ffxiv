@@ -1,8 +1,10 @@
 import React from 'react'
 // import dynamic from 'next/dynamic'
+import { GetStaticProps } from 'next'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Paper from '@mui/material/Paper'
 import Page from '../src/Page'
-import { useTranslation } from '../src/i18n'
 import UpcomingWeathers from '../src/bozja/UpcomingWeathers'
 import DropsTable from '../src/bozja/DropsTable'
 
@@ -23,8 +25,12 @@ const Bozja = (): React.ReactElement => {
   )
 }
 
-Bozja.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'bozja']
-})
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? 'en', ['common', 'bozja']))
+    }
+  }
+}
 
 export default Bozja

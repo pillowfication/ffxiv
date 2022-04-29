@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'next-i18next'
 import CardContent from '@mui/material/CardContent'
 import StopCardsContainer from './StopCardsContainer'
 import StopCard from './StopCard'
@@ -8,7 +9,6 @@ import { Stop, Time, StopTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 import { getBlueFish, getBaitGroup } from './utils'
 import translate from '../translate'
-import { useTranslation } from '../i18n'
 
 const POINTS_THRESHOLD = 700
 
@@ -80,8 +80,8 @@ const RouteInformationPoints = ({ stopTimes }: Props): React.ReactElement => {
                 getBlueFish(stopTime)
               ]
                 .filter(fish => fish !== null)
-                .map((fish: Fish | 'hr', index) => {
-                  if (fish === 'hr') {
+                .map((fish, index) => {
+                  if (fish === 'hr' || fish === null) { // Idk how to tell TS that fish isn't null
                     return 'hr'
                   } else {
                     const { points, tripleHook } = fish.spreadsheetData

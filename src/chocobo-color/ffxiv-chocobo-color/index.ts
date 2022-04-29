@@ -5,7 +5,7 @@ import fr from './locales/fr.json'
 import ja from './locales/ja.json'
 import cn from './locales/cn.json'
 import ko from './locales/ko.json'
-const LOCALES = { en, de, fr, ja, cn, ko }
+const LOCALES: Record<string, any> = { en, de, fr, ja, cn, ko }
 
 export { Color, Shade }
 export type { Stain, FruitInfo }
@@ -145,6 +145,6 @@ export function calculateFruits (fromStain: Stain, toStain: Stain): { fruits: Fr
 }
 
 export function translate (type: 'shade', id: string, locale: string = 'en'): string {
-  const translation = LOCALES?.[locale][type][id]
+  const translation = LOCALES[locale]?.[type]?.[id]
   return translation !== null ? translation : `{${type}.${id}}`
 }

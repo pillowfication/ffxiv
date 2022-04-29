@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'next-i18next'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
@@ -12,7 +13,6 @@ import Button from '@mui/material/Button'
 import Section from '../Section'
 import CalculatorCell from './CalculatorCell'
 import { calculateProbabilities } from './ffxiv-wondrous-tails'
-import { useTranslation } from '../i18n'
 
 const PROB_1_LINES = 6688 / 11440
 const PROB_2_LINES = 1208 / 11440

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'next-i18next'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
@@ -21,7 +22,6 @@ import {
 } from './ffxiv-chocobo-color'
 import { stains } from './ffxiv-chocobo-color/data'
 import translate from '../translate'
-import { useTranslation } from '../i18n'
 
 const SHADES_MAP: Record<number, { shade: Shade, color: Color }> = {
   2: { shade: Shade.White, color: new Color(255, 255, 255) },
@@ -90,14 +90,16 @@ const Calculator = (): React.ReactElement => {
             value={currentStain}
             onChange={handleInputCurrentStain}
           />
-          <Box sx={{ m: 1, textAlign: 'center' }}>
+          <Box textAlign='center' m={1}>
             <ArrowDownwardIcon />
           </Box>
           <Autocomplete
             options={VALID_STAINS}
             groupBy={option => translateChocoboColor('shade', SHADES_MAP[option.shade].shade, locale)}
             getOptionLabel={option => translate(locale, option, 'name')}
-            renderInput={params => <TextField {...params} variant='filled' label={t('targetStain')} />}
+            renderInput={params => (
+              <TextField {...params} variant='filled' label={t('targetStain')} />
+            )}
             value={targetStain}
             onChange={handleInputTargetStain}
           />

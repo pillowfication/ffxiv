@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'next-i18next'
 import NoSsr from '@mui/material/NoSsr'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
@@ -28,7 +29,6 @@ import {
   Weather,
   Place
 } from './ffxiv-skywatcher'
-import { useTranslation } from '../i18n'
 
 interface PlaceOption {
   region: Place

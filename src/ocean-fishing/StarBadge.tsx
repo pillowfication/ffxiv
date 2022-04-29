@@ -1,7 +1,7 @@
 import React from 'react'
+import { useTranslation } from 'next-i18next'
 import Box from '@mui/material/Box'
 import Tooltip from '@mui/material/Tooltip'
-import { useTranslation } from '../i18n'
 
 const ICON_SIZE = 20
 

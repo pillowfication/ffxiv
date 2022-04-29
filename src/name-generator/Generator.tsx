@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'next-i18next'
 import Grid from '@mui/material/Grid'
 import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
@@ -37,7 +38,6 @@ import {
   Clan,
   Gender
 } from './ffxiv-name-generator'
-import { useTranslation } from '../i18n'
 
 const ADVANCED: { [key: string]: React.FunctionComponent<{}> } = {
   [`${Clan.Midlander},${Gender.Male}`]: MidlanderMale,

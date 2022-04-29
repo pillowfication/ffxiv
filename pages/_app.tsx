@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import NextApp, { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
+import { appWithTranslation } from 'next-i18next'
 import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import { CacheProvider, EmotionCache } from '@emotion/react'
@@ -11,7 +12,6 @@ import Header from '../src/Header'
 import Footer from '../src/Footer'
 import { lightTheme, darkTheme } from '../src/themes'
 import * as gtag from '../src/gtag'
-import i18n from '../src/i18n'
 
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
@@ -49,7 +49,7 @@ const App = (props: Props): React.ReactElement => {
         <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width' />
       </Head>
       <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
-        <CssBaseline />
+        <CssBaseline enableColorScheme />
         <Header theme={theme} setTheme={setTheme} />
         <Container maxWidth='lg' component='main'>
           <Component {...pageProps} />
@@ -64,4 +64,4 @@ App.getInitialProps = async (appContext: any) => ({
   ...await NextApp.getInitialProps(appContext)
 })
 
-export default i18n.appWithTranslation(App)
+export default appWithTranslation(App)

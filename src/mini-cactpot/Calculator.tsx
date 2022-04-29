@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'next-i18next'
 import { LINES, validateGrid, getSuggestion } from './calculate-mini-cactpot'
 import Section from '../Section'
 import Box from '@mui/material/Box'
@@ -8,7 +9,6 @@ import TableContainer from '@mui/material/TableContainer'
 import Button from '@mui/material/Button'
 import CalculatorCell from './CalculatorCell'
 import CalculatorLineIndicator from './CalculatorLineIndicator'
-import { useTranslation } from '../i18n'
 
 const Calculator = (): React.ReactElement => {
   const { t, i18n } = useTranslation('mini-cactpot')

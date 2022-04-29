@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'next-i18next'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import Card from '@mui/material/Card'
@@ -6,31 +7,6 @@ import FishPanel from './FishPanel'
 import { Stop, Time, StopTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 import translate from '../translate'
-import { useTranslation } from '../i18n'
-
-// const useStyles = makeStyles(theme => ({
-//   headerSub: {
-//     marginLeft: theme.spacing(2),
-//     [theme.breakpoints.down('md')]: {
-//       marginLeft: 0,
-//       display: 'block'
-//     }
-//   },
-//   headerTime: {
-//     position: 'relative',
-//     top: '-0.2em',
-//     marginLeft: '0.25em'
-//   },
-//   fishFilterSelect: {
-//     display: 'block',
-//     [theme.breakpoints.up('md')]: {
-//       textAlign: 'right'
-//     }
-//   },
-//   fishTab: {
-//     textTransform: 'none'
-//   }
-// }))
 
 interface Props {
   stopTimes: [StopTime, StopTime, StopTime]

@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'next-i18next'
 import CardContent from '@mui/material/CardContent'
 import StopCardsContainer from './StopCardsContainer'
 import StopCard from './StopCard'
@@ -8,7 +9,6 @@ import { Stop, Time, StopTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 import { getBaitGroup } from './utils'
 import translate from '../translate'
-import { useTranslation } from '../i18n'
 
 function getTimeSensitiveFishes (stopTime: StopTime): Fish[] {
   const fishingSpot = maps.STOP_MAP[stopTime[0] as Stop]

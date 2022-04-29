@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'next-i18next'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import TableContainer from '@mui/material/TableContainer'
@@ -18,7 +19,6 @@ import WeatherIcon from '../skywatcher/WeatherIcon'
 import { fishes, baits, FishingSpot } from './ffxiv-ocean-fishing/data'
 import { isBaitRequired } from './utils'
 import translate from '../translate'
-import { useTranslation } from '../i18n'
 
 const BAIT_IDS = [
   29714,

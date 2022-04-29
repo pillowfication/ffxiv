@@ -1,6 +1,9 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
+import { GetStaticProps } from 'next'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { alpha } from '@mui/system'
 import Typography from '@mui/material/Typography'
 import Stack from '@mui/material/Stack'
@@ -9,7 +12,6 @@ import Box from '@mui/material/Box'
 import Section from '../src/Section'
 import Link from '../src/Link'
 import Lulu from '../public/images/lulu-icon.svg'
-import { useTranslation } from '../src/i18n'
 
 const Index = (): React.ReactElement => {
   const router = useRouter()
@@ -84,9 +86,7 @@ const Index = (): React.ReactElement => {
                   </Link>
                 </dt>
                 <Box component='dd' m={0}>
-                  <Typography>
-                    {t(`${key}.description`)}
-                  </Typography>
+                  <Typography>{t(`${key}.description`)}</Typography>
                 </Box>
               </div>
             ))}
@@ -96,8 +96,12 @@ const Index = (): React.ReactElement => {
   )
 }
 
-Index.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'index']
-})
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? 'en', ['common', 'index']))
+    }
+  }
+}
 
 export default Index

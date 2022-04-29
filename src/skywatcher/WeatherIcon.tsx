@@ -1,11 +1,11 @@
 import React from 'react'
+import { useTranslation } from 'next-i18next'
 import { SxProps, Theme } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import Tooltip from '@mui/material/Tooltip'
 import { Weather } from './ffxiv-skywatcher/src/types'
 import translateWeather from './ffxiv-skywatcher/src/translate-weather'
 import ICONS from './ffxiv-skywatcher/data/weather-icons-map.json'
-import { useTranslation } from '../i18n'
 
 const ICON_SIZE = 32
 

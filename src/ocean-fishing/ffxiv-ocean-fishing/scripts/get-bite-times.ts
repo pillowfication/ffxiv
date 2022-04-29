@@ -27,7 +27,7 @@ for (const fishingSpot of Object.values(fishingSpots)) {
   }
 }
 
-const biteTimes = {}
+const biteTimes: Record<number, any> = {}
 
 console.log('Computing bite times...')
 function getBiteTime (fishId: number, baitId?: number): [number, number] | null {
@@ -48,7 +48,7 @@ function getBiteTime (fishId: number, baitId?: number): [number, number] | null 
 }
 
 for (const fish of Object.values(fishes)) {
-  const biteTimesByBait = {}
+  const biteTimesByBait: Record<number, [number, number]> = {}
   let minBiteTime = Infinity
   let maxBiteTime = -Infinity
   BAIT_IDS.forEach(baitId => {
@@ -119,7 +119,7 @@ fs.writeFileSync(OUTPUT, JSON.stringify(biteTimes))
 const CSV_OUTPUT = path.resolve(__dirname, '../data/bite-times.csv')
 
 function _getBaitName (baitId: number): string {
-  return baits[baitId]?.name.en ?? fishes[baitId]?.name.en ?? ''
+  return (baits as any)[baitId]?.name.en ?? (fishes as any)[baitId]?.name.en ?? ''
 }
 
 function _getBiteTime (fishId: number, baitId: number): string {
@@ -127,7 +127,7 @@ function _getBiteTime (fishId: number, baitId: number): string {
 }
 
 function _getBestBait (fishId: number): string {
-  return biteTimes[fishId]?.bestBait !== null ? baits[biteTimes[fishId].bestBait].name.en : ''
+  return biteTimes[fishId]?.bestBait !== null ? (baits as any)[biteTimes[fishId].bestBait].name.en : ''
 }
 
 console.log('Writing to csv...')

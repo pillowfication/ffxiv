@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'next-i18next'
 import Paper from '@mui/material/Paper'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
@@ -16,9 +17,8 @@ import { formatMonster } from './utils'
 import bozja from './ffxiv-bozja/data/bozja.json'
 import { upperFirst } from '../utils'
 import translate from '../translate'
-import { useTranslation } from '../i18n'
 
-const conditionMap: Record<string, React.ReactFragment> = {
+const conditionMap: Record<string, React.ReactNode> = {
   dust: <WeatherIcon weather={Weather.DustStorms} />,
   rain: <WeatherIcon weather={Weather.Rain} />,
   thunder: <WeatherIcon weather={Weather.Thunder} />,

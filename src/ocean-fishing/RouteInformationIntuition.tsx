@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'next-i18next'
 import CardContent from '@mui/material/CardContent'
 import StopCardsContainer from './StopCardsContainer'
 import StopCard from './StopCard'
@@ -8,7 +9,6 @@ import { Stop, StopTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 import { getBlueFish, getBaitGroup } from './utils'
 import translate from '../translate'
-import { useTranslation } from '../i18n'
 
 interface Props {
   stopTimes: [StopTime, StopTime, StopTime]

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useTranslation } from 'next-i18next'
 import { useQueryState } from 'next-usequerystate'
 import NoSsr from '@mui/material/NoSsr'
 import Grid from '@mui/material/Grid'
@@ -15,23 +16,6 @@ import { calculateVoyages, DestTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 import { upperFirst, isUncaughtRoute } from './utils'
 import translate from '../translate'
-import { useTranslation } from '../i18n'
-
-// const useStyles = makeStyles(theme => ({
-//   listSubheader: {
-//     paddingTop: theme.spacing(2)
-//   },
-//   useOld: {
-//     display: 'block',
-//     [theme.breakpoints.up('md')]: {
-//       textAlign: 'right'
-//     }
-//   },
-//   checkbox: {
-//     padding: 0,
-//     margin: theme.spacing(0, 1)
-//   }
-// }))
 
 // `filter` is one of
 //  - `null` for no filter

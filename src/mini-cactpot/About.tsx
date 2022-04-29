@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'next-i18next'
 import Box from '@mui/material/Box'
 import MuiLink from '@mui/material/Link'
 import Typography from '@mui/material/Typography'
@@ -12,7 +13,6 @@ import Section from '../Section'
 import { $ } from '../MathJax'
 import MiniGrid from './MiniGrid'
 import { PAYOUTS } from './calculate-mini-cactpot'
-import { useTranslation } from '../i18n'
 
 const About = (): React.ReactElement => {
   const { t, i18n } = useTranslation('mini-cactpot')

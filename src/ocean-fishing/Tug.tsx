@@ -1,7 +1,7 @@
 import React from 'react'
+import { useTranslation } from 'next-i18next'
 import Paper from '@mui/material/Paper'
 import Tooltip from '@mui/material/Tooltip'
-import { useTranslation } from '../i18n'
 
 interface Props {
   strength: 1 | 2 | 3

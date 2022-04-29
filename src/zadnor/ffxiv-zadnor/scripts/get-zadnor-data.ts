@@ -93,7 +93,7 @@ const zadnor = {
         ko: BNpcName_ko.get(starMonster.id)?.Singular ?? ''
       }
     })),
-  sprites: Object.entries(enemyLocations.sprites).reduce((acc, [spriteType, spriteData]) => {
+  sprites: Object.entries(enemyLocations.sprites).reduce<Record<string, any>>((acc, [spriteType, spriteData]) => {
     acc[spriteType] = {
       id: spriteData.id,
       name: {

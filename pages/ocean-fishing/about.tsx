@@ -1,4 +1,7 @@
 import React from 'react'
+import { GetStaticProps } from 'next'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
@@ -9,7 +12,6 @@ import Link from '../../src/Link'
 import Highlight from '../../src/Highlight'
 import { mathJaxRequire, $, $$ } from '../../src/MathJax'
 import NavigationBar from '../../src/ocean-fishing/NavigationBar'
-import { useTranslation } from '../../src/i18n'
 
 const About = (): React.ReactElement => {
   const { t } = useTranslation('ocean-fishing')
@@ -138,8 +140,12 @@ function getRoute (date: Date) {
   )
 }
 
-About.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'ocean-fishing']
-})
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? 'en', ['common', 'ocean-fishing']))
+    }
+  }
+}
 
 export default About

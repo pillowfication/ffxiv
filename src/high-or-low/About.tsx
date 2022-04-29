@@ -1,9 +1,9 @@
 import React from 'react'
+import { useTranslation } from 'next-i18next'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Section from '../Section'
 import { $, $$ } from '../MathJax'
-import { useTranslation } from '../i18n'
 
 const About = (): React.ReactElement => {
   const { t } = useTranslation('high-or-low')

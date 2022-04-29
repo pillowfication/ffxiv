@@ -1,10 +1,10 @@
 import React from 'react'
+import { useTranslation } from 'next-i18next'
 import ButtonGroup from '@mui/material/ButtonGroup'
 import Button from '@mui/material/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faQuestionCircle, faFish, faStar } from '@fortawesome/free-solid-svg-icons'
 import Link from '../../src/Link'
-import { useTranslation } from '../i18n'
 
 const PAGES = [{
   url: '/' as const,

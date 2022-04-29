@@ -1,11 +1,11 @@
-import { format, formatDistanceStrict } from 'date-fns'
+import { format, formatDistanceStrict, Locale } from 'date-fns'
 import de from 'date-fns/locale/de'
 import fr from 'date-fns/locale/fr'
 import ja from 'date-fns/locale/ja'
 import cn from 'date-fns/locale/zh-CN'
 import ko from 'date-fns/locale/ko'
 
-const DATE_LOCALES = { en: undefined, de, fr, ja, cn, ko }
+const DATE_LOCALES: Record<string, Locale | undefined> = { en: undefined, de, fr, ja, cn, ko }
 
 export function paddedZero (n: number): string {
   return n > 9 ? String(n) : `0${n}`

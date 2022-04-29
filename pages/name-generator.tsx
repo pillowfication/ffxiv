@@ -1,8 +1,10 @@
 import React from 'react'
+import { GetStaticProps } from 'next'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Page from '../src/Page'
 import Generator from '../src/name-generator/Generator'
 import About from '../src/name-generator/About'
-import { useTranslation } from '../src/i18n'
 
 const NameGenerator = (): React.ReactElement => {
   const { t } = useTranslation('name-generator')
@@ -15,8 +17,12 @@ const NameGenerator = (): React.ReactElement => {
   )
 }
 
-NameGenerator.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'name-generator']
-})
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? 'en', ['common', 'name-generator']))
+    }
+  }
+}
 
 export default NameGenerator

@@ -1,8 +1,10 @@
 import React from 'react'
 // import dynamic from 'next/dynamic'
+import { GetStaticProps } from 'next'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Paper from '@mui/material/Paper'
 import Page from '../src/Page'
-import { useTranslation } from '../src/i18n'
 import UpcomingWeathers from '../src/zadnor/UpcomingWeathers'
 
 // const Map = dynamic(
@@ -21,8 +23,11 @@ const Zadnor = (): React.ReactElement => {
   )
 }
 
-Zadnor.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'zadnor']
-})
-
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? 'en', ['common', 'zadnor']))
+    }
+  }
+}
 export default Zadnor

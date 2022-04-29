@@ -81,7 +81,7 @@ async function getLodestoneData (query: string, dataVersion: number): Promise<an
   }
   const DATA_VERSION = Number(versionMatch[1])
 
-  const lodestoneData = {}
+  const lodestoneData: Record<number, any> = {}
   for (const fish of Object.values(oceanFishingFishes)) {
     if (fish.id === 0) {
       lodestoneData[fish.id] = null

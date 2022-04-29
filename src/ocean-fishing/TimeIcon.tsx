@@ -1,8 +1,8 @@
 import React from 'react'
+import { useTranslation } from 'next-i18next'
 import { styled } from '@mui/material/styles'
 import Tooltip from '@mui/material/Tooltip'
 import { Time } from './ffxiv-ocean-fishing'
-import { useTranslation } from '../i18n'
 
 const ICON_SIZE = 32
 

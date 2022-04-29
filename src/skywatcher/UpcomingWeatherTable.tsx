@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'next-i18next'
 import { alpha } from '@mui/system'
 import Typography from '@mui/material/Typography'
 import TableContainer from '@mui/material/TableContainer'
@@ -18,7 +19,6 @@ import {
   Place
 } from './ffxiv-skywatcher'
 import { formatTime, formatTimeUtc } from '../utils'
-import { useTranslation } from '../i18n'
 import softHyphens from './soft-hyphens'
 
 interface Props {

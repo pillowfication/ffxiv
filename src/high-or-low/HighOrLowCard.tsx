@@ -42,7 +42,7 @@ const HighOrLowCard = ({ value, disabled = false, error, onInputDigit = () => {}
         }
       }}
       onKeyDown={handleInputDigit}
-      value={disabled ? '?' : (value != null ? value : '')} // eslint-disable-line no-extra-boolean-cast
+      value={disabled ? '?' : (value != null ? value : '')}
     />
   )
 }

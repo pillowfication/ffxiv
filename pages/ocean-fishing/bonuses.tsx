@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import clsx from 'clsx'
-import { makeStyles } from '@mui/material/styles'
+import { GetStaticProps } from 'next'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
@@ -13,7 +14,7 @@ import TableCell from '@mui/material/TableCell'
 import TextField from '@mui/material/TextField'
 import InputAdornment from '@mui/material/InputAdornment'
 import IconButton from '@mui/material/IconButton'
-import CheckIcon from '@material-ui/icons/Check'
+import CheckIcon from '@mui/icons-material/Check'
 import Page from '../../src/Page'
 import Section from '../../src/Section'
 import NavigationBar from '../../src/ocean-fishing/NavigationBar'
@@ -21,65 +22,10 @@ import OceanFishIcon from '../../src/ocean-fishing/OceanFishIcon'
 import { contentBonuses, achievements } from '../../src/ocean-fishing/ffxiv-ocean-fishing/data'
 import { cleanObjective, cleanRequirement } from '../../src/ocean-fishing/utils'
 import translate from '../../src/translate'
-import { useTranslation } from '../../src/i18n'
 
 const CONTENT_BONUSES = Object.values(contentBonuses)
   .sort((a, b) => a.order - b.order)
   .filter(contentBonus => contentBonus.id !== 0 && !contentBonus.requirement.en.includes('Target number adjusted for party size'))
-
-const useStyles = makeStyles(theme => ({
-  contentBonusesTable: {
-    '& th': {
-      padding: theme.spacing(1, 2)
-    },
-    '& td': {
-      padding: theme.spacing(0.5, 1)
-    }
-  },
-  check: {
-    padding: 10
-  },
-  unchecked: {
-    opacity: 0.33
-  },
-  checked: {
-    color: theme.palette.success.main
-  },
-  bonusContainer: {
-    margin: theme.spacing(2, 0),
-    textAlign: 'center',
-    '& > *': {
-      display: 'inline-block',
-      paddingBottom: theme.spacing(4),
-      verticalAlign: 'middle'
-    }
-  },
-  bonus: {
-    position: 'relative'
-  },
-  bonusPercentage: {
-    position: 'absolute',
-    left: 0,
-    right: 0
-  },
-  bigger: {
-    fontSize: '1.5em'
-  },
-  calculatorGoal: {
-    textAlign: 'justify',
-    textAlignLast: 'justify',
-    '& > *': {
-      display: 'inline-block'
-    }
-  },
-  reward: {
-    [theme.breakpoints.down('xs')]: {
-      display: 'block',
-      textAlign: 'left',
-      textAlignLast: 'left'
-    }
-  }
-}))
 
 function getOverrides (contentBonusId: number): number[] {
   switch (contentBonusId) {
@@ -108,30 +54,28 @@ interface CalculatorRowProps {
 }
 
 const CalculatorRow = ({ achievement, requiredPoints, totalBonus }: CalculatorRowProps): React.ReactElement => {
-  const classes = useStyles()
   const { i18n } = useTranslation('ocean-fishing')
   const locale = i18n.language
 
   return (
     <>
       <Grid item xs={8}>
-        <div className={classes.calculatorGoal}>
-          <Typography className={classes.reward}>{translate(locale, achievements[achievement], 'reward')}</Typography>&nbsp;
-          <Typography component='div' align='right' className={classes.bigger}>
+        <div className={'classes.calculatorGoal'}>
+          <Typography className={'classes.reward'}>{translate(locale, achievements[achievement], 'reward')}</Typography>&nbsp;
+          <Typography component='div' align='right' className={'classes.bigger'}>
             {Math.ceil(requiredPoints / totalBonus * 100).toLocaleString(locale)}
             <Box display='inline' ml={2}><Typography display='inline'>×{totalBonus}%</Typography></Box>
           </Typography>
         </div>
       </Grid>
       <Grid item xs={4}>
-        <Typography className={classes.bigger}>= {requiredPoints.toLocaleString(locale)}</Typography>
+        <Typography className={'classes.bigger'}>= {requiredPoints.toLocaleString(locale)}</Typography>
       </Grid>
     </>
   )
 }
 
 const Bonuses = (): React.ReactElement => {
-  const classes = useStyles()
   const { t, i18n } = useTranslation('ocean-fishing')
   const [basePoints, setBasePoints] = useState(5000)
   const [checked, setChecked] = useState<Record<number, boolean>>({
@@ -177,7 +121,7 @@ const Bonuses = (): React.ReactElement => {
       <NavigationBar page='/bonuses' />
       <Section>
         <TableContainer>
-          <Table className={classes.contentBonusesTable}>
+          <Table className={'classes.contentBonusesTable'}>
             <TableHead>
               <TableRow>
                 <TableCell colSpan={3} align='center'>{t('bonusesPage.objective')}</TableCell>
@@ -190,7 +134,7 @@ const Bonuses = (): React.ReactElement => {
                 <TableRow key={contentBonus.id}>
                   <TableCell>
                     <IconButton
-                      className={clsx(classes.check, checked[contentBonus.id] ? classes.checked : classes.unchecked)}
+                      className={'clsx(classes.check, checked[contentBonus.id] ? classes.checked : classes.unchecked)'}
                       onClick={handleClickChecked.bind(null, contentBonus.id)}
                     >
                       <CheckIcon />
@@ -215,18 +159,18 @@ const Bonuses = (): React.ReactElement => {
         </TableContainer>
       </Section>
       <Section title={t('bonusesPage.calculator')}>
-        <div className={classes.bonusContainer}>
+        <div className={'classes.bonusContainer'}>
           {filteredContentBonuses.length > 0
             ? filteredContentBonuses.map(contentBonus =>
-              <div key={contentBonus.id} className={classes.bonus}>
+              <div key={contentBonus.id} className={'classes.bonus'}>
                 <OceanFishIcon type='content-bonus' id={contentBonus.id} />
                 <br />
-                <Typography variant='body2' className={classes.bonusPercentage}>{contentBonus.bonus - 100}%</Typography>
+                <Typography variant='body2' className={'classes.bonusPercentage'}>{contentBonus.bonus - 100}%</Typography>
               </div>
             )
             : <Typography>No contentBonuses selected</Typography>
           }
-          <Typography className={classes.bigger}>&nbsp;= {totalBonus - 100}%</Typography>
+          <Typography className={'classes.bigger'}>&nbsp;= {totalBonus - 100}%</Typography>
         </div>
         <Grid container justifyContent='center'>
           <Grid item xs={12} md={8}>
@@ -244,7 +188,7 @@ const Bonuses = (): React.ReactElement => {
                 />
               </Grid>
               <Grid item xs={4}>
-                <Typography className={classes.bigger}>= {Math.floor(basePoints * totalBonus / 100).toLocaleString(locale)}</Typography>
+                <Typography className={'classes.bigger'}>= {Math.floor(basePoints * totalBonus / 100).toLocaleString(locale)}</Typography>
               </Grid>
               <Grid item xs={12}>
                 <Box m={2} />
@@ -261,8 +205,12 @@ const Bonuses = (): React.ReactElement => {
   )
 }
 
-Bonuses.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'ocean-fishing']
-})
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? 'en', ['common', 'ocean-fishing']))
+    }
+  }
+}
 
 export default Bonuses

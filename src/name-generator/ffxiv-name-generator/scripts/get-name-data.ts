@@ -14,7 +14,7 @@ const CharaMakeName_ko = sc.requireCsv('CharaMakeName', 'ko')
 // If there are, I will have to change everything
 // TODO: CN and KO clients have name data now D:
 CharaMakeName_en.data.forEach((charaMakeName_en, index) => {
-  const others = {
+  const others: Record<string, any> = {
     de: CharaMakeName_de.data[index],
     fr: CharaMakeName_fr.data[index],
     ja: CharaMakeName_ja.data[index],
@@ -32,13 +32,15 @@ CharaMakeName_en.data.forEach((charaMakeName_en, index) => {
 })
 
 console.log('Collecting names...')
+/* eslint-disable @typescript-eslint/indent */
 const charaMakeNames = Object.keys(CharaMakeName_en.keys)
   .filter(key => key !== '#')
   .map(key => ({ key, values: CharaMakeName_en.data.map(datum => datum[key]).filter(datum => datum) }))
-  .reduce((acc, { key, values }) => {
+  .reduce<Record<string, any>>((acc, { key, values }) => {
     acc[key.replace(/[^a-zA-Z]+/g, '')] = (values as string[]).sort()
     return acc
   }, {})
+/* eslint-enable @typescript-eslint/indent */
 fs.writeFileSync(path.resolve(__dirname, '../data/chara-make-names.json'), JSON.stringify(charaMakeNames))
 
 console.log('Done!')

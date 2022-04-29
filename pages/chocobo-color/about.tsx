@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import { GetStaticProps } from 'next'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { alpha } from '@mui/system'
 import { Theme } from '@mui/material/styles'
 import Box from '@mui/material/Box'
@@ -22,7 +25,6 @@ import StainButton from '../../src/chocobo-color/StainButton'
 import { stains, fruits } from '../../src/chocobo-color/ffxiv-chocobo-color/data'
 import { fruitValues, Fruit, Color } from '../../src/chocobo-color/ffxiv-chocobo-color'
 import translate from '../../src/translate'
-import { useTranslation } from '../../src/i18n'
 
 // const MATRIX_SOLUTION = calculateFruitsMatrix(stains[1].color, stains[6].color).fruits
 // const DISTANCE_SOLUTION = calculateFruitsDistance(stains[1].color, stains[6].color, 6).fruits
@@ -42,37 +44,6 @@ const NEGATIVE_COLOR = (theme: Theme): string => alpha(theme.palette.error.main,
 function formatDiff (val: number, locale = 'en'): string {
   return val >= 0 ? '+' + val.toLocaleString(locale) : val.toLocaleString(locale)
 }
-
-// const useStyles = makeStyles(theme => ({
-//   image: {
-//     maxWidth: '100%'
-//   },
-//   table: {
-//     width: 'initial',
-//     margin: theme.spacing(0, 'auto')
-//   },
-//   rgb: {
-//     padding: `${theme.spacing(1, 4)} !important`
-//   },
-//   positive: {
-//     backgroundColor: theme.palette.type === 'dark'
-//       ? alpha(theme.palette.success.main, 0.15)
-//       : alpha(theme.palette.success.main, 0.25)
-//   },
-//   negative: {
-//     backgroundColor: theme.palette.type === 'dark'
-//       ? alpha(theme.palette.error.main, 0.15)
-//       : alpha(theme.palette.error.main, 0.25)
-//   },
-//   clampTable: {
-//     width: 'initial',
-//     margin: theme.spacing(0, 'auto'),
-//     '& td': {
-//       height: 40,
-//       padding: theme.spacing(0, 2)
-//     }
-//   }
-// }))
 
 const ClampedTable = (): React.ReactElement => {
   const [showClamping, setShowClamping] = useState(false)
@@ -537,8 +508,12 @@ while (true) {
   )
 }
 
-About.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'chocobo-color']
-})
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? 'en', ['common', 'chocobo-color']))
+    }
+  }
+}
 
 export default About

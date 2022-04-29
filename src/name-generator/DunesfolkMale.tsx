@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'next-i18next'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import Section from '../Section'
@@ -7,7 +8,6 @@ import MyNameIs from './MyNameIs'
 import { charaMakeNames } from './ffxiv-name-generator/data'
 import { translate, Clan, Gender } from './ffxiv-name-generator'
 import { upperFirst, formatName } from './ffxiv-name-generator/src/utils'
-import { useTranslation } from '../i18n'
 
 function splitPhoneme (phoneme: string): string {
   return phoneme.slice(0, phoneme.length / 2)

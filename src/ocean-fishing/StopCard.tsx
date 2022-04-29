@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'next-i18next'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import Card from '@mui/material/Card'
@@ -6,7 +7,6 @@ import CardHeader from '@mui/material/CardHeader'
 import { Stop, Time, StopTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 import translate from '../translate'
-import { useTranslation } from '../i18n'
 
 interface Props {
   index: number

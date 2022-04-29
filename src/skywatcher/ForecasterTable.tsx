@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'next-i18next'
 import Typography from '@mui/material/Typography'
 import TableContainer from '@mui/material/TableContainer'
 import Table from '@mui/material/Table'
@@ -9,7 +10,6 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import WeatherIcon from './WeatherIcon'
 import { translateWeather, Weather } from './ffxiv-skywatcher'
 import { toTimeString, timeUntil } from '../utils'
-import { useTranslation } from '../i18n'
 import softHyphens from './soft-hyphens'
 
 const DATE_FORMAT = { month: '2-digit' as const, day: '2-digit' as const }

@@ -93,7 +93,7 @@ const bozja = {
         ko: BNpcName_ko.get(starMonster.id).Singular
       }
     })),
-  sprites: Object.entries(enemyLocations.sprites).reduce((acc, [spriteType, spriteData]) => {
+  sprites: Object.entries(enemyLocations.sprites).reduce<Record<string, any>>((acc, [spriteType, spriteData]) => {
     acc[spriteType] = {
       id: spriteData.id,
       name: {
@@ -112,7 +112,7 @@ const bozja = {
     }
     return acc
   }, {}),
-  items: [...range(30884, 30899), 31135].reduce((acc, itemId) => {
+  items: [...range(30884, 30899), 31135].reduce<Record<number, any>>((acc, itemId) => {
     acc[itemId] = {
       id: itemId,
       name: {
@@ -134,8 +134,8 @@ const bozja = {
     }
     return acc
   }, {}),
-  drops: ['zone_1', 'zone_2', 'zone_3'].reduce((acc, zone) => {
-    acc[zone.replace('_', '')] = drops[zone].map((datum: any) => {
+  drops: ['zone_1', 'zone_2', 'zone_3'].reduce<Record<string, any>>((acc, zone) => {
+    acc[zone.replace('_', '')] = (drops as any)[zone].map((datum: any) => {
       const monsterId = BNpcName_en.data.find(bNpcName_en => bNpcName_en.Singular === datum.name)['#']
       const lootName = datum.loot === 'cluster' ? 'Bozjan Cluster' : `Forgotten Fragment of ${upperFirst(datum.loot)}`
       const lootId = Item_en.data.find(item_en => item_en.Name === lootName)['#']

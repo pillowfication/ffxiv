@@ -1,4 +1,4 @@
-const PAYOUTS = {
+const PAYOUTS: Record<number, number> = {
   6: 10000,
   7: 36,
   8: 720,

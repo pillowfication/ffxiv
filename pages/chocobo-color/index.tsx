@@ -1,10 +1,12 @@
 import React from 'react'
+import { GetStaticProps } from 'next'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Typography from '@mui/material/Typography'
 import Page from '../../src/Page'
 import Section from '../../src/Section'
 import Link from '../../src/Link'
 import Calculator from '../../src/chocobo-color/Calculator'
-import { useTranslation } from '../../src/i18n'
 
 const ChocoboColor = (): React.ReactElement => {
   const { t } = useTranslation('chocobo-color')
@@ -24,8 +26,12 @@ const ChocoboColor = (): React.ReactElement => {
   )
 }
 
-ChocoboColor.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'chocobo-color']
-})
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? 'en', ['common', 'chocobo-color']))
+    }
+  }
+}
 
 export default ChocoboColor

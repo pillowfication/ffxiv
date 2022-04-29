@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'next-i18next'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import Section from '../Section'
 import HighOrLowCard from './HighOrLowCard'
 import calculateHighOrLow from './ffxiv-high-or-low'
-import { useTranslation } from '../i18n'
 
 enum CalculatorState {
   Incomplete,
@@ -48,11 +48,7 @@ const Calculator = (): React.ReactElement => {
 
   return (
     <Section>
-      <Box sx={{
-        textAlign: 'center',
-        whiteSpace: 'nowrap',
-        overflowX: 'auto'
-      }}>
+      <Box sx={{ textAlign: 'center', whiteSpace: 'nowrap', overflowX: 'auto' }}>
         <HighOrLowCard value={tb1} error={tb1Error} onInputDigit={setTb1} />
         <HighOrLowCard value={tb2} error={tb2Error} onInputDigit={setTb2} />
         <HighOrLowCard disabled />

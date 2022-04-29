@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'next-i18next'
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
 import TableContainer from '@mui/material/TableContainer'
@@ -13,51 +14,8 @@ import * as maps from './maps'
 import { getBlueFish, timeUntil, upperFirst } from './utils'
 import { toTimeString } from '../utils'
 import translate from '../translate'
-import { useTranslation } from '../i18n'
 
 const DATE_FORMAT: Intl.DateTimeFormatOptions = { month: '2-digit', day: '2-digit' }
-
-// const useStyles = makeStyles(theme => ({
-//   schedule: {
-//     '& td': {
-//       height: 53,
-//       paddingTop: theme.spacing(0.25),
-//       paddingBottom: theme.spacing(0.25),
-//       paddingLeft: theme.spacing(1),
-//       paddingRight: theme.spacing(1),
-//       whiteSpace: 'nowrap'
-//     },
-//     '& td:first-child': {
-//       paddingLeft: theme.spacing(2)
-//     },
-//     '& td:last-child': {
-//       paddingRight: theme.spacing(2)
-//     },
-//     '& tbody tr:hover': {
-//       cursor: 'pointer'
-//     }
-//   },
-//   hoverRow: {
-//     backgroundColor: theme.palette.action.hover
-//   },
-//   timeUntil: {
-//     [theme.breakpoints.down('sm')]: {
-//       display: 'none'
-//     }
-//   },
-//   timeCell: {
-//     '& svg': {
-//       top: 0,
-//       verticalAlign: 'middle'
-//     }
-//   },
-//   objectivesCell: {
-//     '& div': {
-//       verticalAlign: 'middle',
-//       fontSize: '1rem'
-//     }
-//   }
-// }))
 
 interface Props {
   now: Date

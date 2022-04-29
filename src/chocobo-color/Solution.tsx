@@ -1,5 +1,5 @@
 import React from 'react'
-import Box from '@mui/material/Box'
+import { useTranslation } from 'next-i18next'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import Alert from '@mui/material/Alert'
@@ -10,7 +10,6 @@ import FruitsList from './FruitsList'
 import { calculateFruits, Stain, Color, Fruit } from './ffxiv-chocobo-color'
 import { stains, fruits } from './ffxiv-chocobo-color/data'
 import translate from '../translate'
-import { useTranslation } from '../i18n'
 
 interface Props {
   solution: {
@@ -63,13 +62,12 @@ const Solution = ({ solution }: Props): React.ReactElement => {
                     display: 'inline-block',
                     width: '2.5em',
                     fontSize: '1.25em',
-                    textAlign: 'right'
+                    textAlign: 'right',
+                    verticalAlign: 'middle'
                   }}>
                     {count}×
                   </Typography>
-                  <Box display='inline-block' mx={1}>
-                    <FruitIcon fruit={fruit} />
-                  </Box>
+                  <FruitIcon fruit={fruit} sx={{ verticalAlign: 'middle', mx: 1 }} />
                   <Typography component='span'>{translate(locale, fruits[fruit], 'name')}</Typography>
                 </div>
               ))

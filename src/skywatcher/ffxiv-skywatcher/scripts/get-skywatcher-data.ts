@@ -30,7 +30,7 @@ const territories = TerritoryType.data
       weatherRate: territory.WeatherRate
     }
   })
-  .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})
+  .reduce<Record<number, any>>((acc, curr) => { acc[curr.id] = curr; return acc }, {})
 fs.writeFileSync(path.resolve(__dirname, '../data/territories.json'), JSON.stringify(territories))
 
 console.log('Collecting place names...')
@@ -56,7 +56,7 @@ const placeNames = Object.values<any>(territories)
       }
     }
   })
-  .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})
+  .reduce<Record<number, any>>((acc, curr) => { acc[curr.id] = curr; return acc }, {})
 fs.writeFileSync(path.resolve(__dirname, '../data/place-names.json'), JSON.stringify(placeNames))
 
 console.log('Collecting weathers...')
@@ -90,7 +90,7 @@ const weathers = Weather_en.data
       }
     }
   })
-  .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})
+  .reduce<Record<number, any>>((acc, curr) => { acc[curr.id] = curr; return acc }, {})
 fs.writeFileSync(path.resolve(__dirname, '../data/weathers.json'), JSON.stringify(weathers))
 
 console.log('Collecting weather rates...')
@@ -103,7 +103,7 @@ const weatherRates = WeatherRate.data
         .filter(([weather, rate]) => weather !== 0 && rate !== 0)
     }
   })
-  .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})
+  .reduce<Record<number, any>>((acc, curr) => { acc[curr.id] = curr; return acc }, {})
 fs.writeFileSync(path.resolve(__dirname, '../data/weather-rates.json'), JSON.stringify(weatherRates))
 
 console.log('Done!')

@@ -5,7 +5,7 @@ import fr from '../locales/fr.json'
 import ja from '../locales/ja.json'
 import cn from '../locales/cn.json'
 import ko from '../locales/ko.json'
-const LOCALES = { en, de, fr, ja, cn, ko }
+const LOCALES: Record<string, any> = { en, de, fr, ja, cn, ko }
 
 export function randomElement<T> (...arrays: T[][]): T {
   if (arrays.length === 1) {
@@ -37,7 +37,7 @@ export function formatName (forename: string, surname: string): string {
 
 export function conjugateRoegadyn (word: string, grammar: 'A' | 'N'): string {
   word = upperFirst(word.replace(/\s+/g, ''))
-  const entry = roegadynDictionary[word]
+  const entry = (roegadynDictionary as Record<string, any>)[word]
 
   // If this word does not appear in the dictionary, leave it alone
   if (entry === undefined) {
@@ -89,6 +89,6 @@ export function combineRoegadyn (...words: string[]): string {
 }
 
 export function translate (type: 'race' | 'clan' | 'gender', id: string, locale: string = 'en'): string {
-  const translation = LOCALES[locale]?.[type][id]
+  const translation = LOCALES[locale]?.[type]?.[id]
   return translation !== undefined ? translation : `{${type}.${id}}`
 }

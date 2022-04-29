@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'next-i18next'
 import Typography from '@mui/material/Typography'
 import Link from '@mui/material/Link'
 import Box from '@mui/material/Box'
@@ -21,7 +22,6 @@ import WeatherIcon from '../skywatcher/WeatherIcon'
 import { Fish } from './ffxiv-ocean-fishing/data'
 import { getBaitGroup, subtextBiteTime } from './utils'
 import translate from '../translate'
-import { useTranslation } from '../i18n'
 
 function getImgUrl (fish: Fish): string {
   if (fish.lodestoneData !== null) {
@@ -31,40 +31,6 @@ function getImgUrl (fish: Fish): string {
     return `https://xivapi.com/i/${`000000${fish.icon - (fish.icon % 1000)}`.slice(-6)}/${`000000${fish.icon}`.slice(-6)}.png`
   }
 }
-
-// const useStyles = makeStyles(theme => ({
-//   container: {
-//     width: 400
-//   },
-//   header: {
-//     padding: theme.spacing(2),
-//     alignItems: 'start'
-//   },
-//   title: {
-//     paddingTop: theme.spacing(1)
-//   },
-//   content: {
-//     padding: theme.spacing(0, 2, 2)
-//   },
-//   table: {
-//     '& td': {
-//       padding: theme.spacing(0.33, 2)
-//     }
-//   },
-//   description: {
-//     whiteSpace: 'pre-line'
-//   },
-//   expand: {
-//     transform: 'rotate(0deg)',
-//     marginLeft: 'auto',
-//     transition: theme.transitions.create('transform', {
-//       duration: theme.transitions.duration.shortest
-//     })
-//   },
-//   expandOpen: {
-//     transform: 'rotate(180deg)'
-//   }
-// }))
 
 interface Props {
   fish: Fish

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'next-i18next'
 import Head from 'next/head'
 import { Icon, CRS } from 'leaflet'
 import { MapContainer, ImageOverlay, Pane, Marker, Tooltip } from 'react-leaflet'
@@ -12,7 +13,6 @@ import Section from '../Section'
 import { formatMonster } from './utils'
 import bozja from './ffxiv-bozja/data/bozja.json'
 import translate from '../translate'
-import { useTranslation } from '../i18n'
 
 type SpriteType = 'wind' | 'earth' | 'lightning' | 'water'
 

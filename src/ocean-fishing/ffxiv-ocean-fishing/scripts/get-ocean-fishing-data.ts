@@ -50,7 +50,7 @@ const fishingSpots = FishingSpot_en.data
       .filter(itemId => itemId !== 0),
     order: fishingSpot.Order
   }))
-  .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})
+  .reduce<Record<number, any>>((acc, curr) => { acc[curr.id] = curr; return acc }, {})
 fs.writeFileSync(path.resolve(__dirname, '../data/fishing-spots.json'), JSON.stringify(fishingSpots))
 
 console.log('Collecting place names...')
@@ -86,7 +86,7 @@ const placeNames = Object.values<any>(fishingSpots)
       }
     }
   })
-  .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})
+  .reduce<Record<number, any>>((acc, curr) => { acc[curr.id] = curr; return acc }, {})
 fs.writeFileSync(path.resolve(__dirname, '../data/place-names.json'), JSON.stringify(placeNames))
 
 console.log('Collecting ocean fishes...')
@@ -130,7 +130,7 @@ const oceanFishes = IKDFishParam.data
       })()
     }
   })
-  .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})
+  .reduce<Record<number, any>>((acc, curr) => { acc[curr.id] = curr; return acc }, {})
 fs.writeFileSync(path.resolve(__dirname, '../data/fishes.json'), JSON.stringify(oceanFishes))
 
 console.log('Collecting baits...')
@@ -167,7 +167,7 @@ const baits = [
       }
     }
   })
-  .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})
+  .reduce<Record<number, any>>((acc, curr) => { acc[curr.id] = curr; return acc }, {})
 fs.writeFileSync(path.resolve(__dirname, '../data/baits.json'), JSON.stringify(baits))
 
 console.log('Collecting content bonuses...')
@@ -203,7 +203,7 @@ const contentBonuses = IKDContentBonus_en.data
       order: ikdContentBonus_en.Order
     }
   })
-  .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})
+  .reduce<Record<number, any>>((acc, curr) => { acc[curr.id] = curr; return acc }, {})
 fs.writeFileSync(path.resolve(__dirname, '../data/content-bonuses.json'), JSON.stringify(contentBonuses))
 
 function range (start: number, end: number): number[] {
@@ -259,7 +259,7 @@ const oceanFishingAchievements = [0, ...range(2553, 2566), ...range(2748, 2759)]
       order: achievement_en.Order
     }
   })
-  .reduce((acc, curr) => { acc[curr.id] = curr; return acc }, {})
+  .reduce<Record<number, any>>((acc, curr) => { acc[curr.id] = curr; return acc }, {})
 fs.writeFileSync(path.resolve(__dirname, '../data/achievements.json'), JSON.stringify(oceanFishingAchievements))
 
 console.log('Done!')

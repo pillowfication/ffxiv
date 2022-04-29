@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import { GetStaticProps } from 'next'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Typography from '@mui/material/Typography'
 import Collapse from '@mui/material/Collapse'
 import Link from '@mui/material/Link'
@@ -11,7 +14,6 @@ import ImportFishes from '../../src/ocean-fishing/ImportFishes'
 import FishTable from '../../src/ocean-fishing/FishTable'
 import { fishingSpots } from '../../src/ocean-fishing/ffxiv-ocean-fishing/data'
 import translate from '../../src/translate'
-import { useTranslation } from '../../src/i18n'
 
 const Fish = (): React.ReactElement => {
   const { t, i18n } = useTranslation('ocean-fishing')
@@ -63,8 +65,12 @@ const Fish = (): React.ReactElement => {
   )
 }
 
-Fish.getInitialProps = async () => ({
-  namespacesRequired: ['common', 'ocean-fishing']
-})
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? 'en', ['common', 'ocean-fishing']))
+    }
+  }
+}
 
 export default Fish

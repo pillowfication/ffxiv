@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'next-i18next'
 import NoSsr from '@mui/material/NoSsr'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
@@ -19,7 +20,6 @@ import {
   translatePlace,
   Place
 } from './ffxiv-skywatcher'
-import { useTranslation } from '../i18n'
 
 const REGIONS = getRegions()
 

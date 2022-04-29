@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 import NoSsr from '@mui/material/NoSsr'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
-import Grid from '@mui/material/Grid'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import Button from '@mui/material/Button'
-import IconButton from '@mui/material/IconButton'
 import Switch from '@mui/material/Switch'
 import Tooltip from '@mui/material/Tooltip'
 import Menu from '@mui/material/Menu'
@@ -16,11 +16,7 @@ import HomeIcon from '@mui/icons-material/Home'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import TranslateIcon from '@mui/icons-material/Translate'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
-import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import Link from './Link'
-import { useTranslation } from './i18n'
 
 const LANGUAGES: Record<string, string> = {
   en: 'English',
@@ -42,6 +38,7 @@ interface Props {
 
 const Header = ({ theme, setTheme }: Props): React.ReactElement => {
   const { i18n } = useTranslation('common')
+  const router = useRouter()
   const [languageAnchorEl, setLanguageAnchorEl] = useState<HTMLElement | null>(null)
 
   useEffect(() => {
@@ -49,7 +46,6 @@ const Header = ({ theme, setTheme }: Props): React.ReactElement => {
       setTheme(window.localStorage.getItem('theme') === 'dark' ? 'dark' : 'light')
     }
   }, [])
-
   useEffect(() => {
     window.localStorage.setItem('theme', theme)
   }, [theme])
@@ -57,29 +53,26 @@ const Header = ({ theme, setTheme }: Props): React.ReactElement => {
   const handleClickLanguage = (event: React.MouseEvent<HTMLButtonElement>): void => {
     setLanguageAnchorEl(event.currentTarget)
   }
-
   const handleSelectLanguage = (locale?: string): void => {
     setLanguageAnchorEl(null)
     if (locale !== undefined) {
-      i18n.changeLanguage(locale)
-        .then(() => {})
-        .catch(() => {})
+      const { pathname, asPath, query } = router
+      router.push({ pathname, query }, asPath, { locale: locale })
+        .catch(err => { console.error(err) })
     }
   }
-
   const handleChangeTheme = (): void => {
     setTheme(theme === 'light' ? 'dark' : 'light')
   }
 
   return (
-    <AppBar position='sticky' enableColorOnDark>
+    <AppBar position='sticky' enableColorOnDark sx={{ backgroundImage: 'none' }}>
       <Container maxWidth='lg'>
         <Toolbar disableGutters variant='dense'>
           <Tooltip title='Go home' enterDelay={300}>
             <Button
               component={Link}
               variant='contained'
-              color='primary'
               disableElevation
               href='/'
             >
@@ -108,7 +101,7 @@ const Header = ({ theme, setTheme }: Props): React.ReactElement => {
             >
               <TranslateIcon fontSize='small' />
               <Box display={{ xs: 'none', md: 'inline-block' }} px={1} >
-                <NoSsr>{getLanguage(i18n.language)}</NoSsr>
+                <NoSsr>{getLanguage(i18n.language ?? 'en')}</NoSsr>
               </Box>
               <ExpandMoreIcon fontSize='small' />
             </Button>
@@ -119,12 +112,11 @@ const Header = ({ theme, setTheme }: Props): React.ReactElement => {
             open={Boolean(languageAnchorEl)}
             onClose={handleSelectLanguage.bind(null, undefined)}
           >
-            {
-              // @ts-expect-error
-              [i18n.options.defaultLanguage, ...i18n.options.otherLanguages].map(locale =>
-                <MenuItem key={locale} onClick={handleSelectLanguage.bind(null, locale)}>{getLanguage(locale)}</MenuItem>
-              )
-            }
+            {Object.keys(LANGUAGES).map(locale => (
+              <MenuItem key={locale} onClick={handleSelectLanguage.bind(null, locale)}>
+                {getLanguage(locale)}
+              </MenuItem>
+            ))}
           </Menu>
           <Switch checked={theme === 'dark'} onChange={handleChangeTheme} />
         </Toolbar>

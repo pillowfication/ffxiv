@@ -10,7 +10,7 @@ const SAINT_COINACH_KO = 'C:\\Users\\Pillowfication\\ws\\ffxiv\\datamining\\ffxi
 export const FOLDER = SAINT_COINACH_FOLDER
 
 function mapKeys (keys: Record<string, string>, datum: {}): Record<string, string> {
-  const mappedDatum = {}
+  const mappedDatum: Record<string, any> = {}
   for (const [key, value] of Object.entries(datum)) {
     mappedDatum[keys[key] !== '' ? keys[key] : `<UNKNOWN_${key}>`] = value
   }
@@ -117,7 +117,7 @@ class Crawler {
   data: any
 
   constructor (csv: any, id: number) {
-    this.data = csv.data.find(({ '#': csvId }) => csvId === id)
+    this.data = csv.data.find(({ '#': csvId }: { '#': number }) => csvId === id)
   }
 
   to (key: string, csv: any): Crawler {

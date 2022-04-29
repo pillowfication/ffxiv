@@ -15,10 +15,10 @@ export interface Territory {
 }
 
 for (const territory of Object.values(_territories)) {
-  territory.placeName = _placeNames[territory.placeName]
-  territory.placeName_zone = _placeNames[territory.placeName_zone]
-  territory.placeName_region = _placeNames[territory.placeName_region]
-  territory.weatherRate = _weatherRates[territory.weatherRate]
+  territory.placeName = (_placeNames as any)[territory.placeName]
+  territory.placeName_zone = (_placeNames as any)[territory.placeName_zone]
+  territory.placeName_region = (_placeNames as any)[territory.placeName_region]
+  territory.weatherRate = (_weatherRates as any)[territory.weatherRate]
 }
 
 export const territories = _territories as any as Record<number, Territory>
@@ -45,7 +45,7 @@ export interface WeatherRate {
 }
 
 for (const weatherRate of Object.values(_weatherRates)) {
-  weatherRate.rates = weatherRate.rates.map(([weatherId, chance]) => [_weathers[weatherId], chance])
+  weatherRate.rates = weatherRate.rates.map(([weatherId, chance]) => [(_weathers as any)[weatherId], chance])
 }
 
 export const weatherRates = _weatherRates as any as Record<number, WeatherRate>

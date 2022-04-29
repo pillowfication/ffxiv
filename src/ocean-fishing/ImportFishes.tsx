@@ -14,20 +14,6 @@ function sortFishes (fishes: number[]): number[] {
     .filter((fish, index, array) => fish !== array[index + 1])
 }
 
-// const useStyles = makeStyles(theme => ({
-//   container: {
-//     backgroundColor: theme.palette.type === 'light' ? theme.palette.grey[200] : undefined
-//   },
-//   textField: {
-//     fontFamily: 'monospace, monospace'
-//   },
-//   buttons: {
-//     '& button': {
-//       margin: theme.spacing(2, 2, 0, 0)
-//     }
-//   }
-// }))
-
 interface Props {
   checklist: number[]
   setChecklist: (checklist: number[]) => void
@@ -77,7 +63,7 @@ const ImportFishes = ({ checklist, setChecklist }: Props): React.ReactElement =>
 
   return (
     <Section>
-      <Box component={Paper} p={2} className={'classes.container'}>
+      <Box component={Paper} p={2}>
         <Typography>Paste code from <Link href='https://lalachievements.com/'>Lalachievements</Link> or <Link href='https://ff14fish.carbuncleplushy.com/'>FFX|V Fish Tracker App</Link> below.</Typography>
         <TextField
           multiline
@@ -87,7 +73,6 @@ const ImportFishes = ({ checklist, setChecklist }: Props): React.ReactElement =>
           margin='normal'
           value={importData}
           onChange={handleInputImportData}
-          InputProps={{ className: 'classes.textField' }}
         />
         {message !== null && (
           <Alert variant='outlined' severity={message?.type}>{message?.message}</Alert>

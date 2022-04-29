@@ -37,7 +37,7 @@ async function getTCBiteTimes (spotId: number, baitId: number): Promise<any> {
     })
   })
 
-  const json = await res.json()
+  const json: any = await res.json()
   json.data.biteTimes = json.data.biteTimes
     .map((datum: any) => ({
       itemId: datum.itemId,
@@ -94,7 +94,7 @@ async function getTCBaitPercentages (spotId: number): Promise<any> {
     })
   })
 
-  const json = await res.json()
+  const json: any = await res.json()
   json.data.baits = json.data.baits
     .map((datum: any) => ({
       itemId: datum.itemId,
