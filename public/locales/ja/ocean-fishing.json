@@ -45,6 +45,7 @@
     "points": "釣果点",
     "doubleHook": "ダブルフッキング",
     "tripleHook": "トリプルフッキング",
+    "maxPoints": "Max Points",
     "timeOfDay": "時間帯",
     "weather": "天候",
     "category": "種類"

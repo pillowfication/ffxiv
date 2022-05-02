@@ -98,6 +98,7 @@ const FishTable = ({ fishingSpots, time }: Props): React.ReactElement => {
                 </TableCell>
                 <TableCell align='center'>{t('fishInfo.points')}</TableCell>
                 <TableCell align='center'>{t('fishInfo.doubleHook')}</TableCell>
+                <TableCell align='center'>{t('fishInfo.maxPoints')}</TableCell>
                 <TableCell align='center'>{t(`fishInfo.${isSpectral ? 'timeOfDay' : 'weather'}`)}</TableCell>
                 <TableCell align='center'>{t('fishInfo.category')}</TableCell>
               </TableRow>
@@ -106,6 +107,24 @@ const FishTable = ({ fishingSpots, time }: Props): React.ReactElement => {
               {fishingSpot.fishes.map(fish => {
                 const spreadsheetData = fish.spreadsheetData
                 const isUnavailable = time !== undefined && spreadsheetData.time !== null && !spreadsheetData.time.includes(time)
+                let maxPoints: number | null = null
+
+                if (spreadsheetData.points !== null) {
+                  if (spreadsheetData.tripleHook !== null) {
+                    if (Array.isArray(spreadsheetData.tripleHook)) {
+                      maxPoints = spreadsheetData.tripleHook[1] * spreadsheetData.points
+                    } else {
+                      maxPoints = spreadsheetData.tripleHook * spreadsheetData.points
+                    }
+                  } else if (spreadsheetData.doubleHook !== null) {
+                    if (Array.isArray(spreadsheetData.doubleHook)) {
+                      maxPoints = spreadsheetData.doubleHook[1] * spreadsheetData.points
+                    } else {
+                      maxPoints = spreadsheetData.doubleHook * spreadsheetData.points
+                    }
+                  }
+                }
+
                 return (
                   <TableRow key={fish.id} hover sx={{
                     opacity: isUnavailable ? 0.5 : 1
@@ -169,6 +188,13 @@ const FishTable = ({ fishingSpots, time }: Props): React.ReactElement => {
                           {spreadsheetData.tripleHook !== null && (
                             <>&emsp;({formatDH(spreadsheetData.tripleHook)})</>
                           )}
+                        </Typography>
+                      )}
+                    </TableCell>
+                    <TableCell align='center'>
+                      {maxPoints !== null && (
+                        <Typography>
+                          {maxPoints}
                         </Typography>
                       )}
                     </TableCell>

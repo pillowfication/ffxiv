@@ -45,6 +45,7 @@
     "points": "Points",
     "doubleHook": "Ferrage double",
     "tripleHook": "Ferrage triple",
+    "maxPoints": "Max Points",
     "timeOfDay": "Heure de la journée",
     "weather": "Météo",
     "category": "Catégorie"
