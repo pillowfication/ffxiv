@@ -1,23 +1,18 @@
 import React from 'react'
 import { useTranslation } from 'next-i18next'
-import Typography from '@mui/material/Typography'
-import Link from '@mui/material/Link'
 import Box from '@mui/material/Box'
-import Collapse from '@mui/material/Collapse'
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
 import CardContent from '@mui/material/CardContent'
-import CardActions from '@mui/material/CardActions'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableRow from '@mui/material/TableRow'
 import TableCell from '@mui/material/TableCell'
-import IconButton from '@mui/material/IconButton'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ItemIcon from './ItemIcon'
 import TimeIcon from './TimeIcon'
 import BaitGroup from './BaitGroup'
 import ChecklistCheckmark from './ChecklistCheckmark'
+import Link from '../Link'
 import WeatherIcon from '../skywatcher/WeatherIcon'
 import { Fish } from './ffxiv-ocean-fishing/data'
 import { getBaitGroup, subtextBiteTime } from './utils'
@@ -38,21 +33,16 @@ interface Props {
 
 const OceanFishPopper = ({ fish }: Props): React.ReactElement => {
   const { t, i18n } = useTranslation('ocean-fishing')
-  const [expanded, setExpanded] = React.useState(false)
   const spreadsheetData = fish.spreadsheetData
   const locale = i18n.language
 
-  const handleClickExpand = (): void => {
-    setExpanded(!expanded)
-  }
-
   return (
     <Box boxShadow={8}>
-      <Card variant='outlined' className={'classes.container'}>
+      <Card variant='outlined'>
         <CardHeader
           avatar={<ItemIcon src={getImgUrl(fish)} />}
           title={translate(locale, fish, 'name')}
-          titleTypographyProps={{ variant: 'h6', paragraph: true, className: 'classes.title' }}
+          titleTypographyProps={{ variant: 'h6', paragraph: true }}
           subheader={(
             <div>
               {fish.lodestoneData !== null && (
@@ -62,13 +52,12 @@ const OceanFishPopper = ({ fish }: Props): React.ReactElement => {
             </div>
           )}
           action={<ChecklistCheckmark fishId={fish.id} />}
-          className={'classes.header'}
         />
-        <CardContent className={'classes.content'}>
+        <CardContent>
           <BaitGroup {...getBaitGroup(fish)} subtext={subtextBiteTime} />
         </CardContent>
-        <CardContent className={'classes.content'}>
-          <Table size='small' className={'classes.table'}>
+        <CardContent>
+          <Table>
             <TableBody>
               <TableRow>
                 <TableCell variant='head'>
@@ -147,18 +136,6 @@ const OceanFishPopper = ({ fish }: Props): React.ReactElement => {
             </TableBody>
           </Table>
         </CardContent>
-        <Collapse in={expanded} timeout='auto' unmountOnExit>
-          <CardContent className={'classes.content'}>
-            <Typography variant='body2' className={'classes.description'}>
-              {translate(locale, fish, 'description').replace(/\n\n+/g, '\n\n')}
-            </Typography>
-          </CardContent>
-        </Collapse>
-        <CardActions disableSpacing>
-          <IconButton onClick={handleClickExpand} className={'clsx(classes.expand, expanded && classes.expandOpen)'}>
-            <ExpandMoreIcon />
-          </IconButton>
-        </CardActions>
       </Card>
     </Box>
   )

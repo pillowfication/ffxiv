@@ -15,7 +15,8 @@ const CalculatorCell = ({ selected = false, onSelect }: Props): React.ReactEleme
       height: { xs: '5em', md: '7em' },
       border: '1px solid black',
       cursor: 'pointer',
-      backgroundColor: selected ? theme => alpha(theme.palette.primary.main, 0.5) : 'none'
+      backgroundColor: selected ? theme => alpha(theme.palette.primary.main, 0.5) : 'none',
+      transition: 'background-color 0.1s linear'
     }} />
   )
 }

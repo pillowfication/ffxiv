@@ -22,7 +22,8 @@ const RankIcon = ({ rank }: Props): React.ReactElement => {
       display: 'inline-block',
       width: '2em',
       textAlign: 'center',
-      marginRight: 1
+      fontWeight: 'bold',
+      mr: 1
     }}>
       {mapRank[rank]}
     </Paper>

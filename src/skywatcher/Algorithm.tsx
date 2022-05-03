@@ -2,7 +2,7 @@ import React from 'react'
 import { useTranslation } from 'next-i18next'
 import Section from '../Section'
 import Typography from '@mui/material/Typography'
-import TableContainer from '@mui/material/TableContainer'
+import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableHead from '@mui/material/TableHead'
 import TableBody from '@mui/material/TableBody'
@@ -65,8 +65,8 @@ const weatherChance = step2 % 100
       <Typography paragraph>
         With <code>weatherChance</code> computed as a number from 0 to 99, each zone can determine its weather. For example, the weather in Eureka Anemos is Gales if <code>weatherChance</code> is between 30 and 59. Its full table of weathers is
       </Typography>
-      <TableContainer sx={{ mb: 2 }}>
-        <Table sx={{ width: 'auto' }}>
+      <Paper sx={{ display: 'inline-block', mb: 2 }}>
+        <Table>
           <TableHead>
             <TableRow>
               <TableCell align='center'><Typography component='code'>weatherChance</Typography></TableCell>
@@ -112,7 +112,7 @@ const weatherChance = step2 % 100
             </TableRow>
           </TableBody>
         </Table>
-      </TableContainer>
+      </Paper>
     </Section>
   )
 }

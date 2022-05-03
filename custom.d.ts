@@ -2,6 +2,7 @@ declare module 'react-syntax-highlighter' {
   export const Light: any
 }
 declare module 'react-syntax-highlighter/dist/cjs/styles/hljs' {
+  export const atomOneDark: any
   export const github: any
 }
 declare module 'react-syntax-highlighter/dist/cjs/languages/*' {

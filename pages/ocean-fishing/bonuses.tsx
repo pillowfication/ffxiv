@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
-import Typography from '@mui/material/Typography'
+import Paper from '@mui/material/Paper'
 import TableContainer from '@mui/material/TableContainer'
 import Table from '@mui/material/Table'
 import TableHead from '@mui/material/TableHead'
@@ -60,16 +61,22 @@ const CalculatorRow = ({ achievement, requiredPoints, totalBonus }: CalculatorRo
   return (
     <>
       <Grid item xs={8}>
-        <div className={'classes.calculatorGoal'}>
-          <Typography className={'classes.reward'}>{translate(locale, achievements[achievement], 'reward')}</Typography>&nbsp;
-          <Typography component='div' align='right' className={'classes.bigger'}>
+        <Box sx={{
+          textAlign: 'justify',
+          textAlignLast: 'justify',
+          '& > *': {
+            display: { sx: 'block', sm: 'inline-block' }
+          }
+        }}>
+          <Typography component='div' sx={{ textAlignLast: 'left' }}>{translate(locale, achievements[achievement], 'reward')}</Typography>{' '}
+          <Typography component='div' sx={{ fontSize: '1.25em', textAlignLast: 'right' }}>
             {Math.ceil(requiredPoints / totalBonus * 100).toLocaleString(locale)}
-            <Box display='inline' ml={2}><Typography display='inline'>×{totalBonus}%</Typography></Box>
+            <Typography display='inline' sx={{ ml: 2 }}>×{totalBonus}%</Typography>
           </Typography>
-        </div>
+        </Box>
       </Grid>
       <Grid item xs={4}>
-        <Typography className={'classes.bigger'}>= {requiredPoints.toLocaleString(locale)}</Typography>
+        <Typography sx={{ fontSize: '1.25em' }}>=&nbsp;{requiredPoints.toLocaleString(locale)}</Typography>
       </Grid>
     </>
   )
@@ -118,10 +125,10 @@ const Bonuses = (): React.ReactElement => {
 
   return (
     <Page title={[t('_title'), t('bonusesPage._title')]}>
-      <NavigationBar page='/bonuses' />
+      <NavigationBar />
       <Section>
-        <TableContainer>
-          <Table className={'classes.contentBonusesTable'}>
+        <TableContainer component={Paper}>
+          <Table>
             <TableHead>
               <TableRow>
                 <TableCell colSpan={3} align='center'>{t('bonusesPage.objective')}</TableCell>
@@ -130,17 +137,17 @@ const Bonuses = (): React.ReactElement => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {CONTENT_BONUSES.map(contentBonus =>
-                <TableRow key={contentBonus.id}>
-                  <TableCell>
-                    <IconButton
-                      className={'clsx(classes.check, checked[contentBonus.id] ? classes.checked : classes.unchecked)'}
-                      onClick={handleClickChecked.bind(null, contentBonus.id)}
-                    >
-                      <CheckIcon />
+              {CONTENT_BONUSES.map(contentBonus => (
+                <TableRow key={contentBonus.id} hover>
+                  <TableCell align='center'>
+                    <IconButton onClick={handleClickChecked.bind(null, contentBonus.id)}>
+                      <CheckIcon sx={{
+                        color: checked[contentBonus.id] ? 'success.main' : 'inherit',
+                        opacity: checked[contentBonus.id] ? 1 : 0.33
+                      }} />
                     </IconButton>
                   </TableCell>
-                  <TableCell>
+                  <TableCell align='center'>
                     <OceanFishIcon type='content-bonus' id={contentBonus.id} />
                   </TableCell>
                   <TableCell>
@@ -153,31 +160,42 @@ const Bonuses = (): React.ReactElement => {
                     <Typography>{contentBonus.bonus - 100}%</Typography>
                   </TableCell>
                 </TableRow>
-              )}
+              ))}
             </TableBody>
           </Table>
         </TableContainer>
       </Section>
       <Section title={t('bonusesPage.calculator')}>
-        <div className={'classes.bonusContainer'}>
+        <Box sx={{
+          textAlign: 'center',
+          mb: 5,
+          '& > *': {
+            verticalAlign: 'middle'
+          }
+        }}>
           {filteredContentBonuses.length > 0
-            ? filteredContentBonuses.map(contentBonus =>
-              <div key={contentBonus.id} className={'classes.bonus'}>
+            ? filteredContentBonuses.map(contentBonus => (
+              <Box key={contentBonus.id} sx={{
+                display: 'inline-block',
+                textAlign: 'center',
+                overflow: 'visible'
+              }}>
                 <OceanFishIcon type='content-bonus' id={contentBonus.id} />
                 <br />
-                <Typography variant='body2' className={'classes.bonusPercentage'}>{contentBonus.bonus - 100}%</Typography>
-              </div>
-            )
-            : <Typography>No contentBonuses selected</Typography>
+                <Typography variant='body2' sx={{ height: 0 }}>{contentBonus.bonus - 100}%</Typography>
+              </Box>
+            ))
+            : <Typography component='span'>No <Paper component='code' variant='outlined' sx={{ px: 0.5 }}>contentBonus</Paper>es selected</Typography>
           }
-          <Typography className={'classes.bigger'}>&nbsp;= {totalBonus - 100}%</Typography>
-        </div>
+          <Typography component='span' sx={{ fontSize: '1.25em' }}>&nbsp;=&nbsp;{totalBonus - 100}%</Typography>
+        </Box>
         <Grid container justifyContent='center'>
           <Grid item xs={12} md={8}>
             <Grid container spacing={2} alignItems='flex-end'>
               <Grid item xs={8}>
                 <TextField
                   type='number'
+                  variant='standard'
                   fullWidth
                   label={t('bonusesPage.basePoints')}
                   InputProps={{
@@ -188,7 +206,7 @@ const Bonuses = (): React.ReactElement => {
                 />
               </Grid>
               <Grid item xs={4}>
-                <Typography className={'classes.bigger'}>= {Math.floor(basePoints * totalBonus / 100).toLocaleString(locale)}</Typography>
+                <Typography sx={{ fontSize: '1.25em' }}>= {Math.floor(basePoints * totalBonus / 100).toLocaleString(locale)}</Typography>
               </Grid>
               <Grid item xs={12}>
                 <Box m={2} />

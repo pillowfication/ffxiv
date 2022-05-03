@@ -2,6 +2,7 @@ import React from 'react'
 import { useTranslation } from 'next-i18next'
 import { alpha } from '@mui/system'
 import Typography from '@mui/material/Typography'
+import Paper from '@mui/material/Paper'
 import TableContainer from '@mui/material/TableContainer'
 import Table from '@mui/material/Table'
 import TableHead from '@mui/material/TableHead'
@@ -44,8 +45,8 @@ const UpcomingWeatherTable = ({
   const locale = i18n.language
 
   return (
-    <TableContainer sx={{ mb: 2 }}>
-      <Table size='small' sx={{ '& th, & td': { p: 0.5 } }}>
+    <TableContainer component={Paper} sx={{ mb: 2 }}>
+      <Table sx={{ '& th, & td': { p: 0.5 } }}>
         <TableHead>
           <TableRow>
             {!hidePlaceName && <TableCell />}

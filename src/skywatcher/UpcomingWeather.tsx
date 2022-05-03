@@ -65,10 +65,7 @@ const UpcomingWeather = ({ now }: Props): React.ReactElement => {
           label={t('showLocalTimes')}
         />
         <Tooltip
-          placement='top'
-          arrow
           enterDelay={200}
-          disableInteractive
           title={<Typography variant='caption'>Include places with only 1 possible weather</Typography>}
         >
           <FormControlLabel
@@ -83,7 +80,7 @@ const UpcomingWeather = ({ now }: Props): React.ReactElement => {
             .flatMap(place => getWeatherRates(place).map((_: any, index) => ({ place, weatherRateIndex: index })))
           return (
             <Section key={region}>
-              <Typography variant='h6'>{translatePlace(region, locale)}</Typography>
+              <Typography variant='h3' gutterBottom>{translatePlace(region, locale)}</Typography>
               <UpcomingWeatherTable
                 now={now}
                 places={showAllPlaces

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'next-i18next'
+import { SxProps, Theme } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import Tooltip from '@mui/material/Tooltip'
 import Popper from '@mui/material/Popper'
@@ -24,9 +25,10 @@ interface Props {
   id: number
   size?: number
   badge?: React.ReactNode
+  sx?: SxProps<Theme>
 }
 
-const OceanFishIcon = ({ type, id, size = 40, badge }: Props): React.ReactElement => {
+const OceanFishIcon = ({ type, id, size = 40, badge, sx }: Props): React.ReactElement => {
   const { i18n } = useTranslation()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const locale = i18n.language
@@ -36,7 +38,6 @@ const OceanFishIcon = ({ type, id, size = 40, badge }: Props): React.ReactElemen
       setAnchorEl(event.currentTarget)
     }
   }
-
   const handleClickAway = (): void => {
     setAnchorEl(null)
   }
@@ -51,13 +52,13 @@ const OceanFishIcon = ({ type, id, size = 40, badge }: Props): React.ReactElemen
 
   return (
     <>
-      <Box sx={{
+      <Box sx={[{
         display: 'inline-block',
         position: 'relative',
         margin: 0.1,
         verticalAlign: 'middle'
-      }}>
-        <Tooltip arrow placement='top' title={tooltip}>
+      }, ...(Array.isArray(sx) ? sx : [sx])]}>
+        <Tooltip title={tooltip}>
           <Box onClick={handleClick} sx={{
             width: size * 1.2,
             height: size * 1.2

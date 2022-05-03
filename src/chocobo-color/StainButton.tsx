@@ -30,7 +30,7 @@ const StainButton = ({ stain, color, inline = false, selected = false, onClick }
         backgroundColor: `rgb(${stainColor.R},${stainColor.G},${stainColor.B})`,
         borderStyle: 'solid',
         borderWidth: selected ? 3 : 1,
-        borderColor: selected ? 'primary.main' : '#00000055',
+        borderColor: selected ? 'primary.light' : '#00000055',
         m: 0.5,
         lineHeight: '100%',
         verticalAlign: inline ? 'text-bottom' : 'middle',

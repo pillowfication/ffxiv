@@ -93,7 +93,7 @@ const DropsTable = (): React.ReactElement => {
           <Tab label='3. Northern Zone' />
         </Tabs>
         <TableContainer>
-          <Table size='small'>
+          <Table>
             <TableHead>
               <TableRow>
                 <TableCell align='center'>Fragment</TableCell>
@@ -130,12 +130,16 @@ const DropsTable = (): React.ReactElement => {
                             </TableCell>
                           </>
                         )}
-                        <TableCell align='center'>×{datum.count.toLocaleString(locale)}</TableCell>
+                        <TableCell align='center'>
+                          ×{datum.count.toLocaleString(locale)}
+                        </TableCell>
                         <TableCell>
                           <RankIcon rank={datum.rank} />
                           {formatMonster(translate(locale, datum, 'name'), locale)}
                         </TableCell>
-                        <TableCell align='center'>{conditionMap[datum.condition]}</TableCell>
+                        <TableCell align='center'>
+                          {conditionMap[datum.condition]}
+                        </TableCell>
                       </TableRow>
                     )
                 )}

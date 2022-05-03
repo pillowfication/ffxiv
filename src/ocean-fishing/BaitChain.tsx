@@ -1,6 +1,6 @@
 import React from 'react'
-import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import OceanFishIcon from './OceanFishIcon'
 import Tug from './Tug'

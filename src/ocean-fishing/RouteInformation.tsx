@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'next-i18next'
-import Section from '../Section'
+import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
-import Typography from '@mui/material/Typography'
+import Section from '../Section'
 import RouteInformationIntuition from './RouteInformationIntuition'
 import RouteInformationTimeSensitive from './RouteInformationTimeSensitive'
 import RouteInformationPoints from './RouteInformationPoints'
@@ -53,17 +54,21 @@ const RouteInformation = ({ now, route }: Props): React.ReactElement => {
   }
 
   return (
-    <Section title={
-      <Grid container alignItems='flex-end'>
+    <Section>
+      <Grid container alignItems='flex-end' spacing={2} mb={2}>
         <Grid item xs={12} md>
-          {upperFirst(translate(locale, maps.STOP_MAP[route[0] as Dest].placeName_sub, 'name_noArticle', 'name'))}
-          <span>{maps.TIME_MAP[route[1] as Time]}</span>
-          <Typography display='inline'>
-            {timeUntil(now, next, { t, full: true, locale })}
+          <Typography variant='h3'>
+            {upperFirst(translate(locale, maps.STOP_MAP[route[0] as Dest].placeName_sub, 'name_noArticle', 'name'))}
+            <Box component='span' sx={{ '& > svg': { top: '-20%', ml: 1, mr: 2 } }}>
+              {maps.TIME_MAP[route[1] as Time]}
+            </Box>
+            <Typography sx={{ display: { sm: 'block', md: 'inline' } }}>
+              {timeUntil(now, next, { t, full: true, locale })}
+            </Typography>
           </Typography>
         </Grid>
         <Grid item xs={12} md='auto'>
-          <Select value={fishFilter ?? FishFilter.Intuition} onChange={handleSelectFishFilter}>
+          <Select size='small' value={fishFilter ?? FishFilter.Intuition} onChange={handleSelectFishFilter}>
             <MenuItem value={FishFilter.Intuition}>{t('showIntuitionFish')}</MenuItem>
             <MenuItem value={FishFilter.TimeSensitive}>{t('showTimeFish')}</MenuItem>
             <MenuItem value={FishFilter.Points}>{t('showPointsFish')}</MenuItem>
@@ -71,7 +76,6 @@ const RouteInformation = ({ now, route }: Props): React.ReactElement => {
           </Select>
         </Grid>
       </Grid>
-    }>
       {(() => {
         switch (fishFilter ?? FishFilter.Intuition) {
           case FishFilter.Intuition:

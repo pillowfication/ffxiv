@@ -3,12 +3,14 @@ import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Typography from '@mui/material/Typography'
+import Paper from '@mui/material/Paper'
 import Collapse from '@mui/material/Collapse'
-import Link from '@mui/material/Link'
+import TableContainer from '@mui/material/TableContainer'
 import Button from '@mui/material/Button'
 import { ChecklistContext } from './index'
 import Page from '../../src/Page'
 import Section from '../../src/Section'
+import Link from '../../src/Link'
 import NavigationBar from '../../src/ocean-fishing/NavigationBar'
 import ImportFishes from '../../src/ocean-fishing/ImportFishes'
 import FishTable from '../../src/ocean-fishing/FishTable'
@@ -28,7 +30,6 @@ const Fish = (): React.ReactElement => {
       }
     }
   }, [])
-
   useEffect(() => {
     window.localStorage.setItem('ocean-fishing/checklist', checklist.join(','))
   }, [checklist])
@@ -39,7 +40,7 @@ const Fish = (): React.ReactElement => {
 
   return (
     <Page title={[t('_title'), t('fishPage._title')]}>
-      <NavigationBar page='/fish' />
+      <NavigationBar />
       <ChecklistContext.Provider value={{ checklist, setChecklist }}>
         <Section>
           <Typography paragraph>
@@ -57,7 +58,9 @@ const Fish = (): React.ReactElement => {
           .sort((a, b) => a.order - b.order)
           .map(fishingSpot =>
             <Section key={fishingSpot.id} title={translate(i18n.language, fishingSpot.placeName, 'name')}>
-              <FishTable fishingSpots={[fishingSpot]} />
+              <TableContainer component={Paper}>
+                <FishTable fishingSpots={[fishingSpot]} />
+              </TableContainer>
             </Section>
           )}
       </ChecklistContext.Provider>

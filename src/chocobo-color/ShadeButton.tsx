@@ -10,7 +10,6 @@ interface Props {
   color: Color
   selected?: boolean
   onClick?: () => void
-  className?: string
 }
 
 const ShadeButton = ({ shade, color, selected = false, onClick }: Props): React.ReactElement => {
@@ -26,7 +25,7 @@ const ShadeButton = ({ shade, color, selected = false, onClick }: Props): React.
         backgroundColor: `rgb(${color.R},${color.G},${color.B})`,
         borderStyle: 'solid',
         borderWidth: selected ? 3 : 1,
-        borderColor: selected ? 'primary.main' : '#00000055',
+        borderColor: selected ? 'primary.light' : '#00000055',
         borderRadius: '50%',
         m: 0.75,
         cursor: 'pointer'

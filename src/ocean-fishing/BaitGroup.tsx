@@ -1,6 +1,6 @@
 import React from 'react'
-import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
 import BaitChain, { BaitLink, FishLink } from './BaitChain'
 import { Fish } from './ffxiv-ocean-fishing/data'
 

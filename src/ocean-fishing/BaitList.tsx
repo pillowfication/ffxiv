@@ -1,6 +1,6 @@
 import React from 'react'
-import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
 import BaitGroup from './BaitGroup'
 import { BaitLink, FishLink } from './BaitChain'
 import { Fish } from './ffxiv-ocean-fishing/data'
@@ -20,11 +20,11 @@ interface Props {
 
 const BaitList = ({ baitGroups }: Props): React.ReactElement => {
   return (
-    <Box component='ul' sx={{ listStyleType: 'none', p: 0 }}>
+    <Box component='ul' sx={{ listStyleType: 'none', p: 0, m: 0 }}>
       {baitGroups.map((baitGroup, index) => {
         if (baitGroup === 'hr') {
           return (
-            <li key={index}><hr /></li>
+            <li key={index}><Box component='hr' sx={{ borderColor: 'divider' }} /></li>
           )
         } else {
           const { header, baitGroupProps } = baitGroup

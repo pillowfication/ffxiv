@@ -27,23 +27,19 @@ const RouteInformationAll = ({ stopTimes }: Props): React.ReactElement => {
 
   return (
     <Card variant='outlined'>
-      <Tabs variant='fullWidth' value={tab} onChange={handleChangeTab} className={'classes.fishTab'}>
+      <Tabs variant='fullWidth' value={tab} onChange={handleChangeTab}>
         {stopTimes.map((stopTime, index) =>
-          <Tab
-            key={stopTime}
-            label={(
-              <>
-                {index + 1}. {translate(locale, maps.STOP_MAP[stopTime[0] as Stop].placeName_sub, 'name')}
-                {maps.TIME_MAP[stopTime[1] as Time]}
-              </>
-            )}
-            className={'classes.fishTab'}
-          />
+          <Tab key={stopTime} label={
+            <>
+              {index + 1}. {translate(locale, maps.STOP_MAP[stopTime[0] as Stop].placeName_sub, 'name')}
+              {maps.TIME_MAP[stopTime[1] as Time]}
+            </>
+          } />
         )}
       </Tabs>
-      {stopTimes.map((stopTime, index) =>
+      {stopTimes.map((stopTime, index) => (
         <FishPanel key={stopTime} tab={tab} index={index} stopTime={stopTime} />
-      )}
+      ))}
     </Card>
   )
 }

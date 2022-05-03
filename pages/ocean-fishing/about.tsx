@@ -2,10 +2,9 @@ import React from 'react'
 import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import Box from '@mui/material/Box'
-import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
-import MuiLink from '@mui/material/Link'
+import Paper from '@mui/material/Paper'
+import TableContainer from '@mui/material/TableContainer'
 import Page from '../../src/Page'
 import Section from '../../src/Section'
 import Link from '../../src/Link'
@@ -19,17 +18,17 @@ const About = (): React.ReactElement => {
   return (
     <Page title={[t('_title'), t('aboutPage._title')]}>
       {mathJaxRequire('cancel')}
-      <NavigationBar page='/about' />
+      <NavigationBar />
       <Section title={t('aboutPage.data')}>
         <Typography paragraph>
-          Data are taken from the <MuiLink href='https://docs.google.com/spreadsheets/d/1R0Nt8Ye7EAQtU8CXF1XRRj67iaFpUk1BXeDgt6abxsQ/edit#gid=149797934'>Ocean Fishing Spreadsheet</MuiLink> managed by Tyo’to Tayuun. To report errors, please visit the <MuiLink href='https://discord.gg/AnFaDpN'>Fisherman’s Horizon Discord</MuiLink> or message Lulu Pillow@Adamantoise or Pillowfication#0538.
+          Data are taken from the <Link href='https://docs.google.com/spreadsheets/d/1R0Nt8Ye7EAQtU8CXF1XRRj67iaFpUk1BXeDgt6abxsQ/edit#gid=149797934'>Ocean Fishing Spreadsheet</Link> managed by Tyo’to Tayuun. To report errors, please visit the <Link href='https://discord.gg/AnFaDpN'>Fisherman’s Horizon Discord</Link> or message Lulu Pillow@Adamantoise or Pillowfication#0538.
         </Typography>
         <Typography paragraph>
-          Bite times are periodically fetched from <MuiLink href='https://ffxivteamcraft.com/'>Teamcraft</MuiLink>. Teamcraft defines the minimum and maximum bite times to be the whiskers of a typical boxplot. This means
+          Bite times are periodically fetched from <Link href='https://ffxivteamcraft.com/'>Teamcraft</Link>. Teamcraft defines the minimum and maximum bite times to be the whiskers of a typical boxplot. This means
         </Typography>
         <ol>
           <Typography component='li'>
-            Compute quartiles using the type-7 algorithm detailed in <MuiLink href='https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/quantile'>R’s quantile method</MuiLink>.
+            Compute quartiles using the type-7 algorithm detailed in <Link href='https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/quantile'>R’s quantile method</Link>.
           </Typography>
           <Typography component='li'>
             Removing samples more than {$('1.5 \\times \\text{IQR}')} from the median.
@@ -39,23 +38,23 @@ const About = (): React.ReactElement => {
           The default bite times shown on the <Link href='/ocean-fishing'>Ocean Fishing page</Link> are the bite time ranges over all baits, excluding Versatile Lure. While this works fairly well, it can still be inaccurate, and most prescribed strategies will use player-tested timings.
         </Typography>
         <Typography paragraph>
-          Bait percentages are also fetched from Teamcraft and are usually used as the suggested bait, unless the bait causes a drastic increase in bite times. Usually the best bait is the fish’s desynthesis bait, and nonstandard ocean fishing baits are avoided, unless the goal is Fisher’s Intuition. Specific cases were further detailed in the <MuiLink href='https://discord.com/channels/327124808217395200/679407580430467092/864238268514041917'>Discord</MuiLink>.
+          Bait percentages are also fetched from Teamcraft and are usually used as the suggested bait, unless the bait causes a drastic increase in bite times. Usually the best bait is the fish’s desynthesis bait, and nonstandard ocean fishing baits are avoided, unless the goal is Fisher’s Intuition. Specific cases were further detailed in the <Link href='https://discord.com/channels/327124808217395200/679407580430467092/864238268514041917'>Discord</Link>.
         </Typography>
         <Typography paragraph>
-          All my data and the code I used are available on <MuiLink href='https://github.com/pillowfication/ffxiv/tree/master/src/ocean-fishing/ffxiv-ocean-fishing'>GitHub</MuiLink>.
+          All my data and the code I used are available on <Link href='https://github.com/pillowfication/ffxiv/tree/master/src/ocean-fishing/ffxiv-ocean-fishing'>GitHub</Link>.
         </Typography>
       </Section>
       <Section title={t('aboutPage.algorithm')}>
         <Typography paragraph>
           Ocean Fishing voyages follow a specific pattern best seen using Japan Standard Time (JST). Voyages leave every 2 hours on odd hours (at 1:00, 3:00, …, 23:00). The destination always cycles between the 4 destinations in the following order:
         </Typography>
-        <Box mb={2}>
+        <TableContainer sx={{ mb: 2 }}>
           {$$('\\cdots \\to \\text{Bloodbrine Sea} \\to \\text{Rothlyt Sound} \\to \\text{Northern Strait of Merlthor} \\to \\text{Rhotano Sea} \\to \\cdots')}
-        </Box>
+        </TableContainer>
         <Typography paragraph>
           The 4 destinations will all be set to arrive at Day, then repeated to arrive at Sunset, then repeated to arrive at Night. There are 12 routes that I label as
         </Typography>
-        <Box mb={2}>
+        <TableContainer sx={{ mb: 2 }}>
           {$$(`
             \\begin{array}{r|ccc}
               & \\text{Day (D)} & \\text{Sunset (S)} & \\text{Night (N)} \\\\
@@ -66,11 +65,11 @@ const About = (): React.ReactElement => {
               \\text{Rhotano Sea (R)} & \\text{RD} & \\text{RS} & \\text{RN} \\\\
             \\end{array}
           `)}
-        </Box>
+        </TableContainer>
         <Typography paragraph>
           and they follow the sequence
         </Typography>
-        <Box mb={2}>
+        <TableContainer sx={{ mb: 2 }}>
           {$$(`
             \\begin{array}{rcccccccccl}
               \\cdots & \\to & \\text{BD} & \\to & \\text{TD} & \\to & \\text{ND} & \\to & \\text{RD} \\\\
@@ -78,11 +77,11 @@ const About = (): React.ReactElement => {
               & \\to & \\text{BN} & \\to & \\text{TN} & \\to & \\text{NN} & \\to & \\text{RN} & \\to & \\cdots \\\\
             \\end{array}
           `)}
-        </Box>
+        </TableContainer>
         <Typography paragraph>
           However, the first voyage of every day (at 1:00 JST) will skip a route. So there might be the schedule
         </Typography>
-        <Box mb={2}>
+        <TableContainer sx={{ mb: 2 }}>
           {$$(`
             \\cdots
             \\begin{array}{c|c}
@@ -91,7 +90,7 @@ const About = (): React.ReactElement => {
             \\end{array}
             \\cdots
           `)}
-        </Box>
+        </TableContainer>
         <Typography paragraph>
           Since there are 12 routes and 12 voyages a day, the route that is skipped will cycle through all 12 routes in 12 days. The full pattern of routes is 144 routes long.
         </Typography>
@@ -114,7 +113,7 @@ const PATTERN = [
           `.trim()}
         </Highlight>
         <Typography paragraph>
-          To figure out the route at a given time, we need to first establish some epoch as the first voyage and determine where in <Paper component='code' variant='outlined' sx={{ px: 0.5 }}>PATTERN</Paper> that voyage lies. All other routes will be calculated relative to that epoch. Fortunately, JST is UTC+09:00, which means a voyage lands on the <MuiLink href='https://en.wikipedia.org/wiki/Unix_time'>Unix epoch</MuiLink>. As it turns out, this voyage is index 88 in <Paper component='code' variant='outlined' sx={{ px: 0.5 }}>PATTERN</Paper>. Altogether,
+          To figure out the route at a given time, we need to first establish some epoch as the first voyage and determine where in <Paper component='code' variant='outlined' sx={{ px: 0.5 }}>PATTERN</Paper> that voyage lies. All other routes will be calculated relative to that epoch. Fortunately, JST is UTC+09:00, which means a voyage lands on the <Link href='https://en.wikipedia.org/wiki/Unix_time'>Unix epoch</Link>. As it turns out, this voyage is index 88 in <Paper component='code' variant='outlined' sx={{ px: 0.5 }}>PATTERN</Paper>. Altogether,
         </Typography>
         <Highlight language='typescript'>
           {`

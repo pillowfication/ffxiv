@@ -1,8 +1,8 @@
 import React from 'react'
-import { SxProps, Theme } from '@mui/material/styles'
+import { useTheme, SxProps, Theme } from '@mui/material/styles'
 import Paper from '@mui/material/Paper'
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { github } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
+import { atomOneDark, github } from 'react-syntax-highlighter/dist/cjs/styles/hljs' // eslint-disable-line
 import javascript from 'react-syntax-highlighter/dist/cjs/languages/hljs/javascript'
 import latex from 'react-syntax-highlighter/dist/cjs/languages/hljs/latex'
 import typescript from 'react-syntax-highlighter/dist/cjs/languages/hljs/typescript'
@@ -18,12 +18,14 @@ interface Props {
 }
 
 const Highlight = ({ language, sx, children }: Props): React.ReactElement => {
+  const theme = useTheme()
+
   return (
     <Paper
       component={SyntaxHighlighter}
       variant='outlined'
       language={language}
-      style={github}
+      style={theme.palette.mode === 'dark' ? atomOneDark : github}
       sx={sx}
     >
       {children}

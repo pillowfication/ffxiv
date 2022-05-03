@@ -3,7 +3,6 @@ import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Typography from '@mui/material/Typography'
-import MuiLink from '@mui/material/Link'
 import Link from '../../src/Link'
 import Page from '../../src/Page'
 import Section from '../../src/Section'
@@ -49,7 +48,6 @@ const OceanFishing = (): React.ReactElement => {
       clearTimeout(interval)
     }
   }, [])
-
   useEffect(() => {
     if (typeof window !== 'undefined' && checklist !== null) {
       window.localStorage.setItem('ocean-fishing/checklist', checklist.join(','))
@@ -58,11 +56,11 @@ const OceanFishing = (): React.ReactElement => {
 
   return (
     <Page title={t('_title')} description={t('_description')}>
-      <NavigationBar page='/' />
+      <NavigationBar />
       <ChecklistContext.Provider value={{ checklist: checklist ?? [], setChecklist }}>
         <Section>
           <Typography paragraph>
-            Data are taken from the <MuiLink href='https://docs.google.com/spreadsheets/d/1R0Nt8Ye7EAQtU8CXF1XRRj67iaFpUk1BXeDgt6abxsQ/edit#gid=149797934'>Ocean Fishing Spreadsheet</MuiLink> managed by Tyo’to Tayuun. Bite times are from <MuiLink href='https://ffxivteamcraft.com/'>Teamcraft</MuiLink>. For questions/comments/corrections, please visit the <MuiLink href='https://discord.gg/AnFaDpN'>Fisherman’s Horizon Discord</MuiLink> or message Lulu Pillow@Adamantoise or Pillowfication#0538.
+            Data are taken from the <Link href='https://docs.google.com/spreadsheets/d/1R0Nt8Ye7EAQtU8CXF1XRRj67iaFpUk1BXeDgt6abxsQ/edit#gid=149797934'>Ocean Fishing Spreadsheet</Link> managed by Tyo’to Tayuun. Bite times are from <Link href='https://ffxivteamcraft.com/'>Teamcraft</Link>. For questions/comments/corrections, please visit the <Link href='https://discord.gg/AnFaDpN'>Fisherman’s Horizon Discord</Link> or message Lulu Pillow@Adamantoise or Pillowfication#0538.
           </Typography>
           <Typography paragraph sx={{ display: 'none' }}>
             I’ve also made a Chrome Extension for adding ocean fishes to the <Link href='https://ff14fish.carbuncleplushy.com/'>Carbuncle Plushy FFX|V Fish Tracker App</Link> available on the <Link href='https://chrome.google.com/webstore/detail/add-ocean-fish-to-ff14-fi/oihefgmncbnicjmcdccjflagboaidenh'>Chrome Web Store</Link>.

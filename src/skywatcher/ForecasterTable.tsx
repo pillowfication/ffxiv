@@ -1,6 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'next-i18next'
 import Typography from '@mui/material/Typography'
+import Paper from '@mui/material/Paper'
 import TableContainer from '@mui/material/TableContainer'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -33,8 +34,8 @@ const Forecaster = ({ now, forecast }: Props): React.ReactElement => {
   const locale = i18n.language
 
   return (
-    <TableContainer sx={{ mb: 2 }}>
-      <Table size='small'>
+    <TableContainer component={Paper} sx={{ mb: 2 }}>
+      <Table>
         <TableBody>
           {(() => {
             let previousDate: string

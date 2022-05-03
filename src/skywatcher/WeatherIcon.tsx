@@ -19,12 +19,7 @@ const WeatherIcon = ({ weather, sx = [] }: Props): React.ReactElement => {
   const locale = i18n.language
 
   return (
-    <Tooltip
-      placement='top'
-      arrow
-      disableInteractive
-      title={translateWeather(weather, locale)}
-    >
+    <Tooltip title={translateWeather(weather, locale)}>
       <Box
         sx={[{
           display: 'inline-block',

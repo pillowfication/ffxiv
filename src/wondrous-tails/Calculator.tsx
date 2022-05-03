@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import Typography from '@mui/material/Typography'
-import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
-import TableContainer from '@mui/material/TableContainer'
+import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableHead from '@mui/material/TableHead'
 import TableBody from '@mui/material/TableBody'
@@ -48,48 +47,46 @@ const Calculator = (): React.ReactElement => {
     <Section>
       <Grid container spacing={4}>
         <Grid item xs={12} lg='auto'>
-          <TableContainer>
-            <Box component='table' sx={{
-              display: 'inline-block',
-              borderCollapse: 'collapse',
-              borderSpacing: 0,
-              border: '1px solid black'
-            }}>
-              <tbody>
-                <tr>
-                  <CalculatorCell selected={board[0]} onSelect={toggleCell.bind(null, 0)} />
-                  <CalculatorCell selected={board[1]} onSelect={toggleCell.bind(null, 1)} />
-                  <CalculatorCell selected={board[2]} onSelect={toggleCell.bind(null, 2)} />
-                  <CalculatorCell selected={board[3]} onSelect={toggleCell.bind(null, 3)} />
-                </tr>
-                <tr>
-                  <CalculatorCell selected={board[4]} onSelect={toggleCell.bind(null, 4)} />
-                  <CalculatorCell selected={board[5]} onSelect={toggleCell.bind(null, 5)} />
-                  <CalculatorCell selected={board[6]} onSelect={toggleCell.bind(null, 6)} />
-                  <CalculatorCell selected={board[7]} onSelect={toggleCell.bind(null, 7)} />
-                </tr>
-                <tr>
-                  <CalculatorCell selected={board[8]} onSelect={toggleCell.bind(null, 8)} />
-                  <CalculatorCell selected={board[9]} onSelect={toggleCell.bind(null, 9)} />
-                  <CalculatorCell selected={board[10]} onSelect={toggleCell.bind(null, 10)} />
-                  <CalculatorCell selected={board[11]} onSelect={toggleCell.bind(null, 11)} />
-                </tr>
-                <tr>
-                  <CalculatorCell selected={board[12]} onSelect={toggleCell.bind(null, 12)} />
-                  <CalculatorCell selected={board[13]} onSelect={toggleCell.bind(null, 13)} />
-                  <CalculatorCell selected={board[14]} onSelect={toggleCell.bind(null, 14)} />
-                  <CalculatorCell selected={board[15]} onSelect={toggleCell.bind(null, 15)} />
-                </tr>
-              </tbody>
-            </Box>
-          </TableContainer>
+          <Paper component='table' sx={{
+            display: 'inline-block',
+            borderCollapse: 'collapse',
+            borderSpacing: 0,
+            border: '1px solid black'
+          }}>
+            <tbody>
+              <tr>
+                <CalculatorCell selected={board[0]} onSelect={toggleCell.bind(null, 0)} />
+                <CalculatorCell selected={board[1]} onSelect={toggleCell.bind(null, 1)} />
+                <CalculatorCell selected={board[2]} onSelect={toggleCell.bind(null, 2)} />
+                <CalculatorCell selected={board[3]} onSelect={toggleCell.bind(null, 3)} />
+              </tr>
+              <tr>
+                <CalculatorCell selected={board[4]} onSelect={toggleCell.bind(null, 4)} />
+                <CalculatorCell selected={board[5]} onSelect={toggleCell.bind(null, 5)} />
+                <CalculatorCell selected={board[6]} onSelect={toggleCell.bind(null, 6)} />
+                <CalculatorCell selected={board[7]} onSelect={toggleCell.bind(null, 7)} />
+              </tr>
+              <tr>
+                <CalculatorCell selected={board[8]} onSelect={toggleCell.bind(null, 8)} />
+                <CalculatorCell selected={board[9]} onSelect={toggleCell.bind(null, 9)} />
+                <CalculatorCell selected={board[10]} onSelect={toggleCell.bind(null, 10)} />
+                <CalculatorCell selected={board[11]} onSelect={toggleCell.bind(null, 11)} />
+              </tr>
+              <tr>
+                <CalculatorCell selected={board[12]} onSelect={toggleCell.bind(null, 12)} />
+                <CalculatorCell selected={board[13]} onSelect={toggleCell.bind(null, 13)} />
+                <CalculatorCell selected={board[14]} onSelect={toggleCell.bind(null, 14)} />
+                <CalculatorCell selected={board[15]} onSelect={toggleCell.bind(null, 15)} />
+              </tr>
+            </tbody>
+          </Paper>
         </Grid>
         <Grid item xs={12} lg>
-          <Typography variant='h6' paragraph>{filledCells} / 9</Typography>
+          <Typography variant='h3' paragraph>{filledCells} / 9</Typography>
           {filledCells <= 9
             ? <Typography paragraph>{t('selectStickers')}</Typography>
             : <Typography paragraph>{t('tooManyStickers')}</Typography>}
-          <TableContainer>
+          <Paper sx={{ display: 'inline-block', mb: 2 }}>
             <Table sx={{ width: 'auto' }}>
               <TableHead>
                 <TableRow>
@@ -116,7 +113,8 @@ const Calculator = (): React.ReactElement => {
                 </TableRow>
               </TableBody>
             </Table>
-          </TableContainer>
+          </Paper>
+          <br />
           <Button variant='contained' color='secondary' onClick={handleClickReset}>{t('reset')}</Button>
         </Grid>
       </Grid>

@@ -15,7 +15,7 @@ const Tug = ({ strength, size = 'normal' }: Props): React.ReactElement => {
   switch (strength) {
     case 1:
       return (
-        <Tooltip arrow placement='top' title={t('tug.light') as string}>
+        <Tooltip title={t('tug.light') as string}>
           <Paper component='span' sx={{
             display: 'inline-block',
             width: '1.2em',
@@ -33,7 +33,7 @@ const Tug = ({ strength, size = 'normal' }: Props): React.ReactElement => {
       )
     case 2:
       return (
-        <Tooltip arrow placement='top' title={t('tug.medium') as string}>
+        <Tooltip title={t('tug.medium') as string}>
           <Paper component='span' sx={{
             display: 'inline-block',
             width: '1.2em',
@@ -51,7 +51,7 @@ const Tug = ({ strength, size = 'normal' }: Props): React.ReactElement => {
       )
     case 3:
       return (
-        <Tooltip arrow placement='top' title={t('tug.heavy') as string}>
+        <Tooltip title={t('tug.heavy') as string}>
           <Paper component='span' sx={{
             display: 'inline-block',
             width: '1.2em',

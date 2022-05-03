@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'next-i18next'
 import Box from '@mui/material/Box'
-import MuiLink from '@mui/material/Link'
+import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import TableContainer from '@mui/material/TableContainer'
 import Table from '@mui/material/Table'
@@ -9,6 +9,7 @@ import TableHead from '@mui/material/TableHead'
 import TableBody from '@mui/material/TableBody'
 import TableRow from '@mui/material/TableRow'
 import TableCell from '@mui/material/TableCell'
+import Link from '../Link'
 import Section from '../Section'
 import { $ } from '../MathJax'
 import MiniGrid from './MiniGrid'
@@ -21,10 +22,10 @@ const About = (): React.ReactElement => {
   return (
     <Section title={t('about')}>
       <Typography paragraph>
-        <MuiLink href='https://na.finalfantasyxiv.com/lodestone/playguide/contentsguide/goldsaucer/cactpot/'>Mini Cactpot</MuiLink> is a scratchcard lottery where each of the numbers {$('1')} through {$('9')} are hidden in a {$('3 \\times 3')} grid. One cell is initially revealed, and after selecting 3 more to uncover one at a time, you may select any row, column, or diagonal. The sum of your selected line determines how much MGP you win.
+        <Link href='https://na.finalfantasyxiv.com/lodestone/playguide/contentsguide/goldsaucer/cactpot/'>Mini Cactpot</Link> is a scratchcard lottery where each of the numbers {$('1')} through {$('9')} are hidden in a {$('3 \\times 3')} grid. One cell is initially revealed, and after selecting 3 more to uncover one at a time, you may select any row, column, or diagonal. The sum of your selected line determines how much MGP you win.
       </Typography>
       <TableContainer sx={{ mb: 2 }}>
-        <Table size='small' sx={{ width: 'auto', margin: '0 auto' }}>
+        <Paper component={Table} sx={{ width: 'auto', m: 'auto' }}>
           <TableHead>
             <TableRow>
               <TableCell align='center'>Sum</TableCell>
@@ -44,23 +45,23 @@ const About = (): React.ReactElement => {
               [12, 22],
               [13, 23],
               [14, 24],
-              [15]
+              [15, undefined]
             ].map((row, index) =>
               <TableRow key={index}>
-                {row.map((col, index) =>
+                {row.map((col, index) => (
                   <React.Fragment key={index}>
                     <TableCell align='center'>
-                      {col.toLocaleString(locale)}
+                      {col?.toLocaleString(locale)}
                     </TableCell>
                     <TableCell align='right'>
-                      {PAYOUTS[col].toLocaleString(locale)}
+                      {col !== undefined && PAYOUTS[col].toLocaleString(locale)}
                     </TableCell>
                   </React.Fragment>
-                )}
+                ))}
               </TableRow>
             )}
           </TableBody>
-        </Table>
+        </Paper>
       </TableContainer>
       <Typography paragraph>
         This calculator works by computing the expected value of selecting any line or cell. A strategy that doesn’t involve heavy computation is to first reveal a “Y” shape on the board.

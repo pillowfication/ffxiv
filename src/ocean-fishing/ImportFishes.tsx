@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
-import Box from '@mui/material/Box'
-import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
-import Link from '@mui/material/Link'
+import Box from '@mui/material/Box'
+import Stack from '@mui/material/Stack'
+import Paper from '@mui/material/Paper'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import Alert from '@mui/material/Alert'
 import Section from '../../src/Section'
+import Link from '../../src/Link'
 
 function sortFishes (fishes: number[]): number[] {
   return fishes
@@ -75,12 +76,12 @@ const ImportFishes = ({ checklist, setChecklist }: Props): React.ReactElement =>
           onChange={handleInputImportData}
         />
         {message !== null && (
-          <Alert variant='outlined' severity={message?.type}>{message?.message}</Alert>
+          <Alert variant='outlined' severity={message.type}>{message.message}</Alert>
         )}
-        <div className={'classes.buttons'}>
-          <Button variant='contained' color='primary' onClick={handleClickImport}>Import</Button>
-          <Button variant='contained' color='primary' onClick={handleClickMerge}>Merge</Button>
-        </div>
+        <Stack direction='row' spacing={1} sx={{ mt: 1 }}>
+          <Button variant='contained' onClick={handleClickImport}>Import</Button>
+          <Button variant='contained' onClick={handleClickMerge}>Merge</Button>
+        </Stack>
       </Box>
     </Section>
   )

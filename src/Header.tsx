@@ -16,6 +16,8 @@ import HomeIcon from '@mui/icons-material/Home'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import TranslateIcon from '@mui/icons-material/Translate'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import LightModeIcon from '@mui/icons-material/LightMode'
+import DarkModeIcon from '@mui/icons-material/DarkMode'
 import Link from './Link'
 
 const LANGUAGES: Record<string, string> = {
@@ -76,7 +78,7 @@ const Header = ({ theme, setTheme }: Props): React.ReactElement => {
               disableElevation
               href='/'
             >
-              <HomeIcon />
+              <HomeIcon width={0} />
               <Typography sx={{ ml: 1, textTransform: 'none' }}>Lulu’s Tools</Typography>
             </Button>
           </Tooltip>
@@ -89,7 +91,7 @@ const Header = ({ theme, setTheme }: Props): React.ReactElement => {
               disableElevation
               href='https://github.com/pillowfication/ffxiv'
             >
-              <GitHubIcon />
+              <GitHubIcon width={0} />
             </Button>
           </Tooltip>
           <Tooltip title='Change language' enterDelay={300}>
@@ -99,11 +101,11 @@ const Header = ({ theme, setTheme }: Props): React.ReactElement => {
               disableElevation
               onClick={handleClickLanguage}
             >
-              <TranslateIcon fontSize='small' />
+              <TranslateIcon fontSize='small' width={0} />
               <Box display={{ xs: 'none', md: 'inline-block' }} px={1} >
                 <NoSsr>{getLanguage(i18n.language ?? 'en')}</NoSsr>
               </Box>
-              <ExpandMoreIcon fontSize='small' />
+              <ExpandMoreIcon fontSize='small' width={0} />
             </Button>
           </Tooltip>
           <Menu
@@ -118,7 +120,10 @@ const Header = ({ theme, setTheme }: Props): React.ReactElement => {
               </MenuItem>
             ))}
           </Menu>
-          <Switch checked={theme === 'dark'} onChange={handleChangeTheme} />
+          <Switch color='default' checked={theme === 'dark'} onChange={handleChangeTheme} />
+          {theme === 'dark'
+            ? <DarkModeIcon fontSize='small' width={0} />
+            : <LightModeIcon fontSize='small' width={0} />}
         </Toolbar>
       </Container>
     </AppBar>

@@ -1,5 +1,7 @@
 import React from 'react'
 import { alpha } from '@mui/system'
+import { Theme } from '@mui/material/styles'
+import Paper from '@mui/material/Paper'
 import TextField from '@mui/material/TextField'
 
 interface Props {
@@ -23,7 +25,8 @@ const CalculatorCell = ({ value, suggested = false, error = false, onInputDigit 
   }
 
   return (
-    <TextField
+    <Paper
+      component={TextField}
       type='tel'
       variant='outlined'
       error={error}
@@ -33,9 +36,9 @@ const CalculatorCell = ({ value, suggested = false, error = false, onInputDigit 
           height: { xs: '5em', md: '7.5em' },
           borderRadius: 0,
           backgroundColor: suggested
-            ? theme => alpha(theme.palette.primary.main, 0.2)
+            ? (theme: Theme) => alpha(theme.palette.primary.main, 0.2)
             : error
-              ? theme => alpha(theme.palette.error.main, 0.2)
+              ? (theme: Theme) => alpha(theme.palette.error.main, 0.2)
               : 'none'
         }
       }}

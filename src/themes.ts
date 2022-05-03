@@ -20,13 +20,13 @@ export const lightTheme = createTheme({
       fontSize: '4rem'
     },
     h2: {
-      fontSize: '3rem'
-    },
-    h3: {
       fontSize: '2.5rem'
     },
-    h4: {
+    h3: {
       fontSize: '2rem'
+    },
+    h4: {
+      fontSize: '1.85rem'
     }
   },
   components: {
@@ -35,20 +35,17 @@ export const lightTheme = createTheme({
         underline: 'hover'
       }
     },
-    MuiList: {
-      defaultProps: {
-        dense: true
-      }
-    },
-    MuiMenuItem: {
-      defaultProps: {
-        dense: true
-      }
-    },
     MuiTable: {
       defaultProps: {
         size: 'small'
       }
+      // styleOverrides: {
+      //   root: {
+      //     '& tbody tr:last-child > *': {
+      //       borderBottom: 0
+      //     }
+      //   }
+      // }
     },
     MuiTooltip: {
       defaultProps: {
@@ -73,7 +70,8 @@ export const darkTheme = createTheme({
       main: '#d32f2f'
     },
     background: {
-      default: '#24292e'
+      default: '#121a21',
+      paper: '#0f1315'
     }
   },
   typography: {
@@ -83,13 +81,13 @@ export const darkTheme = createTheme({
       fontSize: '4rem'
     },
     h2: {
-      fontSize: '3rem'
-    },
-    h3: {
       fontSize: '2.5rem'
     },
-    h4: {
+    h3: {
       fontSize: '2rem'
+    },
+    h4: {
+      fontSize: '1.85rem'
     }
   },
   components: {
@@ -99,20 +97,17 @@ export const darkTheme = createTheme({
         underline: 'hover'
       }
     },
-    MuiList: {
-      defaultProps: {
-        dense: true
-      }
-    },
-    MuiMenuItem: {
-      defaultProps: {
-        dense: true
-      }
-    },
     MuiTable: {
       defaultProps: {
         size: 'small'
       }
+      // styleOverrides: {
+      //   root: {
+      //     '& tbody tr:last-child > *': {
+      //       borderBottom: 0
+      //     }
+      //   }
+      // }
     },
     MuiTooltip: {
       defaultProps: {

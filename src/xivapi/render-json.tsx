@@ -187,7 +187,7 @@ const JSONString = ({ data, opt }: { data: string, opt: Props }): React.ReactEle
     return (
       <>
         <span>
-          {renderKey(objKey)}<Link component={SpanString} onClick={onChangeUrl !== undefined ? () => onChangeUrl(_isContent ? `/${data}` : data) : undefined}>"{data}"{!_isContent && <> <LinkIcon fontSize='small' sx={{ verticalAlign: 'text-bottom' }} /></>}</Link>{comma && ','}
+          {renderKey(objKey)}<Link component={SpanString} onClick={onChangeUrl !== undefined ? () => onChangeUrl(_isContent ? `/${data}` : data) : undefined} sx={{ cursor: 'pointer' }}>"{data}"{!_isContent && <> <LinkIcon fontSize='small' sx={{ verticalAlign: 'text-bottom' }} /></>}</Link>{comma && ','}
         </span>
         <br />
       </>

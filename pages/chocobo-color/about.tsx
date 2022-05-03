@@ -4,7 +4,9 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { alpha } from '@mui/system'
 import { Theme } from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
+import Paper from '@mui/material/Paper'
 import Collapse from '@mui/material/Collapse'
 import TableContainer from '@mui/material/TableContainer'
 import Table from '@mui/material/Table'
@@ -12,8 +14,6 @@ import TableHead from '@mui/material/TableHead'
 import TableBody from '@mui/material/TableBody'
 import TableRow from '@mui/material/TableRow'
 import TableCell from '@mui/material/TableCell'
-import Typography from '@mui/material/Typography'
-import MuiLink from '@mui/material/Link'
 import Button from '@mui/material/Button'
 import Page from '../../src/Page'
 import Section from '../../src/Section'
@@ -56,12 +56,8 @@ const ClampedTable = (): React.ReactElement => {
     <Box mb={2}>
       <Button variant='contained' onClick={handleClickToggleClamping}>{showClamping ? 'Hide' : 'Show'} Solutions</Button>
       <Collapse in={showClamping}>
-      <TableContainer>
-        <Table size='small' sx={{
-          width: 'auto',
-          margin: '0 auto',
-          '& td': { py: 0 }
-        }}>
+      <TableContainer sx={{ mb: 2 }}>
+        <Paper component={Table} sx={{ width: 'auto', m: 'auto', '& td': { py: 0 } }}>
           <TableHead>
             <TableRow>
               <TableCell colSpan={5} align='center'>Without clamping</TableCell>
@@ -102,12 +98,12 @@ const ClampedTable = (): React.ReactElement => {
 
                 rows.push(
                   <TableRow key={index}>
-                    <TableCell align='center'>{matrixFruit !== undefined && <FruitIcon fruit={matrixFruit} size={0.8} />}</TableCell>
+                    <TableCell align='center'>{matrixFruit !== undefined && <FruitIcon fruit={matrixFruit} size={0.8} sx={{ verticalAlign: 'middle' }} />}</TableCell>
                     <TableCell align='center'>{matrixFruit !== undefined && $(`${currentColorMatrix.R}`)}</TableCell>
                     <TableCell align='center'>{matrixFruit !== undefined && $(`${currentColorMatrix.G}`)}</TableCell>
                     <TableCell align='center'>{matrixFruit !== undefined && $(`${currentColorMatrix.B}`)}</TableCell>
                     <TableCell>{matrixFruit !== undefined && <StainButton color={currentColorMatrix} />}</TableCell>
-                    <TableCell align='center'>{distanceFruit !== undefined && <FruitIcon fruit={distanceFruit} size={0.8} />}</TableCell>
+                    <TableCell align='center'>{distanceFruit !== undefined && <FruitIcon fruit={distanceFruit} size={0.8} sx={{ verticalAlign: 'middle' }} />}</TableCell>
                     <TableCell align='center'>{distanceFruit !== undefined && $(`${currentColorDistance.R}`)}</TableCell>
                     <TableCell align='center'>{distanceFruit !== undefined && $(`${currentColorDistance.G}`)}</TableCell>
                     <TableCell align='center'>{distanceFruit !== undefined && $(`${currentColorDistance.B}`)}</TableCell>
@@ -119,7 +115,7 @@ const ClampedTable = (): React.ReactElement => {
               return rows
             })()}
           </TableBody>
-        </Table>
+        </Paper>
       </TableContainer>
       </Collapse>
     </Box>
@@ -137,7 +133,7 @@ const About = (): React.ReactElement => {
           Your chocobo’s plumage can be modified by feeding it 6 possible fruits. Each fruit changes the chocobo’s RGB values according to the following table:
         </Typography>
         <TableContainer sx={{ mb: 2 }}>
-          <Table size='small' sx={{ width: 'auto', margin: '0 auto' }}>
+          <Paper component={Table} sx={{ width: 'auto', m: 'auto' }}>
             <TableHead>
               <TableRow>
                 <TableCell align='center'>Fruit</TableCell>
@@ -160,7 +156,10 @@ const About = (): React.ReactElement => {
                     const { R, G, B } = fruitValues[fruit]
                     return (
                       <TableRow key={fruit}>
-                        <TableCell><FruitIcon fruit={fruit} /> {translate(locale, fruits[fruit], 'name')}</TableCell>
+                        <TableCell>
+                          <FruitIcon fruit={fruit} sx={{ verticalAlign: 'middle', mr: 1 }} />
+                          <Typography component='span' sx={{ verticalAlign: 'middle' }}>{translate(locale, fruits[fruit], 'name')}</Typography>
+                        </TableCell>
                         <TableCell
                           align='center'
                           sx={{ backgroundColor: R > 0 ? POSITIVE_COLOR : R < 0 ? NEGATIVE_COLOR : 'none' }}
@@ -184,14 +183,14 @@ const About = (): React.ReactElement => {
                   })
               }
             </TableBody>
-          </Table>
+          </Paper>
         </TableContainer>
-        <Typography paragraph>
-          RGB values can never exceed {$('250')} or go below {$('0')}. If eating a fruit will cause a value to go beyond the valid range, it will be clamped. The RGB values of possible colors are known, and the problem is how to determine what sequence of fruits will get from one color to another. Unfortunately, not all RGB values are possible since the fruits always change values in increments of {$('5')} (ignoring clamping). The goal is to reach certain RGB values such that the closest possible color is the desired color. Distance here is measured using the <MuiLink href='https://en.wikipedia.org/wiki/Euclidean_distance'>Euclidean norm</MuiLink> (assuming this is what FFXIV uses).
+        <Typography>
+          RGB values can never exceed {$('250')} or go below {$('0')}. If eating a fruit will cause a value to go beyond the valid range, it will be clamped. The RGB values of possible colors are known, and the problem is how to determine what sequence of fruits will get from one color to another. Unfortunately, not all RGB values are possible since the fruits always change values in increments of {$('5')} (ignoring clamping). The goal is to reach certain RGB values such that the closest possible color is the desired color. Distance here is measured using the <Link href='https://en.wikipedia.org/wiki/Euclidean_distance'>Euclidean norm</Link> (assuming this is what FFXIV uses).
         </Typography>
-        <Box mb={2}>
+        <TableContainer sx={{ mb: 2 }}>
           {$$('\\lVert \\text{Color} \\rVert = \\sqrt{\\text{Color.R}^2 + \\text{Color.G}^2 + \\text{Color.B}^2}')}
-        </Box>
+        </TableContainer>
       </Section>
       <Section title='Greedy Algorithm'>
         <Typography paragraph>
@@ -231,10 +230,10 @@ function calculate (startColor: Color, endColor: Color): Fruit[] {
         </Typography>
       </Section>
       <Section title='Matrix Algorithm'>
-        <Typography paragraph>
+        <Typography>
           The next algorithm to consider involves treating the problem as a sort of matrix equation. Using the variables
         </Typography>
-        <Box mb={2}>
+        <TableContainer sx={{ mb: 2 }}>
           {$$(`
             \\begin{align}
               X & = \\text{# of ${translate(locale, fruits[Fruit.XelphatolApple], 'plural', 'singular')}} \\\\
@@ -245,11 +244,11 @@ function calculate (startColor: Color, endColor: Color): Fruit[] {
               C & = \\text{# of ${translate(locale, fruits[Fruit.CieldalaesPineapple], 'plural', 'singular')}} \\\\
             \\end{align}
           `)}
-        </Box>
-        <Typography paragraph>
+        </TableContainer>
+        <Typography>
           and not requiring them to be integers, we must solve
         </Typography>
-        <Box mb={2}>
+        <TableContainer sx={{ mb: 2 }}>
           {$$(`
             \\begin{array}{ll}
               \\text{minimize}   & \\phantom{+}X +M +O +D +V +C, \\\\
@@ -261,14 +260,14 @@ function calculate (startColor: Color, endColor: Color): Fruit[] {
               \\text{and}        & X, M, O, D, V, C \\geq 0 \\\\
             \\end{array}
           `)}
-        </Box>
+        </TableContainer>
         <Typography paragraph>
-          where {$('R, G, B')} is the difference {$('\\text{DesiredColor} - \\text{CurrentColor}')}. This does not take into account clamping, which can be avoided almost always. It gives only the number of fruits required, which is then ordered to hopefully avoid clamping. I did this by repeatedly picking fruits that minimize the distance to {$('\\operatorname{RGB}(\\frac{256}{2}, \\frac{256}{2}, \\frac{256}{2})')} using the <MuiLink href='https://en.wikipedia.org/wiki/Uniform_norm'>uniform norm</MuiLink>.
+          where {$('R, G, B')} is the difference {$('\\text{DesiredColor} - \\text{CurrentColor}')}. This does not take into account clamping, which can be avoided almost always. It gives only the number of fruits required, which is then ordered to hopefully avoid clamping. I did this by repeatedly picking fruits that minimize the distance to {$('\\operatorname{RGB}(\\frac{256}{2}, \\frac{256}{2}, \\frac{256}{2})')} using the <Link href='https://en.wikipedia.org/wiki/Uniform_norm'>uniform norm</Link>.
         </Typography>
-        <Typography paragraph>
+        <Typography>
           Since the {$('D, V, C')} fruits are “opposites” of the {$('X, M, O')} fruits, we can drop the {$('D, V, C')} variables by removing the nonnegativity constraints on {$('X, M, O')}. This transforms the problem into the standard linear equation
         </Typography>
-        <Box mb={2}>
+        <TableContainer sx={{ mb: 2 }}>
           {$$(`
             \\begin{pmatrix}
               \\phantom{+}5 &            -5 &             -5 \\\\
@@ -283,9 +282,9 @@ function calculate (startColor: Color, endColor: Color): Fruit[] {
               R \\\\ G \\\\ B
             \\end{pmatrix}
           `)}
-        </Box>
+        </TableContainer>
         <Typography paragraph>
-          with a negative value of {$('X')} corresponding instead to a positive value of {$('D')}, etc. To turn the solutions into integers, I round them. (This doesn’t always give the closest color, and that problem is the <MuiLink href='https://en.wikipedia.org/wiki/Lattice_problem#Closest_vector_problem_(CVP)'>closest vector problem</MuiLink>. The lattice is “nice” enough though, and since I don’t end up using this strategy, I don’t bother optimizing it.) This algorithm can outperform the first algorithm in situations where the first algorithm would terminate early.
+          with a negative value of {$('X')} corresponding instead to a positive value of {$('D')}, etc. To turn the solutions into integers, I round them. (This doesn’t always give the closest color, and that problem is the <Link href='https://en.wikipedia.org/wiki/Lattice_problem#Closest_vector_problem_(CVP)'>closest vector problem</Link>. The lattice is “nice” enough though, and since I don’t end up using this strategy, I don’t bother optimizing it.) This algorithm can outperform the first algorithm in situations where the first algorithm would terminate early.
         </Typography>
       </Section>
       <Section title='Lookahead'>
@@ -341,7 +340,7 @@ while (true) {
           Let the solution the algorithm returns be {$('\\operatorname{RGB(r, g, b)}')}. Focusing only on the red component, the optimal solution must have a red component of {$('r-5')}, {$('r')}, or {$('r+5')}. Now consider the 27 points:
         </Typography>
         <TableContainer sx={{ mb: 2 }}>
-          <Table size='small' sx={{ width: 'auto', margin: '0 auto' }}>
+          <Paper component={Table} sx={{ width: 'auto', m: 'auto' }}>
             <TableHead>
               <TableRow>
                 <TableCell />
@@ -410,13 +409,13 @@ while (true) {
                 <TableCell align='center' sx={{ backgroundColor: NEGATIVE_COLOR }}>{$('(r+5, g+5, b+5)')}</TableCell>
               </TableRow>
             </TableBody>
-          </Table>
+          </Paper>
         </TableContainer>
         <Typography paragraph>
           One of these points is the optimal solution, and all the points marked as red are impossible to reach due to parity (see the Error section below). Starting at {$('(r, g, b)')}, we must show that the algorithm considers all the green points with a lookahead of {$('L = 3')}. By symmetry, there are only 3 cases that need to be checked.
         </Typography>
         <TableContainer sx={{ mb: 2 }}>
-          <Table size='small' sx={{ width: 'auto', margin: '0 auto' }}>
+          <Paper component={Table} sx={{ width: 'auto', m: 'auto' }}>
             <TableHead>
               <TableRow>
                 <TableCell align='center'>Target color</TableCell>
@@ -437,7 +436,7 @@ while (true) {
                 <TableCell align='center'><FruitIcon fruit={Fruit.CieldalaesPineapple} /></TableCell>
               </TableRow>
             </TableBody>
-          </Table>
+          </Paper>
         </TableContainer>
         <Typography paragraph>
           Thus the algorithm is optimal, in the sense that it returns the closest possible color without clamping.
@@ -451,7 +450,7 @@ while (true) {
           Feeding a fruit will always change the parity of the RGB values, i.e. odd → even or even → odd. If the target color is {$('\\operatorname{RGB}(100, 100, 100)')} with all even values, and the current color is {$('\\operatorname{RGB}(100, 100, 105)')} with 1 odd value, no sequence of fruits can get closer (ignoring clamping). Thus the maximum error is bounded below by {$('5')}, and we cannot guarantee that the closest color is the desired color. The maximum error is actually {$('5\\sqrt{5}/2 \\approx 5.59')} given by the vector {$('(5, 2.5, 0)')}.
         </Typography>
         <Typography paragraph>
-          A possible solution is to instead aim for some color that is near the desired color and far from other nearby colors, maximizing the likelihood that we end up at the desired color. The hope is that our final color ends up inside the <MuiLink href='https://en.wikipedia.org/wiki/Voronoi_diagram'>Voronoi cell</MuiLink> of the desired color, so a sensible target would be the centroid of this region. In 2D, this may look like
+          A possible solution is to instead aim for some color that is near the desired color and far from other nearby colors, maximizing the likelihood that we end up at the desired color. The hope is that our final color ends up inside the <Link href='https://en.wikipedia.org/wiki/Voronoi_diagram'>Voronoi cell</Link> of the desired color, so a sensible target would be the centroid of this region. In 2D, this may look like
         </Typography>
         <Box component='figure' mb={2} textAlign='center'>
           <img src='/images/chocobo-color/voronoi-diagram.png' />
@@ -463,7 +462,7 @@ while (true) {
           This would allow more room for error, but I decided computing these targets would be too much work. It would also complicate recoloring chocobos. As long as the algorithm gets as close to the desired color as possible (ignoring clamping), it’s sufficient. There are only two color combinations where the closest color does not lead to the desired color, and those have hardcoded solutions for now.
         </Typography>
         <TableContainer sx={{ mb: 2 }}>
-          <Table size='small' sx={{ width: 'auto', margin: '0 auto' }}>
+          <Paper component={Table} sx={{ width: 'auto', m: 'auto' }}>
             <TableBody>
               <TableRow>
                 <TableCell component='th' scope='row' align='center'>Current color</TableCell>
@@ -501,7 +500,7 @@ while (true) {
                 <TableCell align='center'><StainButton color={new Color(50, 49, 55)} /></TableCell>
               </TableRow>
             </TableBody>
-          </Table>
+          </Paper>
         </TableContainer>
       </Section>
     </Page>

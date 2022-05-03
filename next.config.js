@@ -44,5 +44,5 @@ module.exports = {
     return config
   },
   i18n,
-  reactStrictMode: true
+  reactStrictMode: false
 }

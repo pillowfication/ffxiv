@@ -67,83 +67,81 @@ const Calculator = (): React.ReactElement => {
       <Grid container spacing={4}>
         <Grid item xs={12} lg='auto'>
           <TableContainer>
-            <Box component='table' textAlign='center'>
+            <Box component='table' sx={{ textAlign: 'center', whiteSpace: 'nowrap' }}>
               <tbody>
                 <tr>
-                  <td><CalculatorLineIndicator rotate={45} suggested={isLineSuggested(3)} /></td>
-                  <td><CalculatorLineIndicator rotate={90} suggested={isLineSuggested(4)} /></td>
-                  <td><CalculatorLineIndicator rotate={90} suggested={isLineSuggested(5)} /></td>
-                  <td><CalculatorLineIndicator rotate={90} suggested={isLineSuggested(6)} /></td>
-                  <td><CalculatorLineIndicator rotate={135} suggested={isLineSuggested(7)} /></td>
+                  <th><CalculatorLineIndicator rotate={45} suggested={isLineSuggested(3)} /></th>
+                  <th><CalculatorLineIndicator rotate={90} suggested={isLineSuggested(4)} /></th>
+                  <th><CalculatorLineIndicator rotate={90} suggested={isLineSuggested(5)} /></th>
+                  <th><CalculatorLineIndicator rotate={90} suggested={isLineSuggested(6)} /></th>
+                  <th><CalculatorLineIndicator rotate={135} suggested={isLineSuggested(7)} /></th>
                 </tr>
                 <tr>
-                  <td><CalculatorLineIndicator rotate={0} suggested={isLineSuggested(2)} /></td>
+                  <th><CalculatorLineIndicator rotate={0} suggested={isLineSuggested(2)} /></th>
                   <td rowSpan={3} colSpan={3}>
-                    <div>
-                      <CalculatorCell
-                        value={grid[0]}
-                        suggested={suggestedCells[0]}
-                        error={errorCells[0]}
-                        onInputDigit={handleInputDigit.bind(null, 0)}
-                      />
-                      <CalculatorCell
-                        value={grid[1]}
-                        suggested={suggestedCells[1]}
-                        error={errorCells[1]}
-                        onInputDigit={handleInputDigit.bind(null, 1)}
-                      />
-                      <CalculatorCell
-                        value={grid[2]}
-                        suggested={suggestedCells[2]}
-                        error={errorCells[2]}
-                        onInputDigit={handleInputDigit.bind(null, 2)}
-                      />
-                      <br />
-                      <CalculatorCell
-                        value={grid[3]}
-                        suggested={suggestedCells[3]}
-                        error={errorCells[3]}
-                        onInputDigit={handleInputDigit.bind(null, 3)}
-                      />
-                      <CalculatorCell
-                        value={grid[4]}
-                        suggested={suggestedCells[4]}
-                        error={errorCells[4]}
-                        onInputDigit={handleInputDigit.bind(null, 4)}
-                      />
-                      <CalculatorCell
-                        value={grid[5]}
-                        suggested={suggestedCells[5]}
-                        error={errorCells[5]}
-                        onInputDigit={handleInputDigit.bind(null, 5)}
-                      />
-                      <br />
-                      <CalculatorCell
-                        value={grid[6]}
-                        suggested={suggestedCells[6]}
-                        error={errorCells[6]}
-                        onInputDigit={handleInputDigit.bind(null, 6)}
-                      />
-                      <CalculatorCell
-                        value={grid[7]}
-                        suggested={suggestedCells[7]}
-                        error={errorCells[7]}
-                        onInputDigit={handleInputDigit.bind(null, 7)}
-                      />
-                      <CalculatorCell
-                        value={grid[8]}
-                        suggested={suggestedCells[8]}
-                        error={errorCells[8]}
-                        onInputDigit={handleInputDigit.bind(null, 8)}
-                      />
-                    </div>
+                    <CalculatorCell
+                      value={grid[0]}
+                      suggested={suggestedCells[0]}
+                      error={errorCells[0]}
+                      onInputDigit={handleInputDigit.bind(null, 0)}
+                    />
+                    <CalculatorCell
+                      value={grid[1]}
+                      suggested={suggestedCells[1]}
+                      error={errorCells[1]}
+                      onInputDigit={handleInputDigit.bind(null, 1)}
+                    />
+                    <CalculatorCell
+                      value={grid[2]}
+                      suggested={suggestedCells[2]}
+                      error={errorCells[2]}
+                      onInputDigit={handleInputDigit.bind(null, 2)}
+                    />
+                    <br />
+                    <CalculatorCell
+                      value={grid[3]}
+                      suggested={suggestedCells[3]}
+                      error={errorCells[3]}
+                      onInputDigit={handleInputDigit.bind(null, 3)}
+                    />
+                    <CalculatorCell
+                      value={grid[4]}
+                      suggested={suggestedCells[4]}
+                      error={errorCells[4]}
+                      onInputDigit={handleInputDigit.bind(null, 4)}
+                    />
+                    <CalculatorCell
+                      value={grid[5]}
+                      suggested={suggestedCells[5]}
+                      error={errorCells[5]}
+                      onInputDigit={handleInputDigit.bind(null, 5)}
+                    />
+                    <br />
+                    <CalculatorCell
+                      value={grid[6]}
+                      suggested={suggestedCells[6]}
+                      error={errorCells[6]}
+                      onInputDigit={handleInputDigit.bind(null, 6)}
+                    />
+                    <CalculatorCell
+                      value={grid[7]}
+                      suggested={suggestedCells[7]}
+                      error={errorCells[7]}
+                      onInputDigit={handleInputDigit.bind(null, 7)}
+                    />
+                    <CalculatorCell
+                      value={grid[8]}
+                      suggested={suggestedCells[8]}
+                      error={errorCells[8]}
+                      onInputDigit={handleInputDigit.bind(null, 8)}
+                    />
                   </td>
                 </tr>
                 <tr>
-                  <td><CalculatorLineIndicator rotate={0} suggested={isLineSuggested(1)} /></td>
+                  <th><CalculatorLineIndicator rotate={0} suggested={isLineSuggested(1)} /></th>
                 </tr>
                 <tr>
-                  <td><CalculatorLineIndicator rotate={0} suggested={isLineSuggested(0)} /></td>
+                  <th><CalculatorLineIndicator rotate={0} suggested={isLineSuggested(0)} /></th>
                 </tr>
               </tbody>
             </Box>

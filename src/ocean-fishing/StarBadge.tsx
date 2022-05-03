@@ -17,7 +17,7 @@ const StarBadge = (): React.ReactElement => {
   const { t } = useTranslation('ocean-fishing')
 
   return (
-    <Tooltip placement='top' arrow title={String(t('requiredBait'))}>
+    <Tooltip title={String(t('requiredBait'))}>
       <Box
         component='svg'
         width={ICON_SIZE}

@@ -1,14 +1,15 @@
 import React from 'react'
 import { useTranslation } from 'next-i18next'
-import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
+import Box from '@mui/material/Box'
+import Paper from '@mui/material/Paper'
 import TableContainer from '@mui/material/TableContainer'
 import Table from '@mui/material/Table'
 import TableHead from '@mui/material/TableHead'
 import TableBody from '@mui/material/TableBody'
 import TableRow from '@mui/material/TableRow'
 import TableCell from '@mui/material/TableCell'
+import Button from '@mui/material/Button'
 import Section from '../Section'
 import { charaMakeNames } from './ffxiv-name-generator/data'
 import {
@@ -127,7 +128,7 @@ const About = (): React.ReactElement => {
         )}
       </Box>
       <TableContainer sx={{ mb: 2 }}>
-        <Table size='small' sx={{ width: 'auto', margin: '0 auto' }}>
+        <Paper component={Table} sx={{ width: 'auto', m: 'auto' }}>
           <TableHead>
             <TableRow>
               <TableCell align='center'>{t('race')}</TableCell>
@@ -169,7 +170,7 @@ const About = (): React.ReactElement => {
               return rows
             })}
           </TableBody>
-        </Table>
+        </Paper>
       </TableContainer>
     </Section>
   )

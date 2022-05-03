@@ -32,7 +32,8 @@ const HighOrLowCard = ({ value, disabled = false, error, onInputDigit = () => {}
           width: { xs: '4em', md: '6em' },
           height: { xs: '6em', md: '9em' },
           borderRadius: '0.5em',
-          m: { xs: 1, md: 2 }
+          m: { xs: 1, md: 2 },
+          backgroundColor: 'background.paper'
         }
       }}
       inputProps={{
@@ -42,7 +43,7 @@ const HighOrLowCard = ({ value, disabled = false, error, onInputDigit = () => {}
         }
       }}
       onKeyDown={handleInputDigit}
-      value={disabled ? '?' : (value != null ? value : '')}
+      value={disabled ? '?' : value ?? ''}
     />
   )
 }

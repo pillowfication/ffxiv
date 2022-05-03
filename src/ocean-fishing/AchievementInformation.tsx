@@ -1,10 +1,10 @@
 import React from 'react'
 import { useTranslation } from 'next-i18next'
 import Typography from '@mui/material/Typography'
-import Link from '@mui/material/Link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 import Section from '../Section'
+import Link from '../Link'
 import OceanFishIcon from './OceanFishIcon'
 import { achievements, contentBonuses, ContentBonus } from './ffxiv-ocean-fishing/data'
 import { cleanRequirement } from './utils'
@@ -41,14 +41,14 @@ const AchievementInformation = ({ achievement, children }: Props): React.ReactEl
   return (
     <Section
       title={
-        <>
+        <Typography variant='h3'>
           {translate(locale, achievements[achievement], 'name')}
-          <OceanFishIcon type='achievement' id={achievement} />
-          <Typography display='inline'>
-            {cleanRequirement(translate(locale, contentBonusMap[achievement], 'requirement'))}
-            &nbsp;<Link href={teamcraftUrlMap[achievement]}><FontAwesomeIcon icon={faArrowUpRightFromSquare} /></Link>
+          <OceanFishIcon type='achievement' id={achievement} sx={{ ml: 1, mr: 2, verticalAlign: 'text-bottom' }} />
+          <Typography sx={{ display: { sm: 'block', md: 'inline' } }}>
+            {cleanRequirement(translate(locale, contentBonusMap[achievement], 'requirement'))}&nbsp;
+            <Link href={teamcraftUrlMap[achievement]}><FontAwesomeIcon icon={faArrowUpRightFromSquare} /></Link>
           </Typography>
-        </>
+        </Typography>
       }
     >
       {children}
