@@ -45,6 +45,7 @@
     "points": "Points",
     "doubleHook": "Double Hook",
     "tripleHook": "Triple Hook",
+    "maxPoints": "Max Points",
     "timeOfDay": "Time",
     "weather": "Weather",
     "category": "Category"
