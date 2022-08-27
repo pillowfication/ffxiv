@@ -19,7 +19,7 @@ const PAYOUTS: Record<number, number> = {
   23: 1800,
   24: 3600
 }
-const LINES: Array<[number, number, number]> = [
+const LINES = [
   [6, 7, 8],
   [3, 4, 5],
   [0, 1, 2],
@@ -65,28 +65,29 @@ let EV = 0
 
 for (const permutation of getPermutations(9)) {
   for (let revealedIndex = 0; revealedIndex < 9; ++revealedIndex) {
-    // Rotate `perm` so that the "Y" shape is
-    //   0 . 2
+    // Rotate `perm` so that the "T" shape is
+    //   . . .
     //   . 4 .
-    //   . 7 .
+    //   6 7 8
     let perm = permutation.slice()
     switch (revealedIndex) {
+      case 0:
       case 3:
-      case 8:
         perm = rotatePermutation(perm, 1)
         break
       case 1:
-      case 6:
+      case 2:
         perm = rotatePermutation(perm, 2)
         break
       case 5:
         perm = rotatePermutation(perm, 3)
+        break
     }
 
     // Count how many revealed squares are 1, 2, or 3 and are 7, 8, or 9
     let count123 = 0
     let count789 = 0
-    for (const index of [0, 2, 4, 7]) {
+    for (const index of [4, 6, 7, 8]) {
       if (perm[index] <= 3) {
         ++count123
       } else if (perm[index] >= 7) {
@@ -96,72 +97,69 @@ for (const permutation of getPermutations(9)) {
 
     // If there is a possible 123 line, guess it
     let hasPossible123 = false
-    if (count123 === 1) {
-      if (perm[0] <= 3) {
-        EV += scoreLine(perm, 4); hasPossible123 = true
-      } else if (perm[2] <= 3) {
-        EV += scoreLine(perm, 6); hasPossible123 = true
-      } else if (perm[4] <= 3) {
+    if (count123 === 0) {
+      EV += scoreLine(perm, 2); hasPossible123 = true
+    } else if (count123 === 1) {
+      if (perm[4] <= 3) {
         EV += scoreLine(perm, 1); hasPossible123 = true
-      } else if (perm[7] <= 3) {
-        EV += scoreLine(perm, 0); hasPossible123 = true
+      } else if (perm[6] <= 3) {
+        EV += scoreLine(perm, 4); hasPossible123 = true
+      } else if (perm[8] <= 3) {
+        EV += scoreLine(perm, 6); hasPossible123 = true
       }
     } else if (count123 === 2) {
-      if (perm[0] <= 3 && perm[2] <= 3) {
-        EV += scoreLine(perm, 2); hasPossible123 = true
-      } else if (perm[0] <= 3 && perm[4] <= 3) {
-        EV += scoreLine(perm, 3); hasPossible123 = true
-      } else if (perm[2] <= 3 && perm[4] <= 3) {
+      if (perm[4] <= 3 && perm[6] <= 3) {
         EV += scoreLine(perm, 7); hasPossible123 = true
       } else if (perm[4] <= 3 && perm[7] <= 3) {
         EV += scoreLine(perm, 5); hasPossible123 = true
+      } else if (perm[4] <= 3 && perm[8] <= 3) {
+        EV += scoreLine(perm, 3); hasPossible123 = true
       }
     }
     if (hasPossible123) continue
 
     // Do the same for 789
     let hasPossible789 = false
-    if (count789 === 1) {
-      if (perm[0] >= 7) {
-        EV += scoreLine(perm, 4); hasPossible789 = true
-      } else if (perm[2] >= 7) {
-        EV += scoreLine(perm, 6); hasPossible789 = true
-      } else if (perm[4] >= 7) {
+    if (count789 === 0) {
+      EV += scoreLine(perm, 2); hasPossible789 = true
+    } else if (count789 === 1) {
+      if (perm[4] >= 7) {
         EV += scoreLine(perm, 1); hasPossible789 = true
-      } else if (perm[7] >= 7) {
-        EV += scoreLine(perm, 0); hasPossible789 = true
+      } else if (perm[6] >= 7) {
+        EV += scoreLine(perm, 4); hasPossible789 = true
+      } else if (perm[8] >= 7) {
+        EV += scoreLine(perm, 6); hasPossible789 = true
       }
     } else if (count789 === 2) {
-      if (perm[0] >= 7 && perm[2] >= 7) {
-        EV += scoreLine(perm, 2); hasPossible789 = true
-      } else if (perm[0] >= 7 && perm[4] >= 7) {
-        EV += scoreLine(perm, 3); hasPossible789 = true
-      } else if (perm[2] >= 7 && perm[4] >= 7) {
+      if (perm[4] >= 7 && perm[6] >= 7) {
         EV += scoreLine(perm, 7); hasPossible789 = true
       } else if (perm[4] >= 7 && perm[7] >= 7) {
         EV += scoreLine(perm, 5); hasPossible789 = true
+      } else if (perm[4] >= 7 && perm[8] >= 7) {
+        EV += scoreLine(perm, 3); hasPossible789 = true
       }
     }
     if (hasPossible789) continue
 
     // Guess whatever line can sum to the highest possible number
-    const visibles = [perm[0], perm[2], perm[4], perm[7]]
+    const visibles = [perm[4], perm[6], perm[7], perm[8]]
     const invisibles = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     for (const value of visibles.sort((a, b) => b - a)) {
       invisibles.splice(value - 1, 1)
     }
     const max1 = invisibles[4]
     const max2 = invisibles[4] + invisibles[3]
+    const max3 = invisibles[4] + invisibles[3] + invisibles[2]
 
     const maxLineSums = [
-      perm[7] + max2,
+      perm[6] + perm[7] + perm[8],
       perm[4] + max2,
-      perm[0] + perm[2] + max1,
-      perm[0] + perm[4] + max1,
-      perm[0] + max2,
+      max3,
+      perm[4] + perm[8] + max1,
+      perm[6] + max2,
       perm[4] + perm[7] + max1,
-      perm[2] + max2,
-      perm[2] + perm[4] + max1
+      perm[8] + max2,
+      perm[4] + perm[6] + max1
     ]
     EV += scoreLine(perm, maxLineSums.indexOf(Math.max(...maxLineSums)))
   }

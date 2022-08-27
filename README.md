@@ -17,4 +17,4 @@ Just a site so I can learn new frameworks and stuff.
   3. Download the CN and KO repositories to `ffxiv/datamining` (`git pull`)
     - https://github.com/thewakingsands/ffxiv-datamining-cn
     - https://github.com/Ra-Workspace/ffxiv-datamining-ko
-  4. Execute whatever scripts I wrote that grab data
+  4. Execute whatever scripts I wrote that grab data (`node --experimental-specifier-resolution=node --loader ts-node/esm [SCRIPT]`)

@@ -1,7 +1,10 @@
 import fs from 'fs'
 import path from 'path'
-import placeNames from '../data/place-names.json'
-import weathers from '../data/weathers.json'
+import url from 'url'
+import placeNames from '../data/place-names.json' assert { type: 'json' }
+import weathers from '../data/weathers.json' assert { type: 'json' }
+
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url)) // eslint-disable-line @typescript-eslint/naming-convention
 
 const OUTPUT = path.resolve(__dirname, '../src/types.ts')
 

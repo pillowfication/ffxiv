@@ -1,6 +1,9 @@
 import fs from 'fs'
 import path from 'path'
-import territories from '../data/territories.json'
+import url from 'url'
+import territories from '../data/territories.json' assert { type: 'json' }
+
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url)) // eslint-disable-line @typescript-eslint/naming-convention
 
 const OUTPUT = path.resolve(__dirname, '../data/partition.json')
 const placeNames: Record<number, number[]> = {}

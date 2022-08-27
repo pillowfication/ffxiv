@@ -1,6 +1,9 @@
 import fs from 'fs'
 import path from 'path'
+import url from 'url'
 import * as sc from '../../../saint-coinach'
+
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url)) // eslint-disable-line @typescript-eslint/naming-convention
 
 /* eslint-disable @typescript-eslint/naming-convention */
 const Item_en = sc.requireCsv('Item', 'en')

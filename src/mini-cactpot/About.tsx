@@ -86,6 +86,9 @@ const About = (): React.ReactElement => {
       <Typography paragraph>
         This strategy gives an expected value of {(1259).toLocaleString(locale)}, whereas perfect play gives {(1484).toLocaleString(locale)}. Note that in steps 1 and 2, if a {$('\\operatorname{1-2-3}')} or {$('\\operatorname{7-8-9}')} line exists, you will always select it without ambiguity. In step 3, you may have to guess which lines may have a large sum.
       </Typography>
+      <Typography paragraph>
+        A very similar strategy is to make a Tetris “T” shape, but this performs slightly worse on average.
+      </Typography>
     </Section>
   )
 }

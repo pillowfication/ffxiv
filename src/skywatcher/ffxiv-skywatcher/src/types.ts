@@ -88,7 +88,6 @@ export enum Place {
   Xelphatol = 1792,
   BaelsarsWall = 1857,
   DunScaith = 1868,
-  Lichenweed = 1884,
   TheEmphasisMiseryEmphasis = 1960,
   TheDravanianForelands = 2000,
   TheDravanianHinterlands = 2001,
@@ -119,7 +118,6 @@ export enum Place {
   DeltascapeV20 = 2358,
   DeltascapeV30 = 2359,
   DeltascapeV40 = 2360,
-  CrystalTowerTrainingGrounds = 2383,
   GyrAbania_2 = 2400,
   Othard_2 = 2401,
   Hingashi = 2402,
@@ -219,13 +217,27 @@ export enum Place {
   MagnaGlacies = 3924,
   Vanaspati = 4015,
   BeyondTheStars = 4021,
+  TheOmphalos = 4031,
+  RestrictedArchives = 4034,
+  ZerosDomain = 4038,
+  MeghadutaGuestChambers = 4039,
+  UnnamedIsland = 4043,
+  StormsCrown = 4045,
   TheDeadEnds = 4100,
   TheTowerOfBabil = 4118,
   TheSanguineLimbo = 4135,
   Idyllshire_2 = 4136,
   RhalgrsReach_2 = 4137,
   Garlemald_2 = 4138,
-  Empyreum = 4139
+  Empyreum = 4139,
+  Aglaia = 4167,
+  TheFellCourtOfTroia = 4180,
+  SeatOfTheForemost = 4185,
+  ThePestilentPurgatory = 4196,
+  StormsCrown_2 = 4197,
+  TheHollowPurgatory = 4198,
+  TheCausticPurgatory = 4249,
+  StygianInsenescenceCells = 4250
 }
 
 export enum Weather {
@@ -390,5 +402,17 @@ export enum Weather {
   PandMonium_2 = 158,
   PandMonium_3 = 159,
   Ultimatum = 160,
-  Inevitability = 161
+  Inevitability = 161,
+  Transcendence = 162,
+  Transcendence_2 = 163,
+  Transcendence_3 = 164,
+  Transcendence_4 = 165,
+  Transcendence_5 = 166,
+  Transcendence_6 = 167,
+  Transcendence_7 = 168,
+  Transcendence_8 = 169,
+  Dragonstorms_3 = 170,
+  Vacuity = 171,
+  Vacuity_2 = 172,
+  Vacuity_3 = 173
 }
