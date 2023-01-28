@@ -1,0 +1,1 @@
+{"ast":null,"code":"const SHY = '\\u00AD';\nexport default {\n  Sandstorms: `Sand${SHY}storms`,\n  Thunderstorms: `Thunder${SHY}storms`,\n  Schneesturm: `Schnee${SHY}sturm`,\n  Wolkenbruch: `Wolken${SHY}bruch`,\n  Schattengewitter: `Schatten${SHY}gewitter`,\n  Schattenwind: `Schatten${SHY}wind`\n};","map":null,"metadata":{},"sourceType":"module"}

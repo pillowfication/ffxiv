@@ -1,0 +1,1 @@
+{"ast":null,"code":"import placeNames from '../data/place-names.json';\nimport translate from '../../../translate';\nexport default function translatePlace(place, locale = 'en') {\n  return translate(locale, placeNames[place], 'name');\n}","map":null,"metadata":{},"sourceType":"module"}

@@ -1,0 +1,1 @@
+{"ast":null,"code":"export { default as generate } from './src/generate';\nexport { getRaces, getClans, getGenders } from './src/races';\nexport { translate } from './src/utils';\nexport { Race, Clan, Gender } from './src/types';","map":null,"metadata":{},"sourceType":"module"}

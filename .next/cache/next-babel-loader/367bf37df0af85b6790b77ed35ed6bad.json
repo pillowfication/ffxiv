@@ -1,0 +1,1 @@
+{"ast":null,"code":"var __jsx = React.createElement;\nimport React from 'react';\nimport Page from '../src/Page';\nimport Calculator from '../src/wondrous-tails/Calculator';\n\nconst WondrousTails = () => {\n  return __jsx(Page, {\n    title: \"Wondrous Tails\"\n  }, __jsx(Calculator, null));\n};\n\nexport default WondrousTails;","map":null,"metadata":{},"sourceType":"module"}

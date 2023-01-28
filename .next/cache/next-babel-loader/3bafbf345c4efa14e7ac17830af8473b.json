@@ -1,0 +1,1 @@
+{"ast":null,"code":"var __jsx = React.createElement;\nimport React from 'react';\nimport Page from '../src/Page';\nimport MiniCactpotCalculator from '../src/mini-cactpot/MiniCactpotCalculator';\nexport default function MiniCactpot() {\n  return __jsx(Page, {\n    title: \"Mini Cactpot\"\n  }, __jsx(MiniCactpotCalculator, null));\n}","map":null,"metadata":{},"sourceType":"module"}

@@ -1,0 +1,1 @@
+{"ast":null,"code":"import weathers from '../data/weathers.json';\nexport default function translateWeather(weather, locale = 'en') {\n  return weathers[weather][`name_${locale}`];\n}","map":null,"metadata":{},"sourceType":"module"}

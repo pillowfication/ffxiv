@@ -1,0 +1,214 @@
+{
+  "polyfillFiles": [
+    "static/chunks/polyfills-5cd94c89d3acac5f.js"
+  ],
+  "devFiles": [],
+  "ampDevFiles": [],
+  "lowPriorityFiles": [
+    "static/gI364VMjZvjm5wnaVa3tP/_buildManifest.js",
+    "static/gI364VMjZvjm5wnaVa3tP/_ssgManifest.js",
+    "static/gI364VMjZvjm5wnaVa3tP/_middlewareManifest.js"
+  ],
+  "pages": {
+    "/": [
+      "static/chunks/webpack-fd1bc4a65a80e5c8.js",
+      "static/chunks/framework-a87821de553db91d.js",
+      "static/chunks/main-c8a3fd87366351b5.js",
+      "static/chunks/962-96f9448081c741d2.js",
+      "static/chunks/889-91af50a74c3d0a8c.js",
+      "static/chunks/pages/index-b3d270cf7bc8e337.js"
+    ],
+    "/404": [
+      "static/chunks/webpack-fd1bc4a65a80e5c8.js",
+      "static/chunks/framework-a87821de553db91d.js",
+      "static/chunks/main-c8a3fd87366351b5.js",
+      "static/chunks/pages/404-80d583efb668ad3e.js"
+    ],
+    "/_app": [
+      "static/chunks/webpack-fd1bc4a65a80e5c8.js",
+      "static/chunks/framework-a87821de553db91d.js",
+      "static/chunks/main-c8a3fd87366351b5.js",
+      "static/css/5aa0d22ca45e4a86.css",
+      "static/chunks/pages/_app-793de3cbb6fc7e97.js"
+    ],
+    "/_error": [
+      "static/chunks/webpack-fd1bc4a65a80e5c8.js",
+      "static/chunks/framework-a87821de553db91d.js",
+      "static/chunks/main-c8a3fd87366351b5.js",
+      "static/chunks/pages/_error-0a004b8b8498208d.js"
+    ],
+    "/bozja": [
+      "static/chunks/webpack-fd1bc4a65a80e5c8.js",
+      "static/chunks/framework-a87821de553db91d.js",
+      "static/chunks/main-c8a3fd87366351b5.js",
+      "static/chunks/962-96f9448081c741d2.js",
+      "static/chunks/325-4bc9f9f54e930298.js",
+      "static/chunks/823-06c6e07bf84e0966.js",
+      "static/chunks/912-44ba4e331c105c7c.js",
+      "static/chunks/695-28e33884443aeeb1.js",
+      "static/chunks/39-d288ac02a44eb5ef.js",
+      "static/chunks/pages/bozja-d168eebf448d799b.js"
+    ],
+    "/chocobo-color": [
+      "static/chunks/webpack-fd1bc4a65a80e5c8.js",
+      "static/chunks/framework-a87821de553db91d.js",
+      "static/chunks/main-c8a3fd87366351b5.js",
+      "static/chunks/962-96f9448081c741d2.js",
+      "static/chunks/903-497dd5683311b88e.js",
+      "static/chunks/27-4c72bdb1dab95f03.js",
+      "static/chunks/855-3e1533d0398c522d.js",
+      "static/chunks/915-d14fba46d8bf1cab.js",
+      "static/chunks/617-7a28a3463469a7cf.js",
+      "static/chunks/pages/chocobo-color-787b6bd64a7d21a0.js"
+    ],
+    "/chocobo-color/about": [
+      "static/chunks/webpack-fd1bc4a65a80e5c8.js",
+      "static/chunks/framework-a87821de553db91d.js",
+      "static/chunks/main-c8a3fd87366351b5.js",
+      "static/chunks/962-96f9448081c741d2.js",
+      "static/chunks/325-4bc9f9f54e930298.js",
+      "static/chunks/477-63ea7601b0ed09d6.js",
+      "static/chunks/617-7a28a3463469a7cf.js",
+      "static/chunks/pages/chocobo-color/about-fcbec510025708d8.js"
+    ],
+    "/high-or-low": [
+      "static/chunks/webpack-fd1bc4a65a80e5c8.js",
+      "static/chunks/framework-a87821de553db91d.js",
+      "static/chunks/main-c8a3fd87366351b5.js",
+      "static/chunks/962-96f9448081c741d2.js",
+      "static/chunks/903-497dd5683311b88e.js",
+      "static/chunks/pages/high-or-low-eb4f620d88c0c511.js"
+    ],
+    "/mini-cactpot": [
+      "static/chunks/webpack-fd1bc4a65a80e5c8.js",
+      "static/chunks/framework-a87821de553db91d.js",
+      "static/chunks/main-c8a3fd87366351b5.js",
+      "static/chunks/962-96f9448081c741d2.js",
+      "static/chunks/325-4bc9f9f54e930298.js",
+      "static/chunks/903-497dd5683311b88e.js",
+      "static/chunks/374-3c9da73232f4fea6.js",
+      "static/chunks/pages/mini-cactpot-28cd55dbf63dd676.js"
+    ],
+    "/name-generator": [
+      "static/chunks/webpack-fd1bc4a65a80e5c8.js",
+      "static/chunks/framework-a87821de553db91d.js",
+      "static/chunks/main-c8a3fd87366351b5.js",
+      "static/chunks/962-96f9448081c741d2.js",
+      "static/chunks/325-4bc9f9f54e930298.js",
+      "static/chunks/903-497dd5683311b88e.js",
+      "static/chunks/27-4c72bdb1dab95f03.js",
+      "static/chunks/855-3e1533d0398c522d.js",
+      "static/chunks/pages/name-generator-c489ab257f474396.js"
+    ],
+    "/ocean-fishing": [
+      "static/chunks/webpack-fd1bc4a65a80e5c8.js",
+      "static/chunks/framework-a87821de553db91d.js",
+      "static/chunks/main-c8a3fd87366351b5.js",
+      "static/chunks/cb1608f2-1a79bf1e565e64fb.js",
+      "static/chunks/962-96f9448081c741d2.js",
+      "static/chunks/325-4bc9f9f54e930298.js",
+      "static/chunks/903-497dd5683311b88e.js",
+      "static/chunks/477-63ea7601b0ed09d6.js",
+      "static/chunks/823-06c6e07bf84e0966.js",
+      "static/chunks/27-4c72bdb1dab95f03.js",
+      "static/chunks/912-44ba4e331c105c7c.js",
+      "static/chunks/464-a2d4a80ac47bcd77.js",
+      "static/chunks/264-a5e823e034f2e184.js",
+      "static/chunks/695-28e33884443aeeb1.js",
+      "static/chunks/994-d96cbf8fe16bccca.js",
+      "static/chunks/pages/ocean-fishing-17fc92d9bc5b661e.js"
+    ],
+    "/ocean-fishing/about": [
+      "static/chunks/webpack-fd1bc4a65a80e5c8.js",
+      "static/chunks/framework-a87821de553db91d.js",
+      "static/chunks/main-c8a3fd87366351b5.js",
+      "static/chunks/cb1608f2-1a79bf1e565e64fb.js",
+      "static/chunks/962-96f9448081c741d2.js",
+      "static/chunks/477-63ea7601b0ed09d6.js",
+      "static/chunks/464-a2d4a80ac47bcd77.js",
+      "static/chunks/pages/ocean-fishing/about-eaf69c33716db717.js"
+    ],
+    "/ocean-fishing/bonuses": [
+      "static/chunks/webpack-fd1bc4a65a80e5c8.js",
+      "static/chunks/framework-a87821de553db91d.js",
+      "static/chunks/main-c8a3fd87366351b5.js",
+      "static/chunks/cb1608f2-1a79bf1e565e64fb.js",
+      "static/chunks/962-96f9448081c741d2.js",
+      "static/chunks/325-4bc9f9f54e930298.js",
+      "static/chunks/903-497dd5683311b88e.js",
+      "static/chunks/477-63ea7601b0ed09d6.js",
+      "static/chunks/823-06c6e07bf84e0966.js",
+      "static/chunks/27-4c72bdb1dab95f03.js",
+      "static/chunks/912-44ba4e331c105c7c.js",
+      "static/chunks/464-a2d4a80ac47bcd77.js",
+      "static/chunks/264-a5e823e034f2e184.js",
+      "static/chunks/695-28e33884443aeeb1.js",
+      "static/chunks/994-d96cbf8fe16bccca.js",
+      "static/chunks/pages/ocean-fishing/bonuses-ff4eb52c76aa2e74.js"
+    ],
+    "/ocean-fishing/fish": [
+      "static/chunks/webpack-fd1bc4a65a80e5c8.js",
+      "static/chunks/framework-a87821de553db91d.js",
+      "static/chunks/main-c8a3fd87366351b5.js",
+      "static/chunks/cb1608f2-1a79bf1e565e64fb.js",
+      "static/chunks/962-96f9448081c741d2.js",
+      "static/chunks/325-4bc9f9f54e930298.js",
+      "static/chunks/903-497dd5683311b88e.js",
+      "static/chunks/477-63ea7601b0ed09d6.js",
+      "static/chunks/823-06c6e07bf84e0966.js",
+      "static/chunks/27-4c72bdb1dab95f03.js",
+      "static/chunks/912-44ba4e331c105c7c.js",
+      "static/chunks/464-a2d4a80ac47bcd77.js",
+      "static/chunks/264-a5e823e034f2e184.js",
+      "static/chunks/711-658d4e236227685b.js",
+      "static/chunks/695-28e33884443aeeb1.js",
+      "static/chunks/994-d96cbf8fe16bccca.js",
+      "static/chunks/pages/ocean-fishing/fish-98b4a4946f3ba731.js"
+    ],
+    "/skywatcher": [
+      "static/chunks/webpack-fd1bc4a65a80e5c8.js",
+      "static/chunks/framework-a87821de553db91d.js",
+      "static/chunks/main-c8a3fd87366351b5.js",
+      "static/chunks/962-96f9448081c741d2.js",
+      "static/chunks/325-4bc9f9f54e930298.js",
+      "static/chunks/903-497dd5683311b88e.js",
+      "static/chunks/477-63ea7601b0ed09d6.js",
+      "static/chunks/823-06c6e07bf84e0966.js",
+      "static/chunks/27-4c72bdb1dab95f03.js",
+      "static/chunks/855-3e1533d0398c522d.js",
+      "static/chunks/372-fe437bf31d826859.js",
+      "static/chunks/695-28e33884443aeeb1.js",
+      "static/chunks/39-d288ac02a44eb5ef.js",
+      "static/chunks/pages/skywatcher-155f58bdaf99d6f0.js"
+    ],
+    "/wondrous-tails": [
+      "static/chunks/webpack-fd1bc4a65a80e5c8.js",
+      "static/chunks/framework-a87821de553db91d.js",
+      "static/chunks/main-c8a3fd87366351b5.js",
+      "static/chunks/962-96f9448081c741d2.js",
+      "static/chunks/325-4bc9f9f54e930298.js",
+      "static/chunks/pages/wondrous-tails-344410ec85aa05d3.js"
+    ],
+    "/xivapi": [
+      "static/chunks/webpack-fd1bc4a65a80e5c8.js",
+      "static/chunks/framework-a87821de553db91d.js",
+      "static/chunks/main-c8a3fd87366351b5.js",
+      "static/chunks/962-96f9448081c741d2.js",
+      "static/chunks/903-497dd5683311b88e.js",
+      "static/chunks/222-d735c55dcf41e5f7.js",
+      "static/chunks/pages/xivapi-142a35c4650eaafe.js"
+    ],
+    "/zadnor": [
+      "static/chunks/webpack-fd1bc4a65a80e5c8.js",
+      "static/chunks/framework-a87821de553db91d.js",
+      "static/chunks/main-c8a3fd87366351b5.js",
+      "static/chunks/962-96f9448081c741d2.js",
+      "static/chunks/325-4bc9f9f54e930298.js",
+      "static/chunks/823-06c6e07bf84e0966.js",
+      "static/chunks/695-28e33884443aeeb1.js",
+      "static/chunks/39-d288ac02a44eb5ef.js",
+      "static/chunks/pages/zadnor-71fd874bfea27992.js"
+    ]
+  },
+  "ampFirstPages": []
+}

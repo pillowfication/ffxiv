@@ -1,0 +1,1 @@
+{"ast":null,"code":"import * as data from './data';\nexport { default as calculateVoyages } from './src/calculate-voyages';\nexport { default as getStopTimes } from './src/get-stop-times';\n\nif (false) {\n  window.OceanFishingData = data;\n}","map":null,"metadata":{},"sourceType":"module"}

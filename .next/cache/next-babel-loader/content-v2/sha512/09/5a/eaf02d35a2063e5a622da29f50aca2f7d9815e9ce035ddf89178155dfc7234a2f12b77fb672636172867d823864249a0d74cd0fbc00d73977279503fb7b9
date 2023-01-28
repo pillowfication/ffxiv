@@ -1,0 +1,1 @@
+{"ast":null,"code":"import placeNames from '../data/place-names.json';\nexport default function translatePlace(place) {\n  var locale = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'en';\n  return placeNames[place][\"name_\".concat(locale)];\n}","map":null,"metadata":{},"sourceType":"module"}

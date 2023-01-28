@@ -1,0 +1,21 @@
+{
+  "/_app": "pages/_app.js",
+  "/_document": "pages/_document.js",
+  "/404": "pages/404.js",
+  "/_error": "pages/_error.js",
+  "/bozja": "pages/bozja.js",
+  "/mini-cactpot": "pages/mini-cactpot.js",
+  "/name-generator": "pages/name-generator.js",
+  "/ocean-fishing/about": "pages/ocean-fishing/about.js",
+  "/ocean-fishing/bonuses": "pages/ocean-fishing/bonuses.js",
+  "/ocean-fishing/fish": "pages/ocean-fishing/fish.js",
+  "/high-or-low": "pages/high-or-low.js",
+  "/skywatcher": "pages/skywatcher.js",
+  "/wondrous-tails": "pages/wondrous-tails.js",
+  "/xivapi": "pages/xivapi.js",
+  "/chocobo-color": "pages/chocobo-color.js",
+  "/": "pages/index.js",
+  "/zadnor": "pages/zadnor.js",
+  "/ocean-fishing": "pages/ocean-fishing.js",
+  "/chocobo-color/about": "pages/chocobo-color/about.js"
+}

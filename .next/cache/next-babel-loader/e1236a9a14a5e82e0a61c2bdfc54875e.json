@@ -1,0 +1,1 @@
+{"ast":null,"code":"export function paddedZero(n) {\n  return n > 9 ? n : '0' + n;\n}\nexport function formatTime(date) {\n  return `${paddedZero(date.getUTCHours())}:${paddedZero(date.getUTCMinutes())}`;\n}","map":null,"metadata":{},"sourceType":"module"}

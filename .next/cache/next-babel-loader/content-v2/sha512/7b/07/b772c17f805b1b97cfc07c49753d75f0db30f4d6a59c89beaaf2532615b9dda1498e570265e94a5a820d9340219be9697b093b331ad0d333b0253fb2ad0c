@@ -1,0 +1,1 @@
+{"ast":null,"code":"import everything from './everything.json';\nexport var fishingSpots = everything.fishingSpots;\nexport var fishes = everything.fishes;\nexport var baits = everything.baits;\nexport var achievements = everything.achievements;","map":null,"metadata":{},"sourceType":"module"}
