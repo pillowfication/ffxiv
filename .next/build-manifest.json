@@ -5,9 +5,9 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/gI364VMjZvjm5wnaVa3tP/_buildManifest.js",
-    "static/gI364VMjZvjm5wnaVa3tP/_ssgManifest.js",
-    "static/gI364VMjZvjm5wnaVa3tP/_middlewareManifest.js"
+    "static/05Hxwpdqm0BYNX7BtHIfz/_buildManifest.js",
+    "static/05Hxwpdqm0BYNX7BtHIfz/_ssgManifest.js",
+    "static/05Hxwpdqm0BYNX7BtHIfz/_middlewareManifest.js"
   ],
   "pages": {
     "/": [
@@ -43,7 +43,7 @@
       "static/chunks/main-c8a3fd87366351b5.js",
       "static/chunks/962-96f9448081c741d2.js",
       "static/chunks/325-4bc9f9f54e930298.js",
-      "static/chunks/823-06c6e07bf84e0966.js",
+      "static/chunks/823-9ea246f85550bc09.js",
       "static/chunks/912-44ba4e331c105c7c.js",
       "static/chunks/695-28e33884443aeeb1.js",
       "static/chunks/39-d288ac02a44eb5ef.js",
@@ -55,9 +55,9 @@
       "static/chunks/main-c8a3fd87366351b5.js",
       "static/chunks/962-96f9448081c741d2.js",
       "static/chunks/903-497dd5683311b88e.js",
-      "static/chunks/27-4c72bdb1dab95f03.js",
-      "static/chunks/855-3e1533d0398c522d.js",
-      "static/chunks/915-d14fba46d8bf1cab.js",
+      "static/chunks/27-5a5c6ba0992eac1b.js",
+      "static/chunks/855-a1ce24f411369318.js",
+      "static/chunks/915-3a0f42a6c012fa42.js",
       "static/chunks/617-7a28a3463469a7cf.js",
       "static/chunks/pages/chocobo-color-787b6bd64a7d21a0.js"
     ],
@@ -96,8 +96,8 @@
       "static/chunks/962-96f9448081c741d2.js",
       "static/chunks/325-4bc9f9f54e930298.js",
       "static/chunks/903-497dd5683311b88e.js",
-      "static/chunks/27-4c72bdb1dab95f03.js",
-      "static/chunks/855-3e1533d0398c522d.js",
+      "static/chunks/27-5a5c6ba0992eac1b.js",
+      "static/chunks/855-a1ce24f411369318.js",
       "static/chunks/pages/name-generator-c489ab257f474396.js"
     ],
     "/ocean-fishing": [
@@ -109,13 +109,13 @@
       "static/chunks/325-4bc9f9f54e930298.js",
       "static/chunks/903-497dd5683311b88e.js",
       "static/chunks/477-63ea7601b0ed09d6.js",
-      "static/chunks/823-06c6e07bf84e0966.js",
-      "static/chunks/27-4c72bdb1dab95f03.js",
+      "static/chunks/823-9ea246f85550bc09.js",
+      "static/chunks/27-5a5c6ba0992eac1b.js",
       "static/chunks/912-44ba4e331c105c7c.js",
       "static/chunks/464-a2d4a80ac47bcd77.js",
       "static/chunks/264-a5e823e034f2e184.js",
       "static/chunks/695-28e33884443aeeb1.js",
-      "static/chunks/994-d96cbf8fe16bccca.js",
+      "static/chunks/994-20e6f2378c7ad8db.js",
       "static/chunks/pages/ocean-fishing-17fc92d9bc5b661e.js"
     ],
     "/ocean-fishing/about": [
@@ -137,14 +137,14 @@
       "static/chunks/325-4bc9f9f54e930298.js",
       "static/chunks/903-497dd5683311b88e.js",
       "static/chunks/477-63ea7601b0ed09d6.js",
-      "static/chunks/823-06c6e07bf84e0966.js",
-      "static/chunks/27-4c72bdb1dab95f03.js",
+      "static/chunks/823-9ea246f85550bc09.js",
+      "static/chunks/27-5a5c6ba0992eac1b.js",
       "static/chunks/912-44ba4e331c105c7c.js",
       "static/chunks/464-a2d4a80ac47bcd77.js",
       "static/chunks/264-a5e823e034f2e184.js",
       "static/chunks/695-28e33884443aeeb1.js",
-      "static/chunks/994-d96cbf8fe16bccca.js",
-      "static/chunks/pages/ocean-fishing/bonuses-ff4eb52c76aa2e74.js"
+      "static/chunks/994-20e6f2378c7ad8db.js",
+      "static/chunks/pages/ocean-fishing/bonuses-8b5efac017e5f2ff.js"
     ],
     "/ocean-fishing/fish": [
       "static/chunks/webpack-fd1bc4a65a80e5c8.js",
@@ -155,14 +155,14 @@
       "static/chunks/325-4bc9f9f54e930298.js",
       "static/chunks/903-497dd5683311b88e.js",
       "static/chunks/477-63ea7601b0ed09d6.js",
-      "static/chunks/823-06c6e07bf84e0966.js",
-      "static/chunks/27-4c72bdb1dab95f03.js",
+      "static/chunks/823-9ea246f85550bc09.js",
+      "static/chunks/27-5a5c6ba0992eac1b.js",
       "static/chunks/912-44ba4e331c105c7c.js",
       "static/chunks/464-a2d4a80ac47bcd77.js",
       "static/chunks/264-a5e823e034f2e184.js",
-      "static/chunks/711-658d4e236227685b.js",
+      "static/chunks/711-5aefc33e18f4344b.js",
       "static/chunks/695-28e33884443aeeb1.js",
-      "static/chunks/994-d96cbf8fe16bccca.js",
+      "static/chunks/994-20e6f2378c7ad8db.js",
       "static/chunks/pages/ocean-fishing/fish-98b4a4946f3ba731.js"
     ],
     "/skywatcher": [
@@ -173,10 +173,10 @@
       "static/chunks/325-4bc9f9f54e930298.js",
       "static/chunks/903-497dd5683311b88e.js",
       "static/chunks/477-63ea7601b0ed09d6.js",
-      "static/chunks/823-06c6e07bf84e0966.js",
-      "static/chunks/27-4c72bdb1dab95f03.js",
-      "static/chunks/855-3e1533d0398c522d.js",
-      "static/chunks/372-fe437bf31d826859.js",
+      "static/chunks/823-9ea246f85550bc09.js",
+      "static/chunks/27-5a5c6ba0992eac1b.js",
+      "static/chunks/855-a1ce24f411369318.js",
+      "static/chunks/372-f3c90981d7902c3a.js",
       "static/chunks/695-28e33884443aeeb1.js",
       "static/chunks/39-d288ac02a44eb5ef.js",
       "static/chunks/pages/skywatcher-155f58bdaf99d6f0.js"
@@ -204,7 +204,7 @@
       "static/chunks/main-c8a3fd87366351b5.js",
       "static/chunks/962-96f9448081c741d2.js",
       "static/chunks/325-4bc9f9f54e930298.js",
-      "static/chunks/823-06c6e07bf84e0966.js",
+      "static/chunks/823-9ea246f85550bc09.js",
       "static/chunks/695-28e33884443aeeb1.js",
       "static/chunks/39-d288ac02a44eb5ef.js",
       "static/chunks/pages/zadnor-71fd874bfea27992.js"

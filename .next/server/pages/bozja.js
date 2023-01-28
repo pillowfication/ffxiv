@@ -92,7 +92,7 @@ var TableBody_default = /*#__PURE__*/__webpack_require__.n(TableBody_);
 var TableRow_ = __webpack_require__(4848);
 var TableRow_default = /*#__PURE__*/__webpack_require__.n(TableRow_);
 // EXTERNAL MODULE: external "@mui/material/TableCell"
-var TableCell_ = __webpack_require__(5612);
+var TableCell_ = __webpack_require__(8099);
 var TableCell_default = /*#__PURE__*/__webpack_require__.n(TableCell_);
 ;// CONCATENATED MODULE: ./src/bozja/RankIcon.tsx
 
@@ -494,7 +494,7 @@ module.exports = require("@mui/material/TableBody");
 
 /***/ }),
 
-/***/ 5612:
+/***/ 8099:
 /***/ ((module) => {
 
 module.exports = require("@mui/material/TableCell");
@@ -634,7 +634,7 @@ module.exports = require("react");
 
 /***/ }),
 
-/***/ 8455:
+/***/ 1085:
 /***/ ((module) => {
 
 module.exports = require("react-string-replace");

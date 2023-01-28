@@ -38,7 +38,7 @@ var Typography_default = /*#__PURE__*/__webpack_require__.n(Typography_);
 var Stack_ = __webpack_require__(8742);
 var Stack_default = /*#__PURE__*/__webpack_require__.n(Stack_);
 // EXTERNAL MODULE: external "@mui/material/Grid"
-var Grid_ = __webpack_require__(8098);
+var Grid_ = __webpack_require__(5612);
 var Grid_default = /*#__PURE__*/__webpack_require__.n(Grid_);
 // EXTERNAL MODULE: external "@mui/material/Box"
 var Box_ = __webpack_require__(19);
@@ -497,7 +497,7 @@ module.exports = require("@mui/material/Box");
 
 /***/ }),
 
-/***/ 8098:
+/***/ 5612:
 /***/ ((module) => {
 
 module.exports = require("@mui/material/Grid");
