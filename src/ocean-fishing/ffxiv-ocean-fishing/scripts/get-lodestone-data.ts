@@ -1,9 +1,11 @@
 import fs from 'fs'
 import path from 'path'
+import url from 'url'
 import fetch from 'node-fetch'
-import cheerio from 'cheerio'
-import oceanFishingFishes from '../data/fishes.json'
+import * as cheerio from 'cheerio'
+import oceanFishingFishes from '../data/fishes.json' assert { type: 'json' }
 
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url)) // eslint-disable-line @typescript-eslint/naming-convention
 const OUTPUT = path.resolve(__dirname, '../data/lodestone-data.json')
 
 async function get (url: string): Promise<any> {
@@ -57,7 +59,7 @@ async function getLodestoneData (query: string, dataVersion: number): Promise<an
     return null
   }
 
-  // After the item id is found, we can grab look for `icon_md`.
+  // After the item id is found, we can grab its `icon_md`.
   // This icon is seen in the hover tooltip that is handled by https://na.finalfantasyxiv.com/lodestone/special/fankit/tooltip/.
   $ = cheerio.load(JSON.parse((await get(`https://img.finalfantasyxiv.com/lds/pc/tooltip/${dataVersion}/na/item/${data.item as string}.js`)).match(/^eorzeadb\.pushup\((.+)\)$/)[1]).html)
   data.icon_md = $('.db-tooltip__item__icon img').eq(0).attr('src')?.match(/\/([^/]+)\.png/)?.[1]

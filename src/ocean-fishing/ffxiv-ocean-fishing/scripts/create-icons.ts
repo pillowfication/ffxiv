@@ -1,13 +1,15 @@
 import fs from 'fs'
 import path from 'path'
+import url from 'url'
 import { createCanvas, loadImage } from 'canvas'
-import fishingSpots from '../data/fishing-spots.json'
-import fishes from '../data/fishes.json'
-import baits from '../data/baits.json'
-import contentBonuses from '../data/content-bonuses.json'
-import achievements from '../data/achievements.json'
+import fishingSpots from '../data/fishing-spots.json' assert { type: 'json' }
+import fishes from '../data/fishes.json' assert { type: 'json' }
+import baits from '../data/baits.json' assert { type: 'json' }
+import contentBonuses from '../data/content-bonuses.json' assert { type: 'json' }
+import achievements from '../data/achievements.json' assert { type: 'json' }
 import * as saintCoinach from '../../../saint-coinach'
 
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url)) // eslint-disable-line @typescript-eslint/naming-convention
 const OUTPUT = path.resolve(__dirname, '../data/icons.png')
 const OUTPUT_MAP = path.resolve(__dirname, '../data/icons-map.json')
 

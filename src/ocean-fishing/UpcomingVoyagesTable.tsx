@@ -9,7 +9,7 @@ import TableBody from '@mui/material/TableBody'
 import TableRow from '@mui/material/TableRow'
 import TableCell from '@mui/material/TableCell'
 import OceanFishIcon from './OceanFishIcon'
-import { getStopTimes, calculateVoyages, Dest, Time, DestTime } from './ffxiv-ocean-fishing'
+import { getStopTimes, calculateVoyages, Route, Dest, Time, DestTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 import { getBlueFish, timeUntil, upperFirst } from './utils'
 import { toTimeString } from '../utils'
@@ -19,14 +19,15 @@ const DATE_FORMAT: Intl.DateTimeFormatOptions = { month: '2-digit', day: '2-digi
 
 interface Props {
   now: Date
+  route: Route
   numRows: number
   filter?: DestTime[]
   onSelectRoute: (route: DestTime) => void
 }
 
-const UpcomingVoyagesTable = ({ now, numRows, filter, onSelectRoute }: Props): React.ReactElement => {
+const UpcomingVoyagesTable = ({ now, route, numRows, filter, onSelectRoute }: Props): React.ReactElement => {
   const { t, i18n } = useTranslation('ocean-fishing')
-  const upcomingVoyages = calculateVoyages(now, Math.min(Math.max(numRows, 1), 50), filter)
+  const upcomingVoyages = calculateVoyages(route, now, Math.min(Math.max(numRows, 1), 50), filter)
   const locale = i18n.language
 
   return (

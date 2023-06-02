@@ -64,7 +64,7 @@ const OceanFishPopper = ({ fish }: Props): React.ReactElement => {
                   {t('fishInfo.rating')}
                 </TableCell>
                 <TableCell align='center'>
-                  {spreadsheetData.stars !== null ? '★'.repeat(spreadsheetData.stars) : '?'}
+                  {spreadsheetData?.stars != null ? '★'.repeat(spreadsheetData.stars) : '?'}
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -72,7 +72,7 @@ const OceanFishPopper = ({ fish }: Props): React.ReactElement => {
                   {t('fishInfo.points')}
                 </TableCell>
                 <TableCell align='center'>
-                  {spreadsheetData.points !== null ? spreadsheetData.points : '?'}
+                  {spreadsheetData?.points != null ? spreadsheetData.points : '?'}
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -80,8 +80,8 @@ const OceanFishPopper = ({ fish }: Props): React.ReactElement => {
                   {t('fishInfo.doubleHook')}
                 </TableCell>
                 <TableCell align='center'>
-                  {spreadsheetData.doubleHook !== null
-                    ? (Array.isArray(spreadsheetData.doubleHook) ? spreadsheetData.doubleHook.join('-') : spreadsheetData.doubleHook)
+                  {spreadsheetData?.doubleHook != null
+                    ? (spreadsheetData.doubleHook[0] === spreadsheetData.doubleHook[1] ? spreadsheetData.doubleHook.join('-') : spreadsheetData.doubleHook[0])
                     : '?'}
                 </TableCell>
               </TableRow>
@@ -90,8 +90,8 @@ const OceanFishPopper = ({ fish }: Props): React.ReactElement => {
                   {t('fishInfo.tripleHook')}
                 </TableCell>
                 <TableCell align='center'>
-                  {spreadsheetData.tripleHook !== null
-                    ? (Array.isArray(spreadsheetData.tripleHook) ? spreadsheetData.tripleHook.join('-') : spreadsheetData.tripleHook)
+                  {spreadsheetData?.tripleHook != null
+                    ? (spreadsheetData.tripleHook[0] === spreadsheetData.tripleHook[1] ? spreadsheetData.tripleHook.join('-') : spreadsheetData.tripleHook[0])
                     : '?'}
                 </TableCell>
               </TableRow>
@@ -100,20 +100,20 @@ const OceanFishPopper = ({ fish }: Props): React.ReactElement => {
                   {t('fishInfo.weather')}
                 </TableCell>
                 <TableCell align='center'>
-                  {spreadsheetData.weathers !== null
+                  {spreadsheetData?.weatherAvailability != null
                     ? (() => {
-                        switch (spreadsheetData.weathers.type) {
+                        switch (spreadsheetData.weatherAvailability.type) {
                           case 'ALL':
                             return 'Any'
                           case 'OK':
-                            return spreadsheetData.weathers.list.map(weather =>
+                            return spreadsheetData.weatherAvailability.weathers.map(weather =>
                               <WeatherIcon key={weather} weather={weather} />
                             )
                           case 'NOT OK':
                             return (
                               <>
                                 <span style={{ verticalAlign: 'middle' }}>Not </span>
-                                {spreadsheetData.weathers.list.map(weather =>
+                                {spreadsheetData.weatherAvailability.weathers.map(weather =>
                                   <WeatherIcon key={weather} weather={weather} />
                                 )}
                               </>
@@ -128,8 +128,8 @@ const OceanFishPopper = ({ fish }: Props): React.ReactElement => {
                   {t('fishInfo.timeOfDay')}
                 </TableCell>
                 <TableCell align='center'>
-                  {spreadsheetData.time !== null
-                    ? spreadsheetData.time.length === 3 ? 'Any' : spreadsheetData.time.map(time => <TimeIcon key={time} time={time} />)
+                  {spreadsheetData?.timeAvailability != null
+                    ? spreadsheetData.timeAvailability.length === 3 ? 'Any' : spreadsheetData.timeAvailability.map(time => <TimeIcon key={time} time={time} />)
                     : '?'}
                 </TableCell>
               </TableRow>

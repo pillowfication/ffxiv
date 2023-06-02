@@ -1,160 +1,201 @@
 import fs from 'fs'
 import path from 'path'
-import cheerio from 'cheerio'
+import url from 'url'
+import { Weather } from '../../../skywatcher/ffxiv-skywatcher/src/types'
+import spreadsheetDataRaw from '../data/spreadsheet-data-raw.json' assert { type: 'json' }
 
-const SHEET = path.resolve(__dirname, '../data/Ocean Fishing Data.html')
-const OUTPUT = path.resolve(__dirname, '../data/spreadsheet-data-raw.json')
-const $ = cheerio.load(fs.readFileSync(SHEET).toString())
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url))
+const OUTPUT = path.resolve(__dirname, '../data/spreadsheet-data.json')
 
-type Cheerio = any // I don't know how to get the Cheerio type from cheerio
-
-function getNthTd (tr: Cheerio, nth: Number): Cheerio {
-  let currCol = 1
-  let td = $(tr).find('th, td').eq(0)
-
-  while (currCol < nth) {
-    currCol += td.attr('colspan') === undefined ? 1 : Number(td.attr('colspan'))
-    td = td.next()
-  }
-
-  return td
-}
-
-// Parsing the sheet works by finding the cells with these strings as text,
-// then reading the 10 rows after it
-const FISHING_SPOTS = [
-  'Outer Galadion Bay',
-  'Galadion Spectral Current',
-  'The Southern Strait of Merlthor',
-  'Southern Merlthor Spectral Current',
-  'The Northern Strait of Merlthor',
-  'Northern Merlthor Spectral Current',
-  'Open Rhotano Sea',
-  'Rhotano Spectral Current',
-  'Cieldalaes Margin',
-  'Cieldalaes Spectral Current',
-  'Open Bloodbrine Sea',
-  'Bloodbrine Spectral Current',
-  'Outer Rothlyt Sound',
-  'Rothlyt Spectral Current'
-]
-
-const data: Record<string, any> = {}
+const PILL_BUG = 2587
+const RAT_TAIL = 2591
+const GLOWWORM = 2603
+const SHRIMP_CAGE_FEEDER = 2613
+const HEAVY_STEEL_JIG = 2619
+const STONEFLY_NYMPH = 12704
+const SQUID_STRIP = 27590
+const RAGWORM = 29714
+const KRILL = 29715
+const PLUMP_WORM = 29716
+const VERSATILE_LURE = 29717
+const MACKEREL_STRIP = 36593
 
 ;(async () => {
-  for (const fishingSpot of FISHING_SPOTS) {
-    // Find the cell contain the `fishingSpot` text
-    data[fishingSpot] = []
-    let tr = $('table.waffle tr').filter((_, elem) => $(elem).text().includes(fishingSpot)).eq(0)
-    tr = tr.next() // skip a row
+  const data: Record<string, any> = spreadsheetDataRaw
 
-    // Loop over the 10 rows after it
-    for (let i = 0; i < 10; ++i) {
-      tr = tr.next()
-      data[fishingSpot].push({
-        name: getNthTd(tr, 3).text().trim(),
-        moochable: isYellow(getNthTd(tr, 3)),
-        bait: (() => {
-          // If this is a mooch-only fish, the name of the mooched fish is added by hand
-          if (isOrange(getNthTd(tr, 4))) return '<MOOCH>'
+  // Pre-fixes
+  for (const fishes of Object.values(data)) {
+    for (const fish of fishes) {
+      switch (fish.name) {
+        case 'Hi-Aetherlouse':
+          fish.name = 'Hi-aetherlouse'
+          break
+        case 'Jewel of Plum Spring':
+          fish.notes = 'Intuition: x2 Yanxian Goby, x1 Gensui Shrimp (15s)'
+          break
+        case 'Snapping Koban':
+          fish.mooched = true
+          fish.baits.mooch = { biteTime: null, usable: true, best: null }
+          break
+        case 'Tentacale Thresher':
+          fish.name = 'Tentacle Thresher'
+          break
+        case 'Yato-no-Kami':
+          fish.name = 'Yato-no-kami'
+          break
+      }
+    }
+  }
 
-          if (isBlue(getNthTd(tr, 4))) return 'Ragworm'
-          if (isBlue(getNthTd(tr, 5))) return 'Krill'
-          if (isBlue(getNthTd(tr, 6))) return 'Plump Worm'
-          if (isBlue(getNthTd(tr, 7))) {
-            console.log('Nonstandard bait for:', getNthTd(tr, 3).text().trim())
-          } else {
-            console.log('Unknown bait for:', getNthTd(tr, 3).text().trim())
+  for (const [fishingSpot, fishes] of Object.entries<any>(data)) {
+    const isSpectral = /spectral current/i.test(fishingSpot)
+    for (const fish of fishes) {
+      // Snapping Koban is also a mooched fish
+      if (fish.name === 'Snapping Koban') {
+        fish.mooched = true
+        fish.baits.mooch = { biteTime: null, usable: true, best: null }
+      }
+
+      // Rename Hi-aetherlouse
+      if (fish.name === 'Hi-Aetherlouse') {
+        fish.name = 'Hi-aetherlouse'
+      }
+
+      // Fix baits
+      const newBaits: any = {
+        [RAGWORM]: fish.baits.ragworm,
+        [KRILL]: fish.baits.krill,
+        [PLUMP_WORM]: fish.baits.plumpWorm
+      }
+
+      if (isSpectral) {
+        newBaits[VERSATILE_LURE] = null
+        newBaits[getSpecialBait(fishingSpot)] = fish.baits.other
+      } else {
+        newBaits[VERSATILE_LURE] = fish.baits.other
+      }
+
+      if (fish.baits.mooch.usable) {
+        fish.mooches = {
+          [getMoochBait(fishingSpot)]: {
+            ...fish.baits.mooch
           }
-          return null
-        })(),
-        points: parsePoints(getNthTd(tr, 8).text().trim()),
-        doubleHook: parseMultiHook(getNthTd(tr, 9).text().trim()),
-        tripleHook: parseMultiHook(getNthTd(tr, 10).text().trim()),
-        tug: parseTug(getNthTd(tr, 11).text().trim()),
-        hookset: parseHookset(getNthTd(tr, 12)),
-        time: null, // This is far too complicated to parse now
-        weathers: null, // This is far too complicated to parse now
-        stars: parseStars(getNthTd(tr, 19).text().trim()),
-        notes: getNthTd(tr, 20).text().trim()
-      })
-    }
-  }
+        }
+      }
 
-  function isBlue (elem: Cheerio): boolean {
-    // These are the classNames of blue cells indicating desynth baits
-    // This can randomly change when the sheet is updated
-    for (const className of ['s29', 's40', 's44', 's46']) {
-      if (elem.hasClass(className) as boolean) {
-        return true
+      fish.baits = newBaits
+      
+      // Fix time and weather availabilities
+      if (isSpectral) {
+        fish.timeAvailability = ['D', 'S', 'N'].filter((_, index) => fish.availability[`weather${index + 1}`])
+        fish.weatherAvailability = { type: 'ALL' }
+      } else {
+        fish.timeAvailability = ['D', 'S', 'N']
+
+        const possibleWeathers = getPossibleWeathers(fishingSpot)
+        const weatherAvailabilites = possibleWeathers.map((_, index) => fish.availability[`weather${index + 1}`])
+        if (weatherAvailabilites.every(availability => availability === true)) {
+          fish.weatherAvailability = { type: 'ALL' }
+        } else if (weatherAvailabilites.some(availability => availability === false)) {
+          fish.weatherAvailability = { type: 'NOT OK', weathers: possibleWeathers.filter((_, index) => weatherAvailabilites[index] === false) }
+        } else {
+          fish.weatherAvailability = { type: 'OK', weathers: possibleWeathers.filter((_, index) => weatherAvailabilites[index] === true) }
+        }
+      }
+
+      delete fish.availability
+      
+      // Add intuition duration and fishes
+      if (fish.intuition) {
+        const intMatch = (fish.notes as string).match(/^Intuition:\s*(.*)\s*\((\d+)s\)$/)
+        if (intMatch != null) {
+          fish.intuitionDuration = Number(intMatch[2])
+          fish.intuitionFishes = intMatch[1].split(',').map(fishNote => {
+            const fishMatch = fishNote.trim().match(/^x(\d+) (.+)$/)
+            return {
+              fish: fishMatch?.[2],
+              count: Number(fishMatch?.[1]) || null
+            }
+          })
+        } else {
+          fish.intuitionDuration = null
+          fish.intuitionFishes = null
+        }
+      }
+
+      // Drop notes
+      delete fish.notes
+
+      // Fix mooch data appearing as bait data
+      if (['Smooth Jaguar', 'Levi Elver', 'Panoptes', 'Snapping Koban'].includes(fish.name)) {
+        fish.mooches[getMoochBait(fishingSpot)].biteTime = fish.baits[0].biteTime
+        fish.mooches[getMoochBait(fishingSpot)].useable = fish.baits[0].useable
+        fish.mooches[getMoochBait(fishingSpot)].best = fish.baits[0].best
+        delete fish.baits[0]
       }
     }
-    return false
   }
 
-  function isYellow (elem: Cheerio): boolean {
-    for (const className of ['s48']) {
-      if (elem.hasClass(className) as boolean) {
-        return true
-      }
+  function getSpecialBait (fishingSpot: string): number {
+    switch (fishingSpot) {
+      case 'Galadion Spectral Current':
+        return GLOWWORM
+      case 'Southern Merlthor Spectral Current':
+        return SHRIMP_CAGE_FEEDER
+      case 'Northern Merlthor Spectral Current':
+        return HEAVY_STEEL_JIG
+      case 'Rhotano Spectral Current':
+        return RAT_TAIL
+      case 'Cieldalaes Spectral Current':
+        return SQUID_STRIP
+      case 'Bloodbrine Spectral Current':
+        return PILL_BUG
+      case 'Rothlyt Spectral Current':
+        return 0
+      case 'Sirensong Spectral Current':
+        return MACKEREL_STRIP
+      case 'Kugane Spectral Current':
+        return 0
+      case 'Ruby Spectral Current':
+        return SQUID_STRIP
+      case 'One River Spectral Current':
+        return STONEFLY_NYMPH
+      default:
+        return 0
     }
-    return false
   }
 
-  function isOrange (elem: Cheerio): boolean {
-    for (const className of ['s50', 's56']) {
-      if (elem.hasClass(className) as boolean) {
-        return true
-      }
-    }
-    return false
+  function getMoochBait (fishingSpot: string): string {
+    return data[fishingSpot].find((fish: any) => fish.moochable).name
   }
 
-  function parsePoints (str: string): number | null {
-    if (/^\d+$/.test(str)) {
-      return Number(str)
+  function getPossibleWeathers (fishingSpot: string): Weather[] {
+    switch (fishingSpot) {
+      case 'Outer Galadion Bay':
+        return [Weather.FairSkies, Weather.Clouds, Weather.Fog, Weather.Rain, Weather.Showers, Weather.ClearSkies]
+      case 'The Southern Strait of Merlthor':
+        return [Weather.FairSkies, Weather.Clouds, Weather.Fog, Weather.Wind, Weather.Gales, Weather.ClearSkies]
+      case 'The Northern Strait of Merlthor':
+        return [Weather.FairSkies, Weather.Clouds, Weather.Fog, Weather.Snow, Weather.Blizzards, Weather.ClearSkies]
+      case 'Open Rhotano Sea':
+        return [Weather.FairSkies, Weather.Clouds, Weather.Fog, Weather.DustStorms, Weather.HeatWaves, Weather.ClearSkies]
+      case 'Cieldalaes Margin':
+        return [Weather.FairSkies, Weather.Clouds, Weather.Fog, Weather.Thunder, Weather.Thunderstorms, Weather.ClearSkies]
+      case 'Open Bloodbrine Sea':
+        return [Weather.FairSkies, Weather.Clouds, Weather.Fog, Weather.Rain, Weather.Showers, Weather.ClearSkies]
+      case 'Outer Rothlyt Sound':
+        return [Weather.FairSkies, Weather.Clouds, Weather.Fog, Weather.Thunder, Weather.Thunderstorms, Weather.ClearSkies]
+      case 'Open Sirensong Sea':
+        return [Weather.FairSkies, Weather.Clouds, Weather.Fog, Weather.Rain, Weather.Thunderstorms, Weather.ClearSkies]
+      case 'Kugane Coast':
+        return [Weather.FairSkies, Weather.Clouds, Weather.Fog, Weather.Rain, Weather.Showers, Weather.ClearSkies]
+      case 'Open Ruby Sea':
+        return [Weather.FairSkies, Weather.Clouds, Weather.Fog, Weather.Wind, Weather.Gales, Weather.Thunder, Weather.ClearSkies]
+      case 'Lower One River':
+        return [Weather.FairSkies, Weather.Clouds, Weather.Fog, Weather.Rain, Weather.Showers, Weather.ClearSkies]
+      default:
+        return []
     }
-    console.log('Unknown points:', str)
-    return null
-  }
-
-  function parseMultiHook (str: string): number | number[] | null {
-    if (/^\d+$/.test(str)) {
-      return Number(str)
-    }
-    if (/^\d+ - \d+$/.test(str)) {
-      return str.split(' - ').map(Number)
-    }
-    console.log('Unknown multi-hook:', str)
-    return null
-  }
-
-  function parseTug (str: string): number | null {
-    if (/^❗+$/.test(str)) {
-      return str.length
-    }
-    console.log('Unknown tug:', str)
-    return null
-  }
-
-  function parseHookset (td: Cheerio): string | null {
-    const imgSrc = $(td).find('img').attr('src')
-    if (imgSrc === 'https://lh3.googleusercontent.com/zneQuC8iYxW3u6KJP83JpwLXQFm4EXK8z59GRx8kPr0QyfAqyb5MAEG9ei0ebiOFQRDKJvedFLf9AOydTjeaCcX65ufKzirntbtIu_HuqVVRTvHYq2rEMSB1Vwo_Z77j5JgvB48nMA=w62-h20') {
-      return 'Precision'
-    }
-    if (imgSrc === 'https://lh6.googleusercontent.com/pK2HNOaczHTBya4M_x-MrJvxlAlNuAkFq4cD7H2oMUfcXAUbrEuqz7Ek4HNjw_3yCNlLlYeOEMo6zZocXhTMs4lq9_9tEdig59QUCVtOANld3Q0FoY7vRkrFoScYSWS9f1SRXTyAwA=w62-h20') {
-      return 'Powerful'
-    }
-    console.log('Unknown hookset:', imgSrc)
-    return null
-  }
-
-  function parseStars (str: string): number | null {
-    if (/^\d+$/.test(str)) {
-      return Number(str)
-    }
-    console.log('Unknown stars:', str)
-    return null
   }
 
   fs.writeFileSync(OUTPUT, JSON.stringify(data, null, 2))

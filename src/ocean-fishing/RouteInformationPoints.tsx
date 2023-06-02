@@ -20,23 +20,26 @@ function getPointsFishes (stopTime: StopTime): Fish[] {
   // Find all fish that exceed the threshold, while keeping track of the highest value fish(es)
   let highestPointsFishes: Array<{ fish: Fish, points: number }> = []
   const thresholdPointsFishes = spectralFishingSpot.fishes.filter(fish => {
-    const { points, tripleHook, time: fishTime, intuition } = fish.spreadsheetData
+    // const { points, tripleHook, time: fishTime, intuition } = fish.spreadsheetData
+    const spreadsheetData = fish.spreadsheetData
+    if (spreadsheetData == null) {
+      return false
 
     // Check to see if this fish is catchable
-    if (fishTime !== null && !fishTime.includes(time)) {
+    } else if (spreadsheetData.timeAvailability != null && !spreadsheetData.timeAvailability.includes(time)) {
       return false
 
     // Ignore blue fish so that the highest non-blue fish will be found
-    } else if (intuition !== null) {
+    } else if (spreadsheetData.intuition === true) {
       return false
 
     // Not enough known data on this fish
-    } else if (points === null || tripleHook === null) {
+    } else if (spreadsheetData.points == null || spreadsheetData.tripleHook == null) {
       return false
 
     // Check what this fish is worth
     } else {
-      const maxPoints = (Array.isArray(tripleHook) ? tripleHook[1] : tripleHook) * points
+      const maxPoints = spreadsheetData.tripleHook[1] * spreadsheetData.points
       if (highestPointsFishes.length === 0) {
         highestPointsFishes.push({ fish, points: maxPoints })
       } else if (maxPoints === highestPointsFishes[0].points) {
@@ -84,12 +87,14 @@ const RouteInformationPoints = ({ stopTimes }: Props): React.ReactElement => {
                   if (fish === 'hr' || fish === null) { // Idk how to tell TS that fish isn't null
                     return 'hr'
                   } else {
-                    const { points, tripleHook } = fish.spreadsheetData
-                    const tripleHookString = tripleHook !== null
-                      ? Array.isArray(tripleHook) ? tripleHook.join('-') : tripleHook
+                    const points = fish.spreadsheetData?.points
+                    const tripleHook = fish.spreadsheetData?.tripleHook
+
+                    const tripleHookString = tripleHook != null
+                      ? tripleHook[0] === tripleHook[1] ? tripleHook[0].toString() : tripleHook.join('-')
                       : '?'
-                    const pointsString = tripleHook !== null && points !== null
-                      ? (Array.isArray(tripleHook) ? tripleHook[1] : tripleHook) * points
+                    const pointsString = tripleHook != null && points != null
+                      ? (tripleHook[1] * points).toString()
                       : '?'
                     return {
                       header: translate(locale, fish, 'name'),

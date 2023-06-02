@@ -1,6 +1,6 @@
 import { timeUntil as genericTimeUntil } from '../utils'
 import { fishingSpots, baits, fishes, Fish, Bait } from './ffxiv-ocean-fishing/data'
-import { getStopTimes, Stop, Time, StopTime, DestTime } from './ffxiv-ocean-fishing'
+import { getStopTimes, Route, Stop, Time, StopTime, DestTime } from './ffxiv-ocean-fishing'
 import { BaitLink, FishLink } from './BaitChain'
 import * as maps from './maps'
 import { TFunction } from 'next-i18next'
@@ -27,36 +27,85 @@ export function timeUntil (now: Date, then: Date, options: { t: TFunction, full?
   }
 }
 
+export function getRoute (stopTime: StopTime): Route {
+  const stop = stopTime[0] as Stop
+  if (stop === 'O' || stop === 'P')
+    return 'RUBY'
+  else
+    return 'INDIGO'
+}
+
 export function getBlueFish (stopTime: StopTime): Fish | null {
   const blueFish = maps.BLUE_FISH_MAP[stopTime[0] as Stop]
-  const spreadsheetData = blueFish.spreadsheetData
-  if (spreadsheetData.time !== null) {
-    if (spreadsheetData.time.includes(stopTime[1] as Time)) {
-      return blueFish
-    }
+  if (blueFish.spreadsheetData?.timeAvailability?.includes(stopTime[1] as Time)) {
+    return blueFish
   }
   return null
 }
 
 export function isBaitRequired (fish: Fish, bait: Bait): boolean {
-  for (const otherBaitId of Object.keys(fish.biteTimes)) {
-    if (otherBaitId === 'all' || +otherBaitId === bait.id || +otherBaitId === 29717) {
-      continue
-    } else {
-      return false
-    }
-  }
-  return true
+  return false
+  // for (const otherBaitId of Object.keys(fish.biteTimes)) {
+  //   if (otherBaitId === 'all' || +otherBaitId === bait.id || +otherBaitId === 29717) {
+  //     continue
+  //   } else {
+  //     return false
+  //   }
+  // }
+  // return true
 }
+
+export const getRecommendedBait = memoize(
+  (fish: Fish): Bait | null => {
+    if (fish.spreadsheetData?.baits != null) {
+      for (const [baitId, baitData] of Object.entries(fish.spreadsheetData.baits)) {
+        if (baitData?.best === true) {
+          return baits[Number(baitId)]
+        }
+      }
+    }
+    return null
+  },
+  (fish: Fish) => String(fish.id)
+)
+
+export const getRecommendedMooch = memoize(
+  (fish: Fish): Fish | null => {
+    if (fish.spreadsheetData?.mooches != null) {
+      console.log(fish.spreadsheetData.mooches)
+      for (const [fishId, moochData] of Object.entries(fish.spreadsheetData.mooches)) {
+        if (moochData?.best === true) {
+          return fishes[Number(fishId)]
+        }
+      }
+    }
+    return null
+  },
+  (fish: Fish) => String(fish.id)
+)
 
 export const getBaitChain = memoize(
   function _getBaitChain (fish: Fish): Array<BaitLink | FishLink> {
-    const { bait, mooch, tug } = fish.spreadsheetData
-    if (bait === null && mooch === null) {
-      return [{ bait: baits[29717] }, { fish, tug }] // Versatile Lure as fallback
-    } else {
-      return bait !== null ? [{ bait }, { fish, tug }] : [..._getBaitChain(mooch as Fish), { fish, tug }]
+    // Check if a bait is set as recommended
+    if (fish.spreadsheetData?.baits != null) {
+      for (const [baitId, baitData] of Object.entries(fish.spreadsheetData.baits)) {
+        if (baitData?.best === true) {
+          return [{ bait: baits[baitId as any] }, { fish, tug: fish.spreadsheetData.tug }]
+        }
+      }
     }
+
+    // Check if a mooch is set as recommended
+    if (fish.spreadsheetData?.mooches != null) {
+      for (const [fishId, moochData] of Object.entries(fish.spreadsheetData.mooches)) {
+        if (moochData?.best === true) {
+          return [..._getBaitChain(fishes[fishId as any]), { fish, tug: fish.spreadsheetData.tug }]
+        }
+      }
+    }
+
+    // Versatile Lure as fallback
+    return [{ bait: baits[29717] }, { fish, tug: fish.spreadsheetData?.tug ?? null }]
   },
   (fish: Fish) => String(fish.id)
 )
@@ -67,17 +116,18 @@ export const getBaitGroup = memoize(
     baitIsRequired: boolean
     intuitionFishes?: Array<{ baits: Array<BaitLink | FishLink>, baitIsRequired: boolean, count: number }>
   } => {
-    const { intuition } = fish.spreadsheetData
     const baitChain = getBaitChain(fish)
+    const intuitionFishes = fish.spreadsheetData?.intuitionFishes
     return {
       baits: baitChain,
       baitIsRequired: isBaitRequired(fish, (baitChain[0] as BaitLink).bait),
-      intuitionFishes: intuition !== null
-        ? intuition.map(({ fish, count }) => {
-          const baitChain = getBaitChain(fish)
+      intuitionFishes: intuitionFishes != null
+        ? Object.entries(intuitionFishes).map(([ intuitionFishId, count ]) => {
+          const intuitionFish = fishes[Number(intuitionFishId)]
+          const intuitionBaitChain = getBaitChain(intuitionFish)
           return {
-            baits: baitChain,
-            baitIsRequired: isBaitRequired(fish, (baitChain[0] as BaitLink).bait),
+            baits: intuitionBaitChain,
+            baitIsRequired: isBaitRequired(intuitionFish, (intuitionBaitChain[0] as BaitLink).bait),
             count
           }
         })
@@ -137,17 +187,18 @@ if (typeof window !== 'undefined') {
 }
 
 export function subtextDH (fish: Fish): string {
-  const doubleHook = fish.spreadsheetData.doubleHook
-  return doubleHook !== null
+  const doubleHook = fish.spreadsheetData?.doubleHook
+  return doubleHook != null
     ? `DH: ${Array.isArray(doubleHook) ? doubleHook.join('-') : doubleHook}`
     : 'DH: ?'
 }
 
 export function subtextBiteTime (fish: Fish): string {
-  const biteTimeAll = fish.biteTimes.all
-  return biteTimeAll !== null
-    ? `${biteTimeAll[0] === biteTimeAll[1] ? biteTimeAll[0] : biteTimeAll.join('-')}s`
-    : '?s'
+  // const biteTimeAll = fish.biteTimes.all
+  // return biteTimeAll !== null
+  //   ? `${biteTimeAll[0] === biteTimeAll[1] ? biteTimeAll[0] : biteTimeAll.join('-')}s`
+  //   : '?s'
+  return '?s'
 }
 
 export function upperFirst (str: string): string {
@@ -172,7 +223,7 @@ export function isUncaughtRoute (destTime: DestTime, checklist: number[]): boole
     }
     const spectralFishingSpot = fishingSpots[nonSpectralFishingSpot.id + 1]
     for (const fish of spectralFishingSpot.fishes) {
-      if (fish.spreadsheetData.time !== null && !fish.spreadsheetData.time.includes(stopTime[1] as Time)) {
+      if (fish.spreadsheetData?.timeAvailability != null && !fish.spreadsheetData.timeAvailability.includes(stopTime[1] as Time)) {
         continue
       }
       if (!checklist.includes(fish.id)) {

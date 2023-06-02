@@ -12,10 +12,18 @@ import MenuItem from '@mui/material/MenuItem'
 import Section from '../Section'
 import UpcomingVoyagesTable from './UpcomingVoyagesTable'
 import { fishingSpots, fishes, achievements } from './ffxiv-ocean-fishing/data'
-import { calculateVoyages, DestTime } from './ffxiv-ocean-fishing'
+import { calculateVoyages, Route, DestTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
 import { upperFirst, isUncaughtRoute } from './utils'
 import translate from '../translate'
+
+function getRoute (route: string | null): Route {
+  if (route?.toLowerCase() === 'ruby') {
+    return 'RUBY'
+  } else {
+    return 'INDIGO'
+  }
+}
 
 // `filter` is one of
 //  - `null` for no filter
@@ -46,18 +54,24 @@ interface Props {
 
 const UpcomingVoyages = ({ now, onSelectRoute, checklist }: Props): React.ReactElement => {
   const { t, i18n } = useTranslation('ocean-fishing')
+  const [route, setRoute] = useQueryState('route')
   const [numRows, setNumRows] = useState(10)
   const [filter, setFilter] = useQueryState('filter')
+  const _route = getRoute(route)
   const _filter = getFilter(filter, checklist)
   const isCustomFilter = filter !== null && filter !== 'uncaught' && maps.FILTER_MAP[filter] === undefined
   const locale = i18n.language
 
   useEffect(() => {
     onSelectRoute(
-      calculateVoyages(now, 1, _filter !== undefined && _filter.length > 0 ? _filter : undefined)[0].destTime
+      calculateVoyages('INDIGO', now, 1, _filter !== undefined && _filter.length > 0 ? _filter : undefined)[0].destTime
     )
   }, [filter])
 
+  const handleSelectRoute = (event: SelectChangeEvent): void => {
+    const route = event.target.value
+    void setRoute(route)
+  }
   const handleInputNumRows = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setNumRows(Number(event.target.value))
   }
@@ -77,7 +91,18 @@ const UpcomingVoyages = ({ now, onSelectRoute, checklist }: Props): React.ReactE
   return (
     <Section title={t('upcomingVoyages')}>
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={4}>
+          <FormControl fullWidth variant='filled'>
+            <InputLabel>Route</InputLabel>
+            <NoSsr>
+              <Select value={route ?? 'indigo'} onChange={handleSelectRoute}>
+                <MenuItem dense value='indigo'>Indigo</MenuItem>
+                <MenuItem dense value='ruby'>Ruby</MenuItem>
+              </Select>
+            </NoSsr>
+          </FormControl>
+        </Grid>
+        <Grid item xs={12} sm={4}>
           <FormControl fullWidth>
             <TextField
               variant='filled'
@@ -89,7 +114,7 @@ const UpcomingVoyages = ({ now, onSelectRoute, checklist }: Props): React.ReactE
             />
           </FormControl>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={4}>
           <FormControl fullWidth variant='filled'>
             <InputLabel>{t('filterRoute')}</InputLabel>
             <NoSsr>
@@ -146,6 +171,7 @@ const UpcomingVoyages = ({ now, onSelectRoute, checklist }: Props): React.ReactE
           <NoSsr>
             <UpcomingVoyagesTable
               now={now}
+              route={_route}
               numRows={numRows}
               filter={_filter}
               onSelectRoute={onSelectRoute}

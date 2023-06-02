@@ -221,6 +221,7 @@ export enum Place {
   RestrictedArchives = 4034,
   ZerosDomain = 4038,
   MeghadutaGuestChambers = 4039,
+  Elysion = 4042,
   UnnamedIsland = 4043,
   StormsCrown = 4045,
   TheDeadEnds = 4100,
@@ -232,12 +233,22 @@ export enum Place {
   Empyreum = 4139,
   Aglaia = 4167,
   TheFellCourtOfTroia = 4180,
-  SeatOfTheForemost = 4185,
   ThePestilentPurgatory = 4196,
   StormsCrown_2 = 4197,
   TheHollowPurgatory = 4198,
   TheCausticPurgatory = 4249,
-  StygianInsenescenceCells = 4250
+  StygianInsenescenceCells = 4250,
+  Euphrosyne = 4258,
+  LapisManalis = 4270,
+  TheInterdimensionalRift_4 = 4288,
+  TheVoidcastDais = 4296,
+  TheChamberOfFourteen = 4307,
+  TheDMonsNest = 4362,
+  Ascension = 4375,
+  TheGildedAraya = 4377,
+  EstiniensChambers = 4380,
+  Senatus = 4381,
+  TheRedMoon = 4382
 }
 
 export enum Weather {
@@ -414,5 +425,10 @@ export enum Weather {
   Dragonstorms_3 = 170,
   Vacuity = 171,
   Vacuity_2 = 172,
-  Vacuity_3 = 173
+  Vacuity_3 = 173,
+  DimensionalDisruption_5 = 174,
+  DimensionalDisruption_6 = 175,
+  DimensionalDisruption_7 = 176,
+  PandMonium_4 = 177,
+  PandMonium_5 = 178
 }

@@ -58,7 +58,7 @@
     "@types/node-fetch": "^2.6.1",
     "@types/react": "^18.0.8",
     "@types/react-leaflet": "^2.8.1",
-    "canvas": "^2.9.1",
+    "canvas": "^2.11.2",
     "cheerio": "^1.0.0-rc.9",
     "csv-parse": "^5.0.4",
     "csv-stringify": "^6.0.5",

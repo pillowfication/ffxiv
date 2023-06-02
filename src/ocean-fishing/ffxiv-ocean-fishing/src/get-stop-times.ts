@@ -4,7 +4,9 @@ const STOPS_SEQUENCE: Record<Dest, [Stop, Stop, Stop]> = {
   B: ['C', 'N', 'B'],
   N: ['S', 'G', 'N'],
   R: ['G', 'S', 'R'],
-  T: ['C', 'R', 'T']
+  T: ['C', 'R', 'T'],
+  O: ['I', 'K', 'O'],
+  P: ['I', 'K', 'P']
 }
 
 const TIMES_SEQUENCE: Record<Time, [Time, Time, Time]> = {

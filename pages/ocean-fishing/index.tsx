@@ -10,7 +10,8 @@ import NavigationBar from '../../src/ocean-fishing/NavigationBar'
 import UpcomingVoyages from '../../src/ocean-fishing/UpcomingVoyages'
 import RouteInformation from '../../src/ocean-fishing/RouteInformation'
 import AchievementsInformation from '../../src/ocean-fishing/AchievementsInformation'
-import { DestTime } from '../../src/ocean-fishing/ffxiv-ocean-fishing'
+import { Route, DestTime } from '../../src/ocean-fishing/ffxiv-ocean-fishing'
+import { Alert } from '@mui/material'
 
 export const ChecklistContext = React.createContext<{ checklist: number[], setChecklist: (checklist: number[]) => void }>({
   checklist: [],
@@ -56,6 +57,7 @@ const OceanFishing = (): React.ReactElement => {
 
   return (
     <Page title={t('_title')} description={t('_description')}>
+      <Alert color='info' sx={{ mb: 2 }}>These pages are undergoing a lot of change! Things are definitely broken, but hopefully nothing crashes.</Alert>
       <NavigationBar />
       <ChecklistContext.Provider value={{ checklist: checklist ?? [], setChecklist }}>
         <Section>

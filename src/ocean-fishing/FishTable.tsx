@@ -16,24 +16,31 @@ import StarBadge from './StarBadge'
 import ChecklistCheckmark from './ChecklistCheckmark'
 import WeatherIcon from '../skywatcher/WeatherIcon'
 import { fishes, baits, FishingSpot } from './ffxiv-ocean-fishing/data'
-import { isBaitRequired } from './utils'
+import { isBaitRequired, getRecommendedBait, getRecommendedMooch } from './utils'
 import translate from '../translate'
 
 const BAIT_IDS = [
-  29714,
-  29715,
-  29716,
-  29717,
-  2587,
-  2591,
-  2603,
-  2613,
-  2619,
-  27590,
-  29722,
-  29761,
-  29718,
-  32107
+  29714, // Ragworm
+  29715, // Krill
+  29716, // Plump Worm
+  29717, // Versatile Lure
+  2587, // Pill Bug
+  2591, // Rat Tail
+  2603, // Glowworm
+  2613, // Shrimp Cage Feeder
+  2619, // Heavy Steel Jig
+  12704, // Stonefly Nymph
+  27590, // Squid Strip
+  36593 // Mackerel Strip
+]
+
+const MOOCH_IDS = [
+  29718, // Tossed Dagger
+  29722, // Ghoul Barracuda
+  29761, // Hi-aetherlouse
+  32107, // Rothlyt Mussel
+  40543, // Leopard Prawn
+  40551 // Snapping Koban
 ]
 
 function getValidBaits (fishingSpots: FishingSpot[]): number[] {
@@ -41,7 +48,21 @@ function getValidBaits (fishingSpots: FishingSpot[]): number[] {
     .filter(baitId => {
       for (const fishingSpot of fishingSpots) {
         for (const fish of fishingSpot.fishes) {
-          if (fish.biteTimes[baitId] != null) {
+          if (fish.spreadsheetData?.baits?.[baitId]?.usable === true) {
+            return true
+          }
+        }
+      }
+      return false
+    })
+}
+
+function getValidMooches (fishingSpots: FishingSpot[]): number[] {
+  return MOOCH_IDS
+    .filter(moochId => {
+      for (const fishingSpot of fishingSpots) {
+        for (const fish of fishingSpot.fishes) {
+          if (fish.spreadsheetData?.mooches?.[moochId]?.usable === true) {
             return true
           }
         }
@@ -89,7 +110,7 @@ const FishTable = ({ fishingSpots, time }: Props): React.ReactElement => {
                     sx={{ '& .MuiInputBase-input': { p: 0 } }}
                   >
                     <MenuItem value='all'>{t('fishInfo.allBaits')}</MenuItem>
-                    {getValidBaits(fishingSpots).map(baitId => (
+                    {[...getValidBaits(fishingSpots), ...getValidMooches(fishingSpots)].map(baitId => (
                       <MenuItem key={baitId} value={baitId}>
                         {translate(locale, baits[baitId] || fishes[baitId], 'name')}
                       </MenuItem>
@@ -105,69 +126,75 @@ const FishTable = ({ fishingSpots, time }: Props): React.ReactElement => {
             <TableBody>
               {fishingSpot.fishes.map(fish => {
                 const spreadsheetData = fish.spreadsheetData
-                const isUnavailable = time !== undefined && spreadsheetData.time !== null && !spreadsheetData.time.includes(time)
+                const isUnavailable = time !== undefined && spreadsheetData?.timeAvailability != null && !spreadsheetData.timeAvailability.includes(time)
                 return (
-                  <TableRow key={fish.id} hover sx={{
-                    opacity: isUnavailable ? 0.5 : 1
-                  }}>
+                  <TableRow key={fish.id} hover sx={{ opacity: isUnavailable ? 0.5 : 1 }}>
                     <TableCell align='center'><ChecklistCheckmark fishId={fish.id} /></TableCell>
                     <TableCell><OceanFishIcon type='fish' id={fish.id} /></TableCell>
                     <TableCell>
                       <Typography>{translate(locale, fish, 'name')}</Typography>
-                      {spreadsheetData.stars !== null && (
-                        <Box sx={{ mt: '-0.125em', opacity: 0.5 }}>
-                          {'★'.repeat(spreadsheetData.stars)}
-                        </Box>
+                      {spreadsheetData?.stars != null && (
+                        <Box sx={{ mt: '-0.125em', opacity: 0.5 }}>{'★'.repeat(spreadsheetData.stars)}</Box>
                       )}
                     </TableCell>
-                    <TableCell align='center' sx={{
-                      whiteSpace: 'nowrap',
-                      '& > *': { verticalAlign: 'middle' }
-                    }}>
-                      {spreadsheetData.intuition !== null && (
+                    <TableCell align='center' sx={{ whiteSpace: 'nowrap', '& > *': { verticalAlign: 'middle' } }}>
+                      {spreadsheetData?.intuition === true && spreadsheetData?.intuitionFishes != null && (
                         <>
-                          {spreadsheetData.intuition.map(({ fish, count }, index) =>
-                            <React.Fragment key={fish.id}>
+                          {Object.entries(spreadsheetData.intuitionFishes).map(([intuitionFishId, count], index) =>
+                            <React.Fragment key={intuitionFishId}>
                               <Typography display='inline'>{index === 0 ? `${count}×` : `, ${count}×`}</Typography>
-                              <OceanFishIcon type='fish' id={fish.id} />
+                              <OceanFishIcon type='fish' id={Number(intuitionFishId)} />
                             </React.Fragment>
                           )}
                           <img src='/images/ocean-fishing/fishers-intuition.png' />
                         </>
                       )}
-                      {spreadsheetData.bait !== null && (
-                        <OceanFishIcon
-                          type='bait'
-                          id={spreadsheetData.bait.id}
-                          badge={isBaitRequired(fish, spreadsheetData.bait) && <StarBadge />}
-                        />
-                      )}
-                      {spreadsheetData.bait !== null && spreadsheetData.mooch !== null && 'or'}
-                      {spreadsheetData.mooch !== null && (
-                        <OceanFishIcon type='fish' id={spreadsheetData.mooch.id} />
-                      )}
+                      {(() => {
+                        const recommendedBait = getRecommendedBait(fish)
+                        const recommendedMooch = getRecommendedMooch(fish)
+
+                        if (recommendedBait != null || recommendedMooch != null) {
+                          return (
+                            <>
+                              {recommendedBait != null && (
+                                <OceanFishIcon
+                                  type='bait'
+                                  id={recommendedBait.id}
+                                  badge={isBaitRequired(fish, recommendedBait) && <StarBadge />}
+                                />
+                              )}
+                              {recommendedBait != null && recommendedMooch != null && 'or'}
+                              {recommendedMooch !== null && (
+                                <OceanFishIcon type='fish' id={recommendedMooch.id} />
+                              )}
+                            </>
+                          )
+                        } else {
+                          return <OceanFishIcon type='bait' id={29717} />
+                        }
+                      })()}
                     </TableCell>
                     <TableCell align='center'>
-                      {spreadsheetData.tug !== null && (
+                      {spreadsheetData?.tug != null && (
                         <Tug size='large' strength={spreadsheetData.tug} />
                       )}
                     </TableCell>
                     <TableCell align='center'>
-                      {fish.biteTimes[bait] !== null && (
-                        <Typography>{fish.biteTimes[bait]?.[0] === fish.biteTimes[bait]?.[1] ? fish.biteTimes[bait]?.[0] : fish.biteTimes[bait]?.join('\u2011')}</Typography>
+                      {fish.spreadsheetData?.baits?.[bait as any] != null && (
+                        <Typography>{spreadsheetData!.baits[bait as any]!.biteTime?.[0] === spreadsheetData!.baits[bait as any]!.biteTime?.[1] ? spreadsheetData!.baits[bait as any]!.biteTime?.[0] : spreadsheetData!.baits[bait as any]!.biteTime?.join('\u2011')}</Typography>
                       )}
                     </TableCell>
                     <TableCell align='center'>
-                      {spreadsheetData.points !== null && (
+                      {spreadsheetData?.points != null && (
                         <Typography>{spreadsheetData.points}</Typography>
                       )}
                     </TableCell>
                     <TableCell align='center' sx={{ whiteSpace: 'nowrap' }}>
-                      {spreadsheetData.doubleHook !== null && (
+                      {spreadsheetData?.doubleHook !== null && (
                         <Typography>
-                          {formatDH(spreadsheetData.doubleHook)}
-                          {spreadsheetData.tripleHook !== null && (
-                            <>&emsp;({formatDH(spreadsheetData.tripleHook)})</>
+                          {formatDH(spreadsheetData!.doubleHook)}
+                          {spreadsheetData?.tripleHook !== null && (
+                            <>&emsp;({formatDH(spreadsheetData!.tripleHook)})</>
                           )}
                         </Typography>
                       )}
@@ -175,23 +202,24 @@ const FishTable = ({ fishingSpots, time }: Props): React.ReactElement => {
                     <TableCell align='center' sx={{ whiteSpace: 'nowrap' }}>
                       {(() => {
                         if (isSpectral) {
-                          return spreadsheetData.time?.length === 3
+                          return spreadsheetData?.timeAvailability?.length === 3
                             ? 'Any'
-                            : spreadsheetData.time?.map(time => <TimeIcon key={time} time={time} />)
+                            : spreadsheetData?.timeAvailability?.map(time => <TimeIcon key={time} time={time} />)
                         } else {
-                          if (spreadsheetData.weathers === null) return null
-                          switch (spreadsheetData.weathers.type) {
+                          if (spreadsheetData?.weatherAvailability == null)
+                            return null
+                          switch (spreadsheetData.weatherAvailability.type) {
                             case 'ALL':
                               return 'Any'
                             case 'OK':
-                              return spreadsheetData.weathers.list.map(weather =>
+                              return spreadsheetData.weatherAvailability.weathers.map(weather =>
                                 <WeatherIcon key={weather} weather={weather} />
                               )
                             case 'NOT OK':
                               return (
                                 <>
                                   <Box component='span' sx={{ verticalAlign: 'middle' }}>Not&nbsp;</Box>
-                                  {spreadsheetData.weathers.list.map(weather => (
+                                  {spreadsheetData.weatherAvailability.weathers.map(weather => (
                                     <WeatherIcon key={weather} weather={weather} />
                                   ))}
                                 </>

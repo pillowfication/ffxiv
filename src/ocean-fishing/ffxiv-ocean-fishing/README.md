@@ -42,33 +42,18 @@ This script is a little fickle and will probably need some minor updating before
 
 ## Update data from the Ocean Fishing Spreadsheet
 
-Whenever the [Ocean Fishing Spreadsheet](https://docs.google.com/spreadsheets/d/1R0Nt8Ye7EAQtU8CXF1XRRj67iaFpUk1BXeDgt6abxsQ/edit#gid=149797934) changes, data may need to be updated.
+Whenever the [Ocean Fishing Spreadsheet](https://docs.google.com/spreadsheets/d/e/2PACX-1vRwGdlaadqwY_X7htQdIGbKmhaAue2leyrB7jj06gsuoCcdwxRQtDdqLKW0k-H3SJ7P7wvM1pi2zoJ2/pubhtml#) changes, data may need to be updated.
 
-  1. Go to [`https://docs.google.com/spreadsheets/d/1R0Nt8Ye7EAQtU8CXF1XRRj67iaFpUk1BXeDgt6abxsQ/edit#gid=149797934`](https://docs.google.com/spreadsheets/d/1R0Nt8Ye7EAQtU8CXF1XRRj67iaFpUk1BXeDgt6abxsQ/edit#gid=149797934) and select `File > Download > Web page (.html, zipped)`
-  2. Extract `Data.html` into `data/Ocean Fishing Data.html`
-  3. Execute `ts-node scripts/get-spreadsheet-data.ts`
+  1. Go to [`https://docs.google.com/spreadsheets/d/e/2PACX-1vRwGdlaadqwY_X7htQdIGbKmhaAue2leyrB7jj06gsuoCcdwxRQtDdqLKW0k-H3SJ7P7wvM1pi2zoJ2/pubhtml#`](https://docs.google.com/spreadsheets/d/e/2PACX-1vRwGdlaadqwY_X7htQdIGbKmhaAue2leyrB7jj06gsuoCcdwxRQtDdqLKW0k-H3SJ7P7wvM1pi2zoJ2/pubhtml#) and select `File > Download > Web page (.html, zipped)`
+  2. Save as `Ocean Fishing Data.html`
+  3. Execute `ts-node scripts/get-spreadsheet-data-raw.ts`
+  4. Execute `ts-node scripts/get-spreadsheet-data.ts`
 
 This creates
 
   - `data/spreadsheet-data-raw.json`
+  - `data/spreadsheet-data.json`
 
-(This step may fail or do strange stuff whenever the spreadsheet changes, since the spreadsheet is pretty messy/inconsistent and difficult to parse. Update the `get-spreadsheet-data.ts` script or yell at Lulu.)
+(This step may fail or do strange stuff whenever the spreadsheet changes, since the spreadsheet is pretty messy/inconsistent and difficult to parse. Update the `get-spreadsheet-data-raw.ts` script or yell at Lulu.)
 
-Check for any changes to `spreadsheet-data-raw.json` (try `git diff`) and manually update `data/spreadsheet-data.json` to reflect any changes. This file is manually changed since the spreadsheet doesn’t change often, and its format is too wonky to automatically parse consistently.
-
-## Update data from FFXIV Teamcraft
-
-[Teamcraft](https://ffxivteamcraft.com/) will need to be periodically scraped to have the most up-to-date information on bite times and bait percentages.
-
-  1. Execute `ts-node scripts/get-tc-data.ts`
-
-This creates a bunch of files in `/data/tc` that are all ignored by git.
-
-  2. Execute `ts-node scripts/get-bite-times.ts`
-
-This creates
-
-  - `data/bite-times.json`
-  - `data/bite-times.csv`
-
-The `bite-times.csv` file should be checked for any major changes that may require certain strategies or suggestions to be updated. It also contains Teamcraft’s suggested baits which should be checked for peculiarities.
+First `spreadsheet-data-raw.json` is created which parses as much information as it can from the spreadsheet. Then `get-spreadsheet-data.ts` reads this file, fixes it up a bit (e.g. resolves baits, resolves weathers, manually adds data that couldn't be parsed), and produces the final `spreadsheet-data.json`.

@@ -1,8 +1,9 @@
 import fs from 'fs'
 import path from 'path'
+import url from 'url'
 import * as sc from '../../../saint-coinach'
 
-/* eslint-disable @typescript-eslint/naming-convention */
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url))
 const Achievement_en = sc.requireCsv('Achievement', 'en')
 const Achievement_de = sc.requireCsv('Achievement', 'de')
 const Achievement_fr = sc.requireCsv('Achievement', 'fr')
@@ -54,9 +55,8 @@ const fishingSpots = FishingSpot_en.data
 fs.writeFileSync(path.resolve(__dirname, '../data/fishing-spots.json'), JSON.stringify(fishingSpots))
 
 console.log('Collecting place names...')
-const placeNames = Object.values<any>(fishingSpots)
+const placeNames = Object.values(fishingSpots)
   .flatMap(fishingSpot => [fishingSpot.placeName_main, fishingSpot.placeName_sub, fishingSpot.placeName])
-  .concat([0])
   .sort((a, b) => a - b)
   .filter((value, index, array) => value !== array[index + 1])
   .map(placeNameId => {
@@ -73,16 +73,16 @@ const placeNames = Object.values<any>(fishingSpots)
         de: placeName_de.Name,
         fr: placeName_fr.Name,
         ja: placeName_ja.Name,
-        cn: placeName_cn.Name,
-        ko: placeName_ko.Name
+        cn: placeName_cn?.Name ?? '',
+        ko: placeName_ko?.Name ?? ''
       },
       name_noArticle: {
         en: placeName_en['Name{NoArticle}'],
         de: placeName_de['Name{NoArticle}'],
         fr: placeName_fr['Name{NoArticle}'],
         ja: placeName_ja['Name{NoArticle}'],
-        cn: placeName_cn['Name{NoArticle}'],
-        ko: placeName_ko['Name{NoArticle}']
+        cn: placeName_cn?.['Name{NoArticle}'] ?? '',
+        ko: placeName_ko?.['Name{NoArticle}'] ?? ''
       }
     }
   })
@@ -108,16 +108,16 @@ const oceanFishes = IKDFishParam.data
         de: item_de.Name,
         fr: item_fr.Name,
         ja: item_ja.Name,
-        cn: item_cn.Name,
-        ko: item_ko.Name
+        cn: item_cn?.Name ?? '',
+        ko: item_ko?.Name ?? ''
       },
       description: {
         en: item_en.Description,
         de: item_de.Description,
         fr: item_fr.Description,
         ja: item_ja.Description,
-        cn: item_cn.Description,
-        ko: item_ko.Description
+        cn: item_cn?.Description ?? '',
+        ko: item_ko?.Description ?? ''
       },
       contentBonus: (() => {
         if (+ikdFishParam['<UNKNOWN_2>'] === 22) {
@@ -141,11 +141,13 @@ const baits = [
   2603, // Glowworm
   2613, // Shrimp Cage Feeder
   2619, // Heavy Steel Jig
+  12704, // Stonefly Nymph
   27590, // Squid Strip
   29714, // Ragworm
   29715, // Krill
   29716, // Plump Worm
-  29717 // Versatile Lure
+  29717, // Versatile Lure
+  36593, // Mackerel Strip
 ]
   .map(itemId => {
     const item_en = Item_en.get(itemId)
@@ -162,8 +164,8 @@ const baits = [
         de: item_de.Name,
         fr: item_fr.Name,
         ja: item_ja.Name,
-        cn: item_cn.Name,
-        ko: item_ko.Name
+        cn: item_cn?.Name ?? '',
+        ko: item_ko?.Name ?? ''
       }
     }
   })
@@ -188,16 +190,16 @@ const contentBonuses = IKDContentBonus_en.data
         de: ikdContentBonus_de.Objective,
         fr: ikdContentBonus_fr.Objective,
         ja: ikdContentBonus_ja.Objective,
-        cn: ikdContentBonus_cn.Objective,
-        ko: ikdContentBonus_ko.Objective
+        cn: ikdContentBonus_cn?.Objective ?? '',
+        ko: ikdContentBonus_ko?.Objective ?? ''
       },
       requirement: {
         en: ikdContentBonus_en.Requirement,
         de: ikdContentBonus_de.Requirement,
         fr: ikdContentBonus_fr.Requirement,
         ja: ikdContentBonus_ja.Requirement,
-        cn: ikdContentBonus_cn.Requirement,
-        ko: ikdContentBonus_ko.Requirement
+        cn: ikdContentBonus_cn?.Requirement ?? '',
+        ko: ikdContentBonus_ko?.Requirement ?? ''
       },
       bonus: ikdContentBonus_en['<UNKNOWN_2>'],
       order: ikdContentBonus_en.Order
@@ -212,7 +214,9 @@ function range (start: number, end: number): number[] {
 
 console.log('Collecting ocean fishing achievements...')
 function getReward (achievement: any, Title: sc.SaintCoinachCsv, Item: sc.SaintCoinachCsv): string {
-  if (+achievement.Title !== 0) {
+  if (!achievement) {
+    return ''
+  } else if (+achievement.Title !== 0) {
     return Title.get(+achievement.Title).Masculine
   } else if (+achievement.Item !== 0) {
     return Item.get(+achievement.Item).Name
@@ -221,7 +225,7 @@ function getReward (achievement: any, Title: sc.SaintCoinachCsv, Item: sc.SaintC
   }
 }
 
-const oceanFishingAchievements = [0, ...range(2553, 2566), ...range(2748, 2759)]
+const oceanFishingAchievements = [0, ...range(2553, 2566), ...range(2748, 2759), ...range(3256, 3269)]
   .map(achievementId => {
     const achievement_en = Achievement_en.get(achievementId)
     const achievement_de = Achievement_de.get(achievementId)
@@ -237,16 +241,16 @@ const oceanFishingAchievements = [0, ...range(2553, 2566), ...range(2748, 2759)]
         de: achievement_de.Name,
         fr: achievement_fr.Name,
         ja: achievement_ja.Name,
-        cn: achievement_cn.Name,
-        ko: achievement_ko.Name
+        cn: achievement_cn?.Name ?? '',
+        ko: achievement_ko?.Name ?? ''
       },
       description: {
         en: achievement_en.Description,
         de: achievement_de.Description,
         fr: achievement_fr.Description,
         ja: achievement_ja.Description,
-        cn: achievement_cn.Description,
-        ko: achievement_ko.Description
+        cn: achievement_cn?.Description ?? '',
+        ko: achievement_ko?.Description ?? ''
       },
       reward: {
         en: getReward(achievement_en, Title_en, Item_en),

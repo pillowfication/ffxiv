@@ -4,31 +4,18 @@ import _fishes from './fishes.json'
 import _baits from './baits.json'
 import _contentBonuses from './content-bonuses.json'
 import _achievements from './achievements.json'
-import _biteTimes from './bite-times.json'
-import spreadsheetData from './spreadsheet-data.json'
-import lodestoneData from './lodestone-data.json'
+import _spreadsheetData from './spreadsheet-data.json'
+import _lodestoneData from './lodestone-data.json'
 
 import { Time } from '../src/types'
 import { Weather } from '../../../skywatcher/ffxiv-skywatcher/src/types'
 import { Translatable } from '../../../translate'
 
-const baitMap: Record<string, any> = Object.values(_baits)
-  .reduce<Record<string, any>>((acc, curr) => { acc[curr.name.en] = curr; return acc }, {})
 const fishMap: Record<string, any> = Object.values(_fishes)
   .reduce<Record<string, any>>((acc, curr) => { acc[curr.name.en] = curr; return acc }, {})
-const spreadsheetMap: Record<string, any> = Object.values<any>(spreadsheetData)
+const spreadsheetMap: Record<string, any> = Object.values<any>(_spreadsheetData)
   .flatMap(x => x)
   .reduce((acc, curr) => { acc[curr.name] = curr; return acc }, {})
-
-function getMapped<T> (map: Record<string, T>, name: string | null): T | null {
-  if (name === null) {
-    return null
-  }
-  if (map[name] === undefined) {
-    throw new Error(`Could not find '${name}' in ${JSON.stringify(map)}`)
-  }
-  return map[name]
-}
 
 export interface FishingSpot {
   id: number
@@ -62,26 +49,28 @@ export interface Fish {
   name: Translatable
   description: Translatable
   contentBonus: ContentBonus | null
-  biteTimes: {
-    [key: number]: [number, number]
-    all: [number, number] | null
-  }
-  spreadsheetData: SpreadsheetData
+  spreadsheetData: SpreadsheetData | null
   lodestoneData: LodestoneData | null
 }
 
 export interface SpreadsheetData {
-  bait: Bait | null
+  name: string
+  moochable: boolean | null
+  mooched: boolean | null
+  moochOnly: boolean | null
+  intuition: boolean | null
+  intuitionDuration: number | null
+  intuitionFishes: Record<number, number> | null
+  baits: Record<number, { biteTime: [number, number | null] | null, usable: boolean | null, best: boolean | null } | null>
+  mooches: Record<number, { biteTime: [number, number | null] | null, usable: boolean | null, best: boolean | null } | null>
   points: number | null
-  doubleHook: number | [number, number] | null
-  tripleHook: number | [number, number] | null
-  mooch: Fish | null
+  doubleHook: [number, number] | null
+  tripleHook: [number, number] | null
   tug: 1 | 2 | 3 | null
   hookset: 'Precision' | 'Powerful' | null
-  time: Time[] | null
-  weathers: { type: 'ALL' } | { type: 'OK', list: Weather[] } | { type: 'NOT OK', list: Weather[] } | null
+  timeAvailability: Time[] | null
+  weatherAvailability: { type: 'ALL' } | { type: 'OK', weathers: Weather[] } | { type: 'NOT OK', weathers: Weather[] } | null
   stars: number | null
-  intuition: Array<{ fish: Fish, count: number }> | null
 }
 
 export interface LodestoneData {
@@ -94,59 +83,29 @@ export interface LodestoneData {
 for (const fish of Object.values<any>(_fishes)) {
   fish.contentBonus = fish.contentBonus !== null ? (_contentBonuses as any)[fish.contentBonus] : null
 
-  // Attach bite times
-  fish.biteTimes = (_biteTimes as any)[fish.id]
-  delete fish.biteTimes.bestBait
-
   // Attach spreadsheet data
   if (fish.id === 0) {
-    fish.spreadsheetData = {
-      bait: null,
-      points: null,
-      doubleHook: null,
-      tripleHook: null,
-      mooch: null,
-      tug: null,
-      hookset: null,
-      time: null,
-      weathers: null,
-      stars: null,
-      intuition: null
-    }
+    fish.spreadsheetData = null
   } else {
-    const spreadsheetData = getMapped(spreadsheetMap, fish.name.en)
-    fish.spreadsheetData = {
-      bait: getMapped(baitMap, spreadsheetData.bait),
-      points: spreadsheetData.points,
-      doubleHook: spreadsheetData.doubleHook,
-      tripleHook: spreadsheetData.tripleHook,
-      mooch: getMapped(fishMap, spreadsheetData.mooch),
-      tug: spreadsheetData.tug,
-      hookset: spreadsheetData.hookset,
-      time: spreadsheetData.time !== null ? spreadsheetData.time.split('') : null,
-      weathers: spreadsheetData.weathers !== null
-        ? (() => {
-            switch (spreadsheetData.weathers.type) {
-              case 'ALL':
-                return spreadsheetData.weathers
-              case 'OK':
-              case 'NOT OK':
-                return {
-                  type: spreadsheetData.weathers.type,
-                  list: spreadsheetData.weathers.list.map((weather: any) => Weather[weather])
-                }
-            }
-          })()
-        : null,
-      stars: spreadsheetData.stars,
-      intuition: spreadsheetData.intuition != null
-        ? spreadsheetData.intuition.map(({ name, count }: any) => ({ fish: getMapped(fishMap, name), count }))
-        : null
+    const spreadsheetData = spreadsheetMap[fish.name.en]
+
+    if (spreadsheetData.mooches != null) {
+      for (const fishName of Object.keys(spreadsheetData.mooches)) {
+        spreadsheetData.mooches[fishMap[fishName].id] = spreadsheetData.mooches[fishName]
+        delete spreadsheetData.mooches[fishName]
+      }
     }
+
+    if (spreadsheetData.intuitionFishes != null) {
+      spreadsheetData.intuitionFishes = (spreadsheetData.intuitionFishes as any[])
+        .reduce((acc, curr) => { acc[fishMap[curr.fish].id] = curr.count; return acc }, {})
+    }
+
+    fish.spreadsheetData = spreadsheetData
   }
 
   // Attach Lodestone data
-  fish.lodestoneData = (lodestoneData as any)[fish.id]
+  fish.lodestoneData = (_lodestoneData as any)[fish.id]
 }
 
 export const fishes = _fishes as any as Record<number, Fish>

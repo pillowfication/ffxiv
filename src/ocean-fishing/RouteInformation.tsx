@@ -10,9 +10,9 @@ import RouteInformationIntuition from './RouteInformationIntuition'
 import RouteInformationTimeSensitive from './RouteInformationTimeSensitive'
 import RouteInformationPoints from './RouteInformationPoints'
 import RouteInformationAll from './RouteInformationAll'
-import { calculateVoyages, getStopTimes, Dest, Time, DestTime } from './ffxiv-ocean-fishing'
+import { calculateVoyages, getStopTimes, Route, Dest, Time, DestTime } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
-import { timeUntil, upperFirst } from './utils'
+import { getRoute, timeUntil, upperFirst } from './utils'
 import translate from '../translate'
 
 enum FishFilter {
@@ -31,7 +31,8 @@ const RouteInformation = ({ now, route }: Props): React.ReactElement => {
   const { t, i18n } = useTranslation('ocean-fishing')
   const [fishFilter, setFishFilter] = useState<FishFilter | null>(null)
   const stopTimes = getStopTimes(route)
-  const next = calculateVoyages(now, 1, [route])[0].date
+  const rrroute = getRoute(route)
+  const next = calculateVoyages(rrroute, now, 1, [route])[0].date
   const locale = i18n.language
 
   useEffect(() => {
