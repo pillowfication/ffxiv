@@ -16,8 +16,8 @@ function getTimeSensitiveFishes (stopTime: StopTime): Fish[] {
   const time = stopTime[1] as Time
 
   return spectralFishingSpot.fishes.filter(fish => {
-    const { time: fishTime } = fish.spreadsheetData
-    return fishTime !== null && fishTime.length < 3 && fishTime.includes(time)
+    const timeAvailability = fish.spreadsheetData?.timeAvailability
+    return timeAvailability != null && timeAvailability.length < 3 && timeAvailability.includes(time)
   })
 }
 

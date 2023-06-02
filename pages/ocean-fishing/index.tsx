@@ -10,7 +10,7 @@ import NavigationBar from '../../src/ocean-fishing/NavigationBar'
 import UpcomingVoyages from '../../src/ocean-fishing/UpcomingVoyages'
 import RouteInformation from '../../src/ocean-fishing/RouteInformation'
 import AchievementsInformation from '../../src/ocean-fishing/AchievementsInformation'
-import { Route, DestTime } from '../../src/ocean-fishing/ffxiv-ocean-fishing'
+import { DestTime } from '../../src/ocean-fishing/ffxiv-ocean-fishing'
 import { Alert } from '@mui/material'
 
 export const ChecklistContext = React.createContext<{ checklist: number[], setChecklist: (checklist: number[]) => void }>({
