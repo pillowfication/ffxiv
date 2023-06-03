@@ -1,6 +1,33 @@
-export type Route = 'INDIGO' | 'RUBY'
-export type Stop = 'B' | 'C' | 'G' | 'N' | 'R' | 'S' | 'T' | 'I' | 'K' | 'O' | 'P'
-export type Dest = 'B' | 'N' | 'R' | 'T' | 'O' | 'P'
-export type Time = 'D' | 'S' | 'N'
-export type StopTime = `${Stop}${Time}`
-export type DestTime = `${Dest}${Time}`
+export enum Route {
+    Indigo,
+    Ruby
+}
+
+export enum Stop {
+    GaladionBay = 'G',
+    TheSouthernStraitOfMerlthor = 'S',
+    TheNorthernStraitOfMerlthor = 'N',
+    RhotanoSea = 'R',
+    TheCieldalaes = 'C',
+    TheBloodbrineSea = 'B',
+    TheRothlytSound = 'T',
+    TheSirensongSea = 'I',
+    Kugane = 'K',
+    TheRubySea = 'U',
+    TheOneRiver = 'O'
+}
+
+export enum Destination {
+    TheNorthernStraitOfMerlthor = Stop.TheNorthernStraitOfMerlthor,
+    RhotanoSea = Stop.RhotanoSea,
+    TheBloodbrineSea = Stop.TheBloodbrineSea,
+    TheRothlytSound = Stop.TheRothlytSound,
+    TheRubySea = Stop.TheRubySea,
+    TheOneRiver = Stop.TheOneRiver
+}
+
+export enum Time {
+    Day = 'D',
+    Sunset = 'S',
+    Night = 'N'
+}

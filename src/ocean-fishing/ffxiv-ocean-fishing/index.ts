@@ -1,10 +1,9 @@
 import * as data from './data'
-import { Route, Stop, Dest, Time, StopTime, DestTime } from './src/types'
-export type { Route, Stop, Dest, Time, StopTime, DestTime }
-
-export { default as calculateVoyages } from './src/calculate-voyages'
-export { default as getStopTimes } from './src/get-stop-times'
 
 if (typeof window !== 'undefined') {
-  (window as any).OceanFishingData = data
+    (window as any).OceanFishingData = data
 }
+
+export { Route, Stop, Destination, Time } from './src/types'
+export { default as calculateVoyages } from './src/calculate-voyages'
+export { getStops, getStopTimes } from './src/calculate-stops'

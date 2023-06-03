@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import { useTranslation } from 'next-i18next'
 import { useQueryState } from 'next-usequerystate'
 import NoSsr from '@mui/material/NoSsr'
@@ -12,17 +12,17 @@ import MenuItem from '@mui/material/MenuItem'
 import Section from '../Section'
 import UpcomingVoyagesTable from './UpcomingVoyagesTable'
 import { fishingSpots, fishes, achievements } from './ffxiv-ocean-fishing/data'
-import { calculateVoyages, Route, DestTime } from './ffxiv-ocean-fishing'
+import { calculateVoyages, Route, Destination, Time } from './ffxiv-ocean-fishing'
 import * as maps from './maps'
-import { upperFirst, isUncaughtRoute } from './utils'
+import { upperFirst, isUncaughtItinerary } from './utils'
 import translate from '../translate'
 
-function getRoute (route: string | null): Route {
-  if (route?.toLowerCase() === 'ruby') {
-    return 'RUBY'
-  } else {
-    return 'INDIGO'
-  }
+function getRoute(route: string | null): Route {
+    if (route?.trim().toLowerCase() === 'ruby') {
+        return Route.Ruby
+    } else {
+        return Route.Indigo
+    }
 }
 
 // `filter` is one of
@@ -30,157 +30,162 @@ function getRoute (route: string | null): Route {
 //  - a key in maps.FILTER_MAP for some predefined filter
 //  - 'uncaught' for a dynamic filter for uncaught fish
 //  - comma separated list of DestTimes
-function getFilter (filter: string | null, checklist?: number[]): DestTime[] | undefined {
-  if (filter === null) {
-    return undefined
-  } else if (filter in maps.FILTER_MAP) {
-    return maps.FILTER_MAP[filter]
-  } else if (filter === 'uncaught') {
-    return (['BD', 'BS', 'BN', 'ND', 'NS', 'NN', 'RD', 'RS', 'RN', 'TD', 'TS', 'TN'] as DestTime[])
-      .filter(destTime => isUncaughtRoute(destTime, checklist ?? []))
-  } else {
-    return filter.split(',')
-      .filter(destTime =>
-        destTime.length === 2 && 'BNRT'.includes(destTime[0]) && 'DSN'.includes(destTime[1])
-      ) as DestTime[]
-  }
+function getFilter(filter: string | null, checklist?: number[]): Array<{ destination: Destination, time: Time }> | undefined {
+    const destinations = Object.values(Destination)
+    const times = Object.values(Time)
+    if (filter === null) {
+        return undefined
+    } else if (filter in maps.FILTER_MAP) {
+        return maps.FILTER_MAP[filter]
+    } else if (filter === 'uncaught') {
+        return (destinations.flatMap(destination => times.map(time => ({ destination, time }))))
+            .filter(({ destination, time }) => isUncaughtItinerary(destination, time, checklist ?? []))
+    } else {
+        return filter.split(',')
+            .filter(code => code.length === 2 && destinations.includes(code[0] as any) && times.includes(code[1] as any))
+            .map(code => ({ destination: code[0] as Destination, time: code[1] as Time }))
+    }
 }
 
 interface Props {
-  now: Date
-  onSelectRoute: (route: DestTime) => void
-  checklist: number[]
+    now: Date
+    onSelectVoyage: (destination: Destination, time: Time) => void
+    checklist: number[]
 }
 
-const UpcomingVoyages = ({ now, onSelectRoute, checklist }: Props): React.ReactElement => {
-  const { t, i18n } = useTranslation('ocean-fishing')
-  const [route, setRoute] = useQueryState('route')
-  const [numRows, setNumRows] = useState(10)
-  const [filter, setFilter] = useQueryState('filter')
-  const _route = getRoute(route)
-  const _filter = getFilter(filter, checklist)
-  const isCustomFilter = filter !== null && filter !== 'uncaught' && maps.FILTER_MAP[filter] === undefined
-  const locale = i18n.language
+const UpcomingVoyages = ({ now, onSelectVoyage, checklist }: Props): React.ReactElement => {
+    const { t, i18n } = useTranslation('ocean-fishing')
+    const [_route, setRoute] = useQueryState('route')
+    const [numRows, setNumRows] = useState(10)
+    const [_filter, setFilter] = useQueryState('filter')
+    const route = getRoute(_route)
+    const filter = getFilter(_filter, checklist)
+    const isCustomFilter = _filter != null && _filter !== 'uncaught' && maps.FILTER_MAP[_filter] === undefined
+    const locale = i18n.language
 
-  useEffect(() => {
-    onSelectRoute(
-      calculateVoyages('INDIGO', now, 1, _filter !== undefined && _filter.length > 0 ? _filter : undefined)[0].destTime
-    )
-  }, [filter])
+    useEffect(() => {
+        const { destination, time } = calculateVoyages(
+            route,
+            now,
+            1,
+            filter != null && filter.length > 0 ? filter : undefined
+        )[0]
+        onSelectVoyage(destination, time)
+    }, [_filter])
 
-  const handleSelectRoute = (event: SelectChangeEvent): void => {
-    const route = event.target.value
-    void setRoute(route)
-  }
-  const handleInputNumRows = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    setNumRows(Number(event.target.value))
-  }
-  const handleBlurNumRows = (event: React.FocusEvent<HTMLInputElement>): void => {
-    const numRows = Number(event.target.value)
-    if (!isFinite(numRows)) {
-      setNumRows(10)
-    } else {
-      setNumRows(Math.min(Math.max(Math.floor(numRows), 1), 50))
+    const handleSelectRoute = (event: SelectChangeEvent): void => {
+        const route = event.target.value
+        void setRoute(route)
     }
-  }
-  const handleSelectFilter = (event: SelectChangeEvent): void => {
-    const filter = event.target.value === 'none' ? null : event.target.value
-    void setFilter(filter)
-  }
 
-  return (
-    <Section title={t('upcomingVoyages')}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={4}>
-          <FormControl fullWidth variant='filled'>
-            <InputLabel>Route</InputLabel>
-            <NoSsr>
-              <Select value={route ?? 'indigo'} onChange={handleSelectRoute}>
-                <MenuItem dense value='indigo'>Indigo</MenuItem>
-                <MenuItem dense value='ruby'>Ruby</MenuItem>
-              </Select>
-            </NoSsr>
-          </FormControl>
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <FormControl fullWidth>
-            <TextField
-              variant='filled'
-              label={t('numberOfRows')}
-              type='number'
-              value={numRows}
-              onChange={handleInputNumRows}
-              onBlur={handleBlurNumRows}
-            />
-          </FormControl>
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <FormControl fullWidth variant='filled'>
-            <InputLabel>{t('filterRoute')}</InputLabel>
-            <NoSsr>
-              <Select
-                value={filter !== null ? isCustomFilter ? 'custom' : filter : 'none'}
-                onChange={handleSelectFilter}
-              >
-                {isCustomFilter && (
-                  <MenuItem value='custom' disabled>Custom Filter: {_filter != null && _filter.length > 0 ? _filter.join(', ') : '(none)'}</MenuItem>
-                )}
-                <MenuItem dense value='none'>{t('noFilter')}</MenuItem>
-                <MenuItem dense value='uncaught'>Uncaught Fish</MenuItem>
-                <ListSubheader disableSticky sx={{ pt: 2 }}>{t('blueFish')}</ListSubheader>
-                <MenuItem dense value='sothis'>{translate(locale, fishes[29788], 'name')}</MenuItem>
-                <MenuItem dense value='coral_manta'>{translate(locale, fishes[29789], 'name')}</MenuItem>
-                <MenuItem dense value='stonescale'>{translate(locale, fishes[29790], 'name')}</MenuItem>
-                <MenuItem dense value='elasmosaurus'>{translate(locale, fishes[29791], 'name')}</MenuItem>
-                <MenuItem dense value='hafgufa'>{translate(locale, fishes[32074], 'name')}</MenuItem>,
-                <MenuItem dense value='seafaring_toad'>{translate(locale, fishes[32094], 'name')}</MenuItem>,
-                <MenuItem dense value='placodus'>{translate(locale, fishes[32114], 'name')}</MenuItem>
-                <ListSubheader disableSticky sx={{ pt: 2 }}>{t('achievements')}</ListSubheader>
-                <MenuItem dense value='octopodes'>{translate(locale, achievements[2563], 'name')}</MenuItem>
-                <MenuItem dense value='sharks'>{translate(locale, achievements[2564], 'name')}</MenuItem>
-                <MenuItem dense value='jellyfish'>{translate(locale, achievements[2565], 'name')}</MenuItem>
-                <MenuItem dense value='seadragons'>{translate(locale, achievements[2566], 'name')}</MenuItem>
-                <MenuItem dense value='balloons'>{translate(locale, achievements[2754], 'name')}</MenuItem>,
-                <MenuItem dense value='crabs'>{translate(locale, achievements[2755], 'name')}</MenuItem>,
-                <MenuItem dense value='mantas'>{translate(locale, achievements[2756], 'name')}</MenuItem>
-                <ListSubheader disableSticky sx={{ pt: 2 }}>{upperFirst(translate(locale, fishingSpots[241].placeName_sub, 'name_noArticle', 'name'))}</ListSubheader>
-                <MenuItem dense value='R'>{upperFirst(translate(locale, fishingSpots[241].placeName_sub, 'name_noArticle', 'name'))}</MenuItem>
-                <MenuItem dense value='RD'>{upperFirst(translate(locale, fishingSpots[241].placeName_sub, 'name_noArticle', 'name'))} - {t('time.day')}</MenuItem>
-                <MenuItem dense value='RS'>{upperFirst(translate(locale, fishingSpots[241].placeName_sub, 'name_noArticle', 'name'))} - {t('time.sunset')}</MenuItem>
-                <MenuItem dense value='RN'>{upperFirst(translate(locale, fishingSpots[241].placeName_sub, 'name_noArticle', 'name'))} - {t('time.night')}</MenuItem>
-                <ListSubheader disableSticky sx={{ pt: 2 }}>{upperFirst(translate(locale, fishingSpots[243].placeName_sub, 'name_noArticle', 'name'))}</ListSubheader>
-                <MenuItem dense value='N'>{upperFirst(translate(locale, fishingSpots[243].placeName_sub, 'name_noArticle', 'name'))}</MenuItem>
-                <MenuItem dense value='ND'>{upperFirst(translate(locale, fishingSpots[243].placeName_sub, 'name_noArticle', 'name'))} - {t('time.day')}</MenuItem>
-                <MenuItem dense value='NS'>{upperFirst(translate(locale, fishingSpots[243].placeName_sub, 'name_noArticle', 'name'))} - {t('time.sunset')}</MenuItem>
-                <MenuItem dense value='NN'>{upperFirst(translate(locale, fishingSpots[243].placeName_sub, 'name_noArticle', 'name'))} - {t('time.night')}</MenuItem>
-                <ListSubheader disableSticky sx={{ pt: 2 }}>{upperFirst(translate(locale, fishingSpots[248].placeName_sub, 'name_noArticle', 'name'))}</ListSubheader>,
-                <MenuItem dense value='B'>{upperFirst(translate(locale, fishingSpots[248].placeName_sub, 'name_noArticle', 'name'))}</MenuItem>,
-                <MenuItem dense value='BD'>{upperFirst(translate(locale, fishingSpots[248].placeName_sub, 'name_noArticle', 'name'))} - {t('time.day')}</MenuItem>,
-                <MenuItem dense value='BS'>{upperFirst(translate(locale, fishingSpots[248].placeName_sub, 'name_noArticle', 'name'))} - {t('time.sunset')}</MenuItem>,
-                <MenuItem dense value='BN'>{upperFirst(translate(locale, fishingSpots[248].placeName_sub, 'name_noArticle', 'name'))} - {t('time.night')}</MenuItem>,
-                <ListSubheader disableSticky sx={{ pt: 2 }}>{upperFirst(translate(locale, fishingSpots[250].placeName_sub, 'name_noArticle', 'name'))}</ListSubheader>,
-                <MenuItem dense value='T'>{upperFirst(translate(locale, fishingSpots[250].placeName_sub, 'name_noArticle', 'name'))}</MenuItem>,
-                <MenuItem dense value='TD'>{upperFirst(translate(locale, fishingSpots[250].placeName_sub, 'name_noArticle', 'name'))} - {t('time.day')}</MenuItem>,
-                <MenuItem dense value='TS'>{upperFirst(translate(locale, fishingSpots[250].placeName_sub, 'name_noArticle', 'name'))} - {t('time.sunset')}</MenuItem>,
-                <MenuItem dense value='TN'>{upperFirst(translate(locale, fishingSpots[250].placeName_sub, 'name_noArticle', 'name'))} - {t('time.night')}</MenuItem>
-              </Select>
-            </NoSsr>
-          </FormControl>
-        </Grid>
-        <Grid item xs={12}>
-          <NoSsr>
-            <UpcomingVoyagesTable
-              now={now}
-              route={_route}
-              numRows={numRows}
-              filter={_filter}
-              onSelectRoute={onSelectRoute}
-            />
-          </NoSsr>
-        </Grid>
-      </Grid>
-    </Section>
-  )
+    const handleInputNumRows = (event: React.ChangeEvent<HTMLInputElement>): void => {
+        setNumRows(Number(event.target.value))
+    }
+
+    const handleBlurNumRows = (event: React.FocusEvent<HTMLInputElement>): void => {
+        const numRows = Number(event.target.value)
+        if (!isFinite(numRows)) {
+            setNumRows(10)
+        } else {
+            setNumRows(Math.min(Math.max(Math.floor(numRows), 1), 50))
+        }
+    }
+
+    const handleSelectFilter = (event: SelectChangeEvent): void => {
+        const filter = event.target.value === 'none' ? null : event.target.value
+        void setFilter(filter)
+    }
+
+    return (
+        <Section title={t('upcomingVoyages')}>
+            <Grid container spacing={2}>
+                <Grid item xs={12} sm={4}>
+                    <FormControl fullWidth variant='filled'>
+                        <InputLabel>Route</InputLabel>
+                        <NoSsr>
+                            <Select value={_route ?? 'indigo'} onChange={handleSelectRoute}>
+                                <MenuItem dense value='indigo'>Indigo</MenuItem>
+                                <MenuItem dense value='ruby'>Ruby</MenuItem>
+                            </Select>
+                        </NoSsr>
+                    </FormControl>
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                    <FormControl fullWidth>
+                        <TextField
+                            variant='filled'
+                            label={t('numberOfRows')}
+                            type='number'
+                            value={numRows}
+                            onChange={handleInputNumRows}
+                            onBlur={handleBlurNumRows}
+                        />
+                    </FormControl>
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                    <FormControl fullWidth variant='filled'>
+                        <InputLabel>{t('filterRoute')}</InputLabel>
+                        <NoSsr>
+                            <Select
+                                value={_filter !== null ? isCustomFilter ? 'custom' : _filter : 'none'}
+                                onChange={handleSelectFilter}
+                            >
+                                {isCustomFilter && (
+                                    <MenuItem value='custom' disabled>Custom Filter: {filter != null && filter.length > 0 ? filter.join(', ') : '(none)'}</MenuItem>
+                                )}
+                                <MenuItem dense value='none'>{t('noFilter')}</MenuItem>
+                                <MenuItem dense value='uncaught'>Uncaught Fish</MenuItem>
+                                <ListSubheader disableSticky sx={{ pt: 2 }}>{t('blueFish')}</ListSubheader>
+                                <MenuItem dense value='sothis'>{translate(locale, fishes[29788], 'name')}</MenuItem>
+                                <MenuItem dense value='coral_manta'>{translate(locale, fishes[29789], 'name')}</MenuItem>
+                                <MenuItem dense value='stonescale'>{translate(locale, fishes[29790], 'name')}</MenuItem>
+                                <MenuItem dense value='elasmosaurus'>{translate(locale, fishes[29791], 'name')}</MenuItem>
+                                <MenuItem dense value='hafgufa'>{translate(locale, fishes[32074], 'name')}</MenuItem>
+                                <MenuItem dense value='seafaring_toad'>{translate(locale, fishes[32094], 'name')}</MenuItem>
+                                <MenuItem dense value='placodus'>{translate(locale, fishes[32114], 'name')}</MenuItem>
+                                <ListSubheader disableSticky sx={{ pt: 2 }}>{t('achievements')}</ListSubheader>
+                                <MenuItem dense value='octopodes'>{translate(locale, achievements[2563], 'name')}</MenuItem>
+                                <MenuItem dense value='sharks'>{translate(locale, achievements[2564], 'name')}</MenuItem>
+                                <MenuItem dense value='jellyfish'>{translate(locale, achievements[2565], 'name')}</MenuItem>
+                                <MenuItem dense value='seadragons'>{translate(locale, achievements[2566], 'name')}</MenuItem>
+                                <MenuItem dense value='balloons'>{translate(locale, achievements[2754], 'name')}</MenuItem>
+                                <MenuItem dense value='crabs'>{translate(locale, achievements[2755], 'name')}</MenuItem>
+                                <MenuItem dense value='mantas'>{translate(locale, achievements[2756], 'name')}</MenuItem>
+                                {[
+                                    Destination.RhotanoSea,
+                                    Destination.TheNorthernStraitOfMerlthor,
+                                    Destination.TheBloodbrineSea,
+                                    Destination.TheRothlytSound,
+                                    Destination.TheRubySea,
+                                    Destination.TheOneRiver
+                                ].map(destination => {
+                                    const spotName = upperFirst(translate(locale, maps.STOP_MAP[destination].placeName_sub, 'name_noArticle', 'name'))
+                                    return [
+                                        <ListSubheader disableSticky sx={{ pt: 2 }}>{spotName}</ListSubheader>,
+                                        <MenuItem dense value={destination}>{spotName}</MenuItem>,
+                                        <MenuItem dense value={destination + Time.Day}>{spotName} - {t('time.day')}</MenuItem>,
+                                        <MenuItem dense value={destination + Time.Sunset}>{spotName} - {t('time.sunset')}</MenuItem>,
+                                        <MenuItem dense value={destination + Time.Night}>{spotName} - {t('time.night')}</MenuItem>
+                                    ]
+                                })}
+                            </Select>
+                        </NoSsr>
+                    </FormControl>
+                </Grid>
+                <Grid item xs={12}>
+                    <NoSsr>
+                        <UpcomingVoyagesTable
+                            now={now}
+                            route={route}
+                            numRows={numRows}
+                            filter={filter}
+                            onSelectVoyage={onSelectVoyage}
+                        />
+                    </NoSsr>
+                </Grid>
+            </Grid>
+        </Section>
+    )
 }
 
 export default UpcomingVoyages
