@@ -61,8 +61,8 @@ export interface SpreadsheetData {
   intuition: boolean | null
   intuitionDuration: number | null
   intuitionFishes: Record<number, number> | null
-  baits: Record<number, { biteTime: [number, number | null] | null, usable: boolean | null, best: boolean | null } | null>
-  mooches: Record<number, { biteTime: [number, number | null] | null, usable: boolean | null, best: boolean | null } | null>
+  baits: Record<number, { biteTime: [number, number | null] | null, usable: boolean | null, best: boolean | null } | null> | null
+  mooches: Record<number, { biteTime: [number, number | null] | null, usable: boolean | null, best: boolean | null } | null> | null
   points: number | null
   doubleHook: [number, number] | null
   tripleHook: [number, number] | null

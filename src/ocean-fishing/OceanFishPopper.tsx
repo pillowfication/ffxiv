@@ -81,7 +81,7 @@ const OceanFishPopper = ({ fish }: Props): React.ReactElement => {
                                 </TableCell>
                                 <TableCell align='center'>
                                     {spreadsheetData?.doubleHook != null
-                                        ? (spreadsheetData.doubleHook[0] === spreadsheetData.doubleHook[1] ? spreadsheetData.doubleHook.join('-') : spreadsheetData.doubleHook[0])
+                                        ? (spreadsheetData.doubleHook[0] !== spreadsheetData.doubleHook[1] ? spreadsheetData.doubleHook.join('-') : spreadsheetData.doubleHook[0])
                                         : '?'}
                                 </TableCell>
                             </TableRow>
@@ -91,7 +91,7 @@ const OceanFishPopper = ({ fish }: Props): React.ReactElement => {
                                 </TableCell>
                                 <TableCell align='center'>
                                     {spreadsheetData?.tripleHook != null
-                                        ? (spreadsheetData.tripleHook[0] === spreadsheetData.tripleHook[1] ? spreadsheetData.tripleHook.join('-') : spreadsheetData.tripleHook[0])
+                                        ? (spreadsheetData.tripleHook[0] !== spreadsheetData.tripleHook[1] ? spreadsheetData.tripleHook.join('-') : spreadsheetData.tripleHook[0])
                                         : '?'}
                                 </TableCell>
                             </TableRow>

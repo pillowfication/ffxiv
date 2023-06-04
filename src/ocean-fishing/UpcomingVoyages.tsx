@@ -31,13 +31,14 @@ function getRoute(route: string | null): Route {
 //  - 'uncaught' for a dynamic filter for uncaught fish
 //  - comma separated list of DestTimes
 function getFilter(filter: string | null, checklist?: number[]): Array<{ destination: Destination, time: Time }> | undefined {
-    const destinations = Object.values(Destination)
-    const times = Object.values(Time)
+    const destinations = [Destination.TheNorthernStraitOfMerlthor, Destination.RhotanoSea, Destination.TheBloodbrineSea, Destination.TheRothlytSound, Destination.TheRubySea, Destination.TheOneRiver]
+    const times = [Time.Day, Time.Sunset, Time.Night]
     if (filter === null) {
         return undefined
     } else if (filter in maps.FILTER_MAP) {
         return maps.FILTER_MAP[filter]
     } else if (filter === 'uncaught') {
+        console.log(destinations)
         return (destinations.flatMap(destination => times.map(time => ({ destination, time }))))
             .filter(({ destination, time }) => isUncaughtItinerary(destination, time, checklist ?? []))
     } else {
@@ -64,13 +65,14 @@ const UpcomingVoyages = ({ now, onSelectVoyage, checklist }: Props): React.React
     const locale = i18n.language
 
     useEffect(() => {
-        const { destination, time } = calculateVoyages(
+        const nextVoyage = calculateVoyages(
             route,
             now,
             1,
             filter != null && filter.length > 0 ? filter : undefined
-        )[0]
-        onSelectVoyage(destination, time)
+        )
+        if (nextVoyage.length > 0)
+            onSelectVoyage(nextVoyage[0].destination, nextVoyage[0].time)
     }, [_filter])
 
     const handleSelectRoute = (event: SelectChangeEvent): void => {

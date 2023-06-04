@@ -181,9 +181,30 @@ const FishTable = ({ fishingSpots, time }: Props): React.ReactElement => {
                                             )}
                                         </TableCell>
                                         <TableCell align='center'>
-                                            {fish.spreadsheetData?.baits?.[bait as any] != null && (
-                                                <Typography>{spreadsheetData!.baits[bait as any]!.biteTime?.[0] === spreadsheetData!.baits[bait as any]!.biteTime?.[1] ? spreadsheetData!.baits[bait as any]!.biteTime?.[0] : spreadsheetData!.baits[bait as any]!.biteTime?.join('\u2011')}</Typography>
-                                            )}
+                                            {(() => {
+                                                let biteTime: [number, number | null] | null = null
+                                                if (bait === 'all') {
+                                                    if (fish.spreadsheetData?.baits != null) {
+                                                        for (const [baitId, baitData] of Object.entries(fish.spreadsheetData.baits)) {
+                                                            const baitBiteTime = baitData?.biteTime
+                                                            if (baitBiteTime != null) {
+                                                                if (biteTime == null) {
+                                                                    biteTime = baitBiteTime
+                                                                } else {
+                                                                    biteTime[0] = Math.min(biteTime[0], baitBiteTime[0])
+                                                                    biteTime[1] = biteTime[1] == null || baitBiteTime[1] == null ? null : Math.max(biteTime[1], baitBiteTime[1])
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                } else {
+                                                    biteTime = fish.spreadsheetData?.baits?.[bait]?.biteTime ?? null
+                                                }
+
+                                                return biteTime != null && (
+                                                    <Typography>{biteTime[1] === null ? `${biteTime[0]}+` : biteTime[0] === biteTime[1] ? String(biteTime[0]) : biteTime.join('\u2011')}</Typography>
+                                                )
+                                            })()}
                                         </TableCell>
                                         <TableCell align='center'>
                                             {spreadsheetData?.points != null && (
