@@ -10,7 +10,7 @@ import {
     Achievement
 } from './ffxiv-ocean-fishing/data'
 
-export const STOP_MAP: Record<Stop, FishingSpot> = {
+export const STOP_MAP: Record<Stop | Destination, FishingSpot> = {
     [Stop.GaladionBay]: fishingSpots[237],
     [Stop.TheSouthernStraitOfMerlthor]: fishingSpots[239],
     [Stop.TheNorthernStraitOfMerlthor]: fishingSpots[243],

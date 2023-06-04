@@ -11,9 +11,9 @@ import ListSubheader from '@mui/material/ListSubheader'
 import MenuItem from '@mui/material/MenuItem'
 import Section from '../Section'
 import UpcomingVoyagesTable from './UpcomingVoyagesTable'
-import { fishingSpots, fishes, achievements } from './ffxiv-ocean-fishing/data'
+import { fishes, achievements } from './ffxiv-ocean-fishing/data'
 import { calculateVoyages, Route, Destination, Time } from './ffxiv-ocean-fishing'
-import * as maps from './maps'
+import { STOP_MAP, FILTER_MAP } from './maps'
 import { upperFirst, isUncaughtItinerary } from './utils'
 import translate from '../translate'
 
@@ -35,16 +35,15 @@ function getFilter(filter: string | null, checklist?: number[]): Array<{ destina
     const times = [Time.Day, Time.Sunset, Time.Night]
     if (filter === null) {
         return undefined
-    } else if (filter in maps.FILTER_MAP) {
-        return maps.FILTER_MAP[filter]
+    } else if (filter in FILTER_MAP) {
+        return FILTER_MAP[filter]
     } else if (filter === 'uncaught') {
-        console.log(destinations)
         return (destinations.flatMap(destination => times.map(time => ({ destination, time }))))
             .filter(({ destination, time }) => isUncaughtItinerary(destination, time, checklist ?? []))
     } else {
         return filter.split(',')
             .filter(code => code.length === 2 && destinations.includes(code[0] as any) && times.includes(code[1] as any))
-            .map(code => ({ destination: code[0] as Destination, time: code[1] as Time }))
+            .map(code => ({ destination: code[0] as unknown as Destination, time: code[1] as unknown as Time }))
     }
 }
 
@@ -61,7 +60,7 @@ const UpcomingVoyages = ({ now, onSelectVoyage, checklist }: Props): React.React
     const [_filter, setFilter] = useQueryState('filter')
     const route = getRoute(_route)
     const filter = getFilter(_filter, checklist)
-    const isCustomFilter = _filter != null && _filter !== 'uncaught' && maps.FILTER_MAP[_filter] === undefined
+    const isCustomFilter = _filter != null && _filter !== 'uncaught' && FILTER_MAP[_filter] === undefined
     const locale = i18n.language
 
     useEffect(() => {
@@ -161,7 +160,7 @@ const UpcomingVoyages = ({ now, onSelectVoyage, checklist }: Props): React.React
                                     Destination.TheRubySea,
                                     Destination.TheOneRiver
                                 ].map(destination => {
-                                    const spotName = upperFirst(translate(locale, maps.STOP_MAP[destination].placeName_sub, 'name_noArticle', 'name'))
+                                    const spotName = upperFirst(translate(locale, STOP_MAP[destination].placeName_sub, 'name_noArticle', 'name'))
                                     return [
                                         <ListSubheader disableSticky sx={{ pt: 2 }}>{spotName}</ListSubheader>,
                                         <MenuItem dense value={destination}>{spotName}</MenuItem>,
