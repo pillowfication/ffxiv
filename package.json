@@ -1,6 +1,7 @@
 {
   "name": "ffxiv",
   "version": "0.0.0",
+  "type": "module",
   "description": "Lulu’s Tools",
   "author": {
     "name": "Markus Tran",

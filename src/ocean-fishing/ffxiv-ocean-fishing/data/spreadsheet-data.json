@@ -8481,7 +8481,7 @@
         "29716": {
           "biteTime": [
             5,
-            8
+            9
           ],
           "usable": true,
           "best": true
@@ -8512,7 +8512,8 @@
       "weatherAvailability": {
         "type": "NOT OK",
         "weathers": [
-          7
+          7,
+          10
         ]
       }
     },
@@ -8641,7 +8642,7 @@
       "baits": {
         "29714": {
           "biteTime": [
-            14,
+            13,
             20
           ],
           "usable": true,
@@ -8760,7 +8761,7 @@
       "baits": {
         "29714": {
           "biteTime": [
-            10,
+            11,
             20
           ],
           "usable": true,
@@ -8880,7 +8881,7 @@
       "baits": {
         "29714": {
           "biteTime": [
-            18,
+            17,
             27
           ],
           "usable": true,
@@ -8888,7 +8889,7 @@
         },
         "29715": {
           "biteTime": [
-            18,
+            17,
             27
           ],
           "usable": true,
@@ -8896,8 +8897,8 @@
         },
         "29716": {
           "biteTime": [
-            15,
-            25
+            16,
+            26
           ],
           "usable": true,
           "best": true
@@ -8938,8 +8939,8 @@
       "baits": {
         "29714": {
           "biteTime": [
-            16,
-            null
+            15,
+            24
           ],
           "usable": true,
           "best": false
@@ -9009,8 +9010,8 @@
         },
         "29716": {
           "biteTime": [
-            14,
-            null
+            13,
+            23
           ],
           "usable": true,
           "best": true
@@ -9026,7 +9027,10 @@
         1,
         1
       ],
-      "tripleHook": null,
+      "tripleHook": [
+        1,
+        1
+      ],
       "tug": 3,
       "hookset": "Powerful",
       "stars": 4,
@@ -9083,7 +9087,7 @@
         "36593": {
           "biteTime": [
             6,
-            null
+            8
           ],
           "usable": true,
           "best": false
@@ -9145,7 +9149,7 @@
         "36593": {
           "biteTime": [
             3,
-            3
+            4
           ],
           "usable": true,
           "best": false
@@ -9198,8 +9202,11 @@
         },
         "29717": null,
         "36593": {
-          "biteTime": null,
-          "usable": false,
+          "biteTime": [
+            6,
+            7
+          ],
+          "usable": true,
           "best": false
         }
       },
@@ -9293,7 +9300,7 @@
       "baits": {
         "29714": {
           "biteTime": [
-            4,
+            5,
             6
           ],
           "usable": true,
@@ -9313,7 +9320,7 @@
         "36593": {
           "biteTime": [
             5,
-            5
+            6
           ],
           "usable": true,
           "best": false
@@ -9368,7 +9375,7 @@
         "29717": null,
         "36593": {
           "biteTime": [
-            6,
+            5,
             6
           ],
           "usable": true,
@@ -9422,8 +9429,8 @@
         "29717": null,
         "36593": {
           "biteTime": [
-            4,
-            5
+            5,
+            6
           ],
           "usable": true,
           "best": false
@@ -9548,7 +9555,6 @@
       "hookset": "Powerful",
       "stars": 4,
       "timeAvailability": [
-        "D",
         "S"
       ],
       "weatherAvailability": {
@@ -9580,18 +9586,24 @@
         "29717": null,
         "36593": {
           "biteTime": [
-            10,
-            10
+            9,
+            11
           ],
           "usable": true,
           "best": true
         }
       },
-      "points": null,
-      "doubleHook": null,
-      "tripleHook": null,
+      "points": 500,
+      "doubleHook": [
+        1,
+        1
+      ],
+      "tripleHook": [
+        1,
+        1
+      ],
       "tug": 3,
-      "hookset": null,
+      "hookset": "Powerful",
       "stars": 5,
       "timeAvailability": [
         "D"
@@ -9673,7 +9685,8 @@
       "weatherAvailability": {
         "type": "NOT OK",
         "weathers": [
-          7
+          7,
+          8
         ]
       }
     },
@@ -9687,15 +9700,15 @@
         "29714": {
           "biteTime": [
             15,
-            28
+            29
           ],
           "usable": true,
           "best": true
         },
         "29715": {
           "biteTime": [
-            16,
-            28
+            15,
+            29
           ],
           "usable": true,
           "best": false
@@ -9703,7 +9716,7 @@
         "29716": {
           "biteTime": [
             15,
-            28
+            29
           ],
           "usable": true,
           "best": false
@@ -9745,7 +9758,7 @@
         "29714": {
           "biteTime": [
             5,
-            8
+            9
           ],
           "usable": true,
           "best": true
@@ -9753,7 +9766,7 @@
         "29715": {
           "biteTime": [
             5,
-            8
+            9
           ],
           "usable": true,
           "best": false
@@ -9761,7 +9774,7 @@
         "29716": {
           "biteTime": [
             5,
-            8
+            9
           ],
           "usable": true,
           "best": true
@@ -9803,7 +9816,7 @@
         "29714": {
           "biteTime": [
             18,
-            26
+            29
           ],
           "usable": true,
           "best": false
@@ -9811,7 +9824,7 @@
         "29715": {
           "biteTime": [
             18,
-            28
+            29
           ],
           "usable": true,
           "best": false
@@ -9860,16 +9873,16 @@
       "baits": {
         "29714": {
           "biteTime": [
-            11,
-            16
+            12,
+            17
           ],
           "usable": true,
           "best": false
         },
         "29715": {
           "biteTime": [
-            11,
-            16
+            12,
+            17
           ],
           "usable": true,
           "best": false
@@ -9922,7 +9935,7 @@
         "29714": {
           "biteTime": [
             10,
-            13
+            14
           ],
           "usable": true,
           "best": false
@@ -9938,7 +9951,7 @@
         "29716": {
           "biteTime": [
             10,
-            13
+            14
           ],
           "usable": true,
           "best": false
@@ -9983,16 +9996,16 @@
       "baits": {
         "29714": {
           "biteTime": [
-            9,
-            13
+            10,
+            14
           ],
           "usable": true,
           "best": true
         },
         "29715": {
           "biteTime": [
-            10,
-            14
+            11,
+            15
           ],
           "usable": true,
           "best": false
@@ -10108,7 +10121,7 @@
         "29714": {
           "biteTime": [
             17,
-            27
+            29
           ],
           "usable": true,
           "best": true
@@ -10116,7 +10129,7 @@
         "29715": {
           "biteTime": [
             17,
-            25
+            29
           ],
           "usable": true,
           "best": true
@@ -10124,7 +10137,7 @@
         "29716": {
           "biteTime": [
             18,
-            26
+            29
           ],
           "usable": true,
           "best": false
@@ -10168,8 +10181,8 @@
       "baits": {
         "29714": {
           "biteTime": [
-            18,
-            18
+            15,
+            24
           ],
           "usable": true,
           "best": true
@@ -10362,7 +10375,7 @@
         },
         "29715": {
           "biteTime": [
-            7,
+            6,
             8
           ],
           "usable": true,
@@ -10408,7 +10421,7 @@
         },
         "29714": {
           "biteTime": [
-            9,
+            8,
             12
           ],
           "usable": true,
@@ -10416,7 +10429,7 @@
         },
         "29715": {
           "biteTime": [
-            9,
+            8,
             12
           ],
           "usable": true,
@@ -10467,8 +10480,8 @@
         },
         "29714": {
           "biteTime": [
-            7,
-            10
+            8,
+            11
           ],
           "usable": true,
           "best": true
@@ -10578,7 +10591,7 @@
         "29714": {
           "biteTime": [
             5,
-            8
+            7
           ],
           "usable": true,
           "best": true
@@ -10586,7 +10599,7 @@
         "29715": {
           "biteTime": [
             5,
-            8
+            7
           ],
           "usable": true,
           "best": false
@@ -10594,7 +10607,7 @@
         "29716": {
           "biteTime": [
             5,
-            8
+            7
           ],
           "usable": true,
           "best": false
@@ -10743,7 +10756,7 @@
         "29714": {
           "biteTime": [
             8,
-            null
+            11
           ],
           "usable": false,
           "best": false
@@ -10776,7 +10789,7 @@
         1
       ],
       "tug": 3,
-      "hookset": null,
+      "hookset": "Powerful",
       "stars": 5,
       "timeAvailability": [
         "N"
@@ -10980,7 +10993,7 @@
       "baits": {
         "29714": {
           "biteTime": [
-            11,
+            10,
             14
           ],
           "usable": true,
@@ -10989,15 +11002,15 @@
         "29715": {
           "biteTime": [
             5,
-            8
+            9
           ],
           "usable": true,
           "best": true
         },
         "29716": {
           "biteTime": [
-            11,
-            13
+            10,
+            14
           ],
           "usable": true,
           "best": false
@@ -11054,7 +11067,7 @@
         },
         "29715": {
           "biteTime": [
-            16,
+            15,
             22
           ],
           "usable": true,
@@ -11062,8 +11075,8 @@
         },
         "29716": {
           "biteTime": [
-            16,
-            21
+            15,
+            22
           ],
           "usable": true,
           "best": false
@@ -11104,7 +11117,7 @@
       "baits": {
         "29714": {
           "biteTime": [
-            20,
+            19,
             30
           ],
           "usable": true,
@@ -11112,16 +11125,16 @@
         },
         "29715": {
           "biteTime": [
-            21,
-            28
+            20,
+            32
           ],
           "usable": true,
           "best": false
         },
         "29716": {
           "biteTime": [
-            21,
-            26
+            20,
+            32
           ],
           "usable": true,
           "best": false
@@ -11163,7 +11176,7 @@
         "29714": {
           "biteTime": [
             19,
-            29
+            30
           ],
           "usable": true,
           "best": false
@@ -11171,7 +11184,7 @@
         "29715": {
           "biteTime": [
             19,
-            28
+            31
           ],
           "usable": true,
           "best": false
@@ -11224,23 +11237,23 @@
       "baits": {
         "29714": {
           "biteTime": [
-            15,
-            20
+            14,
+            21
           ],
           "usable": true,
           "best": false
         },
         "29715": {
           "biteTime": [
-            15,
-            20
+            14,
+            21
           ],
           "usable": true,
           "best": false
         },
         "29716": {
           "biteTime": [
-            15,
+            13,
             20
           ],
           "usable": true,
@@ -11282,24 +11295,24 @@
       "baits": {
         "29714": {
           "biteTime": [
-            17,
-            20
+            16,
+            23
           ],
           "usable": true,
           "best": false
         },
         "29715": {
           "biteTime": [
-            16,
-            22
+            15,
+            24
           ],
           "usable": true,
           "best": true
         },
         "29716": {
           "biteTime": [
-            18,
-            20
+            16,
+            23
           ],
           "usable": true,
           "best": true
@@ -11348,8 +11361,8 @@
         },
         "29715": {
           "biteTime": [
-            18,
-            22
+            16,
+            26
           ],
           "usable": true,
           "best": true
@@ -11405,7 +11418,7 @@
         "27590": {
           "biteTime": [
             6,
-            7
+            8
           ],
           "usable": true,
           "best": false
@@ -11467,7 +11480,7 @@
         "27590": {
           "biteTime": [
             6,
-            7
+            8
           ],
           "usable": true,
           "best": false
@@ -11579,32 +11592,32 @@
       "baits": {
         "27590": {
           "biteTime": [
-            4,
-            7
+            5,
+            8
           ],
           "usable": true,
           "best": false
         },
         "29714": {
           "biteTime": [
-            5.5,
-            null
+            5,
+            7.5
           ],
           "usable": true,
           "best": true
         },
         "29715": {
           "biteTime": [
-            4,
-            7
+            5,
+            7.5
           ],
           "usable": true,
           "best": false
         },
         "29716": {
           "biteTime": [
-            4,
-            7
+            5,
+            7.5
           ],
           "usable": true,
           "best": false
@@ -11642,7 +11655,7 @@
         "27590": {
           "biteTime": [
             5,
-            5
+            6
           ],
           "usable": true,
           "best": false
@@ -11650,7 +11663,7 @@
         "29714": {
           "biteTime": [
             2,
-            2
+            3
           ],
           "usable": true,
           "best": false
@@ -11658,7 +11671,7 @@
         "29715": {
           "biteTime": [
             2,
-            2
+            3
           ],
           "usable": true,
           "best": false
@@ -11666,7 +11679,7 @@
         "29716": {
           "biteTime": [
             2,
-            2
+            3
           ],
           "usable": true,
           "best": true
@@ -11714,7 +11727,7 @@
         "29715": {
           "biteTime": [
             5,
-            5
+            6
           ],
           "usable": true,
           "best": true
@@ -11760,7 +11773,7 @@
         "29714": {
           "biteTime": [
             6,
-            7
+            8
           ],
           "usable": true,
           "best": true
@@ -11820,8 +11833,8 @@
         },
         "29716": {
           "biteTime": [
-            5,
-            6
+            6,
+            8
           ],
           "usable": true,
           "best": true
@@ -11857,7 +11870,7 @@
         "27590": {
           "biteTime": [
             7,
-            9
+            10
           ],
           "usable": true,
           "best": false
@@ -11917,7 +11930,10 @@
       "intuition": true,
       "baits": {
         "27590": {
-          "biteTime": null,
+          "biteTime": [
+            9,
+            11
+          ],
           "usable": true,
           "best": true
         },
@@ -11938,10 +11954,16 @@
         },
         "29717": null
       },
-      "points": null,
-      "doubleHook": null,
-      "tripleHook": null,
-      "tug": null,
+      "points": 500,
+      "doubleHook": [
+        1,
+        1
+      ],
+      "tripleHook": [
+        1,
+        1
+      ],
+      "tug": 3,
       "hookset": null,
       "stars": 5,
       "timeAvailability": [
@@ -12151,15 +12173,15 @@
       "baits": {
         "29714": {
           "biteTime": [
-            6,
-            8
+            5,
+            9
           ],
           "usable": true,
           "best": true
         },
         "29715": {
           "biteTime": [
-            11,
+            10,
             14
           ],
           "usable": true,
@@ -12167,7 +12189,7 @@
         },
         "29716": {
           "biteTime": [
-            11,
+            10,
             14
           ],
           "usable": true,
@@ -12214,7 +12236,7 @@
         "29714": {
           "biteTime": [
             13,
-            18
+            19
           ],
           "usable": true,
           "best": false
@@ -12222,7 +12244,7 @@
         "29715": {
           "biteTime": [
             13,
-            18
+            19
           ],
           "usable": true,
           "best": false
@@ -12282,16 +12304,16 @@
         },
         "29715": {
           "biteTime": [
-            20,
-            28
+            18,
+            29
           ],
           "usable": true,
           "best": false
         },
         "29716": {
           "biteTime": [
-            19,
-            28
+            18,
+            29
           ],
           "usable": true,
           "best": false
@@ -12333,23 +12355,23 @@
         "29714": {
           "biteTime": [
             15,
-            20
+            23
           ],
           "usable": true,
           "best": false
         },
         "29715": {
           "biteTime": [
-            15,
-            19
+            14,
+            22
           ],
           "usable": true,
           "best": true
         },
         "29716": {
           "biteTime": [
-            16,
-            17
+            15,
+            23
           ],
           "usable": true,
           "best": false
@@ -12448,24 +12470,24 @@
       "baits": {
         "29714": {
           "biteTime": [
-            20,
-            25
+            16,
+            27
           ],
           "usable": true,
           "best": false
         },
         "29715": {
           "biteTime": [
-            18,
-            22
+            16,
+            27
           ],
           "usable": true,
           "best": true
         },
         "29716": {
           "biteTime": [
-            18,
-            25
+            16,
+            27
           ],
           "usable": true,
           "best": true
@@ -12518,7 +12540,10 @@
           "best": false
         },
         "29716": {
-          "biteTime": null,
+          "biteTime": [
+            17,
+            27
+          ],
           "usable": true,
           "best": true
         },
@@ -12529,10 +12554,16 @@
         }
       },
       "points": 223,
-      "doubleHook": null,
-      "tripleHook": null,
+      "doubleHook": [
+        1,
+        1
+      ],
+      "tripleHook": [
+        1,
+        1
+      ],
       "tug": 3,
-      "hookset": null,
+      "hookset": "Powerful",
       "stars": 4,
       "timeAvailability": [
         "D",
@@ -12561,7 +12592,7 @@
       "baits": {
         "12704": {
           "biteTime": [
-            4,
+            3,
             4
           ],
           "usable": true,
@@ -12624,7 +12655,7 @@
         "12704": {
           "biteTime": [
             5,
-            5
+            6
           ],
           "usable": true,
           "best": false
@@ -12756,7 +12787,7 @@
         "29714": {
           "biteTime": [
             5,
-            8
+            7
           ],
           "usable": true,
           "best": true
@@ -12764,7 +12795,7 @@
         "29715": {
           "biteTime": [
             5,
-            8
+            7
           ],
           "usable": true,
           "best": false
@@ -12772,7 +12803,7 @@
         "29716": {
           "biteTime": [
             5,
-            8
+            7
           ],
           "usable": true,
           "best": false
@@ -12881,7 +12912,7 @@
         },
         "29715": {
           "biteTime": [
-            6,
+            5,
             6
           ],
           "usable": true,
@@ -12932,7 +12963,7 @@
         },
         "29715": {
           "biteTime": [
-            6,
+            5,
             6
           ],
           "usable": true,
@@ -12988,7 +13019,7 @@
         },
         "29716": {
           "biteTime": [
-            7,
+            6,
             8
           ],
           "usable": true,
@@ -13035,7 +13066,7 @@
         "29715": {
           "biteTime": [
             5,
-            7
+            6
           ],
           "usable": true,
           "best": true
@@ -13076,7 +13107,7 @@
         "12704": {
           "biteTime": [
             5,
-            null
+            7
           ],
           "usable": true,
           "best": true
@@ -13103,7 +13134,10 @@
         1,
         1
       ],
-      "tripleHook": null,
+      "tripleHook": [
+        1,
+        1
+      ],
       "tug": 3,
       "hookset": null,
       "stars": 5,

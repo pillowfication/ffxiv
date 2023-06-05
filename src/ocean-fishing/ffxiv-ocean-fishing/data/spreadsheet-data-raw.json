@@ -2229,7 +2229,7 @@
       "notes": null
     },
     {
-      "name": "Hi-Aetherlouse",
+      "name": "Hi-aetherlouse",
       "moochable": true,
       "mooched": false,
       "moochOnly": false,
@@ -9181,7 +9181,7 @@
         "plumpWorm": {
           "biteTime": [
             5,
-            8
+            9
           ],
           "usable": true,
           "best": true
@@ -9213,7 +9213,7 @@
         "weather2": true,
         "weather3": true,
         "weather4": false,
-        "weather5": null,
+        "weather5": false,
         "weather6": true,
         "weather7": null
       },
@@ -9359,7 +9359,7 @@
       "baits": {
         "ragworm": {
           "biteTime": [
-            14,
+            13,
             20
           ],
           "usable": true,
@@ -9489,7 +9489,7 @@
       "baits": {
         "ragworm": {
           "biteTime": [
-            10,
+            11,
             20
           ],
           "usable": true,
@@ -9619,7 +9619,7 @@
       "baits": {
         "ragworm": {
           "biteTime": [
-            18,
+            17,
             27
           ],
           "usable": true,
@@ -9627,7 +9627,7 @@
         },
         "krill": {
           "biteTime": [
-            18,
+            17,
             27
           ],
           "usable": true,
@@ -9635,8 +9635,8 @@
         },
         "plumpWorm": {
           "biteTime": [
-            15,
-            25
+            16,
+            26
           ],
           "usable": true,
           "best": true
@@ -9684,8 +9684,8 @@
       "baits": {
         "ragworm": {
           "biteTime": [
-            16,
-            null
+            15,
+            24
           ],
           "usable": true,
           "best": false
@@ -9759,8 +9759,8 @@
         },
         "plumpWorm": {
           "biteTime": [
-            14,
-            null
+            13,
+            23
           ],
           "usable": true,
           "best": true
@@ -9781,7 +9781,10 @@
         1,
         1
       ],
-      "tripleHook": null,
+      "tripleHook": [
+        1,
+        1
+      ],
       "tug": 3,
       "hookset": "Powerful",
       "availability": {
@@ -9832,7 +9835,7 @@
         "other": {
           "biteTime": [
             6,
-            null
+            8
           ],
           "usable": true,
           "best": false
@@ -9900,7 +9903,7 @@
         "other": {
           "biteTime": [
             3,
-            3
+            4
           ],
           "usable": true,
           "best": false
@@ -9960,8 +9963,11 @@
           "best": false
         },
         "other": {
-          "biteTime": null,
-          "usable": false,
+          "biteTime": [
+            6,
+            7
+          ],
+          "usable": true,
           "best": false
         },
         "mooch": {
@@ -9982,8 +9988,8 @@
       "tug": 1,
       "hookset": "Precision",
       "availability": {
-        "weather1": null,
-        "weather2": null,
+        "weather1": false,
+        "weather2": false,
         "weather3": true,
         "weather4": null,
         "weather5": null,
@@ -10070,7 +10076,7 @@
       "baits": {
         "ragworm": {
           "biteTime": [
-            4,
+            5,
             6
           ],
           "usable": true,
@@ -10089,7 +10095,7 @@
         "other": {
           "biteTime": [
             5,
-            5
+            6
           ],
           "usable": true,
           "best": false
@@ -10150,7 +10156,7 @@
         },
         "other": {
           "biteTime": [
-            6,
+            5,
             6
           ],
           "usable": true,
@@ -10174,8 +10180,8 @@
       "tug": 3,
       "hookset": "Powerful",
       "availability": {
-        "weather1": null,
-        "weather2": null,
+        "weather1": false,
+        "weather2": false,
         "weather3": true,
         "weather4": null,
         "weather5": null,
@@ -10212,8 +10218,8 @@
         },
         "other": {
           "biteTime": [
-            4,
-            5
+            5,
+            6
           ],
           "usable": true,
           "best": false
@@ -10354,9 +10360,9 @@
       "tug": 2,
       "hookset": "Powerful",
       "availability": {
-        "weather1": true,
+        "weather1": false,
         "weather2": true,
-        "weather3": null,
+        "weather3": false,
         "weather4": null,
         "weather5": null,
         "weather6": null,
@@ -10389,8 +10395,8 @@
         },
         "other": {
           "biteTime": [
-            10,
-            10
+            9,
+            11
           ],
           "usable": true,
           "best": true
@@ -10401,15 +10407,21 @@
           "best": false
         }
       },
-      "points": null,
-      "doubleHook": null,
-      "tripleHook": null,
+      "points": 500,
+      "doubleHook": [
+        1,
+        1
+      ],
+      "tripleHook": [
+        1,
+        1
+      ],
       "tug": 3,
-      "hookset": null,
+      "hookset": "Powerful",
       "availability": {
         "weather1": true,
-        "weather2": null,
-        "weather3": null,
+        "weather2": false,
+        "weather3": false,
         "weather4": null,
         "weather5": null,
         "weather6": null,
@@ -10478,7 +10490,7 @@
         "weather2": true,
         "weather3": true,
         "weather4": false,
-        "weather5": null,
+        "weather5": false,
         "weather6": true,
         "weather7": null
       },
@@ -10495,15 +10507,15 @@
         "ragworm": {
           "biteTime": [
             15,
-            28
+            29
           ],
           "usable": true,
           "best": true
         },
         "krill": {
           "biteTime": [
-            16,
-            28
+            15,
+            29
           ],
           "usable": true,
           "best": false
@@ -10511,7 +10523,7 @@
         "plumpWorm": {
           "biteTime": [
             15,
-            28
+            29
           ],
           "usable": true,
           "best": false
@@ -10560,7 +10572,7 @@
         "ragworm": {
           "biteTime": [
             5,
-            8
+            9
           ],
           "usable": true,
           "best": true
@@ -10568,7 +10580,7 @@
         "krill": {
           "biteTime": [
             5,
-            8
+            9
           ],
           "usable": true,
           "best": false
@@ -10576,7 +10588,7 @@
         "plumpWorm": {
           "biteTime": [
             5,
-            8
+            9
           ],
           "usable": true,
           "best": true
@@ -10625,7 +10637,7 @@
         "ragworm": {
           "biteTime": [
             18,
-            26
+            29
           ],
           "usable": true,
           "best": false
@@ -10633,7 +10645,7 @@
         "krill": {
           "biteTime": [
             18,
-            28
+            29
           ],
           "usable": true,
           "best": false
@@ -10689,16 +10701,16 @@
       "baits": {
         "ragworm": {
           "biteTime": [
-            11,
-            16
+            12,
+            17
           ],
           "usable": true,
           "best": false
         },
         "krill": {
           "biteTime": [
-            11,
-            16
+            12,
+            17
           ],
           "usable": true,
           "best": false
@@ -10755,7 +10767,7 @@
         "ragworm": {
           "biteTime": [
             10,
-            13
+            14
           ],
           "usable": true,
           "best": false
@@ -10771,7 +10783,7 @@
         "plumpWorm": {
           "biteTime": [
             10,
-            13
+            14
           ],
           "usable": true,
           "best": false
@@ -10819,16 +10831,16 @@
       "baits": {
         "ragworm": {
           "biteTime": [
-            9,
-            13
+            10,
+            14
           ],
           "usable": true,
           "best": true
         },
         "krill": {
           "biteTime": [
-            10,
-            14
+            11,
+            15
           ],
           "usable": true,
           "best": false
@@ -10873,7 +10885,7 @@
         "weather7": null
       },
       "stars": 3,
-      "notes": "7 - 12 from Leopard Prawn Mooch"
+      "notes": "8 - 12 from Leopard Prawn Mooch"
     },
     {
       "name": "Silent Shark",
@@ -10944,7 +10956,7 @@
         "ragworm": {
           "biteTime": [
             17,
-            27
+            29
           ],
           "usable": true,
           "best": true
@@ -10952,7 +10964,7 @@
         "krill": {
           "biteTime": [
             17,
-            25
+            29
           ],
           "usable": true,
           "best": true
@@ -10960,7 +10972,7 @@
         "plumpWorm": {
           "biteTime": [
             18,
-            26
+            29
           ],
           "usable": true,
           "best": false
@@ -11008,8 +11020,8 @@
       "baits": {
         "ragworm": {
           "biteTime": [
-            18,
-            18
+            15,
+            24
           ],
           "usable": true,
           "best": true
@@ -11207,7 +11219,7 @@
         },
         "krill": {
           "biteTime": [
-            7,
+            6,
             8
           ],
           "usable": true,
@@ -11242,8 +11254,8 @@
       "hookset": "Powerful",
       "availability": {
         "weather1": true,
-        "weather2": null,
-        "weather3": null,
+        "weather2": false,
+        "weather3": false,
         "weather4": null,
         "weather5": null,
         "weather6": null,
@@ -11261,7 +11273,7 @@
       "baits": {
         "ragworm": {
           "biteTime": [
-            9,
+            8,
             12
           ],
           "usable": true,
@@ -11269,7 +11281,7 @@
         },
         "krill": {
           "biteTime": [
-            9,
+            8,
             12
           ],
           "usable": true,
@@ -11326,8 +11338,8 @@
       "baits": {
         "ragworm": {
           "biteTime": [
-            7,
-            10
+            8,
+            11
           ],
           "usable": true,
           "best": true
@@ -11365,9 +11377,9 @@
       "tug": 1,
       "hookset": "Precision",
       "availability": {
-        "weather1": null,
+        "weather1": false,
         "weather2": true,
-        "weather3": null,
+        "weather3": false,
         "weather4": null,
         "weather5": null,
         "weather6": null,
@@ -11451,7 +11463,7 @@
         "ragworm": {
           "biteTime": [
             5,
-            8
+            7
           ],
           "usable": true,
           "best": true
@@ -11459,7 +11471,7 @@
         "krill": {
           "biteTime": [
             5,
-            8
+            7
           ],
           "usable": true,
           "best": false
@@ -11467,7 +11479,7 @@
         "plumpWorm": {
           "biteTime": [
             5,
-            8
+            7
           ],
           "usable": true,
           "best": false
@@ -11613,9 +11625,9 @@
       "tug": 2,
       "hookset": "Powerful",
       "availability": {
-        "weather1": null,
+        "weather1": false,
         "weather2": true,
-        "weather3": null,
+        "weather3": false,
         "weather4": null,
         "weather5": null,
         "weather6": null,
@@ -11634,7 +11646,7 @@
         "ragworm": {
           "biteTime": [
             8,
-            null
+            11
           ],
           "usable": false,
           "best": false
@@ -11679,10 +11691,10 @@
         1
       ],
       "tug": 3,
-      "hookset": null,
+      "hookset": "Powerful",
       "availability": {
-        "weather1": null,
-        "weather2": null,
+        "weather1": false,
+        "weather2": false,
         "weather3": true,
         "weather4": null,
         "weather5": null,
@@ -11898,7 +11910,7 @@
       "baits": {
         "ragworm": {
           "biteTime": [
-            11,
+            10,
             14
           ],
           "usable": true,
@@ -11907,15 +11919,15 @@
         "krill": {
           "biteTime": [
             5,
-            8
+            9
           ],
           "usable": true,
           "best": true
         },
         "plumpWorm": {
           "biteTime": [
-            11,
-            13
+            10,
+            14
           ],
           "usable": true,
           "best": false
@@ -11971,7 +11983,7 @@
         },
         "krill": {
           "biteTime": [
-            16,
+            15,
             22
           ],
           "usable": true,
@@ -11979,8 +11991,8 @@
         },
         "plumpWorm": {
           "biteTime": [
-            16,
-            21
+            15,
+            22
           ],
           "usable": true,
           "best": false
@@ -12028,7 +12040,7 @@
       "baits": {
         "ragworm": {
           "biteTime": [
-            20,
+            19,
             30
           ],
           "usable": true,
@@ -12036,16 +12048,16 @@
         },
         "krill": {
           "biteTime": [
-            21,
-            28
+            20,
+            32
           ],
           "usable": true,
           "best": false
         },
         "plumpWorm": {
           "biteTime": [
-            21,
-            26
+            20,
+            32
           ],
           "usable": true,
           "best": false
@@ -12094,7 +12106,7 @@
         "ragworm": {
           "biteTime": [
             19,
-            29
+            30
           ],
           "usable": true,
           "best": false
@@ -12102,7 +12114,7 @@
         "krill": {
           "biteTime": [
             19,
-            28
+            31
           ],
           "usable": true,
           "best": false
@@ -12158,23 +12170,23 @@
       "baits": {
         "ragworm": {
           "biteTime": [
-            15,
-            20
+            14,
+            21
           ],
           "usable": true,
           "best": false
         },
         "krill": {
           "biteTime": [
-            15,
-            20
+            14,
+            21
           ],
           "usable": true,
           "best": false
         },
         "plumpWorm": {
           "biteTime": [
-            15,
+            13,
             20
           ],
           "usable": true,
@@ -12223,24 +12235,24 @@
       "baits": {
         "ragworm": {
           "biteTime": [
-            17,
-            20
+            16,
+            23
           ],
           "usable": true,
           "best": false
         },
         "krill": {
           "biteTime": [
-            16,
-            22
+            15,
+            24
           ],
           "usable": true,
           "best": true
         },
         "plumpWorm": {
           "biteTime": [
-            18,
-            20
+            16,
+            23
           ],
           "usable": true,
           "best": true
@@ -12293,8 +12305,8 @@
         },
         "krill": {
           "biteTime": [
-            18,
-            22
+            16,
+            26
           ],
           "usable": true,
           "best": true
@@ -12374,7 +12386,7 @@
         "other": {
           "biteTime": [
             6,
-            7
+            8
           ],
           "usable": true,
           "best": false
@@ -12442,7 +12454,7 @@
         "other": {
           "biteTime": [
             6,
-            7
+            8
           ],
           "usable": true,
           "best": false
@@ -12525,8 +12537,8 @@
       "hookset": "Precision",
       "availability": {
         "weather1": true,
-        "weather2": null,
-        "weather3": null,
+        "weather2": false,
+        "weather3": false,
         "weather4": null,
         "weather5": null,
         "weather6": null,
@@ -12544,32 +12556,32 @@
       "baits": {
         "ragworm": {
           "biteTime": [
-            5.5,
-            null
+            5,
+            7.5
           ],
           "usable": true,
           "best": true
         },
         "krill": {
           "biteTime": [
-            4,
-            7
+            5,
+            7.5
           ],
           "usable": true,
           "best": false
         },
         "plumpWorm": {
           "biteTime": [
-            4,
-            7
+            5,
+            7.5
           ],
           "usable": true,
           "best": false
         },
         "other": {
           "biteTime": [
-            4,
-            7
+            5,
+            8
           ],
           "usable": true,
           "best": false
@@ -12604,7 +12616,7 @@
       "notes": null
     },
     {
-      "name": "Tentacale Thresher",
+      "name": "Tentacle Thresher",
       "moochable": false,
       "mooched": false,
       "moochOnly": false,
@@ -12613,7 +12625,7 @@
         "ragworm": {
           "biteTime": [
             2,
-            2
+            3
           ],
           "usable": true,
           "best": false
@@ -12621,7 +12633,7 @@
         "krill": {
           "biteTime": [
             2,
-            2
+            3
           ],
           "usable": true,
           "best": false
@@ -12629,7 +12641,7 @@
         "plumpWorm": {
           "biteTime": [
             2,
-            2
+            3
           ],
           "usable": true,
           "best": true
@@ -12637,7 +12649,7 @@
         "other": {
           "biteTime": [
             5,
-            5
+            6
           ],
           "usable": true,
           "best": false
@@ -12686,7 +12698,7 @@
         "krill": {
           "biteTime": [
             5,
-            5
+            6
           ],
           "usable": true,
           "best": true
@@ -12719,8 +12731,8 @@
       "tug": 2,
       "hookset": "Powerful",
       "availability": {
-        "weather1": null,
-        "weather2": null,
+        "weather1": false,
+        "weather2": false,
         "weather3": true,
         "weather4": null,
         "weather5": null,
@@ -12740,7 +12752,7 @@
         "ragworm": {
           "biteTime": [
             6,
-            7
+            8
           ],
           "usable": true,
           "best": true
@@ -12779,8 +12791,8 @@
       "hookset": "Precision",
       "availability": {
         "weather1": true,
-        "weather2": null,
-        "weather3": null,
+        "weather2": false,
+        "weather3": false,
         "weather4": null,
         "weather5": null,
         "weather6": null,
@@ -12808,8 +12820,8 @@
         },
         "plumpWorm": {
           "biteTime": [
-            5,
-            6
+            6,
+            8
           ],
           "usable": true,
           "best": true
@@ -12837,8 +12849,8 @@
       "tug": 3,
       "hookset": "Powerful",
       "availability": {
-        "weather1": null,
-        "weather2": null,
+        "weather1": false,
+        "weather2": false,
         "weather3": true,
         "weather4": null,
         "weather5": null,
@@ -12882,7 +12894,7 @@
         "other": {
           "biteTime": [
             7,
-            9
+            10
           ],
           "usable": true,
           "best": false
@@ -12939,7 +12951,10 @@
           "best": false
         },
         "other": {
-          "biteTime": null,
+          "biteTime": [
+            9,
+            11
+          ],
           "usable": true,
           "best": true
         },
@@ -12949,15 +12964,21 @@
           "best": false
         }
       },
-      "points": null,
-      "doubleHook": null,
-      "tripleHook": null,
-      "tug": null,
+      "points": 500,
+      "doubleHook": [
+        1,
+        1
+      ],
+      "tripleHook": [
+        1,
+        1
+      ],
+      "tug": 3,
       "hookset": null,
       "availability": {
-        "weather1": null,
+        "weather1": false,
         "weather2": true,
-        "weather3": null,
+        "weather3": false,
         "weather4": null,
         "weather5": null,
         "weather6": null,
@@ -13172,15 +13193,15 @@
       "baits": {
         "ragworm": {
           "biteTime": [
-            6,
-            8
+            5,
+            9
           ],
           "usable": true,
           "best": true
         },
         "krill": {
           "biteTime": [
-            11,
+            10,
             14
           ],
           "usable": true,
@@ -13188,7 +13209,7 @@
         },
         "plumpWorm": {
           "biteTime": [
-            11,
+            10,
             14
           ],
           "usable": true,
@@ -13238,7 +13259,7 @@
         "ragworm": {
           "biteTime": [
             13,
-            18
+            19
           ],
           "usable": true,
           "best": false
@@ -13246,7 +13267,7 @@
         "krill": {
           "biteTime": [
             13,
-            18
+            19
           ],
           "usable": true,
           "best": false
@@ -13310,16 +13331,16 @@
         },
         "krill": {
           "biteTime": [
-            20,
-            28
+            18,
+            29
           ],
           "usable": true,
           "best": false
         },
         "plumpWorm": {
           "biteTime": [
-            19,
-            28
+            18,
+            29
           ],
           "usable": true,
           "best": false
@@ -13368,23 +13389,23 @@
         "ragworm": {
           "biteTime": [
             15,
-            20
+            23
           ],
           "usable": true,
           "best": false
         },
         "krill": {
           "biteTime": [
-            15,
-            19
+            14,
+            22
           ],
           "usable": true,
           "best": true
         },
         "plumpWorm": {
           "biteTime": [
-            16,
-            17
+            15,
+            23
           ],
           "usable": true,
           "best": false
@@ -13497,24 +13518,24 @@
       "baits": {
         "ragworm": {
           "biteTime": [
-            20,
-            25
+            16,
+            27
           ],
           "usable": true,
           "best": false
         },
         "krill": {
           "biteTime": [
-            18,
-            22
+            16,
+            27
           ],
           "usable": true,
           "best": true
         },
         "plumpWorm": {
           "biteTime": [
-            18,
-            25
+            16,
+            27
           ],
           "usable": true,
           "best": true
@@ -13571,7 +13592,10 @@
           "best": false
         },
         "plumpWorm": {
-          "biteTime": null,
+          "biteTime": [
+            17,
+            27
+          ],
           "usable": true,
           "best": true
         },
@@ -13587,10 +13611,16 @@
         }
       },
       "points": 223,
-      "doubleHook": null,
-      "tripleHook": null,
+      "doubleHook": [
+        1,
+        1
+      ],
+      "tripleHook": [
+        1,
+        1
+      ],
       "tug": 3,
-      "hookset": null,
+      "hookset": "Powerful",
       "availability": {
         "weather1": true,
         "weather2": true,
@@ -13638,7 +13668,7 @@
         },
         "other": {
           "biteTime": [
-            4,
+            3,
             4
           ],
           "usable": true,
@@ -13674,7 +13704,7 @@
       "notes": "Counts for \"Shrimp Smorgasbord\""
     },
     {
-      "name": "Yato-no-Kami",
+      "name": "Yato-no-kami",
       "moochable": false,
       "mooched": false,
       "moochOnly": false,
@@ -13707,7 +13737,7 @@
         "other": {
           "biteTime": [
             5,
-            5
+            6
           ],
           "usable": true,
           "best": false
@@ -13819,7 +13849,7 @@
         "ragworm": {
           "biteTime": [
             5,
-            8
+            7
           ],
           "usable": true,
           "best": true
@@ -13827,7 +13857,7 @@
         "krill": {
           "biteTime": [
             5,
-            8
+            7
           ],
           "usable": true,
           "best": false
@@ -13835,7 +13865,7 @@
         "plumpWorm": {
           "biteTime": [
             5,
-            8
+            7
           ],
           "usable": true,
           "best": false
@@ -13959,7 +13989,7 @@
         },
         "krill": {
           "biteTime": [
-            6,
+            5,
             6
           ],
           "usable": true,
@@ -13993,9 +14023,9 @@
       "tug": 1,
       "hookset": "Precision",
       "availability": {
-        "weather1": null,
+        "weather1": false,
         "weather2": true,
-        "weather3": null,
+        "weather3": false,
         "weather4": null,
         "weather5": null,
         "weather6": null,
@@ -14018,7 +14048,7 @@
         },
         "krill": {
           "biteTime": [
-            6,
+            5,
             6
           ],
           "usable": true,
@@ -14052,8 +14082,8 @@
       "tug": 2,
       "hookset": "Powerful",
       "availability": {
-        "weather1": null,
-        "weather2": null,
+        "weather1": false,
+        "weather2": false,
         "weather3": true,
         "weather4": null,
         "weather5": null,
@@ -14082,7 +14112,7 @@
         },
         "plumpWorm": {
           "biteTime": [
-            7,
+            6,
             8
           ],
           "usable": true,
@@ -14111,8 +14141,8 @@
       "tug": 3,
       "hookset": "Powerful",
       "availability": {
-        "weather1": null,
-        "weather2": null,
+        "weather1": false,
+        "weather2": false,
         "weather3": true,
         "weather4": null,
         "weather5": null,
@@ -14137,7 +14167,7 @@
         "krill": {
           "biteTime": [
             5,
-            7
+            6
           ],
           "usable": true,
           "best": true
@@ -14170,9 +14200,9 @@
       "tug": 2,
       "hookset": "Powerful",
       "availability": {
-        "weather1": null,
+        "weather1": false,
         "weather2": true,
-        "weather3": null,
+        "weather3": false,
         "weather4": null,
         "weather5": null,
         "weather6": null,
@@ -14206,7 +14236,7 @@
         "other": {
           "biteTime": [
             5,
-            null
+            7
           ],
           "usable": true,
           "best": true
@@ -14222,13 +14252,16 @@
         1,
         1
       ],
-      "tripleHook": null,
+      "tripleHook": [
+        1,
+        1
+      ],
       "tug": 3,
       "hookset": null,
       "availability": {
         "weather1": true,
-        "weather2": null,
-        "weather3": null,
+        "weather2": false,
+        "weather3": false,
         "weather4": null,
         "weather5": null,
         "weather6": null,
