@@ -120,8 +120,9 @@ const oceanFishes = IKDFishParam.data
                 ko: item_ko?.Description ?? ''
             },
             contentBonus: (() => {
-                if (+ikdFishParam['<UNKNOWN_2>'] === 22) {
-                    return 22 // Manta bug
+                const UNKNOWN_2 = +ikdFishParam['<UNKNOWN_2>']
+                if (UNKNOWN_2 === 22 || UNKNOWN_2 === 42) {
+                    return UNKNOWN_2 // Manta, Shrimp
                 } else if (+ikdFishParam.IKDContentBonus !== 0) {
                     return +ikdFishParam.IKDContentBonus
                 } else {
