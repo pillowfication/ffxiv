@@ -8389,39 +8389,27 @@
     {
       "name": "Placodus",
       "moochable": false,
-      "mooched": false,
-      "moochOnly": false,
+      "mooched": true,
+      "moochOnly": true,
       "intuition": true,
       "baits": {
         "0": {
-          "biteTime": [
-            500,
-            500
-          ],
+          "biteTime": null,
           "usable": false,
           "best": false
         },
         "29714": {
-          "biteTime": [
-            9,
-            null
-          ],
+          "biteTime": null,
           "usable": false,
           "best": false
         },
         "29715": {
-          "biteTime": [
-            500,
-            500
-          ],
+          "biteTime": null,
           "usable": false,
           "best": false
         },
         "29716": {
-          "biteTime": [
-            500,
-            500
-          ],
+          "biteTime": null,
           "usable": false,
           "best": false
         },
@@ -8439,6 +8427,13 @@
       "tug": 3,
       "hookset": "Powerful",
       "stars": 5,
+      "mooches": {
+        "Rothlyt Mussel": {
+          "biteTime": null,
+          "usable": true,
+          "best": null
+        }
+      },
       "timeAvailability": [
         "S"
       ],
@@ -10741,39 +10736,27 @@
     {
       "name": "Glass Dragon",
       "moochable": false,
-      "mooched": false,
-      "moochOnly": false,
+      "mooched": true,
+      "moochOnly": true,
       "intuition": true,
       "baits": {
         "0": {
-          "biteTime": [
-            500,
-            500
-          ],
+          "biteTime": null,
           "usable": false,
           "best": false
         },
         "29714": {
-          "biteTime": [
-            8,
-            11
-          ],
+          "biteTime": null,
           "usable": false,
           "best": false
         },
         "29715": {
-          "biteTime": [
-            500,
-            500
-          ],
+          "biteTime": null,
           "usable": false,
           "best": false
         },
         "29716": {
-          "biteTime": [
-            500,
-            500
-          ],
+          "biteTime": null,
           "usable": false,
           "best": false
         },
@@ -10791,6 +10774,13 @@
       "tug": 3,
       "hookset": "Powerful",
       "stars": 5,
+      "mooches": {
+        "Snapping Koban": {
+          "biteTime": null,
+          "usable": true,
+          "best": null
+        }
+      },
       "timeAvailability": [
         "N"
       ],
@@ -11039,14 +11029,9 @@
         "N"
       ],
       "weatherAvailability": {
-        "type": "OK",
+        "type": "NOT OK",
         "weathers": [
-          2,
-          3,
-          4,
-          5,
-          6,
-          1
+          9
         ]
       }
     },
@@ -11964,7 +11949,7 @@
         1
       ],
       "tug": 3,
-      "hookset": null,
+      "hookset": "Powerful",
       "stars": 5,
       "timeAvailability": [
         "S"
@@ -13139,7 +13124,7 @@
         1
       ],
       "tug": 3,
-      "hookset": null,
+      "hookset": "Precision",
       "stars": 5,
       "timeAvailability": [
         "D"

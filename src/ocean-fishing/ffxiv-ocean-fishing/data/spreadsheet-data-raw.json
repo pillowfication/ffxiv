@@ -10310,7 +10310,7 @@
         "weather7": null
       },
       "stars": 4,
-      "notes": "not a shrimp"
+      "notes": "Does not count as a Shrimp"
     },
     {
       "name": "Nymeia's Wheel",
@@ -10944,7 +10944,7 @@
         "weather7": null
       },
       "stars": 3,
-      "notes": null
+      "notes": "6 - 11 from Leopard Prawn Mooch"
     },
     {
       "name": "Spectral Wrasse",
@@ -11960,7 +11960,7 @@
         "weather3": true,
         "weather4": true,
         "weather5": true,
-        "weather6": null,
+        "weather6": false,
         "weather7": true
       },
       "stars": 2,
@@ -12974,7 +12974,7 @@
         1
       ],
       "tug": 3,
-      "hookset": null,
+      "hookset": "Powerful",
       "availability": {
         "weather1": false,
         "weather2": true,
@@ -14257,7 +14257,7 @@
         1
       ],
       "tug": 3,
-      "hookset": null,
+      "hookset": "Precision",
       "availability": {
         "weather1": true,
         "weather2": false,

@@ -226,20 +226,17 @@ const data: Record<string, any> = {}
             case '':
                 return null
             case '9':
-            case '138':
-            case '199':
-            case '324':
-            case '455':
-            case '475':
-            case '487':
+            case '181':
+            case '278':
+            case '447':
+            case '467':
                 return 'Precision'
             case '12':
-            case '141':
-            case '196':
-            case '327':
-            case '453':
-            case '473':
-            case '485':
+            case '178':
+            case '281':
+            case '436':
+            case '445':
+            case '465':
                 return 'Powerful'
             default:
                 console.log(`Element with text "${elem.text()}" has unexpected hookset "${imgSrc}"`)

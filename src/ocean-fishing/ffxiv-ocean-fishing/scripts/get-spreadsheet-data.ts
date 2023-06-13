@@ -28,9 +28,22 @@ const MACKEREL_STRIP = 36593
         for (const fish of fishes) {
             switch (fish.name) {
                 case 'Jewel of Plum Spring':
-                    fish.notes = 'Intuition: x2 Yanxian Goby, x1 Gensui Shrimp (15s)'
+                    // Change "1x" to "x1" so that this parser works
+                    fish.notes = fish.notes.replace('1x', 'x1')
                     break
+                case 'Placodus':
+                case 'Glass Dragon':
+                    // These fishes were not detected as being mooch-only, so the raw-parser broke
+                    fish.moochOnly = true
+                    fish.baits = {
+                        ragworm: { biteTime: null, usable: false, best: false },
+                        krill: { biteTime: null, usable: false, best: false },
+                        plumpWorm: { biteTime: null, usable: false, best: false },
+                        other: { biteTime: null, usable: false, best: false },
+                        mooch: { biteTime: fish.baits.ragworm, usable: true, best: true }
+                    }
                 case 'Snapping Koban':
+                    // This fish was not detected as a mooched fish
                     fish.mooched = true
                     fish.baits.mooch = { biteTime: null, usable: true, best: null }
                     break
