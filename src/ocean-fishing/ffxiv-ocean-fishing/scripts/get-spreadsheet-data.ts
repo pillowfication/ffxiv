@@ -40,8 +40,9 @@ const MACKEREL_STRIP = 36593
                         krill: { biteTime: null, usable: false, best: false },
                         plumpWorm: { biteTime: null, usable: false, best: false },
                         other: { biteTime: null, usable: false, best: false },
-                        mooch: { biteTime: fish.baits.ragworm, usable: true, best: true }
+                        mooch: { biteTime: fish.baits.ragworm.biteTime, usable: true, best: true },
                     }
+                    break
                 case 'Snapping Koban':
                     // This fish was not detected as a mooched fish
                     fish.mooched = true
@@ -120,11 +121,9 @@ const MACKEREL_STRIP = 36593
             delete fish.notes
 
             // Fix mooch data appearing as bait data
-            if (['Smooth Jaguar', 'Levi Elver', 'Panoptes', 'Snapping Koban'].includes(fish.name)) {
-                fish.mooches[getMoochBait(fishingSpot)].biteTime = fish.baits[0].biteTime
-                fish.mooches[getMoochBait(fishingSpot)].useable = fish.baits[0].useable
-                fish.mooches[getMoochBait(fishingSpot)].best = fish.baits[0].best
-                delete fish.baits[0]
+            if (['Glass Dragon', 'Smooth Jaguar', 'Levi Elver', 'Panoptes', 'Placodus', 'Snapping Koban'].includes(fish.name)) {
+                // Object.apply(fish.mooches[getMoochBait(fishingSpot)], fish.baits[0])
+                // delete fish.baits[0]
             }
         }
     }

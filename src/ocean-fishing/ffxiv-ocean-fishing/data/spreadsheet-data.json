@@ -7926,6 +7926,14 @@
       "moochOnly": false,
       "intuition": false,
       "baits": {
+        "0": {
+          "biteTime": [
+            3,
+            4
+          ],
+          "usable": true,
+          "best": false
+        },
         "29714": {
           "biteTime": [
             3,
@@ -7966,10 +7974,7 @@
       "stars": 4,
       "mooches": {
         "Rothlyt Mussel": {
-          "biteTime": [
-            3,
-            4
-          ],
+          "biteTime": null,
           "usable": true,
           "best": false
         }
@@ -8049,6 +8054,14 @@
       "moochOnly": false,
       "intuition": false,
       "baits": {
+        "0": {
+          "biteTime": [
+            2,
+            3
+          ],
+          "usable": true,
+          "best": false
+        },
         "29714": {
           "biteTime": [
             2,
@@ -8089,10 +8102,7 @@
       "stars": 4,
       "mooches": {
         "Rothlyt Mussel": {
-          "biteTime": [
-            2,
-            3
-          ],
+          "biteTime": null,
           "usable": true,
           "best": false
         }
@@ -8225,6 +8235,14 @@
       "moochOnly": false,
       "intuition": false,
       "baits": {
+        "0": {
+          "biteTime": [
+            7,
+            10
+          ],
+          "usable": true,
+          "best": false
+        },
         "29714": {
           "biteTime": null,
           "usable": false,
@@ -8259,10 +8277,7 @@
       "stars": 4,
       "mooches": {
         "Rothlyt Mussel": {
-          "biteTime": [
-            7,
-            10
-          ],
+          "biteTime": null,
           "usable": true,
           "best": false
         }
@@ -8389,7 +8404,7 @@
     {
       "name": "Placodus",
       "moochable": false,
-      "mooched": true,
+      "mooched": false,
       "moochOnly": true,
       "intuition": true,
       "baits": {
@@ -8429,9 +8444,12 @@
       "stars": 5,
       "mooches": {
         "Rothlyt Mussel": {
-          "biteTime": null,
+          "biteTime": [
+            9,
+            null
+          ],
           "usable": true,
-          "best": null
+          "best": true
         }
       },
       "timeAvailability": [
@@ -10235,6 +10253,14 @@
       "moochOnly": false,
       "intuition": false,
       "baits": {
+        "0": {
+          "biteTime": [
+            2,
+            3
+          ],
+          "usable": true,
+          "best": false
+        },
         "29714": {
           "biteTime": [
             2,
@@ -10275,12 +10301,9 @@
       "stars": 4,
       "mooches": {
         "Snapping Koban": {
-          "biteTime": [
-            2,
-            3
-          ],
+          "biteTime": null,
           "usable": true,
-          "best": false
+          "best": null
         }
       },
       "timeAvailability": [
@@ -10736,7 +10759,7 @@
     {
       "name": "Glass Dragon",
       "moochable": false,
-      "mooched": true,
+      "mooched": false,
       "moochOnly": true,
       "intuition": true,
       "baits": {
@@ -10776,9 +10799,12 @@
       "stars": 5,
       "mooches": {
         "Snapping Koban": {
-          "biteTime": null,
+          "biteTime": [
+            8,
+            11
+          ],
           "usable": true,
-          "best": null
+          "best": true
         }
       },
       "timeAvailability": [
