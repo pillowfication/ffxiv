@@ -122,8 +122,10 @@ const MACKEREL_STRIP = 36593
 
             // Fix mooch data appearing as bait data
             if (['Glass Dragon', 'Smooth Jaguar', 'Levi Elver', 'Panoptes', 'Placodus', 'Snapping Koban'].includes(fish.name)) {
-                // Object.apply(fish.mooches[getMoochBait(fishingSpot)], fish.baits[0])
-                // delete fish.baits[0]
+                Object.apply(fish.mooches[getMoochBait(fishingSpot)], fish.baits[0])
+                delete fish.baits[0]
+            } else if (fish.baits[0] !== null) {
+                delete fish.baits[0]
             }
         }
     }

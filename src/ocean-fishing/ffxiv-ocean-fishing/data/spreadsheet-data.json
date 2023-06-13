@@ -7868,11 +7868,6 @@
       "moochOnly": false,
       "intuition": false,
       "baits": {
-        "0": {
-          "biteTime": null,
-          "usable": false,
-          "best": false
-        },
         "29714": {
           "biteTime": [
             2,
@@ -7926,14 +7921,6 @@
       "moochOnly": false,
       "intuition": false,
       "baits": {
-        "0": {
-          "biteTime": [
-            3,
-            4
-          ],
-          "usable": true,
-          "best": false
-        },
         "29714": {
           "biteTime": [
             3,
@@ -7995,11 +7982,6 @@
       "moochOnly": false,
       "intuition": false,
       "baits": {
-        "0": {
-          "biteTime": null,
-          "usable": false,
-          "best": false
-        },
         "29714": {
           "biteTime": [
             3,
@@ -8054,14 +8036,6 @@
       "moochOnly": false,
       "intuition": false,
       "baits": {
-        "0": {
-          "biteTime": [
-            2,
-            3
-          ],
-          "usable": true,
-          "best": false
-        },
         "29714": {
           "biteTime": [
             2,
@@ -8123,11 +8097,6 @@
       "moochOnly": false,
       "intuition": false,
       "baits": {
-        "0": {
-          "biteTime": null,
-          "usable": false,
-          "best": false
-        },
         "29714": {
           "biteTime": null,
           "usable": false,
@@ -8175,11 +8144,6 @@
       "moochOnly": true,
       "intuition": false,
       "baits": {
-        "0": {
-          "biteTime": null,
-          "usable": false,
-          "best": false
-        },
         "29714": {
           "biteTime": null,
           "usable": false,
@@ -8235,14 +8199,6 @@
       "moochOnly": false,
       "intuition": false,
       "baits": {
-        "0": {
-          "biteTime": [
-            7,
-            10
-          ],
-          "usable": true,
-          "best": false
-        },
         "29714": {
           "biteTime": null,
           "usable": false,
@@ -8296,11 +8252,6 @@
       "moochOnly": false,
       "intuition": false,
       "baits": {
-        "0": {
-          "biteTime": null,
-          "usable": false,
-          "best": false
-        },
         "29714": {
           "biteTime": [
             5,
@@ -8355,11 +8306,6 @@
       "moochOnly": false,
       "intuition": false,
       "baits": {
-        "0": {
-          "biteTime": null,
-          "usable": false,
-          "best": false
-        },
         "29714": {
           "biteTime": null,
           "usable": false,
@@ -8408,11 +8354,6 @@
       "moochOnly": true,
       "intuition": true,
       "baits": {
-        "0": {
-          "biteTime": null,
-          "usable": false,
-          "best": false
-        },
         "29714": {
           "biteTime": null,
           "usable": false,
@@ -10253,14 +10194,6 @@
       "moochOnly": false,
       "intuition": false,
       "baits": {
-        "0": {
-          "biteTime": [
-            2,
-            3
-          ],
-          "usable": true,
-          "best": false
-        },
         "29714": {
           "biteTime": [
             2,
@@ -10322,11 +10255,6 @@
       "moochOnly": false,
       "intuition": false,
       "baits": {
-        "0": {
-          "biteTime": null,
-          "usable": false,
-          "best": false
-        },
         "29714": {
           "biteTime": [
             2,
@@ -10381,11 +10309,6 @@
       "moochOnly": false,
       "intuition": false,
       "baits": {
-        "0": {
-          "biteTime": null,
-          "usable": false,
-          "best": false
-        },
         "29714": {
           "biteTime": null,
           "usable": false,
@@ -10432,11 +10355,6 @@
       "moochOnly": false,
       "intuition": false,
       "baits": {
-        "0": {
-          "biteTime": null,
-          "usable": false,
-          "best": false
-        },
         "29714": {
           "biteTime": [
             8,
@@ -10491,11 +10409,6 @@
       "moochOnly": false,
       "intuition": false,
       "baits": {
-        "0": {
-          "biteTime": null,
-          "usable": false,
-          "best": false
-        },
         "29714": {
           "biteTime": [
             8,
@@ -10542,11 +10455,6 @@
       "moochOnly": false,
       "intuition": false,
       "baits": {
-        "0": {
-          "biteTime": null,
-          "usable": false,
-          "best": false
-        },
         "29714": {
           "biteTime": [
             3,
@@ -10601,11 +10509,6 @@
       "moochOnly": false,
       "intuition": false,
       "baits": {
-        "0": {
-          "biteTime": null,
-          "usable": false,
-          "best": false
-        },
         "29714": {
           "biteTime": [
             5,
@@ -10659,11 +10562,6 @@
       "moochOnly": false,
       "intuition": false,
       "baits": {
-        "0": {
-          "biteTime": null,
-          "usable": false,
-          "best": false
-        },
         "29714": {
           "biteTime": null,
           "usable": false,
@@ -10712,11 +10610,6 @@
       "moochOnly": false,
       "intuition": false,
       "baits": {
-        "0": {
-          "biteTime": null,
-          "usable": false,
-          "best": false
-        },
         "29714": {
           "biteTime": null,
           "usable": false,
@@ -10763,11 +10656,6 @@
       "moochOnly": true,
       "intuition": true,
       "baits": {
-        "0": {
-          "biteTime": null,
-          "usable": false,
-          "best": false
-        },
         "29714": {
           "biteTime": null,
           "usable": false,
