@@ -22,7 +22,7 @@ const contentBonusMap: Record<number, ContentBonus> = {
 
 const teamcraftUrlMap: Record<number, string> = {
     2563: 'https://guides.ffxivteamcraft.com/guide/ocean-fishing-bonus-achievements#octopus-travelers',
-    2564: 'https://guides.ffxivteamcraft.com/guide/ocean-fishing-bonus-achievements#maritime-dragonslayers',
+    2564: 'https://guides.ffxivteamcraft.com/guide/ocean-fishing-bonus-achievements#certifiable-shark-hunters',
     2565: 'https://guides.ffxivteamcraft.com/guide/ocean-fishing-bonus-achievements#jelled-together',
     2566: 'https://guides.ffxivteamcraft.com/guide/ocean-fishing-bonus-achievements#maritime-dragonslayers',
     2754: 'https://guides.ffxivteamcraft.com/guide/ocean-fishing-bonus-achievements#balloon-catchers',
