@@ -17,7 +17,7 @@ export type NextAppDirEmotionCacheProviderProps = {
 }
 
 // Adapted from https://github.com/garronej/tss-react/blob/main/src/next/appDir.tsx
-export default function NextAppDirEmotionCacheProvider(props: NextAppDirEmotionCacheProviderProps) {
+export default function NextAppDirEmotionCacheProvider (props: NextAppDirEmotionCacheProviderProps) {
   const { options, CacheProvider = DefaultCacheProvider, children } = props
 
   const [registry] = React.useState(() => {
@@ -67,7 +67,7 @@ export default function NextAppDirEmotionCacheProvider(props: NextAppDirEmotionC
           dataEmotionAttribute += ` ${name}`
         }
       }
-    });
+    })
 
     return (
       <React.Fragment>
