@@ -72,7 +72,7 @@ const UpcomingVoyages = ({ now, onSelectVoyage, checklist }: Props): React.React
         )
         if (nextVoyage.length > 0)
             onSelectVoyage(nextVoyage[0].destination, nextVoyage[0].time)
-    }, [_filter])
+    }, [_filter, _route])
 
     const handleSelectRoute = (event: SelectChangeEvent): void => {
         const route = event.target.value
